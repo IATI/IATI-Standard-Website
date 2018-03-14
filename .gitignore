@@ -100,3 +100,6 @@ pyenv/
 
 # mypy
 .mypy_cache/
+
+# local settings
+local.py
