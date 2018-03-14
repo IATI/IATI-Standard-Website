@@ -13,4 +13,15 @@ cd iati
 
 # Install requirements
 pip install -r requirements.txt
+
+# Create a local postgres database (with appropriate user permissions)
+# settings/base.py expects username 'myusername' and password 'mypassword'
+createdb iati-website
+
+# Check database migrations work and execute
+python manage.py check
+python manage.py migrate
+
+# Run a development server
+python manage.py createsuperuser
 ```
