@@ -22,6 +22,9 @@ createdb iati-website
 python manage.py check
 python manage.py migrate
 
-# Run a development server
+# Create an initial superuser
 python manage.py createsuperuser
+
+# Run a development server
+python manage.py run server
 ```
