@@ -4,7 +4,7 @@ This repository hosts the new IATI website based on Django and Wagtail CMS.  A P
 The current scope of the project (to April 2018) focuses on the 'About IATI' and 'Publisher guidance' sections.
 
 
-# Pre-requite packages
+## Pre-requite packages
 
 - Python3
 - PostgreSQL
@@ -20,7 +20,7 @@ source pyenv/bin/activate
 cd iati
 
 # Install requirements
-pip install -r requirements.txt
+pip install -r requirements-dev.txt
 
 # Create a local PostgreSQL database (with appropriate user permissions)
 # settings/base.py expects username 'myusername' and password 'mypassword'
@@ -36,4 +36,12 @@ python manage.py createsuperuser
 
 # Run a development server
 python manage.py run server
+```
+
+## Tests
+
+Tests are run using [pytest](https://pytest.org/) as it [provides a number of benefits](https://pytest-django.readthedocs.io/en/latest/#why-would-i-use-this-instead-of-django-s-manage-py-test-command) over stock Django test approaches.
+```
+# Run tests from the project root
+pytest
 ```
