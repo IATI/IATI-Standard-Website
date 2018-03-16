@@ -17,6 +17,4 @@ DATABASES = {
     }
 }
 
-DEV_SECRET_KEY = 'enter-a-long-unguessable-string-here'
-
-PRODUCTION_SECRET_KEY = 'enter-another-long-unguessable-string-here'
+SECRET_KEY = 'enter-a-long-unguessable-string-here'
