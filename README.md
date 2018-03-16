@@ -20,7 +20,7 @@ source pyenv/bin/activate
 cd iati
 
 # Install requirements
-pip install -r requirements-dev.txt
+pip install -r requirements_dev.txt
 
 # Create a local PostgreSQL database (with appropriate user permissions)
 # settings/base.py expects username 'myusername' and password 'mypassword'
