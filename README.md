@@ -23,9 +23,11 @@ cd iati
 pip install -r requirements_dev.txt
 
 # Create a local PostgreSQL database (with appropriate user permissions)
-# settings/base.py expects username 'myusername' and password 'mypassword'
-# You can also use settings/local.py to set database credentials for your local instance
 createdb iati-website
+
+# Copy the example local settings file and enter database settings accordingly
+# Note local.py should not be under version control as it contains sensitive information
+cp settings/local.py.example local.py
 
 # Check database migrations work and execute
 python manage.py check
