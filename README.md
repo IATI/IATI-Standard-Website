@@ -4,10 +4,10 @@ This repository hosts the new IATI website based on Django and Wagtail CMS.  A P
 The current scope of the project (to April 2018) focuses on the 'About IATI' and 'Publisher guidance' sections.
 
 
-## Pre-requite packages
+## Pre-requites
 
 - Python3
-- PostgreSQL
+- SQLite or PostgreSQL
 
 
 ## Dev setup
@@ -22,11 +22,11 @@ cd iati
 # Install requirements
 pip install -r requirements_dev.txt
 
-# Create a local PostgreSQL database (with appropriate user permissions)
-createdb iati-website
-
-# Copy the example local settings file and enter database settings accordingly
+# Optional: Create a local PostgreSQL database (with appropriate user permissions)
+# Then, copy the example local settings file and enter database settings accordingly
 # Note local.py should not be under version control as it contains sensitive information
+# Without these steps, a SQLite database will be used to store data.
+createdb iati-website
 cp settings/local.py.example local.py
 
 # Check database migrations work and execute
