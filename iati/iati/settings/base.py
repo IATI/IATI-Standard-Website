@@ -158,4 +158,4 @@ WAGTAIL_SITE_NAME = "iati"
 BASE_URL = 'http://example.com'
 
 # Explicit file upload permissions so group can read
-FILE_UPLOAD_PERMISSIONS = 0o644
+FILE_UPLOAD_PERMISSIONS = 0o664
