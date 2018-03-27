@@ -30,9 +30,9 @@ urlpatterns = [
     #    url(r'^pages/', include(wagtail_urls)),
     
     # Paths for custom error pages for Apache
-    url(r'^403.html/', TemplateView.as_view(template_name='500.html')),
-    url(r'^404.html/', TemplateView.as_view(template_name='500.html')),
-    url(r'^500.html/', TemplateView.as_view(template_name='500.html')),
+    url(r'^403/$', TemplateView.as_view(template_name='500.html')),
+    url(r'^404/$', TemplateView.as_view(template_name='500.html')),
+    url(r'^500/$', TemplateView.as_view(template_name='500.html')),
     
 ]
 
