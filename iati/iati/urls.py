@@ -30,17 +30,17 @@ urlpatterns = [
     #    url(r'^pages/', include(wagtail_urls)),
     
     # Paths for custom error pages for Apache
-    url(r'^403.html/', TemplateView.as_view(template_name='home/500.html')),
-    url(r'^404.html/', TemplateView.as_view(template_name='home/500.html')),
-    url(r'^500.html/', TemplateView.as_view(template_name='home/500.html')),
+    url(r'^403.html/', TemplateView.as_view(template_name='500.html')),
+    url(r'^404.html/', TemplateView.as_view(template_name='500.html')),
+    url(r'^500.html/', TemplateView.as_view(template_name='500.html')),
     
 ]
 
 
 # Custom error pages for Django errors
-handler403 = TemplateView.as_view(template_name='home/500.html')
-handler404 = TemplateView.as_view(template_name='home/500.html')
-handler500 = TemplateView.as_view(template_name='home/500.html')
+handler403 = TemplateView.as_view(template_name='500.html')
+handler404 = TemplateView.as_view(template_name='500.html')
+handler500 = TemplateView.as_view(template_name='500.html')
 
 # if settings.DEBUG:
 #     from django.conf.urls.static import static
