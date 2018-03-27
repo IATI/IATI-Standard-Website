@@ -1,11 +1,10 @@
 from django.conf import settings
-from django.conf.urls import include, url
+from django.conf.urls import include, url, handler403, handler404, handler500
 from django.contrib import admin
 
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
-from django.views.defaults import server_error, page_not_found
 
 from search import views as search_views
 
@@ -27,9 +26,9 @@ urlpatterns = [
     #    url(r'^pages/', include(wagtail_urls)),
     
     # Paths for custom error pages
-    url(r'^403/',server_error),
-    url(r'^404/',server_error),
-    url(r'^500/',server_error),
+    url(r'^403/',handler500),
+    url(r'^404/',handler500),
+    url(r'^500/',handler500),
     
 ]
 
