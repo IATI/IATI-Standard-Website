@@ -5,6 +5,7 @@ from django.contrib import admin
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
+from django.views.defaults import server_error, page_not_found
 
 from search import views as search_views
 
@@ -24,6 +25,10 @@ urlpatterns = [
     # Alternatively, if you want Wagtail pages to be served from a subpath
     # of your site, rather than the site root:
     #    url(r'^pages/', include(wagtail_urls)),
+    
+    # Paths for custom error pages
+    url(r'^500/$',server_error),
+    url(r'^404/$',page_not_found),
 ]
 
 
