@@ -11,6 +11,7 @@ from search import views as search_views
 # Imports for custom errors
 from django.views.defaults import permission_denied, page_not_found, server_error
 from django.views.generic.base import TemplateView
+from django.urls import path
 
 urlpatterns = [
     url(r'^django-admin/', admin.site.urls),
@@ -30,9 +31,9 @@ urlpatterns = [
     #    url(r'^pages/', include(wagtail_urls)),
     
     # Paths for custom error pages for Apache
-    url(r'^403/$', TemplateView.as_view(template_name='500.html')),
-    url(r'^404/$', TemplateView.as_view(template_name='500.html')),
-    url(r'^500/$', TemplateView.as_view(template_name='500.html')),
+    path('403/', TemplateView.as_view(template_name='500.html')),
+    path('404/', TemplateView.as_view(template_name='500.html')),
+    path('500/', TemplateView.as_view(template_name='500.html')),
     
 ]
 
