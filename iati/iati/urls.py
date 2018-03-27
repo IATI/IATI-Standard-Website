@@ -20,11 +20,6 @@ urlpatterns = [
     url(r'^documents/', include(wagtaildocs_urls)),
 
     url(r'^search/$', search_views.search, name='search'),
-    
-    # Paths for custom error pages for Apache
-    path('403/', TemplateView.as_view(template_name='404.html')),
-    path('404/', TemplateView.as_view(template_name='404.html')),
-    path('500/', TemplateView.as_view(template_name='500.html')),
 
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's page serving mechanism. This should be the last pattern in
@@ -39,9 +34,9 @@ urlpatterns = [
 
 
 # Custom error pages for Django errors
-# handler403 = TemplateView.as_view(template_name='404.html')
-# handler404 = TemplateView.as_view(template_name='404.html')
-# handler500 = TemplateView.as_view(template_name='500.html')
+handler403 = TemplateView.as_view(template_name='404.html')
+handler404 = TemplateView.as_view(template_name='404.html')
+handler500 = TemplateView.as_view(template_name='500.html')
 
 # if settings.DEBUG:
 #     from django.conf.urls.static import static
