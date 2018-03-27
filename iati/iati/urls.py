@@ -20,6 +20,11 @@ urlpatterns = [
     url(r'^documents/', include(wagtaildocs_urls)),
 
     url(r'^search/$', search_views.search, name='search'),
+    
+    # Paths for custom error pages for Apache
+    path('403/', TemplateView.as_view(template_name='404.html')),
+    path('404/', TemplateView.as_view(template_name='404.html')),
+    path('500/', TemplateView.as_view(template_name='500.html')),
 
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's page serving mechanism. This should be the last pattern in
@@ -29,11 +34,6 @@ urlpatterns = [
     # Alternatively, if you want Wagtail pages to be served from a subpath
     # of your site, rather than the site root:
     #    url(r'^pages/', include(wagtail_urls)),
-    
-    # Paths for custom error pages for Apache
-    path('403/', TemplateView.as_view(template_name='404.html')),
-    path('404/', TemplateView.as_view(template_name='404.html')),
-    path('500/', TemplateView.as_view(template_name='500.html')),
     
 ]
 
