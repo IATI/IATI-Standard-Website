@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.conf.urls import include, url, handler403, handler404, handler500
+from django.conf.urls import include, url
 from django.contrib import admin
 
 from wagtail.admin import urls as wagtailadmin_urls
@@ -7,6 +7,10 @@ from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
 from search import views as search_views
+
+# Imports for custom errors
+from django.views.defaults import permission_denied, page_not_found, server_error
+from django.views.generic.base import TemplateView
 
 urlpatterns = [
     url(r'^django-admin/', admin.site.urls),
@@ -25,13 +29,18 @@ urlpatterns = [
     # of your site, rather than the site root:
     #    url(r'^pages/', include(wagtail_urls)),
     
-    # Paths for custom error pages
-    url(r'^403.html/',handler500),
-    url(r'^404.html/',handler500),
-    url(r'^500.html/',handler500),
+    # Paths for custom error pages for Apache
+    url(r'^403.html/', TemplateView.as_view(template_name='home/500.html')),
+    url(r'^404.html/', TemplateView.as_view(template_name='home/500.html')),
+    url(r'^500.html/', TemplateView.as_view(template_name='home/500.html')),
     
 ]
 
+
+# Custom error pages for Django errors
+handler403 = permission_denied(template_name="home/500.html")
+handler404 = page_not_found(template_name="home/500.html")
+handler500 = server_error(template_name="home/500.html")
 
 # if settings.DEBUG:
 #     from django.conf.urls.static import static
