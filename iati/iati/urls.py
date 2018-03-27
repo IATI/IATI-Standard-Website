@@ -39,9 +39,9 @@ urlpatterns = [
 
 
 # Custom error pages for Django errors
-handler403 = TemplateView.as_view(template_name='404.html')
-handler404 = TemplateView.as_view(template_name='404.html')
-handler500 = TemplateView.as_view(template_name='500.html')
+# handler403 = TemplateView.as_view(template_name='404.html')
+# handler404 = TemplateView.as_view(template_name='404.html')
+# handler500 = TemplateView.as_view(template_name='500.html')
 
 # if settings.DEBUG:
 #     from django.conf.urls.static import static
