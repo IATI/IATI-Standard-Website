@@ -38,9 +38,9 @@ urlpatterns = [
 
 
 # Custom error pages for Django errors
-handler403 = permission_denied(template_name="home/500.html")
-handler404 = page_not_found(template_name="home/500.html")
-handler500 = server_error(template_name="home/500.html")
+handler403 = TemplateView.as_view(template_name='home/500.html')
+handler404 = TemplateView.as_view(template_name='home/500.html')
+handler500 = TemplateView.as_view(template_name='home/500.html')
 
 # if settings.DEBUG:
 #     from django.conf.urls.static import static
