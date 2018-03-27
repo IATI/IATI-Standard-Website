@@ -26,9 +26,9 @@ urlpatterns = [
     #    url(r'^pages/', include(wagtail_urls)),
     
     # Paths for custom error pages
-    url(r'^403/',handler500),
-    url(r'^404/',handler500),
-    url(r'^500/',handler500),
+    url(r'^403.html/',handler500),
+    url(r'^404.html/',handler500),
+    url(r'^500.html/',handler500),
     
 ]
 
