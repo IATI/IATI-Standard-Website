@@ -119,9 +119,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-gb'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/London'
 
 USE_I18N = True
 
@@ -159,3 +159,4 @@ BASE_URL = 'http://example.com'
 
 # Explicit file upload permissions so group can read
 FILE_UPLOAD_PERMISSIONS = 0o664
+
