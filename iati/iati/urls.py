@@ -8,6 +8,9 @@ from wagtail.documents import urls as wagtaildocs_urls
 
 from search import views as search_views
 
+from about import views as about_views
+
+
 urlpatterns = [
     url(r'^django-admin/', admin.site.urls),
 
@@ -15,6 +18,7 @@ urlpatterns = [
     url(r'^documents/', include(wagtaildocs_urls)),
 
     url(r'^search/$', search_views.search, name='search'),
+    url(r'^about/', about_views.about),
 
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's page serving mechanism. This should be the last pattern in
