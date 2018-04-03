@@ -5,6 +5,7 @@
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
+# the hyphen in this database name may cause trouble. If you need to run SQL commands, make sure to wrap the database name in double quotes if you need to use it.
 
 DATABASES = {
     'default': {
