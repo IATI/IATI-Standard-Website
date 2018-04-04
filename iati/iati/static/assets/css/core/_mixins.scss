@@ -1,0 +1,331 @@
+// ------------------------------------------------------------
+// Mixins
+// Just a few of our favourite things
+// ------------------------------------------------------------
+
+
+// List styles
+// -------------------------------------------------------
+
+// Mixins for list style types
+@mixin unordered {
+	 list-style-position: outside; 
+	 list-style-type: disc;
+}
+
+@mixin unordered-inside {
+	 list-style-position: inside; 
+	 list-style-type: disc;
+}
+
+@mixin ordered {
+	list-style-position: outside; 
+	list-style-type: decimal;
+}
+
+@mixin ordered-inside {
+	list-style-position: inside; 
+	list-style-type: decimal;
+}
+
+@mixin nobullet {
+	list-style-type: none;
+}
+
+
+// REM typesizing
+// -------------------------------------------------------
+
+@mixin font-size($size) 	{ font-size: ($size/$rembase + rem); }
+@mixin leading($size) 		{ line-height: ($base-rhythm/$size); }
+
+
+// REM spacing
+// -------------------------------------------------------
+
+@mixin leader($size) 			{ margin-top: ($size/$rembase + rem); }
+@mixin trailer($size) 			{ margin-bottom: ($size/$rembase + rem); }
+@mixin space-left($size) 		{ margin-left: ($size/$rembase + rem); }
+@mixin space-right($size) 		{ margin-right: ($size/$rembase + rem); }
+@mixin padding-leader($size) 	{ padding-top: ($size/$rembase + rem); }
+@mixin padding-trailer($size) 	{ padding-bottom: ($size/$rembase + rem); }
+@mixin padding-left($size) 		{ padding-left: ($size/$rembase + rem); }
+@mixin padding-right($size) 	{ padding-right: ($size/$rembase + rem); }
+@mixin padding-all($size) 		{ padding: ($size/$rembase + rem); }
+
+
+// Lazy font-face generator
+// https://gist.github.com/iamkeir/30ec9b01d71d5fe49c81
+// -------------------------------------------------------
+
+@mixin font-face($label,$font,$font_path:"../fonts/" ) {
+  @font-face {
+    font-family: $label;
+    src: url('#{$font_path}#{$font}.eot');
+    src: url('#{$font_path}#{$font}.eot?#iefix') format('embedded-opentype'),
+         url('#{$font_path}#{$font}.woff') format('woff'),
+         url('#{$font_path}#{$font}.ttf') format('truetype'),
+         url('#{$font_path}#{$font}##{$label}') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+}
+
+
+// Vendor prefixes
+// (Depreciated, kept for posteriority)
+// -------------------------------------------------------
+
+@mixin vendor($property, $value...){
+	-webkit-#{$property}:$value;
+	-moz-#{$property}:$value;
+	-ms-#{$property}:$value;
+	-o-#{$property}:$value;
+	#{$property}:$value;
+}
+
+
+// Link hover styles
+// -------------------------------------------------------
+
+@mixin link-active-styles {
+	&:hover, &:focus, &:active {
+		@content; 
+	}
+}
+	
+	
+// Align things vertically 
+// (http://zerosixthree.se/vertical-align-anything-with-just-3-lines-of-css/)
+// -------------------------------------------------------
+
+@mixin vertical-align {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+// Ratios
+// https://gist.github.com/brianmcallister/2932463
+// -------------------------------------------------------
+
+@mixin maintain-ratio($ratio: 1 1) {
+	//@if length($ratio) < 2 or length($ratio) > 2 { @warn "$ratio must be a list with two values."; }
+	$ratio-width: 100%;
+	$ratio-height: percentage(nth($ratio, 2) / nth($ratio, 1));
+	width: $ratio-width;
+	height: 0;
+	padding-bottom: $ratio-height;
+}
+
+
+// Media queries with fallbacks if needed
+// -------------------------------------------------------
+
+// Widths only
+@mixin respond-to($media-min) {
+	@media screen and (min-width: $media-min) {
+	    @content;
+	}
+}
+
+@mixin respond-to-max($media-max) {
+	@media screen and (max-width: $media-max - 1px) {
+	    @content;
+	}
+}
+
+
+@mixin respond-to-min-max($media-min, $media-max) {
+	 @media screen and (min-width: $media-min) and (max-width: $media-max - 1px) {
+	    @content;
+	}
+}
+
+// Widths and heights
+@mixin respond-to-both($media-w-min, $media-h-min) {
+	@media screen and (min-width: $media-w-min) and (min-height: $media-h-min) {
+	    @content;
+	}
+}
+
+// Height
+@mixin respond-to-height($media-min) {
+	@media screen and (min-height: $media-min) {
+	    @content;
+	}
+}
+
+@mixin respond-to-height-max($media-max) {
+	@media screen and (max-height: $media-max - 1px) {
+	    @content;
+	}
+}
+
+// Retina images
+// (Depreciated, kept for posteriority)
+// -------------------------------------------------------
+
+@mixin image-2x($path, $image, $width, $height) {
+  background-image: url(#{$path}#{$image});
+  @media (min--moz-device-pixel-ratio: 1.3),
+         (-o-min-device-pixel-ratio: 2.6/2),
+         (-webkit-min-device-pixel-ratio: 1.3),
+         (min-device-pixel-ratio: 1.3),
+         (min-resolution: 1.3dppx) {
+    /* on retina, use image that's scaled by 2 */
+    background-image: url(#{$path}2x/#{$image});
+    background-size: $width $height;
+  }
+}
+
+
+// HEX to RGB
+// -------------------------------------------------------
+
+// http://codepen.io/sturobson/pen/hdKyv
+@mixin rgba($color, $value) {
+	background-color: $color;
+	background-color: rgba($color, $value);
+}
+
+
+// Gradients
+// -------------------------------------------------------
+
+@mixin gradient($from, $to, $angle) {
+	background-color: $from; // Fallback
+	background-image: linear-gradient($angle, $from, $to);
+}
+
+
+// Swatches 
+// (Used in style guide)
+// -------------------------------------------------------
+
+@mixin swatch_ref ($content) {
+	.swatch {
+		background: $content;
+	}
+	.swatch-color {
+		&:after {
+			content: "#{$content}";
+		}
+	}
+}
+
+
+// Grid
+// -------------------------------------------------------
+
+// Generate columns names span-#
+// Called by: @include grid_columns(#) where # is the amount of columns needed
+// Perfect for use in breakpoints to use different columns
+
+@mixin grid_columns($columns){
+	
+	// Columns
+	@for $i from 1 through $columns{
+		.colspan#{$columns}-#{$i}{
+			width: ((100% / $columns)*$i);		
+		}
+	}
+	
+	// Pushes
+	//@for $i from 1 through $columns{
+		//.push#{$columns}-#{$i}{
+			//margin-left: ((100% / $columns)*$i);		
+		//}
+		//.push-disable#{$columns}{
+			//margin-left: 0;		
+		//}
+	//}
+	
+	// Pulls
+	//@for $i from 1 through $columns{
+		//.pull#{$columns}-#{$i}{
+			//margin-right: ((100% / $columns)*$i);		
+		//}
+		//.pull-disable#{$columns}{
+			//margin-right: 0;		
+		//}
+	//}
+
+	// Hides
+	.hide-at#{$columns} {
+		display: none;
+	}
+	.block-show-at#{$columns} {
+		display: block;
+	}
+	.inline-show-at#{$columns} {
+		display: inline;
+		display: inline-block;
+	}
+	
+	// Specific spacing
+	.with-trailer#{$columns}{
+		@include trailer($internal-spacing);
+	}
+	.with-leader#{$columns}{
+		@include leader($internal-spacing);
+	}
+	
+	// Specific spacing disables
+	.leader-disable#{$columns} {
+		margin-top: 0;
+	}
+	.trailer-disable#{$columns} {
+		margin-bottom: 0;
+	}
+}
+
+@mixin grid {	
+	// Widths
+	*[class*="colspan"] {
+		width: 100%; 
+		display: block;
+	}
+	// Floats
+	*[class*="as-grid"] {
+		float: left;
+		display: inline;
+		display: inline-block;
+	}
+	// Floats
+	*[class*="as-grid-reverse"] {
+		float: right;
+		display: inline;
+		display: inline-block;
+	}
+	// Gutters
+	*[class*="with-gutter"] {
+		padding-left: $internal-spacing-percent; 
+	}
+	.hide-at-root {
+		display: none;
+	}
+	.with-trailer {
+		@include trailer($internal-spacing);
+	}
+	.with-leader {
+		@include leader($internal-spacing);
+	}
+}
+
+@mixin grid__row {
+	.row {
+		@extend %pie-clearfix;
+		min-width: auto; 
+		position: relative;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.row__colspaced {
+		position: relative;
+		@extend %pie-clearfix;		
+		min-width: (100% + $internal-spacing-percent); 	
+		left: -$internal-spacing-percent; 	
+	}
+}
