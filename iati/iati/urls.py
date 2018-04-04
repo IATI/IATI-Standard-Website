@@ -7,8 +7,10 @@ from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
 from search import views as search_views
-
 from about import views as about_views
+from contact import views as contact_views
+from events import views as events_views
+from news import views as news_views
 
 
 urlpatterns = [
@@ -19,6 +21,9 @@ urlpatterns = [
 
     url(r'^search/$', search_views.search, name='search'),
     url(r'^about/', about_views.about),
+    url(r'^contact/', contact_views.contact),
+    url(r'^events/', events_views.events),
+    url(r'^news/', news_views.news),
 
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's page serving mechanism. This should be the last pattern in
