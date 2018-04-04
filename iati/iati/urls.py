@@ -10,6 +10,7 @@ from search import views as search_views
 from about import views as about_views
 from contact import views as contact_views
 from events import views as events_views
+from guidance_and_support import views as guidance_and_support_views
 from news import views as news_views
 
 
@@ -23,6 +24,7 @@ urlpatterns = [
     url(r'^about/', about_views.about),
     url(r'^contact/', contact_views.contact),
     url(r'^events/', events_views.events),
+    url(r'^guidance_and_support/', guidance_and_support_views.guidance_and_support),
     url(r'^news/', news_views.news),
 
     # For anything not caught by a more specific rule above, hand over to
