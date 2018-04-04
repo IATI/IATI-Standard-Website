@@ -1,4 +1,4 @@
-{% load static wagtailuserbar %}
+{% load static wagtailuserbar wagtailcore_tags iati_tags %}
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -53,7 +53,7 @@
         
     
         
-            <li id="section-events" class='navigation-utility__item'><a href="">Events</a></li>
+            <li id="section-events" class='navigation-utility__item'><a href="{% events_index_page_url %}">Events</a></li>
         
     
         
@@ -106,7 +106,7 @@
 			
 		
 			
-				<li id="section-events" class='navigation-primary__item navigation-primary__item--ss-only'><a href="">Events</a></li>
+				<li id="section-events" class='navigation-primary__item navigation-primary__item--ss-only'><a href="{% events_index_page_url %}">Events</a></li>
 			
 		
 			

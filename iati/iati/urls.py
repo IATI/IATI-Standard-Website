@@ -6,26 +6,11 @@ from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
-from search import views as search_views
-from about import views as about_views
-from contact import views as contact_views
-from events import views as events_views
-from guidance_and_support import views as guidance_and_support_views
-from news import views as news_views
-
-
 urlpatterns = [
     url(r'^django-admin/', admin.site.urls),
 
     url(r'^admin/', include(wagtailadmin_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
-
-    url(r'^search/$', search_views.search, name='search'),
-    url(r'^about/', about_views.about),
-    url(r'^contact/', contact_views.contact),
-    url(r'^events/', events_views.events),
-    url(r'^guidance_and_support/', guidance_and_support_views.guidance_and_support),
-    url(r'^news/', news_views.news),
 
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's page serving mechanism. This should be the last pattern in
