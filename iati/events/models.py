@@ -1,12 +1,4 @@
 from django.db import models
-from wagtail.core.models import Page
-from home.models import TranslatedField, IATIStreamBlock
-from wagtail.admin.edit_handlers import TabbedInterface, ObjectList, FieldPanel, MultiFieldPanel, StreamFieldPanel
-from modelcluster.fields import ParentalManyToManyField
-from wagtail.core.fields import StreamField
-from wagtail.snippets.models import register_snippet
-from django.utils import translation
-
 
 class EventIndexPage(Page):
     parent_page_types = ['home.HomePage']
