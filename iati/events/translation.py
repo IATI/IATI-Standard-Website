@@ -5,6 +5,7 @@ from modeltranslation.decorators import register
 
 @register(Events)
 class EventsTR(TranslationOptions):
-    fields = (
-        'body',
-    )
+    pass
+    # fields = (
+    #     'body',
+    # )

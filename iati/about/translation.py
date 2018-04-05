@@ -5,6 +5,7 @@ from modeltranslation.decorators import register
 
 @register(About)
 class AboutTR(TranslationOptions):
-    fields = (
-        'body',
-    )
+    pass
+    # fields = (
+    #     'body',
+    # )

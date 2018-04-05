@@ -5,6 +5,7 @@ from modeltranslation.decorators import register
 
 @register(News)
 class NewsTR(TranslationOptions):
-    fields = (
-        'body',
-    )
+    pass
+    # fields = (
+    #     'body',
+    # )

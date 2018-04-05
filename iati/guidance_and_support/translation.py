@@ -5,6 +5,7 @@ from modeltranslation.decorators import register
 
 @register(GuidanceAndSupport)
 class GuidanceAndSupportTR(TranslationOptions):
-    fields = (
-        'body',
-    )
+    pass
+    # fields = (
+    #     'body',
+    # )

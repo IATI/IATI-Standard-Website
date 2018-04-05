@@ -5,6 +5,7 @@ from modeltranslation.decorators import register
 
 @register(Contact)
 class ContactTR(TranslationOptions):
-    fields = (
-        'body',
-    )
+    pass
+    # fields = (
+    #     'body',
+    # )
