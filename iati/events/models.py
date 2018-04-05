@@ -11,6 +11,19 @@ class EventIndexPage(Page):
     parent_page_types = ['home.HomePage']
     subpage_types = ['events.EventPage']
     
+    # Translated page titles, title is English default is go
+    
+    title_fr = models.TextField(null=True,blank=True)
+    title_es = models.TextField(null=True,blank=True)
+    
+    title_translated = TranslatedField(
+        'title',
+        'title_fr',
+        'title_es'
+    )
+    
+    # Heading
+    
     heading_en = models.CharField(max_length=255,null=True,blank=True)
     heading_fr = models.CharField(max_length=255,null=True,blank=True)
     heading_es = models.CharField(max_length=255,null=True,blank=True)
@@ -20,6 +33,8 @@ class EventIndexPage(Page):
         'heading_fr',
         'heading_es'
     )
+    
+    # Excerpt
     
     excerpt_en = models.TextField(null=True,blank=True)
     excerpt_fr = models.TextField(null=True,blank=True)
@@ -31,8 +46,9 @@ class EventIndexPage(Page):
         'excerpt_es'
     )
     
-    content_panels_en = Page.content_panels + [
+    content_panels_en = [
         MultiFieldPanel([
+            FieldPanel('title'),
             FieldPanel('heading_en'),
             FieldPanel('excerpt_en')
         ])
@@ -40,6 +56,7 @@ class EventIndexPage(Page):
     
     content_panels_fr = [
         MultiFieldPanel([
+            FieldPanel('title_fr'),
             FieldPanel('heading_fr'),
             FieldPanel('excerpt_fr')
         ])
@@ -47,6 +64,7 @@ class EventIndexPage(Page):
     
     content_panels_es = [
         MultiFieldPanel([
+            FieldPanel('title_es'),
             FieldPanel('heading_es'),
             FieldPanel('excerpt_es')
         ])
@@ -76,6 +94,7 @@ class EventIndexPage(Page):
 class EventPage(Page):
     parent_page_types = ['events.EventIndexPage']
     subpage_types = []
+    
     # Start and end dates, needs at least a start date
     
     date_start = models.DateTimeField("Event start date and time")
@@ -88,6 +107,17 @@ class EventPage(Page):
     # Registration link
     
     registration_link = models.URLField(max_length=255,null=True,blank=True)
+    
+    # Translated page titles, title is English default is go
+    
+    title_fr = models.TextField(null=True,blank=True)
+    title_es = models.TextField(null=True,blank=True)
+    
+    title_translated = TranslatedField(
+        'title',
+        'title_fr',
+        'title_es'
+    )
     
     # Heading
     
@@ -150,13 +180,17 @@ class EventPage(Page):
             event_types = self.event_type.values_list('name_en', flat=True) 
         
         return " ".join(event_types)
-    
-    content_panels_en = Page.content_panels + [
+    content_panels_multi = [
         MultiFieldPanel([
             FieldPanel('date_start'),
             FieldPanel('date_end'),
             FieldPanel('location'),
             FieldPanel('registration_link'),
+        ])
+    ]
+    content_panels_en = [
+        MultiFieldPanel([
+            FieldPanel('title'),
             FieldPanel('heading_en'),
             FieldPanel('subheading_en')
         ]),
@@ -166,6 +200,7 @@ class EventPage(Page):
     
     content_panels_fr = [
         MultiFieldPanel([
+            FieldPanel('title_fr'),
             FieldPanel('heading_fr'),
             FieldPanel('subheading_fr')
         ]),
@@ -175,6 +210,7 @@ class EventPage(Page):
     
     content_panels_es = [
         MultiFieldPanel([
+            FieldPanel('title_es'),
             FieldPanel('heading_es'),
             FieldPanel('subheading_es')
         ]),
@@ -183,6 +219,7 @@ class EventPage(Page):
     ]
     
     edit_handler = TabbedInterface([
+        ObjectList(content_panels_multi,heading='Multilingual content'),
         ObjectList(content_panels_en,heading='English content'),
         ObjectList(content_panels_fr,heading='French content'),
         ObjectList(content_panels_es,heading='Spanish content'),
