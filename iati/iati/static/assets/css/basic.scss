@@ -1,0 +1,73 @@
+@import "core/reset";
+@import "core/settings";
+@import "core/mixins";
+@import "core/placeholders";
+
+/* ------------------------------------------------------------ */
+
+html { font-size: 10px; }
+
+body {
+	@extend %font-body;
+	font-size: $base-font-size + px;
+	line-height: ($base-rhythm/$base-font-size);
+	background: $body-color;
+	color: $base-color;
+}
+
+.ui-base {
+	width: $ie-fixed-vp;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* :: Basic styling for coherent, simple content */
+/* ------------------------------------------------------------ */
+
+// Basic type styles for browsers that don't understand REM
+h1 		{ font-size: ($alpha + px); margin: ($base-rhythm/2 +px) auto; }
+h2 		{ font-size: ($beta + px); margin: ($base-rhythm/2 +px) auto;}
+h3, h4 	{ font-size: ($gamma + px); margin: ($base-rhythm/2 +px) auto;}
+h5, h6 	{ font-size: ($delta + px); margin: ($base-rhythm/2 +px) auto;}
+p,li 	{ font-size: ($para + px); margin: ($para) auto;}
+ul, ol 	{ margin: ($base-rhythm/2 +px) auto; }
+img 	{ margin: ($base-rhythm/2 +px) auto; max-width: $ie-fixed-vp; }
+
+// Header
+*[role="banner"] {
+	border-bottom: $default-border-width solid $default-border-color;
+	padding-bottom: 20px;
+	margin-bottom: 19px;
+	display: block;
+}
+
+// Navigation items
+*[role="navigation"] {
+	display: block;
+	li {
+		display: inline-block;
+		margin-right: 8px;
+	}
+}
+
+// Footer
+*[role="contentinfo"] {
+	border-top: $default-border-width solid $default-border-color;
+	padding-top: 20px;
+	margin-top: 19px;
+	display: block;
+}
+
+/* :: Get core styling for basic layout */
+/* ------------------------------------------------------------ */
+
+@import "core/base";
+@import "core/forms";
+@import "core/fonts";
+@import "core/typography";
+
+
+/* ::Print */
+/* ------------------------------------------------------------ */
+
+@media print { body { font-size: percentage(10 / 16); } }

@@ -1,0 +1,74 @@
+.help__header {
+    @include maintain-ratio(16 9);
+    .help--standout & {
+        @include maintain-ratio(4 3);
+    }
+
+    @include respond-to($menu-respond) {
+        // height: 300px;
+    }
+}
+
+
+.help__panel {
+    color: #fff;
+    display: inline-block;
+    padding: 1em 1.75em;
+    margin-top: 1.5em;
+    margin-right: 1.5em;
+    margin-left: -1.5em;
+    p {
+        @include font-size($zeta);
+        margin-bottom: 0.75em;
+        .help--standout & {
+            @include font-size($epsilon);
+        }
+    }
+    a {
+        @include font-size($para);
+        border-bottom: 2px solid #fff;
+        color: #fff;
+        display: inline-block;
+        margin-bottom: 0.5em;
+        transition: all 0.3s ease;
+        &:hover {
+            border-color: $iati-ocean;
+        }
+    }
+    .help--standout & {
+        padding: 1.5em 2em;
+    }
+}
+
+.help__heading {
+    @extend .heading;
+    @include font-size($epsilon);
+    color: #fff;
+    display: inline-block;
+    + p {
+        margin-top: 1em;
+        .help--standout & {
+            margin-top: 0.5em;
+        }
+    }
+    .help--standout & {
+        @include font-size($gamma);
+    }
+}
+
+.help__body {
+    background-color: #fff;
+    box-shadow: 0 0 50px rgba(#000, 0.15);
+    margin-top: -1.5em;
+    margin-right: -1.5em;
+    margin-left: 1.5em;
+    padding: 1.75em;
+    position: relative;
+    // left: 2em;
+    z-index: 100;
+}
+
+.help__body-copy {
+    @include font-size($para);
+    margin-bottom: 1em;
+}

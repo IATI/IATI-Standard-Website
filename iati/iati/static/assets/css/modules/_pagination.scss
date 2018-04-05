@@ -1,0 +1,39 @@
+// ------------------------------------------------------------
+// Pagination
+// ------------------------------------------------------------
+
+.pagination {
+    @extend %pie-clearfix;
+    display: block;
+    margin-top: 5em;
+    width: 100%;
+    clear: both;
+}
+
+.pagination__item {
+    padding: 0.75em 1.25em;
+    transition: all, ease-in-out, 0.3s;
+    color: $heading-color;
+    background-color: #fff;
+    display: inline-block;
+    @include font-size($zeta);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+	box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.2);
+    &:hover {
+        color: $heading-color;
+        transform: translateY(-2px);
+    }
+}
+
+.pagination__item--big {
+    @include font-size($epsilon);
+}
+
+.pagination__item--prev {
+    float: left;
+}
+
+.pagination__item--next {
+    float: right;
+}
