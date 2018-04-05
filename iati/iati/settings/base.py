@@ -66,6 +66,8 @@ MIDDLEWARE = [
 
     'wagtail.core.middleware.SiteMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
+    # For determining browser locale
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'iati.urls'
