@@ -178,8 +178,8 @@ class EventPage(Page):
             FieldPanel('heading_es'),
             FieldPanel('subheading_es')
         ]),
-        StreamFieldPanel('description_fr'),
-        StreamFieldPanel('additional_information_fr')
+        StreamFieldPanel('description_es'),
+        StreamFieldPanel('additional_information_es')
     ]
     
     edit_handler = TabbedInterface([
