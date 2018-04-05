@@ -14,22 +14,22 @@ class EventIndexPage(Page):
     
     heading_en = models.CharField(max_length=255,null=True,blank=True)
     heading_fr = models.CharField(max_length=255,null=True,blank=True)
-    heading_sp = models.CharField(max_length=255,null=True,blank=True)
+    heading_es = models.CharField(max_length=255,null=True,blank=True)
     
     heading = TranslatedField(
         'heading_en',
         'heading_fr',
-        'heading_sp'
+        'heading_es'
     )
     
     excerpt_en = models.TextField(null=True,blank=True)
     excerpt_fr = models.TextField(null=True,blank=True)
-    excerpt_sp = models.TextField(null=True,blank=True)
+    excerpt_es = models.TextField(null=True,blank=True)
     
     excerpt = TranslatedField(
         'excerpt_en',
         'excerpt_fr',
-        'excerpt_sp'
+        'excerpt_es'
     )
     
     content_panels_en = Page.content_panels + [
@@ -46,10 +46,10 @@ class EventIndexPage(Page):
         ])
     ]
     
-    content_panels_sp = [
+    content_panels_es = [
         MultiFieldPanel([
-            FieldPanel('heading_sp'),
-            FieldPanel('excerpt_sp')
+            FieldPanel('heading_es'),
+            FieldPanel('excerpt_es')
         ])
     ]
     
@@ -67,7 +67,7 @@ class EventIndexPage(Page):
     edit_handler = TabbedInterface([
         ObjectList(content_panels_en,heading='English content'),
         ObjectList(content_panels_fr,heading='French content'),
-        ObjectList(content_panels_sp,heading='Spanish content'),
+        ObjectList(content_panels_es,heading='Spanish content'),
         ObjectList(Page.promote_panels,heading='Promote'),
         ObjectList(Page.settings_panels,heading='Settings',classname='settings')
     ])
@@ -94,48 +94,48 @@ class EventPage(Page):
     
     heading_en = models.TextField(null=True,blank=True)
     heading_fr = models.TextField(null=True,blank=True)
-    heading_sp = models.TextField(null=True,blank=True)
+    heading_es = models.TextField(null=True,blank=True)
     
     heading = TranslatedField(
         'heading_en',
         'heading_fr',
-        'heading_sp'
+        'heading_es'
     )
     
     # Subheading
     
     subheading_en = models.TextField(null=True,blank=True)
     subheading_fr = models.TextField(null=True,blank=True)
-    subheading_sp = models.TextField(null=True,blank=True)
+    subheading_es = models.TextField(null=True,blank=True)
     
     subheading = TranslatedField(
         'subheading_en',
         'subheading_fr',
-        'subheading_sp'
+        'subheading_es'
     )
     
     # Description
     
     description_en = StreamField(IATIStreamBlock(required=False),null=True,blank=True)
     description_fr = StreamField(IATIStreamBlock(required=False),null=True,blank=True)
-    description_sp = StreamField(IATIStreamBlock(required=False),null=True,blank=True)
+    description_es = StreamField(IATIStreamBlock(required=False),null=True,blank=True)
     
     description = TranslatedField(
         'description_en',
         'description_fr',
-        'description_sp'
+        'description_es'
     )
     
     # additional_information
     
     additional_information_en = StreamField(IATIStreamBlock(required=False),null=True,blank=True)
     additional_information_fr = StreamField(IATIStreamBlock(required=False),null=True,blank=True)
-    additional_information_sp = StreamField(IATIStreamBlock(required=False),null=True,blank=True)
+    additional_information_es = StreamField(IATIStreamBlock(required=False),null=True,blank=True)
     
     additional_information = TranslatedField(
         'additional_information_en',
         'additional_information_fr',
-        'additional_information_sp'
+        'additional_information_es'
     )
     
     event_type = ParentalManyToManyField('events.EventType',blank=True)
@@ -145,7 +145,7 @@ class EventPage(Page):
         if translation.get_language() == 'fr':
             event_types = self.event_type.values_list('name_fr', flat=True) 
         elif translation.get_language() == 'sp':
-            event_types = self.event_type.values_list('name_sp', flat=True) 
+            event_types = self.event_type.values_list('name_es', flat=True) 
         #The default
         else:
             event_types = self.event_type.values_list('name_en', flat=True) 
@@ -174,10 +174,10 @@ class EventPage(Page):
         StreamFieldPanel('additional_information_fr')
     ]
     
-    content_panels_sp = [
+    content_panels_es = [
         MultiFieldPanel([
-            FieldPanel('heading_sp'),
-            FieldPanel('subheading_sp')
+            FieldPanel('heading_es'),
+            FieldPanel('subheading_es')
         ]),
         StreamFieldPanel('description_fr'),
         StreamFieldPanel('additional_information_fr')
@@ -186,7 +186,7 @@ class EventPage(Page):
     edit_handler = TabbedInterface([
         ObjectList(content_panels_en,heading='English content'),
         ObjectList(content_panels_fr,heading='French content'),
-        ObjectList(content_panels_sp,heading='Spanish content'),
+        ObjectList(content_panels_es,heading='Spanish content'),
         ObjectList(Page.promote_panels,heading='Promote'),
         ObjectList(Page.settings_panels,heading='Settings',classname='settings')
     ])
@@ -195,12 +195,12 @@ class EventPage(Page):
 class EventType(models.Model):
     name_en = models.CharField(max_length=255)
     name_fr = models.CharField(max_length=255,null=True,blank=True)
-    name_sp = models.CharField(max_length=255,null=True,blank=True)
+    name_es = models.CharField(max_length=255,null=True,blank=True)
     
     name = TranslatedField(
         'name_en',
         'name_fr',
-        'name_sp'
+        'name_es'
     )
     
     def __str__(self):
@@ -209,5 +209,5 @@ class EventType(models.Model):
     panels = [
         FieldPanel('name_en'),
         FieldPanel('name_fr'),
-        FieldPanel('name_sp')
+        FieldPanel('name_es')
     ]
