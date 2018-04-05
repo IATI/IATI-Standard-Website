@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 35 35" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49 (51002) - http://www.bohemiancoding.com/sketch -->
+    <title>social icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0 0 9 0 9 18 0 18"></polygon>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="News" transform="translate(-847.000000, -2677.000000)">
+            <g id="Footer" transform="translate(0.000000, 2453.000000)">
+                <g id="social-icon" transform="translate(847.000000, 224.000000)">
+                    <circle id="Oval-2" fill="#FFFFFF" cx="17.5" cy="17.5" r="17.5"></circle>
+                    <g id="Page-1" transform="translate(12.000000, 8.000000)">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <g id="Clip-2"></g>
+                        <path d="M8.98133103,0.00528907843 L8.98133103,2.90179463 C8.98133103,2.90179463 6.70475367,2.68927399 6.13431288,3.5072596 C5.82264477,3.95467147 6.00777874,5.26383751 5.98029386,6.20437508 L9,6.20437508 C8.74433881,7.30393838 8.56179775,8.04897641 8.37407087,9.00069927 L5.96318064,9.00069927 L5.96318064,18 L1.77977528,18 C1.78081245,15.2255601 1.7792567,11.9891188 1.77977528,9.03571411 L0,9.03571411 L0,6.20437508 L1.76058773,6.20437508 C1.85082109,4.13363622 1.88452895,2.08283637 2.98133103,1.03871324 C4.21400173,-0.135742924 5.38910977,0.00528907843 8.98133103,0.00528907843" id="Fill-1" fill="#3B5998" mask="url(#mask-2)"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
