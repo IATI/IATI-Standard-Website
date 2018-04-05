@@ -16,7 +16,7 @@ class TranslatedField:
     def __get__(self,instance,owner):
         if translation.get_language() == 'fr':
             return getattr(instance,self.fr_field)
-        elif translation.get_language() == 'sp':
+        elif translation.get_language() == 'es':
             return getattr(instance,self.es_field)
         #The default
         else:
