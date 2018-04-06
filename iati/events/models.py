@@ -28,47 +28,6 @@ class EventIndexPage(Page):
         events = events.order_by('-date_start')
         
         return events
-    
-    content_panels_en = [
-        MultiFieldPanel([
-            FieldPanel('title_en'),
-            FieldPanel('heading_en'),
-            FieldPanel('excerpt_en')
-        ])
-    ]
-    
-    content_panels_fr = [
-        MultiFieldPanel([
-            FieldPanel('title_fr'),
-            FieldPanel('heading_fr'),
-            FieldPanel('excerpt_fr')
-        ])
-    ]
-    
-    content_panels_es = [
-        MultiFieldPanel([
-            FieldPanel('title_es'),
-            FieldPanel('heading_es'),
-            FieldPanel('excerpt_es')
-        ])
-    ]
-    
-    content_panels_pt = [
-        MultiFieldPanel([
-            FieldPanel('title_pt'),
-            FieldPanel('heading_pt'),
-            FieldPanel('excerpt_pt')
-        ])
-    ]
-    
-    edit_handler = TabbedInterface([
-        ObjectList(content_panels_en,heading='English content'),
-        ObjectList(content_panels_fr,heading='French content'),
-        ObjectList(content_panels_es,heading='Spanish content'),
-        ObjectList(content_panels_pt,heading='Portuguese content'),
-        ObjectList(Page.promote_panels,heading='Promote'),
-        ObjectList(Page.settings_panels,heading='Settings',classname='settings')
-    ])
 
 class EventPage(Page):
     parent_page_types = ['events.EventIndexPage']
@@ -99,64 +58,6 @@ class EventPage(Page):
         event_types = self.event_type.values_list('name', flat=True) 
         
         return " ".join(event_types)
-    
-    content_panels_multi = [
-        MultiFieldPanel([
-            FieldPanel('date_start'),
-            FieldPanel('date_end'),
-            FieldPanel('location'),
-            FieldPanel('registration_link'),
-        ])
-    ]
-    content_panels_en = [
-        MultiFieldPanel([
-            FieldPanel('title_en'),
-            FieldPanel('heading_en'),
-            FieldPanel('subheading_en')
-        ]),
-        StreamFieldPanel('description_en'),
-        StreamFieldPanel('additional_information_en')
-    ]
-    
-    content_panels_fr = [
-        MultiFieldPanel([
-            FieldPanel('title_fr'),
-            FieldPanel('heading_fr'),
-            FieldPanel('subheading_fr')
-        ]),
-        StreamFieldPanel('description_fr'),
-        StreamFieldPanel('additional_information_fr')
-    ]
-    
-    content_panels_es = [
-        MultiFieldPanel([
-            FieldPanel('title_es'),
-            FieldPanel('heading_es'),
-            FieldPanel('subheading_es')
-        ]),
-        StreamFieldPanel('description_es'),
-        StreamFieldPanel('additional_information_es')
-    ]
-    
-    content_panels_pt = [
-        MultiFieldPanel([
-            FieldPanel('title_pt'),
-            FieldPanel('heading_pt'),
-            FieldPanel('subheading_pt')
-        ]),
-        StreamFieldPanel('description_pt'),
-        StreamFieldPanel('additional_information_pt')
-    ]
-    
-    edit_handler = TabbedInterface([
-        ObjectList(content_panels_multi,heading='Multilingual content'),
-        ObjectList(content_panels_en,heading='English content'),
-        ObjectList(content_panels_fr,heading='French content'),
-        ObjectList(content_panels_es,heading='Spanish content'),
-        ObjectList(content_panels_pt,heading='Portuguese content'),
-        ObjectList(Page.promote_panels,heading='Promote'),
-        ObjectList(Page.settings_panels,heading='Settings',classname='settings')
-    ])
     
 @register_snippet
 class EventType(models.Model):
