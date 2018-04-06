@@ -7,12 +7,9 @@ from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
 from search import views as search_views
-from about import views as about_views
-from contact import views as contact_views
-from events import views as events_views
-from guidance_and_support import views as guidance_and_support_views
-from news import views as news_views
 
+# For internationalization
+from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = [
     url(r'^django-admin/', admin.site.urls),
@@ -20,22 +17,18 @@ urlpatterns = [
     url(r'^admin/', include(wagtailadmin_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
 
-    url(r'^search/$', search_views.search, name='search'),
-    url(r'^about/', about_views.about),
-    url(r'^contact/', contact_views.contact),
-    url(r'^events/', events_views.events),
-    url(r'^guidance_and_support/', guidance_and_support_views.guidance_and_support),
-    url(r'^news/', news_views.news),
-
-    # For anything not caught by a more specific rule above, hand over to
-    # Wagtail's page serving mechanism. This should be the last pattern in
-    # the list:
-    url(r'', include(wagtail_urls)),
-
     # Alternatively, if you want Wagtail pages to be served from a subpath
     # of your site, rather than the site root:
     #    url(r'^pages/', include(wagtail_urls)),
 ]
+
+urlpatterns += i18n_patterns(
+    # These URLs will have /<language_code>/ appended to the beginning
+
+    url(r'^search/$', search_views.search, name='search'),
+
+    url(r'', include(wagtail_urls)),
+)
 
 
 if settings.DEBUG:

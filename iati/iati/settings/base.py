@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+
+# Mark language names as translation strings
 from django.utils.translation import gettext_lazy as _
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -60,6 +62,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
+    # For determining browser locale, must come after sessions and cache (not present) and before common
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -131,9 +134,10 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'en-gb'
 
 LANGUAGES = [
-    ('en',_('English')),
+    ('en', _('English')),
     ('fr', _('French')),
     ('es', _('Spanish')),
+    ('pt', _('Portuguese')),
 ]
 
 TIME_ZONE = 'UTC'
