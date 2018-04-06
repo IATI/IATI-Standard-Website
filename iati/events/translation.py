@@ -5,14 +5,16 @@ from modeltranslation.decorators import register
 
 @register(EventIndexPage)
 class EventIndexPageTR(TranslationOptions):
-    pass
-    # fields = (
-    #     'body',
-    # )
+    fields = (
+        'heading',
+        'excerpt'
+    )
     
 @register(EventPage)
 class EventPageTR(TranslationOptions):
-    pass
-    # fields = (
-    #     'body',
-    # )
+    fields = (
+        'heading',
+        'subheading',
+        'description',
+        'additional_information'
+    )
