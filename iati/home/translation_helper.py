@@ -28,15 +28,10 @@ def add_language_content_panels(page_model, translation_model):
                 multi_field_panel_contents.append(FieldPanel(localized_field_name))
             else:
                 stream_field_panel_contents.append(StreamFieldPanel(localized_field_name))
-        local_content_panel = [
-            MultiFieldPanel(multi_field_panel_contents)
-        ] + stream_field_panel_contents
-        edit_handler_contents.append(
-            ObjectList(local_content_panel, heading=language_name)
-        )
-    page_model.edit_handler = TabbedInterface(
-        edit_handler_contents + [
-            ObjectList(page_model.promote_panels, heading='Promote'),
-            ObjectList(page_model.settings_panels, heading='Settings', classname='settings')
-        ]
-    )
+
+        local_content_panel = [MultiFieldPanel(multi_field_panel_contents)] + stream_field_panel_contents
+        edit_handler_contents.append(ObjectList(local_content_panel, heading=language_name))
+        # Can you add a better variable name if this one isn't good enough?
+        page_model_panels = [ObjectList(page_model.promote_panels, heading='Promote'), ObjectList(page_model.settings_panels, heading='Settings', classname='settings')]
+
+    page_model.edit_handler = TabbedInterface(edit_handler_contents + page_model_panels)
