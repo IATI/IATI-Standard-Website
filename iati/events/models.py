@@ -6,7 +6,8 @@ from modelcluster.fields import ParentalManyToManyField
 from wagtail.core.fields import StreamField
 from wagtail.snippets.models import register_snippet
 from django.utils import translation
-
+from datetime import datetime
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 class EventIndexPage(Page):
     parent_page_types = ['home.HomePage']
@@ -22,6 +23,29 @@ class EventIndexPage(Page):
         events = events.order_by('-date_start')
         return events
 
+    def get_context(self, request):
+        """Overwriting the default wagtail get_context function to allow for filtering based on params, including pagination.
+           Try to display 5 events per page, but catch exceptions if the page is not a valid integer or we get an empty page.
+        """
+        events = self.events
+        past = request.GET.get('past')
+        now = datetime.now()
+        if past:
+            events = events.filter(date_start__gte=now)
+        events = events.filter(date_start__lte=now)
+        page = request.GET.get('page')
+        paginator = Paginator(events, 5)
+        try:
+            events = paginator.page(page)
+        except PageNotAnInteger:
+            events = paginator.page(1)
+        except EmptyPage:
+            events = paginator.page(paginator.num_pages)
+        context = super(EventIndexPage, self).get_context(request)
+        context['events'] = events
+        context['past'] = past
+        return context
+
 
 class EventPage(Page):
     parent_page_types = ['events.EventIndexPage']
@@ -29,21 +53,13 @@ class EventPage(Page):
 
     date_start = models.DateTimeField("Event start date and time")
     date_end = models.DateTimeField("Event end date and time", null=True, blank=True)
-
     location = models.TextField(null=True, blank=True)
-
     registration_link = models.URLField(max_length=255, null=True, blank=True)
 
     heading = models.TextField(null=True, blank=True)
-
     subheading = models.TextField(null=True, blank=True)
-
     description = StreamField(IATIStreamBlock(required=False), null=True, blank=True)
-
-    # additional_information
-
     additional_information = StreamField(IATIStreamBlock(required=False), null=True, blank=True)
-
     event_type = ParentalManyToManyField('events.EventType', blank=True)
 
     @property

@@ -11,13 +11,19 @@ class EventIndexPageTR(TranslationOptions):
         'excerpt'
     )
 add_language_content_panels(EventIndexPage,EventIndexPageTR)
-    
+
 @register(EventPage)
 class EventPageTR(TranslationOptions):
     fields = (
         'heading',
         'subheading',
         'description',
-        'additional_information'
+        'additional_information',
+    )
+    multilingual_fields = (
+        'date_start',
+        'date_end',
+        'location',
+        'registration_link',
     )
 add_language_content_panels(EventPage,EventPageTR)

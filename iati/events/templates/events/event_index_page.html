@@ -25,13 +25,13 @@
 	<div class="l-sidebar">
 		<div class="l-sidebar__body">
 			
-	{% if page.past %}
+	{% if past %}
 	<div class="l-listing l-listing--past">
 	{% else %}
 	<div class="l-listing l-listing--events">
 	{% endif %}
         
-		{% for event in page.events%}
+	{% for event in events%}
             {% with event=event.specific %}
 			<article class="listing listing--article  listing--archived">
 	<aside class="listing__aside">
