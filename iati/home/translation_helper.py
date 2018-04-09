@@ -19,7 +19,8 @@ def add_language_content_panels(page_model, translation_model):
     """
     edit_handler_contents = []
     for language_code, language_name in settings.LANGUAGES:
-        multi_field_panel_contents = []
+        localized_title_field = FieldPanel("title_{}".format(language_code))
+        multi_field_panel_contents = [localized_title_field]
         stream_field_panel_contents = []
         for field_name in translation_model.fields:
             localized_field_name = field_name+"_{}".format(language_code)
