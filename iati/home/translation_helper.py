@@ -1,6 +1,7 @@
 from django.conf import settings
 from wagtail.admin.edit_handlers import TabbedInterface, ObjectList, FieldPanel, MultiFieldPanel, StreamFieldPanel
 from wagtail.core.fields import Creator
+from django.utils.translation import gettext as _
 
 
 def add_language_content_panels(page_model, translation_model):
@@ -33,6 +34,6 @@ def add_language_content_panels(page_model, translation_model):
         local_content_panel = [MultiFieldPanel(multi_field_panel_contents)] + stream_field_panel_contents
         edit_handler_contents.append(ObjectList(local_content_panel, heading=language_name))
         # Can you add a better variable name if this one isn't good enough?
-        page_model_panels = [ObjectList(page_model.promote_panels, heading='Promote'), ObjectList(page_model.settings_panels, heading='Settings', classname='settings')]
+        page_model_panels = [ObjectList(page_model.promote_panels, heading=_('Promote')), ObjectList(page_model.settings_panels, heading=_('Settings'), classname='settings')]
 
     page_model.edit_handler = TabbedInterface(edit_handler_contents + page_model_panels)
