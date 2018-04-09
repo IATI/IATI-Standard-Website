@@ -2,8 +2,8 @@
 
 {% load wagtailcore_tags %}
 
-{% block body_class %}body body--home{% endblock %}
-{% block body_id %}body-home{% endblock %}
+{% block body_class %}body body--events{% endblock %}
+{% block body_id %}body-events{% endblock %}
 
 {% block content %}
  <div class="hero">
@@ -25,7 +25,11 @@
 	<div class="l-sidebar">
 		<div class="l-sidebar__body">
 			
+	{% if page.past %}
+	<div class="l-listing l-listing--past">
+	{% else %}
 	<div class="l-listing l-listing--events">
+	{% endif %}
         
 		{% for event in page.events%}
             {% with event=event.specific %}
