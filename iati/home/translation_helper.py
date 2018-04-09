@@ -2,22 +2,20 @@ from django.conf import settings
 from wagtail.admin.edit_handlers import TabbedInterface, ObjectList, FieldPanel, MultiFieldPanel, StreamFieldPanel
 from wagtail.core.fields import Creator
 
-def add_language_content_panels(page_model,translation_model):
+
+def add_language_content_panels(page_model, translation_model):
     """A function that dynamically adds tabbed content panels depending on the fields defined in the translation model and the languages in settings
-    
+
     Args:
         page_model (Page): The page model class which needs tabbed content panels
         translation_model (TranslationOptions): The class from translation.py that contains the fields to be translated
-        
+
     Returns:
-        None: This doesn't return anything, it's modifying the provided page_model
-        
-    To do:
-        - Figure out whether using type(Creator) is sustainable. For some reason StreamBlocks are wagtail.core.fields.Creator and
-          all other fiends are django.db.models.query_utils.DeferredAttribute
-        - Start a standard way of adding to the TabbedInferface. I can't find a way to create a new tabbed interface without overwriting page_model.edit_handler
-          so it would be nice to start using a variable inside of our classes that use this. Something like `additional_panels` that could be picked up and
-          added to edit_handler_contents before overwriting page_model.edit_handler
+        None: This doesn't return anything, it's modifying the provided page_model.
+
+    TODO:
+        Figure out whether using type(Creator) is sustainable. For some reason StreamBlocks are wagtail.core.fields.Creator and all other fiends are django.db.models.query_utils.DeferredAttribute
+        Start a standard way of adding to the TabbedInferface. I can't find a way to create a new tabbed interface without overwriting page_model.edit_handler so it would be nice to start using a variable inside of our classes that use this. Something like `additional_panels` that could be picked up and added to edit_handler_contents before overwriting page_model.edit_handler
     """
     edit_handler_contents = []
     for language_code, language_name in settings.LANGUAGES:
@@ -25,8 +23,8 @@ def add_language_content_panels(page_model,translation_model):
         stream_field_panel_contents = []
         for field_name in translation_model.fields:
             localized_field_name = field_name+"_{}".format(language_code)
-            field_object = getattr(page_model,localized_field_name)
-            if not isinstance(field_object,Creator):
+            field_object = getattr(page_model, localized_field_name)
+            if not isinstance(field_object, Creator):
                 multi_field_panel_contents.append(FieldPanel(localized_field_name))
             else:
                 stream_field_panel_contents.append(StreamFieldPanel(localized_field_name))
@@ -34,11 +32,11 @@ def add_language_content_panels(page_model,translation_model):
             MultiFieldPanel(multi_field_panel_contents)
         ] + stream_field_panel_contents
         edit_handler_contents.append(
-            ObjectList(local_content_panel,heading=language_name)
+            ObjectList(local_content_panel, heading=language_name)
         )
     page_model.edit_handler = TabbedInterface(
         edit_handler_contents + [
-        ObjectList(page_model.promote_panels,heading='Promote'),
-        ObjectList(page_model.settings_panels,heading='Settings',classname='settings')
+            ObjectList(page_model.promote_panels, heading='Promote'),
+            ObjectList(page_model.settings_panels, heading='Settings', classname='settings')
         ]
     )
