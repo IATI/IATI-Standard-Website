@@ -12,23 +12,14 @@ class EventIndexPage(Page):
     parent_page_types = ['home.HomePage']
     subpage_types = ['events.EventPage']
 
-    # Heading
-
     heading = models.CharField(max_length=255, null=True, blank=True)
-
-    # Excerpt
-
     excerpt = models.TextField(null=True, blank=True)
 
     @property
     def events(self):
-        "Add docstring here."
-        # Get list of live event pages that are descendents of this page
+        "A function that queries the database for all EventPages that are children of the EventIndexPage and orders them by newest first."
         events = EventPage.objects.live().descendant_of(self)
-
-        # Order by most recent
         events = events.order_by('-date_start')
-
         return events
 
 
@@ -57,7 +48,7 @@ class EventPage(Page):
 
     @property
     def event_type_concat(self):
-        "Add docstring here."
+        "A function that takes all of the EventType snippets and concatenates them into a space separated one-liner."
         event_types = self.event_type.values_list('name', flat=True)
 
         return " ".join(event_types)
