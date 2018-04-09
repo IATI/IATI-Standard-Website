@@ -6,21 +6,29 @@ from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
+from search import views as search_views
+
+# For internationalization
+from django.conf.urls.i18n import i18n_patterns
+
 urlpatterns = [
     url(r'^django-admin/', admin.site.urls),
 
     url(r'^admin/', include(wagtailadmin_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
 
-    # For anything not caught by a more specific rule above, hand over to
-    # Wagtail's page serving mechanism. This should be the last pattern in
-    # the list:
-    url(r'', include(wagtail_urls)),
-
     # Alternatively, if you want Wagtail pages to be served from a subpath
     # of your site, rather than the site root:
     #    url(r'^pages/', include(wagtail_urls)),
 ]
+
+urlpatterns += i18n_patterns(
+    # These URLs will have /<language_code>/ appended to the beginning
+
+    url(r'^search/$', search_views.search, name='search'),
+
+    url(r'', include(wagtail_urls)),
+)
 
 
 if settings.DEBUG:
