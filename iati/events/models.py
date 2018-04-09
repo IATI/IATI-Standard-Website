@@ -2,5 +2,5 @@ from django.db import models
 
 from wagtail.core.models import Page
 
-class Events(Page):
+class EventsPage(Page):
     pass

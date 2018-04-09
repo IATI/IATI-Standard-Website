@@ -2,5 +2,6 @@ from django.db import models
 
 from wagtail.core.models import Page
 
-class News(Page):
+
+class NewsPage(Page):
     pass
