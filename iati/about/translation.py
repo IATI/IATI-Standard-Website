@@ -1,10 +1,10 @@
-from .models import About
+from .models import AboutPage
 from modeltranslation.translator import TranslationOptions
 from modeltranslation.decorators import register
 
 
-@register(About)
-class AboutTR(TranslationOptions):
+@register(AboutPage)
+class AboutPageTR(TranslationOptions):
     pass
     # fields = (
     #     'body',
