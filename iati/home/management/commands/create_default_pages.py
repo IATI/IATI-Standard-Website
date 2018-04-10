@@ -4,7 +4,7 @@ from about.models import AboutPage
 from contact.models import ContactPage
 from events.models import EventIndexPage
 from guidance_and_support.models import GuidanceAndSupportPage
-from news import NewsIndexPage
+from news.models import NewsIndexPage
 
 class Command(BaseCommand):
     help = 'Create the default pages that constitute the skeleton of the website information architecture'
