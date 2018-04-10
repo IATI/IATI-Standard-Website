@@ -3,7 +3,7 @@ from home.models import HomePage
 from about.models import AboutPage
 from contact.models import ContactPage
 from events.models import EventIndexPage
-from guidance_and_support import GuidanceAndSupportPage
+from guidance_and_support.models import GuidanceAndSupportPage
 from news import NewsIndexPage
 
 class Command(BaseCommand):
