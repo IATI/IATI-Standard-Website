@@ -1,10 +1,17 @@
-from .models import Events
+from .models import EventIndexPage, EventPage
 from modeltranslation.translator import TranslationOptions
 from modeltranslation.decorators import register
 
 
-@register(Events)
-class EventsTR(TranslationOptions):
+@register(EventIndexPage)
+class EventIndexPageTR(TranslationOptions):
+    pass
+    # fields = (
+    #     'body',
+    # )
+
+@register(EventPage)
+class EventPageTR(TranslationOptions):
     pass
     # fields = (
     #     'body',

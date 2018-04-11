@@ -1,10 +1,10 @@
-from .models import GuidanceAndSupport
+from .models import GuidanceAndSupportPage
 from modeltranslation.translator import TranslationOptions
 from modeltranslation.decorators import register
 
 
-@register(GuidanceAndSupport)
-class GuidanceAndSupportTR(TranslationOptions):
+@register(GuidanceAndSupportPage)
+class GuidanceAndSupportPageTR(TranslationOptions):
     pass
     # fields = (
     #     'body',
