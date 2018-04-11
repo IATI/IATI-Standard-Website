@@ -78,12 +78,12 @@
 	</div>
     </div>
 {% endif %}
-    
-    {% if page.event_documents %}
+    {% with documents=page.event_documents.all %}
+    {% if documents %}
     <div class="m-additional">
         <h4 class="m-additional__heading heading">Downloads</h2>
         <ul class="m-additional__list download-list">
-	{% for download in page.event_documents.all %}
+	{% for download in documents %}
             <li class="download-list__item">
                 <a class="download-list__item-link" href="{{ download.document.url }}">
                     <h5 class="download-list__item-link-heading">{{ download.document.title }}</h5>
@@ -94,6 +94,7 @@
         </ul>
     </div>
     {% endif %}
+    {% endwith %}
 
 
 
