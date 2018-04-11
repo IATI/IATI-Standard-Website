@@ -6,7 +6,8 @@ from modelcluster.fields import ParentalManyToManyField
 from wagtail.core.fields import StreamField
 from wagtail.snippets.models import register_snippet
 from django.utils import translation
-from datetime import datetime
+from django.utils import timezone
+import pytz
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 class EventIndexPage(Page):
@@ -29,10 +30,11 @@ class EventIndexPage(Page):
         """
         events = self.events
         past = request.GET.get('past')
-        now = datetime.now()
+        now = timezone.now()
         if past:
+            events = events.filter(date_start__lte=now)
+        else:
             events = events.filter(date_start__gte=now)
-        events = events.filter(date_start__lte=now)
         page = request.GET.get('page')
         paginator = Paginator(events, 5)
         try:

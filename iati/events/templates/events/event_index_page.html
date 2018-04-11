@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags wagtail_modeltranslation %}
+{% load wagtailcore_tags wagtail_modeltranslation iati_tags %}
 
 {% block body_class %}body body--events{% endblock %}
 {% block body_id %}body-events{% endblock %}
@@ -31,7 +31,7 @@
 	<div class="l-listing l-listing--events">
 	{% endif %}
         
-	{% for event in events%}
+	{% for event in events %}
             {% with event=event.specific %}
 			<article class="listing listing--article  listing--archived">
 	<aside class="listing__aside">
@@ -44,15 +44,17 @@
 		<span class="badge">Past event</span>
 	</aside>
 	<div class="listing__body">
-		<h2 class="listing__heading"><a href="{% slugurl_trans event %}"><span>{{ event.heading }}</span></a></h2>
+		<h2 class="listing__heading"><a href="{% slugurl_trans event.slug %}"><span>{{ event.heading }}</span></a></h2>
 		<ul class="listing__metadata">
 			<li class="listing__metadata__item">
 				<i role="presentation" aria-hidden="true" class="ico ico--14 ico-calendar-ocean"></i>
-				<span class="listing__metadata__date">{{ event.date_start }}</span>
+				{% with formatted_dates=event.date_start|twopartdate:event.date_end %}
+				<span class="listing__metadata__date">{{ formatted_dates.part1 }}{% if formatted_dates.part2_is_time %} {% else %}&ndash;{% endif %}{{ formatted_dates.part2 }}</span>
+				{% endwith %}
 			</li>
 		</ul>
 		<p class="listing__excerpt">{{ event.subheading }}</p>
-		<a href="{% slugurl_trans event %}" class="button">More details</a>
+		<a href="{% slugurl_trans event.slug %}" class="button">More details</a>
 	</div>
 </article>
 
@@ -62,8 +64,12 @@
 		
 	</div>
     <div class="pagination">
-   <a href="#" class="pagination__item pagination__item--prev">Previous</a>
-   <a href="#" class="pagination__item pagination__item--next">Next</a>
+	{% if events.has_previous %}
+   <a href="?page={{ events.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" class="pagination__item pagination__item--prev">Previous</a>
+	{% endif %}
+	{% if events.has_next %}
+   <a href="?page={{ events.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" class="pagination__item pagination__item--next">Next</a>
+	{% endif %}
 </div>
 
 

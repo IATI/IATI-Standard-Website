@@ -11,6 +11,10 @@ from django.conf import settings
 from wagtail_modeltranslation.contextlib import use_language
 from wagtail.core.templatetags.wagtailcore_tags import pageurl
 
+from django.utils import timezone
+import pytz
+from django.template.defaultfilters import date as _date
+
 register = template.Library()
 
 @register.simple_tag(takes_context=True)
@@ -52,9 +56,39 @@ def translation_links(context, calling_page):
     language_results = []
     for language_code, language_name in settings.LANGUAGES:
         with use_language(language_code):
-            language_url = pageurl(context,calling_page)
+            language_url = pageurl(context, calling_page)
             language_results.append({"code": language_code, "name": language_name, "url": language_url})
 
     return {
         'languages': language_results,
     }
+
+@register.filter
+def haspassed(value):
+    """Takes a date and tells you if it's in the past"""
+    now = timezone.now()
+    return value < now
+
+@register.filter
+def twopartdate(date_start, date_end):
+    """Takes two datetimes and determines whether to display start and end times, or start and end dates.
+
+    If an end date exists, we can compare the two dates.
+    If the two dates are the same, localize the date for the first part and stringify the time range for the second.
+    If the two dates are not the same, part 2 becomes the second date.
+
+    If no end date exists, part 2 is just the start time.
+    """
+    part1 = _date(date_start, "DATE_FORMAT")
+    enDash = u'\u2013'
+    if date_end:
+        if date_start.date() == date_end.date():
+            part2 = "{0}{1}{2}".format(_date(date_start, "TIME_FORMAT"), enDash, _date(date_end, "TIME_FORMAT"))
+            part2_is_time = True
+        else:
+            part2 = _date(date_end, "DATE_FORMAT")
+            part2_is_time = False
+    else:
+        part2 = _date(date_start, "TIME_FORMAT")
+        part2_is_time = True
+    return {"part1":part1, "part2":part2, "part2_is_time":part2_is_time}
