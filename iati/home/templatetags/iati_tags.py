@@ -27,9 +27,9 @@ def default_page_url(context, default_page_name="home"):
 
     default_page = page_model_names[default_page_name].objects.live().first()
 
-    if default_page is not None:
-        return default_page.get_url(context['request'])
-    return ''
+    if default_page is None:
+        return ''
+    return default_page.get_url(context['request'])
 
 def humansize(nbytes):
     """Short function to turn bytes into a human readable string. Could break if we start hosting exabyte files"""
