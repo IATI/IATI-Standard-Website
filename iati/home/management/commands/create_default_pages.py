@@ -9,8 +9,16 @@ from news.models import NewsIndexPage
 from django.conf import settings
 
 class Command(BaseCommand):
+    """A command for manage.py that first rectifies some database problems with the HomePage model created by wagtail-modeltranslation and then creates the top-level default pages from the infrastructure architecture.
+
+       The home_page needed a queryset update as well as its individual field update before the HomePage model was allowed to save in the CMS.
+       I believe this is because the update method bypasses the validation of the save method and writes directly to the database, but the model then needs to be updated with save.
+
+       TODO: If wagtail-modeltranslation or django-modeltranslation update, this command may no longer need to edit the home page.
+    """
     help = 'Create the default pages that constitute the skeleton of the website information architecture'
     def handle(self, *args, **options):
+        """The default function Django BaseCommand needs to run"""
         home_page_queryset = HomePage.objects.live()
         home_page = home_page_queryset.first()
         if home_page is not None:
