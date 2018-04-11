@@ -21,6 +21,9 @@ class EventPageTR(TranslationOptions):
         'description',
         'additional_information',
     )
+    image_fields = (
+        'feed_image',
+    )
     inline_fields = (
         'event_documents',
     )

@@ -58,6 +58,13 @@ class EventPage(Page):
     date_end = models.DateTimeField("Event end date and time", null=True, blank=True)
     location = models.TextField(null=True, blank=True)
     registration_link = models.URLField(max_length=255, null=True, blank=True)
+    feed_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
 
     heading = models.TextField(null=True, blank=True)
     subheading = models.TextField(null=True, blank=True)
