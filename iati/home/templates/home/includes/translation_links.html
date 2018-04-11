@@ -1,0 +1,8 @@
+{% load wagtailcore_tags wagtail_modeltranslation i18n %}
+
+<div style="position:absolute;bottom:0;left:0;padding-left:5px;">
+    {% trans "Language" %}:
+    {% for language in languages %}
+        <a href="{{ language.url }}">{{ language.code }}</a> {% if not forloop.last %}|{% endif %}
+    {% endfor %}
+</div>
