@@ -1,6 +1,6 @@
 from django.db import models
 from wagtail.core.models import Page
-from home.models import TranslatedField, IATIStreamBlock
+from home.models import IATIStreamBlock
 from wagtail.admin.edit_handlers import TabbedInterface, ObjectList, FieldPanel, MultiFieldPanel, StreamFieldPanel
 from modelcluster.fields import ParentalManyToManyField
 from wagtail.core.fields import StreamField
