@@ -35,6 +35,7 @@ def default_page_url(context, default_page_name="home"):
         return ''
     return default_page.get_url(context['request'])
 
+@register.filter
 def humansize(nbytes):
     """Short function to turn bytes into a human readable string. Could break if we start hosting exabyte files"""
     suffixes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB']
@@ -44,11 +45,6 @@ def humansize(nbytes):
         i += 1
     formatted_xbytes = ('%.2f' % nbytes).rstrip('0').rstrip('.')
     return '%s %s' % (formatted_xbytes, suffixes[i])
-
-@register.filter
-def filesize(value):
-    """Returns the filesize of the filename given in value"""
-    return humansize(os.path.getsize(value))
 
 @register.inclusion_tag("home/includes/translation_links.html",takes_context=True)
 def translation_links(context, calling_page):

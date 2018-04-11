@@ -21,12 +21,14 @@ class EventPageTR(TranslationOptions):
         'description',
         'additional_information',
     )
+    inline_fields = (
+        'event_documents',
+    )
     multilingual_fields = (
         'date_start',
         'date_end',
         'location',
         'registration_link',
-        'documents',
     )
 add_language_content_panels(EventPage,EventPageTR)
 

@@ -2,7 +2,7 @@ from django.db import models
 from wagtail.core.models import Page, Orderable
 from home.models import IATIStreamBlock
 from wagtail.admin.edit_handlers import TabbedInterface, ObjectList, FieldPanel, MultiFieldPanel, StreamFieldPanel
-from modelcluster.fields import ParentalManyToManyField
+from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from wagtail.core.fields import StreamField
 from wagtail.snippets.models import register_snippet
 from django.utils import translation
@@ -58,7 +58,6 @@ class EventPage(Page):
     date_end = models.DateTimeField("Event end date and time", null=True, blank=True)
     location = models.TextField(null=True, blank=True)
     registration_link = models.URLField(max_length=255, null=True, blank=True)
-    documents = ParentalManyToManyField('wagtaildocs.Document', blank=True)
 
     heading = models.TextField(null=True, blank=True)
     subheading = models.TextField(null=True, blank=True)
@@ -86,12 +85,12 @@ class EventType(models.Model):
     ]
 
 
-# class EventDocument(Orderable):
-#     page = ParentalKey(EventPage, related_name='documents')
-#     document = models.ForeignKey(
-#         'wagtail.documents.Document', on_delete=models.CASCADE, related_name='+'
-#     )
-# 
-#     panels = [
-#         DocumentChooserPanel('document'),
-#     ]
+class EventDocument(Orderable):
+    page = ParentalKey(EventPage, related_name='event_documents')
+    document = models.ForeignKey(
+        'wagtaildocs.Document', on_delete=models.CASCADE, related_name='+'
+    )
+
+    panels = [
+        DocumentChooserPanel('document'),
+    ]
