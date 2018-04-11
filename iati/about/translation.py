@@ -2,7 +2,7 @@ from .models import AboutPage, AboutSubPage
 from modeltranslation.translator import TranslationOptions
 from modeltranslation.decorators import register
 
-# from home.translation_helper import add_language_content_panels
+from home.translation_helper import add_language_content_panels
 
 
 @register(AboutPage)
@@ -14,6 +14,9 @@ class AboutPageTR(TranslationOptions):
     )
 
 
+add_language_content_panels(AboutPage, AboutPageTR)
+
+
 @register(AboutSubPage)
 class AboutSubPageTR(TranslationOptions):
     fields = (
@@ -21,3 +24,6 @@ class AboutSubPageTR(TranslationOptions):
         'excerpt',
         'content_editor',
     )
+
+
+add_language_content_panels(AboutSubPage, AboutSubPageTR)

@@ -23,9 +23,9 @@ class AboutSubPage(Page):
     excerpt = models.TextField(null=True, blank=True)
     content_editor = StreamField(IATIStreamBlock(required=False), null=True, blank=True)
 
-class CaseStudyPage(Page):
-    parent_page_types = ['about.AboutSubPage']
-    subpage_types = []
+# class CaseStudyPage(Page):
+#     parent_page_types = ['about.AboutSubPage']
+#     subpage_types = []
 
 #fffunction notes:
 
