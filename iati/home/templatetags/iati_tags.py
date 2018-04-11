@@ -16,21 +16,20 @@ register = template.Library()
 @register.simple_tag(takes_context=True)
 def default_page_url(context, default_page_name="home"):
     """Returns the relative url for a top-level default page"""
-    if default_page_name == "about":
-        default_page = AboutPage.objects.live().first()
-    elif default_page_name == "contact":
-        default_page = ContactPage.objects.live().first()
-    elif default_page_name == "events":
-        default_page = EventIndexPage.objects.live().first()
-    elif default_page_name == "guidance_and_support":
-        default_page = GuidanceAndSupportPage.objects.live().first()
-    elif default_page_name == "news":
-        default_page = NewsIndexPage.objects.live().first()
-    else:
-        default_page = HomePage.objects.live().first()
+    page_model_names = {
+        'home': HomePage,
+        'about': AboutPage,
+        'contact': ContactPage,
+        'events': EventIndexPage,
+        'guidance_and_support': GuidanceAndSupportPage,
+        'news': NewsIndexPage,
+    }
+
+    page_model_names[default_page_name].objects.live().first()
+
     if default_page is not None:
         return default_page.get_url(context['request'])
-    return ""
+    return ''
 
 def humansize(nbytes):
     """Short function to turn bytes into a human readable string. Could break if we start hosting exabyte files"""
