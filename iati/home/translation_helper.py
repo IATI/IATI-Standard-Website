@@ -1,5 +1,5 @@
 from django.conf import settings
-from wagtail.admin.edit_handlers import TabbedInterface, ObjectList, FieldPanel, MultiFieldPanel, StreamFieldPanel
+from wagtail.admin.edit_handlers import TabbedInterface, ObjectList, FieldPanel, MultiFieldPanel, StreamFieldPanel, InlinePanel
 from wagtail.core.fields import Creator
 from django.utils.translation import gettext_lazy as _
 
@@ -35,6 +35,8 @@ def add_language_content_panels(page_model, translation_model):
         local_content_panel = [MultiFieldPanel(multi_field_panel_contents)] + stream_field_panel_contents
         edit_handler_contents.append(ObjectList(local_content_panel, heading=language_name))
     promote_and_settings_panels = [ObjectList([MultiFieldPanel(promote_panel_contents)], heading=_('Promote')), ObjectList(page_model.settings_panels, heading=_('Settings'), classname='settings')]
+    if hasattr(translation_model, "inline_fields"):
+        edit_handler_contents = [ObjectList([InlinePanel(field, label=field) for field in translation_model.inline_fields], heading=_('Inlines'))] + edit_handler_contents
     if hasattr(translation_model, "multilingual_fields"):
         edit_handler_contents = [ObjectList([MultiFieldPanel([FieldPanel(field) for field in translation_model.multilingual_fields])], heading=_('Multilingual'))] + edit_handler_contents
     page_model.edit_handler = TabbedInterface(edit_handler_contents + promote_and_settings_panels)
