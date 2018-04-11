@@ -1,5 +1,5 @@
 from django.db import models
-from wagtail.core.models import Page
+from wagtail.core.models import Page, Orderable
 from home.models import IATIStreamBlock
 from wagtail.admin.edit_handlers import TabbedInterface, ObjectList, FieldPanel, MultiFieldPanel, StreamFieldPanel
 from modelcluster.fields import ParentalManyToManyField
@@ -9,6 +9,7 @@ from django.utils import translation
 from django.utils import timezone
 import pytz
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from wagtail.documents.edit_handlers import DocumentChooserPanel
 
 class EventIndexPage(Page):
     parent_page_types = ['home.HomePage']
@@ -57,6 +58,7 @@ class EventPage(Page):
     date_end = models.DateTimeField("Event end date and time", null=True, blank=True)
     location = models.TextField(null=True, blank=True)
     registration_link = models.URLField(max_length=255, null=True, blank=True)
+    documents = ParentalManyToManyField('wagtaildocs.Document', blank=True)
 
     heading = models.TextField(null=True, blank=True)
     subheading = models.TextField(null=True, blank=True)
@@ -82,3 +84,14 @@ class EventType(models.Model):
     panels = [
         FieldPanel('name'),
     ]
+
+
+# class EventDocument(Orderable):
+#     page = ParentalKey(EventPage, related_name='documents')
+#     document = models.ForeignKey(
+#         'wagtail.documents.Document', on_delete=models.CASCADE, related_name='+'
+#     )
+# 
+#     panels = [
+#         DocumentChooserPanel('document'),
+#     ]

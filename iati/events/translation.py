@@ -26,6 +26,7 @@ class EventPageTR(TranslationOptions):
         'date_end',
         'location',
         'registration_link',
+        'documents',
     )
 add_language_content_panels(EventPage,EventPageTR)
 
