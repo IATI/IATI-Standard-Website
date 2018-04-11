@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static wagtailcore_tags %}
+{% load static wagtailcore_tags wagtail_modeltranslation %}
 
 {% block body_class %}template-searchresults{% endblock %}
 
@@ -17,7 +17,7 @@
         <ul>
             {% for result in search_results %}
                 <li>
-                    <h4><a href="{% pageurl result %}">{{ result }}</a></h4>
+                    <h4><a href="{% slugurl_trans result %}">{{ result }}</a></h4>
                     {% if result.search_description %}
                         {{ result.search_description }}
                     {% endif %}

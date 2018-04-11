@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtail_modeltranslation %}
 
 {% block body_class %}body body--events{% endblock %}
 {% block body_id %}body-events{% endblock %}
@@ -44,7 +44,7 @@
 		<span class="badge">Past event</span>
 	</aside>
 	<div class="listing__body">
-		<h2 class="listing__heading"><a href="{% pageurl event %}"><span>{{ event.heading }}</span></a></h2>
+		<h2 class="listing__heading"><a href="{% slugurl_trans event %}"><span>{{ event.heading }}</span></a></h2>
 		<ul class="listing__metadata">
 			<li class="listing__metadata__item">
 				<i role="presentation" aria-hidden="true" class="ico ico--14 ico-calendar-ocean"></i>
@@ -52,7 +52,7 @@
 			</li>
 		</ul>
 		<p class="listing__excerpt">{{ event.subheading }}</p>
-		<a href="{% pageurl event %}" class="button">More details</a>
+		<a href="{% slugurl_trans event %}" class="button">More details</a>
 	</div>
 </article>
 
