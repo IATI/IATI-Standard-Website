@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags wagtail_modeltranslation iati_tags %}
+{% load wagtailcore_tags wagtailimages_tags wagtail_modeltranslation iati_tags %}
 
 {% block body_class %}body body--events{% endblock %}
 {% block body_id %}body-events{% endblock %}
@@ -35,9 +35,12 @@
             {% with event=event.specific %}
 			<article class="listing listing--article  listing--archived">
 	<aside class="listing__aside">
+		{% if event.feed_image %}
 		<div class="listing__media">
-			<img src="/static/assets/img/content-image.jpg" alt="alt tag">
+		  {% image event.feed_image width-200 as img %}
+		  <img src="{{ img.url }}" alt="{{ img.title }}" />
 		</div>
+	     {% endif %}
         {% if event.location %}
 		<h3 class="listing__location"><i role="presentation" aria-hidden="true" class="ico ico--14 ico-location-ocean"></i>{{ event.location }}</h3>
         {% endif %}
