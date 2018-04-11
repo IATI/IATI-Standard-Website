@@ -77,7 +77,7 @@ class EventPage(Page):
         "A function that takes all of the EventType snippets and concatenates them into a space separated one-liner."
         event_types = self.event_type.values_list('name', flat=True)
 
-        return " ".join(event_types)
+        return " | ".join(event_types)
 
 
 @register_snippet
