@@ -25,7 +25,7 @@ def default_page_url(context, default_page_name="home"):
         'news': NewsIndexPage,
     }
 
-    page_model_names[default_page_name].objects.live().first()
+    default_page = page_model_names[default_page_name].objects.live().first()
 
     if default_page is not None:
         return default_page.get_url(context['request'])
