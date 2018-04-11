@@ -1,4 +1,4 @@
-from .models import EventIndexPage, EventPage
+from .models import EventIndexPage, EventPage, EventType
 from modeltranslation.translator import TranslationOptions
 from modeltranslation.decorators import register
 
@@ -11,6 +11,7 @@ class EventIndexPageTR(TranslationOptions):
         'excerpt'
     )
 add_language_content_panels(EventIndexPage,EventIndexPageTR)
+
 
 @register(EventPage)
 class EventPageTR(TranslationOptions):
@@ -27,3 +28,10 @@ class EventPageTR(TranslationOptions):
         'registration_link',
     )
 add_language_content_panels(EventPage,EventPageTR)
+
+
+@register(EventType)
+class EventTypeTR(TranslationOptions):
+    fields = (
+        'name',
+    )
