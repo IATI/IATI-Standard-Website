@@ -37,7 +37,7 @@ python manage.py migrate
 python manage.py createsuperuser
 
 # Run a development server
-python manage.py run server
+python manage.py runserver
 ```
 
 ## Tests
