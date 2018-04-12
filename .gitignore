@@ -105,19 +105,19 @@ pyenv/
 local.py
 
 # Selective migration ignore, use `git add -f migrations` while working on dev
-about/migrations/
-!about/migrations/__init__.py
-contact/migrations/
-!contact/migrations/__init__.py
-events/migrations/
-!events/migrations/__init__.py
-guidance_and_support/migrations/
-!guidance_and_support/migrations/__init__.py
-home/migrations/
-!home/migrations/__init__.py
-!home/migrations/0001_initial.py
-!home/migrations/0002_create_homepage.py
-!home/migrations/0003_about.py
-!home/migrations/0004_auto_20180329_1351.py
-news/migrations/
-!news/migrations/__init__.py
+iati/about/migrations/*
+!iati/about/migrations/__init__.py
+iati/contact/migrations/*
+!iati/contact/migrations/__init__.py
+iati/events/migrations/*
+!iati/events/migrations/__init__.py
+iati/guidance_and_support/migrations/*
+!iati/guidance_and_support/migrations/__init__.py
+iati/home/migrations/*
+!iati/home/migrations/__init__.py
+!iati/home/migrations/0001_initial.py
+!iati/home/migrations/0002_create_homepage.py
+!iati/home/migrations/0003_about.py
+!iati/home/migrations/0004_auto_20180329_1351.py
+iati/news/migrations/*
+!iati/news/migrations/__init__.py
