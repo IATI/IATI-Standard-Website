@@ -6,21 +6,6 @@ from django.utils import translation
 from wagtail.core.blocks import TextBlock, StructBlock, StreamBlock, FieldBlock, CharBlock, RichTextBlock, RawHTMLBlock
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.documents.blocks import DocumentChooserBlock
-
-class TranslatedField:
-    def __init__(self,en_field,fr_field,es_field):
-        self.en_field = en_field
-        self.fr_field = fr_field
-        self.es_field = es_field
-        
-    def __get__(self,instance,owner):
-        if translation.get_language() == 'fr':
-            return getattr(instance,self.fr_field)
-        elif translation.get_language() == 'es':
-            return getattr(instance,self.es_field)
-        #The default
-        else:
-            return getattr(instance,self.en_field)
         
 class PullQuoteBlock(StructBlock):
     quote = TextBlock("quote title")

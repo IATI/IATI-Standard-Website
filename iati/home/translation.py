@@ -1,19 +1,12 @@
 from .models import HomePage
-# from wagtail.core.models import Page
 from modeltranslation.translator import TranslationOptions
 from modeltranslation.decorators import register
 
+from wagtail.core.models import Page
 
-# @register(Page)
-# class PageTR(TranslationOptions):
-#     pass
-#     # fields = (
-#     #     'body',
-#     # )
+from home.translation_helper import add_language_content_panels
 
 @register(HomePage)
 class HomePageTR(TranslationOptions):
     pass
-    # fields = (
-    #     'body',
-    # )
+add_language_content_panels(HomePage, HomePageTR)
