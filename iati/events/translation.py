@@ -1,6 +1,9 @@
 from .models import EventIndexPage, EventPage, EventType
 from modeltranslation.translator import TranslationOptions
 from modeltranslation.decorators import register
+from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel, StreamFieldPanel, InlinePanel
+from django import forms
 
 from home.translation_helper import add_language_content_panels
 
@@ -21,18 +24,14 @@ class EventPageTR(TranslationOptions):
         'description',
         'additional_information',
     )
-    image_fields = (
-        'feed_image',
-    )
-    inline_fields = (
-        'event_documents',
-    )
-    multilingual_fields = (
-        'date_start',
-        'date_end',
-        'location',
-        'registration_link',
-        'event_type',
+    multilingual_field_panels = (
+        FieldPanel('date_start'),
+        FieldPanel('date_end'),
+        FieldPanel('location'),
+        FieldPanel('registration_link'),
+        FieldPanel('event_type', widget=forms.CheckboxSelectMultiple),
+        ImageChooserPanel('feed_image'),
+        InlinePanel('event_documents',label="Event attachments")
     )
 add_language_content_panels(EventPage,EventPageTR)
 
