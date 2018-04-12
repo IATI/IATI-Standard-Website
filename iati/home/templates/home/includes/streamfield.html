@@ -23,26 +23,18 @@
             </blockquote>
         {% elif child.block_type == 'paragraph' %}
             {{ child.value|richtext }}
-        {% elif child.block_type == 'endnote' %}
-            <div class="endnote target" id="endnote{{ child.value.number }}">
-                <b>{{ child.value.number }}.&nbsp;</b> {{ child.value.citation }}
-            </div>
-        {% elif child.block_type == 'aligned_image' %}
-            <div class="img-wrapper {{ child.value.alignment }}">
-                {% if child.value.alignment == "left" or child.value.alignment == "right" %}
-                    {% image child.value.image width-300 as theimage %}
-                {% else %}
-                    {% image child.value.image width-1280 as theimage %}
-                {% endif %}
+        {% elif child.block_type == 'image_figure' %}
+        <figure class="media-figure">
+            {% image child.value.image max-1280x1280 as theimage %}
 
-                <img class="img-thumbnail" src="{{ theimage.url }}" width="{{ theimage.width }}" height="{{ theimage.height }}" alt="{{ theimage.alt }}" />
+            <img src="{{ theimage.url }}" width="{{ theimage.width }}" height="{{ theimage.height }}" alt="{{ theimage.alt }}" />
 
-                {% if child.value.caption %}
-                    <div class="caption">
-                        {{ child.value.caption|richtext }}
-                    </div>
-                {% endif %}
-            </div>
+            {% if child.value.caption %}
+                <figcaption class="media-figure__caption">
+                    {{ child.value.caption|richtext }}
+                </figcaption>
+            {% endif %}
+        </figure>
         {% else %}
             {{ child }}
         {% endif %}
