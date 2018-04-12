@@ -104,7 +104,7 @@ pyenv/
 # local settings
 local.py
 
-# Selective migration ignore, use `git add -f migrations` while working on dev
+# Selective migration ignore, use `git add -f appname/migrations` before pushing upstream
 iati/about/migrations/*
 !iati/about/migrations/__init__.py
 iati/contact/migrations/*
