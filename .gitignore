@@ -121,3 +121,6 @@ iati/home/migrations/*
 !iati/home/migrations/0004_auto_20180329_1351.py
 iati/news/migrations/*
 !iati/news/migrations/__init__.py
+
+# Ignore media
+media
