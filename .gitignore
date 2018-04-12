@@ -103,3 +103,5 @@ pyenv/
 
 # local settings
 local.py
+
+# Ignore media
