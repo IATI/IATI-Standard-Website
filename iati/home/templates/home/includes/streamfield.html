@@ -18,8 +18,7 @@
             {% endif %}
         {% elif child.block_type == 'pullquote' %}
             <blockquote>
-                {{ child.value.quote }}
-                {% if child.value.attribution %}<span>- {{ child.value.attribution }}</span>{% endif %}
+                <p>{{ child.value.quote }}</p>
             </blockquote>
         {% elif child.block_type == 'paragraph' %}
             {{ child.value|richtext }}

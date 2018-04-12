@@ -9,7 +9,6 @@ from wagtail.documents.blocks import DocumentChooserBlock
         
 class PullQuoteBlock(StructBlock):
     quote = TextBlock("quote title")
-    attribution = CharBlock()
 
     class Meta:
         icon = "openquote"
