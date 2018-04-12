@@ -7,10 +7,9 @@
     <div class="hero">
         <div class="row">
             <div class="hero__caption">
-                <h1 class="hero__heading">Contact</h1>
-                
-                    <p class="hero__excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                
+                <h1 class="hero__heading">{{ page.title }}</h1>
+                    <p class="hero__excerpt">{{ page.subheading }}</p>
+
             </div>
             <div class="hero__emblem">
                 <img class="hero__emblem__mask" src="/static/assets/img/hero1.jpg" alt="alt tag">
@@ -18,18 +17,10 @@
         </div>
     </div>
 
-			
+
     <div class="row">
         <div class="max-meter is-typeset is-typeset--article">
-            <p>Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.</p>
-
-            <ul>
-                <li>United Nations Development Programme (UNDP)</li>
-                <li>Govermentment of Ghana</li>
-                <li>Govermentment of Sweden</li>
-            </ul>
-
-            <p>Follow us on Twitter for the latest updates on new publishers, events and updates to the <a href="#none">@IATI_aid</a> and <a href="#none">#IATI</a></p>
+            <p>{{ page.description }}</p>
         </div>
 
         <div class="m-blocks">
