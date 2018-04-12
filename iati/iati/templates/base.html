@@ -22,7 +22,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         {# Global stylesheets #}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/iati.css' %}">
+        <link rel="stylesheet" type="text/css" href="https://iati.surge.sh/assets/css/screen.css">
 
         {% block extra_css %}
             {# Override this in templates to add extra stylesheets #}
@@ -30,15 +30,41 @@
     </head>
 
     <body class="{% block body_class %}{% endblock %}">
+      <header role="banner" class="header">
+	        <a href="/" class="branding"><span>IATI - International Aid Transparency Initiative</span></a>
+
+            <ul class="navigation-utility">
+              <li id="section-news" class='navigation-utility__item'><a href="">News</a></li>
+              <li id="section-events" class='navigation-utility__item'><a href="">Events</a></li>
+              <li id="section-contact" class='navigation-utility__item'><a href="">Contact</a></li>
+            </ul>
+
+            <button role="button" class="navigation-primary-toggle" id="navigation-primary-toggle"><span>Menu</span></button>
+
+            <nav class="navigation-primary" role="navigation" id="navigation-primary">
+	            <ul class="navigation-primary__items">
+                <li id="section-" class='navigation-primary__item'><a href="">About</a></li>
+                <li id="section-" class='navigation-primary__item'><a href="">IATI Standard</a></li>
+                <li id="section-" class='navigation-primary__item'><a href="">Data</a></li>
+                <li id="section-" class='navigation-primary__item'><a href="">Guidance & Support</a></li>
+                <li id="section-" class='navigation-primary__item'><a href="">Community</a></li>
+                <li id="section-news" class='navigation-primary__item navigation-primary__item--ss-only'><a href="">News</a></li>
+                <li id="section-events" class='navigation-primary__item navigation-primary__item--ss-only'><a href="">Events</a></li>
+                <li id="section-contact" class='navigation-primary__item navigation-primary__item--ss-only'><a href="">Contact</a></li>
+              </ul>
+            </nav>
+      </header>
+      <span class="alert alert--notice"><i role="presentation" aria-hidden="true" class="ico ico-warning-warning"></i>
         {% wagtailuserbar %}
 
         {% block content %}{% endblock %}
 
         {# Global javascript #}
-        <script type="text/javascript" src="{% static 'js/iati.js' %}"></script>
+        <script type="text/javascript" src="https://iati.surge.sh/assets/js/app.bundle.js"></script>
 
         {% block extra_js %}
             {# Override this in templates to add extra javascript #}
         {% endblock %}
+      </span>
     </body>
 </html>
