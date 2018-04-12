@@ -10,6 +10,7 @@ from django.utils import timezone
 import pytz
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from wagtail.documents.edit_handlers import DocumentChooserPanel
+from django.utils.text import slugify
 
 class EventIndexPage(Page):
     parent_page_types = ['home.HomePage']
@@ -25,6 +26,13 @@ class EventIndexPage(Page):
         events = events.order_by('-date_start')
         return events
 
+    @property
+    def event_types(self):
+        """A function to list all of the event types"""
+        event_types = EventType.objects.all()
+        return event_types
+
+
     def get_context(self, request):
         """Overwriting the default wagtail get_context function to allow for filtering based on params, including pagination.
            Try to display 5 events per page, but catch exceptions if the page is not a valid integer or we get an empty page.
@@ -36,6 +44,9 @@ class EventIndexPage(Page):
             events = events.filter(date_start__lte=now)
         else:
             events = events.filter(date_start__gte=now)
+        event_type = request.GET.get('event_type')
+        if event_type:
+            events = events.filter(event_type__slug=event_type)
         page = request.GET.get('page')
         paginator = Paginator(events, 5)
         try:
@@ -82,10 +93,18 @@ class EventPage(Page):
 
 @register_snippet
 class EventType(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
+    slug = models.SlugField(unique=True)
 
     def __str__(self):
         return self.name
+
+    def full_clean(self, *args, **kwargs):
+        """Apply fixups that need to happen before per-field validation occurs"""
+        base_slug = slugify(self.name, allow_unicode=True)
+        if base_slug:
+            self.slug = base_slug
+        super().full_clean(*args, **kwargs)
 
     panels = [
         FieldPanel('name'),

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags wagtailimages_tags wagtail_modeltranslation iati_tags %}
+{% load wagtailcore_tags wagtailimages_tags wagtail_modeltranslation iati_tags i18n %}
 
 {% block body_class %}body body--events{% endblock %}
 {% block body_id %}body-events{% endblock %}
@@ -30,7 +30,11 @@
 	{% else %}
 	<div class="l-listing l-listing--events">
 	{% endif %}
-        
+        {% if request.GET.event_type|length %}
+        <div class="is-typeset is-typeset--article">
+		<h4>{% blocktrans with event_type_name=request.GET.event_type|event_type_verbose %} Showing only "{{ event_type_name }}" events.{% endblocktrans %} <a href="{% slugurl_trans self.slug %}?{% for key,value in request.GET.items %}{% ifnotequal key 'event_type' %}{% if not forloop.first %}&amp;{% endif %}{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">{% trans "Show all" %}</a></h4>
+	 </div>
+	{% endif %}
 	{% for event in events %}
             {% with event=event.specific %}
 			<article class="listing listing--article  listing--archived">
@@ -84,11 +88,9 @@
             <h3 class="aside-m__heading">Event types</h3>
         </div>
         <ul class="aside-m__list">
-            <li class="aside-m__list-item"><a href="#">Event type</a></li>
-            <li class="aside-m__list-item"><a href="#">Event type</a></li>
-            <li class="aside-m__list-item"><a href="#">Event type</a></li>
-            <li class="aside-m__list-item"><a href="#">Event type</a></li>
-            <li class="aside-m__list-item"><a href="#">Event type</a></li>
+		{% for event_type in page.event_types %}
+            <li class="aside-m__list-item"><a href="?event_type={{ event_type.slug }}{% for key,value in request.GET.items %}{% ifnotequal key 'event_type' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">{{ event_type.name }}</a></li>
+	       {% endfor %}
         </ul>
     </div>
 

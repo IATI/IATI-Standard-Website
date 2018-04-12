@@ -3,7 +3,7 @@ from django import template
 from home.models import HomePage
 from about.models import AboutPage
 from contact.models import ContactPage
-from events.models import EventIndexPage
+from events.models import EventIndexPage, EventType
 from guidance_and_support.models import GuidanceAndSupportPage
 from news.models import NewsIndexPage
 
@@ -88,3 +88,8 @@ def twopartdate(date_start, date_end):
         part2 = _date(date_start, "TIME_FORMAT")
         part2_is_time = True
     return {"part1":part1, "part2":part2, "part2_is_time":part2_is_time}
+
+@register.filter
+def event_type_verbose(event_type_slug):
+    """Returns the localized event type name given a slug"""
+    return EventType.objects.get(slug=event_type_slug).name
