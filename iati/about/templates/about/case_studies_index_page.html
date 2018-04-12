@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block body_class %}body body--news-single{% endblock %}
+{% block body_id %}body-news-single{% endblock %}
+
+{% block content %}
+    <div class="hero">
+        <div class="row">
+            <div class="hero__caption">
+                <h1 class="hero__heading">{{ page.heading }}</h1>
+
+                    <p class="hero__excerpt">{{ page.excerpt }}</p>
+
+            </div>
+            <div class="hero__emblem">
+                <img class="hero__emblem__mask" src="/assets/img/hero1.jpg" alt="alt tag">
+            </div>
+        </div>
+    </div>
+
+
+<div class="row">
+	<div class="l-sidebar l-sidebar--reverse">
+		<aside class="l-sidebar__aside">
+
+    <div class="aside-m">
+        <div class="aside-m__header fill-sunrise">
+            <h3 class="aside-m__heading">In this section</h3>
+        </div>
+        <button class="navigation-secondary-toggle" type="button" id="navigation-secondary-toggle">pages in this section <i role="presentation" aria-hidden="true" class="ico ico--16 ico-plus-white"></i></button>
+<nav class="navigation-secondary" id="navigation-secondary">
+    <ul class="navigation-secondary__list">
+        <li class="navigation-secondary__item"><a href="#">Why aid transparency matters</a></li>
+        <li class="navigation-secondary__item"><a href="#">How IATI works</a></li>
+        <li class="navigation-secondary__item"><a href="#">Who is IATI for?</a></li>
+        <li class="navigation-secondary__item"><a href="#">About the standard</a></li>
+        <li class="navigation-secondary__item"><a href="#">History of IATI</a></li>
+        <li class="navigation-secondary__item"><a href="#">Case studies</a></li>
+        <li class="navigation-secondary__item"><a href="#">Governance</a></li>
+        <li class="navigation-secondary__item"><a href="#">Promote IATI</a></li>
+        <li class="navigation-secondary__item"><a href="#">Membership</a></li>
+        <li class="navigation-secondary__item"><a href="#">TAG - Technical Advisory Group</a></li>
+    </ul>
+</nav>
+
+    </div>
+
+    <div class="aside-m">
+        <div class="aside-m__header fill-sunset">
+            <h3 class="aside-m__heading">Members assembly events 2017</h3>
+        </div>
+        <div class="aside-m__body">
+            <p class="aside-m__copy">Information and presentations from the event held in Rome in July</p>
+            <a class="button" href="#none">View report</a>
+        </div>
+    </div>
+
+		</aside>
+		<div class="l-sidebar__body">
+
+	<div class="l-listing">
+
+			<article class="case-study">
+	<div class="case-study__media background-cover" style="background-image: url(/assets/img/content-image.jpg"></div>
+	<div class="case-study__panel">
+		<h2 class="case-study__heading"><a href=""><span>Netherlands Enterprise Agency</span></a></h2>
+		<p class="case-study__excerpt">Nullam magna ligula, sagittis vitae faucibus ut, sollicitudin et mauris. Donec et varius lacus.</p>
+		<a href="#" class="button">Read more</a>
+	</div>
+</article>
+
+
+			<article class="case-study">
+	<div class="case-study__media background-cover" style="background-image: url(/assets/img/content-image2.jpg"></div>
+	<div class="case-study__panel">
+		<h2 class="case-study__heading"><a href=""><span>Spotlight on IATI data use</span></a></h2>
+		<p class="case-study__excerpt">Nullam magna ligula, sagittis vitae faucibus ut, sollicitudin et mauris. Donec et varius lacus.</p>
+		<a href="#" class="button">Read more</a>
+	</div>
+</article>
+
+
+			<article class="case-study">
+	<div class="case-study__media background-cover" style="background-image: url(/assets/img/content-image3.jpg"></div>
+	<div class="case-study__panel">
+		<h2 class="case-study__heading"><a href=""><span>São Tomé and Príncipe is IATI’s first Portuguese-speaking Member</span></a></h2>
+		<p class="case-study__excerpt">Nullam magna ligula, sagittis vitae faucibus ut, sollicitudin et mauris. Donec et varius lacus.</p>
+		<a href="#" class="button">Read more</a>
+	</div>
+</article>
+
+
+	</div>
+    <div class="pagination">
+   <a href="#" class="pagination__item pagination__item--prev">Previous</a>
+   <a href="#" class="pagination__item pagination__item--next">Next</a>
+</div>
+
+
+		</div>
+	</div>
+</div>
+{% endblock %}
