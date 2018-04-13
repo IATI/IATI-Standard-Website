@@ -50,6 +50,12 @@ class CaseStudiesIndexPage(AbstractIndexPage):
     parent_page_types = ['about.AboutPage']
     subpage_types = ['about.CaseStudyPage']
 
+    @property
+    def case_studies(self):
+        """Get all CaseStudyPage objects that have been published."""
+        case_studies = CaseStudyPage.objects.child_of(self).live()
+        return case_studies
+
 
 class CaseStudyPage(AbstractContentPage):
     """A model for Case Study pages."""
