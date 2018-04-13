@@ -1,3 +1,5 @@
+"""Settings for dev environments (overrides base settings)."""
+
 from .base import *
 
 # SECURITY WARNING: don't run with debug turned on in production!

@@ -1,3 +1,5 @@
+"""Settings for production environments (overrides base settings)."""
+
 from .base import *
 
 DEBUG = False
