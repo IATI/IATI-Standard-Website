@@ -48,7 +48,7 @@ class EventIndexPage(Page):
         if event_type:
             events = events.filter(event_type__slug=event_type)
         page = request.GET.get('page')
-        paginator = Paginator(events, 5)
+        paginator = Paginator(events, 3)
         try:
             events = paginator.page(page)
         except PageNotAnInteger:
