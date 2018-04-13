@@ -8,9 +8,6 @@ from home.models import IATIStreamBlock
 
 class AbstractAboutPage(Page):
     """
-    TODO:
-        Decide what to call this and where it should live.
-        Create abstract Index page and abstract Content page.
 
     """
     heading = models.CharField(max_length=255, null=True, blank=True)
@@ -44,18 +41,3 @@ class CaseStudyPage(AbstractAboutPage):
     subpage_types = []
 
     content_editor = StreamField(IATIStreamBlock(required=False), null=True, blank=True)
-
-#fffunction notes:
-
-# Model would be something like:
-#
-## title
-## intro (text area)
-# content_editor
-# The members assembly block in the sidebar is an optional item, the model for which should be something like:
-#
-# block_title
-# block_content
-# block_button_text
-# block_button_url
-# This block appears on several templates
