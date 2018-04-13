@@ -6,18 +6,38 @@ from django.utils import translation
 from wagtail.core.blocks import TextBlock, StructBlock, StreamBlock, FieldBlock, CharBlock, RichTextBlock, RawHTMLBlock
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.documents.blocks import DocumentChooserBlock
-        
+
+
+class AbstractContentPage(Page):
+    """A base for the basic model blocks of all content type pages."""
+    heading = models.CharField(max_length=255, null=True, blank=True)
+    excerpt = models.TextField(null=True, blank=True)
+    content_editor = StreamField(IATIStreamBlock(required=False), null=True, blank=True)
+
+    class Meta:
+        abstract = True
+
+
+class AbstractIndexPage(Page):
+    """"A base for the basic model block of all index type pages."""
+    heading = models.CharField(max_length=255, null=True, blank=True)
+    excerpt = models.TextField(null=True, blank=True)
+
+    class Meta:
+        abstract = True
+
+
 class PullQuoteBlock(StructBlock):
     quote = TextBlock("quote title")
     attribution = CharBlock()
 
     class Meta:
         icon = "openquote"
-        
+
 class EndNoteBlock(StructBlock):
     number = CharBlock()
     citation = RichTextBlock(required=False)
-        
+
 class HTMLAlignmentChoiceBlock(FieldBlock):
     field = forms.ChoiceField(choices=(
         ('normal', 'Normal'), ('full', 'Full width'),
@@ -29,7 +49,7 @@ class AlignedHTMLBlock(StructBlock):
 
     class Meta:
         icon = "code"
-        
+
 class ImageFormatChoiceBlock(FieldBlock):
     field = forms.ChoiceField(choices=(
         ('left', 'Wrap left'), ('right', 'Wrap right'), ('mid', 'Mid width'), ('full', 'Full width'),
