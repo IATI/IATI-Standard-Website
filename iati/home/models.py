@@ -69,9 +69,9 @@ class AbstractContentPage(AbstractBasePage):
 class AbstractIndexPage(AbstractBasePage):
     """"A base for the basic model block of all index type pages."""
 
-    def filter_children(self, queryset, **filter_dict):
+    def filter_children(self, queryset, filter_dict):
         """Take a dict of filters and apply filters to child queryset."""
-        return queryset.filter(filter_dict)
+        return queryset.filter(**filter_dict)
 
     def paginate(self, request, queryset, max_results):
         """Paginate querysets of AbstractIndexPage children.
