@@ -1,0 +1,108 @@
+.m-additional {
+    background-color: #fff;
+    box-shadow: 0 0 50px 0 rgba(#000, 0.15);
+    margin-top: 4em;
+    padding: 4em;
+}
+
+.m-additional--no-trailing {
+    margin-top: 0;
+}
+
+.m-additional__heading {
+    @include font-size($delta);
+    margin-top: 0;
+    margin-bottom: 1em;
+}
+
+.m-additional__copy {
+    margin-bottom: 1em;
+}
+
+.m-additional__list {
+    margin-bottom: 0;
+}
+
+.m-blocks {
+    @include respond-to($menu-respond) {
+        display: grid;
+        grid-column-gap: 2em;
+        grid-row-gap: 2em;
+        grid-template-columns: 1fr 1fr;
+        margin-top: 4em;
+        margin-bottom: 5em;
+    }
+}
+
+.m-block {
+    background-color: #fff;
+    border-left: 2px solid $iati-air;
+    box-shadow: 0 0 50px 0 rgba(#000, 0.1);
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+    &:not(:last-child) {
+        margin-bottom: 2em;
+    }
+    .button {
+        align-self: flex-end;
+        margin-top: auto;
+        margin-right: auto;
+    }
+    @include respond-to($menu-respond) {
+        &:not(:last-child) {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.m-block__heading {
+    @extend .heading;
+    @include font-size($delta);
+    margin-bottom: 0.5em;
+}
+
+.m-block__copy {
+    @include font-size($para);
+    margin-bottom: 1em;
+}
+
+.m-placeholder {
+    background-color: $default-border-color;
+    height: 400px;
+}
+
+.m-placeholder--landscape {
+    height: 200px;
+}
+
+.m-placeholder--logo {
+    height: 400px;
+}
+
+.m-quote {
+    margin-bottom: 1em;
+    @include respond-to($menu-respond) {
+        display: flex;
+        margin-bottom: 4em;
+    }
+    p {
+        margin-bottom: 0.75em;
+    }
+}
+
+.m-quote__img {
+    background-color: $iati-ash;
+    @include respond-to($menu-respond) {
+        height: 130px;
+        margin-right: 5%;
+        width: 20%;
+    }
+}
+
+.m-quote__quote {
+    align-self: flex-start;
+    @include respond-to($menu-respond) {
+        margin-left: auto;
+    }
+}

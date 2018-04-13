@@ -1,0 +1,21 @@
+# If local.py is present, any settings in it will override those in base.py and dev.py.
+# Use this for any settings that are specific to this one installation, such as developer API keys.
+# local.py should not be checked in to version control.
+
+
+# Database
+# https://docs.djangoproject.com/en/2.0/ref/settings/#databases
+# the hyphen in this database name may cause trouble. If you need to run SQL commands, make sure to wrap the database name in double quotes if you need to use it.
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'iati-website',
+        'USER': 'myusername',
+        'PASSWORD': 'mypassword',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
+}
+
+SECRET_KEY = 'enter-a-long-unguessable-string-here'
