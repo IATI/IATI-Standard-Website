@@ -109,6 +109,8 @@ iati/about/migrations/*
 !iati/about/migrations/__init__.py
 iati/contact/migrations/*
 !iati/contact/migrations/__init__.py
+iati/events/migrations/*
+!iati/events/migrations/__init__.py
 iati/guidance_and_support/migrations/*
 !iati/guidance_and_support/migrations/__init__.py
 iati/home/migrations/*
