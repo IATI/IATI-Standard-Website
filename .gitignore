@@ -123,4 +123,4 @@ iati/news/migrations/*
 !iati/news/migrations/__init__.py
 
 # Ignore media
-media
+media/
