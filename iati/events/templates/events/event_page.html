@@ -13,7 +13,7 @@
 		    {% if page.date_start|haspassed %}
 			<span class="badge">Past event</span>
 		    {% endif %}
-                    <p class="hero__subheading">{{ page.subheading }}</p>
+                    <p class="hero__subheading">{{ page.excerpt }}</p>
 
                     <span class="hero__type">{{ page.event_type_concat }}</span>
                 </div>
@@ -65,8 +65,8 @@
 			
 
     <div class="is-typeset is-typeset--article">
-        {% if page.description %}
-            {% include "home/includes/streamfield.html" with content=page.description %}
+        {% if page.content_editor %}
+            {% include "home/includes/streamfield.html" with content=page.content_editor %}
         {% endif %}
     </div>
 

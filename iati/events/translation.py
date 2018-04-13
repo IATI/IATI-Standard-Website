@@ -20,8 +20,8 @@ add_language_content_panels(EventIndexPage,EventIndexPageTR)
 class EventPageTR(TranslationOptions):
     fields = (
         'heading',
-        'subheading',
-        'description',
+        'excerpt',
+        'content_editor',
         'additional_information',
     )
     multilingual_field_panels = (

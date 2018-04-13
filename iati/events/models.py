@@ -12,19 +12,11 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from wagtail.documents.edit_handlers import DocumentChooserPanel
 from django.utils.text import slugify
 
-class EventIndexPage(Page):
+from home.models import AbstractIndexPage, AbstractContentPage
+
+class EventIndexPage(AbstractIndexPage):
     parent_page_types = ['home.HomePage']
     subpage_types = ['events.EventPage']
-
-    heading = models.CharField(max_length=255, null=True, blank=True)
-    excerpt = models.TextField(null=True, blank=True)
-
-    @property
-    def events(self):
-        "A function that queries the database for all EventPages that are children of the EventIndexPage and orders them by newest first."
-        events = EventPage.objects.live().descendant_of(self)
-        events = events.order_by('-date_start')
-        return events
 
     @property
     def event_types(self):
@@ -37,31 +29,28 @@ class EventIndexPage(Page):
         """Overwriting the default wagtail get_context function to allow for filtering based on params, including pagination.
            Try to display 5 events per page, but catch exceptions if the page is not a valid integer or we get an empty page.
         """
-        events = self.events
+        filter_dict = {}
+        children = EventPage.objects.live().descendant_of(self).order_by('-date_start')
         past = request.GET.get('past')
         now = timezone.now()
         if past:
-            events = events.filter(date_start__lte=now)
+            filter_dict["date_start__lte"] = now
         else:
-            events = events.filter(date_start__gte=now)
+            filter_dict["date_start__gte"] = now
+
         event_type = request.GET.get('event_type')
         if event_type:
-            events = events.filter(event_type__slug=event_type)
-        page = request.GET.get('page')
-        paginator = Paginator(events, 3)
-        try:
-            events = paginator.page(page)
-        except PageNotAnInteger:
-            events = paginator.page(1)
-        except EmptyPage:
-            events = paginator.page(paginator.num_pages)
+            filter_dict["event_type__slug"] = event_type
+
+        filtered_children = self.filter_children(children, filter_dict)
+        paginated_children = self.paginate(request, filtered_children, 3)
         context = super(EventIndexPage, self).get_context(request)
-        context['events'] = events
+        context['events'] = paginated_children
         context['past'] = past
         return context
 
 
-class EventPage(Page):
+class EventPage(AbstractContentPage):
     parent_page_types = ['events.EventIndexPage']
     subpage_types = []
 
@@ -77,9 +66,6 @@ class EventPage(Page):
         related_name='+'
     )
 
-    heading = models.TextField(null=True, blank=True)
-    subheading = models.TextField(null=True, blank=True)
-    description = StreamField(IATIStreamBlock(required=False), null=True, blank=True)
     additional_information = StreamField(IATIStreamBlock(required=False), null=True, blank=True)
     event_type = ParentalManyToManyField('events.EventType', blank=True)
 
