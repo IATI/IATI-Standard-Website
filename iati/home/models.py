@@ -2,6 +2,7 @@ from django.db import models
 from django import forms
 from wagtail.core.models import Page
 from django.utils import translation
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from wagtail.core.blocks import TextBlock, StructBlock, StreamBlock, FieldBlock, CharBlock, RichTextBlock, RawHTMLBlock
 from wagtail.core.fields import StreamField
@@ -80,6 +81,27 @@ class AbstractContentPage(AbstractBasePage):
 
 class AbstractIndexPage(AbstractBasePage):
     """"A base for the basic model block of all index type pages."""
+
+    def filter_children(self, queryset, **filter_dict):
+        """Take a dict of filters and apply filters to child queryset."""
+        return queryset.filter(filter_dict)
+
+    def paginate(self, request, queryset, max_results):
+        """Paginate querysets of AbstractIndexPage children.
+
+        TODO:
+            Consider how we want to handle unexpected user input.
+
+        """
+        page = request.GET.get('page')
+        paginator = Paginator(queryset, max_results)
+        try:
+            return paginator.page(page)
+        except PageNotAnInteger:
+            return paginator.page(1)
+        except EmptyPage:
+            return paginator.page(paginator.num_pages)
+
     class Meta:
         abstract = True
 
