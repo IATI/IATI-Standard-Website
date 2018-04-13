@@ -9,19 +9,16 @@ from wagtail.documents.blocks import DocumentChooserBlock
         
 class PullQuoteBlock(StructBlock):
     quote = TextBlock("quote title")
-    attribution = CharBlock()
 
     class Meta:
         icon = "openquote"
-        
-class EndNoteBlock(StructBlock):
-    number = CharBlock()
-    citation = RichTextBlock(required=False)
-        
+
+
 class HTMLAlignmentChoiceBlock(FieldBlock):
     field = forms.ChoiceField(choices=(
         ('normal', 'Normal'), ('full', 'Full width'),
     ))
+
 
 class AlignedHTMLBlock(StructBlock):
     html = RawHTMLBlock()
@@ -29,16 +26,12 @@ class AlignedHTMLBlock(StructBlock):
 
     class Meta:
         icon = "code"
-        
-class ImageFormatChoiceBlock(FieldBlock):
-    field = forms.ChoiceField(choices=(
-        ('left', 'Wrap left'), ('right', 'Wrap right'), ('mid', 'Mid width'), ('full', 'Full width'),
-    ))
+
 
 class ImageBlock(StructBlock):
     image = ImageChooserBlock()
     caption = RichTextBlock(required=False)
-    alignment = ImageFormatChoiceBlock()
+
 
 class IATIStreamBlock(StreamBlock):
     h2 = CharBlock(icon="title", classname="title")
@@ -46,11 +39,11 @@ class IATIStreamBlock(StreamBlock):
     h4 = CharBlock(icon="title", classname="title")
     intro = RichTextBlock(icon="pilcrow")
     paragraph = RichTextBlock(icon="pilcrow")
-    endnote = EndNoteBlock()
-    aligned_image = ImageBlock(label="Aligned image", icon="image")
+    image_figure = ImageBlock(label="Image figure", icon="image")
     pullquote = PullQuoteBlock()
     aligned_html = AlignedHTMLBlock(icon="code", label='Raw HTML')
     document = DocumentChooserBlock(icon="doc-full-inverse")
+
 
 class HomePage(Page):
     pass
