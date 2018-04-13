@@ -105,4 +105,4 @@ pyenv/
 local.py
 
 # Ignore media
-media
+media/
