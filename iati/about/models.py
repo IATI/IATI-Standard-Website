@@ -6,7 +6,7 @@ from home.models import AbstractContentPage, AbstractIndexPage
 class AboutPage(AbstractContentPage):
     """A model for the About landing page."""
     parent_page_types = ['home.HomePage']
-    subpage_types = ['about.AboutSubPage']
+    subpage_types = ['about.AboutSubPage', 'about.CaseStudiesIndexPage']
 
 
 class AboutSubPage(AbstractContentPage):
