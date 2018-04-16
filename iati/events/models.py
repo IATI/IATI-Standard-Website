@@ -27,7 +27,6 @@ class EventIndexPage(AbstractIndexPage):
 
     def get_context(self, request):
         """Overwriting the default wagtail get_context function to allow for filtering based on params, including pagination.
-           
            Use the functions built into the abstract index page class to dynamically filter the child pages and apply pagination, limiting the results to 3 per page.
         """
         filter_dict = {}
