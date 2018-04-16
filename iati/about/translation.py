@@ -1,4 +1,4 @@
-from .models import AboutPage, AboutSubPage, CaseStudiesIndexPage, CaseStudyPage
+from .models import AboutPage, AboutSubPage, CaseStudyIndexPage, CaseStudyPage
 from modeltranslation.translator import TranslationOptions
 from modeltranslation.decorators import register
 
@@ -31,15 +31,15 @@ class AboutSubPageTR(TranslationOptions):
 add_language_content_panels(AboutSubPage, AboutSubPageTR)
 
 
-@register(CaseStudiesIndexPage)
-class CaseStudiesIndexPageTR(TranslationOptions):
+@register(CaseStudyIndexPage)
+class CaseStudyIndexPageTR(TranslationOptions):
     fields = (
         'heading',
         'excerpt',
     )
 
 
-add_language_content_panels(CaseStudiesIndexPage, CaseStudiesIndexPageTR)
+add_language_content_panels(CaseStudyIndexPage, CaseStudyIndexPageTR)
 
 
 @register(CaseStudyPage)

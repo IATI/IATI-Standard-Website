@@ -61,6 +61,7 @@
 
       <div class="l-listing">
 
+        {% for case_study in case_studies %}
         <article class="case-study">
           <div class="case-study__media background-cover" style="background-image: url(/assets/img/content-image.jpg"></div>
           <div class="case-study__panel">
@@ -71,12 +72,7 @@
             <a href="#" class="button">Read more</a>
           </div>
         </article>
-
-
-        <article class="case-study">
-
-        </article>
-
+        {% endfor %}
 
       </div>
 
@@ -87,7 +83,7 @@
       </div>
 
 
-    </div>
-  </div>
+		</div>
+	</div>
 </div>
 {% endblock %}

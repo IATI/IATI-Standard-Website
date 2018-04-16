@@ -10,7 +10,7 @@ from home.models import AbstractContentPage, AbstractIndexPage
 class AboutPage(AbstractContentPage):
     """A model for the About landing page."""
     parent_page_types = ['home.HomePage']
-    subpage_types = ['about.AboutSubPage', 'about.CaseStudiesIndexPage']
+    subpage_types = ['about.AboutSubPage', 'about.CaseStudyIndexPage']
 
 
 class AboutSubPage(AbstractContentPage):
@@ -19,7 +19,7 @@ class AboutSubPage(AbstractContentPage):
     subpage_types = []
 
 
-class CaseStudiesIndexPage(AbstractIndexPage):
+class CaseStudyIndexPage(AbstractIndexPage):
     """"A model for the Case Studies Index page."""
     parent_page_types = ['about.AboutPage']
     subpage_types = ['about.CaseStudyPage']
@@ -33,8 +33,16 @@ class CaseStudiesIndexPage(AbstractIndexPage):
 
 class CaseStudyPage(AbstractContentPage):
     """A model for Case Study pages."""
-    parent_page_types = ['about.CaseStudiesIndexPage']
+    parent_page_types = ['about.CaseStudyIndexPage']
     subpage_types = []
+
+    feed_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
 
 
 class CaseStudyDocument(Orderable):
