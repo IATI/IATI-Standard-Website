@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 def add_language_content_panels(page_model):
-    """A function that dynamically adds tabbed content panels depending on the fields defined in the translation model and the languages in settings
+    """A function that dynamically adds tabbed content panels depending on the fields defined in the page model and the languages in settings
 
     Args:
         page_model (Page): The page model class which needs tabbed content panels. Should have the array translation_fields defined in the page model.
