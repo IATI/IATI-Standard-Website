@@ -40,7 +40,7 @@ class CaseStudiesIndexPageTR(TranslationOptions):
 add_language_content_panels(CaseStudiesIndexPage, CaseStudiesIndexPageTR)
 
 
-@register
+@register(CaseStudyPage)
 class CaseStudyPageTR(TranslationOptions):
     fields = (
         'heading',

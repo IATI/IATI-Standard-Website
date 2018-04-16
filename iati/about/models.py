@@ -1,5 +1,9 @@
 from django.db import models
 
+from wagtail.core.models import Orderable
+from wagtail.documents.edit_handlers import DocumentChooserPanel
+
+from modelcluster.fields import ParentalKey
 from home.models import AbstractContentPage, AbstractIndexPage
 
 
@@ -31,3 +35,15 @@ class CaseStudyPage(AbstractContentPage):
     """A model for Case Study pages."""
     parent_page_types = ['about.CaseStudiesIndexPage']
     subpage_types = []
+
+
+class CaseStudyDocument(Orderable):
+    page = ParentalKey(CaseStudyPage, related_name='case_study_documents')
+    document = models.ForeignKey(
+        'wagtaildocs.Document',
+        on_delete=models.CASCADE,
+        related_name='+'
+    )
+    panels = [
+        DocumentChooserPanel('document'),
+    ]
