@@ -1,7 +1,7 @@
 from django.db import models
 from wagtail.core.models import Page, Orderable
 from home.models import IATIStreamBlock
-from wagtail.admin.edit_handlers import TabbedInterface, ObjectList, FieldPanel, MultiFieldPanel, StreamFieldPanel
+from wagtail.admin.edit_handlers import TabbedInterface, ObjectList, FieldPanel, MultiFieldPanel, StreamFieldPanel, InlinePanel
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from wagtail.core.fields import StreamField
 from wagtail.snippets.models import register_snippet
@@ -11,6 +11,10 @@ import pytz
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from wagtail.documents.edit_handlers import DocumentChooserPanel
 from django.utils.text import slugify
+from django import forms
+from wagtail.images.edit_handlers import ImageChooserPanel
+
+
 
 from home.models import AbstractIndexPage, AbstractContentPage
 
@@ -49,6 +53,11 @@ class EventIndexPage(AbstractIndexPage):
         context['past'] = past
         return context
 
+    translation_fields = [
+        'heading',
+        'excerpt'
+    ]
+
 
 class EventPage(AbstractContentPage):
     parent_page_types = ['events.EventIndexPage']
@@ -76,6 +85,23 @@ class EventPage(AbstractContentPage):
 
         return " | ".join(event_types)
 
+    translation_fields = [
+        'heading',
+        'excerpt',
+        'content_editor',
+        'additional_information',
+    ]
+
+    multilingual_field_panels = [
+        FieldPanel('date_start'),
+        FieldPanel('date_end'),
+        FieldPanel('location'),
+        FieldPanel('registration_link'),
+        FieldPanel('event_type', widget=forms.CheckboxSelectMultiple),
+        ImageChooserPanel('feed_image'),
+        InlinePanel('event_documents', label="Event attachments")
+    ]
+
 
 @register_snippet
 class EventType(models.Model):
@@ -91,6 +117,10 @@ class EventType(models.Model):
         if base_slug:
             self.slug = base_slug
         super().full_clean(*args, **kwargs)
+        
+    translation_fields = [
+        'name',
+    ]
 
     panels = [
         FieldPanel('name'),
