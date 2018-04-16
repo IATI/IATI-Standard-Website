@@ -1,7 +1,6 @@
 from django.db import models
 from django import forms
 from wagtail.core.models import Page
-from django.utils import translation
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from wagtail.core.blocks import TextBlock, StructBlock, StreamBlock, FieldBlock, CharBlock, RichTextBlock, RawHTMLBlock
@@ -36,7 +35,6 @@ class ImageBlock(StructBlock):
     caption = RichTextBlock(required=False)
 
 
-
 class IATIStreamBlock(StreamBlock):
     h2 = CharBlock(icon="title", classname="title")
     h3 = CharBlock(icon="title", classname="title")
@@ -55,6 +53,7 @@ class AbstractBasePage(Page):
     excerpt = models.TextField(null=True, blank=True)
 
     class Meta:
+        """Marks class as abstract."""
         abstract = True
 
 
@@ -63,11 +62,12 @@ class AbstractContentPage(AbstractBasePage):
     content_editor = StreamField(IATIStreamBlock(required=False), null=True, blank=True)
 
     class Meta:
+        """Marks class as abstract."""
         abstract = True
 
 
 class AbstractIndexPage(AbstractBasePage):
-    """"A base for the basic model block of all index type pages."""
+    """A base for the basic model block of all index type pages."""
 
     def filter_children(self, queryset, filter_dict):
         """Take a dict of filters and apply filters to child queryset."""
