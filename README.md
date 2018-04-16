@@ -27,17 +27,25 @@ pip install -r requirements_dev.txt
 # Note local.py should not be under version control as it contains sensitive information
 # Without these steps, a SQLite database will be used to store data.
 createdb iati-website
-cp settings/local.py.example local.py
+cp settings/local.py.example settings/local.py
 
 # Check database migrations work and execute
 python manage.py check
+python manage.py makemigrations
 python manage.py migrate
+
+# Perform additional migrations for translated fields
+python manage.py makemigrations_translation
+python manage.py migrate_translation
+
+# Create default pages for each of the main sections (e.g. home, about, events etc) of the website
+python manage.py createdefaultpages
 
 # Create an initial superuser
 python manage.py createsuperuser
 
 # Run a development server
-python manage.py run server
+python manage.py runserver
 ```
 
 ## Tests

@@ -35,6 +35,6 @@ def add_language_content_panels(page_model, translation_model):
         local_content_panel = [MultiFieldPanel(multi_field_panel_contents)] + stream_field_panel_contents
         edit_handler_contents.append(ObjectList(local_content_panel, heading=language_name))
     promote_and_settings_panels = [ObjectList([MultiFieldPanel(promote_panel_contents)], heading=_('Promote')), ObjectList(page_model.settings_panels, heading=_('Settings'), classname='settings')]
-    if hasattr(translation_model, "multilingual_fields"):
-        edit_handler_contents = [ObjectList([MultiFieldPanel([FieldPanel(field) for field in translation_model.multilingual_fields])], heading=_('Multilingual'))] + edit_handler_contents
+    if hasattr(translation_model, "multilingual_field_panels"):
+        edit_handler_contents = [ObjectList([field for field in translation_model.multilingual_field_panels], heading=_('Multilingual'))] + edit_handler_contents
     page_model.edit_handler = TabbedInterface(edit_handler_contents + promote_and_settings_panels)
