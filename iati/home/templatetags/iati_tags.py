@@ -11,10 +11,6 @@ from django.conf import settings
 from wagtail_modeltranslation.contextlib import use_language
 from wagtail.core.templatetags.wagtailcore_tags import pageurl
 
-from django.utils import timezone
-import pytz
-from django.template.defaultfilters import date as _date
-
 register = template.Library()
 
 @register.simple_tag(takes_context=True)
