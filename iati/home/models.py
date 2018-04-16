@@ -36,7 +36,6 @@ class ImageBlock(StructBlock):
     caption = RichTextBlock(required=False)
 
 
-
 class IATIStreamBlock(StreamBlock):
     h2 = CharBlock(icon="title", classname="title")
     h3 = CharBlock(icon="title", classname="title")
@@ -60,6 +59,7 @@ class AbstractBasePage(Page):
 
 class AbstractContentPage(AbstractBasePage):
     """A base for the basic model blocks of all content type pages."""
+
     content_editor = StreamField(IATIStreamBlock(required=False), null=True, blank=True)
 
     class Meta:

@@ -1,36 +1,6 @@
 from django.db import models
 
-from wagtail.core.models import Page
-from wagtail.core.fields import StreamField
-
-from home.models import IATIStreamBlock
-
-
-class AbstractContentPage(Page):
-    """
-    TODO:
-        Remove this once add-abstract-page-models is merged.
-
-    """
-    heading = models.CharField(max_length=255, null=True, blank=True)
-    excerpt = models.TextField(null=True, blank=True)
-    content_editor = StreamField(IATIStreamBlock(required=False), null=True, blank=True)
-
-    class Meta:
-        abstract = True
-
-
-class AbstractIndexPage(Page):
-    """
-    TODO:
-        Remove this once add-abstract-page-models is merged.
-
-    """
-    heading = models.CharField(max_length=255, null=True, blank=True)
-    excerpt = models.TextField(null=True, blank=True)
-
-    class Meta:
-        abstract = True
+from home.models import AbstractContentPage, AbstractIndexPage
 
 
 class AboutPage(AbstractContentPage):
