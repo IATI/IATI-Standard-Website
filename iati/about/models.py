@@ -1,6 +1,7 @@
 from django.db import models
 
 from wagtail.core.models import Orderable
+from wagtail.admin.edit_handlers import InlinePanel
 from wagtail.documents.edit_handlers import DocumentChooserPanel
 
 from modelcluster.fields import ParentalKey
@@ -12,15 +13,28 @@ class AboutPage(AbstractContentPage):
     parent_page_types = ['home.HomePage']
     subpage_types = ['about.AboutSubPage', 'about.CaseStudyIndexPage']
 
+    translation_fields = [
+        'heading',
+        'excerpt',
+        'content_editor'
+    ]
+
 
 class AboutSubPage(AbstractContentPage):
     """A model for generic About subpages."""
     parent_page_types = ['about.AboutPage']
     subpage_types = []
 
+    translation_fields = [
+        'heading',
+        'excerpt',
+        'content_editor'
+    ]
+
 
 class CaseStudyIndexPage(AbstractIndexPage):
-    """"A model for the Case Studies Index page."""
+    """A model for the Case Studies Index page."""
+
     parent_page_types = ['about.AboutPage']
     subpage_types = ['about.CaseStudyPage']
 
@@ -31,7 +45,7 @@ class CaseStudyIndexPage(AbstractIndexPage):
         return case_studies
 
     def get_context(self, request):
-        """Overwriting the default wagtail get_context function to allow for pagination.
+        """Overwrite the default wagtail get_context function to allow for pagination.
 
         Use the functions built into the abstract index page class to apply pagination, limiting the results to 3 per page.
 
@@ -41,6 +55,11 @@ class CaseStudyIndexPage(AbstractIndexPage):
         context = super(CaseStudyIndexPage, self).get_context(request)
         context['case_studies'] = paginated_children
         return context
+
+    translation_fields = [
+        'heading',
+        'excerpt'
+    ]
 
 
 class CaseStudyPage(AbstractContentPage):
@@ -55,6 +74,16 @@ class CaseStudyPage(AbstractContentPage):
         on_delete=models.SET_NULL,
         related_name='+'
     )
+
+    translation_fields = [
+        'heading',
+        'excerpt',
+        'content_editor'
+    ]
+
+    multilingual_field_panels = [
+        InlinePanel('case_study_documents', label='Case study attachments'),
+    ]
 
 
 class CaseStudyDocument(Orderable):

@@ -2,56 +2,36 @@ from .models import AboutPage, AboutSubPage, CaseStudyIndexPage, CaseStudyPage
 from modeltranslation.translator import TranslationOptions
 from modeltranslation.decorators import register
 
-from wagtail.admin.edit_handlers import InlinePanel
-
 from home.translation_helper import add_language_content_panels
 
 
 @register(AboutPage)
 class AboutPageTR(TranslationOptions):
-    fields = (
-        'heading',
-        'excerpt',
-        'content_editor',
-    )
+    fields = AboutPage.translation_fields
 
 
-add_language_content_panels(AboutPage, AboutPageTR)
+add_language_content_panels(AboutPage)
 
 
 @register(AboutSubPage)
 class AboutSubPageTR(TranslationOptions):
-    fields = (
-        'heading',
-        'excerpt',
-        'content_editor',
-    )
+    fields = AboutSubPage.translation_fields
 
 
-add_language_content_panels(AboutSubPage, AboutSubPageTR)
+add_language_content_panels(AboutSubPage)
 
 
 @register(CaseStudyIndexPage)
 class CaseStudyIndexPageTR(TranslationOptions):
-    fields = (
-        'heading',
-        'excerpt',
-    )
+    fields = CaseStudyIndexPage.translation_fields
 
 
-add_language_content_panels(CaseStudyIndexPage, CaseStudyIndexPageTR)
+add_language_content_panels(CaseStudyIndexPage)
 
 
 @register(CaseStudyPage)
 class CaseStudyPageTR(TranslationOptions):
-    fields = (
-        'heading',
-        'excerpt',
-        'content_editor',
-    )
-    multilingual_field_panels = (
-        InlinePanel('case_study_documents', label='Case study attachments'),
-    )
+    fields = CaseStudyPage.translation_fields
 
 
-add_language_content_panels(CaseStudyPage, CaseStudyPageTR)
+add_language_content_panels(CaseStudyPage)
