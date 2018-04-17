@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags wagtailimages_tags wagtail_modeltranslation iati_tags i18n %}
 
 {% block body_class %}body body--news-single{% endblock %}
 {% block body_id %}body-news-single{% endblock %}
@@ -18,20 +17,20 @@
 
 
 <div class="sections">
-  <div class="is-typeset is-typeset--article">
-    {% if page.content_editor %}
-      {% include "home/includes/streamfield.html" with content=page.content_editor %}
-    {% endif %}
+  <div class="row">
+    <div class="is-typeset is-typeset--article">
+      {% if page.content_editor %}
+        {% include "home/includes/streamfield.html" with content=page.content_editor %}
+      {% endif %}
+    </div>
   </div>
 
-    <div class="row">
-      {% include "home/includes/download_box.html" with documents=page.case_study_documents.all %}
-    </div>
+  <div class="row">
+    {% include "home/includes/download_box.html" with documents=page.case_study_documents.all %}
+  </div>
 
-    <div class="row">
-        <div class="pagination">
-          {% include "home/includes/pagination_links.html" with children=case_studies %}
-        </div>
-    </div>
+  <div class="row">
+    {% include "home/includes/sibling_links.html" %}
+  </div>
 </div>
 {% endblock %}

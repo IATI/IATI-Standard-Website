@@ -30,6 +30,18 @@ class CaseStudyIndexPage(AbstractIndexPage):
         case_studies = CaseStudyPage.objects.child_of(self).live()
         return case_studies
 
+    def get_context(self, request):
+        """Overwriting the default wagtail get_context function to allow for pagination.
+
+        Use the functions built into the abstract index page class to apply pagination, limiting the results to 3 per page.
+
+        """
+        children = self.case_studies
+        paginated_children = self.paginate(request, children, 3)
+        context = super(CaseStudyIndexPage, self).get_context(request)
+        context['case_studies'] = paginated_children
+        return context
+
 
 class CaseStudyPage(AbstractContentPage):
     """A model for Case Study pages."""

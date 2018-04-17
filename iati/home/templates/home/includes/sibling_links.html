@@ -1,0 +1,12 @@
+ {% load wagtail_modeltranslation %}
+
+<div class="pagination">
+  {% with prev=self.get_prev_siblings.live.first next=self.get_next_siblings.live.first %}
+    {% if prev %}
+     <a href="{% slugurl_trans prev.slug %}" class="pagination__item pagination__item--prev">Previous</a>
+    {% endif %}
+    {% if next %}
+     <a href="{% slugurl_trans next.slug %}" class="pagination__item pagination__item--next">Next</a>
+    {% endif %}
+  {% endwith %}
+</div>
