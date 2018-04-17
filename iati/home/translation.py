@@ -9,4 +9,4 @@ from home.translation_helper import add_language_content_panels
 @register(HomePage)
 class HomePageTR(TranslationOptions):
     pass
-add_language_content_panels(HomePage, HomePageTR)
+add_language_content_panels(HomePage)

@@ -31,28 +31,13 @@ def default_page_url(context, default_page_name="home"):
         return ''
     return default_page.get_url(context['request'])
 
-def humansize(nbytes):
-    """Short function to turn bytes into a human readable string. Could break if we start hosting exabyte files"""
-    suffixes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB']
-    i = 0
-    while nbytes >= 1024 and i < len(suffixes)-1:
-        nbytes /= 1024.
-        i += 1
-    formatted_xbytes = ('%.2f' % nbytes).rstrip('0').rstrip('.')
-    return '%s %s' % (formatted_xbytes, suffixes[i])
-
-@register.filter
-def filesize(value):
-    """Returns the filesize of the filename given in value"""
-    return humansize(os.path.getsize(value))
-
 @register.inclusion_tag("home/includes/translation_links.html",takes_context=True)
 def translation_links(context, calling_page):
     """Takes the inclusion template 'translation_links.html' and returns a snippet of HTML with links to the requesting page in all offered languages"""
     language_results = []
     for language_code, language_name in settings.LANGUAGES:
         with use_language(language_code):
-            language_url = pageurl(context,calling_page)
+            language_url = pageurl(context, calling_page)
             language_results.append({"code": language_code, "name": language_name, "url": language_url})
 
     return {
