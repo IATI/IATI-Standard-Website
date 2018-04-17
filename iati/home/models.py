@@ -54,6 +54,11 @@ class AbstractBasePage(Page):
     heading = models.CharField(max_length=255, null=True, blank=True)
     excerpt = models.TextField(null=True, blank=True)
 
+    translation_fields = [
+        "heading",
+        "excerpt"
+    ]
+
     class Meta:
         abstract = True
 
@@ -61,6 +66,8 @@ class AbstractBasePage(Page):
 class AbstractContentPage(AbstractBasePage):
     """A base for the basic model blocks of all content type pages."""
     content_editor = StreamField(IATIStreamBlock(required=False), null=True, blank=True)
+
+    translation_fields = AbstractBasePage.translation_fields + ["content_editor"]
 
     class Meta:
         abstract = True
