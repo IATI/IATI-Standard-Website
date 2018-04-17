@@ -94,4 +94,4 @@ class AbstractIndexPage(AbstractBasePage):
 
 
 class HomePage(Page):
-    pass
+    translation_fields = []
