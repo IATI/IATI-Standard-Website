@@ -1,4 +1,4 @@
-from .models import AboutPage, AboutSubPage, CaseStudyIndexPage, CaseStudyPage
+from .models import AboutPage, AboutSubPage, CaseStudyIndexPage, CaseStudyPage, HistoryPage
 from modeltranslation.translator import TranslationOptions
 from modeltranslation.decorators import register
 
@@ -35,3 +35,11 @@ class CaseStudyPageTR(TranslationOptions):
 
 
 add_language_content_panels(CaseStudyPage)
+
+
+@register(HistoryPage)
+class HistoryPageTR(TranslationOptions):
+    fields = HistoryPage.translation_fields
+
+
+add_language_content_panels(HistoryPage)

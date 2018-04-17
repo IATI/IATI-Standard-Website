@@ -1,5 +1,7 @@
 from django.db import models
 
+from wagtail.core.blocks import ListBlock
+from wagtail.core.fields import StreamField
 from wagtail.core.models import Orderable
 from wagtail.admin.edit_handlers import InlinePanel
 from wagtail.documents.edit_handlers import DocumentChooserPanel
@@ -10,8 +12,9 @@ from home.models import AbstractContentPage, AbstractIndexPage
 
 class AboutPage(AbstractContentPage):
     """A model for the About landing page."""
+
     parent_page_types = ['home.HomePage']
-    subpage_types = ['about.AboutSubPage', 'about.CaseStudyIndexPage']
+    subpage_types = ['about.AboutSubPage', 'about.CaseStudyIndexPage', 'about.HistoryPage']
 
     translation_fields = [
         'heading',
@@ -22,6 +25,7 @@ class AboutPage(AbstractContentPage):
 
 class AboutSubPage(AbstractContentPage):
     """A model for generic About subpages."""
+
     parent_page_types = ['about.AboutPage']
     subpage_types = []
 
@@ -64,6 +68,7 @@ class CaseStudyIndexPage(AbstractIndexPage):
 
 class CaseStudyPage(AbstractContentPage):
     """A model for Case Study pages."""
+
     parent_page_types = ['about.CaseStudyIndexPage']
     subpage_types = []
 
@@ -87,6 +92,8 @@ class CaseStudyPage(AbstractContentPage):
 
 
 class CaseStudyDocument(Orderable):
+    """A model for Case Study documents."""
+
     page = ParentalKey(CaseStudyPage, related_name='case_study_documents')
     document = models.ForeignKey(
         'wagtaildocs.Document',
@@ -95,4 +102,27 @@ class CaseStudyDocument(Orderable):
     )
     panels = [
         DocumentChooserPanel('document'),
+    ]
+
+
+# class IATIHistoryBlock(ListBlock):
+#     """A model for the History blocks on the History page."""
+#     date_list = ListBlock(StreamField([
+#         ('date_heading', models.CharField(max_length=255, null=True, blank=True)),
+#         ('date_content', models.TextField(null=True, blank=True))
+#     ])
+
+
+class HistoryPage(AbstractContentPage):
+    """A model for the History page."""
+
+    parent_page_types = ['about.AboutPage']
+    subpage_types = []
+    # date_panel = StreamField(IATIHistoryBlock(required=False) null=True, blank=True)
+
+    translation_fields = [
+        'heading',
+        'excerpt',
+        'content_editor',
+        # 'date_panel'
     ]
