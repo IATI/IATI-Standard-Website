@@ -53,11 +53,6 @@ class EventIndexPage(AbstractIndexPage):
         context['past'] = past
         return context
 
-    translation_fields = [
-        'heading',
-        'excerpt'
-    ]
-
 
 class EventPage(AbstractContentPage):
     parent_page_types = ['events.EventIndexPage']
@@ -85,12 +80,7 @@ class EventPage(AbstractContentPage):
 
         return " | ".join(event_types)
 
-    translation_fields = [
-        'heading',
-        'excerpt',
-        'content_editor',
-        'additional_information',
-    ]
+    translation_fields = AbstractContentPage.translation_fields + ["additional_information"]
 
     multilingual_field_panels = [
         FieldPanel('date_start'),
@@ -116,8 +106,8 @@ class EventType(models.Model):
         base_slug = slugify(self.name, allow_unicode=True)
         if base_slug:
             self.slug = base_slug
-        super().full_clean(*args, **kwargs)
-        
+        super(EventType, self).full_clean(*args, **kwargs)
+
     translation_fields = [
         'name',
     ]
