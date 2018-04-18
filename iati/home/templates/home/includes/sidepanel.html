@@ -1,0 +1,39 @@
+{% load wagtail_modeltranslation %}
+
+<div class="aside-m">
+    <div class="aside-m__header fill-sunrise">
+        <h3 class="aside-m__heading">In this section</h3>
+    </div>
+    <button class="navigation-secondary-toggle" type="button" id="navigation-secondary-toggle">pages in this section <i role="presentation" aria-hidden="true" class="ico ico--16 ico-plus-white"></i></button>
+    <nav class="navigation-secondary" id="navigation-secondary">
+        <ul class="navigation-secondary__list">
+        {% if self.depth < 4 %}
+        {# For pages directly related to Home, e.g. About, Contact #}
+            {% with list_items=self.get_children.specific.live %}
+                {% for item in list_items %}
+                    <li class="navigation-secondary__item"><a href="{% slugurl_trans item.slug %}">{{ item.heading }}</a></li>
+                {% endfor %}
+            {% endwith %}
+        {% else %}
+        {# For child pages of direct descendants of home and younger #}
+            {% with list_items_prev=self.get_prev_siblings.live list_items_next=self.get_next_siblings.live children=self.get_children.specific.live %}
+                {% for item in list_items_prev %}
+                    <li class="navigation-secondary__item"><a href="{% slugurl_trans item.slug %}">{{ item.heading }}</a></li>
+                {% endfor %}
+                <li class="navigation-secondary__item navigation-secondary__item--active"><a href="#">{{ self.heading }}</a>
+                {% if children %}
+                    <ul class="navigation-secondary__child">
+                        {% for child in children %}
+                            <li class="navigation-secondary__child__item"><a href="{% slugurl_trans child.slug %}">{{ child.heading }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                </li>
+                {% for item in list_items_next %}
+                    <li class="navigation-secondary__item"><a href="{% slugurl_trans item.slug %}">{{ item.heading }}</a></li>
+                {% endfor %}
+            {% endwith %}
+        {% endif %}
+        </ul>
+    </nav>
+</div>
