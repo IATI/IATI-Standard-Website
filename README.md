@@ -31,7 +31,15 @@ cp settings/local.py.example settings/local.py
 
 # Check database migrations work and execute
 python manage.py check
+python manage.py makemigrations
 python manage.py migrate
+
+# Perform additional migrations for translated fields
+python manage.py makemigrations_translation
+python manage.py migrate_translation
+
+# Create default pages for each of the main sections (e.g. home, about, events etc) of the website
+python manage.py createdefaultpages
 
 # Create an initial superuser
 python manage.py createsuperuser

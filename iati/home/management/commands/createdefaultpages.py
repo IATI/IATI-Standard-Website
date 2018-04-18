@@ -58,7 +58,6 @@ class Command(BaseCommand):
                     )
                     home_page.add_child(instance=default_page_instance)
                     default_page_instance.save_revision().publish()
-                    default_page_instance.save()
 
             home_page.save()
 
