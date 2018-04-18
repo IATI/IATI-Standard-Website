@@ -1,7 +1,5 @@
 """Model definitions for the home app."""
 
-from django.db import models
-
 from wagtail.core.models import Page
 
 
