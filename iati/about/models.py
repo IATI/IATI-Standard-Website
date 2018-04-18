@@ -1,9 +1,9 @@
 from django.db import models
 
-from wagtail.core.blocks import ListBlock
+from wagtail.core.blocks import CharBlock, ListBlock, StreamBlock, StructBlock, TextBlock
 from wagtail.core.fields import StreamField
 from wagtail.core.models import Orderable
-from wagtail.admin.edit_handlers import InlinePanel
+from wagtail.admin.edit_handlers import FieldPanel, InlinePanel
 from wagtail.documents.edit_handlers import DocumentChooserPanel
 
 from modelcluster.fields import ParentalKey
@@ -105,12 +105,13 @@ class CaseStudyDocument(Orderable):
     ]
 
 
-# class IATIHistoryBlock(ListBlock):
-#     """A model for the History blocks on the History page."""
-#     date_list = ListBlock(StreamField([
-#         ('date_heading', models.CharField(max_length=255, null=True, blank=True)),
-#         ('date_content', models.TextField(null=True, blank=True))
-#     ])
+class HistoryDateBlock(StreamBlock):
+    """A block for History page info."""
+
+    date_block_editor = StructBlock([
+        ('date_heading', CharBlock(max_length=100)),
+        ('date_description', TextBlock())
+    ])
 
 
 class HistoryPage(AbstractContentPage):
@@ -118,11 +119,12 @@ class HistoryPage(AbstractContentPage):
 
     parent_page_types = ['about.AboutPage']
     subpage_types = []
-    # date_panel = StreamField(IATIHistoryBlock(required=False) null=True, blank=True)
+
+    date_panel = StreamField(HistoryDateBlock(), null=True, blank=True)
 
     translation_fields = [
         'heading',
         'excerpt',
         'content_editor',
-        # 'date_panel'
+        'date_panel'
     ]
