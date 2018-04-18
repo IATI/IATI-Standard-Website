@@ -109,9 +109,12 @@ class HistoryDateBlock(StreamBlock):
     """A block for History page info."""
 
     date_block_editor = StructBlock([
-        ('date_heading', CharBlock(max_length=100)),
-        ('date_description', TextBlock())
+        ('heading', CharBlock(required=False, max_length=100)),
+        ('description', TextBlock(required=False))
     ])
+
+    class Meta:
+        required = False
 
 
 class HistoryPage(AbstractContentPage):

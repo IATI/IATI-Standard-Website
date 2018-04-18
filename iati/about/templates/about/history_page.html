@@ -53,44 +53,22 @@
     </div>
 
     <div class="timeline">
-        <div class="timeline-row">
-            <div class="timeline__date timeline__date--left">
-                <div class="timeline__date-panel">
-                    <h2 class="timeline__date-heading heading">October 2015</h2>
-                    <p class="timeline__date-copy">Nulla in tincidunt felis. Morbi quis scelerisque mi. Pellentesque sit amet arcu massa. Etiam ut vulputate magna, quis maximus velit. Vivamus iaculis nulla vel ipsum fringilla mollis.</p>
+      {% if page.date_panel %}
+        {% for date in page.date_panel %}
+          {% if forloop.counter0.first or forloop.counter0|divisibleby:2 %}
+            <div class="timeline-row">
+          {% endif %}
+                <div class="{% cycle "timeline__date timeline__date--left" "timeline__date timeline__date--right" %}">
+                    <div class="timeline__date-panel">
+                        <h2 class="timeline__date-heading heading">{{ date.value.heading }}</h2>
+                        <p class="timeline__date-copy">{{ date.value.description }}</p>
+                    </div>
                 </div>
+          {% if forloop.counter|divisibleby:2 %}
             </div>
-
-            <div class="timeline__date timeline__date--right">
-                <div class="timeline__date-panel">
-                    <h2 class="timeline__date-heading heading">September 2008</h2>
-                    <p class="timeline__date-copy">Nulla in tincidunt felis. Morbi quis scelerisque mi. Pellentesque sit amet arcu massa. Etiam ut vulputate magna, quis maximus velit. Vivamus iaculis nulla vel ipsum fringilla mollis.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="timeline-row">
-            <div class="timeline__date timeline__date--left">
-                <div class="timeline__date-panel">
-                    <h2 class="timeline__date-heading heading">Aug 2008</h2>
-                    <p class="timeline__date-copy">Nulla in tincidunt felis. Morbi quis scelerisque mi. Pellentesque sit amet arcu massa. Etiam ut vulputate magna, quis maximus velit. Vivamus iaculis nulla vel ipsum fringilla mollis.</p>
-                </div>
-            </div>
-
-            <div class="timeline__date timeline__date--right">
-                <div class="timeline__date-panel">
-                    <h2 class="timeline__date-heading heading">July 2008</h2>
-                    <p class="timeline__date-copy">Nulla in tincidunt felis. Morbi quis scelerisque mi. Pellentesque sit amet arcu massa. Etiam ut vulputate magna, quis maximus velit. Vivamus iaculis nulla vel ipsum fringilla mollis.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="timeline__date timeline__date--left">
-            <div class="timeline__date-panel">
-                <h2 class="timeline__date-heading heading">October 2004</h2>
-                <p class="timeline__date-copy">Nulla in tincidunt felis. Morbi quis scelerisque mi. Pellentesque sit amet arcu massa. Etiam ut vulputate magna, quis maximus velit. Vivamus iaculis nulla vel ipsum fringilla mollis.</p>
-            </div>
-        </div>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
     </div>
 
 		</div>
