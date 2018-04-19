@@ -6,16 +6,13 @@ from wagtail.core.fields import StreamField
 from wagtail.core.models import Page
 
 
-class ContactTypeBlock(StructBlock):
-    """Model to define fields relating to a type of query."""
-    heading = TextBlock()
-    copy = RichTextBlock()
-    email = TextBlock()
-
-
 class ContactTypeStreamBlock(StreamBlock):
-    """Model allowing the CMS to bring together multiple ContactTypeBlock objects."""
-    contact_type = ContactTypeBlock(icon="title", classname="title")
+    """Model allowing the CMS to bring together multiple struct block objects."""
+    contact_type_editor = StructBlock([
+        ('heading', TextBlock()),
+        ('copy', RichTextBlock()),
+        ('email', TextBlock())
+    ], icon="title", classname="title")
 
 
 class ContactPage(AbstractContentPage):
