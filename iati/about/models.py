@@ -27,8 +27,7 @@ class AboutPage(AbstractContentPage):
 class AboutSubPage(AbstractContentPage):
     """A model for generic About subpages."""
 
-    parent_page_types = ['about.AboutPage']
-    subpage_types = []
+    subpage_types = ['about.AboutSubPage']
 
     translation_fields = [
         'heading',
@@ -40,7 +39,6 @@ class AboutSubPage(AbstractContentPage):
 class CaseStudyIndexPage(AbstractIndexPage):
     """A model for the Case Studies Index page."""
 
-    parent_page_types = ['about.AboutPage']
     subpage_types = ['about.CaseStudyPage']
 
     @property
@@ -118,7 +116,6 @@ class HistoryDateBlock(StreamBlock):
 class HistoryPage(AbstractContentPage):
     """A model for the History page."""
 
-    parent_page_types = ['about.AboutPage']
     subpage_types = []
 
     date_panel = StreamField(HistoryDateBlock, null=True, blank=True)
@@ -147,7 +144,6 @@ class PeopleProfileBlock(StreamBlock):
 class PeoplePage(AbstractContentPage):
     """A model for the People page."""
 
-    parent_page_types = ['about.AboutPage']
     subpage_types = []
 
     subheading = StreamField(IATIStreamBlock(required=False), null=True, blank=True)
