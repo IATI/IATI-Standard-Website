@@ -17,23 +17,11 @@ class AboutPage(AbstractContentPage):
     parent_page_types = ['home.HomePage']
     subpage_types = ['about.AboutSubPage', 'about.CaseStudyIndexPage', 'about.HistoryPage', 'about.PeoplePage']
 
-    translation_fields = [
-        'heading',
-        'excerpt',
-        'content_editor'
-    ]
-
 
 class AboutSubPage(AbstractContentPage):
     """A model for generic About subpages."""
 
     subpage_types = ['about.AboutSubPage']
-
-    translation_fields = [
-        'heading',
-        'excerpt',
-        'content_editor'
-    ]
 
 
 class CaseStudyIndexPage(AbstractIndexPage):
@@ -59,11 +47,6 @@ class CaseStudyIndexPage(AbstractIndexPage):
         context['case_studies'] = paginated_children
         return context
 
-    translation_fields = [
-        'heading',
-        'excerpt'
-    ]
-
 
 class CaseStudyPage(AbstractContentPage):
     """A model for Case Study pages."""
@@ -78,12 +61,6 @@ class CaseStudyPage(AbstractContentPage):
         on_delete=models.SET_NULL,
         related_name='+'
     )
-
-    translation_fields = [
-        'heading',
-        'excerpt',
-        'content_editor'
-    ]
 
     multilingual_field_panels = [
         InlinePanel('case_study_documents', label='Case study attachments'),
@@ -120,12 +97,7 @@ class HistoryPage(AbstractContentPage):
 
     date_panel = StreamField(HistoryDateBlock, null=True, blank=True)
 
-    translation_fields = [
-        'heading',
-        'excerpt',
-        'content_editor',
-        'date_panel'
-    ]
+    translation_fields = AbstractContentPage.translation_fields + ['date_panel']
 
 
 class PeopleProfileBlock(StreamBlock):
@@ -149,10 +121,4 @@ class PeoplePage(AbstractContentPage):
     subheading = StreamField(IATIStreamBlock(required=False), null=True, blank=True)
     profile_panel = StreamField(PeopleProfileBlock, null=True, blank=True)
 
-    translation_fields = [
-        'heading',
-        'excerpt',
-        'content_editor',
-        'subheading',
-        'profile_panel'
-    ]
+    translation_fields = AbstractContentPage.translation_fields + ['subheading', 'profile_panel']
