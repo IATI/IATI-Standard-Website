@@ -1,20 +1,21 @@
 from django.db import models
 
-from wagtail.core.blocks import CharBlock, ListBlock, StreamBlock, StructBlock, TextBlock
+from wagtail.admin.edit_handlers import InlinePanel
+from wagtail.core.blocks import CharBlock, StreamBlock, StructBlock, TextBlock
 from wagtail.core.fields import StreamField
 from wagtail.core.models import Orderable
-from wagtail.admin.edit_handlers import FieldPanel, InlinePanel
 from wagtail.documents.edit_handlers import DocumentChooserPanel
+from wagtail.images.blocks import ImageChooserBlock
 
 from modelcluster.fields import ParentalKey
-from home.models import AbstractContentPage, AbstractIndexPage
+from home.models import AbstractContentPage, AbstractIndexPage, IATIStreamBlock
 
 
 class AboutPage(AbstractContentPage):
     """A model for the About landing page."""
 
     parent_page_types = ['home.HomePage']
-    subpage_types = ['about.AboutSubPage', 'about.CaseStudyIndexPage', 'about.HistoryPage']
+    subpage_types = ['about.AboutSubPage', 'about.CaseStudyIndexPage', 'about.HistoryPage', 'about.PeoplePage']
 
     translation_fields = [
         'heading',
@@ -113,9 +114,6 @@ class HistoryDateBlock(StreamBlock):
         ('description', TextBlock(required=False))
     ])
 
-    class Meta:
-        required = False
-
 
 class HistoryPage(AbstractContentPage):
     """A model for the History page."""
@@ -123,11 +121,42 @@ class HistoryPage(AbstractContentPage):
     parent_page_types = ['about.AboutPage']
     subpage_types = []
 
-    date_panel = StreamField(HistoryDateBlock(), null=True, blank=True)
+    date_panel = StreamField(HistoryDateBlock, null=True, blank=True)
 
     translation_fields = [
         'heading',
         'excerpt',
         'content_editor',
         'date_panel'
+    ]
+
+
+class PeopleProfileBlock(StreamBlock):
+    """A block for People profiles."""
+    profile_editor = StructBlock([
+        ('name', CharBlock(required=False, max_length=100)),
+        ('profile_picture', ImageChooserBlock(required=False, label="Profile picture", icon="image")),
+        ('organisation_logo', ImageChooserBlock(required=False, label="Organisation logo", icon="image")),
+        ('IATI_role', CharBlock(required=False, max_length=100)),
+        ('external_role', CharBlock(required=False, max_length=200)),
+        ('description', TextBlock(required=False)),
+        ('IATI_constituency', CharBlock(required=False, max_length=200))
+    ])
+
+
+class PeoplePage(AbstractContentPage):
+    """A model for the People page."""
+
+    parent_page_types = ['about.AboutPage']
+    subpage_types = []
+
+    subheading = StreamField(IATIStreamBlock(required=False), null=True, blank=True)
+    profile_panel = StreamField(PeopleProfileBlock, null=True, blank=True)
+
+    translation_fields = [
+        'heading',
+        'excerpt',
+        'content_editor',
+        'subheading',
+        'profile_panel'
     ]
