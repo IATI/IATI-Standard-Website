@@ -10,7 +10,7 @@ class ContactTypeStreamBlock(StreamBlock):
     """Model allowing the CMS to bring together multiple struct block objects."""
     contact_type_editor = StructBlock([
         ('heading', TextBlock()),
-        ('copy', RichTextBlock()),
+        ('description', RichTextBlock(required=False)),
         ('email', TextBlock())
     ], icon="title", classname="title")
 
