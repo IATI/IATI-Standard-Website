@@ -35,7 +35,9 @@ class AboutSubPageDocument(Orderable):
     page = ParentalKey(AboutSubPage, related_name='about_sub_page_documents')
     document = models.ForeignKey(
         'wagtaildocs.Document',
-        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
         related_name='+'
     )
 
