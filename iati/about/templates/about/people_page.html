@@ -32,36 +32,43 @@
       </div>
       <div class="l-listing l-listing--people l-listing--no-pagination">
         <div class="section-border">
-          {% if page.subheading %}
-            {% include "home/includes/streamfield.html" with content=page.subheading %}
-          {% endif %}
-          {% if page.profile_panel %}
-            {% for profile in page.profile_panel %}
-              {% image profile.value.profile_picture max-600x600 as profilepicture %}
-              {% image profile.value.organisation_logo max-80x30 as organisationlogo %}
-              <article class="listing listing--article listing--people">
-                <aside class="listing__aside">
-                  <div class="listing__media">
-                    <img src="{{ profilepicture.url }}" alt="{{ profilepicture.alt }}">
-                  </div>
-                </aside>
-                <div class="listing__body">
-                  <header class="listing__header">
-                    <h2 class="listing__heading"><span>{{ profile.value.name }}</span></h2>
-                    <img class="listing__body-img" src="{{ organisationlogo.url }}" alt="{{ organisationlogo.alt }}">
+          {% if page.profile_content_editor %}
+            {% for child in page.profile_content_editor %}
+              {% if child.type == "section_heading" %}
+                <h2 class="section__heading">{{ child }}</h2>
+              {% elif child.type == "paragraph" %}
+                <p class="type-s">{{ child }}</p>
+              {% elif child.type == "pullquote" %}
+                <blockquote class="as-blockquote listing-quote">
+                  <p>{{ child }}</p>
+                </blockquote>
+              {% elif child.type == "profile_editor" %}
+                {% image child.value.profile_picture max-600x600 as profilepicture %}
+                {% image child.value.organisation_logo max-80x30 as organisationlogo %}
+                <article class="listing listing--article listing--people">
+                  <aside class="listing__aside">
+                    <div class="listing__media">
+                      <img src="{{ profilepicture.url }}" alt="{{ profilepicture.alt }}">
+                    </div>
+                  </aside>
+                  <div class="listing__body">
+                    <header class="listing__header">
+                      <h2 class="listing__heading"><span>{{ child.value.name }}</span></h2>
+                      <img class="listing__body-img" src="{{ organisationlogo.url }}" alt="{{ organisationlogo.alt }}">
+                      <ul class="listing__metadata">
+                        <li class="listing__metadata__item">{{ child.value.IATI_role }}</li>
+                        <li class="listing__metadata__item">{{ child.value.external_role }}</li>
+                      </ul>
+                    </header>
+                    <div class="listing__excerpt is-typeset">
+                      {{ profile.value.description }}
+                    </div>
                     <ul class="listing__metadata">
-                      <li class="listing__metadata__item">{{ profile.value.IATI_role }}</li>
-                      <li class="listing__metadata__item">{{ profile.value.external_role }}</li>
+                      <li class="listing__metadata__item">IATI constituency:{{ child.value.IATI_constituency }}</li>
                     </ul>
-                  </header>
-                  <div class="listing__excerpt is-typeset">
-                    {{ profile.value.description }}
                   </div>
-                  <ul class="listing__metadata">
-                    <li class="listing__metadata__item">{{ profile.value.IATI_constituency }}</li>
-                  </ul>
-                </div>
-              </article>
+                </article>
+              {% endif %}
             {% endfor %}
           {% endif %}
         </div>
