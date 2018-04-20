@@ -123,7 +123,7 @@ class HistoryPage(AbstractContentPage):
 
     timeline_editor = StreamField(HistoryDateBlock, null=True, blank=True)
 
-    translation_fields = AbstractContentPage.translation_fields + ['date_panel']
+    translation_fields = AbstractContentPage.translation_fields + ['timeline_editor']
 
 
 class PeopleProfileBlock(StreamBlock):
