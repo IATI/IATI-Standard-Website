@@ -23,16 +23,6 @@
 		<aside class="l-sidebar__aside">
       {% include "home/includes/sidepanel.html" %}
 
-      <div class="aside-m">
-          <div class="aside-m__header fill-sunset">
-              <h3 class="aside-m__heading">Members assembly events 2017</h3>
-          </div>
-          <div class="aside-m__body">
-              <p class="aside-m__copy">Information and presentations from the event held in Rome in July</p>
-              <a class="button" href="#none">View report</a>
-          </div>
-      </div>
-
 		</aside>
 		<div class="l-sidebar__body">
 
@@ -41,7 +31,7 @@
         {% include "home/includes/streamfield.html" with content=page.content_editor %}
       {% endif %}
     </div>
-    
+
     {% include "home/includes/download_box.html" with documents=page.about_sub_page_documents.all %}
 
 		</div>
