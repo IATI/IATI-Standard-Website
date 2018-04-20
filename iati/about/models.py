@@ -1,7 +1,7 @@
 from django.db import models
 
 from wagtail.admin.edit_handlers import InlinePanel
-from wagtail.core.blocks import CharBlock, StreamBlock, StructBlock, TextBlock
+from wagtail.core.blocks import CharBlock, RichTextBlock, StreamBlock, StructBlock, TextBlock
 from wagtail.core.fields import StreamField
 from wagtail.core.models import Orderable
 from wagtail.documents.edit_handlers import DocumentChooserPanel
@@ -9,7 +9,7 @@ from wagtail.images.blocks import ImageChooserBlock
 from wagtail.images.edit_handlers import ImageChooserPanel
 
 from modelcluster.fields import ParentalKey
-from home.models import AbstractContentPage, AbstractIndexPage, IATIStreamBlock
+from home.models import AbstractContentPage, AbstractIndexPage, IATIStreamBlock, PullQuoteBlock
 
 
 class AboutPage(AbstractContentPage):
@@ -128,6 +128,9 @@ class HistoryPage(AbstractContentPage):
 
 class PeopleProfileBlock(StreamBlock):
     """A block for People profiles."""
+    section_heading = CharBlock(icon="title", classname="title")
+    paragraph = CharBlock(icon="pilcrow")
+    pullquote = PullQuoteBlock()
     profile_editor = StructBlock([
         ('name', CharBlock(required=False, max_length=100)),
         ('profile_picture', ImageChooserBlock(required=False, label="Profile picture", icon="image")),
@@ -136,7 +139,7 @@ class PeopleProfileBlock(StreamBlock):
         ('external_role', CharBlock(required=False, max_length=200)),
         ('description', TextBlock(required=False)),
         ('IATI_constituency', CharBlock(required=False, max_length=200))
-    ])
+    ], icon="image")
 
 
 class PeoplePage(AbstractContentPage):
@@ -144,7 +147,6 @@ class PeoplePage(AbstractContentPage):
 
     subpage_types = []
 
-    subheading = StreamField(IATIStreamBlock(required=False), null=True, blank=True)
-    profile_panel = StreamField(PeopleProfileBlock, null=True, blank=True)
+    profile_content_editor = StreamField(PeopleProfileBlock, null=True, blank=True)
 
-    translation_fields = AbstractContentPage.translation_fields + ['subheading', 'profile_panel']
+    translation_fields = AbstractContentPage.translation_fields + ['profile_content_editor']
