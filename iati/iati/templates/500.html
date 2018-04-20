@@ -1,17 +1,13 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Internal server error</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-    </head>
-    <body>
-        <h1>Internal server error</h1>
+{% extends "base.html" %}
 
-        <h2>Sorry, there seems to be an error. Please try again soon.</h2>
-    </body>
-</html>
+{% block body_class %}body body--error{% endblock %}
+{% block body_id %}body-error{% endblock %}
+
+{% block content %}
+<div class="l-error">
+  <div class="row">
+    <h1 class="type-xl type-xl--trailer heading">500 error</h1>
+    <p class="para">Something technical has gone wrong. It's not your fault. We've been notified and this page will be back soon.</p>
+  </div>
+</div>
+{% endblock %}
