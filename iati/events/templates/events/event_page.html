@@ -9,13 +9,11 @@
         <div class="row">
             <div class="max-meter">
                 <div class="hero__caption">
-                    <h1 class="hero__heading">{{ page.heading }}</h1>
-		    {% if page.date_start|timeuntil == "0 minutes" %}
-			<span class="badge">Past event</span>
-		    {% endif %}
-                    <p class="hero__subheading">{{ page.subheading }}</p>
+                    <h1 class="hero__heading">miniTAG™ on Friday 29th, Washington DC</h1>
 
-                    <span class="hero__type">{{ page.event_type_concat }}</span>
+                    <p class="hero__subheading">Some large introductory text that can provide an overview of what this page is about</p>
+
+                    <span class="hero__type">Event type</span>
                 </div>
             </div>
         </div>
@@ -31,65 +29,48 @@
             <h3 class="aside-m__heading">Where &amp; when</h3>
         </div>
         <ul class="aside-m__list">
-            {% if page.location %}
             <li class="aside-m__list-item">
                 <div class="aside-m__list-item-block">
                     <i role="presentation" aria-hidden="true" class="ico ico--24 ico-location-ocean"></i>
-                    {{ page.location }}
+                    Jisc, Brettenham House, 5 Lancaster Place, London, WC2E 7EN
                 </div>
             </li>
-            {% endif %}
             <li class="aside-m__list-item">
-                <div class="aside-m__list-item-block"><i role="presentation" aria-hidden="true" class="ico ico--24 ico-calendar-ocean"></i> <span class="listing__metadata__date">{{ page.date_start }}</span></div>
+                <div class="aside-m__list-item-block"><i role="presentation" aria-hidden="true" class="ico ico--24 ico-calendar-ocean"></i> <span class="listing__metadata__date">25 Aug&ndash;28 Oct 2017</span></div>
             </li>
-            {% if page.date_end %}
             <li class="aside-m__list-item">
                 <div class="aside-m__list-item-block">
                     <i role="presentation" aria-hidden="true" class="ico ico--24 ico-time-ocean"></i>
-                    <span class="listing__metadata__date">{{ page.date_end }}</span>
+                    <span class="listing__metadata__date">09:00–18:00</span>
                 </div>
             </li>
-            {% endif %}
         </ul>
     </div>
-    {% if page.registration_link %}
+
     <div class="aside-m">
-        <a class="button button--large button--block" id="button-register" href="{{ page.registration_link }}">Register your place</a>
+        <a class="button button--large button--block" id="button-register" href="https://www.eventbrite.co.uk/e/iati-minitag-session-machine-learning-in-open-data-development-tickets-377317637218">Register your place</a>
     </div>
-    {% endif %}
 
 		</aside>
 		<div class="l-sidebar__body">
 			
 
     <div class="is-typeset is-typeset--article">
-        {% if page.description %}
-            {% include "home/includes/streamfield.html" with content=page.description %}
-        {% endif %}
+        <p>To take advantage of being in DC to meet with donors, I’m joining up with colleagues working on the Open Ag project to hold a miniTAG in the Open Gov Hub2.</p>
+        <p>Increasingly, advance data analysis and machine learning is being used in the processing, publication and, use of foreign assistance data and open data in general.</p>
+        <p>This event will gather donors, civil society, and private organisations to share knowledge on existing projects, future plans, and open questions within the use of machine learning in the context of IATI and broader data communities.</p>
+        <div id="eventbrite-widget-container"></div>
     </div>
 
-    <div class="m-additional fill-white">
-        {% if page.additional_information %}
-            {% include "home/includes/streamfield.html" with content=page.additional_information %}
-        {% endif %}
-    </div>
-    
-    {% if page.downloads %}
     <div class="m-additional">
-        <h4 class="m-additional__heading heading">Downloads</h2>
-        <ul class="m-additional__list download-list">
-	{% for download in page.downloads %}
-            <li class="download-list__item">
-                <a class="download-list__item-link" href="{{ download.url }}">
-                    <h5 class="download-list__item-link-heading">{{ download.title }}</h5>
-                    <span class="download-list__item-link-subheading">({{ download.file_extension }} {{ download.file|filesize }})</span>
-                </a>
-            </li>
-	{% endfor %}
+        <h2 class="m-additional__heading heading">Additional information</h2>
+        <p class="para m-additional__copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel felis metus. Curabitur laoreet sollicitudin semper. Cras mattis tempus</p>
+        <ul class="unordered-list m-additional__list">
+            <li>Dictum et est. Integer viverra est vel quam cursus</li>
+            <li>Lorem ipsum <a href="#none">here is a link</a></li>
+            <li>In tellus sem, ullamcorper vel ultricies vel, dictum et est. Integer viverra est vel quam cursus</li>
         </ul>
     </div>
-    {% endif %}
-
 
 
 		</div>
