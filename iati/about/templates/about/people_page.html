@@ -34,15 +34,15 @@
         <div class="section-border">
           {% if page.profile_content_editor %}
             {% for child in page.profile_content_editor %}
-              {% if child.type == "section_heading" %}
+              {% if child.block_type == "section_heading" %}
                 <h2 class="section__heading">{{ child }}</h2>
-              {% elif child.type == "paragraph" %}
+              {% elif child.block_type == "paragraph" %}
                 <p class="type-s">{{ child }}</p>
-              {% elif child.type == "pullquote" %}
+              {% elif child.block_type == "pullquote" %}
                 <blockquote class="as-blockquote listing-quote">
                   <p>{{ child }}</p>
                 </blockquote>
-              {% elif child.type == "profile_editor" %}
+              {% elif child.block_type == "profile_editor" %}
                 {% image child.value.profile_picture max-600x600 as profilepicture %}
                 {% image child.value.organisation_logo max-80x30 as organisationlogo %}
                 <article class="listing listing--article listing--people">
