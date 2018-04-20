@@ -6,6 +6,7 @@ from wagtail.core.fields import StreamField
 from wagtail.core.models import Orderable
 from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.images.blocks import ImageChooserBlock
+from wagtail.images.edit_handlers import ImageChooserPanel
 
 from modelcluster.fields import ParentalKey
 from home.models import AbstractContentPage, AbstractIndexPage, IATIStreamBlock
@@ -22,6 +23,25 @@ class AboutSubPage(AbstractContentPage):
     """A model for generic About subpages."""
 
     subpage_types = ['about.AboutSubPage']
+
+    multilingual_field_panels = [
+        InlinePanel('about_sub_page_documents', label='About subpage attachments'),
+    ]
+
+
+class AboutSubPageDocument(Orderable):
+    """A model for About sub page documents."""
+
+    page = ParentalKey(AboutSubPage, related_name='about_sub_page_documents')
+    document = models.ForeignKey(
+        'wagtaildocs.Document',
+        on_delete=models.CASCADE,
+        related_name='+'
+    )
+
+    panels = [
+        DocumentChooserPanel('document'),
+    ]
 
 
 class CaseStudyIndexPage(AbstractIndexPage):
@@ -63,6 +83,7 @@ class CaseStudyPage(AbstractContentPage):
     )
 
     multilingual_field_panels = [
+        ImageChooserPanel('feed_image'),
         InlinePanel('case_study_documents', label='Case study attachments'),
     ]
 
