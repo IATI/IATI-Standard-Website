@@ -40,7 +40,7 @@
                 <p class="type-s">{{ child }}</p>
               {% elif child.block_type == "pullquote" %}
                 <blockquote class="as-blockquote listing-quote">
-                  <p>{{ child }}</p>
+                  <p>{{ child.value.quote }}</p>
                 </blockquote>
               {% elif child.block_type == "profile_editor" %}
                 {% image child.value.profile_picture max-600x600 as profilepicture %}
@@ -67,9 +67,11 @@
                     <div class="listing__excerpt is-typeset">
                       {{ profile.value.description }}
                     </div>
+                    {% if child.value.IATI_constituency %}
                     <ul class="listing__metadata">
                       <li class="listing__metadata__item">IATI constituency:{{ child.value.IATI_constituency }}</li>
                     </ul>
+                    {% endif %}
                   </div>
                 </article>
               {% endif %}
