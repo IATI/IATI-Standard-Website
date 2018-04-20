@@ -62,7 +62,7 @@ class CaseStudyIndexPage(AbstractIndexPage):
 
         """
         children = self.case_studies
-        paginated_children = self.paginate(request, children, 3)
+        paginated_children = self.paginate(request, children, max_results=3)
         context = super(CaseStudyIndexPage, self).get_context(request)
         context['case_studies'] = paginated_children
         return context
