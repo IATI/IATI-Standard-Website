@@ -110,7 +110,7 @@ class CaseStudyDocument(Orderable):
 class HistoryDateBlock(StreamBlock):
     """A block for History event card along the timeline which is shown on the HistoryPage."""
 
-    date_block_editor = StructBlock([
+    event_block_editor = StructBlock([
         ('heading', CharBlock(required=False, max_length=100)),
         ('description', TextBlock(required=False))
     ])
