@@ -45,7 +45,15 @@
                     {% for item in list_items_prev reversed %}
                         <li class="navigation-secondary__child__item"><a href="{% slugurl_trans item.slug %}">{% if item.heading %}{{ item.heading }}{% else %}{{ item.title }}{% endif %}</a></li>
                     {% endfor %}
-                    <li class="navigation-secondary__child__item"><a href="#">{% if self.heading %}{{ self.heading }}{% else %}{{ self.title }}{% endif %}</a></li>
+                    <li class="navigation-secondary__child__item navigation-secondary__item--active"><a href="#">{% if self.heading %}{{ self.heading }}{% else %}{{ self.title }}{% endif %}</a>
+                      {% if children %}
+                      <ul class="nagivation-secondary__third-child">
+                        {% for child in children %}
+                            <li class="navigation-secondary__third-child__item"><a href="{% slugurl_trans child.slug %}">{% if child.heading %}{{ child.heading }}{% else %}{{ child.title }}{% endif %}</a></li>
+                        {% endfor %}
+                      </ul>
+                      {% endif %}
+                    </li>
                     {% for item in list_items_next %}
                         <li class="navigation-secondary__child__item"><a href="{% slugurl_trans item.slug %}">{% if item.heading %}{{ item.heading }}{% else %}{{ item.title }}{% endif %}</a></li>
                     {% endfor %}
