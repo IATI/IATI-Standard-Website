@@ -37,18 +37,26 @@
           {% endif %}
           {% if page.profile_panel %}
             {% for profile in page.profile_panel %}
-              {% image profile.value.profile_picture max-600x600 as profilepicture %}
-              {% image profile.value.organisation_logo max-80x30 as organisationlogo %}
               <article class="listing listing--article listing--people">
                 <aside class="listing__aside">
                   <div class="listing__media">
-                    <img src="{{ profilepicture.url }}" alt="{{ profilepicture.alt }}">
+                  {% if profile.value.profile_picture %}
+                    {% image profile.value.profile_picture max-600x600 as profilepicture %}
+                      <img src="{{ profilepicture.url }}" alt="{{ profilepicture.alt }}">
+                  {% else %}
+                    <img src="/static/assets/img/portrait.png" alt="alt tag">
+                  {% endif %}
                   </div>
                 </aside>
                 <div class="listing__body">
                   <header class="listing__header">
                     <h2 class="listing__heading"><span>{{ profile.value.name }}</span></h2>
-                    <img class="listing__body-img" src="{{ organisationlogo.url }}" alt="{{ organisationlogo.alt }}">
+                    {% if profile.value.organisation_logo %}
+                      {% image profile.value.organisation_logo max-80x30 as organisationlogo %}
+                      <img class="listing__body-img" src="{{ organisationlogo.url }}" alt="{{ organisationlogo.alt }}">
+                    {% else %}
+                      <img class="listing__body-img" src="/static/assets/img/logo.png" alt="alt tag">
+                    {% endif %}
                     <ul class="listing__metadata">
                       <li class="listing__metadata__item">{{ profile.value.IATI_role }}</li>
                       <li class="listing__metadata__item">{{ profile.value.external_role }}</li>
