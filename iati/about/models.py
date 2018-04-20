@@ -95,7 +95,9 @@ class CaseStudyDocument(Orderable):
     page = ParentalKey(CaseStudyPage, related_name='case_study_documents')
     document = models.ForeignKey(
         'wagtaildocs.Document',
-        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
         related_name='+'
     )
     panels = [
