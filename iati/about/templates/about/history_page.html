@@ -32,15 +32,15 @@
     </div>
 
     <div class="timeline">
-      {% if page.date_panel %}
-        {% for date in page.date_panel %}
+      {% if page.timeline_editor %}
+        {% for event in page.timeline_editor %}
           {% if forloop.counter0.first or forloop.counter0|divisibleby:2 %}
             <div class="timeline-row">
           {% endif %}
                 <div class="{% cycle "timeline__date timeline__date--left" "timeline__date timeline__date--right" %}">
                     <div class="timeline__date-panel">
-                        <h2 class="timeline__date-heading heading">{{ date.value.heading }}</h2>
-                        <p class="timeline__date-copy">{{ date.value.description }}</p>
+                        <h2 class="timeline__date-heading heading">{{ event.value.heading }}</h2>
+                        <p class="timeline__date-copy">{{ event.value.description }}</p>
                     </div>
                 </div>
           {% if forloop.counter|divisibleby:2 %}

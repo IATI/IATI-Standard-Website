@@ -121,7 +121,7 @@ class HistoryPage(AbstractContentPage):
 
     subpage_types = []
 
-    date_panel = StreamField(HistoryDateBlock, null=True, blank=True)
+    timeline_editor = StreamField(HistoryDateBlock, null=True, blank=True)
 
     translation_fields = AbstractContentPage.translation_fields + ['date_panel']
 
