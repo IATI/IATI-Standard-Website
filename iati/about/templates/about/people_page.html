@@ -48,7 +48,11 @@
                 <article class="listing listing--article listing--people">
                   <aside class="listing__aside">
                     <div class="listing__media">
-                      <img src="{{ profilepicture.url }}" alt="{{ profilepicture.alt }}">
+                      {% if profilepicture %}
+                        <img src="{{ profilepicture.url }}" alt="{{ profilepicture.alt }}">
+                      {% else %}
+                        <img src="/static/assets/img/portrait.png" alt="placeholder portrait">
+                      {% endif %}
                     </div>
                   </aside>
                   <div class="listing__body">
