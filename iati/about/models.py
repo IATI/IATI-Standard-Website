@@ -5,8 +5,8 @@ from wagtail.core.blocks import CharBlock, StreamBlock, StructBlock, TextBlock
 from wagtail.core.fields import StreamField
 from wagtail.core.models import Orderable
 from wagtail.documents.edit_handlers import DocumentChooserPanel
-from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.images.blocks import ImageChooserBlock
+from wagtail.images.edit_handlers import ImageChooserPanel
 
 from modelcluster.fields import ParentalKey
 from home.models import AbstractContentPage, AbstractIndexPage, IATIStreamBlock
@@ -38,6 +38,7 @@ class AboutSubPageDocument(Orderable):
         on_delete=models.CASCADE,
         related_name='+'
     )
+
     panels = [
         DocumentChooserPanel('document'),
     ]
