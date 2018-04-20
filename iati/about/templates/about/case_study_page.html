@@ -1,151 +1,37 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags %}
 
 {% block body_class %}body body--news-single{% endblock %}
 {% block body_id %}body-news-single{% endblock %}
 
 {% block content %}
 <div class="hero hero--image" style="background-image: url(/static/assets/img/hero-news-article.jpg)">
-        <div class="row">
-            <div class="max-meter">
-                <div class="hero__caption">
-                    <h1 class="hero__heading">Case study title</h1>
-
-                    <p class="hero__subheading">Some large introductory text that can provide an overview of what this page is about</p>
-
-                    <span class="hero__type">Event type</span>
-                </div>
-            </div>
-        </div>
+  <div class="row">
+    <div class="max-meter">
+      <div class="hero__caption">
+        <h1 class="hero__heading">{{ page.heading }}</h1>
+        <p class="hero__subheading">{{ page.excerpt }}</p>
+      </div>
     </div>
+  </div>
+</div>
 
-			
-    <div class="sections">
-        <div class="row">
-            <div class="section-border">
-                <div class="l-2up">
-                    <div class="l-2up__col">
-                        <div class="is-typeset is-typeset--no-trailing is-typeset--article">
-                            <h2>The outcomes</h2>
 
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dictum venenatis sollicitudin. Donec a scelerisque ex, at semper magna. Proin mauris sapien, pharetra eget ullamcorper ac, semper quis elit.</p>
-
-                            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean fermentum ut ex id porttitor. Etiam vel enim elit. Praesent libero arcu, imperdiet non nisi quis, pulvinar posuere mauris. Mauris egestas maximus faucibus. Ut suscipit velit id est aliquam elementum.</p>
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dictum venenatis sollicitudin.</p>
-                        </div>
-                    </div>
-
-                    <div class="l-2up__col">
-                        <div class="media-figure">
-                            <div class="m-placeholder"></div>
-
-                            <p class="media-figure__caption">Chart name, <a href="#none">original can be found at d-portal</a>.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section-border">
-                <div class="l-2up">
-                    <div class="l-2up__col">
-                        <div class="is-typeset is-typeset--no-trailing is-typeset--article">
-                            <h2>What happened</h2>
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dictum venenatis sollicitudin. Donec a scelerisque ex, at semper magna. Proin mauris sapien, pharetra eget ullamcorper ac, semper quis elit.</p>
-
-                            <h3>Step 1</h3>
-
-                            <p>Aenean fermentum ut ex id porttitor. Etiam vel enim elit. Praesent libero arcu, imperdiet non nisi quis, pulvinar posuere mauris.</p>
-
-                            <h3>Step 2</h3>
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dictum venenatis sollicitudin. Donec a scelerisque ex, at semper magna. Proin mauris sapien, pharetra eget ullamcorper ac, semper quis elit.</p>
-                        </div>
-                    </div>
-
-                    <div class="l-2up__col">
-                        <div class="m-quote">
-                            <div class="m-quote__img"></div>
-
-                            <blockquote class="m-quote__quote as-blockquote">
-                                <p>“Vestibulum facilisis venenatis laoreet”</p>
-                                <cite>Source</cite>
-                            </blockquote>
-                        </div>
-
-                        <div class="stats stats--grid">
-                            <div class="l-2up">
-                                <div class="l-2up__col l-2up__col--small">
-                                    <div class="stat">
-                                        <h4 class="stat__heading type-m heading">Projects</h4>
-                                        <span class="type-s">1024</span>
-                                    </div>
-                                </div>
-                                <div class="l-2up__col l-2up__col--small">
-                                    <div class="stat">
-                                        <h4 class="stat__heading type-m heading">Category</h4>
-                                        <span class="type-s">824</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="l-3up">
-                                <div class="l-3up__col l-3up__col--small">
-                                    <div class="stat">
-                                        <h4 class="stat__heading type-s heading">Other</h4>
-                                        <span class="type-xs">1024</span>
-                                    </div>
-                                </div>
-                                <div class="l-3up__col l-3up__col--small">
-                                    <div class="stat">
-                                        <h4 class="stat__heading type-s heading">Projects</h4>
-                                        <span class="type-xs">1024</span>
-                                    </div>
-                                </div>
-                                <div class="l-3up__col l-3up__col--small">
-                                    <div class="stat">
-                                        <h4 class="stat__heading type-s heading">Stats</h4>
-                                        <span class="type-xs">622</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="m-additional">
-        <h4 class="m-additional__heading heading">Downloads</h2>
-        <ul class="m-additional__list download-list">
-            <li class="download-list__item">
-                <a class="download-list__item-link" href="#none">
-                    <h5 class="download-list__item-link-heading">Name of download</h5>
-                    <span class="download-list__item-link-subheading">(PDF 55kb)</span>
-                </a>
-            </li>
-            <li class="download-list__item">
-                <a class="download-list__item-link" href="#none">
-                    <h5 class="download-list__item-link-heading">Name of download</h5>
-                    <span class="download-list__item-link-subheading">(PDF 145kb)</span>
-                </a>
-            </li>
-            <li class="download-list__item">
-                <a class="download-list__item-link" href="#none">
-                    <h5 class="download-list__item-link-heading">Name of download</h5>
-                    <span class="download-list__item-link-subheading">(PDF 79kb)</span>
-                </a>
-            </li>
-        </ul>
+<div class="sections">
+  <div class="row">
+    {% include "home/includes/breadcrumbs.html" %}
+    <div class="is-typeset is-typeset--article">
+      {% if page.content_editor %}
+        {% include "home/includes/streamfield.html" with content=page.content_editor %}
+      {% endif %}
     </div>
-        </div>
+  </div>
 
-        <div class="row">
-            <div class="pagination">
-                <a href="#" class="pagination__item pagination__item--big pagination__item--prev">Previous</a>
-                <a href="#" class="pagination__item pagination__item--big pagination__item--next">Next</a>
-            </div>
-        </div>
-    </div>
+  <div class="row">
+    {% include "home/includes/download_box.html" with documents=page.case_study_documents.all %}
+  </div>
+
+  <div class="row">
+    {% include "home/includes/sibling_links.html" %}
+  </div>
+</div>
 {% endblock %}

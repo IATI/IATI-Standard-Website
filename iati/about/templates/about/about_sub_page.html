@@ -8,115 +8,31 @@
  <div class="hero hero--minor">
         <div class="row">
             <div class="hero__caption">
-                <h1 class="hero__heading">Governance</h1>
-                
-                    <p class="hero__excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                
+                <h1 class="hero__heading">{{ page.heading }}</h1>
+
+                    <p class="hero__excerpt">{{ page.excerpt }}.</p>
+
             </div>
             <div class="hero__emblem"></div>
         </div>
     </div>
 
-			
+
 <div class="row">
 	<div class="l-sidebar l-sidebar--reverse">
 		<aside class="l-sidebar__aside">
-			
-	<div class="aside-m">
-        <div class="aside-m__header fill-sunrise">
-            <h3 class="aside-m__heading">In this section</h3>
-        </div>
-        <button class="navigation-secondary-toggle" type="button" id="navigation-secondary-toggle">pages in this section <i role="presentation" aria-hidden="true" class="ico ico--16 ico-plus-white"></i></button>
-<nav class="navigation-secondary" id="navigation-secondary">
-    <ul class="navigation-secondary__list">
-        <li class="navigation-secondary__item"><a href="#">Why aid transparency matters</a></li>
-        <li class="navigation-secondary__item"><a href="#">How IATI works</a></li>
-        <li class="navigation-secondary__item"><a href="#">Who is IATI for?</a></li>
-        <li class="navigation-secondary__item"><a href="#">About the standard</a></li>
-        <li class="navigation-secondary__item"><a href="#">History of IATI</a></li>
-        <li class="navigation-secondary__item"><a href="#">Case studies</a></li>
-        <li class="navigation-secondary__item navigation-secondary__item--active"><a href="#">Governance</a>
-            <ul class="navigation-secondary__child">
-                <li class="navigation-secondary__child__item"><a href="#">Annual reports</a></li>
-                <li class="navigation-secondary__child__item"><a href="#">Governing board</a></li>
-                <li class="navigation-secondary__child__item"><a href="#">Secreteriat</a></li>
-                <li class="navigation-secondary__child__item"><a href="#">Finances</a></li>
-                <li class="navigation-secondary__child__item"><a href="#">IATI workplan</a></li>
-            </ul>
-        </li>
-        <li class="navigation-secondary__item"><a href="#">Promote IATI</a></li>
-        <li class="navigation-secondary__item"><a href="#">Membership</a></li>
-        <li class="navigation-secondary__item"><a href="#">TAG - Technical Advisory Group</a></li>
-    </ul>
-</nav>
-
-    </div>
-
-    <div class="aside-m">
-        <div class="aside-m__header fill-sunset">
-            <h3 class="aside-m__heading">Members assembly events 2017</h3>
-        </div>
-        <div class="aside-m__body">
-            <p class="aside-m__copy">Information and presentations from the event held in Rome in July</p>
-            <a class="button" href="#none">View report</a>
-        </div>
-    </div>
+      {% include "home/includes/sidepanel.html" %}
 
 		</aside>
 		<div class="l-sidebar__body">
-			
+
     <div class="is-typeset is-typeset--additionals">
-        <p>A small paragraph to <em>emphasis</em> and show <strong>important</strong> bits. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-<!-- Check empty tag stripping -->
-<p></p>
-<p></p>
-<ul>
-    <li>This is a list item</li>
-    <li>So is this - there could be more</li>
-    <li>Make sure to style list items to:
-        <ul>
-            <li>Not forgetting child list items</li>
-            <li>Not forgetting child list items</li>
-            <li>Not forgetting child list items</li>
-            <li>Not forgetting child list items</li>
-        </ul>
-    </li>
-    <li>A couple more</li>
-    <li>top level list items</li>
-</ul>
-<h3>Don't forget:</h4>
-<ol>
-   <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-   <li>Aliquam tincidunt mauris eu risus.
-    <ol>
-        <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-        <li>Aliquam tincidunt mauris eu risus.</li>
-    </ol>
-    </li>
-   <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-   <li>Aliquam tincidunt mauris eu risus.
-</ol>
-<h4>A sub heading which is not as important as the first, but is quite imporant overall</h4>
-<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-<figure class="media-figure">
-	<img src="/static/assets/img/ptn-example.jpg" alt="Inline image">
-	<figcaption class="media-figure__caption">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</figcaption>
-</figure>
-<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-
-
-<!-- Check br tag stripping -->
-<br/>
-<br/>
-<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-<blockquote><p>“Ooh - a blockquote! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. Ut a est eget ligula molestie gravida. Curabitur massa.”</p></blockquote>
-<h5>A sub heading which is not as important as the second, but should be used with consideration</h5>
-<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-<h6>A sub heading which is not as important as the second, but should be used with consideration</h6>
-<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-
+      {% if page.content_editor %}
+        {% include "home/includes/streamfield.html" with content=page.content_editor %}
+      {% endif %}
     </div>
+
+    {% include "home/includes/download_box.html" with documents=page.about_sub_page_documents.all %}
 
 		</div>
 	</div>
