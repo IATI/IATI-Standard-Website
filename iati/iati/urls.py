@@ -8,7 +8,9 @@ from wagtail.documents import urls as wagtaildocs_urls
 
 from search import views as search_views
 
-# For internationalization
+# For internationalization.
+# Must import iati.activate_languages first to patch i18n_patterns dependency
+import iati.activate_languages
 from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = [
