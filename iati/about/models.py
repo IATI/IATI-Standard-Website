@@ -22,7 +22,7 @@ class AboutPage(AbstractContentPage):
 class AboutSubPage(AbstractContentPage):
     """A model for generic About subpages."""
 
-    subpage_types = ['about.AboutSubPage']
+    subpage_types = ['about.AboutSubPage', 'about.PeoplePage']
 
     multilingual_field_panels = [
         InlinePanel('about_sub_page_documents', label='About subpage attachments'),
