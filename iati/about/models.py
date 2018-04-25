@@ -1,7 +1,7 @@
 from django.db import models
 
 from wagtail.admin.edit_handlers import InlinePanel
-from wagtail.core.blocks import CharBlock, RichTextBlock, StreamBlock, StructBlock, TextBlock
+from wagtail.core.blocks import CharBlock, StreamBlock, StructBlock, TextBlock
 from wagtail.core.fields import StreamField
 from wagtail.core.models import Orderable
 from wagtail.documents.edit_handlers import DocumentChooserPanel
