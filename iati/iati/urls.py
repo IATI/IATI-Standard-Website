@@ -8,8 +8,8 @@ from wagtail.documents import urls as wagtaildocs_urls
 
 from search import views as search_views
 
-# For internationalization
-from django.conf.urls.i18n import i18n_patterns
+# For internationalization.
+from iati.activate_languages import i18n_patterns
 
 urlpatterns = [
     url(r'^django-admin/', admin.site.urls),
