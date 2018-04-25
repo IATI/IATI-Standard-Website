@@ -33,17 +33,6 @@ def default_page_url(context, default_page_name="home"):
     return default_page.get_url(context['request'])
 
 
-@register.filter
-def subtract(value, arg):
-    """In-template subtraction"""
-    return value - arg
-
-
-@register.inclusion_tag('home/includes/sidepanel.html')
-def side_panel(calling_page):
-    """Returns the side panel given the about hierarchy"""
-    return {"calling_page": calling_page}
-
 @register.inclusion_tag("home/includes/translation_links.html", takes_context=True)
 def translation_links(context, calling_page):
     """Takes the inclusion template 'translation_links.html' and returns a snippet of HTML with links to the requesting page in all offered languages"""
