@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags iati_tags %}
 
 {% block body_class %}body body--about{% endblock %}
 {% block body_id %}body-about{% endblock %}
@@ -22,7 +22,6 @@
 	<div class="l-sidebar l-sidebar--reverse">
 		<aside class="l-sidebar__aside">
       {% include "home/includes/sidepanel.html" %}
-
 		</aside>
 		<div class="l-sidebar__body">
 
