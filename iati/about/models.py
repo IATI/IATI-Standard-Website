@@ -1,7 +1,7 @@
 from django.db import models
 
 from wagtail.admin.edit_handlers import InlinePanel
-from wagtail.core.blocks import CharBlock, RichTextBlock, StreamBlock, StructBlock, TextBlock
+from wagtail.core.blocks import CharBlock, StreamBlock, StructBlock, TextBlock
 from wagtail.core.fields import StreamField
 from wagtail.core.models import Orderable
 from wagtail.documents.edit_handlers import DocumentChooserPanel
@@ -145,7 +145,7 @@ class PeopleProfileBlock(StreamBlock):
 class PeoplePage(AbstractContentPage):
     """A model for the People page."""
 
-    subpage_types = []
+    subpage_types = ["about.PeoplePage", "about.AbooutSubPage"]
 
     profile_content_editor = StreamField(PeopleProfileBlock, null=True, blank=True)
 
