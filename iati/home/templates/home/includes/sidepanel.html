@@ -26,7 +26,7 @@
                   {% endif %}
                 </li>
               {% else %}
-                <li class="navigation-secondary__item "><a href="{% slugurl_trans sibling.item.slug %}">{% if sibling.item.heading %}{{ sibling.item.heading }}{% else %}{{ sibling.item.title }}{% endif %}</a></li>
+                <li class="navigation-secondary__item"><a href="{% slugurl_trans sibling.item.slug %}">{% if sibling.item.heading %}{{ sibling.item.heading }}{% else %}{{ sibling.item.title }}{% endif %}</a></li>
               {% endif %}
             {% endfor %}
           {% elif self.depth >= 5 %}
@@ -36,7 +36,7 @@
                   <ul class="navigation-secondary__child">
                     {% for sibling in self.get_parent.menu_order.all %}
                       {% if sibling.pk == self.pk %}
-                        <li class="navigation-secondary__item navigation-secondary__item--active"><a href="">{% if sibling.item.heading %}{{ sibling.item.heading }}{% else %}{{ sibling.item.title }}{% endif %}</a>
+                        <li class="navigation-secondary__child__item navigation-secondary__child__item--active"><a href="">{% if sibling.item.heading %}{{ sibling.item.heading }}{% else %}{{ sibling.item.title }}{% endif %}</a>
                           {% if self.menu_order.all|length > 0 %}
                             <ul class="navigation-secondary__third-child">
                               {% for item in self.menu_order.all %}
@@ -46,7 +46,7 @@
                           {% endif %}
                         </li>
                       {% else %}
-                        <li class="navigation-secondary__item "><a href="{% slugurl_trans sibling.item.slug %}">{% if sibling.item.heading %}{{ sibling.item.heading }}{% else %}{{ sibling.item.title }}{% endif %}</a></li>
+                        <li class="navigation-secondary__child__item"><a href="{% slugurl_trans sibling.item.slug %}">{% if sibling.item.heading %}{{ sibling.item.heading }}{% else %}{{ sibling.item.title }}{% endif %}</a></li>
                       {% endif %}
                     {% endfor %}
                   </ul>

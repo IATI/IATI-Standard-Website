@@ -34,7 +34,7 @@ class ChildMenu(Orderable, models.Model):
     )
 
     panels = [
-        FieldPanel('item', widget=forms.Select(attrs={'disabled': True})),
+        FieldPanel('item'),
     ]
 
     def __str__(self):
