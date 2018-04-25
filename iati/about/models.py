@@ -145,7 +145,7 @@ class PeopleProfileBlock(StreamBlock):
 class PeoplePage(AbstractContentPage):
     """A model for the People page."""
 
-    subpage_types = ["about.PeoplePage", "about.AbooutSubPage"]
+    subpage_types = ["about.PeoplePage", "about.AboutSubPage"]
 
     profile_content_editor = StreamField(PeopleProfileBlock, null=True, blank=True)
 
