@@ -1,6 +1,5 @@
 import os
 from django import template
-from wagtail.core.models import Page
 from home.models import HomePage
 from about.models import AboutPage
 from contact.models import ContactPage
