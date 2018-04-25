@@ -15,7 +15,8 @@ class ActiveLocalePrefixPattern(LocalePrefixPattern):
         This allows us to check for activated languages before resolving URL.
         """
         language_code = get_language() or settings.LANGUAGE_CODE
-        if language_code not in [active_language_code for active_language_code, _ in settings.ACTIVE_LANGUAGES]:
+        active_language_codes = [active_language_code for active_language_code, _ in settings.ACTIVE_LANGUAGES]
+        if language_code not in active_language_codes:
             language_code = settings.LANGUAGE_CODE
             activate(language_code)
         if language_code == settings.LANGUAGE_CODE and not self.prefix_default_language:
