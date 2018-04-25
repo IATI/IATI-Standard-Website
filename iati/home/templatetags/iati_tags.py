@@ -42,12 +42,7 @@ def subtract(value, arg):
 @register.inclusion_tag('home/includes/sidepanel.html')
 def side_panel(calling_page):
     """Returns the side panel given the about hierarchy"""
-    if calling_page.depth <= 3:
-        highest_ancestor = calling_page
-    else:
-        home_page = HomePage.objects.live().first()
-        highest_ancestor = home_page.get_children().ancestor_of(calling_page).live().first().specific()
-    return {"ancestors_children": highest_ancestor.menu_order.all, "calling_page": calling_page}
+    return {"calling_page": calling_page}
 
 @register.inclusion_tag("home/includes/translation_links.html", takes_context=True)
 def translation_links(context, calling_page):
