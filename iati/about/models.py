@@ -3,10 +3,11 @@ from django.db import models
 from wagtail.admin.edit_handlers import InlinePanel
 from wagtail.core.blocks import CharBlock, StreamBlock, StructBlock, TextBlock
 from wagtail.core.fields import StreamField
-from wagtail.core.models import Orderable
+from wagtail.core.models import Orderable, Page
 from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.snippets.models import register_snippet
 
 from modelcluster.fields import ParentalKey
 from home.models import AbstractContentPage, AbstractIndexPage, IATIStreamBlock
@@ -17,6 +18,15 @@ class AboutPage(AbstractContentPage):
 
     parent_page_types = ['home.HomePage']
     subpage_types = ['about.AboutSubPage', 'about.CaseStudyIndexPage', 'about.HistoryPage', 'about.PeoplePage']
+
+    def save(self, *args, **kwargs):
+        """Create a menu item snippet on save"""
+        super(AboutPage, self).save(*args, **kwargs)
+        try:
+            menu_item = AboutMenuItems.objects.get(page=self)
+        except AboutMenuItems.DoesNotExist:
+            menu_item = AboutMenuItems(page=self, order=self.pk)
+            menu_item.save()
 
 
 class AboutSubPage(AbstractContentPage):
@@ -148,3 +158,13 @@ class PeoplePage(AbstractContentPage):
     profile_panel = StreamField(PeopleProfileBlock, null=True, blank=True)
 
     translation_fields = AbstractContentPage.translation_fields + ['subheading', 'profile_panel']
+
+
+@register_snippet
+class AboutMenuItems(models.Model):
+    page = models.OneToOneField(
+        Page,
+        on_delete=models.CASCADE,
+        primary_key=True,
+    )
+    order = models.IntegerField()
