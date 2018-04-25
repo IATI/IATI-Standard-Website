@@ -10,7 +10,7 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.snippets.models import register_snippet
 
 from modelcluster.fields import ParentalKey
-from home.models import AbstractContentPage, AbstractIndexPage, IATIStreamBlock
+from home.models import AbstractContentPage, AbstractIndexPage, IATIStreamBlock, PullQuoteBlock
 
 
 class AboutPage(AbstractContentPage):
@@ -133,11 +133,14 @@ class HistoryPage(AbstractContentPage):
 
     timeline_editor = StreamField(HistoryDateBlock, null=True, blank=True)
 
-    translation_fields = AbstractContentPage.translation_fields + ['date_panel']
+    translation_fields = AbstractContentPage.translation_fields + ['timeline_editor']
 
 
 class PeopleProfileBlock(StreamBlock):
     """A block for People profiles."""
+    section_heading = CharBlock(icon="title", classname="title")
+    paragraph = CharBlock(icon="pilcrow")
+    pullquote = PullQuoteBlock()
     profile_editor = StructBlock([
         ('name', CharBlock(required=False, max_length=100)),
         ('profile_picture', ImageChooserBlock(required=False, label="Profile picture", icon="image")),
@@ -146,19 +149,17 @@ class PeopleProfileBlock(StreamBlock):
         ('external_role', CharBlock(required=False, max_length=200)),
         ('description', TextBlock(required=False)),
         ('IATI_constituency', CharBlock(required=False, max_length=200))
-    ])
+    ], icon="image")
 
 
 class PeoplePage(AbstractContentPage):
     """A model for the People page."""
 
-    subpage_types = []
+    subpage_types = ["about.PeoplePage", "about.AboutSubPage"]
 
-    subheading = StreamField(IATIStreamBlock(required=False), null=True, blank=True)
-    profile_panel = StreamField(PeopleProfileBlock, null=True, blank=True)
+    profile_content_editor = StreamField(PeopleProfileBlock, null=True, blank=True)
 
-    translation_fields = AbstractContentPage.translation_fields + ['subheading', 'profile_panel']
-
+    translation_fields = AbstractContentPage.translation_fields + ['profile_content_editor']
 
 @register_snippet
 class AboutMenuItems(models.Model):
