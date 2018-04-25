@@ -9,10 +9,9 @@ from wagtail.core.models import Orderable, Page
 from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.images.edit_handlers import ImageChooserPanel
-from wagtail.snippets.edit_handlers import SnippetChooserPanel
 
 from modelcluster.fields import ParentalKey
-from home.models import AbstractContentPage, AbstractIndexPage, IATIStreamBlock, PullQuoteBlock
+from home.models import AbstractContentPage, AbstractIndexPage, PullQuoteBlock
 
 
 class AboutPage(AbstractContentPage):
