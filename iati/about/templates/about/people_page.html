@@ -58,7 +58,11 @@
                   <div class="listing__body">
                     <header class="listing__header">
                       <h2 class="listing__heading"><span>{{ child.value.name }}</span></h2>
-                      <img class="listing__body-img" src="{{ organisationlogo.url }}" alt="{{ organisationlogo.alt }}">
+                      {% if organisationlogo %}
+                        <img class="listing__body-img" src="{{ organisationlogo.url }}" alt="{{ organisationlogo.alt }}">
+                      {% else %}
+                        <img class="listing__body-img" src="/static/assets/img/logo.png" alt="IATI logo">
+                      {% endif %}
                       <ul class="listing__metadata">
                         <li class="listing__metadata__item">{{ child.value.IATI_role }}</li>
                         <li class="listing__metadata__item">{{ child.value.external_role }}</li>
