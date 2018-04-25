@@ -22,7 +22,7 @@ class AboutPage(AbstractContentPage):
 class AboutSubPage(AbstractContentPage):
     """A model for generic About subpages."""
 
-    subpage_types = ['about.AboutSubPage']
+    subpage_types = ['about.AboutSubPage', 'about.PeoplePage']
 
     multilingual_field_panels = [
         InlinePanel('about_sub_page_documents', label='About subpage attachments'),
@@ -35,7 +35,9 @@ class AboutSubPageDocument(Orderable):
     page = ParentalKey(AboutSubPage, related_name='about_sub_page_documents')
     document = models.ForeignKey(
         'wagtaildocs.Document',
-        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
         related_name='+'
     )
 
@@ -62,7 +64,7 @@ class CaseStudyIndexPage(AbstractIndexPage):
 
         """
         children = self.case_studies
-        paginated_children = self.paginate(request, children, 3)
+        paginated_children = self.paginate(request, children, max_results=3)
         context = super(CaseStudyIndexPage, self).get_context(request)
         context['case_studies'] = paginated_children
         return context
@@ -79,7 +81,8 @@ class CaseStudyPage(AbstractContentPage):
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        related_name='+'
+        related_name='+',
+        help_text='This is the image that will be displayed for the case study on the Case Studies list page.'
     )
 
     multilingual_field_panels = [
@@ -94,7 +97,9 @@ class CaseStudyDocument(Orderable):
     page = ParentalKey(CaseStudyPage, related_name='case_study_documents')
     document = models.ForeignKey(
         'wagtaildocs.Document',
-        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
         related_name='+'
     )
     panels = [
@@ -103,9 +108,9 @@ class CaseStudyDocument(Orderable):
 
 
 class HistoryDateBlock(StreamBlock):
-    """A block for History page info."""
+    """A block for History event card along the timeline which is shown on the HistoryPage."""
 
-    date_block_editor = StructBlock([
+    event_block_editor = StructBlock([
         ('heading', CharBlock(required=False, max_length=100)),
         ('description', TextBlock(required=False))
     ])
@@ -116,7 +121,7 @@ class HistoryPage(AbstractContentPage):
 
     subpage_types = []
 
-    date_panel = StreamField(HistoryDateBlock, null=True, blank=True)
+    timeline_editor = StreamField(HistoryDateBlock, null=True, blank=True)
 
     translation_fields = AbstractContentPage.translation_fields + ['date_panel']
 
