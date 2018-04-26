@@ -52,7 +52,7 @@
                   </ul>
                 </li>
               {% else %}
-                <li class="navigation-secondary__item"><a href="{% slugurl_trans aunt.item.slug %}">{% if aunt.heading %}{{ aunt.heading }}{% else %}{{ aunt.title }}{% endif %}</a></li>
+                <li class="navigation-secondary__item"><a href="{% slugurl_trans aunt.slug %}">{% if aunt.heading %}{{ aunt.heading }}{% else %}{{ aunt.title }}{% endif %}</a></li>
               {% endif %}
             {% endfor %}
           {% endif %}
