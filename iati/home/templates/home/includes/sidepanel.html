@@ -8,51 +8,51 @@
     <nav class="navigation-secondary" id="navigation-secondary">
         <ul class="navigation-secondary__list">
           {% if self.depth == 3 %}
-            {% if self.menu_order.all|length > 0 %}
-              {% for item in self.menu_order.all %}
-                <li class="navigation-secondary__item"><a href="{% slugurl_trans item.item.slug %}">{% if item.item.specific.heading %}{{ item.item.specific.heading }}{% else %}{{ item.item.title }}{% endif %}</a></li>
+            {% if self.get_children.specific.live|length > 0 %}
+              {% for item in self.get_children.specific.live %}
+                <li class="navigation-secondary__item"><a href="{% slugurl_trans item.slug %}">{% if item.heading %}{{ item.heading }}{% else %}{{ item.title }}{% endif %}</a></li>
               {% endfor %}
             {% endif %}
           {% elif self.depth == 4 %}
-            {% for sibling in self.get_parent.menu_order.all %}
+            {% for sibling in self.get_parent.get_children.specific.live %}
               {% if sibling.pk == self.pk %}
-                <li class="navigation-secondary__item navigation-secondary__item--active"><a href="">{% if sibling.item.specific.heading %}{{ sibling.item.specific.heading }}{% else %}{{ sibling.item.title }}{% endif %}</a>
-                  {% if self.menu_order.all|length > 0 %}
+                <li class="navigation-secondary__item navigation-secondary__item--active"><a href="">{% if sibling.heading %}{{ sibling.heading }}{% else %}{{ sibling.title }}{% endif %}</a>
+                  {% if self.get_children.specific.live|length > 0 %}
                     <ul class="navigation-secondary__child">
-                      {% for item in self.menu_order.all %}
-                        <li class="navigation-secondary__child__item"><a href="{% slugurl_trans item.item.slug %}">{% if item.item.specific.heading %}{{ item.item.specific.heading }}{% else %}{{ item.item.title }}{% endif %}</a></li>
+                      {% for item in self.get_children.specific.live %}
+                        <li class="navigation-secondary__child__item"><a href="{% slugurl_trans item.slug %}">{% if item.heading %}{{ item.heading }}{% else %}{{ item.title }}{% endif %}</a></li>
                       {% endfor %}
                     </ul>
                   {% endif %}
                 </li>
               {% else %}
-                <li class="navigation-secondary__item"><a href="{% slugurl_trans sibling.item.slug %}">{% if sibling.item.specific.heading %}{{ sibling.item.specific.heading }}{% else %}{{ sibling.item.title }}{% endif %}</a></li>
+                <li class="navigation-secondary__item"><a href="{% slugurl_trans sibling.slug %}">{% if sibling.heading %}{{ sibling.heading }}{% else %}{{ sibling.title }}{% endif %}</a></li>
               {% endif %}
             {% endfor %}
           {% elif self.depth >= 5 %}
-            {% for aunt in self.get_parent.get_parent.menu_order.all %}
+            {% for aunt in self.get_parent.get_parent.get_children.specific.live %}
               {% if aunt.pk == self.get_parent.pk %}
-                <li class="navigation-secondary__item"><a href="{% slugurl_trans aunt.item.slug %}">{% if aunt.item.specific.heading %}{{ aunt.item.specific.heading }}{% else %}{{ aunt.item.title }}{% endif %}</a>
+                <li class="navigation-secondary__item"><a href="{% slugurl_trans aunt.slug %}">{% if aunt.heading %}{{ aunt.heading }}{% else %}{{ aunt.title }}{% endif %}</a>
                   <ul class="navigation-secondary__child">
-                    {% for sibling in self.get_parent.menu_order.all %}
+                    {% for sibling in self.get_parent.get_children.specific.live %}
                       {% if sibling.pk == self.pk %}
-                        <li class="navigation-secondary__child__item navigation-secondary__child__item--active"><a href="">{% if sibling.item.specific.heading %}{{ sibling.item.specific.heading }}{% else %}{{ sibling.item.title }}{% endif %}</a>
-                          {% if self.menu_order.all|length > 0 %}
+                        <li class="navigation-secondary__child__item navigation-secondary__child__item--active"><a href="">{% if sibling.heading %}{{ sibling.heading }}{% else %}{{ sibling.title }}{% endif %}</a>
+                          {% if self.get_children.specific.live|length > 0 %}
                             <ul class="navigation-secondary__third-child">
-                              {% for item in self.menu_order.all %}
-                                <li class="navigation-secondary__third-child__item"><a href="{% slugurl_trans item.item.slug %}">{% if item.item.specific.heading %}{{ item.item.specific.heading }}{% else %}{{ item.item.title }}{% endif %}</a></li>
+                              {% for item in self.get_children.specific.live %}
+                                <li class="navigation-secondary__third-child__item"><a href="{% slugurl_trans item.slug %}">{% if item.heading %}{{ item.heading }}{% else %}{{ item.title }}{% endif %}</a></li>
                               {% endfor %}
                             </ul>
                           {% endif %}
                         </li>
                       {% else %}
-                        <li class="navigation-secondary__child__item"><a href="{% slugurl_trans sibling.item.slug %}">{% if sibling.item.specific.heading %}{{ sibling.item.specific.heading }}{% else %}{{ sibling.item.title }}{% endif %}</a></li>
+                        <li class="navigation-secondary__child__item"><a href="{% slugurl_trans sibling.slug %}">{% if sibling.heading %}{{ sibling.heading }}{% else %}{{ sibling.title }}{% endif %}</a></li>
                       {% endif %}
                     {% endfor %}
                   </ul>
                 </li>
               {% else %}
-                <li class="navigation-secondary__item"><a href="{% slugurl_trans aunt.item.slug %}">{% if aunt.item.specific.heading %}{{ aunt.item.specific.heading }}{% else %}{{ aunt.item.title }}{% endif %}</a></li>
+                <li class="navigation-secondary__item"><a href="{% slugurl_trans aunt.slug %}">{% if aunt.heading %}{{ aunt.heading }}{% else %}{{ aunt.title }}{% endif %}</a></li>
               {% endif %}
             {% endfor %}
           {% endif %}
