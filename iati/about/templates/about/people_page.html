@@ -61,7 +61,7 @@
                       {% if organisationlogo %}
                         <img class="listing__body-img" src="{{ organisationlogo.url }}" alt="{{ organisationlogo.alt }}">
                       {% else %}
-                        <img class="listing__body-img" src="/static/assets/img/logo.png" alt="IATI logo">
+                        <img class="listing__body-img" src="/static/assets/svg/source/logo-square.svg" alt="IATI logo">
                       {% endif %}
                       <ul class="listing__metadata">
                         <li class="listing__metadata__item">{{ child.value.IATI_role }}</li>
@@ -69,7 +69,7 @@
                       </ul>
                     </header>
                     <div class="listing__excerpt is-typeset">
-                      {{ profile.value.description }}
+                      {{ child.value.description }}
                     </div>
                     {% if child.value.IATI_constituency %}
                     <ul class="listing__metadata">
