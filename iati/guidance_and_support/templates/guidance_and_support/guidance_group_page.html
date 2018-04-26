@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block body_class %}body body--support{% endblock %}
+{% block body_id %}body-support{% endblock %}
+
+{% block content %}
+<div class="hero hero--minor">
+        <div class="row">
+            <div class="hero__caption">
+                <h1 class="hero__heading">Activity information</h1>
+
+            </div>
+            <div class="hero__emblem"></div>
+        </div>
+    </div>
+
+
+    <div class="l-standard">
+        <div class="row">
+            <div class="breadcrumb">
+    <ul>
+        <li><a aria-current="false" href="/">Breadcrumb item</a></li>
+        <li><a aria-current="true" href="/">Breadcrumb item</a></li>
+    </ul>
+</div>
+
+            <div class="is-typeset max-meter">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+            <h2 class="type-m type-m--trailer heading">In this section:</h2>
+            <div class="l-cards">
+
+                    <div class="card card--guidance ">
+
+    <h2 class="card__heading"><a href="#"><span>What data shoud I publish?</span></a></h2>
+    <p class="card__excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+</div>
+
+
+                    <div class="card card--guidance ">
+
+    <h2 class="card__heading"><a href="#"><span>How to use IATI reference?</span></a></h2>
+    <p class="card__excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+</div>
+
+
+                    <div class="card card--guidance ">
+
+    <h2 class="card__heading"><a href="#"><span>Activity information</span></a></h2>
+    <p class="card__excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+</div>
+
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
