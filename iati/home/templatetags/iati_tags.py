@@ -31,7 +31,8 @@ def default_page_url(context, default_page_name="home"):
         return ''
     return default_page.get_url(context['request'])
 
-@register.inclusion_tag("home/includes/translation_links.html",takes_context=True)
+
+@register.inclusion_tag("home/includes/translation_links.html", takes_context=True)
 def translation_links(context, calling_page):
     """Takes the inclusion template 'translation_links.html' and returns a snippet of HTML with links to the requesting page in all offered languages"""
     language_results = []

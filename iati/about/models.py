@@ -1,15 +1,17 @@
+from django import forms
+
 from django.db import models
 
-from wagtail.admin.edit_handlers import InlinePanel
+from wagtail.admin.edit_handlers import FieldPanel, InlinePanel
 from wagtail.core.blocks import CharBlock, StreamBlock, StructBlock, TextBlock
 from wagtail.core.fields import StreamField
-from wagtail.core.models import Orderable
+from wagtail.core.models import Orderable, Page
 from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.images.edit_handlers import ImageChooserPanel
 
 from modelcluster.fields import ParentalKey
-from home.models import AbstractContentPage, AbstractIndexPage, IATIStreamBlock, PullQuoteBlock
+from home.models import AbstractContentPage, AbstractIndexPage, PullQuoteBlock
 
 
 class AboutPage(AbstractContentPage):
@@ -18,6 +20,26 @@ class AboutPage(AbstractContentPage):
     parent_page_types = ['home.HomePage']
     subpage_types = ['about.AboutSubPage', 'about.CaseStudyIndexPage', 'about.HistoryPage', 'about.PeoplePage']
 
+    multilingual_field_panels = [
+        InlinePanel('menu_order', label="Menu orderings")
+    ]
+
+
+class ChildMenu(Orderable, models.Model):
+    page = ParentalKey(Page, related_name="menu_order")
+    item = models.OneToOneField(
+        Page,
+        on_delete=models.CASCADE,
+        primary_key=True,
+    )
+
+    panels = [
+        FieldPanel('item'),
+    ]
+
+    def __str__(self):
+        return self.item.title
+
 
 class AboutSubPage(AbstractContentPage):
     """A model for generic About subpages."""
@@ -25,8 +47,15 @@ class AboutSubPage(AbstractContentPage):
     subpage_types = ['about.AboutSubPage', 'about.PeoplePage']
 
     multilingual_field_panels = [
+        InlinePanel('menu_order', label="Menu orderings"),
         InlinePanel('about_sub_page_documents', label='About subpage attachments'),
     ]
+
+    def save(self, *args, **kwargs):
+        """Create a menu item snippet on save"""
+        super(AboutSubPage, self).save(*args, **kwargs)
+        parent_page = self.get_parent()
+        ChildMenu.objects.get_or_create(page=parent_page, item=self)
 
 
 class AboutSubPageDocument(Orderable):
@@ -69,6 +98,16 @@ class CaseStudyIndexPage(AbstractIndexPage):
         context['case_studies'] = paginated_children
         return context
 
+    multilingual_field_panels = [
+        InlinePanel('menu_order', label="Menu orderings")
+    ]
+
+    def save(self, *args, **kwargs):
+        """Create a menu item snippet on save"""
+        super(CaseStudyIndexPage, self).save(*args, **kwargs)
+        parent_page = self.get_parent()
+        ChildMenu.objects.get_or_create(page=parent_page, item=self)
+
 
 class CaseStudyPage(AbstractContentPage):
     """A model for Case Study pages."""
@@ -89,6 +128,12 @@ class CaseStudyPage(AbstractContentPage):
         ImageChooserPanel('feed_image'),
         InlinePanel('case_study_documents', label='Case study attachments'),
     ]
+
+    def save(self, *args, **kwargs):
+        """Create a menu item snippet on save"""
+        super(CaseStudyPage, self).save(*args, **kwargs)
+        parent_page = self.get_parent()
+        ChildMenu.objects.get_or_create(page=parent_page, item=self)
 
 
 class CaseStudyDocument(Orderable):
@@ -125,6 +170,12 @@ class HistoryPage(AbstractContentPage):
 
     translation_fields = AbstractContentPage.translation_fields + ['timeline_editor']
 
+    def save(self, *args, **kwargs):
+        """Create a menu item snippet on save"""
+        super(HistoryPage, self).save(*args, **kwargs)
+        parent_page = self.get_parent()
+        ChildMenu.objects.get_or_create(page=parent_page, item=self)
+
 
 class PeopleProfileBlock(StreamBlock):
     """A block for People profiles."""
@@ -150,3 +201,13 @@ class PeoplePage(AbstractContentPage):
     profile_content_editor = StreamField(PeopleProfileBlock, null=True, blank=True)
 
     translation_fields = AbstractContentPage.translation_fields + ['profile_content_editor']
+
+    multilingual_field_panels = [
+        InlinePanel('menu_order', label="Menu orderings")
+    ]
+
+    def save(self, *args, **kwargs):
+        """Create a menu item snippet on save"""
+        super(PeoplePage, self).save(*args, **kwargs)
+        parent_page = self.get_parent()
+        ChildMenu.objects.get_or_create(page=parent_page, item=self)
