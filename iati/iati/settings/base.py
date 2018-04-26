@@ -140,6 +140,10 @@ LANGUAGES = [
     ('pt', _('Portuguese')),
 ]
 
+ACTIVE_LANGUAGES = [
+    ('en', _('English')),
+]
+
 TIME_ZONE = 'UTC'
 
 USE_I18N = True

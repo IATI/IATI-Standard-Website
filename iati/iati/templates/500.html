@@ -1,13 +1,4 @@
-{% extends "base.html" %}
+{% extends "error-base.html" %}
 
-{% block body_class %}body body--error{% endblock %}
-{% block body_id %}body-error{% endblock %}
-
-{% block content %}
-<div class="l-error">
-  <div class="row">
-    <h1 class="type-xl type-xl--trailer heading">500 error</h1>
-    <p class="para">Something technical has gone wrong. It's not your fault. We've been notified and this page will be back soon.</p>
-  </div>
-</div>
-{% endblock %}
+{% block h1 %}500 error{% endblock %}
+{% block p %}Something technical has gone wrong. It's not your fault. We've been notified and this page will be back soon.{% endblock %}
