@@ -47,19 +47,17 @@ def translation_links(context, calling_page):
 
 def discover_tree_recursive(current_page, calling_page):
     parent_menu = []
-    if current_page.depth > calling_page.depth:
-        return parent_menu
-    for child in current_page.get_children().specific().live():
+    for child in current_page.get_children().live().specific():
         page_dict = {
-            'page_title': child.heading if child.heading else child.page_title,
+            'page_title': child.heading if child.heading else child.title,
             'page_slug': child.slug,
             'page_depth': child.depth,
-            'is_active': (current_page in calling_page.get_ancestors()) or (current_page == calling_page)
+            'is_active': (child in calling_page.get_ancestors().specific()) or (child == calling_page)
         }
         parent_menu.append(page_dict)
         if page_dict['is_active']:
             child_menu = discover_tree_recursive(child, calling_page)
-            parent_menu.append(child_menu)
+            parent_menu = parent_menu + child_menu
     return parent_menu
 
 
@@ -70,7 +68,7 @@ def side_panel(calling_page):
         main_section = calling_page
     else:
         home_page = HomePage.objects.live().first()
-        main_section = home_page.get_children().ancestor_of(calling_page).live().first().specific()
+        main_section = home_page.get_children().ancestor_of(calling_page).live().first().specific
 
     menu_to_display = discover_tree_recursive(main_section, calling_page)
     return {"menu_to_display": menu_to_display}

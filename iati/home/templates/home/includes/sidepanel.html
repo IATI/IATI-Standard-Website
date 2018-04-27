@@ -12,8 +12,10 @@
               {% if item.page_depth == 4 %}
                 navigation-secondary__item {% if item.is_active %}navigation-secondary__item--active{% endif %}
               {% elif item.page_depth == 5 %}
-                navigation-secondary__child_item {% if item.is_active %}navigation-secondary__child_item--active{% endif %}
+                navigation-secondary__item
+                navigation-secondary__child__item {% if item.is_active %}navigation-secondary__child_item--active{% endif %}
               {% elif item.page_depth > 5 %}
+                navigation-secondary__item
                 navigation-secondary__third-child__item {% if item.is_active %}navigation-secondary__third-child__item--active{% endif %}
               {% endif %}
             "
