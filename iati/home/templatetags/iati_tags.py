@@ -11,6 +11,8 @@ from django.conf import settings
 from wagtail_modeltranslation.contextlib import use_language
 from wagtail.core.templatetags.wagtailcore_tags import pageurl
 
+import pdb
+
 register = template.Library()
 
 @register.simple_tag(takes_context=True)
@@ -43,3 +45,68 @@ def translation_links(context, calling_page):
     return {
         'languages': language_results,
     }
+
+
+def discover_tree_recursive(current_page, calling_page):
+    parent_menu = []
+    if current_page.depth > calling_page.depth:
+        return parent_menu
+    for child in current_page.get_children().specific().live():
+        page_dict = {
+            'page_title': child.heading if child.heading else child.page_title,
+            'page_slug': child.slug,
+            'page_depth': child.depth,
+            'is_active': (current_page in calling_page.get_ancestors()) or (current_page == calling_page)
+        }
+        parent_menu.append(page_dict)
+        if page_dict['is_active']:
+            child_menu = discover_tree_recursive(child, calling_page)
+        return parent_menu + child_menu
+
+
+@register.inclusion_tag('home/includes/sidepanel.html')
+def side_panel(calling_page):
+    """Returns the side panel given the about hierarchy"""
+    if calling_page.depth <= 3:  # If the page where this is called is already a main section of the site (e.g. About page)
+        main_section = calling_page
+    else:
+        home_page = HomePage.objects.live().first()
+        main_section = home_page.get_children().ancestor_of(calling_page).live().first().specific()
+
+    menu_to_display = discover_tree_recursive(main_section, calling_page)
+    pdb.set_trace()
+
+    # [
+    #     {
+    #         'page_title': 'Why aid transparency matters',
+    #         'page_slug': 'why_aid_matters',
+    #         'page_depth': 4,
+    #         'is_active': False
+    #     },
+    #     {
+    #         'page_title': 'Governance',
+    #         'page_slug': 'governance',
+    #         'page_depth': 4,
+    #         'is_active': True
+    #     },
+    #     {
+    #         'page_title': 'IATI',
+    #         'page_slug': 'governance-iati',
+    #         'page_depth': 5,
+    #         'is_active': True
+    #     },
+    #     {
+    #         'page_title': 'UNDP',
+    #         'page_slug': 'governance-undp',
+    #         'page_depth': 5,
+    #         'is_active': False
+    #     },
+    #     {
+    #         'page_title': 'People',
+    #         'page_slug': 'people',
+    #         'page_depth': 4,
+    #         'is_active': False
+    #     },
+    # ]
+
+    return {"ancestors_children": main_section.menu_order.all, "calling_page": calling_page}
