@@ -59,12 +59,13 @@ def discover_tree_recursive(current_page, calling_page):
         parent_menu.append(page_dict)
         if page_dict['is_active']:
             child_menu = discover_tree_recursive(child, calling_page)
-        return parent_menu + child_menu
+            parent_menu.append(child_menu)
+    return parent_menu
 
 
 @register.inclusion_tag('home/includes/sidepanel.html')
 def side_panel(calling_page):
-    """Returns the side panel given the about hierarchy"""
+    """Return the side panel given the page hierarchy."""
     if calling_page.depth <= 3:  # If the page where this is called is already a main section of the site (e.g. About page)
         main_section = calling_page
     else:
