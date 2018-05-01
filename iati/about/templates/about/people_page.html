@@ -43,12 +43,11 @@
                   <p>{{ child.value.quote }}</p>
                 </blockquote>
               {% elif child.block_type == "profile_editor" %}
-                {% image child.value.profile_picture max-600x600 as profilepicture %}
-                {% image child.value.organisation_logo max-80x30 as organisationlogo %}
                 <article class="listing listing--article listing--people">
                   <aside class="listing__aside">
                     <div class="listing__media">
-                      {% if profilepicture %}
+                      {% if child.value.profile_picture %}
+                        {% image child.value.profile_picture max-600x600 as profilepicture %}
                         <img src="{{ profilepicture.url }}" alt="{{ profilepicture.alt }}">
                       {% else %}
                         <img src="/static/assets/img/portrait.png" alt="placeholder portrait">
@@ -58,10 +57,11 @@
                   <div class="listing__body">
                     <header class="listing__header">
                       <h2 class="listing__heading"><span>{{ child.value.name }}</span></h2>
-                      {% if organisationlogo %}
+                      {% if child.value.organisation_logo %}
+                        {% image child.value.organisation_logo max-80x30 as organisationlogo %}
                         <img class="listing__body-img" src="{{ organisationlogo.url }}" alt="{{ organisationlogo.alt }}">
                       {% else %}
-                        <img class="listing__body-img" src="/static/assets/img/logo.png" alt="IATI logo">
+                        <img class="listing__body-img" src="/static/assets/svg/source/logo-square.svg" alt="IATI logo">
                       {% endif %}
                       <ul class="listing__metadata">
                         <li class="listing__metadata__item">{{ child.value.IATI_role }}</li>
@@ -69,7 +69,7 @@
                       </ul>
                     </header>
                     <div class="listing__excerpt is-typeset">
-                      {{ profile.value.description }}
+                      {{ child.value.description }}
                     </div>
                     {% if child.value.IATI_constituency %}
                     <ul class="listing__metadata">
