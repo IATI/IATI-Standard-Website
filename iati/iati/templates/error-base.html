@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block body_class %}body body--error{% endblock %}
+{% block body_id %}body-error{% endblock %}
+
+{% block content %}
+<div class="l-error">
+  <div class="row">
+    <h1 class="type-xl type-xl--trailer heading">{% block h1 %}{% endblock %}</h1>
+    <p class="para">{% block p %}{% endblock %}</p>
+  </div>
+</div>
+{% endblock %}
