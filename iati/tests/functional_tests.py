@@ -1,4 +1,4 @@
-# import pytest
+import pytest
 
 
 localhost = 'http://127.0.0.1:8000/'
@@ -21,6 +21,14 @@ def test_home_page_exists(browser):
     logo.click()
     assert past_url == browser.url
     browser.quit()
+
+@pytest.mark.parametrize("main_section",[
+    "about", "contact", "events", "news", "support"
+])
+def test_top_menu(browser, main_section):
+    browser.visit(localhost)
+    browser.click_link_by_id("section-{}".format(main_section))
+    assert browser.find_by_css("body").first.has_class("body--{}".format(main_section))
 
 # def test_about_page_exists(browser):
 #     """A test to check for the parent about page."""
