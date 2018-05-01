@@ -1,5 +1,5 @@
+import os
 import pytest
-
 
 localhost = 'http://127.0.0.1:8000/'
 # def test_multiple_browsers(browser):
@@ -29,6 +29,25 @@ def test_top_menu(browser, main_section):
     browser.visit(localhost)
     browser.click_link_by_id("section-{}".format(main_section))
     assert browser.find_by_css("body").first.has_class("body--{}".format(main_section))
+
+
+def test_admin_login(session_browser):
+    session_browser.visit(localhost+'admin/')
+    session_browser.fill('username', os.environ['DJANGO_ADMIN_USER'])
+    session_browser.fill('password', os.environ['DJANGO_ADMIN_PASS'])
+    sign_in_button = session_browser.find_by_css("button").first
+    sign_in_button.click()
+    # The page loaded
+    assert session_browser.status_code.code == 200
+    # And we can see the wagtail bird (we logged in)
+    assert session_browser.find_by_xpath("//img[@class='wagtail-logo wagtail-logo__body']").first.visible
+
+
+def test_session_browser_subsequent(session_browser):
+    # Is this browser still logged in?
+    session_browser.visit(localhost)
+    # The wagtail widget is at the bottom of the home page
+    assert session_browser.find_by_xpath("//div[@class='wagtail-icon wagtail-icon-wagtail wagtail-userbar-trigger']").first.visible
 
 # def test_about_page_exists(browser):
 #     """A test to check for the parent about page."""
