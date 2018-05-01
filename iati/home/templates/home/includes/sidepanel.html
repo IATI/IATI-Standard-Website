@@ -9,11 +9,14 @@
         <ul class="navigation-secondary__list">
           {% for item in menu_to_display %}
             <li class="
+              {# Pages with depth 4 are the direct children of the main section #}
               {% if item.page_depth == 4 %}
                 navigation-secondary__item {% if item.is_active %}navigation-secondary__item--active{% endif %}
+              {# Pages with depth 5 are the children of those direct children, classed to appear in dark pink #}
               {% elif item.page_depth == 5 %}
                 navigation-secondary__item
                 navigation-secondary__child__item {% if item.is_active %}navigation-secondary__child__item--active{% endif %}
+              {# Pages with depth greater than 5 are the grandchildren of the main section, classed to appear in light pink #}
               {% elif item.page_depth > 5 %}
                 navigation-secondary__item
                 navigation-secondary__third-child__item {% if item.is_active %}navigation-secondary__third-child__item--active{% endif %}
