@@ -1,15 +1,17 @@
+from django import forms
+
 from django.db import models
 
-from wagtail.admin.edit_handlers import InlinePanel
+from wagtail.admin.edit_handlers import FieldPanel, InlinePanel
 from wagtail.core.blocks import CharBlock, StreamBlock, StructBlock, TextBlock
 from wagtail.core.fields import StreamField
-from wagtail.core.models import Orderable
+from wagtail.core.models import Orderable, Page
 from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.images.edit_handlers import ImageChooserPanel
 
 from modelcluster.fields import ParentalKey
-from home.models import AbstractContentPage, AbstractIndexPage, IATIStreamBlock, PullQuoteBlock
+from home.models import AbstractContentPage, AbstractIndexPage, PullQuoteBlock
 
 
 class AboutPage(AbstractContentPage):
