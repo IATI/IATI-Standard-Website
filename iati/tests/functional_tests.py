@@ -11,11 +11,12 @@ localhost = 'http://127.0.0.1:8000/'
 def test_home_page_exists(browser):
     """A test to check for the existence of the home page."""
     browser.visit(localhost)
-    assert browser.title == 'Home'
-    # Assert logo is visible
+    # 200 HTTP code
+    assert browser.status_code.code == 200
+    # Logo is visible
     logo = browser.find_by_css("a.branding").first
     assert logo.visible
-    # Assert the link on the logo is the same as the current page
+    # The link on the logo is the same as the current page
     past_url = browser.url
     logo.click()
     assert past_url == browser.url
