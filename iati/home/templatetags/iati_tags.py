@@ -46,6 +46,9 @@ def translation_links(context, calling_page):
 
 
 def discover_tree_recursive(current_page, calling_page):
+    """Discover page hierarchy from the page this function is called on, to the top of the main section.
+    A recursive function that discovers children if the current page is an ancestor of the page we want to draw the hierarchy to.
+    Return a flat list of dictionaries that allows the template to draw the menu linearly, rather than hierarchically."""
     parent_menu = []
     for child in current_page.get_children().live().specific():
         page_dict = {
