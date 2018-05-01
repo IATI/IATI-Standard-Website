@@ -16,7 +16,9 @@ def test_home_page_exists(browser):
     logo = browser.find_by_css("a.branding").first
     assert logo.visible
     # Assert the link on the logo is the same as the current page
-    assert logo._element.get_property("href") == browser.url
+    past_url = browser.url
+    logo.click()
+    assert past_url == browser.url
     browser.quit()
 
 # def test_about_page_exists(browser):
