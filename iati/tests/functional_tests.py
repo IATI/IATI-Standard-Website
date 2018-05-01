@@ -1,4 +1,5 @@
 # import pytest
+import pdb
 
 
 localhost = 'http://127.0.0.1:8000/'
@@ -11,8 +12,12 @@ localhost = 'http://127.0.0.1:8000/'
 def test_home_page_exists(browser):
     """A test to check for the existence of the home page."""
     browser.visit(localhost)
-    assert browser.url == localhost + 'en/'
     assert browser.title == 'Home'
+    # Assert logo is visible
+    logo = browser.find_by_css("a.branding").first
+    assert logo.visible
+    # Assert the link on the logo is the same as the current page
+    assert logo._element.get_property("href") == browser.url
     browser.quit()
 
 # def test_about_page_exists(browser):
