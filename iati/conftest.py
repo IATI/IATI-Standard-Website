@@ -6,6 +6,6 @@ from splinter import Browser
     'chrome',
     'firefox'
 ])
-def browser(request):
+def multibrowser(request):
     """Override splinter webdriver."""
     return Browser(request.param)
