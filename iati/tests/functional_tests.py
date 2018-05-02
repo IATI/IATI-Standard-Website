@@ -1,6 +1,6 @@
 """A module for functional tests."""
-import os
 import pytest
+from iati.settings.local import DJANGO_ADMIN_USER, DJANGO_ADMIN_PASS
 
 LOCALHOST = 'http://127.0.0.1:8000/'
 
@@ -60,8 +60,8 @@ class TestAdminLogin():
 
         """
         browser.visit(LOCALHOST+'admin/')
-        browser.fill('username', os.environ['DJANGO_ADMIN_USER'])
-        browser.fill('password', os.environ['DJANGO_ADMIN_PASS'])
+        browser.fill('username', DJANGO_ADMIN_USER)
+        browser.fill('password', DJANGO_ADMIN_PASS)
         sign_in_button = browser.find_by_css("button").first
         sign_in_button.click()
 
