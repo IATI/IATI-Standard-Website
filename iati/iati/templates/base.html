@@ -78,13 +78,13 @@
 
 
 
-					<li id="section-standard" class='navigation-primary__item'><a href="{% default_page_url %}">IATI Standard</a></li>
+					<li id="section-standard" class='navigation-primary__item'><a href="#" title="Under construction">IATI Standard</a></li>
 
 
 
 
 
-					<li id="section-data" class='navigation-primary__item'><a href="{% default_page_url %}">Data</a></li>
+					<li id="section-data" class='navigation-primary__item'><a href="#" title="Under construction">Data</a></li>
 
 
 
@@ -96,7 +96,7 @@
 
 
 
-					<li id="section-community" class='navigation-primary__item'><a href="{% default_page_url %}">Community</a></li>
+					<li id="section-community" class='navigation-primary__item'><a href="#" title="Under construction">Community</a></li>
 
 
 
@@ -115,7 +115,6 @@
 
 	</ul>
 </nav>
-{% translation_links calling_page=self %}
 </header>
 
 
@@ -147,21 +146,19 @@
 					<h4 class="footer__heading">Useful links</h4>
 					<ul class="footer__list">
 						<li><a href="{% default_page_url 'contact' %}">Contact</a></li>
-						<li><a href="{% default_page_url %}">Terms and conditions</a></li>
-						<li><a href="{% default_page_url %}">Privacy policy</a></li>
+						<li><a href="#" title="Under construction">Terms and conditions</a></li>
+						<li><a href="#" title="Under construction">Privacy policy</a></li>
 					</ul>
 				</div>
 				<div class="l-3up__col">
 					<h4 class="footer__heading">Newsletter</h4>
-					<form>
 						<div class="form-field">
 							<label for="newsletter" id="newsletter" class="form-label">Sign up to our newsletter</label>
 							<div class="form-flex">
 								<input id="newsletter" class="form-item" name="newsletter" type="text" placeholder="Enter email address">
-								<button type="submit" class="button" name="button">Sign up</button>
+								<button class="button" name="button" onclick="window.alert('Newsletter sign-up functionality coming soon!')">Sign up</button>
 							</div>
 						</div>
-					</form>
 				</div>
 			</div>
 		</div>
