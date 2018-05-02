@@ -127,4 +127,4 @@ media/
 
 #pytest-splinter files to ignore
 .pytest_cache/
-iati.tests.functional_tests/
+iati.tests.functional_tests*
