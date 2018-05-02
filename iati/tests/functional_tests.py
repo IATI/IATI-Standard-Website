@@ -52,22 +52,21 @@ class TestTopMenu():
 class TestAdminLogin():
     """A container for tests that check admins can login to the CMS."""
 
-    def test_admin_login(self, session_browser):
-        """Add a docstring."""
-        session_browser.visit(LOCALHOST+'admin/')
-        session_browser.fill('username', os.environ['DJANGO_ADMIN_USER'])
-        session_browser.fill('password', os.environ['DJANGO_ADMIN_PASS'])
-        sign_in_button = session_browser.find_by_css("button").first
+    def admin_login(self, browser):
+        """Visit the admin page, enter login details, and locate the sign in button.
+
+        TODO:
+            Turn this into a fixture.
+
+        """
+        browser.visit(LOCALHOST+'admin/')
+        browser.fill('username', os.environ['DJANGO_ADMIN_USER'])
+        browser.fill('password', os.environ['DJANGO_ADMIN_PASS'])
+        sign_in_button = browser.find_by_css("button").first
         sign_in_button.click()
-    #     # The page loaded
-        assert session_browser.status_code.code == 200
-    #     # And we can see the wagtail bird (we logged in)
-        assert session_browser.find_by_xpath("//img[@class='wagtail-logo wagtail-logo__body']").first.visible
 
-
-    def test_session_browser_subsequent(self, session_browser):
-        """Add a docstring."""
-        # Is this browser still logged in?
-        session_browser.visit(LOCALHOST)
-        # The wagtail widget is at the bottom of the home page
-        assert session_browser.find_by_xpath("//div[@class='wagtail-icon wagtail-icon-wagtail wagtail-userbar-trigger']").first.visible
+    def test_admin_login(self, browser):
+        """Login to the admin page and check the Wagtail CMS logo is on the page."""
+        self.admin_login(browser)
+        wagtail_logo = "//img[@class='wagtail-logo wagtail-logo__body']"
+        assert browser.find_by_xpath(wagtail_logo).first.visible
