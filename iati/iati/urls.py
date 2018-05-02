@@ -12,7 +12,7 @@ from wagtail.documents import urls as wagtaildocs_urls
 
 from search import views as search_views
 
-urlpatterns = [
+urlpatterns = [  # pylint: disable=invalid-name
     url(r'^django-admin/', admin.site.urls),
 
     url(r'^admin/', include(wagtailadmin_urls)),
