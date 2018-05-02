@@ -51,6 +51,6 @@ class TestAdminLogin():
     """A container for tests that check admins can login to the CMS."""
 
     def test_admin_login(self, admin_browser):
-        """Login to the admin page and check the Wagtail CMS logo is on the page."""
+        """Check the Wagtail CMS logo is on the logged in admin page."""
         wagtail_logo = "//img[@class='wagtail-logo wagtail-logo__body']"
         assert admin_browser.find_by_xpath(wagtail_logo).first.visible
