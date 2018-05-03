@@ -48,7 +48,7 @@ Tests are run using [pytest](https://pytest.org/) as it [provides a number of be
 pytest
 ```
 
-Code linting is performed using [pylint](https://github.com/PyCQA/pylint) (with the [pylint-django](https://github.com/PyCQA/pylint-django) plugin.
+Code linting is performed using [pylint](https://github.com/PyCQA/pylint) (with the [pylint-django](https://github.com/PyCQA/pylint-django) plugin).
 ```
 pylint iati/
 ```
