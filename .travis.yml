@@ -6,3 +6,4 @@ install:
 script:
   - pylint iati/
   - flake8 iati/
+  - pydocstyle iati/
