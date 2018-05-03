@@ -1,5 +1,5 @@
-"""Django manage.py"""
 #!/usr/bin/env python
+"""Django manage.py"""
 import os
 import sys
 
