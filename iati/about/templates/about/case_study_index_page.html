@@ -40,7 +40,7 @@
           {% endif %}
           <div class="case-study__panel">
             <h2 class="case-study__heading">
-              <a href=""><span>{{ case_study.heading }}</span></a>
+              <a href="{% slugurl_trans case_study.slug %}"><span>{{ case_study.heading }}</span></a>
             </h2>
             <p class="case-study__excerpt">{{ case_study.excerpt }}</p>
             <a href="{% slugurl_trans case_study.slug %}" class="button">Read more</a>
