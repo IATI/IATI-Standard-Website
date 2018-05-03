@@ -35,9 +35,42 @@
         {% block extra_css %}
             {# Override this in templates to add extra stylesheets #}
         {% endblock %}
+        {# For phase banner #}
+        <style>
+        .phase-banner{
+          padding:5px;
+          z-index: 9999;
+          position:fixed;
+          top: 0;
+          left: 0;
+          background-color: #F6F6F6;
+          width: 100%;
+          font-size: 16px;
+        }
+        .phase-tag{
+          display:inline-block;
+          font-size: 16px;
+          line-height:1.25;
+          margin: 0 8px 0 0;
+          padding: 2px 5px 0;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          text-decoration: none;
+          color: #fff;
+          background-color: #155366;
+        }
+        .ui-base{padding-top:35px;}
+        </style>
     </head>
 
     <body class="{% block body_class %}{% endblock %}" id="{% block body_id %}{% endblock %}">
+      <div class="phase-banner">
+        <p>
+          <strong class="phase-tag">ALPHA</strong>
+          <span>This is a new website – your <a href="https://iatitesting.typeform.com/to/GrdcRI?referral={{ self.url }}">feedback</a> will help us to improve it.</span>
+        </p>
+      </div>
         {% wagtailuserbar %}
         	<div class="ui-base">
 		<a href="#pagecontent" class="skiplink" data-js="skiplink">Skip to main content</a>
