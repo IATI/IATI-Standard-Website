@@ -29,12 +29,8 @@ pip install -r requirements_dev.txt
 createdb iati-website
 cp settings/local.py.example settings/local.py
 
-# Check database migrations work and execute
-python manage.py check
-python manage.py makemigrations
-python manage.py migrate
-
-# Perform additional migrations for translated fields
+# Make and perform Django migrations AND bespoke translations for translated fields
+# Note this will ask you to approve bespoke SQL commands
 python manage.py makemigrations_translation
 python manage.py migrate_translation
 
@@ -43,6 +39,7 @@ python manage.py createdefaultpages
 
 # Create an initial superuser
 python manage.py createsuperuser
+# Be sure to update your local.py file with the credentials you specify with this command
 
 # Run a development server
 python manage.py runserver
