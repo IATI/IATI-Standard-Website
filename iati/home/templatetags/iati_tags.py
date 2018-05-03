@@ -46,7 +46,9 @@ def translation_links(context, calling_page):
 
 
 def discover_tree_recursive(current_page, calling_page):
-    """
+    """Return the 'section sub-menu' page hierarchy from the point-of-view of the `calling_page`, to the top of the main section.
+    A recursive function that discovers children if the current page is an ancestor of the page we want to draw the hierarchy to.
+
     Args:
         current_page (Page): At any given level of recursion, the page which we're trying to relate to calling_page.
         At the first level, this starts at a main section, like the About Page, and follows the hierarchy down pages that are valid ancestors of calling_page.
