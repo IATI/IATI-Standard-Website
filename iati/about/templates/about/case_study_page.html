@@ -9,7 +9,7 @@
     <div class="max-meter">
       <div class="hero__caption">
         <h1 class="hero__heading">{{ page.heading }}</h1>
-        <p class="hero__subheading">{% if page.excerpt %}{{ page.excerpt }}{% endif %}</p>
+        <p class="hero__excerpt"{% if page.excerpt %}>{{ page.excerpt }}{% else %} style="margin-bottom:5em;">{% endif %}</p>
       </div>
     </div>
   </div>
