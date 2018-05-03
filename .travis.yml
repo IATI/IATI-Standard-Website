@@ -5,3 +5,4 @@ install:
   - pip install -r iati/requirements_dev.txt
 script:
   - pylint iati/
+  - flake8 iati/
