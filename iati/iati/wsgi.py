@@ -1,5 +1,4 @@
-"""
-WSGI config for iati project.
+"""WSGI config for iati project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
