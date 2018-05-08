@@ -39,6 +39,7 @@ python manage.py createdefaultpages
 
 # Create an initial superuser
 python manage.py createsuperuser
+# Be sure to update your local.py file with the credentials you specify with this command
 
 # Run a development server
 python manage.py runserver
