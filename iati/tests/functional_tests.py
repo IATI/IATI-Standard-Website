@@ -28,29 +28,3 @@ class TestHomePageExists():
         past_url = browser.url
         logo.click()
         assert past_url == browser.url
-
-
-class TestTopMenu():
-    """A container for tests that the top menu navigation works."""
-
-    @pytest.mark.parametrize('main_section', [
-        'about',
-        'contact',
-        'events',
-        'news',
-        'support'
-    ])
-    def test_top_menu(self, browser, main_section):
-        """Check links to default site pages in the top menu navigate to the expected page."""
-        browser.visit(LOCALHOST)
-        browser.click_link_by_id('section-{}'.format(main_section))
-        assert browser.find_by_css('body').first.has_class('body--{}'.format(main_section))
-
-
-class TestAdminLogin():
-    """A container for tests that check admins can login to the CMS."""
-
-    def test_admin_login(self, admin_browser):
-        """Check the Wagtail CMS logo is on the logged in admin page."""
-        wagtail_logo = '//img[@class="wagtail-logo wagtail-logo__body"]'
-        assert admin_browser.find_by_xpath(wagtail_logo).first.visible

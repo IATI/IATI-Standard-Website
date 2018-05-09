@@ -5,7 +5,7 @@ from django.core.management import call_command
 from iati.settings.local import DJANGO_ADMIN_USER, DJANGO_ADMIN_PASS
 from django.contrib.auth.models import User
 
-LOCALHOST = 'http://127.0.0.1:8000'
+LOCALHOST = 'http://127.0.0.1:8000/'
 os.environ['LIVE_SERVER_URL'] = LOCALHOST
 
 
