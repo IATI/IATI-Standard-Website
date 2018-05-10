@@ -3,7 +3,6 @@ import pytest
 from django.utils.text import slugify
 
 
-@pytest.mark.ignore_template_errors
 @pytest.mark.django_db()
 class TestAboutChildPageCreation():
     """A container for tests to check the ability to creat About child pages."""
