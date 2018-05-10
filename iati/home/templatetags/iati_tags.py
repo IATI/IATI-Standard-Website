@@ -14,7 +14,13 @@ register = template.Library()
 
 @register.simple_tag(takes_context=True)
 def default_page_url(context, default_page_name="home"):
-    """Return the relative url for a top-level default page."""
+    """Return the relative url for a top-level default page.
+
+    Todo:
+        Decide whether or not to check for contexts without request attributes.
+        During pytests, if you don't mark a test to ignore template errors iati_tags will cause failures.
+
+    """
     page_model_names = {
         'home': HomePage,
         'about': AboutPage,
