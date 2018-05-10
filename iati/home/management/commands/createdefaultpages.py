@@ -1,5 +1,4 @@
 from django.core.management.base import BaseCommand, CommandError
-from wagtail.core.models import Page, Site
 from home.models import HomePage
 from about.models import AboutPage
 from contact.models import ContactPage
@@ -7,14 +6,12 @@ from events.models import EventIndexPage
 from guidance_and_support.models import GuidanceAndSupportPage
 from news.models import NewsIndexPage
 
-from django.conf import settings
-
 
 class Command(BaseCommand):
     """A command for manage.py that first rectifies some database problems with the HomePage model created by wagtail-modeltranslation and then creates the top-level default pages from the infrastructure architecture.
 
-       The home_page needed a queryset update as well as its individual field update before the HomePage model was allowed to save in the CMS.
-       I believe this is because the update method bypasses the validation of the save method and writes directly to the database, but the model then needs to be updated with save.
+       The home_page needed a queryset update before the HomePage model is allowed to save in the CMS.
+       The update method bypasses the validation of the save method and writes directly to the database, but the child pages need their URLs updated with save.
 
        TODO:
        1. If wagtail-modeltranslation or django-modeltranslation update, this command may no longer need to edit the home page.
