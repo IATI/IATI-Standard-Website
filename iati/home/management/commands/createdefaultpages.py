@@ -1,4 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
+from wagtail.core.models import Page, Site
 from home.models import HomePage
 from about.models import AboutPage
 from contact.models import ContactPage
@@ -25,15 +26,17 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         """The default function Django BaseCommand needs to run."""
         home_page_queryset = HomePage.objects.live()
+        home_page_queryset.update(
+            slug_en="home",
+            slug="home",
+            url_path_en="/home/",
+            url_path="/home/",
+            title_en="Home",
+            title="Home"
+        )
         home_page = home_page_queryset.first()
         if home_page is not None:
-            home_page_queryset.update(url_path_en="/home/", url_path="/home/")
-            home_page.title_en = "Home"
-            home_page.slug_en = "home"
-            home_page.url_path_en = "/home/"
-            home_page.title = "Home"
-            home_page.slug = "home"
-            home_page.url_path = "/home/"
+            home_page.save()
 
             self.stdout.write(self.style.SUCCESS('Successfully fixed home page...'))
 
@@ -59,6 +62,5 @@ class Command(BaseCommand):
                     home_page.add_child(instance=default_page_instance)
                     default_page_instance.save_revision().publish()
 
-            home_page.save()
 
             self.stdout.write(self.style.SUCCESS('Successfully checked/created default pages.'))
