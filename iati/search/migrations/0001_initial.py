@@ -8,6 +8,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        # migrations.RunSQL('ALTER TABLE wagtailsearch_editorspick DROP CONSTRAINT wagtailsearch_editor_page_id_28cbc274_fk_wagtailco;'),
         migrations.RunSQL('DROP TABLE IF EXISTS wagtailsearch_editorspick CASCADE;'),
     ]
