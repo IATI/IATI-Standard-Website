@@ -28,4 +28,4 @@ class TestAboutChildPageCreation():
         admin_browser.find_by_text('Publish').click()
         admin_browser.find_by_text(child_page['title']).mouse_over()
         admin_browser.find_by_text('View live').click()
-        assert admin_browser.find_by_text(child_page['title'])
+        assert admin_browser.is_text_present(child_page['title'])
