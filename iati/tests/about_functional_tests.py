@@ -68,13 +68,16 @@ class TestCaseStudyIndexChildPageCreation():
 
     def setup_case_study_index_page(self, admin_browser):
         """Create a Case Study Index page as a child of the About page."""
-        create_about_child_page(admin_browser, CASE_STUDY_INDEX_PAGE['page_type'], CASE_STUDY_INDEX_PAGE['title'])
+        case_study_index_page_title = 'test case study index page 2'
+        create_about_child_page(admin_browser, CASE_STUDY_INDEX_PAGE['page_type'], case_study_index_page_title)
 
     def test_can_create_case_study_pages(self, admin_browser):
         """Check that a Case Study page can be created as a child of the Case Study Index page."""
         self.setup_case_study_index_page(admin_browser)
         admin_browser.find_by_xpath('//td[@class="no-children"]').click()
-        enter_page_content(admin_browser, CASE_STUDY_INDEX_PAGE['page_type'], CASE_STUDY_INDEX_PAGE['title'])
+        case_study_page_type = 'Case study page'
+        case_study_page_title = 'test case study page'
+        enter_page_content(admin_browser, case_study_page_type, case_study_page_title)
         publish_page(admin_browser)
-        view_live_page(admin_browser, CASE_STUDY_INDEX_PAGE['title'])
-        assert admin_browser.is_text_present(CASE_STUDY_INDEX_PAGE['title'])
+        view_live_page(admin_browser, case_study_page_title)
+        assert admin_browser.is_text_present(case_study_page_title)
