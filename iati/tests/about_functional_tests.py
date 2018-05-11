@@ -10,16 +10,16 @@ def navigate_to_about_cms(admin_browser):
     admin_browser.find_by_text('About').click()
 
 
-# def create_a_child_page(admin_browser, page_type, page_title):
-#     """Create a child page in the CMS."""
-#     admin_browser.find_by_text('Add child page').click()
-#     admin_browser.find_by_text(page_type).click()
-#     admin_browser.find_by_text('English').click()
-#     admin_browser.fill('title_en', page_title)
-#     admin_browser.find_by_text('Promote').click()
-#     admin_browser.fill('slug_en', slugify(page_title))
-#     admin_browser.find_by_xpath('//*[@class="dropdown-toggle icon icon-arrow-up"]').click()
-#     admin_browser.find_by_text('Publish').click()
+def create_a_child_page(admin_browser, page_type, page_title):
+    """Create a child page in the CMS."""
+    admin_browser.find_by_text('Add child page').click()
+    admin_browser.find_by_text(page_type).click()
+    admin_browser.find_by_text('English').click()
+    admin_browser.fill('title_en', page_title)
+    admin_browser.find_by_text('Promote').click()
+    admin_browser.fill('slug_en', slugify(page_title))
+    admin_browser.find_by_xpath('//*[@class="dropdown-toggle icon icon-arrow-up"]').click()
+    admin_browser.find_by_text('Publish').click()
 
 
 @pytest.mark.django_db()
