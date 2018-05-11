@@ -14,7 +14,13 @@ register = template.Library()
 
 @register.simple_tag(takes_context=True)
 def default_page_url(context, default_page_name="home"):
-    """Return the relative url for a top-level default page."""
+    """Return the relative url for a top-level default page.
+
+    Todo:
+        Decide whether or not to check for contexts without request attributes.
+        During pytests, if you don't mark a test to ignore template errors iati_tags will cause failures.
+
+    """
     page_model_names = {
         'home': HomePage,
         'about': AboutPage,
@@ -28,6 +34,8 @@ def default_page_url(context, default_page_name="home"):
 
     if default_page is None:
         return ''
+    if not hasattr(context, 'request'):
+        return ''
     return default_page.get_url(context['request'])
 
 
@@ -37,8 +45,9 @@ def translation_links(context, calling_page):
     language_results = []
     for language_code, language_name in settings.ACTIVE_LANGUAGES:
         with use_language(language_code):
-            language_url = pageurl(context, calling_page)
-            language_results.append({"code": language_code, "name": language_name, "url": language_url})
+            if hasattr(context, 'url'):
+                language_url = pageurl(context, calling_page)
+                language_results.append({"code": language_code, "name": language_name, "url": language_url})
 
     return {
         'languages': language_results,
