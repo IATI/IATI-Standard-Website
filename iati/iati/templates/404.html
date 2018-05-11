@@ -1,9 +1,4 @@
-{% extends "base.html" %}
+{% extends "error-base.html" %}
 
-{% block body_class %}template-404{% endblock %}
-
-{% block content %}
-    <h1>Page not found</h1>
-
-    <h2>Sorry, this page could not be found.</h2>
-{% endblock %}
+{% block h1 %}There's been an error{% endblock %}
+{% block p %}What you were looking for cannot be found.{% endblock %}

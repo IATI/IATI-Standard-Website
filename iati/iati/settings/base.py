@@ -29,6 +29,7 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 INSTALLED_APPS = [
     'wagtail_modeltranslation',
     'wagtail_modeltranslation.makemigrations',
+    'wagtail_modeltranslation.migrate',
     'home',
     'search',
     'about',
@@ -131,13 +132,17 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-gb'
+LANGUAGE_CODE = 'en'
 
 LANGUAGES = [
     ('en', _('English')),
     ('fr', _('French')),
     ('es', _('Spanish')),
     ('pt', _('Portuguese')),
+]
+
+ACTIVE_LANGUAGES = [
+    ('en', _('English')),
 ]
 
 TIME_ZONE = 'UTC'
