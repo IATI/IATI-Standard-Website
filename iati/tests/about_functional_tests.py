@@ -12,7 +12,7 @@ PEOPLE_PAGE = {'page_type': 'People page', 'title': 'test people page'}
 def navigate_to_about_cms(admin_browser):
     """Navigate to the About page section of the CMS."""
     admin_browser.click_link_by_text('Pages')
-    admin_browser.find_by_xpath('//*[@class="icon icon-arrow-right "]').click()
+    admin_browser.find_by_xpath('//span[@class="icon icon-arrow-right "]').click()
     admin_browser.find_by_text('About').click()
 
 
@@ -26,7 +26,7 @@ def enter_page_content(admin_browser, page_type, page_title):
 
 def publish_page(admin_browser):
     """Publish page created in the CMS."""
-    admin_browser.find_by_xpath('//*[@class="dropdown-toggle icon icon-arrow-up"]').click()
+    admin_browser.find_by_xpath('//div[@class="dropdown-toggle icon icon-arrow-up"]').click()
     admin_browser.find_by_text('Publish').click()
 
 
@@ -37,6 +37,12 @@ def create_about_child_page(admin_browser, page_type, page_title):
     admin_browser.find_by_text(page_type).click()
     enter_page_content(admin_browser, page_type, page_title)
     publish_page(admin_browser)
+
+
+def view_live_page(admin_browser, page_title):
+    """Navigate to the published page on the site."""
+    admin_browser.find_by_text(page_title).mouse_over()
+    admin_browser.find_by_text('View live').click()
 
 
 @pytest.mark.django_db()
@@ -52,8 +58,7 @@ class TestAboutChildPageCreation():
     def test_can_create_about_child_pages(self, admin_browser, child_page):
         """Check that when an about child page is created it appears in the website."""
         create_about_child_page(admin_browser, child_page['page_type'], child_page['title'])
-        admin_browser.find_by_text(child_page['title']).mouse_over()
-        admin_browser.find_by_text('View live').click()
+        view_live_page(admin_browser, child_page['title'])
         assert admin_browser.is_text_present(child_page['title'])
 
 
@@ -70,3 +75,6 @@ class TestCaseStudyIndexChildPageCreation():
         self.setup_case_study_index_page(admin_browser)
         admin_browser.find_by_xpath('//td[@class="no-children"]').click()
         enter_page_content(admin_browser, CASE_STUDY_INDEX_PAGE['page_type'], CASE_STUDY_INDEX_PAGE['title'])
+        publish_page(admin_browser)
+        view_live_page(admin_browser, CASE_STUDY_INDEX_PAGE['title'])
+        assert admin_browser.is_text_present(CASE_STUDY_INDEX_PAGE['title'])
