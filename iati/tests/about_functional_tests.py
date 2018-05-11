@@ -1,6 +1,6 @@
 """A module of functional tests for the about page and its sub pages."""
-import pytest
 from django.utils.text import slugify
+import pytest
 
 
 @pytest.mark.django_db()
@@ -14,7 +14,7 @@ class TestAboutChildPageCreation():
         {'page_type': 'People page', 'title': 'test people page'}
     ])
     def test_can_create_about_child_pages(self, admin_browser, child_page):
-        """Check that expected about child pages can be created."""
+        """Check that when an about child page is created it appears in the website."""
         admin_browser.click_link_by_text('Pages')
         admin_browser.find_by_xpath('//*[@class="icon icon-arrow-right "]').click()
         admin_browser.find_by_text('About').click()
@@ -26,4 +26,6 @@ class TestAboutChildPageCreation():
         admin_browser.fill('slug_en', slugify(child_page['title']))
         admin_browser.find_by_xpath('//*[@class="dropdown-toggle icon icon-arrow-up"]').click()
         admin_browser.find_by_text('Publish').click()
+        admin_browser.find_by_text(child_page['title']).mouse_over()
+        admin_browser.find_by_text('View live').click()
         assert admin_browser.find_by_text(child_page['title'])
