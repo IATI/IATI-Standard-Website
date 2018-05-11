@@ -5,7 +5,7 @@ import pytest
 
 @pytest.mark.django_db()
 class TestAboutChildPageCreation():
-    """A container for tests to check the ability to creat About child pages."""
+    """A container for tests to check the ability to create About child pages."""
 
     @pytest.mark.parametrize('child_page', [
         {'page_type': 'About sub page', 'title': 'test sub page'},
