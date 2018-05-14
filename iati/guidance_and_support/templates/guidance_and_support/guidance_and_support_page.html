@@ -8,9 +8,9 @@
 <div class="hero">
         <div class="row">
             <div class="hero__caption">
-                <h1 class="hero__heading">Guidance and support</h1>
+                <h1 class="hero__heading">{{ page.heading }}</h1>
 
-                    <p class="hero__excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+                    <p class="hero__excerpt">{{ page.excerpt }}</p>
 
             </div>
             <div class="hero__emblem">
@@ -23,73 +23,35 @@
     <div class="l-standard">
         <div class="row">
             <div class="max-meter max-meter--wide max-meter--center">
-                <h2 class="type-l type-l--trailer heading">IATI Publisher Guide</h2>
                 <div class="is-typeset">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                  {% if page.content_editor %}
+                    {% include "home/includes/streamfield.html" with content=page.content_editor %}
+                  {% endif %}
                 </div>
             	<div class="l-listing space-section-top">
-
-            			<article class="listing listing--guidance">
-	<aside class="listing__aside">
-		<div class="listing__media">
-			<img src="/static/assets/img/content-image3.jpg" alt="alt tag">
-		</div>
-	</aside>
-	<div class="listing__body">
-		<h2 class="listing__heading"><a href="#" title="Under construction"><span>Preparing your organisation</span></a></h2>
-		<div class="listing__excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-
-			<ul class="listing__list">
-				<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit</li>
-				<li>Officia deserunt mollit anim id est laborum.</li>
-				<li>Duis aute irure dolor in reprehenderit in voluptate</li>
-			</ul>
-
-		<a href="#" title="Under construction" class="button">Find out how to prepare your organisation</a>
-	</div>
-</article>
-
-
-            			<article class="listing listing--guidance">
-	<aside class="listing__aside">
-		<div class="listing__media">
-			<img src="/static/assets/img/content-image.jpg" alt="alt tag">
-		</div>
-	</aside>
-	<div class="listing__body">
-		<h2 class="listing__heading"><a href="#" title="Under construction"><span>Preparing your data</span></a></h2>
-		<div class="listing__excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-
-			<ul class="listing__list">
-				<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit</li>
-				<li>Officia deserunt mollit anim id est laborum.</li>
-				<li>Duis aute irure dolor in reprehenderit in voluptate</li>
-			</ul>
-
-		<a href="#" title="Under construction" class="button">Collating and preparing your data</a>
-	</div>
-</article>
-
-
-            			<article class="listing listing--guidance">
-	<aside class="listing__aside">
-		<div class="listing__media">
-			<img src="/static/assets/img/content-image2.jpg" alt="alt tag">
-		</div>
-	</aside>
-	<div class="listing__body">
-		<h2 class="listing__heading"><a href="#" title="Under construction"><span>Publish your data to the IATI Standard</span></a></h2>
-		<div class="listing__excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-
-			<ul class="listing__list">
-				<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit</li>
-				<li>Officia deserunt mollit anim id est laborum.</li>
-				<li>Duis aute irure dolor in reprehenderit in voluptate</li>
-			</ul>
-
-		<a href="#" title="Under construction" class="button">Publishing your data to the IATI Standard</a>
-	</div>
-</article>
+    {% for guidance_index in page.guidance_indexes %}
+      <article class="listing listing--guidance">
+      	<aside class="listing__aside">
+      		<div class="listing__media">
+            {% if guidance_index.feed_image %}
+             {% image guidance_index.feed_image width-300 as img %}
+             <img src="{{ img.url }}" alt="{{ img.title }}">
+            {% else %}
+      			<img src="/static/assets/img/image-placeholder.svg" alt="placeholder image">
+            {% endif %}
+      		</div>
+      	</aside>
+      	<div class="listing__body">
+      		<h2 class="listing__heading"><a href=""><span>{{ guidance_index.heading }}</span></a></h2>
+      		<div class="listing__excerpt is-typeset">
+            {% if guidance_index.feed_content %}
+              {% include "home/includes/streamfield.html" with content=guidance_index.feed_content %}
+            {% endif %}
+          </div>
+      		<a href="{% slugurl_trans guidance_index.slug %}" class="button">{{ guidance_index.feed_button_text }}</a>
+      	</div>
+      </article>
+    {% endfor %}
 
 
             	</div>
