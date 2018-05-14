@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtail_modeltranslation %}
 
 {% block body_class %}body body--support{% endblock %}
 {% block body_id %}body-support{% endblock %}
@@ -8,7 +8,9 @@
 <div class="hero hero--minor">
         <div class="row">
             <div class="hero__caption">
-                <h1 class="hero__heading">What data should I publish?</h1>
+              <h1 class="hero__heading">{{ page.heading }}</h1>
+
+                  <p class="hero__excerpt"{% if page.excerpt %}>{{ page.excerpt }}{% else %} style="margin-bottom:5em;">{% endif %}</p>
 
             </div>
             <div class="hero__emblem"></div>
@@ -20,80 +22,12 @@
 	<div class="l-sidebar">
 		<div class="l-sidebar__body">
 
-    <div class="breadcrumb">
-    <ul>
-        <li><a aria-current="false" href="/">Breadcrumb item</a></li>
-        <li><a aria-current="true" href="/">Breadcrumb item</a></li>
-    </ul>
-</div>
+    {% include "home/includes/breadcrumbs.html" %}
 
     <div class="is-typeset is-typeset--article">
-        <p>A small paragraph to <em>emphasis</em> and show <strong>important</strong> bits. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-<!-- Check empty tag stripping -->
-<p></p>
-<p></p>
-<ul>
-    <li>This is a list item</li>
-    <li>So is this - there could be more</li>
-    <li>Make sure to style list items to:
-        <ul>
-            <li>Not forgetting child list items</li>
-            <li>Not forgetting child list items</li>
-            <li>Not forgetting child list items</li>
-            <li>Not forgetting child list items</li>
-        </ul>
-    </li>
-    <li>A couple more</li>
-    <li>top level list items</li>
-</ul>
-<h3>Don't forget:</h4>
-<ol>
-   <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-   <li>Aliquam tincidunt mauris eu risus.
-    <ol>
-        <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-        <li>Aliquam tincidunt mauris eu risus.</li>
-    </ol>
-    </li>
-   <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-   <li>Aliquam tincidunt mauris eu risus.
-</ol>
-<h4>A sub heading which is not as important as the first, but is quite imporant overall</h4>
-<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-<figure class="media-figure">
-	<img src="/static/assets/img/ptn-example.jpg" alt="Inline image">
-	<figcaption class="media-figure__caption">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</figcaption>
-</figure>
-<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-
-
-<!-- Check br tag stripping -->
-<br/>
-<br/>
-<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-<blockquote><p>“Ooh - a blockquote! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. Ut a est eget ligula molestie gravida. Curabitur massa.”</p></blockquote>
-<h5>A sub heading which is not as important as the second, but should be used with consideration</h5>
-<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-<h6>A sub heading which is not as important as the second, but should be used with consideration</h6>
-<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-
-    </div>
-    <div class="l-cards-offset space-section-top">
-        <div class="card card--step">
-            <div class="card__step">
-                <span class="card__step__text">Next Step</span>
-                <i role="presentation" aria-hidden="true" class="ico ico--32 ico-play-white"></i>
-            </div>
-        </div>
-
-            <div class="card card--guidance ">
-
-    <h2 class="card__heading"><a href="#"><span>What data shoud I publish?</span></a></h2>
-    <p class="card__excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-</div>
-
-
+      {% if page.content_editor %}
+        {% include "home/includes/streamfield.html" with content=page.content_editor %}
+      {% endif %}
     </div>
 
 		</div>
@@ -113,34 +47,24 @@
 	</div>
 </div>
 
-
-    <div class="row">
+  {% with siblings=self.get_siblings.live.specific %}
+    {% if siblings %}
+      <div class="row">
         <h2 class="section__heading">Related guidance</h2>
-        <div class="l-cards">
-
+          <div class="l-cards">
+            {% for sibling in siblings %}
+              {% if sibling != self %}
                 <div class="card card--guidance ">
+                  <h2 class="card__heading"><a href="{% slugurl_trans sibling.slug %}"><span>{{ sibling.heading }}</span></a></h2>
+                  <p class="card__excerpt">{{ sibling.excerpt|default:"" }}</p>
+                </div>
+              {% endif %}
+            {% endfor %}
 
-    <h2 class="card__heading"><a href="#"><span>What data shoud I publish?</span></a></h2>
-    <p class="card__excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-</div>
-
-
-                <div class="card card--guidance ">
-
-    <h2 class="card__heading"><a href="#"><span>How to use IATI reference?</span></a></h2>
-    <p class="card__excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-</div>
-
-
-                <div class="card card--guidance ">
-
-    <h2 class="card__heading"><a href="#"><span>Activity information</span></a></h2>
-    <p class="card__excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-</div>
-
-
+          </div>
         </div>
-    </div>
+      {% endif %}
+    {% endwith %}
 
     <a id="support"></a>
     <div class="section">
@@ -181,7 +105,7 @@
 
 <div class="form-field ">
 
-	<label for="textarea" class="form-label ">Textarea</label>
+	<label for="textarea" class="form-label ">Query</label>
 	<textarea id="textarea" class="form-item" name="textarea" ></textarea>
 
 
@@ -189,10 +113,10 @@
 
                     </div>
                 </div>
+                            </form>
                 <div class="form-field form-field--spaced">
-                    <button type="submit" class="button">Submit request</button>
+                    <button onclick="window.alert('Support form functionality coming soon!')" class="button">Submit request</button>
                 </div>
-            </form>
         </div>
     </div>
 {% endblock %}

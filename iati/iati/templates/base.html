@@ -125,8 +125,11 @@
 
 
 
-
+          {% if user.is_authenticated %}
 					<li id="section-support" class='navigation-primary__item'><a href="{% default_page_url 'guidance_and_support' %}">Guidance & Support</a></li>
+          {% else %}
+          <li id="section-support" class='navigation-primary__item'><a href="#" title="Under construction">Guidance & Support</a></li>
+          {% endif %}
 
 
 
