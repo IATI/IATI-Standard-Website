@@ -45,10 +45,27 @@ python manage.py createsuperuser
 python manage.py runserver
 ```
 
-## Tests
+## Tests & linters
 
 Tests are run using [pytest](https://pytest.org/) as it [provides a number of benefits](https://pytest-django.readthedocs.io/en/latest/#why-would-i-use-this-instead-of-django-s-manage-py-test-command) over stock Django test approaches.
 ```
 # Run tests from the project root
 pytest
+```
+
+Code linting is performed using [pylint](https://github.com/PyCQA/pylint) (with the [pylint-django](https://github.com/PyCQA/pylint-django) plugin), [flake8](http://flake8.pycqa.org) and [pydocstyle](http://www.pydocstyle.org).
+```
+pylint iati/
+flake8 iati/
+pydocstyle iati/
+```
+
+Alternatively, the Makefile can be used:
+```
+make test
+make lint
+
+# OR
+
+make all
 ```
