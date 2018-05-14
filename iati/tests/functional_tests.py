@@ -12,11 +12,6 @@ class TestHomePageExists():
         logo = browser.find_by_css('a.branding').first
         return logo
 
-    def test_home_page_loads(self, browser):
-        """Check that the home page loads."""
-        self.setup_home_page_tests(browser)
-        assert browser.status_code.code == 200
-
     def test_home_page_has_IATI_logo(self, browser):
         """Check the IATI logo appears on the page."""
         logo = self.setup_home_page_tests(browser)
