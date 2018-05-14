@@ -1,9 +1,16 @@
 language: python
 python:
   - 3.6
+
+services: postgresql
+
 install:
   - pip install -r iati/requirements_dev.txt
   - export DJANGO_SETTINGS_MODULE=iati.settings.dev
+  - psql -c "CREATE DATABASE travisdb;" -U postgres
+  - python manage.py makemigrations_translation
+  - python manage.py migrate_translation
+  - python manage.py createdefaultpages
 script:
   - make test
 
