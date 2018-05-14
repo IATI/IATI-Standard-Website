@@ -40,7 +40,7 @@ def create_about_child_page(admin_browser, page_type, page_title):
 
 
 def view_live_page(admin_browser, page_title):
-    """Navigate to the published page on the site and close the admin page."""
+    """Navigate to the published page on the site."""
     admin_browser.find_by_text(page_title).mouse_over()
     button_link = admin_browser.find_by_text('View live')
     href = button_link[0].__dict__['_element'].get_property('href')
