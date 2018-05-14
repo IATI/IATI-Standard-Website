@@ -71,7 +71,6 @@ class TestAboutPages():
         admin_browser.fill('heading_en', 'Test About Heading')
         publish_page(admin_browser)
         view_live_page(admin_browser, 'About')
-        import pdb; pdb.set_trace()
         assert admin_browser.find_by_text('Test About Heading')
 
 
