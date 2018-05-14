@@ -3,10 +3,10 @@ from django.utils.text import slugify
 import pytest
 
 
-ABOUT_SUB_PAGE = {'page_type': 'About sub page', 'title': 'test sub page'}
-CASE_STUDY_INDEX_PAGE = {'page_type': 'Case study index page', 'title': 'test case study index page'}
-HISTORY_PAGE = {'page_type': 'History page', 'title': 'test history page'}
-PEOPLE_PAGE = {'page_type': 'People page', 'title': 'test people page'}
+ABOUT_SUB_PAGE = {'page_type': 'About sub page', 'title': 'test sub page', 'heading': 'Test Sub Page'}
+CASE_STUDY_INDEX_PAGE = {'page_type': 'Case study index page', 'title': 'test case study index page', 'heading': 'Test Case Study Index Page'}
+HISTORY_PAGE = {'page_type': 'History page', 'title': 'test history page', 'heading': 'Test History Page'}
+PEOPLE_PAGE = {'page_type': 'People page', 'title': 'test people page', 'heading': 'Test People Page'}
 
 
 def navigate_to_about_cms(admin_browser):
@@ -72,6 +72,23 @@ class TestAboutPages():
         publish_page(admin_browser)
         view_live_page(admin_browser, 'About')
         assert admin_browser.find_by_text('Test About Heading')
+
+    @pytest.mark.parametrize('child_page', [
+        ABOUT_SUB_PAGE,
+        CASE_STUDY_INDEX_PAGE,
+        HISTORY_PAGE,
+        PEOPLE_PAGE
+    ])
+    def test_can_edit_about_child_page(self, admin_browser, child_page):
+        """Check that About child pages can be edited."""
+        create_about_child_page(admin_browser, child_page['page_type'], child_page['title'])
+        admin_browser.find_by_text(child_page['title']).mouse_over()
+        admin_browser.find_by_xpath('//a[@title="Edit \'{}\'"]'.format(child_page['title'])).click()
+        admin_browser.find_by_text('English').click()
+        admin_browser.fill('heading_en', child_page['heading'])
+        publish_page(admin_browser)
+        view_live_page(admin_browser, child_page['title'])
+        assert admin_browser.find_by_text(child_page['heading'])
 
 
 @pytest.mark.django_db()
