@@ -1,11 +1,40 @@
-from .models import GuidanceAndSupportPage
+from .models import GuidanceAndSupportPage, GuidanceIndexPage, GuidancePage, KnowledgebaseIndexPage, KnowledgebasePage
 from modeltranslation.translator import TranslationOptions
 from modeltranslation.decorators import register
+
+from home.translation_helper import add_language_content_panels
 
 
 @register(GuidanceAndSupportPage)
 class GuidanceAndSupportPageTR(TranslationOptions):
-    pass
-    # fields = (
-    #     'body',
-    # )
+    fields = GuidanceAndSupportPage.translation_fields
+
+add_language_content_panels(GuidanceAndSupportPage)
+
+
+@register(GuidanceIndexPage)
+class GuidanceIndexPageTR(TranslationOptions):
+    fields = GuidanceIndexPage.translation_fields
+
+add_language_content_panels(GuidanceIndexPage)
+
+
+@register(GuidancePage)
+class GuidancePageTR(TranslationOptions):
+    fields = GuidancePage.translation_fields
+
+add_language_content_panels(GuidancePage)
+
+
+@register(KnowledgebaseIndexPage)
+class KnowledgebaseIndexPageTR(TranslationOptions):
+    fields = KnowledgebaseIndexPage.translation_fields
+
+add_language_content_panels(KnowledgebaseIndexPage)
+
+
+@register(KnowledgebasePage)
+class KnowledgebasePageTR(TranslationOptions):
+    fields = KnowledgebasePage.translation_fields
+
+add_language_content_panels(KnowledgebasePage)
