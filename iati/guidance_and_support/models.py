@@ -3,11 +3,6 @@ from django.db import models
 from wagtail.core.fields import StreamField
 from wagtail.images.edit_handlers import ImageChooserPanel
 
-<<<<<<< HEAD
-
-class GuidanceAndSupportPage(Page):
-    pass
-=======
 from home.models import AbstractContentPage, AbstractIndexPage, IATIStreamBlock
 
 
@@ -59,4 +54,3 @@ class KnowledgebaseIndexPage(AbstractIndexPage):
 
 class KnowledgebasePage(AbstractContentPage):
     subpage_types = []
->>>>>>> guidance-and-support
