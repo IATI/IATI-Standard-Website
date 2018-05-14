@@ -1,6 +1,6 @@
 import pytest
 from splinter import Browser
-from iati.settings.local import DJANGO_ADMIN_USER, DJANGO_ADMIN_PASS
+from iati.settings.dev import DJANGO_ADMIN_USER, DJANGO_ADMIN_PASS
 
 LOCALHOST = 'http://127.0.0.1:8000/'
 
