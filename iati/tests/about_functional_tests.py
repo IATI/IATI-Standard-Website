@@ -46,8 +46,8 @@ def view_live_page(admin_browser, page_title):
 
 
 @pytest.mark.django_db()
-class TestAboutChildPageCreation():
-    """A container for tests to check the ability to create About child pages."""
+class TestAboutPages():
+    """A container for tests to check functionality of About pages and child pages."""
 
     @pytest.mark.parametrize('child_page', [
         ABOUT_SUB_PAGE,
@@ -60,6 +60,16 @@ class TestAboutChildPageCreation():
         create_about_child_page(admin_browser, child_page['page_type'], child_page['title'])
         view_live_page(admin_browser, child_page['title'])
         assert admin_browser.is_text_present(child_page['title'])
+
+    def test_can_edit_about_page(self, admin_browser):
+        """Check that an existing About page can be edited."""
+        navigate_to_about_cms(admin_browser)
+        admin_browser.find_by_xpath('//a[@title="Edit \'About\'"]').click()
+        admin_browser.fill('heading_en', 'Test About Heading')
+        publish_page(admin_browser)
+        view_live_page(admin_browser, 'About')
+        import pdb; pdb.set_trace()
+        assert admin_browser.find_by_text('Test About Heading')
 
 
 @pytest.mark.django_db()
