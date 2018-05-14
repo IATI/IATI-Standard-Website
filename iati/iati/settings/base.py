@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+
 # Mark language names as translation strings
 from django.utils.translation import gettext_lazy as _
 
@@ -25,8 +26,16 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 # Application definition
 
 INSTALLED_APPS = [
+    'wagtail_modeltranslation',
+    'wagtail_modeltranslation.makemigrations',
+    'wagtail_modeltranslation.migrate',
     'home',
     'search',
+    'about',
+    'contact',
+    'events',
+    'guidance_and_support',
+    'news',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
@@ -122,13 +131,17 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
 
 LANGUAGES = [
     ('en', _('English')),
     ('fr', _('French')),
     ('es', _('Spanish')),
     ('pt', _('Portuguese')),
+]
+
+ACTIVE_LANGUAGES = [
+    ('en', _('English')),
 ]
 
 TIME_ZONE = 'UTC'

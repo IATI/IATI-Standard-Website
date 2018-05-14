@@ -1,0 +1,68 @@
+// ------------------------------------------------------------
+// Colours
+// ------------------------------------------------------------
+
+// Brand colours
+// https://bitbucket.org/fffunction/wiki/wiki/Design%20styles
+// ------------------------------------------------------------
+
+$iati-ocean                         :#155366;
+$iati-air                           :#06dbe4;
+$iati-land                          :#00c497;
+$iati-sunset                        :#f73357;
+$iati-sunrise                       :#ff7264;
+$iati-wind                          :#a66ee9;
+$iati-ash                           :#E3E3E3;
+
+$iati-land-light                    :#91E0CE;
+$iati-air-light                     :#b6e4e5;
+$iati-sunrise-light                 :#faecea;
+
+// Social shit
+// ------------------------------------------------------------
+
+$facebook-color 					: #3B5998;
+$twitter-color 						: #4099FF;
+$linkedin-color						: #007bb6;
+$youtube-color						: #e52d27;
+$pinterest-color					: #C92228;
+$instagram-color 					: #517fa4;
+$tumblr-color 						: #32506d;
+$foursquare-color 					: #0072b1;
+$google-color 						: #dd4b39;
+$flickr-color 						: #ff0084;
+
+
+// Colors assigned to roles
+// Replace assignments with brand colours
+// ------------------------------------------------------------
+
+// Defaults
+$body-color 						: #F6F6F6;
+$base-color							: #2E2E2E;
+$heading-color						: #121212;
+
+// Actions
+$action								: $iati-ocean;
+$action-respond						: $iati-air;
+
+// Borders
+$default-border-color 				: #E3E3E3;
+
+// Forms
+$form-label-color					: $heading-color;
+$form-legend-color					: $heading-color;
+$form-placeholder-color				: #ddd;
+$form-checkbox-color				: $heading-color;
+$form-radio-color					: $heading-color;
+
+// Navigation
+$nav-toggle-color					: $heading-color;
+$nav-toggle-color-active			: $action;
+
+
+// Responses
+// Often good to keep these 'off–brand' for UX clairty
+$warning 							: #b2a216;					// Careful now
+$error 								: #f25111;					// Down with that sort of thing
+$success 							: #41b38e;					// Good bunch of lads
