@@ -34,7 +34,7 @@ jobs:
             - export PATH=$PATH:$PWD/geckodriver
             - pip install -r iati/requirements_dev.txt
             - export DJANGO_SETTINGS_MODULE=iati.settings.dev
-          script: make test
+          script: pytest iati/ -k test_default_pages_exist[about]
         - stage: strict lint
           install:
             - pip install -r iati/requirements_dev.txt
