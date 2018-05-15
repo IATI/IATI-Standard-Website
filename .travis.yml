@@ -1,6 +1,6 @@
 language: python
 addons:
-  firefox: "60.0"
+  firefox: "55"
 python:
   - 3.6
 
