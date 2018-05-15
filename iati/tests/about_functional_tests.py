@@ -7,6 +7,7 @@ ABOUT_SUB_PAGE = {'page_type': 'About sub page', 'title': 'test sub page', 'head
 CASE_STUDY_INDEX_PAGE = {'page_type': 'Case study index page', 'title': 'test case study index page', 'heading': 'Test Case Study Index Page'}
 HISTORY_PAGE = {'page_type': 'History page', 'title': 'test history page', 'heading': 'Test History Page'}
 PEOPLE_PAGE = {'page_type': 'People page', 'title': 'test people page', 'heading': 'Test People Page'}
+CASE_STUDY_PAGE = {'page_type': 'Case study page', 'title': 'test case study page', 'heading': 'Test Case Study Page'}
 
 
 def navigate_to_about_cms(admin_browser):
@@ -81,9 +82,7 @@ class TestAboutPages():
     ])
     def test_can_edit_about_child_page(self, admin_browser, child_page):
         """Check that About child pages can be edited."""
-        create_about_child_page(admin_browser, child_page['page_type'], child_page['title'])
-        admin_browser.find_by_text(child_page['title']).mouse_over()
-        admin_browser.find_by_xpath('//a[@title="Edit \'{}\'"]'.format(child_page['title'])).click()
+        admin_browser.find_by_text(child_page['title']).click()
         admin_browser.find_by_text('English').click()
         admin_browser.fill('heading_en', child_page['heading'])
         publish_page(admin_browser)
@@ -100,13 +99,20 @@ class TestCaseStudyIndexChildPageCreation():
         case_study_index_page_title = 'test case study index page 2'
         create_about_child_page(admin_browser, CASE_STUDY_INDEX_PAGE['page_type'], case_study_index_page_title)
 
-    def test_can_create_case_study_pages(self, admin_browser):
+    def test_can_create_case_study_page(self, admin_browser):
         """Check that a Case Study page can be created as a child of the Case Study Index page."""
         self.setup_case_study_index_page(admin_browser)
         admin_browser.find_by_xpath('//td[@class="no-children"]').click()
-        case_study_page_type = 'Case study page'
-        case_study_page_title = 'test case study page'
-        enter_page_content(admin_browser, case_study_page_type, case_study_page_title)
+        enter_page_content(admin_browser, CASE_STUDY_PAGE['page_type'], CASE_STUDY_PAGE['title'])
         publish_page(admin_browser)
-        view_live_page(admin_browser, case_study_page_title)
-        assert admin_browser.is_text_present(case_study_page_title)
+        view_live_page(admin_browser, CASE_STUDY_PAGE['title'])
+        assert admin_browser.is_text_present(CASE_STUDY_PAGE['title'])
+
+    def test_can_edit_case_study_page(self, admin_browser):
+        """Check that Case Study pages can be edited."""
+        admin_browser.find_by_text(CASE_STUDY_PAGE['title']).click()
+        admin_browser.find_by_text('English').click()
+        admin_browser.fill('heading_en', CASE_STUDY_PAGE['heading'])
+        publish_page(admin_browser)
+        view_live_page(admin_browser, CASE_STUDY_PAGE['title'])
+        assert admin_browser.find_by_text(CASE_STUDY_PAGE['heading'])
