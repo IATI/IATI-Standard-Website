@@ -39,11 +39,11 @@ CASE_STUDY_PAGE = {
 }
 
 
-def navigate_to_about_cms(admin_browser):
+def navigate_to_default_page_cms_section(admin_browser, default_page_title):
     """Navigate to the About page section of the CMS."""
     admin_browser.click_link_by_text('Pages')
     admin_browser.find_by_xpath('//span[@class="icon icon-arrow-right "]').click()
-    admin_browser.find_by_text('About').click()
+    admin_browser.find_by_text(default_page_title).click()
 
 
 def enter_page_content(admin_browser, page_type, page_title):
@@ -62,7 +62,7 @@ def publish_page(admin_browser):
 
 def create_about_child_page(admin_browser, page_type, page_title):
     """Create a child page in the CMS."""
-    navigate_to_about_cms(admin_browser)
+    navigate_to_default_page_cms_section(admin_browser, 'About')
     admin_browser.find_by_text('Add child page').click()
     admin_browser.find_by_text(page_type).click()
     enter_page_content(admin_browser, page_type, page_title)
@@ -91,13 +91,13 @@ def edit_site_page(admin_browser, page_title, cms_field, cms_content):
     view_live_page(admin_browser, page_title)
 
 
-@pytest.mark.django_db()
-class TestAboutPages():
+@pytest.mark.django_db
+class TestAboutPage():
     """A container for tests to check functionality of About pages and child pages."""
 
     def test_can_edit_about_page_heading(self, admin_browser):
         """Check that an existing About page heading can be edited."""
-        navigate_to_about_cms(admin_browser)
+        navigate_to_default_page_cms_section(admin_browser, 'About')
         edit_site_page(admin_browser, ABOUT_PAGE['title'], 'heading_en', ABOUT_PAGE['heading'])
         assert admin_browser.find_by_text(ABOUT_PAGE['heading'])
 
@@ -105,6 +105,11 @@ class TestAboutPages():
         """Check that an existing About page excerpt can be edited."""
         edit_site_page(admin_browser, ABOUT_PAGE['title'], 'excerpt_en', ABOUT_PAGE['excerpt'])
         assert admin_browser.find_by_text(ABOUT_PAGE['excerpt'])
+
+
+@pytest.mark.django_db
+class TestAboutChildPages():
+    """A container for tests to check functionality of About child pages."""
 
     ABOUT_CHILD_PAGES = [
         ABOUT_SUB_PAGE,
@@ -134,7 +139,7 @@ class TestAboutPages():
         assert admin_browser.find_by_text(child_page['excerpt'])
 
 
-@pytest.mark.django_db()
+@pytest.mark.django_db
 class TestCaseStudyIndexChildPageCreation():
     """A container for tests to check the ability to create Case Study pages."""
 
