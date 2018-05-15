@@ -106,12 +106,14 @@ class TestAboutPages():
         edit_site_page(admin_browser, ABOUT_PAGE['title'], 'excerpt_en', ABOUT_PAGE['excerpt'])
         assert admin_browser.find_by_text(ABOUT_PAGE['excerpt'])
 
-    @pytest.mark.parametrize('child_page', [
+    ABOUT_CHILD_PAGES = [
         ABOUT_SUB_PAGE,
         CASE_STUDY_INDEX_PAGE,
         HISTORY_PAGE,
         PEOPLE_PAGE
-    ])
+    ]
+
+    @pytest.mark.parametrize('child_page', ABOUT_CHILD_PAGES)
     def test_can_create_about_child_pages(self, admin_browser, child_page):
         """Check that when an about child page is created it appears in the website."""
         create_about_child_page(admin_browser, child_page['page_type'], child_page['title'])
@@ -119,23 +121,13 @@ class TestAboutPages():
         assert not admin_browser.is_text_present('Home')
         assert admin_browser.is_text_present(child_page['title'])
 
-    @pytest.mark.parametrize('child_page', [
-        ABOUT_SUB_PAGE,
-        CASE_STUDY_INDEX_PAGE,
-        HISTORY_PAGE,
-        PEOPLE_PAGE
-    ])
+    @pytest.mark.parametrize('child_page', ABOUT_CHILD_PAGES)
     def test_can_edit_about_child_page_heading(self, admin_browser, child_page):
         """Check that About child page headings can be edited."""
         edit_site_page(admin_browser, child_page['title'], 'heading_en', child_page['heading'])
         assert admin_browser.find_by_text(child_page['heading'])
 
-    @pytest.mark.parametrize('child_page', [
-        ABOUT_SUB_PAGE,
-        CASE_STUDY_INDEX_PAGE,
-        HISTORY_PAGE,
-        PEOPLE_PAGE
-    ])
+    @pytest.mark.parametrize('child_page', ABOUT_CHILD_PAGES)
     def test_can_edit_about_child_page_excerpt(self, admin_browser, child_page):
         """Check that About child page excerpts can be edited."""
         edit_site_page(admin_browser, child_page['title'], 'excerpt_en', child_page['excerpt'])
