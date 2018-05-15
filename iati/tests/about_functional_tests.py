@@ -100,10 +100,11 @@ class TestAboutPages():
         assert admin_browser.is_text_present(child_page['title'])
 
     def test_can_edit_about_page_heading(self, admin_browser):
-        """Check that an existing About page can be edited."""
+        """Check that an existing About page heading can be edited."""
         navigate_to_about_cms(admin_browser)
         edit_site_page(admin_browser, 'About', 'heading_en', 'Test About Heading')
         assert admin_browser.find_by_text('Test About Heading')
+
 
     @pytest.mark.parametrize('child_page', [
         ABOUT_SUB_PAGE,
@@ -112,7 +113,7 @@ class TestAboutPages():
         PEOPLE_PAGE
     ])
     def test_can_edit_about_child_page_heading(self, admin_browser, child_page):
-        """Check that About child pages can be edited."""
+        """Check that About child page headings can be edited."""
         edit_site_page(admin_browser, child_page['title'], 'heading_en', child_page['heading'])
         assert admin_browser.find_by_text(child_page['heading'])
 
@@ -136,6 +137,6 @@ class TestCaseStudyIndexChildPageCreation():
         assert admin_browser.is_text_present(CASE_STUDY_PAGE['title'])
 
     def test_can_edit_case_study_page_heading(self, admin_browser):
-        """Check that Case Study pages can be edited."""
+        """Check that Case Study page headings can be edited."""
         edit_site_page(admin_browser, CASE_STUDY_PAGE['title'], 'heading_en', CASE_STUDY_PAGE['heading'])
         assert admin_browser.find_by_text(CASE_STUDY_PAGE['heading'])
