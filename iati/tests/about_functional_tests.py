@@ -10,27 +10,32 @@ ABOUT_PAGE = {
 ABOUT_SUB_PAGE = {
     'page_type': 'About sub page',
     'title': 'test sub page',
-    'heading': 'Test Sub Page'
+    'heading': 'Test Sub Page',
+    'excerpt': 'This is an excerpt for an About Sub page'
 }
 CASE_STUDY_INDEX_PAGE = {
     'page_type': 'Case study index page',
     'title': 'test case study index page',
-    'heading': 'Test Case Study Index Page'
+    'heading': 'Test Case Study Index Page',
+    'excerpt': 'This is an excerpt for a Case Study Index page'
 }
 HISTORY_PAGE = {
     'page_type': 'History page',
     'title': 'test history page',
-    'heading': 'Test History Page'
+    'heading': 'Test History Page',
+    'excerpt': 'This is an excerpt for the History page'
 }
 PEOPLE_PAGE = {
     'page_type': 'People page',
     'title': 'test people page',
-    'heading': 'Test People Page'
+    'heading': 'Test People Page',
+    'excerpt': 'This is an excerpt for the People page'
 }
 CASE_STUDY_PAGE = {
     'page_type': 'Case study page',
     'title': 'test case study page',
-    'heading': 'Test Case Study Page'
+    'heading': 'Test Case Study Page',
+    'excerpt': 'This is can excerpt for a Case Study page.'
 }
 
 
@@ -90,19 +95,6 @@ def edit_site_page(admin_browser, page_title, cms_field, cms_content):
 class TestAboutPages():
     """A container for tests to check functionality of About pages and child pages."""
 
-    @pytest.mark.parametrize('child_page', [
-        ABOUT_SUB_PAGE,
-        CASE_STUDY_INDEX_PAGE,
-        HISTORY_PAGE,
-        PEOPLE_PAGE
-    ])
-    def test_can_create_about_child_pages(self, admin_browser, child_page):
-        """Check that when an about child page is created it appears in the website."""
-        create_about_child_page(admin_browser, child_page['page_type'], child_page['title'])
-        view_live_page(admin_browser, child_page['title'])
-        assert not admin_browser.is_text_present('Home')
-        assert admin_browser.is_text_present(child_page['title'])
-
     def test_can_edit_about_page_heading(self, admin_browser):
         """Check that an existing About page heading can be edited."""
         navigate_to_about_cms(admin_browser)
@@ -120,10 +112,34 @@ class TestAboutPages():
         HISTORY_PAGE,
         PEOPLE_PAGE
     ])
+    def test_can_create_about_child_pages(self, admin_browser, child_page):
+        """Check that when an about child page is created it appears in the website."""
+        create_about_child_page(admin_browser, child_page['page_type'], child_page['title'])
+        view_live_page(admin_browser, child_page['title'])
+        assert not admin_browser.is_text_present('Home')
+        assert admin_browser.is_text_present(child_page['title'])
+
+    @pytest.mark.parametrize('child_page', [
+        ABOUT_SUB_PAGE,
+        CASE_STUDY_INDEX_PAGE,
+        HISTORY_PAGE,
+        PEOPLE_PAGE
+    ])
     def test_can_edit_about_child_page_heading(self, admin_browser, child_page):
         """Check that About child page headings can be edited."""
         edit_site_page(admin_browser, child_page['title'], 'heading_en', child_page['heading'])
         assert admin_browser.find_by_text(child_page['heading'])
+
+    @pytest.mark.parametrize('child_page', [
+        ABOUT_SUB_PAGE,
+        CASE_STUDY_INDEX_PAGE,
+        HISTORY_PAGE,
+        PEOPLE_PAGE
+    ])
+    def test_can_edit_about_child_page_excerpt(self, admin_browser, child_page):
+        """Check that About child page excerpts can be edited."""
+        edit_site_page(admin_browser, child_page['title'], 'excerpt_en', child_page['excerpt'])
+        assert admin_browser.find_by_text(child_page['excerpt'])
 
 
 @pytest.mark.django_db()
