@@ -35,7 +35,7 @@ CASE_STUDY_PAGE = {
     'page_type': 'Case study page',
     'title': 'test case study page',
     'heading': 'Test Case Study Page',
-    'excerpt': 'This is can excerpt for a Case Study page.'
+    'excerpt': 'This is an excerpt for a Case Study page.'
 }
 
 
