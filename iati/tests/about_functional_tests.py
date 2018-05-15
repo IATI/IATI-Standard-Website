@@ -75,6 +75,13 @@ def fill_cms_content_field(admin_browser, page_title, cms_field, page_heading):
     admin_browser.fill(cms_field, page_heading)
 
 
+def edit_site_page(admin_browser, page_title, cms_field, cms_content):
+    """Edit a page by adding content via the CMS."""
+    fill_cms_content_field(admin_browser, page_title, cms_field, cms_content)
+    publish_page(admin_browser)
+    view_live_page(admin_browser, page_title)
+
+
 @pytest.mark.django_db()
 class TestAboutPages():
     """A container for tests to check functionality of About pages and child pages."""
@@ -92,12 +99,10 @@ class TestAboutPages():
         assert not admin_browser.is_text_present('Home')
         assert admin_browser.is_text_present(child_page['title'])
 
-    def test_can_edit_about_page(self, admin_browser):
+    def test_can_edit_about_page_heading(self, admin_browser):
         """Check that an existing About page can be edited."""
         navigate_to_about_cms(admin_browser)
-        fill_cms_content_field(admin_browser, 'About', 'heading_en', 'Test About Heading')
-        publish_page(admin_browser)
-        view_live_page(admin_browser, 'About')
+        edit_site_page(admin_browser, 'About', 'heading_en', 'Test About Heading')
         assert admin_browser.find_by_text('Test About Heading')
 
     @pytest.mark.parametrize('child_page', [
@@ -106,11 +111,9 @@ class TestAboutPages():
         HISTORY_PAGE,
         PEOPLE_PAGE
     ])
-    def test_can_edit_about_child_page(self, admin_browser, child_page):
+    def test_can_edit_about_child_page_heading(self, admin_browser, child_page):
         """Check that About child pages can be edited."""
-        fill_cms_content_field(admin_browser, child_page['title'], 'heading_en', child_page['heading'])
-        publish_page(admin_browser)
-        view_live_page(admin_browser, child_page['title'])
+        edit_site_page(admin_browser, child_page['title'], 'heading_en', child_page['heading'])
         assert admin_browser.find_by_text(child_page['heading'])
 
 
@@ -132,9 +135,7 @@ class TestCaseStudyIndexChildPageCreation():
         view_live_page(admin_browser, CASE_STUDY_PAGE['title'])
         assert admin_browser.is_text_present(CASE_STUDY_PAGE['title'])
 
-    def test_can_edit_case_study_page(self, admin_browser):
+    def test_can_edit_case_study_page_heading(self, admin_browser):
         """Check that Case Study pages can be edited."""
-        fill_cms_content_field(admin_browser, CASE_STUDY_PAGE['title'], 'heading_en', CASE_STUDY_PAGE['heading'])
-        publish_page(admin_browser)
-        view_live_page(admin_browser, CASE_STUDY_PAGE['title'])
+        edit_site_page(admin_browser, CASE_STUDY_PAGE['title'], 'heading_en', CASE_STUDY_PAGE['heading'])
         assert admin_browser.find_by_text(CASE_STUDY_PAGE['heading'])
