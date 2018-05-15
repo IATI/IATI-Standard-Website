@@ -48,6 +48,13 @@ def view_live_page(admin_browser, page_title):
     admin_browser.visit(href)
 
 
+def fill_heading_en(admin_browser, page_title, page_heading):
+    """Add English heading to page title."""
+    admin_browser.find_by_text(page_title).click()
+    admin_browser.find_by_text('English').click()
+    admin_browser.fill('heading_en', page_heading)
+
+
 @pytest.mark.django_db()
 class TestAboutPages():
     """A container for tests to check functionality of About pages and child pages."""
@@ -68,8 +75,7 @@ class TestAboutPages():
     def test_can_edit_about_page(self, admin_browser):
         """Check that an existing About page can be edited."""
         navigate_to_about_cms(admin_browser)
-        admin_browser.find_by_text('About').click()
-        admin_browser.fill('heading_en', 'Test About Heading')
+        fill_heading_en(admin_browser, 'About', 'Test About Heading')
         publish_page(admin_browser)
         view_live_page(admin_browser, 'About')
         assert admin_browser.find_by_text('Test About Heading')
@@ -82,9 +88,7 @@ class TestAboutPages():
     ])
     def test_can_edit_about_child_page(self, admin_browser, child_page):
         """Check that About child pages can be edited."""
-        admin_browser.find_by_text(child_page['title']).click()
-        admin_browser.find_by_text('English').click()
-        admin_browser.fill('heading_en', child_page['heading'])
+        fill_heading_en(admin_browser, child_page['title'], child_page['heading'])
         publish_page(admin_browser)
         view_live_page(admin_browser, child_page['title'])
         assert admin_browser.find_by_text(child_page['heading'])
@@ -110,9 +114,7 @@ class TestCaseStudyIndexChildPageCreation():
 
     def test_can_edit_case_study_page(self, admin_browser):
         """Check that Case Study pages can be edited."""
-        admin_browser.find_by_text(CASE_STUDY_PAGE['title']).click()
-        admin_browser.find_by_text('English').click()
-        admin_browser.fill('heading_en', CASE_STUDY_PAGE['heading'])
+        fill_heading_en(admin_browser, CASE_STUDY_PAGE['title'], CASE_STUDY_PAGE['heading'])
         publish_page(admin_browser)
         view_live_page(admin_browser, CASE_STUDY_PAGE['title'])
         assert admin_browser.find_by_text(CASE_STUDY_PAGE['heading'])
