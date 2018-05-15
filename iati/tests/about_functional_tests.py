@@ -3,11 +3,31 @@ from django.utils.text import slugify
 import pytest
 
 
-ABOUT_SUB_PAGE = {'page_type': 'About sub page', 'title': 'test sub page', 'heading': 'Test Sub Page'}
-CASE_STUDY_INDEX_PAGE = {'page_type': 'Case study index page', 'title': 'test case study index page', 'heading': 'Test Case Study Index Page'}
-HISTORY_PAGE = {'page_type': 'History page', 'title': 'test history page', 'heading': 'Test History Page'}
-PEOPLE_PAGE = {'page_type': 'People page', 'title': 'test people page', 'heading': 'Test People Page'}
-CASE_STUDY_PAGE = {'page_type': 'Case study page', 'title': 'test case study page', 'heading': 'Test Case Study Page'}
+ABOUT_SUB_PAGE = {
+    'page_type': 'About sub page',
+    'title': 'test sub page',
+    'heading': 'Test Sub Page'
+}
+CASE_STUDY_INDEX_PAGE = {
+    'page_type': 'Case study index page',
+    'title': 'test case study index page',
+    'heading': 'Test Case Study Index Page'
+}
+HISTORY_PAGE = {
+    'page_type': 'History page',
+    'title': 'test history page',
+    'heading': 'Test History Page'
+}
+PEOPLE_PAGE = {
+    'page_type': 'People page',
+    'title': 'test people page',
+    'heading': 'Test People Page'
+}
+CASE_STUDY_PAGE = {
+    'page_type': 'Case study page',
+    'title': 'test case study page',
+    'heading': 'Test Case Study Page'
+}
 
 
 def navigate_to_about_cms(admin_browser):
@@ -48,11 +68,11 @@ def view_live_page(admin_browser, page_title):
     admin_browser.visit(href)
 
 
-def fill_heading_en(admin_browser, page_title, page_heading):
+def fill_cms_content_field(admin_browser, page_title, cms_field, page_heading):
     """Add English heading to page title."""
     admin_browser.find_by_text(page_title).click()
     admin_browser.find_by_text('English').click()
-    admin_browser.fill('heading_en', page_heading)
+    admin_browser.fill(cms_field, page_heading)
 
 
 @pytest.mark.django_db()
@@ -75,7 +95,7 @@ class TestAboutPages():
     def test_can_edit_about_page(self, admin_browser):
         """Check that an existing About page can be edited."""
         navigate_to_about_cms(admin_browser)
-        fill_heading_en(admin_browser, 'About', 'Test About Heading')
+        fill_cms_content_field(admin_browser, 'About', 'heading_en', 'Test About Heading')
         publish_page(admin_browser)
         view_live_page(admin_browser, 'About')
         assert admin_browser.find_by_text('Test About Heading')
@@ -88,7 +108,7 @@ class TestAboutPages():
     ])
     def test_can_edit_about_child_page(self, admin_browser, child_page):
         """Check that About child pages can be edited."""
-        fill_heading_en(admin_browser, child_page['title'], child_page['heading'])
+        fill_cms_content_field(admin_browser, child_page['title'], 'heading_en', child_page['heading'])
         publish_page(admin_browser)
         view_live_page(admin_browser, child_page['title'])
         assert admin_browser.find_by_text(child_page['heading'])
@@ -114,7 +134,7 @@ class TestCaseStudyIndexChildPageCreation():
 
     def test_can_edit_case_study_page(self, admin_browser):
         """Check that Case Study pages can be edited."""
-        fill_heading_en(admin_browser, CASE_STUDY_PAGE['title'], CASE_STUDY_PAGE['heading'])
+        fill_cms_content_field(admin_browser, CASE_STUDY_PAGE['title'], 'heading_en', CASE_STUDY_PAGE['heading'])
         publish_page(admin_browser)
         view_live_page(admin_browser, CASE_STUDY_PAGE['title'])
         assert admin_browser.find_by_text(CASE_STUDY_PAGE['heading'])
