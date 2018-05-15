@@ -34,7 +34,7 @@ jobs:
             - export PATH=$PATH:$PWD/geckodriver
             - pip install -r iati/requirements_dev.txt
             - export DJANGO_SETTINGS_MODULE=iati.settings.dev
-            - psql -c "CREATE DATABASE travisdb;" -U postgres
+            - psql -c "CREATE DATABASE travisci;" -U postgres
             - python iati/manage.py makemigrations_translation
             - python iati/manage.py migrate_translation --no-input
           before_script:
