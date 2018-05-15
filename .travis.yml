@@ -1,4 +1,6 @@
 language: python
+addons:
+  firefox: "45.4.0esr"
 python:
   - 3.6
 
