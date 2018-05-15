@@ -2,7 +2,11 @@
 from django.utils.text import slugify
 import pytest
 
-
+ABOUT_PAGE = {
+    'title': 'About',
+    'heading': 'Test About Heading',
+    'excerpt': 'This is an excerpt for the About page'
+}
 ABOUT_SUB_PAGE = {
     'page_type': 'About sub page',
     'title': 'test sub page',
@@ -102,9 +106,13 @@ class TestAboutPages():
     def test_can_edit_about_page_heading(self, admin_browser):
         """Check that an existing About page heading can be edited."""
         navigate_to_about_cms(admin_browser)
-        edit_site_page(admin_browser, 'About', 'heading_en', 'Test About Heading')
-        assert admin_browser.find_by_text('Test About Heading')
+        edit_site_page(admin_browser, ABOUT_PAGE['title'], 'heading_en', ABOUT_PAGE['heading'])
+        assert admin_browser.find_by_text(ABOUT_PAGE['heading'])
 
+    def test_can_edit_about_page_excerpt(self, admin_browser):
+        """Check that an existing About page excerpt can be edited."""
+        edit_site_page(admin_browser, ABOUT_PAGE['title'], 'excerpt_en', ABOUT_PAGE['excerpt'])
+        assert admin_browser.find_by_text(ABOUT_PAGE['excerpt'])
 
     @pytest.mark.parametrize('child_page', [
         ABOUT_SUB_PAGE,
