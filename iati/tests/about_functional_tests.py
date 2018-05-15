@@ -68,7 +68,7 @@ class TestAboutPages():
     def test_can_edit_about_page(self, admin_browser):
         """Check that an existing About page can be edited."""
         navigate_to_about_cms(admin_browser)
-        admin_browser.find_by_xpath('//a[@title="Edit \'About\'"]').click()
+        admin_browser.find_by_text('About').click()
         admin_browser.fill('heading_en', 'Test About Heading')
         publish_page(admin_browser)
         view_live_page(admin_browser, 'About')
