@@ -12,6 +12,10 @@ DEFAULT_PAGE_NAMES = [
 ]
 
 
+def test_google(browser):
+    browser.visit("http://google.com")
+    assert False
+
 @pytest.mark.parametrize("page_name", DEFAULT_PAGE_NAMES)
 def test_default_pages_exist(browser, page_name):
     """Check default pages exist."""
