@@ -161,3 +161,8 @@ class TestCaseStudyIndexChildPageCreation():
         """Check that Case Study page headings can be edited."""
         edit_site_page(admin_browser, CASE_STUDY_PAGE['title'], 'heading_en', CASE_STUDY_PAGE['heading'])
         assert admin_browser.find_by_text(CASE_STUDY_PAGE['heading'])
+
+    def test_can_edit_case_study_page_excerpt(self, admin_browser):
+        """Check that Case Study page excerpts can be edited."""
+        edit_site_page(admin_browser, CASE_STUDY_PAGE['title'], 'excerpt_en', CASE_STUDY_PAGE['excerpt'])
+        assert admin_browser.find_by_text(CASE_STUDY_PAGE['excerpt'])
