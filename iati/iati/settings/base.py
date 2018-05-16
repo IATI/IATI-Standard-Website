@@ -28,6 +28,7 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 INSTALLED_APPS = [
     'wagtail_modeltranslation',
     'wagtail_modeltranslation.makemigrations',
+    'wagtail_modeltranslation.migrate',
     'home',
     'search',
     'about',
