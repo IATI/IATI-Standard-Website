@@ -54,3 +54,13 @@ pylint iati/
 flake8 iati/
 pydocstyle iati/
 ```
+
+Alternatively, the Makefile can be used:
+```
+make test
+make lint
+
+# OR
+
+make all
+```
