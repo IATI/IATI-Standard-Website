@@ -1,13 +1,9 @@
 import os
 import pytest
 from splinter import Browser
-<<<<<<< HEAD:iati/tests/conftest.py
-from iati.settings.dev import DJANGO_ADMIN_USER, DJANGO_ADMIN_PASS
-=======
 from django.core.management import call_command
-from iati.settings.local import DJANGO_ADMIN_USER, DJANGO_ADMIN_PASS
+from iati.settings.dev import DJANGO_ADMIN_USER, DJANGO_ADMIN_PASS
 from django.contrib.auth.models import User
->>>>>>> add-page-models:iati/conftest.py
 
 LOCALHOST = 'http://127.0.0.1:8000/'
 os.environ['LIVE_SERVER_URL'] = LOCALHOST
