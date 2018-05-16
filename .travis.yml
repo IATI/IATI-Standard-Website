@@ -41,7 +41,7 @@ jobs:
             - python iati/manage.py migrate_translation --no-input
           before_script:
             - python iati/manage.py runserver &
-          script: pytest iati/ -k test_google
+          script: pytest iati/ -k test_default_pages_exist[about]
         - stage: strict lint
           install:
             - pip install -r iati/requirements_dev.txt
