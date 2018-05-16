@@ -1,0 +1,8 @@
+<div class="pagination">
+	{% if children.has_previous %}
+   <a href="?page={{ children.previous_page_number }}{% for key,value in request.GET.items %}{% if not key == 'page' %}&amp;{{ key }}={{ value }}{% endif %}{% endfor %}" class="pagination__item pagination__item--prev">Previous</a>
+	{% endif %}
+	{% if children.has_next %}
+   <a href="?page={{ children.next_page_number }}{% for key,value in request.GET.items %}{% if not key == 'page' %}&amp;{{ key }}={{ value }}{% endif %}{% endfor %}" class="pagination__item pagination__item--next">Next</a>
+	{% endif %}
+</div>

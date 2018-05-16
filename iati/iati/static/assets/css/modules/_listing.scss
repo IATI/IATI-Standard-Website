@@ -1,0 +1,232 @@
+// ------------------------------------------------------------
+// Listing
+// ------------------------------------------------------------
+
+.listing {
+	@extend %pie-clearfix;
+	.l-listing & {
+		margin-top: 4em;
+		padding-bottom: 4em;
+		border-bottom: 3px solid $default-border-color;
+		&:first-child {
+			margin-top: 1em;
+		}
+		&--featured {
+			border-bottom: 0;
+			padding-bottom: 2em;
+		}
+	}
+	.l-listing--people & {
+		border-bottom: 0;
+		padding-bottom: 0;
+	}
+	.l-listing--no-pagination & {
+		&:last-child {
+			border-bottom: 0;
+		}
+	}
+	@include respond-to($menu-respond) {
+		@supports (display: flex) {
+			display: flex;
+		}
+		&--featured {
+			padding-bottom: 4em;
+		}
+	}
+	&__aside {
+		margin-bottom: 1em;
+		display: block;
+		width: 100%;
+		.listing__media {
+			margin-bottom: 1em;
+		}
+		.ico {
+			top: -2px;
+			margin-right: 2px;
+		}
+		.listing--featured & {
+			margin-bottom: 0;
+		}
+		@include respond-to($menu-respond) {
+			margin-bottom: 0;
+			display: block;
+			float: left;
+			width: 35%;
+			margin-right: 5%;
+			.listing--featured & {
+				position: relative;
+				z-index: 1;
+				margin-right: 0;
+				width: 50%;
+			}
+			.listing--people & {
+				width: 25%;
+			}
+		}
+	}
+	&__body {
+		display: block;
+		width: 100%;
+		.listing--featured & {
+			background-color: #fff;
+			padding: 2.5em;
+			box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.1);
+		}
+		.ico {
+			top: -2px;
+			margin-right: 2px;
+		}
+		@include respond-to($menu-respond) {
+			display: block;
+			float: right;
+			position: relative;
+			width: 60%;
+			.listing--featured & {
+				width: 55%;
+				margin-left: -5%;
+				z-index: 2;
+				transform: translateY(var(--translateY));
+				transition: transform, linear, 0.3s;
+   				will-change: transform;
+			}
+			.listing--people & {
+				width: 80%;
+			}
+		}
+	}
+}
+
+.listing--article-alt {
+	@include respond-to($menu-respond) {
+		border-left: 1px solid $default-border-color;
+		padding-left: 4em;
+	}
+}
+
+.listing-quote {
+	p {
+		display: inline-block;
+		margin-bottom: 0.5em;
+	}
+	.l-listing--people & {
+		margin-top: 2em;
+	}
+}
+
+.listing__header {
+	position: relative;
+}
+
+.listing__badge {
+	@extend .heading;
+	@include font-size($eta);
+	background-color: $iati-sunrise;
+	color: #fff;
+	display: inline-block;
+	margin-top: 1em;
+	letter-spacing: 1px;
+	padding: 0.75em 1em;
+	text-transform: uppercase;
+}
+
+.listing__heading {
+	@extend .type-m;
+	@extend .heading;
+	line-height: 1.2;
+	margin-bottom: 0.5em;
+	.listing__header & {
+		margin-bottom: 0.1em;
+	}
+	a {
+		color: $heading-color;
+		font-size: inherit;
+		line-height: 1.3;
+		display: inline-block;
+		span {
+			display: inline;
+			border-bottom: 2px solid transparent;
+			transition: all, ease-in-out, 0.3s;
+		}
+		&:hover {
+			color: $action;
+			span {
+				border-color: $action-respond;
+			}
+		}
+	}
+}
+
+.listing__subheading,
+.listing__location {
+	@include font-size($zeta);
+	color: $base-color;
+}
+
+.listing__location {
+	margin-bottom: 0.2em;
+}
+
+.listing__metadata {
+	position: relative;
+	display: block;
+	@include font-size($epsilon);
+	margin-bottom: 1em;
+	padding-bottom: 0.5em;
+	&:after {
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: -8%;
+		width: 100%;
+		height: 1px;
+		background-color: $default-border-color;
+		.listing--featured & {
+			left: -7%;
+		}
+	}
+	&__item {
+		@include font-size($eta);
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		display: inline-block;
+		margin-right: 1em;
+	}
+}
+
+.listing__excerpt {
+	@include font-size($epsilon);
+	margin-bottom: 1em;
+}
+
+.listing__media {
+	img {
+		width: 100%;
+		display: block;
+	}
+	.listing--featured & {
+		@include respond-to($menu-respond) {
+			overflow: hidden;
+			box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.1);
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			img {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: auto;
+				height: 100%;
+				display: block;
+			}
+		}
+	}
+}
+
+.listing__body-img {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 13%;
+}

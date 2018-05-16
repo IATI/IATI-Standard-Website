@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block body_class %}body body--contact{% endblock %}
+{% block body_id %}body-contact{% endblock %}
+
+{% block content %}
+    <div class="hero">
+        <div class="row">
+            <div class="hero__caption">
+                <h1 class="hero__heading">{{ page.heading }}</h1>
+                    <p class="hero__excerpt">{{ page.excerpt }}</p>
+
+            </div>
+            <div class="hero__emblem">
+                <img class="hero__emblem__mask" src="/static/assets/img/hero1.jpg" alt="alt tag">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="max-meter is-typeset is-typeset--article">
+            <p>{{ page.content_editor }}</p>
+        </div>
+
+        <div class="m-blocks">
+            {% include "contact/includes/contact_type.html" with content=page.contact_type %}
+        </div>
+    </div>
+
+{% endblock %}

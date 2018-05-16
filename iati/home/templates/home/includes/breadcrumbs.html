@@ -1,0 +1,13 @@
+{% load wagtail_modeltranslation %}
+<div class="breadcrumb">
+    {% if self.get_ancestors|length > 1 %}
+        <ul>
+            {% for page in self.get_ancestors %}
+                {% if page.depth > 2 %}
+                    <li><a aria-current="false" href="{% slugurl_trans page.slug %}">{% if page.heading %}{{ page.heading }}{% else %}{{ page.title }}{% endif %}</a></li>
+                {% endif %}
+            {% endfor %}
+            <li><a aria-current="true" href="#">{% if self.heading %}{{ self.heading }}{% else %}{{ self.title }}{% endif %}</a></li>
+        </ul>
+    {% endif %}
+</div>

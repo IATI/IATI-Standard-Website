@@ -1,0 +1,180 @@
+// Form styles
+// See form-items sub–folder for individuals
+// ------------------------------------------------------------
+
+.form {
+	position: relative;
+}
+
+// ------------------------------------------------------------
+// Sections / fieldsets
+// ------------------------------------------------------------
+
+.form-section {
+	padding: $internal-spacing;
+	background: #fff;
+	border: $default-border-width solid $default-border-color;
+}
+
+// ------------------------------------------------------------
+// Labels
+// ------------------------------------------------------------
+.form-label {
+	@include font-size($form-label-size);
+	margin-bottom: 0.25em;
+	&.form-label--hidden {
+		position: absolute !important;
+	    clip: rect(1px, 1px, 1px, 1px);
+	    padding: 0px;
+	    border: 0 !important;
+	    height: 1px !important;
+	    width: 1px !important;
+	    overflow: hidden;
+	}
+	.footer & {
+		color: #fff;
+		@include font-size($epsilon - 1);
+	}
+}
+
+// ------------------------------------------------------------
+// Form fields
+// ------------------------------------------------------------
+
+.form-field {
+	position: relative;
+	@extend %pie-clearfix;
+}
+
+// Space the form field
+.form-field--spaced {
+	padding-top: $internal-spacing;
+	.footer & {
+		padding-top: $internal-spacing/3;
+	}
+}
+
+.form-flex {
+	@extend %l-flexbox;
+}
+
+// Standard form elements
+.form-item {
+	padding: 0 $form-padding/2;
+	display: block;
+	border: $default-border-width solid $default-border-color;
+	appearance: none;
+	background-color: #fff;
+	min-height: $form-item-height;
+	font-size: 16px; // Stop IOS doing the zoom thing, the Git!
+	&::focus-inner {
+	    border: 0;
+	    padding: 0;
+	}
+	&:focus {
+		outline: none;
+		border-color: $action;
+	}
+	.footer & {
+		border: none;
+		display: inline-block;
+		width: 77%;
+	}
+}
+
+// Turn off spinners for number input field, as flipping ugly
+.form-item[type=number]::-webkit-inner-spin-button,
+.form-item[type=number]::-webkit-outer-spin-button {
+	appearance: none;
+}
+
+// Min height to text area
+textarea.form-item {
+	min-height: 200px;
+	padding: $form-padding/2;
+}
+
+// ------------------------------------------------------------
+// Radio and Checkboxes baseline style
+// ------------------------------------------------------------
+
+.form-field__radio-buttons,
+.form-field__checkboxes {
+	label {
+		position: relative;
+		top: 0;
+		vertical-align: middle;
+		&:after {
+			clear: left;
+			content: "";
+			display: block;
+			height: 0;
+		}
+	}
+	input {
+		float: left;
+		margin-right: $internal-spacing-pixel/2;
+		vertical-align: middle;
+		&:after {
+			clear: left;
+			content: "";
+			display: block;
+			height: 0;
+		}
+	}
+	input[type="radio"],
+	input[type="checkbox"] {
+		width: 16px;
+		height: 16px;
+		position: relative;
+		top: 0px; // Usually needs a wiggle
+	}
+	input[type="radio"] {
+		border-radius: 50%;
+	}
+}
+
+// For enhanced style (off by default)
+// @import "form-items/checkbox-radio";
+
+// ------------------------------------------------------------
+// Select baseline style
+// ------------------------------------------------------------
+
+.form-field__select-dropdown {
+	@include font-size($para);
+	background-color: #fff;
+	select {
+		width: 100%;
+		display: block;
+		height: $form-item-height;
+		background-color: transparent;
+		padding-left: $form-padding/2;
+		padding-right: $form-padding/2;
+		vertical-align: middle;
+		border: $default-border-width solid transparent;
+		appearance: none;
+		background: url(../svg/png/sort-dark.png) #fff no-repeat right 50%;
+		background: url(../svg/source/sort-dark.svg) #fff no-repeat right 50%;
+		background-origin: content-box;
+		background-color: #fff;
+		background-size: 14px 14px;
+		&:hover, &:focus {
+			border-color: $action;
+			cursor: pointer;
+		}
+		&:focus {
+			outline: none;
+		}
+		&::-ms-expand {
+			display: none;
+		}
+	}
+}
+
+// ------------------------------------------------------------
+// Get individul items and additional styling
+// Only add style for checks / radio if enhancing to this level
+// ------------------------------------------------------------
+
+@import "form-items/validation";

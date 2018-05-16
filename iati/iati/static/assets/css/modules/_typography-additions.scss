@@ -1,0 +1,100 @@
+// ------------------------------------------------------------
+// Aligment and meter
+// ------------------------------------------------------------
+
+.max-meter 				{ max-width: 700px; }
+.max-meter--center 		{ margin-left: auto; margin-right: auto; }
+
+.align-center 			{ text-align: center; }
+.align-left 			{ text-align: left; }
+.align-right 			{ text-align: right; }
+
+
+// ------------------------------------------------------------
+// Additional typesetting
+// ------------------------------------------------------------
+
+// Make articles text more legible
+.is-typeset.is-typeset--article {
+	@include respond-to($menu-respond) {
+		p, li {
+			 @include font-size($para*1.22);
+		}
+		h1, h2 {
+			@include font-size($beta*1.22);
+		}
+		h3, h4 {
+			@include font-size($gamma*1.22);
+		}
+		h5 {
+			@include font-size($epsilon*1.22);
+		}
+		h6 {
+			@include font-size($delta*1.22);
+		}
+		blockquote {
+			margin-right: -8em;
+			p {
+				@include font-size($quote);
+			}
+		}
+		img {
+			&.alignleft {
+				margin-left: -8em;
+			}
+			&.alignright {
+				margin-right: -8em;
+			}
+		}
+	}
+}
+
+// Initial paragraph styles
+.is-typeset--additionals {
+	> p:first-of-type {
+		color: $heading-color;
+		font-size: 175%;
+		@include leading($base-font-size*1.05);
+	}
+}
+
+// ------------------------------------------------------------
+// Blockquotes
+// ------------------------------------------------------------
+
+.as-blockquote {
+	position: relative;
+	border-left: 3px solid $iati-sunset;
+	padding-left: $internal-spacing;
+	padding-top: 1.5em;
+	p {
+		@include font-size($quote);
+		color: $heading-color;
+	}
+	cite {
+		@include font-size($zeta);
+		display: block;
+	}
+}
+
+.is-typeset {
+	blockquote {
+		@extend .as-blockquote;
+		margin: ($para/$rembase) + em 0;
+		@include respond-to($menu-respond) {
+			float: right;
+			clear: right;
+			width: 30em;
+			margin-left: 4em;
+		}
+	}
+}
+
+// ------------------------------------------------------------
+// Library CMS control. Delete / Add as required
+// ------------------------------------------------------------
+
+@import "libs/wagtail";
+@import "libs/wordpress-wysiwyg";
+//@import "libs/wordpress-paging";
+//@import "libs/wordpress-comments";
