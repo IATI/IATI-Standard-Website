@@ -42,7 +42,7 @@ jobs:
             - python iati/manage.py createdefaultpages
           before_script:
             - python iati/manage.py runserver &
-          script: pytest iati/ -k test_default_pages_exist[about]
+          script: make test
         - stage: strict lint
           install:
             - pip install -r iati/requirements_dev.txt
