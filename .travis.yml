@@ -8,6 +8,9 @@ install:
   - pip install -r iati/requirements_dev.txt
   - export DJANGO_SETTINGS_MODULE=iati.settings.dev
   - psql -c "CREATE DATABASE travisci;" -U postgres  # Must match DB name in iati.settings.dev
+  - python iati/manage.py makemigrations_translation
+  - python iati/manage.py migrate_translation --no-input
+  - python iati/manage.py createdefaultpages
 script:
   - make test
 
@@ -22,6 +25,9 @@ jobs:
             - pip install -r iati/requirements_dev.txt
             - export DJANGO_SETTINGS_MODULE=iati.settings.dev
             - psql -c "CREATE DATABASE travisci;" -U postgres  # Must match DB name in iati.settings.dev
+            - python iati/manage.py makemigrations_translation
+            - python iati/manage.py migrate_translation --no-input
+            - python iati/manage.py createdefaultpages
           script: make test
         - stage: strict lint
           install:
