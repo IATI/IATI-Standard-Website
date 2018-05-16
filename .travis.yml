@@ -1,9 +1,13 @@
 language: python
 python:
   - 3.6
+
+services: postgresql
+
 install:
   - pip install -r iati/requirements_dev.txt
   - export DJANGO_SETTINGS_MODULE=iati.settings.dev
+  - psql -c "CREATE DATABASE travisci;" -U postgres  # Must match DB name in iati.settings.dev
 script:
   - make test
 
@@ -17,6 +21,7 @@ jobs:
           install:
             - pip install -r iati/requirements_dev.txt
             - export DJANGO_SETTINGS_MODULE=iati.settings.dev
+            - psql -c "CREATE DATABASE travisci;" -U postgres  # Must match DB name in iati.settings.dev
           script: make test
         - stage: strict lint
           install:
