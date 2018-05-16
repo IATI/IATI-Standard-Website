@@ -1,6 +1,7 @@
 """A module of functional tests for the about page and its sub pages."""
 from django.utils.text import slugify
 import pytest
+from data.strings import SHORT_TEXT, MEDIUM_TEXT, LONG_TEXT, RAW_HTML
 
 ABOUT_PAGE = {
     'title': 'About',
@@ -46,12 +47,10 @@ def navigate_to_default_page_cms_section(admin_browser, default_page_title):
     admin_browser.find_by_text(default_page_title).click()
 
 
-def enter_page_content(admin_browser, page_type, page_title):
+def enter_page_content(admin_browser, tab_name, cms_field, cms_content):
     """Add title and slug to a page in the CMS."""
-    admin_browser.find_by_text('English').click()
-    admin_browser.fill('title_en', page_title)
-    admin_browser.find_by_text('Promote').click()
-    admin_browser.fill('slug_en', slugify(page_title))
+    admin_browser.find_by_text(tab_name).click()
+    admin_browser.fill(cms_field, cms_content)
 
 
 def publish_page(admin_browser):
@@ -65,7 +64,8 @@ def create_about_child_page(admin_browser, page_type, page_title):
     navigate_to_default_page_cms_section(admin_browser, 'About')
     admin_browser.find_by_text('Add child page').click()
     admin_browser.find_by_text(page_type).click()
-    enter_page_content(admin_browser, page_type, page_title)
+    enter_page_content(admin_browser, 'English', 'title_en', page_title)
+    enter_page_content(admin_browser, 'Promote', 'slug_en', slugify(page_title))
     publish_page(admin_browser)
 
 
@@ -77,16 +77,10 @@ def view_live_page(admin_browser, page_title):
     admin_browser.visit(href)
 
 
-def fill_cms_content_field(admin_browser, page_title, cms_field, page_heading):
-    """Add English heading to page title."""
-    admin_browser.find_by_text(page_title).click()
-    admin_browser.find_by_text('English').click()
-    admin_browser.fill(cms_field, page_heading)
-
-
-def edit_site_page(admin_browser, page_title, cms_field, cms_content):
+def edit_page_header(admin_browser, page_title, cms_field, cms_content):
     """Edit a page by adding content via the CMS."""
-    fill_cms_content_field(admin_browser, page_title, cms_field, cms_content)
+    admin_browser.find_by_text(page_title).click()
+    enter_page_content(admin_browser, 'English', cms_field, cms_content)
     publish_page(admin_browser)
     view_live_page(admin_browser, page_title)
 
@@ -98,13 +92,28 @@ class TestAboutPage():
     def test_can_edit_about_page_heading(self, admin_browser):
         """Check that an existing About page heading can be edited."""
         navigate_to_default_page_cms_section(admin_browser, 'About')
-        edit_site_page(admin_browser, ABOUT_PAGE['title'], 'heading_en', ABOUT_PAGE['heading'])
+        edit_page_header(admin_browser, ABOUT_PAGE['title'], 'heading_en', ABOUT_PAGE['heading'])
         assert admin_browser.find_by_text(ABOUT_PAGE['heading'])
 
     def test_can_edit_about_page_excerpt(self, admin_browser):
         """Check that an existing About page excerpt can be edited."""
-        edit_site_page(admin_browser, ABOUT_PAGE['title'], 'excerpt_en', ABOUT_PAGE['excerpt'])
+        edit_page_header(admin_browser, ABOUT_PAGE['title'], 'excerpt_en', ABOUT_PAGE['excerpt'])
         assert admin_browser.find_by_text(ABOUT_PAGE['excerpt'])
+
+    # @pytest.mark.parametrize('content_input', [
+    #     {'h2': SHORT_TEXT},
+    #     {'h3': SHORT_TEXT},
+    #     {'h4': SHORT_TEXT},
+    #     {'intro': MEDIUM_TEXT},
+    #     {'paragraph': LONG_TEXT},
+    #     {'pullquote': MEDIUM_TEXT},
+    #     {'aligned_html': RAW_HTML}
+    # ])
+    # def test_cms_content_editor_can_edit_about_page(self, admin_browser):
+    #     """Check that an existing About page can be edited via the content editor."""
+    #     h2 = {'h2': SHORT_TEXT, 'button': 'H2'}
+    #     import pdb; pdb.set_trace()
+    #     admin_browser.find_by_text(h2['button']).click()
 
 
 @pytest.mark.django_db
@@ -129,13 +138,13 @@ class TestAboutChildPages():
     @pytest.mark.parametrize('child_page', ABOUT_CHILD_PAGES)
     def test_can_edit_about_child_page_heading(self, admin_browser, child_page):
         """Check that About child page headings can be edited."""
-        edit_site_page(admin_browser, child_page['title'], 'heading_en', child_page['heading'])
+        edit_page_header(admin_browser, child_page['title'], 'heading_en', child_page['heading'])
         assert admin_browser.find_by_text(child_page['heading'])
 
     @pytest.mark.parametrize('child_page', ABOUT_CHILD_PAGES)
     def test_can_edit_about_child_page_excerpt(self, admin_browser, child_page):
         """Check that About child page excerpts can be edited."""
-        edit_site_page(admin_browser, child_page['title'], 'excerpt_en', child_page['excerpt'])
+        edit_page_header(admin_browser, child_page['title'], 'excerpt_en', child_page['excerpt'])
         assert admin_browser.find_by_text(child_page['excerpt'])
 
 
@@ -152,17 +161,18 @@ class TestCaseStudyIndexChildPageCreation():
         """Check that a Case Study page can be created as a child of the Case Study Index page."""
         self.setup_case_study_index_page(admin_browser)
         admin_browser.find_by_xpath('//td[@class="no-children"]').click()
-        enter_page_content(admin_browser, CASE_STUDY_PAGE['page_type'], CASE_STUDY_PAGE['title'])
+        enter_page_content(admin_browser, 'English', 'title_en', CASE_STUDY_PAGE['title'])
+        enter_page_content(admin_browser, 'Promote', 'slug_en', slugify(CASE_STUDY_PAGE['title']))
         publish_page(admin_browser)
         view_live_page(admin_browser, CASE_STUDY_PAGE['title'])
         assert admin_browser.is_text_present(CASE_STUDY_PAGE['title'])
 
     def test_can_edit_case_study_page_heading(self, admin_browser):
         """Check that Case Study page headings can be edited."""
-        edit_site_page(admin_browser, CASE_STUDY_PAGE['title'], 'heading_en', CASE_STUDY_PAGE['heading'])
+        edit_page_header(admin_browser, CASE_STUDY_PAGE['title'], 'heading_en', CASE_STUDY_PAGE['heading'])
         assert admin_browser.find_by_text(CASE_STUDY_PAGE['heading'])
 
     def test_can_edit_case_study_page_excerpt(self, admin_browser):
         """Check that Case Study page excerpts can be edited."""
-        edit_site_page(admin_browser, CASE_STUDY_PAGE['title'], 'excerpt_en', CASE_STUDY_PAGE['excerpt'])
+        edit_page_header(admin_browser, CASE_STUDY_PAGE['title'], 'excerpt_en', CASE_STUDY_PAGE['excerpt'])
         assert admin_browser.find_by_text(CASE_STUDY_PAGE['excerpt'])
