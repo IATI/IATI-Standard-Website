@@ -85,6 +85,11 @@ def edit_page_header(admin_browser, page_title, cms_field, cms_content):
     view_live_page(admin_browser, page_title)
 
 
+def scroll_to_bottom_of_page(admin_browser):
+    """Scroll to the bottom of a page."""
+    admin_browser.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+
+
 @pytest.mark.django_db
 class TestAboutPage():
     """A container for tests to check functionality of About pages and child pages."""
@@ -109,11 +114,16 @@ class TestAboutPage():
     #     {'pullquote': MEDIUM_TEXT},
     #     {'aligned_html': RAW_HTML}
     # ])
-    # def test_cms_content_editor_can_edit_about_page(self, admin_browser):
-    #     """Check that an existing About page can be edited via the content editor."""
-    #     h2 = {'h2': SHORT_TEXT, 'button': 'H2'}
-    #     import pdb; pdb.set_trace()
-    #     admin_browser.find_by_text(h2['button']).click()
+    def test_cms_content_editor_can_edit_about_page(self, admin_browser):
+        """Check that an existing About page can be edited via the content editor."""
+        h2 = {'content': SHORT_TEXT, 'button': 'H2', 'field': 'content_editor_en-0-value'}
+        admin_browser.find_by_text('About').click()
+        scroll_to_bottom_of_page(admin_browser)
+        admin_browser.find_by_text(h2['button']).click
+        enter_page_content(admin_browser, h2['button'], h2['field'], h2['content'])
+        publish_page(admin_browser)
+        view_live_page(admin_browser, 'About')
+        assert admin_browser.find_by_text(h2['content'])
 
 
 @pytest.mark.django_db
