@@ -39,6 +39,7 @@ jobs:
             - psql -c "CREATE DATABASE travisci;" -U postgres
             - python iati/manage.py makemigrations_translation
             - python iati/manage.py migrate_translation --no-input
+            - python manage.py createdefaultpages
           before_script:
             - python iati/manage.py runserver &
           script: pytest iati/ -k test_default_pages_exist[about]
