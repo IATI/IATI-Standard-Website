@@ -39,6 +39,14 @@ CASE_STUDY_PAGE = {
     'excerpt': 'This is an excerpt for a Case Study page.'
 }
 
+# H2 = {'content': SHORT_TEXT, 'button': 'H2'}
+# H3 = {'content': SHORT_TEXT, 'button': 'H3'}
+# H4 = {'content': SHORT_TEXT, 'button': 'H4'}
+# INTRO = {'content': MEDIUM_TEXT, 'button': ''}
+# PARAGRAPH = {'content': LONG_TEXT, 'button':}
+# PULLQUOTE = {'content': MEDIUM_TEXT, 'button':}
+# ALIGNED_HTML = {'content': RAW_HTML, 'button':}
+
 
 def navigate_to_default_page_cms_section(admin_browser, default_page_title):
     """Navigate to the About page section of the CMS."""
@@ -106,24 +114,20 @@ class TestAboutPage():
         assert admin_browser.find_by_text(ABOUT_PAGE['excerpt'])
 
     # @pytest.mark.parametrize('content_input', [
-    #     {'h2': SHORT_TEXT},
-    #     {'h3': SHORT_TEXT},
-    #     {'h4': SHORT_TEXT},
-    #     {'intro': MEDIUM_TEXT},
-    #     {'paragraph': LONG_TEXT},
-    #     {'pullquote': MEDIUM_TEXT},
-    #     {'aligned_html': RAW_HTML}
+    #
     # ])
-    def test_cms_content_editor_can_edit_about_page(self, admin_browser):
-        """Check that an existing About page can be edited via the content editor."""
-        h2 = {'content': SHORT_TEXT, 'button': 'H2', 'field': 'content_editor_en-0-value'}
-        admin_browser.find_by_text('About').click()
-        scroll_to_bottom_of_page(admin_browser)
-        admin_browser.find_by_text(h2['button']).click
-        enter_page_content(admin_browser, h2['button'], h2['field'], h2['content'])
-        publish_page(admin_browser)
-        view_live_page(admin_browser, 'About')
-        assert admin_browser.find_by_text(h2['content'])
+    # def test_cms_content_editor_can_edit_about_page(self, admin_browser content_input):
+    #     """Check that an existing About page can be edited via the content editor."""
+    #     # h2 = {'content': SHORT_TEXT, 'button': 'H2', 'field': 'content_editor_en-0-value'}
+    #     admin_browser.find_by_text('About').click()
+    #     scroll_to_bottom_of_page(admin_browser)
+    #     admin_browser.find_by_text(h2['button']).click
+    #     enter_page_content(admin_browser, h2['button'], h2['field'], h2['content'])
+    #     publish_page(admin_browser)
+    #     view_live_page(admin_browser, 'About')
+    #     assert admin_browser.find_by_text(h2['content'])
+
+        # Note to self: Need to look at how to generacize content adding to allow for different way of specifying the input field.
 
 
 @pytest.mark.django_db
