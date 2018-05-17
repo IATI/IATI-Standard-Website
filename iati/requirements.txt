@@ -1,5 +1,5 @@
 Django>=2.0,<2.1
 psycopg2-binary==2.7.4,<2.8
 wagtail>=2.0,<2.1
-wagtail-modeltranslation>= 0.8.1
+git+https://github.com/infoportugal/wagtail-modeltranslation.git@v0.9.0#egg=wagtail_modeltranslation  # v0.9.0 does not download via pip, hence this workaround. See: https://github.com/infoportugal/wagtail-modeltranslation/issues/203
 git+https://github.com/deschler/django-modeltranslation
