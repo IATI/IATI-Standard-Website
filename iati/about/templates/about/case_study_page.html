@@ -19,11 +19,9 @@
 <div class="sections">
   <div class="row">
     {% include "home/includes/breadcrumbs.html" %}
-    <div class="is-typeset is-typeset--article">
       {% if page.content_editor %}
         {% include "home/includes/streamfield.html" with content=page.content_editor %}
       {% endif %}
-    </div>
   </div>
 
   <div class="row">
