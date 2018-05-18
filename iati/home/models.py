@@ -10,21 +10,11 @@ from wagtail.images.blocks import ImageChooserBlock
 from wagtail.documents.blocks import DocumentChooserBlock
 
 
-class DocumentChooserULBlock(StreamBlock):
-    """A streamblock that holds an arbitrary number of documents"""
-    document_single = DocumentChooserBlock(icon="doc-full-inverse", required=False)
-
-
-class DocumentChooserStream(StreamBlock):
-    """A streamblock that holds an arbitrary number of documents"""
-    document_box_h2 = CharBlock(icon="title", classname="title", required=False)
-    documents_group = DocumentChooserULBlock(icon="doc-full-inverse", required=False)
-
-
-class DocumentBoxBlock(StructBlock):
+class DocumentBoxBlock(StreamBlock):
     """A block for holding a document box, with a single header and multiple documents"""
 
-    document_box_content = DocumentChooserStream(icon="doc-full-inverse", required=False)
+    document_box_heading = CharBlock(icon="title", classname="title", required=False, help_text="Only one heading per box.")
+    document = DocumentChooserBlock(icon="doc-full-inverse", required=False)
 
 
 class PullQuoteBlock(StructBlock):

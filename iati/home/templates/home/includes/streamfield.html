@@ -35,18 +35,19 @@
             {% endif %}
         </figure>
         {% elif child.block_type == 'document_box' %}
-      </div>
-          <div class="m-additional">
-            {% for doc_box_child in child.value.document_box_content %}
-              {% if doc_box_child.block_type == 'document_box_h2' %}
-                <h4 class="m-additional__heading heading"
-                  {% if not forloop.first %}
-                    style="margin-top:1em;"
-                  {% endif %}
-                >{{doc_box_child.value }}</h4>
-              {% elif doc_box_child.block_type == 'documents_group' %}
+        {% regroup child.value by block_type as doc_box_groups %}
+        </div>
+        <div class="m-additional"
+        {% if not forloop.last %}
+        style="margin-bottom:4em;"
+        {% endif %}
+        >
+          {% for doc_box_group in doc_box_groups %}
+            {% if doc_box_group.grouper == "document_box_heading" %}
+              <h4 class="m-additional__heading heading">{{ doc_box_group.list|first }}</h4>
+            {% elif doc_box_group.grouper == "document" %}
               <ul class="m-additional__list download-list">
-                {% for doc in doc_box_child.value %}
+                {% for doc in doc_box_group.list %}
                   <li class="download-list__item">
                     <a class="download-list__item-link" href="{{ doc_chooser.value.url }}">
                       <h5 class="download-list__item-link-heading">{{ doc.value.title }}</h5>
@@ -55,10 +56,10 @@
                   </li>
                 {% endfor %}
               </ul>
-              {% endif %}
-            {% endfor %}
-          </div>
-          <div class="is-typeset is-typeset--article">
+            {% endif %}
+          {% endfor %}
+        </div>
+        <div class="is-typeset is-typeset--article">
         {% else %}
             {{ child }}
         {% endif %}
