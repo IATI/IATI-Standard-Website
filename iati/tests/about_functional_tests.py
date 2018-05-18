@@ -1,7 +1,7 @@
 """A module of functional tests for the about page and its sub pages."""
 from django.utils.text import slugify
 import pytest
-# from data.strings import SHORT_TEXT, MEDIUM_TEXT, LONG_TEXT, RAW_HTML
+
 
 ABOUT_PAGE = {
     'title': 'About',
@@ -82,7 +82,12 @@ def view_live_page(admin_browser, page_title):
 
 
 def edit_page_header(admin_browser, page_title, cms_field, cms_content):
-    """Edit a page by adding content via the CMS."""
+    """Edit a page by adding content via the CMS.
+
+    TODO:
+        Rename this function to avoid confusion with content editor tests.
+
+    """
     admin_browser.find_by_text(page_title).click()
     enter_page_content(admin_browser, 'English', cms_field, cms_content)
     publish_page(admin_browser)
@@ -115,7 +120,7 @@ class TestAboutPage():
         H4
     ])
     def test_can_edit_about_page_with_header_text(self, admin_browser, header):
-        """Check that an existing About page content editor can add an H2 header."""
+        """Check that an existing About page content editor can add a header."""
         admin_browser.find_by_text('About').click()
         element_count = admin_browser.find_by_id('content_editor_en-count').value
         scroll_to_bottom_of_page(admin_browser)
@@ -161,6 +166,13 @@ class TestAboutChildPages():
         edit_page_header(admin_browser, child_page['title'], 'excerpt_en', child_page['excerpt'])
         assert admin_browser.find_by_text(child_page['excerpt'])
 
+    # @pytest.mark.parametrize('header', [
+    #     H2,
+    #     H3,
+    #     H4
+    # ])
+    # def test_can_edit_about_child_page_with_header_text(admin_browser, header):
+    #     """"""
 
 @pytest.mark.django_db
 class TestCaseStudyIndexChildPageCreation():
