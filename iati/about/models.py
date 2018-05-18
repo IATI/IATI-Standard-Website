@@ -1,15 +1,11 @@
 from django.db import models
 
-from wagtail.admin.edit_handlers import InlinePanel
 from wagtail.core.blocks import CharBlock, StreamBlock, StructBlock, TextBlock
 from wagtail.core.fields import StreamField
-from wagtail.core.models import Orderable
-from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.images.edit_handlers import ImageChooserPanel
 
-from modelcluster.fields import ParentalKey
-from home.models import AbstractContentPage, AbstractIndexPage, IATIStreamBlock, PullQuoteBlock
+from home.models import AbstractContentPage, AbstractIndexPage, PullQuoteBlock
 
 
 class AboutPage(AbstractContentPage):
@@ -23,27 +19,6 @@ class AboutSubPage(AbstractContentPage):
     """A model for generic About subpages."""
 
     subpage_types = ['about.AboutSubPage', 'about.PeoplePage']
-
-    multilingual_field_panels = [
-        InlinePanel('about_sub_page_documents', label='About subpage attachments'),
-    ]
-
-
-class AboutSubPageDocument(Orderable):
-    """A model for About sub page documents."""
-
-    page = ParentalKey(AboutSubPage, related_name='about_sub_page_documents')
-    document = models.ForeignKey(
-        'wagtaildocs.Document',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
-
-    panels = [
-        DocumentChooserPanel('document'),
-    ]
 
 
 class CaseStudyIndexPage(AbstractIndexPage):
@@ -87,23 +62,6 @@ class CaseStudyPage(AbstractContentPage):
 
     multilingual_field_panels = [
         ImageChooserPanel('feed_image'),
-        InlinePanel('case_study_documents', label='Case study attachments'),
-    ]
-
-
-class CaseStudyDocument(Orderable):
-    """A model for Case Study documents."""
-
-    page = ParentalKey(CaseStudyPage, related_name='case_study_documents')
-    document = models.ForeignKey(
-        'wagtaildocs.Document',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
-    panels = [
-        DocumentChooserPanel('document'),
     ]
 
 

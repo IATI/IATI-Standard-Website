@@ -1,7 +1,6 @@
 from django.db import models
 from django import forms
 from wagtail.core.models import Page
-from django.utils import translation
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from wagtail.core.blocks import TextBlock, StructBlock, StreamBlock, FieldBlock, CharBlock, RichTextBlock, RawHTMLBlock
