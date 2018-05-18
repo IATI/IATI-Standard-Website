@@ -3,6 +3,9 @@ import os
 import pytest
 from conftest import LOCALHOST
 from django.core.management import call_command
+from django.db.models import get_app, get_models
+from home.models import AbstractContentPage
+import pdb
 
 
 @pytest.mark.django_db()
@@ -52,3 +55,17 @@ class TestTopMenu():
         browser.visit(LOCALHOST)
         browser.click_link_by_id('section-{}'.format(main_section))
         assert browser.find_by_css('body').first.has_class('body--{}'.format(main_section))
+
+
+class TestContentEditor():
+    """A container for testing models that incorporate the default content editor"""
+
+    def collect_abstract_content_pages(self, app_name):
+        """Given an app name, return models belonging to that app that inherit from AbstractContentPage"""
+        app = get_app(app_name)
+        for model in get_models(app):
+            if issubclass(model, AbstractContentPage):
+                pdb.set_trace()
+
+    def test_about_content_pages(self):
+        models = self.collect_abstract_content_pages('about')
