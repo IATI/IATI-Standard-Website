@@ -1,7 +1,7 @@
 """A module of functional tests for the about page and its sub pages."""
 from django.utils.text import slugify
 import pytest
-from data.strings import SHORT_TEXT, MEDIUM_TEXT, LONG_TEXT, RAW_HTML
+# from data.strings import SHORT_TEXT, MEDIUM_TEXT, LONG_TEXT, RAW_HTML
 
 ABOUT_PAGE = {
     'title': 'About',
@@ -39,13 +39,9 @@ CASE_STUDY_PAGE = {
     'excerpt': 'This is an excerpt for a Case Study page.'
 }
 
-# H2 = {'content': SHORT_TEXT, 'button': 'H2'}
-# H3 = {'content': SHORT_TEXT, 'button': 'H3'}
-# H4 = {'content': SHORT_TEXT, 'button': 'H4'}
-# INTRO = {'content': MEDIUM_TEXT, 'button': ''}
-# PARAGRAPH = {'content': LONG_TEXT, 'button':}
-# PULLQUOTE = {'content': MEDIUM_TEXT, 'button':}
-# ALIGNED_HTML = {'content': RAW_HTML, 'button':}
+H2 = {'content': 'H2 heading', 'button': 'H2', 'id': 'content_editor_en-{}-value'}
+H3 = {'content': 'H3 heading', 'button': 'H3', 'id': 'content_editor_en-{}-value'}
+H4 = {'content': 'H4 heading', 'button': 'H4', 'id': 'content_editor_en-{}-value'}
 
 
 def navigate_to_default_page_cms_section(admin_browser, default_page_title):
@@ -113,21 +109,25 @@ class TestAboutPage():
         edit_page_header(admin_browser, ABOUT_PAGE['title'], 'excerpt_en', ABOUT_PAGE['excerpt'])
         assert admin_browser.find_by_text(ABOUT_PAGE['excerpt'])
 
-    # @pytest.mark.parametrize('content_input', [
-    #
-    # ])
-    # def test_cms_content_editor_can_edit_about_page(self, admin_browser content_input):
-    #     """Check that an existing About page can be edited via the content editor."""
-    #     # h2 = {'content': SHORT_TEXT, 'button': 'H2', 'field': 'content_editor_en-0-value'}
-    #     admin_browser.find_by_text('About').click()
-    #     scroll_to_bottom_of_page(admin_browser)
-    #     admin_browser.find_by_text(h2['button']).click
-    #     enter_page_content(admin_browser, h2['button'], h2['field'], h2['content'])
-    #     publish_page(admin_browser)
-    #     view_live_page(admin_browser, 'About')
-    #     assert admin_browser.find_by_text(h2['content'])
-
-        # Note to self: Need to look at how to generacize content adding to allow for different way of specifying the input field.
+    @pytest.mark.parametrize('header', [
+        H2,
+        H3,
+        H4
+    ])
+    def test_can_edit_about_page_with_header_text(self, admin_browser, header):
+        """Check that an existing About page content editor can add an H2 header."""
+        admin_browser.find_by_text('About').click()
+        element_count = admin_browser.find_by_id('content_editor_en-count').value
+        scroll_to_bottom_of_page(admin_browser)
+        if not admin_browser.find_by_text(header['button']).visible:
+            admin_browser.find_by_xpath('//div[@id="content_editor_en-{}-appendmenu"]/a'.format(int(element_count)-1)).mouse_over()
+            admin_browser.find_by_xpath('//div[@id="content_editor_en-{}-appendmenu"]/a'.format(int(element_count)-1)).click()
+            scroll_to_bottom_of_page(admin_browser)
+        admin_browser.find_by_text(header['button'])[int(element_count)].click()
+        admin_browser.find_by_id(header['id'].format(element_count)).fill(header['content'])
+        publish_page(admin_browser)
+        view_live_page(admin_browser, 'About')
+        assert admin_browser.is_text_present(header['content'])
 
 
 @pytest.mark.django_db
