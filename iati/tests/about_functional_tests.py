@@ -166,13 +166,30 @@ class TestAboutChildPages():
         edit_page_header(admin_browser, child_page['title'], 'excerpt_en', child_page['excerpt'])
         assert admin_browser.find_by_text(child_page['excerpt'])
 
-    # @pytest.mark.parametrize('header', [
-    #     H2,
-    #     H3,
-    #     H4
-    # ])
-    # def test_can_edit_about_child_page_with_header_text(admin_browser, header):
-    #     """"""
+    @pytest.mark.parametrize('child_page', ABOUT_CHILD_PAGES)
+    @pytest.mark.parametrize('header', [
+        H2,
+        H3,
+        H4
+    ])
+    def test_can_edit_about_child_page_with_header_text(self, admin_browser, header, child_page):
+        """Check that an About child page content editor can add a header."""
+        admin_browser.find_by_text(child_page['title']).click()
+        admin_browser.find_by_text('English').click()
+        scroll_to_bottom_of_page(admin_browser)
+        import pdb; pdb.set_trace()
+        element_count = admin_browser.find_by_id('content_editor_en-count').value
+        if not admin_browser.find_by_text(header['button']).visible:
+            admin_browser.find_by_xpath('//div[@id="content_editor_en-{}-appendmenu"]/a'.format(int(element_count)-1)).mouse_over()
+            admin_browser.find_by_xpath('//div[@id="content_editor_en-{}-appendmenu"]/a'.format(int(element_count)-1)).click()
+            scroll_to_bottom_of_page(admin_browser)
+        import pdb; pdb.set_trace()
+        admin_browser.find_by_text(header['button'])[int(element_count)].click()
+        admin_browser.find_by_id(header['id'].format(element_count)).fill(header['content'])
+        publish_page(admin_browser)
+        view_live_page(admin_browser, child_page['title'])
+        assert admin_browser.is_text_present(header['content'])
+
 
 @pytest.mark.django_db
 class TestCaseStudyIndexChildPageCreation():
