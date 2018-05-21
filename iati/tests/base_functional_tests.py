@@ -6,7 +6,7 @@ from django.core.management import call_command
 from django.apps import apps
 from django.utils.text import slugify
 from home.models import AbstractContentPage, IATIStreamBlock, HomePage
-from wagtail.core.blocks import CharBlock
+from wagtail.core.blocks import CharBlock, RichTextBlock
 from about_functional_tests import publish_page, view_live_page
 import string
 import random
@@ -125,10 +125,21 @@ class TestContentEditor():
                         toggle_button = admin_browser.find_by_css(".toggle")[0]
                         scroll_and_click(admin_browser, toggle_button)
                         text_field = admin_browser.find_by_css(".fieldname-{} input".format(base_block))[0]
-                        text_field_name = text_field.__dict__['_element'].get_attribute('name')
+                        scroll_and_click(admin_browser, text_field)
                         rs = random_string()
                         random_content[base_block] = rs
-                        admin_browser.fill(text_field_name, rs)
+                        text_field.fill(rs)
+                    if isinstance(block_model, RichTextBlock):
+                        add_button_class = ".action-add-block-{}".format(base_block)
+                        add_button = admin_browser.find_by_css(add_button_class)[0]
+                        scroll_and_click(admin_browser, add_button)
+                        toggle_button = admin_browser.find_by_css(".toggle")[0]
+                        scroll_and_click(admin_browser, toggle_button)
+                        text_field = admin_browser.find_by_css(".fieldname-{} .public-DraftEditor-content".format(base_block))[0]
+                        scroll_and_click(admin_browser, text_field)
+                        rs = random_string()
+                        random_content[base_block] = rs
+                        text_field.fill(rs)
                 admin_browser.find_by_text('Promote').click()
                 admin_browser.fill('slug_en', slugify(verbose_page_name))
                 publish_page(admin_browser)
