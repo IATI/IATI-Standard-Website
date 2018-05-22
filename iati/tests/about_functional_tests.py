@@ -50,14 +50,26 @@ H4 = {'content': 'H4 heading', 'button': 'H4', 'id': 'content_editor_en-{}-value
 
 
 def navigate_to_default_page_cms_section(admin_browser, default_page_title):
-    """Navigate to the About page section of the CMS."""
+    """Navigate to the About page section of the CMS.
+
+    Args:
+        default_page_title (str): The title of a default page modelself.
+
+    """
     admin_browser.click_link_by_text('Pages')
     admin_browser.find_by_xpath('//span[@class="icon icon-arrow-right "]').click()
     admin_browser.find_by_text(default_page_title).click()
 
 
 def enter_page_content(admin_browser, tab_name, cms_field, cms_content):
-    """Add title and slug to a page in the CMS."""
+    """Add title and slug to a page in the CMS.
+
+    Args:
+        tab_name (str): The name of a tab on an edit page of the CMS.
+        cms_field (str): The name of the field in the CMS you want to fill.
+        cms_content (str): The text content you want to fill the field with.
+
+    """
     admin_browser.find_by_text(tab_name).click()
     admin_browser.fill(cms_field, cms_content)
 
@@ -69,7 +81,13 @@ def publish_page(admin_browser):
 
 
 def create_about_child_page(admin_browser, page_type, page_title):
-    """Create a child page in the CMS."""
+    """Create a child page in the CMS.
+
+    Args:
+        page_type (str): The verbose name of the page model type you want to click on.
+        page_title (str): The title of the page you are editing.
+
+    """
     navigate_to_default_page_cms_section(admin_browser, 'About')
     admin_browser.find_by_text('Add child page').click()
     admin_browser.find_by_text(page_type).click()
@@ -79,7 +97,12 @@ def create_about_child_page(admin_browser, page_type, page_title):
 
 
 def view_live_page(admin_browser, page_title):
-    """Navigate to the published page on the site."""
+    """Navigate to the published page on the site.
+
+    Args:
+        page_title (str): The page title text you are expecting on the live page.
+
+    """
     admin_browser.find_by_text(page_title).mouse_over()
     button_link = admin_browser.find_by_text('View live')
     href = button_link[0].__dict__['_element'].get_property('href')
@@ -88,6 +111,11 @@ def view_live_page(admin_browser, page_title):
 
 def edit_page_header(admin_browser, page_title, cms_field, cms_content):
     """Edit a page by adding content via the CMS.
+
+    Args:
+        page_title (str): The title of the page you want to edit.
+        cms_field (str): The name of the CMS field you want to enter content into.
+        cms_content (str): The text content you want to add to the CMS field.
 
     TODO:
         Rename this function to avoid confusion with content editor tests.
@@ -105,7 +133,16 @@ def scroll_to_bottom_of_page(admin_browser):
 
 
 def reveal_content_editor(admin_browser, button, element_count):
-    """Open content editor if it is not already in view."""
+    """Open content editor if it is not already in view.
+
+    Args:
+        button (str): The displayed text name of the button you want to click.
+        element_count (str): The element counter value of the content editor Streamfield block.
+
+    TODO:
+        Decide whether on convert element_count to int on assignment of variable.
+
+    """
     if not admin_browser.find_by_text(button).visible:
         admin_browser.find_by_xpath('//div[@id="content_editor_en-{}-appendmenu"]/a'.format(int(element_count)-1)).mouse_over()
         admin_browser.find_by_xpath('//div[@id="content_editor_en-{}-appendmenu"]/a'.format(int(element_count)-1)).click()
