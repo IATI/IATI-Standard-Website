@@ -9,10 +9,18 @@ from django.conf import settings
 from home.models import AbstractContentPage, IATIStreamBlock, HomePage
 from wagtail.core.blocks import CharBlock, RichTextBlock, StreamBlock
 from wagtail.documents.blocks import DocumentChooserBlock
-from about_functional_tests import view_live_page
 import string
 import random
-import pdb
+import time
+
+
+def wait_for_visibility(admin_browser, element, wait_time=1):
+    end_time = time.time() + wait_time
+
+    while time.time() < end_time:
+        if element and element.visible:
+            return False
+    return False
 
 
 def collect_base_pages(base_page_class):
@@ -30,11 +38,13 @@ def random_string(size=10, chars=string.ascii_uppercase+string.ascii_lowercase):
 
 def click_obscured(admin_browser, element):
     """A function that clicks elements even if they're slightly obscured"""
+    wait_for_visibility(admin_browser, element)
     admin_browser.driver.execute_script("arguments[0].click();", element.__dict__['_element'])
 
 
 def scroll_to_element(admin_browser, element):
     """A function that scrolls to the location of an element"""
+    wait_for_visibility(admin_browser, element)
     rect = element.__dict__['_element'].rect
     mid_point_x = int(rect['x'] + (rect['width']/2))
     mid_point_y = int(rect['y'] + (rect['height']/2))
@@ -113,6 +123,8 @@ class TestContentEditor():
         full_text_field_class = ".fieldname-{}".format(base_block)+text_field_class
         text_field = admin_browser.find_by_css(full_text_field_class)[0]
         scroll_and_click(admin_browser, text_field)
+        scroll_and_click(admin_browser, text_field)
+        scroll_and_click(admin_browser, text_field)
         text_field.fill(content)
 
     @pytest.mark.parametrize('content_model', collect_base_pages(AbstractContentPage))
@@ -183,11 +195,8 @@ class TestContentEditor():
             scroll_and_click(admin_browser, publish_arrow)
             publish_button = admin_browser.find_by_text('Publish')[0]
             scroll_and_click(admin_browser, publish_button)
-            page_link = admin_browser.find_by_text(verbose_page_name)[0]
-            scroll_to_element(admin_browser, page_link)
-            page_link.mouse_over()
-            button_link = admin_browser.find_by_text('View live')
-            href = button_link[0].__dict__['_element'].get_property('href')
+            button_link = admin_browser.find_by_css('li.success a')[0]
+            href = button_link.__dict__['_element'].get_property('href')
             admin_browser.visit(href)
             for rc_key in random_content:
                 assert admin_browser.is_text_present(random_content[rc_key])
