@@ -1,3 +1,5 @@
+"""Model definitions for the home app."""
+
 from django.db import models
 from django import forms
 from wagtail.core.models import Page
@@ -100,5 +102,6 @@ class AbstractIndexPage(AbstractBasePage):
         abstract = True
 
 
-class HomePage(Page):
+class HomePage(Page):  # pylint: disable=too-many-ancestors
+    """Proof-of-concept model definition for the homepage."""
     translation_fields = []
