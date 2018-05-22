@@ -7,7 +7,7 @@ from django.apps import apps
 from django.utils.text import slugify
 from django.conf import settings
 from home.models import AbstractContentPage, IATIStreamBlock, HomePage
-from wagtail.core.blocks import CharBlock, RichTextBlock, StreamBlock, StructBlock
+from wagtail.core.blocks import CharBlock, RawHTMLBlock, RichTextBlock, StreamBlock, StructBlock, TextBlock
 from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.images.blocks import ImageChooserBlock
 import string
@@ -16,12 +16,12 @@ import time
 import pdb
 
 
-def wait_for_visibility(element, wait_time=1):
+def wait_for_visibility(element, wait_time=1000):
     end_time = time.time() + wait_time
 
     while time.time() < end_time:
-        if element and element.visible:
-            return False
+        if element and element.visible and element.__dict__['_element'].is_enabled():
+            return True
     return False
 
 
@@ -133,35 +133,59 @@ class StreamFieldFiller():
         self.random_content = list()
         self.admin_browser = admin_browser
         self.stream_block_model = stream_block_model
-        self.model_mapping = {
-            "CharBlock": self.fill_charblock,
-            "RichTextBlock": self.fill_richtextblock,
-            "DocumentChooserBlock": self.fill_documentchooserblock,
-            "ImageChooserBlock": self.fill_imagechooserblock,
-            "StructBlock": self.fill_structblock,
-            "StreamBlock": self.fill_streamblock
-        }
+        self.possible_ancestors = [
+            (CharBlock, self.fill_charblock),
+            (TextBlock, self.fill_textblock),
+            (RawHTMLBlock, self.fill_textblock),
+            (RichTextBlock, self.fill_richtextblock),
+            (DocumentChooserBlock, self.fill_documentchooserblock),
+            (ImageChooserBlock, self.fill_imagechooserblock),
+            (StructBlock, self.fill_structblock),
+            (StreamBlock, self.fill_streamblock)
+        ]
 
-    def rs(self):
+    def find_filler(self, block_model):
+        for (possible_ancestor, filler_function) in self.possible_ancestors:
+            if isinstance(block_model, possible_ancestor):
+                return filler_function
+        pdb.set_trace() # See what class we're missing
+
+    def model_router(self, parent_model_blocks, base_block, depth=0):
+        block_model = parent_model_blocks[base_block]
+        filler_function = self.find_filler(block_model)
+        filler_function(parent_model_blocks, base_block, depth)
+
+    def start_filling(self):
+        for base_block in self.stream_block_model.base_blocks:
+            self.model_router(self.stream_block_model.base_blocks, base_block)
+
+    def gen_rs(self):
         the_string = random_string()
         self.random_content.append(the_string)
         return the_string
 
-    def fill_charblock(self, base_block, depth):
-        find_and_click_add_button(self.admin_browser, base_block)
+    def fill_charblock(self, _, base_block, depth):
         if depth >= 0:
+            find_and_click_add_button(self.admin_browser, base_block)
             find_and_click_toggle_button(self.admin_browser, depth)
-        fill_content_editor_block(self.admin_browser, base_block, " input", self.rs())
+        fill_content_editor_block(self.admin_browser, base_block, " input", self.gen_rs())
 
-    def fill_richtextblock(self, base_block, depth):
-        find_and_click_add_button(self.admin_browser, base_block)
+    def fill_textblock(self, _, base_block, depth):
         if depth >= 0:
+            find_and_click_add_button(self.admin_browser, base_block)
             find_and_click_toggle_button(self.admin_browser, depth)
-        fill_content_editor_block(self.admin_browser, base_block, " .public-DraftEditor-content", self.rs())
+        fill_content_editor_block(self.admin_browser, base_block, " textarea", self.gen_rs())
 
-    def fill_documentchooserblock(self, base_block, depth):
-        find_and_click_add_button(self.admin_browser, base_block)
+    def fill_richtextblock(self, _, base_block, depth):
         if depth >= 0:
+            find_and_click_add_button(self.admin_browser, base_block)
+            find_and_click_toggle_button(self.admin_browser, depth)
+        # wait_for_visibility(self.admin_browser.find_by_css(".fieldname-{} .public-DraftEditor-content".format(base_block))[0], 100)
+        fill_content_editor_block(self.admin_browser, base_block, " .public-DraftEditor-content", self.gen_rs())
+
+    def fill_documentchooserblock(self, _, base_block, depth):
+        if depth >= 0:
+            find_and_click_add_button(self.admin_browser, base_block)
             find_and_click_toggle_button(self.admin_browser, depth)
         choose_doc_button = self.admin_browser.find_by_text("Choose a document")[0]
         scroll_and_click(self.admin_browser, choose_doc_button)
@@ -179,9 +203,9 @@ class StreamFieldFiller():
             self.admin_browser.attach_file('file', settings.BASE_DIR+"/tests/data/annual-report.pdf")
             scroll_and_click(self.admin_browser, upload_button)
 
-    def fill_imagechooserblock(self, base_block, depth):
-        find_and_click_add_button(self.admin_browser, base_block)
+    def fill_imagechooserblock(self, _, base_block, depth):
         if depth >= 0:
+            find_and_click_add_button(self.admin_browser, base_block)
             find_and_click_toggle_button(self.admin_browser, depth)
         choose_image_button = self.admin_browser.find_by_text("Choose an image")[0]
         scroll_and_click(self.admin_browser, choose_image_button)
@@ -198,66 +222,35 @@ class StreamFieldFiller():
             self.admin_browser.attach_file('file', settings.BASE_DIR+"/tests/data/placeholder.jpg")
             scroll_and_click(self.admin_browser, upload_button)
 
-    def fill_streamblock(self, base_block, depth):
+    def fill_streamblock(self, parent_model_blocks, base_block, depth):
         find_and_click_add_button(self.admin_browser, base_block)
-        block_model = self.stream_block_model[base_block]
+        block_model = parent_model_blocks[base_block]
         child_blocks = block_model.child_blocks
         depth_1 = depth + 1
         for child_block in child_blocks:
-            self.model_router(child_block, depth_1)
+            self.model_router(child_blocks, child_block, depth_1)
         find_and_click_toggle_button(self.admin_browser, depth)
 
-    def fill_structblock(self, base_block, depth):
+    def fill_structblock(self, parent_model_blocks, base_block, depth):
         find_and_click_add_button(self.admin_browser, base_block)
-        block_model = self.stream_block_model[base_block]
+        block_model = parent_model_blocks[base_block]
         child_blocks = block_model.child_blocks
         for child_block in child_blocks:
-            self.model_router(child_block, -1)
+            self.model_router(child_blocks, child_block, -1)
         find_and_click_toggle_button(self.admin_browser, depth)
-
-    def model_router(self, base_block, depth=0):
-        block_model = self.stream_block_model[base_block]
-        block_model_name = str(type(block_model)).split(".")[-1][:-2]
-        filler_function = self.model_mapping[block_model_name]
-        filler_function(base_block, depth)
-
-    def start_filling(self):
-        for base_block in self.stream_block_model.base_blocks:
-            self.model_router(base_block)
 
 
 @pytest.mark.django_db()
 class TestContentEditor():
     """A container for testing models that incorporate the default content editor"""
 
-    def find_and_click_add_button(self, admin_browser, base_block):
-        add_button_class = ".action-add-block-{}".format(base_block)
-        add_button = admin_browser.find_by_css(add_button_class)[0]
-        scroll_and_click(admin_browser, add_button)
-
-
-    def find_and_click_toggle_button(self, admin_browser, toggle_index):
-        toggle_button = admin_browser.find_by_css(".toggle")[toggle_index]
-        scroll_and_click(admin_browser, toggle_button)
-
-
-    def fill_content_editor_block(self, admin_browser, base_block, text_field_class, content):
-        full_text_field_class = ".fieldname-{}".format(base_block)+text_field_class
-        text_field = admin_browser.find_by_css(full_text_field_class)[0]
-        scroll_and_click(admin_browser, text_field)
-        text_field.fill(content)
-
     @pytest.mark.parametrize('content_model', collect_base_pages(AbstractContentPage))
     def test_content_pages(self, admin_browser, content_model):
         """
         Test templates for every content page.
         Fill in random content for every field and test to see if it exists on the template.
-
-        Todo:
-            - Test non-text content
         """
         homepage = HomePage.objects.first()
-        random_content = dict()
         admin_browser.visit(os.environ["LIVE_SERVER_URL"]+'/admin/pages/{}/'.format(homepage.pk))
         admin_browser.click_link_by_text('Add child page')
         verbose_page_name = content_model.get_verbose_name()
@@ -265,58 +258,8 @@ class TestContentEditor():
             admin_browser.click_link_by_text(verbose_page_name)
             admin_browser.find_by_text('English').click()
             admin_browser.fill('title_en', verbose_page_name)
-            for base_block in IATIStreamBlock.base_blocks:
-                block_model = IATIStreamBlock.base_blocks[base_block]
-                pdb.set_trace()
-                if isinstance(block_model, CharBlock):
-                    rs = random_string()
-                    random_content[base_block] = rs
-                    self.find_and_click_add_button(admin_browser, base_block)
-                    self.find_and_click_toggle_button(admin_browser, 0)
-                    self.fill_content_editor_block(admin_browser, base_block, " input", rs)
-                if isinstance(block_model, RichTextBlock):
-                    rs = random_string()
-                    random_content[base_block] = rs
-                    self.find_and_click_add_button(admin_browser, base_block)
-                    self.find_and_click_toggle_button(admin_browser, 0)
-                    self.fill_content_editor_block(admin_browser, base_block, " .public-DraftEditor-content", rs)
-                if isinstance(block_model, StreamBlock):
-                    self.find_and_click_add_button(admin_browser, base_block)
-                    child_blocks = block_model.child_blocks
-                    for child_block in child_blocks:
-                        child_block_model = block_model.child_blocks[child_block]
-                        if isinstance(child_block_model, CharBlock):
-                            rs = random_string()
-                            random_content[child_block] = rs
-                            self.find_and_click_add_button(admin_browser, child_block)
-                            self.find_and_click_toggle_button(admin_browser, 1)
-                            self.fill_content_editor_block(admin_browser, child_block, " input", rs)
-                        if isinstance(child_block_model, DocumentChooserBlock):
-                            self.find_and_click_add_button(admin_browser, child_block)
-                            self.find_and_click_toggle_button(admin_browser, 1)
-                            choose_doc_button = admin_browser.find_by_text("Choose a document")[0]
-                            scroll_and_click(admin_browser, choose_doc_button)
-                            random_content[child_block] = "Annual report"
-                            annual_report_link = admin_browser.find_by_text("Annual report")
-                            if len(annual_report_link) > 0:
-                                scroll_and_click(admin_browser, annual_report_link[0])
-                            else:
-                                upload_tab, upload_button = admin_browser.find_by_text('Upload')
-                                scroll_and_click(admin_browser, upload_tab)
-                                title_field = admin_browser.find_by_xpath("//input[@name='title']")[0]
-                                scroll_and_click(admin_browser, title_field)
-                                title_field.fill('Annual report')
-                                admin_browser.attach_file('file', settings.BASE_DIR+"/tests/data/annual-report.pdf")
-                                scroll_and_click(admin_browser, upload_button)
-                    self.find_and_click_toggle_button(admin_browser, 0)
-                # if isinstance(block_model, StructBlock):
-                #     pdb.set_trace()
-                #     rs = random_string()
-                #     random_content[base_block] = rs
-                #     self.find_and_click_add_button(admin_browser, base_block)
-                #     self.find_and_click_toggle_button(admin_browser, 0)
-                #     self.fill_content_editor_block(admin_browser, base_block, " input", rs)
-
+            content_editor_filler = StreamFieldFiller(admin_browser, IATIStreamBlock)
+            content_editor_filler.start_filling()
             promote_tab = admin_browser.find_by_text('Promote')[0]
             scroll_and_click(admin_browser, promote_tab)
             admin_browser.fill('slug_en', slugify(verbose_page_name))
@@ -327,5 +270,5 @@ class TestContentEditor():
             button_link = admin_browser.find_by_css('li.success a')[0]
             href = button_link.__dict__['_element'].get_property('href')
             admin_browser.visit(href)
-            for rc_key in random_content:
-                assert admin_browser.is_text_present(random_content[rc_key])
+            for random_content in content_editor_filler.random_content:
+                assert admin_browser.is_text_present(random_content)
