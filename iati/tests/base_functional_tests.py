@@ -7,14 +7,16 @@ from django.apps import apps
 from django.utils.text import slugify
 from django.conf import settings
 from home.models import AbstractContentPage, IATIStreamBlock, HomePage
-from wagtail.core.blocks import CharBlock, RichTextBlock, StreamBlock
+from wagtail.core.blocks import CharBlock, RichTextBlock, StreamBlock, StructBlock
 from wagtail.documents.blocks import DocumentChooserBlock
+from wagtail.images.blocks import ImageChooserBlock
 import string
 import random
 import time
+import pdb
 
 
-def wait_for_visibility(admin_browser, element, wait_time=1):
+def wait_for_visibility(element, wait_time=1):
     end_time = time.time() + wait_time
 
     while time.time() < end_time:
@@ -38,13 +40,13 @@ def random_string(size=10, chars=string.ascii_uppercase+string.ascii_lowercase):
 
 def click_obscured(admin_browser, element):
     """A function that clicks elements even if they're slightly obscured"""
-    wait_for_visibility(admin_browser, element)
+    wait_for_visibility(element)
     admin_browser.driver.execute_script("arguments[0].click();", element.__dict__['_element'])
 
 
 def scroll_to_element(admin_browser, element):
     """A function that scrolls to the location of an element"""
-    wait_for_visibility(admin_browser, element)
+    wait_for_visibility(element)
     rect = element.__dict__['_element'].rect
     mid_point_x = int(rect['x'] + (rect['width']/2))
     mid_point_y = int(rect['y'] + (rect['height']/2))
@@ -55,6 +57,24 @@ def scroll_and_click(admin_browser, element):
     """A function that scrolls to, and clicks an element"""
     scroll_to_element(admin_browser, element)
     click_obscured(admin_browser, element)
+
+
+def find_and_click_add_button(admin_browser, base_block):
+    add_button_class = ".action-add-block-{}".format(base_block)
+    add_button = admin_browser.find_by_css(add_button_class)[0]
+    scroll_and_click(admin_browser, add_button)
+
+
+def find_and_click_toggle_button(admin_browser, toggle_index):
+    toggle_button = admin_browser.find_by_css(".toggle")[toggle_index]
+    scroll_and_click(admin_browser, toggle_button)
+
+
+def fill_content_editor_block(admin_browser, base_block, text_field_class, content):
+    full_text_field_class = ".fieldname-{}".format(base_block)+text_field_class
+    text_field = admin_browser.find_by_css(full_text_field_class)[0]
+    scroll_and_click(admin_browser, text_field)
+    text_field.fill(content)
 
 
 @pytest.mark.django_db()
@@ -106,6 +126,106 @@ class TestTopMenu():
         assert browser.find_by_css('body').first.has_class('body--{}'.format(main_section))
 
 
+class StreamFieldFiller():
+    """A class for autofilling streamfield blocks"""
+
+    def __init__(self, admin_browser, stream_block_model):
+        self.random_content = list()
+        self.admin_browser = admin_browser
+        self.stream_block_model = stream_block_model
+        self.model_mapping = {
+            "CharBlock": self.fill_charblock,
+            "RichTextBlock": self.fill_richtextblock,
+            "DocumentChooserBlock": self.fill_documentchooserblock,
+            "ImageChooserBlock": self.fill_imagechooserblock,
+            "StructBlock": self.fill_structblock,
+            "StreamBlock": self.fill_streamblock
+        }
+
+    def rs(self):
+        the_string = random_string()
+        self.random_content.append(the_string)
+        return the_string
+
+    def fill_charblock(self, base_block, depth):
+        find_and_click_add_button(self.admin_browser, base_block)
+        if depth >= 0:
+            find_and_click_toggle_button(self.admin_browser, depth)
+        fill_content_editor_block(self.admin_browser, base_block, " input", self.rs())
+
+    def fill_richtextblock(self, base_block, depth):
+        find_and_click_add_button(self.admin_browser, base_block)
+        if depth >= 0:
+            find_and_click_toggle_button(self.admin_browser, depth)
+        fill_content_editor_block(self.admin_browser, base_block, " .public-DraftEditor-content", self.rs())
+
+    def fill_documentchooserblock(self, base_block, depth):
+        find_and_click_add_button(self.admin_browser, base_block)
+        if depth >= 0:
+            find_and_click_toggle_button(self.admin_browser, depth)
+        choose_doc_button = self.admin_browser.find_by_text("Choose a document")[0]
+        scroll_and_click(self.admin_browser, choose_doc_button)
+        doc_title = "Annual report"
+        self.random_content.append(doc_title)
+        annual_report_link = self.admin_browser.find_by_text(doc_title)
+        if annual_report_link:
+            scroll_and_click(self.admin_browser, annual_report_link[0])
+        else:
+            upload_tab, upload_button = self.admin_browser.find_by_text('Upload')
+            scroll_and_click(self.admin_browser, upload_tab)
+            title_field = self.admin_browser.find_by_xpath("//input[@name='title']")[0]
+            scroll_and_click(self.admin_browser, title_field)
+            title_field.fill(doc_title)
+            self.admin_browser.attach_file('file', settings.BASE_DIR+"/tests/data/annual-report.pdf")
+            scroll_and_click(self.admin_browser, upload_button)
+
+    def fill_imagechooserblock(self, base_block, depth):
+        find_and_click_add_button(self.admin_browser, base_block)
+        if depth >= 0:
+            find_and_click_toggle_button(self.admin_browser, depth)
+        choose_image_button = self.admin_browser.find_by_text("Choose an image")[0]
+        scroll_and_click(self.admin_browser, choose_image_button)
+        image_title = "Placeholder image"
+        image_link = self.admin_browser.find_by_text(image_title)
+        if image_link:
+            scroll_and_click(self.admin_browser, image_link[0])
+        else:
+            upload_tab, upload_button = self.admin_browser.find_by_text('Upload')
+            scroll_and_click(self.admin_browser, upload_tab)
+            title_field = self.admin_browser.find_by_xpath("//input[@name='title']")[0]
+            scroll_and_click(self.admin_browser, title_field)
+            title_field.fill(image_title)
+            self.admin_browser.attach_file('file', settings.BASE_DIR+"/tests/data/placeholder.jpg")
+            scroll_and_click(self.admin_browser, upload_button)
+
+    def fill_streamblock(self, base_block, depth):
+        find_and_click_add_button(self.admin_browser, base_block)
+        block_model = self.stream_block_model[base_block]
+        child_blocks = block_model.child_blocks
+        depth_1 = depth + 1
+        for child_block in child_blocks:
+            self.model_router(child_block, depth_1)
+        find_and_click_toggle_button(self.admin_browser, depth)
+
+    def fill_structblock(self, base_block, depth):
+        find_and_click_add_button(self.admin_browser, base_block)
+        block_model = self.stream_block_model[base_block]
+        child_blocks = block_model.child_blocks
+        for child_block in child_blocks:
+            self.model_router(child_block, -1)
+        find_and_click_toggle_button(self.admin_browser, depth)
+
+    def model_router(self, base_block, depth=0):
+        block_model = self.stream_block_model[base_block]
+        block_model_name = str(type(block_model)).split(".")[-1][:-2]
+        filler_function = self.model_mapping[block_model_name]
+        filler_function(base_block, depth)
+
+    def start_filling(self):
+        for base_block in self.stream_block_model.base_blocks:
+            self.model_router(base_block)
+
+
 @pytest.mark.django_db()
 class TestContentEditor():
     """A container for testing models that incorporate the default content editor"""
@@ -115,15 +235,15 @@ class TestContentEditor():
         add_button = admin_browser.find_by_css(add_button_class)[0]
         scroll_and_click(admin_browser, add_button)
 
+
     def find_and_click_toggle_button(self, admin_browser, toggle_index):
         toggle_button = admin_browser.find_by_css(".toggle")[toggle_index]
         scroll_and_click(admin_browser, toggle_button)
 
+
     def fill_content_editor_block(self, admin_browser, base_block, text_field_class, content):
         full_text_field_class = ".fieldname-{}".format(base_block)+text_field_class
         text_field = admin_browser.find_by_css(full_text_field_class)[0]
-        scroll_and_click(admin_browser, text_field)
-        scroll_and_click(admin_browser, text_field)
         scroll_and_click(admin_browser, text_field)
         text_field.fill(content)
 
@@ -131,7 +251,7 @@ class TestContentEditor():
     def test_content_pages(self, admin_browser, content_model):
         """
         Test templates for every content page.
-        Fill in random content for every text field and test to see if it exists on the template.
+        Fill in random content for every field and test to see if it exists on the template.
 
         Todo:
             - Test non-text content
@@ -147,6 +267,7 @@ class TestContentEditor():
             admin_browser.fill('title_en', verbose_page_name)
             for base_block in IATIStreamBlock.base_blocks:
                 block_model = IATIStreamBlock.base_blocks[base_block]
+                pdb.set_trace()
                 if isinstance(block_model, CharBlock):
                     rs = random_string()
                     random_content[base_block] = rs
@@ -172,6 +293,7 @@ class TestContentEditor():
                             self.fill_content_editor_block(admin_browser, child_block, " input", rs)
                         if isinstance(child_block_model, DocumentChooserBlock):
                             self.find_and_click_add_button(admin_browser, child_block)
+                            self.find_and_click_toggle_button(admin_browser, 1)
                             choose_doc_button = admin_browser.find_by_text("Choose a document")[0]
                             scroll_and_click(admin_browser, choose_doc_button)
                             random_content[child_block] = "Annual report"
@@ -187,6 +309,13 @@ class TestContentEditor():
                                 admin_browser.attach_file('file', settings.BASE_DIR+"/tests/data/annual-report.pdf")
                                 scroll_and_click(admin_browser, upload_button)
                     self.find_and_click_toggle_button(admin_browser, 0)
+                # if isinstance(block_model, StructBlock):
+                #     pdb.set_trace()
+                #     rs = random_string()
+                #     random_content[base_block] = rs
+                #     self.find_and_click_add_button(admin_browser, base_block)
+                #     self.find_and_click_toggle_button(admin_browser, 0)
+                #     self.fill_content_editor_block(admin_browser, base_block, " input", rs)
 
             promote_tab = admin_browser.find_by_text('Promote')[0]
             scroll_and_click(admin_browser, promote_tab)
