@@ -166,7 +166,11 @@ class TestAboutChildPages():
         edit_page_header(admin_browser, child_page['title'], 'excerpt_en', child_page['excerpt'])
         assert admin_browser.find_by_text(child_page['excerpt'])
 
-    @pytest.mark.parametrize('child_page', ABOUT_CHILD_PAGES)
+    @pytest.mark.parametrize('child_page', [
+        ABOUT_SUB_PAGE,
+        HISTORY_PAGE,
+        PEOPLE_PAGE
+    ])
     @pytest.mark.parametrize('header', [
         H2,
         H3,
@@ -177,13 +181,13 @@ class TestAboutChildPages():
         admin_browser.find_by_text(child_page['title']).click()
         admin_browser.find_by_text('English').click()
         scroll_to_bottom_of_page(admin_browser)
-        import pdb; pdb.set_trace()
+        # import pdb; pdb.set_trace()
         element_count = admin_browser.find_by_id('content_editor_en-count').value
         if not admin_browser.find_by_text(header['button']).visible:
             admin_browser.find_by_xpath('//div[@id="content_editor_en-{}-appendmenu"]/a'.format(int(element_count)-1)).mouse_over()
             admin_browser.find_by_xpath('//div[@id="content_editor_en-{}-appendmenu"]/a'.format(int(element_count)-1)).click()
             scroll_to_bottom_of_page(admin_browser)
-        import pdb; pdb.set_trace()
+        # import pdb; pdb.set_trace()
         admin_browser.find_by_text(header['button'])[int(element_count)].click()
         admin_browser.find_by_id(header['id'].format(element_count)).fill(header['content'])
         publish_page(admin_browser)
