@@ -99,6 +99,14 @@ def scroll_to_bottom_of_page(admin_browser):
     admin_browser.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
 
+def reveal_content_editor(admin_browser, button, element_count):
+    """Open content editor if it is not already in view."""
+    if not admin_browser.find_by_text(button).visible:
+        admin_browser.find_by_xpath('//div[@id="content_editor_en-{}-appendmenu"]/a'.format(int(element_count)-1)).mouse_over()
+        admin_browser.find_by_xpath('//div[@id="content_editor_en-{}-appendmenu"]/a'.format(int(element_count)-1)).click()
+        scroll_to_bottom_of_page(admin_browser)
+
+
 @pytest.mark.django_db
 class TestAboutPage():
     """A container for tests to check functionality of About pages and child pages."""
@@ -124,10 +132,7 @@ class TestAboutPage():
         admin_browser.find_by_text('About').click()
         element_count = admin_browser.find_by_id('content_editor_en-count').value
         scroll_to_bottom_of_page(admin_browser)
-        if not admin_browser.find_by_text(header['button']).visible:
-            admin_browser.find_by_xpath('//div[@id="content_editor_en-{}-appendmenu"]/a'.format(int(element_count)-1)).mouse_over()
-            admin_browser.find_by_xpath('//div[@id="content_editor_en-{}-appendmenu"]/a'.format(int(element_count)-1)).click()
-            scroll_to_bottom_of_page(admin_browser)
+        reveal_content_editor(admin_browser, header['button'], element_count)
         admin_browser.find_by_text(header['button'])[int(element_count)].click()
         admin_browser.find_by_id(header['id'].format(element_count)).fill(header['content'])
         publish_page(admin_browser)
@@ -181,13 +186,8 @@ class TestAboutChildPages():
         admin_browser.find_by_text(child_page['title']).click()
         admin_browser.find_by_text('English').click()
         scroll_to_bottom_of_page(admin_browser)
-        # import pdb; pdb.set_trace()
         element_count = admin_browser.find_by_id('content_editor_en-count').value
-        if not admin_browser.find_by_text(header['button']).visible:
-            admin_browser.find_by_xpath('//div[@id="content_editor_en-{}-appendmenu"]/a'.format(int(element_count)-1)).mouse_over()
-            admin_browser.find_by_xpath('//div[@id="content_editor_en-{}-appendmenu"]/a'.format(int(element_count)-1)).click()
-            scroll_to_bottom_of_page(admin_browser)
-        # import pdb; pdb.set_trace()
+        reveal_content_editor(admin_browser, header['button'], element_count)
         admin_browser.find_by_text(header['button'])[int(element_count)].click()
         admin_browser.find_by_id(header['id'].format(element_count)).fill(header['content'])
         publish_page(admin_browser)
