@@ -15,7 +15,7 @@ import random
 import time
 
 
-def wait_for_clickability(element, wait_time=10):
+def wait_for_clickability(element, wait_time=1):
     end_time = time.time() + wait_time
 
     while time.time() < end_time:
@@ -24,7 +24,7 @@ def wait_for_clickability(element, wait_time=10):
     return False
 
 
-def wait_for_visibility(element, wait_time=10):
+def wait_for_visibility(element, wait_time=1):
     end_time = time.time() + wait_time
 
     while time.time() < end_time:
@@ -52,18 +52,16 @@ def click_obscured(admin_browser, element):
     admin_browser.driver.execute_script("arguments[0].click();", element.__dict__['_element'])
 
 
-def scroll_to_element(admin_browser, element):
+def scroll_to_element(element):
     """A function that scrolls to the location of an element"""
     wait_for_visibility(element)
-    rect = element.__dict__['_element'].rect
-    mid_point_x = int(rect['x'] + (rect['width']/2))
-    mid_point_y = int(rect['y'] + (rect['height']/2))
-    admin_browser.driver.execute_script("window.scrollTo({}, {});".format(mid_point_x, mid_point_y))
+    location = element.__dict__['_element'].location_once_scrolled_into_view
+    return location
 
 
 def scroll_and_click(admin_browser, element):
     """A function that scrolls to, and clicks an element"""
-    scroll_to_element(admin_browser, element)
+    scroll_to_element(element)
     click_obscured(admin_browser, element)
 
 
@@ -264,7 +262,6 @@ class TestContentEditor():
         Test templates for every content page.
         Fill in random content for every field and test to see if it exists on the template.
         """
-        admin_browser.driver.maximize_window()
         homepage = HomePage.objects.first()
         admin_browser.visit(os.environ["LIVE_SERVER_URL"]+'/admin/pages/{}/'.format(homepage.pk))
         admin_browser.click_link_by_text('Add child page')
