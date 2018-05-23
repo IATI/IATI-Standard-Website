@@ -264,6 +264,7 @@ class TestContentEditor():
         Test templates for every content page.
         Fill in random content for every field and test to see if it exists on the template.
         """
+        admin_browser.driver.maximize_window()
         homepage = HomePage.objects.first()
         admin_browser.visit(os.environ["LIVE_SERVER_URL"]+'/admin/pages/{}/'.format(homepage.pk))
         admin_browser.click_link_by_text('Add child page')
