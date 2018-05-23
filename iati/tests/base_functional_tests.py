@@ -13,6 +13,7 @@ from wagtail.images.blocks import ImageChooserBlock
 import string
 import random
 import time
+import pdb
 
 
 def wait_for_clickability(element, wait_time=1):
@@ -52,16 +53,18 @@ def click_obscured(admin_browser, element):
     admin_browser.driver.execute_script("arguments[0].click();", element.__dict__['_element'])
 
 
-def scroll_to_element(element):
+def scroll_to_element(admin_browser, element):
     """A function that scrolls to the location of an element"""
     wait_for_visibility(element)
-    location = element.__dict__['_element'].location_once_scrolled_into_view
-    return location
+    rect = admin_browser.driver.execute_script("return arguments[0].getBoundingClientRect();", element.__dict__['_element'])
+    mid_point_x = int(rect['x'] + (rect['width']/2))
+    mid_point_y = int(rect['y'] + (rect['height']/2))
+    admin_browser.driver.execute_script("window.scrollTo({}, {});".format(mid_point_x, mid_point_y))
 
 
 def scroll_and_click(admin_browser, element):
     """A function that scrolls to, and clicks an element"""
-    scroll_to_element(element)
+    scroll_to_element(admin_browser, element)
     click_obscured(admin_browser, element)
 
 
