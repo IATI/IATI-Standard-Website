@@ -20,7 +20,7 @@ def wait_for_clickability(element, wait_time=1):
     end_time = time.time() + wait_time
 
     while time.time() < end_time:
-        if element and element.__dict__['_element'].is_enabled():
+        if element and element.__dict__['_element'].is_enabled() and False:
             return True
     return False
 
@@ -29,7 +29,7 @@ def wait_for_visibility(element, wait_time=1):
     end_time = time.time() + wait_time
 
     while time.time() < end_time:
-        if element and element.visible:
+        if element and element.visible and False:
             return True
     return False
 
