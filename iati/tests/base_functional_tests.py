@@ -7,20 +7,28 @@ from django.apps import apps
 from django.utils.text import slugify
 from django.conf import settings
 from home.models import AbstractContentPage, IATIStreamBlock, HomePage
-from wagtail.core.blocks import CharBlock, RawHTMLBlock, RichTextBlock, StreamBlock, StructBlock, TextBlock
+from wagtail.core.blocks import CharBlock, FieldBlock, RawHTMLBlock, RichTextBlock, StreamBlock, StructBlock, TextBlock
 from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.images.blocks import ImageChooserBlock
 import string
 import random
 import time
-import pdb
 
 
-def wait_for_visibility(element, wait_time=1000):
+def wait_for_clickability(element, wait_time=10):
     end_time = time.time() + wait_time
 
     while time.time() < end_time:
-        if element and element.visible and element.__dict__['_element'].is_enabled():
+        if element and element.__dict__['_element'].is_enabled():
+            return True
+    return False
+
+
+def wait_for_visibility(element, wait_time=10):
+    end_time = time.time() + wait_time
+
+    while time.time() < end_time:
+        if element and element.visible:
             return True
     return False
 
@@ -40,7 +48,7 @@ def random_string(size=10, chars=string.ascii_uppercase+string.ascii_lowercase):
 
 def click_obscured(admin_browser, element):
     """A function that clicks elements even if they're slightly obscured"""
-    wait_for_visibility(element)
+    wait_for_clickability(element)
     admin_browser.driver.execute_script("arguments[0].click();", element.__dict__['_element'])
 
 
@@ -141,14 +149,14 @@ class StreamFieldFiller():
             (DocumentChooserBlock, self.fill_documentchooserblock),
             (ImageChooserBlock, self.fill_imagechooserblock),
             (StructBlock, self.fill_structblock),
-            (StreamBlock, self.fill_streamblock)
+            (StreamBlock, self.fill_streamblock),
+            (FieldBlock, self.pass_block),
         ]
 
     def find_filler(self, block_model):
         for (possible_ancestor, filler_function) in self.possible_ancestors:
             if isinstance(block_model, possible_ancestor):
                 return filler_function
-        pdb.set_trace() # See what class we're missing
 
     def model_router(self, parent_model_blocks, base_block, depth=0):
         block_model = parent_model_blocks[base_block]
@@ -163,6 +171,11 @@ class StreamFieldFiller():
         the_string = random_string()
         self.random_content.append(the_string)
         return the_string
+
+    def pass_block(self, _, base_block, depth):
+        if depth >= 0:
+            find_and_click_add_button(self.admin_browser, base_block)
+            find_and_click_toggle_button(self.admin_browser, depth)
 
     def fill_charblock(self, _, base_block, depth):
         if depth >= 0:
@@ -180,7 +193,6 @@ class StreamFieldFiller():
         if depth >= 0:
             find_and_click_add_button(self.admin_browser, base_block)
             find_and_click_toggle_button(self.admin_browser, depth)
-        # wait_for_visibility(self.admin_browser.find_by_css(".fieldname-{} .public-DraftEditor-content".format(base_block))[0], 100)
         fill_content_editor_block(self.admin_browser, base_block, " .public-DraftEditor-content", self.gen_rs())
 
     def fill_documentchooserblock(self, _, base_block, depth):
@@ -202,6 +214,7 @@ class StreamFieldFiller():
             title_field.fill(doc_title)
             self.admin_browser.attach_file('file', settings.BASE_DIR+"/tests/data/annual-report.pdf")
             scroll_and_click(self.admin_browser, upload_button)
+            self.admin_browser.is_element_not_present_by_text("Upload", wait_time=1)
 
     def fill_imagechooserblock(self, _, base_block, depth):
         if depth >= 0:
@@ -221,6 +234,7 @@ class StreamFieldFiller():
             title_field.fill(image_title)
             self.admin_browser.attach_file('file', settings.BASE_DIR+"/tests/data/placeholder.jpg")
             scroll_and_click(self.admin_browser, upload_button)
+            self.admin_browser.is_element_not_present_by_text("Upload", wait_time=1)
 
     def fill_streamblock(self, parent_model_blocks, base_block, depth):
         find_and_click_add_button(self.admin_browser, base_block)
