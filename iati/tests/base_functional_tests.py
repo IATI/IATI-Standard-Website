@@ -13,7 +13,6 @@ from wagtail.images.blocks import ImageChooserBlock
 import string
 import random
 import time
-import pdb
 
 
 def wait_for_clickability(element, wait_time=1):
@@ -83,7 +82,10 @@ def fill_content_editor_block(admin_browser, base_block, text_field_class, conte
     full_text_field_class = ".fieldname-{}".format(base_block)+text_field_class
     text_field = admin_browser.find_by_css(full_text_field_class)[0]
     scroll_and_click(admin_browser, text_field)
-    text_field.fill(content)
+    if text_field.tag_name in ["input", "textarea"]:
+        admin_browser.driver.execute_script("arguments[0].value = '{}';".format(content))
+    else:
+        text_field.fill(content)
 
 
 @pytest.mark.django_db()
