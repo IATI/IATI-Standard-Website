@@ -15,7 +15,13 @@ import random
 import time
 
 
+def override_alert(admin_browser):
+    """Stop wagtail CMS from alerting."""
+    admin_browser.driver.execute_script("window.removeEventListener('beforeunload',getEventListeners(window).beforeunload[0].listener);")
+
+
 def wait_for_clickability(element, wait_time=1):
+    """Wait until an element is enabled before clicking."""
     end_time = time.time() + wait_time
 
     while time.time() < end_time:
@@ -25,6 +31,7 @@ def wait_for_clickability(element, wait_time=1):
 
 
 def wait_for_visibility(element, wait_time=1):
+    """Wait until an element is visible before scrolling."""
     end_time = time.time() + wait_time
 
     while time.time() < end_time:
@@ -43,17 +50,18 @@ def collect_base_pages(base_page_class):
 
 
 def random_string(size=10, chars=string.ascii_uppercase+string.ascii_lowercase):
+    """Return a random string for testing fields."""
     return ''.join(random.choice(chars) for _ in range(size))
 
 
 def click_obscured(admin_browser, element):
-    """A function that clicks elements even if they're slightly obscured"""
+    """A function that clicks elements even if they're slightly obscured."""
     wait_for_clickability(element)
     admin_browser.driver.execute_script("arguments[0].click();", element.__dict__['_element'])
 
 
 def scroll_to_element(admin_browser, element):
-    """A function that scrolls to the location of an element"""
+    """A function that scrolls to the location of an element."""
     wait_for_visibility(element)
     rect = admin_browser.driver.execute_script("return arguments[0].getBoundingClientRect();", element.__dict__['_element'])
     mid_point_x = int(rect['x'] + (rect['width']/2))
@@ -62,23 +70,26 @@ def scroll_to_element(admin_browser, element):
 
 
 def scroll_and_click(admin_browser, element):
-    """A function that scrolls to, and clicks an element"""
+    """A function that scrolls to, and clicks an element."""
     scroll_to_element(admin_browser, element)
     click_obscured(admin_browser, element)
 
 
 def find_and_click_add_button(admin_browser, base_block):
+    """Find a content editor add field button and click it."""
     add_button_class = ".action-add-block-{}".format(base_block)
     add_button = admin_browser.find_by_css(add_button_class)[0]
     scroll_and_click(admin_browser, add_button)
 
 
 def find_and_click_toggle_button(admin_browser, toggle_index):
+    """Find a content editor add block button and click it."""
     toggle_button = admin_browser.find_by_css(".toggle")[toggle_index]
     scroll_and_click(admin_browser, toggle_button)
 
 
 def fill_content_editor_block(admin_browser, base_block, text_field_class, content):
+    """Find a content editor text field by class name and fill it."""
     full_text_field_class = ".fieldname-{}".format(base_block)+text_field_class
     text_field = admin_browser.find_by_css(full_text_field_class)[0]
     scroll_and_click(admin_browser, text_field)
@@ -273,6 +284,7 @@ class TestContentEditor():
         verbose_page_name = content_model.get_verbose_name()
         if content_model.can_create_at(homepage):
             admin_browser.click_link_by_text(verbose_page_name)
+            override_alert(admin_browser)
             admin_browser.find_by_text('English').click()
             admin_browser.fill('title_en', verbose_page_name)
             content_editor_filler = StreamFieldFiller(admin_browser, IATIStreamBlock)
