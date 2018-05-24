@@ -15,6 +15,11 @@ import random
 import time
 
 
+def prevent_alerts(admin_browser):
+    """Stop the Wagtail CMS from sending alerts"""
+    admin_browser.driver.execute_script("window.removeEventListener('beforeunload', areYouSure);")
+
+
 def wait_for_clickability(element, wait_time=1):
     """Wait until an element is enabled before clicking."""
     end_time = time.time() + wait_time
@@ -279,6 +284,7 @@ class TestContentEditor():
         verbose_page_name = content_model.get_verbose_name()
         if content_model.can_create_at(homepage):
             admin_browser.click_link_by_text(verbose_page_name)
+            prevent_alerts(admin_browser)
             admin_browser.find_by_text('English').click()
             admin_browser.fill('title_en', verbose_page_name)
             content_editor_filler = StreamFieldFiller(admin_browser, IATIStreamBlock)
