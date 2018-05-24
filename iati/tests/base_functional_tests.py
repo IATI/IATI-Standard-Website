@@ -13,6 +13,7 @@ from wagtail.images.blocks import ImageChooserBlock
 import string
 import random
 import time
+import pdb
 
 
 def prevent_alerts(admin_browser):
@@ -91,11 +92,13 @@ def find_and_click_toggle_button(admin_browser, toggle_index):
 def fill_content_editor_block(admin_browser, base_block, text_field_class, content):
     """Find a content editor text field by class name and fill it."""
     full_text_field_class = ".fieldname-{}".format(base_block)+text_field_class
-    text_field = admin_browser.find_by_css(full_text_field_class)[0]
-    scroll_and_click(admin_browser, text_field)
-    if text_field.tag_name in ["input", "textarea"]:
-        admin_browser.driver.execute_script("arguments[0].value = '{}';".format(content), text_field.__dict__['_element'])
+    if "input" in text_field_class or "textarea" in text_field_class:
+        text_field = admin_browser.driver.execute_script("return document.querySelector('{}');".format(full_text_field_class))
+        text_field.location_once_scrolled_into_view
+        admin_browser.driver.execute_script("arguments[0].value = '{}';".format(content), text_field)
     else:
+        text_field = admin_browser.find_by_css(full_text_field_class)[0]
+        scroll_and_click(admin_browser, text_field)
         text_field.fill(content)
 
 
