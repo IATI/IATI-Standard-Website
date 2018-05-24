@@ -16,7 +16,7 @@ import time
 
 
 def prevent_alerts(admin_browser):
-    """Stop the Wagtail CMS from sending alerts"""
+    """Stop the Wagtail CMS from sending beforeunload alerts."""
     admin_browser.driver.execute_script("window.removeEventListener('beforeunload', window.areYouSure);")
 
 
