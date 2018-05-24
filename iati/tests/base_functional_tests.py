@@ -92,13 +92,11 @@ def find_and_click_toggle_button(admin_browser, toggle_index):
 def fill_content_editor_block(admin_browser, base_block, text_field_class, content):
     """Find a content editor text field by class name and fill it."""
     full_text_field_class = ".fieldname-{}".format(base_block)+text_field_class
-    if "input" in text_field_class or "textarea" in text_field_class:
-        text_field = admin_browser.driver.execute_script("return document.querySelector('{}');".format(full_text_field_class))
-        text_field.location_once_scrolled_into_view
-        admin_browser.driver.execute_script("arguments[0].value = '{}';".format(content), text_field)
+    text_field = admin_browser.find_by_css(full_text_field_class)[0]
+    scroll_and_click(admin_browser, text_field)
+    if text_field.tag_name in ["input", "textarea"]:
+        admin_browser.driver.execute_script("arguments[0].value = '{}';".format(content), text_field.__dict__['_element'])
     else:
-        text_field = admin_browser.find_by_css(full_text_field_class)[0]
-        scroll_and_click(admin_browser, text_field)
         text_field.fill(content)
 
 
@@ -255,20 +253,20 @@ class StreamFieldFiller():
 
     def fill_streamblock(self, parent_model_blocks, base_block, depth):
         find_and_click_add_button(self.admin_browser, base_block)
-        find_and_click_toggle_button(self.admin_browser, depth)
         block_model = parent_model_blocks[base_block]
         child_blocks = block_model.child_blocks
         depth_1 = depth + 1
         for child_block in child_blocks:
             self.model_router(child_blocks, child_block, depth_1)
+        find_and_click_toggle_button(self.admin_browser, depth)
 
     def fill_structblock(self, parent_model_blocks, base_block, depth):
         find_and_click_add_button(self.admin_browser, base_block)
-        find_and_click_toggle_button(self.admin_browser, depth)
         block_model = parent_model_blocks[base_block]
         child_blocks = block_model.child_blocks
         for child_block in child_blocks:
             self.model_router(child_blocks, child_block, -1)
+        find_and_click_toggle_button(self.admin_browser, depth)
 
 
 @pytest.mark.django_db()
