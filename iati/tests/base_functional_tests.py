@@ -255,20 +255,20 @@ class StreamFieldFiller():
 
     def fill_streamblock(self, parent_model_blocks, base_block, depth):
         find_and_click_add_button(self.admin_browser, base_block)
+        find_and_click_toggle_button(self.admin_browser, depth)
         block_model = parent_model_blocks[base_block]
         child_blocks = block_model.child_blocks
         depth_1 = depth + 1
         for child_block in child_blocks:
             self.model_router(child_blocks, child_block, depth_1)
-        find_and_click_toggle_button(self.admin_browser, depth)
 
     def fill_structblock(self, parent_model_blocks, base_block, depth):
         find_and_click_add_button(self.admin_browser, base_block)
+        find_and_click_toggle_button(self.admin_browser, depth)
         block_model = parent_model_blocks[base_block]
         child_blocks = block_model.child_blocks
         for child_block in child_blocks:
             self.model_router(child_blocks, child_block, -1)
-        find_and_click_toggle_button(self.admin_browser, depth)
 
 
 @pytest.mark.django_db()
