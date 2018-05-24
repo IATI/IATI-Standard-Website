@@ -15,11 +15,6 @@ import random
 import time
 
 
-def override_alert(admin_browser):
-    """Stop wagtail CMS from alerting."""
-    admin_browser.driver.execute_script("window.removeEventListener('beforeunload',getEventListeners(window).beforeunload[0].listener);")
-
-
 def wait_for_clickability(element, wait_time=1):
     """Wait until an element is enabled before clicking."""
     end_time = time.time() + wait_time
@@ -65,8 +60,8 @@ def scroll_to_element(admin_browser, element):
     wait_for_visibility(element)
     rect = admin_browser.driver.execute_script("return arguments[0].getBoundingClientRect();", element.__dict__['_element'])
     mid_point_x = int(rect['x'] + (rect['width']/2))
-    mid_point_y = int(rect['y'] + (rect['height']/2))
-    admin_browser.driver.execute_script("window.scrollTo({}, {});".format(mid_point_x, mid_point_y))
+    end_point_y = int(rect['y'] + (rect['height']))
+    admin_browser.driver.execute_script("window.scrollTo({}, {});".format(mid_point_x, end_point_y))
 
 
 def scroll_and_click(admin_browser, element):
@@ -284,7 +279,6 @@ class TestContentEditor():
         verbose_page_name = content_model.get_verbose_name()
         if content_model.can_create_at(homepage):
             admin_browser.click_link_by_text(verbose_page_name)
-            override_alert(admin_browser)
             admin_browser.find_by_text('English').click()
             admin_browser.fill('title_en', verbose_page_name)
             content_editor_filler = StreamFieldFiller(admin_browser, IATIStreamBlock)
