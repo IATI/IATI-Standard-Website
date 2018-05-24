@@ -28,4 +28,4 @@ pydocstyle: $(IATI_FOLDER)
 
 
 test: $(IATI_FOLDER)
-	pytest $(IATI_FOLDER) --splinter-make-screenshot-on-failure=false
+	pytest $(IATI_FOLDER) --durations=0
