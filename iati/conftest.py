@@ -19,8 +19,13 @@ def multibrowser(request):
 
 
 @pytest.fixture(scope='function')
-def admin_browser(browser):
+def admin_browser():
     """Create a browser that is logged in to the CMS."""
+    prof = dict()
+    prof["browser.tabs.remote.autostart"] = 'false'
+    prof["browser.tabs.remote.autostart.1"] = 'false'
+    prof["browser.tabs.remote.autostart.2"] = 'false'
+    browser = Browser('firefox', profile_preferences=prof)
     browser.visit(os.environ['LIVE_SERVER_URL']+'/admin/')
     browser.fill('username', DJANGO_ADMIN_USER)
     browser.fill('password', DJANGO_ADMIN_PASS)
