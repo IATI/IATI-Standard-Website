@@ -17,7 +17,7 @@ import time
 
 def prevent_alerts(admin_browser):
     """Stop the Wagtail CMS from sending alerts"""
-    admin_browser.driver.execute_script("window.removeEventListener('beforeunload', areYouSure);")
+    admin_browser.driver.execute_script("window.removeEventListener('beforeunload', window.areYouSure);")
 
 
 def wait_for_clickability(element, wait_time=1):
