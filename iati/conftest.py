@@ -25,6 +25,7 @@ def admin_browser():
     prof["browser.tabs.remote.autostart"] = 'false'
     prof["browser.tabs.remote.autostart.1"] = 'false'
     prof["browser.tabs.remote.autostart.2"] = 'false'
+    prof["browser.tabs.remote.force-enable"] = 'false'
     browser = Browser('firefox', profile_preferences=prof)
     browser.visit(os.environ['LIVE_SERVER_URL']+'/admin/')
     browser.fill('username', DJANGO_ADMIN_USER)
