@@ -1,3 +1,5 @@
+"""Model definitions for the home app."""
+
 from django.db import models
 from django import forms
 from wagtail.core.models import Page
@@ -36,7 +38,6 @@ class ImageBlock(StructBlock):
     caption = RichTextBlock(required=False)
 
 
-
 class IATIStreamBlock(StreamBlock):
     h2 = CharBlock(icon="title", classname="title")
     h3 = CharBlock(icon="title", classname="title")
@@ -65,6 +66,7 @@ class AbstractBasePage(Page):
 
 class AbstractContentPage(AbstractBasePage):
     """A base for the basic model blocks of all content type pages."""
+
     content_editor = StreamField(IATIStreamBlock(required=False), null=True, blank=True)
 
     translation_fields = AbstractBasePage.translation_fields + ["content_editor"]
@@ -100,5 +102,6 @@ class AbstractIndexPage(AbstractBasePage):
         abstract = True
 
 
-class HomePage(Page):
+class HomePage(Page):  # pylint: disable=too-many-ancestors
+    """Proof-of-concept model definition for the homepage."""
     translation_fields = []
