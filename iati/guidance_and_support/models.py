@@ -6,19 +6,16 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from home.models import AbstractContentPage, AbstractIndexPage, IATIStreamBlock
 
 
-class GuidanceAndSupportPage(AbstractIndexPage):
+class GuidanceAndSupportPage(AbstractContentPage):
+    """"""
     parent_page_types = ['home.HomePage']
     subpage_types = ['guidance_and_support.GuidanceIndexPage', 'guidance_and_support.KnowledgebaseIndexPage']
-
-    content_editor = StreamField(IATIStreamBlock(required=False), null=True, blank=True)
 
     @property
     def guidance_indexes(self):
         """Get all CaseStudyPage objects that have been published."""
         guidance_indexes = GuidanceIndexPage.objects.child_of(self).live()
         return guidance_indexes
-
-    translation_fields = AbstractIndexPage.translation_fields + ["content_editor"]
 
 
 class GuidanceIndexPage(AbstractIndexPage):
