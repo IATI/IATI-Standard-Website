@@ -21,7 +21,7 @@ def multibrowser(request):
 @pytest.fixture(scope='function')
 def admin_browser(browser):
     """Create a browser that is logged in to the CMS."""
-    admin_page = os.environ['LIVE_SERVER_URL']+'/admin/'
+    admin_page = os.environ['LIVE_SERVER_URL'] + '/admin/'
     browser.visit(admin_page)
     browser.fill('username', DJANGO_ADMIN_USER)
     browser.fill('password', DJANGO_ADMIN_PASS)
