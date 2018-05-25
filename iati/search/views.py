@@ -1,3 +1,5 @@
+"""View defintions for the search app."""
+
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import render
 
@@ -6,6 +8,7 @@ from wagtail.search.models import Query
 
 
 def search(request):
+    """Process a user input for a search query and return a page containing results."""
     search_query = request.GET.get('query', None)
     page = request.GET.get('page', 1)
 

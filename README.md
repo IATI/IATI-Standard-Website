@@ -16,7 +16,7 @@ The current scope of the project (to April 2018) focuses on the 'About IATI' and
 python3 -m venv pyenv
 source pyenv/bin/activate
 
-# Enter into project directory
+# Enter into the Django project directory
 cd iati
 
 # Install requirements
@@ -27,7 +27,7 @@ pip install -r requirements_dev.txt
 # Note local.py should not be under version control as it contains sensitive information
 # Without these steps, a SQLite database will be used to store data.
 createdb iati-website
-cp settings/local.py.example settings/local.py
+cp iati/settings/local.py.example iati/settings/local.py
 
 # Make and perform Django migrations AND bespoke translations for translated fields
 # Note this will ask you to approve bespoke SQL commands
@@ -45,7 +45,7 @@ python manage.py createsuperuser
 python manage.py runserver
 ```
 
-## Tests
+## Tests & linters
 
 Tests are run using [pytest](https://pytest.org/) as it [provides a number of benefits](https://pytest-django.readthedocs.io/en/latest/#why-would-i-use-this-instead-of-django-s-manage-py-test-command) over stock Django test approaches.
 
@@ -54,4 +54,21 @@ Please be aware that very rarely tests using the database may return an Operatio
 ```
 # Run tests from the project root
 pytest
+```
+
+Code linting is performed using [pylint](https://github.com/PyCQA/pylint) (with the [pylint-django](https://github.com/PyCQA/pylint-django) plugin), [flake8](http://flake8.pycqa.org) and [pydocstyle](http://www.pydocstyle.org).
+```
+pylint iati/
+flake8 iati/
+pydocstyle iati/
+```
+
+Alternatively, the Makefile can be used:
+```
+make test
+make lint
+
+# OR
+
+make all
 ```
