@@ -40,17 +40,10 @@
       		</div>
       	</aside>
       	<div class="listing__body">
-<<<<<<< HEAD
-      		<h2 class="listing__heading"><a href="{% slugurl_trans guidance_group.slug %}"><span>{{ guidance_group.heading }}</span></a></h2>
-      		<div class="listing__excerpt is-typeset">
+      		<h2 class="listing__heading"><a href=""><span>{{ guidance_group.heading }}</span></a></h2>
+      		<div class="listing__excerpt">
             {% if guidance_group.feed_content %}
               {% include "home/includes/streamfield.html" with content=guidance_group.feed_content %}
-=======
-      		<h2 class="listing__heading"><a href=""><span>{{ guidance_index.heading }}</span></a></h2>
-      		<div class="listing__excerpt">
-            {% if guidance_index.feed_content %}
-              {% include "home/includes/streamfield.html" with content=guidance_index.feed_content %}
->>>>>>> 83c757c8b7bf1f41017466ef7de4c8e1e6068e4c
             {% endif %}
           </div>
       		<a href="{% slugurl_trans guidance_group.slug %}" class="button">{{ guidance_group.feed_button_text }}</a>
