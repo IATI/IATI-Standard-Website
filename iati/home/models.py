@@ -11,6 +11,13 @@ from wagtail.images.blocks import ImageChooserBlock
 from wagtail.documents.blocks import DocumentChooserBlock
 
 
+class DocumentBoxBlock(StreamBlock):
+    """A block for holding a document box, with a single header and multiple documents"""
+
+    document_box_heading = CharBlock(icon="title", classname="title", required=False, help_text="Only one heading per box.")
+    document = DocumentChooserBlock(icon="doc-full-inverse", required=False)
+
+
 class PullQuoteBlock(StructBlock):
     quote = TextBlock("quote title")
 
@@ -46,7 +53,7 @@ class IATIStreamBlock(StreamBlock):
     image_figure = ImageBlock(label="Image figure", icon="image")
     pullquote = PullQuoteBlock()
     aligned_html = AlignedHTMLBlock(icon="code", label='Raw HTML')
-    document = DocumentChooserBlock(icon="doc-full-inverse")
+    document_box = DocumentBoxBlock(icon="doc-full-inverse")
 
 
 class AbstractBasePage(Page):

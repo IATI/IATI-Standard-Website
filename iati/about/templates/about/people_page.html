@@ -25,11 +25,10 @@
     </aside>
     <div class="l-sidebar__body">
 
-      <div class="is-typeset is-typeset--additionals">
         {% if page.content_editor %}
           {% include "home/includes/streamfield.html" with content=page.content_editor %}
         {% endif %}
-      </div>
+
       <div class="l-listing l-listing--people l-listing--no-pagination">
         <div class="section-border">
           {% if page.profile_content_editor %}
