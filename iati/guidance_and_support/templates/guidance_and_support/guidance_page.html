@@ -43,20 +43,44 @@
   </div>
 </div>
 
-{% with siblings=self.get_siblings.live.specific %} {% if siblings %}
-<div class="row">
-  <h2 class="section__heading">Related guidance</h2>
-  <div class="l-cards">
-    {% for sibling in siblings %} {% if sibling != self %}
-    <div class="card card--guidance ">
-      <h2 class="card__heading"><a href="{% slugurl_trans sibling.slug %}"><span>{{ sibling.heading }}</span></a></h2>
-      <p class="card__excerpt">{{ sibling.excerpt|default:"" }}</p>
-    </div>
-    {% endif %} {% endfor %}
+{% with siblings=self.get_siblings.live.specific %}
+  {% if siblings %}
+    <div class="row">
+      <h2 class="section__heading">Related guidance</h2>
+      <div class="l-cards">
+        {% for sibling in siblings %}
+          {% if sibling != self %}
+          <div class="card card--guidance ">
+            <h2 class="card__heading"><a href="{% slugurl_trans sibling.slug %}"><span>{{ sibling.heading }}</span></a></h2>
+            <p class="card__excerpt">{{ sibling.excerpt|default:"" }}</p>
+          </div>
+          {% endif %}
+        {% endfor %}
 
-  </div>
-</div>
-{% endif %} {% endwith %}
+      </div>
+    </div>
+  {% else %}
+    {% with aunts=self.get_parent.siblings_of.live.specific %}
+      {% if aunts and not siblings %}
+        <div class="row">
+          <h2 class="section__heading">Related guidance</h2>
+          <div class="l-cards">
+            {% for aunt in aunts %}
+              {% if aunt != self.get_parent %}
+              <div class="card card--guidance ">
+                <h2 class="card__heading"><a href="{% slugurl_trans aunt.slug %}"><span>{{ aunt.heading }}</span></a></h2>
+                <p class="card__excerpt">{{ aunt.excerpt|default:"" }}</p>
+              </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      {% else %}
+        <span>NOPE</span>
+      {% endif %}
+    {% endwith %}
+  {% endif %}
+{% endwith %}
 
 <a id="support"></a>
 <div class="section">
