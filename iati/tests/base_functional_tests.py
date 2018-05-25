@@ -50,7 +50,7 @@ def collect_base_pages(base_page_class):
     return models
 
 
-def random_string(size=10, chars=string.ascii_uppercase+string.ascii_lowercase):
+def random_string(size=10, chars=string.ascii_uppercase + string.ascii_lowercase):
     """Return a random string for testing fields."""
     return ''.join(random.choice(chars) for _ in range(size))
 
@@ -65,7 +65,7 @@ def scroll_to_element(admin_browser, element):
     """A function that scrolls to the location of an element."""
     wait_for_visibility(element)
     rect = admin_browser.driver.execute_script("return arguments[0].getBoundingClientRect();", element.__dict__['_element'])
-    mid_point_x = int(rect['x'] + (rect['width']/2))
+    mid_point_x = int(rect['x'] + (rect['width'] / 2))
     end_point_y = int(rect['y'] + (rect['height']))
     admin_browser.driver.execute_script("window.scrollTo({}, {});".format(mid_point_x, end_point_y))
 
@@ -91,7 +91,7 @@ def find_and_click_toggle_button(admin_browser, toggle_index):
 
 def fill_content_editor_block(admin_browser, base_block, text_field_class, content):
     """Find a content editor text field by class name and fill it."""
-    full_text_field_class = ".fieldname-{}".format(base_block)+text_field_class
+    full_text_field_class = ".fieldname-{}".format(base_block) + text_field_class
     text_field = admin_browser.find_by_css(full_text_field_class)[0]
     scroll_and_click(admin_browser, text_field)
     if text_field.tag_name in ["input", "textarea"]:
@@ -227,7 +227,7 @@ class StreamFieldFiller():
             title_field = self.admin_browser.find_by_xpath("//input[@name='title']")[0]
             scroll_and_click(self.admin_browser, title_field)
             title_field.fill(doc_title)
-            self.admin_browser.attach_file('file', settings.BASE_DIR+"/tests/data/annual-report.pdf")
+            self.admin_browser.attach_file('file', settings.BASE_DIR + "/tests/data/annual-report.pdf")
             scroll_and_click(self.admin_browser, upload_button)
             self.admin_browser.is_element_not_present_by_text("Upload", wait_time=1)
 
@@ -247,7 +247,7 @@ class StreamFieldFiller():
             title_field = self.admin_browser.find_by_xpath("//input[@name='title']")[0]
             scroll_and_click(self.admin_browser, title_field)
             title_field.fill(image_title)
-            self.admin_browser.attach_file('file', settings.BASE_DIR+"/tests/data/placeholder.jpg")
+            self.admin_browser.attach_file('file', settings.BASE_DIR + "/tests/data/placeholder.jpg")
             scroll_and_click(self.admin_browser, upload_button)
             self.admin_browser.is_element_not_present_by_text("Upload", wait_time=1)
 
