@@ -21,7 +21,7 @@ class PullQuoteBlock(StructBlock):
 
 class ImageAlignmentChoiceBlock(FieldBlock):
     field = forms.ChoiceField(choices=(
-        ('', "Full width"),
+        ('media-figure', "Full width"),
         ('media-figure--center', "Small centered"),
         ('media-figure--alignleft', "Align left"),
         ('media-figure--alignright', "Align right")
