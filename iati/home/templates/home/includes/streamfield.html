@@ -1,6 +1,6 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
-<div class="stream-field">
+<div class="is-typeset is-typeset--article">
     {% for child in content %}
         {% if child.block_type == 'h2' %}
             <h2>{{ child }}</h2>
@@ -32,6 +32,32 @@
                 </figcaption>
             {% endif %}
         </figure>
+        {% elif child.block_type == 'document_box' %}
+        {% regroup child.value by block_type as doc_box_groups %}
+        </div>
+        <div class="m-additional"
+        {% if not forloop.last %}
+        style="margin-bottom:4em;"
+        {% endif %}
+        >
+          {% for doc_box_group in doc_box_groups %}
+            {% if doc_box_group.grouper == "document_box_heading" %}
+              <h4 class="m-additional__heading heading">{{ doc_box_group.list|first }}</h4>
+            {% elif doc_box_group.grouper == "document" %}
+              <ul class="m-additional__list download-list">
+                {% for doc in doc_box_group.list %}
+                  <li class="download-list__item">
+                    <a class="download-list__item-link" href="{{ doc_chooser.value.url }}">
+                      <h5 class="download-list__item-link-heading">{{ doc.value.title }}</h5>
+                      <span class="download-list__item-link-subheading">({{ doc.value.file_extension|upper }} {{ doc.value.file.size|filesizeformat }})</span>
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          {% endfor %}
+        </div>
+        <div class="is-typeset is-typeset--article">
         {% else %}
             {{ child }}
         {% endif %}

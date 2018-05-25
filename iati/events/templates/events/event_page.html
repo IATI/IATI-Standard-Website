@@ -21,11 +21,11 @@
         </div>
     </div>
 
-			
+
 <div class="row">
 	<div class="l-sidebar l-sidebar--mobile">
 		<aside class="l-sidebar__aside">
-			
+
 	<div class="aside-m">
         <div class="aside-m__header fill-sunset">
             <h3 class="aside-m__heading">Where &amp; when</h3>
@@ -60,20 +60,18 @@
 
 		</aside>
 		<div class="l-sidebar__body">
-			
 
-    <div class="is-typeset is-typeset--article">
+
         {% if page.description %}
             {% include "home/includes/streamfield.html" with content=page.description %}
         {% endif %}
-    </div>
 
     <div class="m-additional fill-white">
         {% if page.additional_information %}
             {% include "home/includes/streamfield.html" with content=page.additional_information %}
         {% endif %}
     </div>
-    
+
     {% if page.downloads %}
     <div class="m-additional">
         <h4 class="m-additional__heading heading">Downloads</h2>
