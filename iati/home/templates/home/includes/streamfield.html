@@ -26,7 +26,7 @@
         <figure class="media-figure {{child.value.alignment}}">
             {% image child.value.image max-1280x1280 as theimage %}
             <img src="{{ theimage.url }}" width="{{ theimage.width }}" height="{{ theimage.height }}" alt="{{ theimage.alt }}" />
-            {% if child.value.caption|richtext %}
+            {% if child.value.caption.source != "<p></p>" %}
                 <figcaption class="media-figure__caption">
                     {{ child.value.caption|richtext }}
                 </figcaption>
