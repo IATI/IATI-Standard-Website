@@ -29,12 +29,12 @@
                   {% endif %}
                 </div>
             	<div class="l-listing space-section-top">
-    {% for guidance_index in page.guidance_indexes %}
+    {% for guidance_group in page.guidance_groups %}
       <article class="listing listing--guidance">
       	<aside class="listing__aside">
       		<div class="listing__media">
-            {% if guidance_index.feed_image %}
-             {% image guidance_index.feed_image width-300 as img %}
+            {% if guidance_group.feed_image %}
+             {% image guidance_group.feed_image width-300 as img %}
              <img src="{{ img.url }}" alt="{{ img.title }}">
             {% else %}
       			<img src="/static/assets/img/image-placeholder.svg" alt="placeholder image">
@@ -42,13 +42,13 @@
       		</div>
       	</aside>
       	<div class="listing__body">
-      		<h2 class="listing__heading"><a href=""><span>{{ guidance_index.heading }}</span></a></h2>
+      		<h2 class="listing__heading"><a href=""><span>{{ guidance_group.heading }}</span></a></h2>
       		<div class="listing__excerpt is-typeset">
-            {% if guidance_index.feed_content %}
-              {% include "home/includes/streamfield.html" with content=guidance_index.feed_content %}
+            {% if guidance_group.feed_content %}
+              {% include "home/includes/streamfield.html" with content=guidance_group.feed_content %}
             {% endif %}
           </div>
-      		<a href="{% slugurl_trans guidance_index.slug %}" class="button">{{ guidance_index.feed_button_text }}</a>
+      		<a href="{% slugurl_trans guidance_group.slug %}" class="button">{{ guidance_group.feed_button_text }}</a>
       	</div>
       </article>
     {% endfor %}
