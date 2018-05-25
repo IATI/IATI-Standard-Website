@@ -10,8 +10,8 @@ class AnchorSource extends React.Component {
         const content = editorState.getCurrentContent();
         const selection = editorState.getSelection();
 
-        const anchorText = window.prompt('Anchor display text');
-        const anchorHref = window.prompt('Anchor ID');
+        const anchorText = window.prompt('Skip link display text');
+        const anchorHref = window.prompt('Skip link ID');
 
         if (anchorHref){
           // Uses the Draft.js API to create a new entity with the right data.
