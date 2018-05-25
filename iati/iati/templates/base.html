@@ -41,88 +41,88 @@
         {% wagtailuserbar %}
         	<div class="ui-base">
 		<a href="#pagecontent" class="skiplink" data-js="skiplink">Skip to main content</a>
-		
+
 			<header role="banner" class="header">
 	<a href="{% default_page_url %}" class="branding"><span>IATI - International Aid Transparency Initiative</span></a>
-	
+
 
 <ul class="navigation-utility">
-    
-        
+
+
             <li id="section-news" class='navigation-utility__item'><a href="{% default_page_url 'news' %}">News</a></li>
-        
-    
-        
+
+
+
             <li id="section-events" class='navigation-utility__item'><a href="{% default_page_url 'events' %}">Events</a></li>
-        
-    
-        
+
+
+
             <li id="section-contact" class='navigation-utility__item'><a href="{% default_page_url 'contact' %}">Contact</a></li>
-        
-    
+
+
 </ul>
 
-	
+
 
 
 <button role="button" class="navigation-primary-toggle" id="navigation-primary-toggle"><span>Menu</span></button>
 
 <nav class="navigation-primary" role="navigation" id="navigation-primary">
 	<ul class="navigation-primary__items">
-		
-			
-				
+
+
+
 					<li id="section-about" class='navigation-primary__item'><a href="{% default_page_url 'about' %}">About</a></li>
-				
-			
-		
-			
-				
+
+
+
+
+
 					<li id="section-standard" class='navigation-primary__item'><a href="{% default_page_url %}">IATI Standard</a></li>
-				
-			
-		
-			
-				
+
+
+
+
+
 					<li id="section-data" class='navigation-primary__item'><a href="{% default_page_url %}">Data</a></li>
-				
-			
-		
-			
-				
+
+
+
+
+
 					<li id="section-support" class='navigation-primary__item'><a href="{% default_page_url 'guidance_and_support' %}">Guidance & Support</a></li>
-				
-			
-		
-			
-				
+
+
+
+
+
 					<li id="section-community" class='navigation-primary__item'><a href="{% default_page_url %}">Community</a></li>
-				
-			
-		
-		
-			
+
+
+
+
+
 				<li id="section-news" class='navigation-primary__item navigation-primary__item--ss-only'><a href="{% default_page_url 'news' %}">News</a></li>
-			
-		
-			
+
+
+
 				<li id="section-events" class='navigation-primary__item navigation-primary__item--ss-only'><a href="{% default_page_url 'events' %}">Events</a></li>
-			
-		
-			
+
+
+
 				<li id="section-contact" class='navigation-primary__item navigation-primary__item--ss-only'><a href="{% default_page_url 'contact' %}">Contact</a></li>
-			
-		
+
+
 	</ul>
 </nav>
 {% translation_links calling_page=self %}
 </header>
 
-		
+
 		<!-- ID and -nofocus required for proper skiplink operation -->
 		<main id="pagecontent" class="pagecontent -nofocus" role="main" tabindex="-1">
         {% block content %}{% endblock %}
-        
+
         </main>
 
         {% block extra_js %}
@@ -148,7 +148,7 @@
 					<ul class="footer__list">
 						<li><a href="{% default_page_url 'contact' %}">Contact</a></li>
 						<li><a href="{% default_page_url %}">Terms and conditions</a></li>
-						<li><a href="{% default_page_url %}">Privacy policy</a></li>
+						<li><a href="https://www.aidtransparency.net/privacy-policy">Privacy policy</a></li>
 					</ul>
 				</div>
 				<div class="l-3up__col">
@@ -171,15 +171,13 @@
 			<p class="footer__legal">Copyright IATI 2018. All rights reserved</p>
 
 			<ul class="social-list">
-				<li class="social-list__item social-list__item--twitter"><a href="#">Twitter</a></li>
-				<li class="social-list__item social-list__item--facebook"><a href="#">Facebook</a></li>
-				<li class="social-list__item social-list__item--linkedin"><a href="#">Linkedin</a></li>
+				<li class="social-list__item social-list__item--twitter"><a href="https://twitter.com/IATI_aid" rel="noopener noreferrer" target="_blank">Twitter</a></li>
 			</ul>
 		</div>
 	</div>
 </footer>
 
-		
+
 	</div>
 	<script src="{% static 'assets/js/libs/basicScroll.min.js' %}"></script>
 <script>
