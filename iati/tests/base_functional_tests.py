@@ -269,36 +269,36 @@ class StreamFieldFiller():
         find_and_click_toggle_button(self.admin_browser, depth)
 
 
-@pytest.mark.django_db()
-class TestContentEditor():
-    """A container for testing models that incorporate the default content editor"""
-
-    @pytest.mark.parametrize('content_model', collect_base_pages(AbstractContentPage))
-    def test_content_pages(self, admin_browser, content_model):
-        """
-        Test templates for every content page.
-        Fill in random content for every field and test to see if it exists on the template.
-        """
-        homepage = HomePage.objects.first()
-        admin_browser.visit(os.environ["LIVE_SERVER_URL"]+'/admin/pages/{}/'.format(homepage.pk))
-        admin_browser.click_link_by_text('Add child page')
-        verbose_page_name = content_model.get_verbose_name()
-        if content_model.can_create_at(homepage):
-            admin_browser.click_link_by_text(verbose_page_name)
-            prevent_alerts(admin_browser)
-            admin_browser.find_by_text('English').click()
-            admin_browser.fill('title_en', verbose_page_name)
-            content_editor_filler = StreamFieldFiller(admin_browser, IATIStreamBlock)
-            content_editor_filler.start_filling()
-            promote_tab = admin_browser.find_by_text('Promote')[0]
-            scroll_and_click(admin_browser, promote_tab)
-            admin_browser.fill('slug_en', slugify(verbose_page_name))
-            publish_arrow = admin_browser.find_by_xpath('//div[@class="dropdown-toggle icon icon-arrow-up"]')[0]
-            scroll_and_click(admin_browser, publish_arrow)
-            publish_button = admin_browser.find_by_text('Publish')[0]
-            scroll_and_click(admin_browser, publish_button)
-            button_link = admin_browser.find_by_css('li.success a')[0]
-            href = button_link.__dict__['_element'].get_property('href')
-            admin_browser.visit(href)
-            for random_content in content_editor_filler.random_content:
-                assert admin_browser.is_text_present(random_content)
+# @pytest.mark.django_db()
+# class TestContentEditor():
+#     """A container for testing models that incorporate the default content editor"""
+#
+#     @pytest.mark.parametrize('content_model', collect_base_pages(AbstractContentPage))
+#     def test_content_pages(self, admin_browser, content_model):
+#         """
+#         Test templates for every content page.
+#         Fill in random content for every field and test to see if it exists on the template.
+#         """
+#         homepage = HomePage.objects.first()
+#         admin_browser.visit(os.environ["LIVE_SERVER_URL"]+'/admin/pages/{}/'.format(homepage.pk))
+#         admin_browser.click_link_by_text('Add child page')
+#         verbose_page_name = content_model.get_verbose_name()
+#         if content_model.can_create_at(homepage):
+#             admin_browser.click_link_by_text(verbose_page_name)
+#             prevent_alerts(admin_browser)
+#             admin_browser.find_by_text('English').click()
+#             admin_browser.fill('title_en', verbose_page_name)
+#             content_editor_filler = StreamFieldFiller(admin_browser, IATIStreamBlock)
+#             content_editor_filler.start_filling()
+#             promote_tab = admin_browser.find_by_text('Promote')[0]
+#             scroll_and_click(admin_browser, promote_tab)
+#             admin_browser.fill('slug_en', slugify(verbose_page_name))
+#             publish_arrow = admin_browser.find_by_xpath('//div[@class="dropdown-toggle icon icon-arrow-up"]')[0]
+#             scroll_and_click(admin_browser, publish_arrow)
+#             publish_button = admin_browser.find_by_text('Publish')[0]
+#             scroll_and_click(admin_browser, publish_button)
+#             button_link = admin_browser.find_by_css('li.success a')[0]
+#             href = button_link.__dict__['_element'].get_property('href')
+#             admin_browser.visit(href)
+#             for random_content in content_editor_filler.random_content:
+#                 assert admin_browser.is_text_present(random_content)
