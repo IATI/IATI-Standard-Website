@@ -56,12 +56,15 @@ class GuidanceGroupPage(AbstractContentPage):
 
 
 class GuidancePage(AbstractContentPage):
+    """A base for a single guidance page."""
     subpage_types = []
 
 
 class KnowledgebaseIndexPage(AbstractIndexPage):
+    """A base for a Knowledgebase index page."""
     subpage_types = ['guidance_and_support.KnowledgebasePage']
 
 
 class KnowledgebasePage(AbstractContentPage):
+    """A base for a single Knowledgebase page."""
     subpage_types = []
