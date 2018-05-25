@@ -23,12 +23,10 @@
         {% elif child.block_type == 'paragraph' %}
             {{ child.value|richtext }}
         {% elif child.block_type == 'image_figure' %}
-        <figure class="media-figure">
+        <figure class="media-figure {{child.value.alignment}}">
             {% image child.value.image max-1280x1280 as theimage %}
-
             <img src="{{ theimage.url }}" width="{{ theimage.width }}" height="{{ theimage.height }}" alt="{{ theimage.alt }}" />
-
-            {% if child.value.caption %}
+            {% if child.value.caption.value %}
                 <figcaption class="media-figure__caption">
                     {{ child.value.caption|richtext }}
                 </figcaption>

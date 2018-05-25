@@ -19,6 +19,15 @@ class PullQuoteBlock(StructBlock):
         icon = "openquote"
 
 
+class ImageAlignmentChoiceBlock(FieldBlock):
+    field = forms.ChoiceField(choices=(
+        ('', "Full width"),
+        ('media-figure--center', "Small centered"),
+        ('media-figure--alignleft', "Align left"),
+        ('media-figure--alignright', "Align right")
+    ))
+
+
 class HTMLAlignmentChoiceBlock(FieldBlock):
     field = forms.ChoiceField(choices=(
         ('normal', 'Normal'), ('full', 'Full width'),
@@ -35,6 +44,7 @@ class AlignedHTMLBlock(StructBlock):
 
 class ImageBlock(StructBlock):
     image = ImageChooserBlock()
+    alignment = ImageAlignmentChoiceBlock()
     caption = RichTextBlock(required=False)
 
 
