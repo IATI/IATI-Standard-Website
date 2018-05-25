@@ -9,24 +9,36 @@ class AnchorSource extends React.Component {
 
         const content = editorState.getCurrentContent();
         const selection = editorState.getSelection();
+        const anchorKey = selection.getAnchorKey();
+        const currentContent = editorState.getCurrentContent();
+        const currentBlock = currentContent.getBlockForKey(anchorKey);
+        const start = selection.getStartOffset();
+        const end = selection.getEndOffset();
+        const selectedText = currentBlock.getText().slice(start, end);
 
-        const anchorText = window.prompt('Skip link display text');
-        const anchorHref = window.prompt('Skip link ID');
+        const anchorText = window.prompt('Skip link display text', selectedText);
 
-        if (anchorHref){
-          // Uses the Draft.js API to create a new entity with the right data.
-          const contentWithEntity = content.createEntity(entityType.type, 'IMMUTABLE', {
-              href: "#"+anchorHref,
-          });
-          const entityKey = contentWithEntity.getLastCreatedEntityKey();
+        if(anchorText){
 
-          // We also add some text for the entity to be activated on.
-          const text = `${anchorText}`;
+          const anchorHref = window.prompt('Skip anchor ID');
 
-          const newContent = Modifier.replaceText(content, selection, text, null, entityKey);
-          const nextState = EditorState.push(editorState, newContent, 'insert-characters');
+          if (anchorHref){
+            // Uses the Draft.js API to create a new entity with the right data.
+            const contentWithEntity = content.createEntity(entityType.type, 'IMMUTABLE', {
+                href: "#"+anchorHref,
+            });
+            const entityKey = contentWithEntity.getLastCreatedEntityKey();
 
-          onComplete(nextState);
+            // We also add some text for the entity to be activated on.
+            const text = `${anchorText}`;
+
+            const newContent = Modifier.replaceText(content, selection, text, null, entityKey);
+            const nextState = EditorState.push(editorState, newContent, 'insert-characters');
+
+            onComplete(nextState);
+          }else{
+            onComplete(editorState);
+          }
         }else{
           onComplete(editorState);
         }

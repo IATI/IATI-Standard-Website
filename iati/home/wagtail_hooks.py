@@ -18,8 +18,8 @@ def register_anchor_feature(features):
 
     control = {
         'type': type_,
-        'label': 'A',
-        'description': 'Anchor',
+        'icon': 'order-down',
+        'description': 'Skip link',
     }
 
     features.register_editor_plugin(
