@@ -271,7 +271,12 @@ class StreamFieldFiller():
 
 # @pytest.mark.django_db()
 # class TestContentEditor():
-#     """A container for testing models that incorporate the default content editor"""
+#     """A container for testing models that incorporate the default content editor.
+#     TODO:
+#         Tests currently failing in a complex way on Travis.
+#         Cannot fix these issues within the current scope so work on this test class has been postponed.
+#
+#     """
 #
 #     @pytest.mark.parametrize('content_model', collect_base_pages(AbstractContentPage))
 #     def test_content_pages(self, admin_browser, content_model):
