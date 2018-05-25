@@ -17,12 +17,23 @@ import pdb
 
 
 def prevent_alerts(admin_browser):
-    """Stop the Wagtail CMS from sending beforeunload alerts."""
+    """Stop the Wagtail CMS from sending beforeunload alerts.
+
+    Args:
+        admin_browser (browser): The splinter browser instance.
+
+    """
     admin_browser.driver.execute_script("window.removeEventListener('beforeunload', window.areYouSure);")
 
 
 def wait_for_clickability(element, wait_time=1):
-    """Wait until an element is enabled before clicking."""
+    """Wait until an element is enabled before clicking.
+
+    Args:
+        element (ElementAPI): The splinter element to be waited on.
+        wait_time (int): The time in seconds to wait.
+
+    """
     end_time = time.time() + wait_time
 
     while time.time() < end_time:
@@ -32,7 +43,13 @@ def wait_for_clickability(element, wait_time=1):
 
 
 def wait_for_visibility(element, wait_time=1):
-    """Wait until an element is visible before scrolling."""
+    """Wait until an element is visible before scrolling.
+
+    Args:
+        element (ElementAPI): The splinter element to be waited on.
+        wait_time (int): The time in seconds to wait.
+
+    """
     end_time = time.time() + wait_time
 
     while time.time() < end_time:
@@ -42,7 +59,12 @@ def wait_for_visibility(element, wait_time=1):
 
 
 def collect_base_pages(base_page_class):
-    """Given an base page class, return models belonging to that app that inherit from AbstractContentPage"""
+    """Given an base page class, return models belonging to that app that inherit from the base page class.
+
+    Args:
+        base_page_class (Page): The abstract page model to filter all app models by.
+
+    """
     models = list()
     for model in apps.get_models():
         if issubclass(model, base_page_class):
@@ -51,18 +73,36 @@ def collect_base_pages(base_page_class):
 
 
 def random_string(size=10, chars=string.ascii_uppercase + string.ascii_lowercase):
-    """Return a random string for testing fields."""
+    """Return a random string for testing fields.
+
+    Args:
+        size (int): Length of desired string.
+        chars (list): List of allowable characters in the desired string.
+
+    """
     return ''.join(random.choice(chars) for _ in range(size))
 
 
 def click_obscured(admin_browser, element):
-    """A function that clicks elements even if they're slightly obscured."""
+    """A function that clicks elements even if they're slightly obscured.
+
+    Args:
+        admin_browser (browser): The splinter browser instance.
+        element (ElementAPI): The splinter element to be waited on.
+
+    """
     wait_for_clickability(element)
     admin_browser.driver.execute_script("arguments[0].click();", element.__dict__['_element'])
 
 
 def scroll_to_element(admin_browser, element):
-    """A function that scrolls to the location of an element."""
+    """A function that scrolls to the location of an element.
+
+    Args:
+        admin_browser (browser): The splinter browser instance.
+        element (ElementAPI): The splinter element to be waited on.
+
+    """
     wait_for_visibility(element)
     rect = admin_browser.driver.execute_script("return arguments[0].getBoundingClientRect();", element.__dict__['_element'])
     mid_point_x = int(rect['x'] + (rect['width'] / 2))
@@ -71,26 +111,52 @@ def scroll_to_element(admin_browser, element):
 
 
 def scroll_and_click(admin_browser, element):
-    """A function that scrolls to, and clicks an element."""
+    """A function that scrolls to, and clicks an element.
+
+    Args:
+        admin_browser (browser): The splinter browser instance.
+        element (ElementAPI): The splinter element to be waited on.
+
+    """
     scroll_to_element(admin_browser, element)
     click_obscured(admin_browser, element)
 
 
 def find_and_click_add_button(admin_browser, base_block):
-    """Find a content editor add field button and click it."""
+    """Find a content editor add field button and click it.
+
+    Args:
+        admin_browser (browser): The splinter browser instance.
+        base_block (str): The name of the block to be added.
+
+    """
     add_button_class = ".action-add-block-{}".format(base_block)
     add_button = admin_browser.find_by_css(add_button_class)[0]
     scroll_and_click(admin_browser, add_button)
 
 
 def find_and_click_toggle_button(admin_browser, toggle_index):
-    """Find a content editor add block button and click it."""
+    """Find a content editor add block button and click it.
+
+    Args:
+        admin_browser (browser): The splinter browser instance.
+        toggle_index (int): The zero-based index to select the toggle button.
+
+    """
     toggle_button = admin_browser.find_by_css(".toggle")[toggle_index]
     scroll_and_click(admin_browser, toggle_button)
 
 
 def fill_content_editor_block(admin_browser, base_block, text_field_class, content):
-    """Find a content editor text field by class name and fill it."""
+    """Find a content editor text field by class name and fill it.
+
+    Args:
+        admin_browser (browser): The splinter browser instance.
+        base_block (str): The name of the block to be added.
+        text_field_cass (str): The additional CSS selector needed to find the input field.
+        content (str): The content to fill the input.
+
+    """
     full_text_field_class = ".fieldname-{}".format(base_block) + text_field_class
     text_field = admin_browser.find_by_css(full_text_field_class)[0]
     scroll_and_click(admin_browser, text_field)
@@ -150,9 +216,16 @@ class TestTopMenu():
 
 
 class StreamFieldFiller():
-    """A class for autofilling streamfield blocks"""
+    """A class for autofilling streamfield blocks."""
 
     def __init__(self, admin_browser, stream_block_model):
+        """Initialize the class.
+
+        Args:
+            admin_browser (browser): The splinter browser instance.
+            stream_block_model (StreamBlock): The model for the streamblock to be filled.
+
+        """
         self.random_content = list()
         self.admin_browser = admin_browser
         self.stream_block_model = stream_block_model
@@ -169,48 +242,99 @@ class StreamFieldFiller():
         ]
 
     def find_filler(self, block_model):
+        """Given the list of possible ancestors above, find the match and return the appropriate filler function.
+
+        Args:
+            block_model (FieldBlock): Base wagtail block of the field to fill.
+
+        """
         for (possible_ancestor, filler_function) in self.possible_ancestors:
             if isinstance(block_model, possible_ancestor):
                 return filler_function
 
     def model_router(self, parent_model_blocks, base_block, depth=0):
+        """Route a block to a filler function.
+
+        Args:
+            parent_model_blocks (list): List of all sibling blocks.
+            base_block (str): Name of the block being filled.
+            depth (int): For cases where there are nested streamblocks or structblocks, to change adding behavior.
+
+        """
         block_model = parent_model_blocks[base_block]
         filler_function = self.find_filler(block_model)
         filler_function(parent_model_blocks, base_block, depth)
 
     def start_filling(self):
+        """Iterate through first layer of child models and start filling them."""
         for base_block in self.stream_block_model.base_blocks:
             self.model_router(self.stream_block_model.base_blocks, base_block)
 
     def gen_rs(self):
+        """Generate a random string and append it to the list to test the live page against."""
         the_string = random_string()
         self.random_content.append(the_string)
         return the_string
 
     def pass_block(self, _, base_block, depth):
+        """Ignore a block. Used for drop-down choices with default settings.
+
+        Args:
+            base_block (str): Name of the block being filled.
+            depth (int): For cases where there are nested streamblocks or structblocks, to change adding behavior.
+
+        """
         if depth >= 0:
             find_and_click_add_button(self.admin_browser, base_block)
             find_and_click_toggle_button(self.admin_browser, depth)
 
     def fill_charblock(self, _, base_block, depth):
+        """Fill a character block.
+
+        Args:
+            base_block (str): Name of the block being filled.
+            depth (int): For cases where there are nested streamblocks or structblocks, to change adding behavior.
+
+        """
         if depth >= 0:
             find_and_click_add_button(self.admin_browser, base_block)
             find_and_click_toggle_button(self.admin_browser, depth)
         fill_content_editor_block(self.admin_browser, base_block, " input", self.gen_rs())
 
     def fill_textblock(self, _, base_block, depth):
+        """Fill a text block.
+
+        Args:
+            base_block (str): Name of the block being filled.
+            depth (int): For cases where there are nested streamblocks or structblocks, to change adding behavior.
+
+        """
         if depth >= 0:
             find_and_click_add_button(self.admin_browser, base_block)
             find_and_click_toggle_button(self.admin_browser, depth)
         fill_content_editor_block(self.admin_browser, base_block, " textarea", self.gen_rs())
 
     def fill_richtextblock(self, _, base_block, depth):
+        """Fill a richtext block.
+
+        Args:
+            base_block (str): Name of the block being filled.
+            depth (int): For cases where there are nested streamblocks or structblocks, to change adding behavior.
+
+        """
         if depth >= 0:
             find_and_click_add_button(self.admin_browser, base_block)
             find_and_click_toggle_button(self.admin_browser, depth)
         fill_content_editor_block(self.admin_browser, base_block, " .public-DraftEditor-content", self.gen_rs())
 
     def fill_documentchooserblock(self, _, base_block, depth):
+        """Fill a document block.
+
+        Args:
+            base_block (str): Name of the block being filled.
+            depth (int): For cases where there are nested streamblocks or structblocks, to change adding behavior.
+
+        """
         if depth >= 0:
             find_and_click_add_button(self.admin_browser, base_block)
             find_and_click_toggle_button(self.admin_browser, depth)
@@ -232,6 +356,13 @@ class StreamFieldFiller():
             self.admin_browser.is_element_not_present_by_text("Upload", wait_time=1)
 
     def fill_imagechooserblock(self, _, base_block, depth):
+        """Fill an image block.
+
+        Args:
+            base_block (str): Name of the block being filled.
+            depth (int): For cases where there are nested streamblocks or structblocks, to change adding behavior.
+
+        """
         if depth >= 0:
             find_and_click_add_button(self.admin_browser, base_block)
             find_and_click_toggle_button(self.admin_browser, depth)
@@ -252,6 +383,14 @@ class StreamFieldFiller():
             self.admin_browser.is_element_not_present_by_text("Upload", wait_time=1)
 
     def fill_streamblock(self, parent_model_blocks, base_block, depth):
+        """Route a block to a filler function.
+
+        Args:
+            parent_model_blocks (list): List of all sibling blocks.
+            base_block (str): Name of the block being filled.
+            depth (int): For cases where there are nested streamblocks or structblocks, to change adding behavior.
+
+        """
         find_and_click_add_button(self.admin_browser, base_block)
         block_model = parent_model_blocks[base_block]
         child_blocks = block_model.child_blocks
@@ -261,6 +400,14 @@ class StreamFieldFiller():
         find_and_click_toggle_button(self.admin_browser, depth)
 
     def fill_structblock(self, parent_model_blocks, base_block, depth):
+        """Route a block to a filler function.
+
+        Args:
+            parent_model_blocks (list): List of all sibling blocks.
+            base_block (str): Name of the block being filled.
+            depth (int): For cases where there are nested streamblocks or structblocks, to change adding behavior.
+
+        """
         find_and_click_add_button(self.admin_browser, base_block)
         block_model = parent_model_blocks[base_block]
         child_blocks = block_model.child_blocks
