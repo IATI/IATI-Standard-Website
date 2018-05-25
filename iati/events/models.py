@@ -1,22 +1,18 @@
 from django.db import models
-from wagtail.core.models import Page, Orderable
+from wagtail.core.models import Orderable
 from home.models import IATIStreamBlock
-from wagtail.admin.edit_handlers import TabbedInterface, ObjectList, FieldPanel, MultiFieldPanel, StreamFieldPanel, InlinePanel
+from wagtail.admin.edit_handlers import FieldPanel, InlinePanel
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from wagtail.core.fields import StreamField
 from wagtail.snippets.models import register_snippet
-from django.utils import translation
 from django.utils import timezone
-import pytz
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from wagtail.documents.edit_handlers import DocumentChooserPanel
 from django.utils.text import slugify
 from django import forms
 from wagtail.images.edit_handlers import ImageChooserPanel
 
-
-
 from home.models import AbstractIndexPage, AbstractContentPage
+
 
 class EventIndexPage(AbstractIndexPage):
     parent_page_types = ['home.HomePage']
@@ -28,10 +24,11 @@ class EventIndexPage(AbstractIndexPage):
         event_types = EventType.objects.all()
         return event_types
 
-
     def get_context(self, request):
         """Overwriting the default wagtail get_context function to allow for filtering based on params, including pagination.
-           Use the functions built into the abstract index page class to dynamically filter the child pages and apply pagination, limiting the results to 3 per page.
+
+        Use the functions built into the abstract index page class to dynamically filter the child pages and apply pagination, limiting the results to 3 per page.
+
         """
         filter_dict = {}
         children = EventPage.objects.live().descendant_of(self).order_by('-date_start')
@@ -75,7 +72,7 @@ class EventPage(AbstractContentPage):
 
     @property
     def event_type_concat(self):
-        "A function that takes all of the EventType snippets and concatenates them into a space separated one-liner."
+        """A function that takes all of the EventType snippets and concatenates them into a space separated one-liner."""
         event_types = self.event_type.values_list('name', flat=True)
 
         return " | ".join(event_types)
