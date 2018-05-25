@@ -19,32 +19,50 @@ class DocumentBoxBlock(StreamBlock):
 
 
 class PullQuoteBlock(StructBlock):
+    """A block for creating a pull quote"""
     quote = TextBlock("quote title")
 
-    class Meta:
+    class Meta(object):
+        """Meta data for the class"""
         icon = "openquote"
 
 
+class ImageAlignmentChoiceBlock(FieldBlock):
+    """A block which contains the choices and class names for image alignment"""
+    field = forms.ChoiceField(choices=(
+        ('media-figure', "Full width"),
+        ('media-figure--center', "Small centered"),
+        ('media-figure--alignleft', "Align left"),
+        ('media-figure--alignright', "Align right")
+    ))
+
+
 class HTMLAlignmentChoiceBlock(FieldBlock):
+    """A block which contains the choices and class names for HTML alignment"""
     field = forms.ChoiceField(choices=(
         ('normal', 'Normal'), ('full', 'Full width'),
     ))
 
 
 class AlignedHTMLBlock(StructBlock):
+    """A block which allows for raw HTML entry and alignment"""
     html = RawHTMLBlock()
     alignment = HTMLAlignmentChoiceBlock()
 
-    class Meta:
+    class Meta(object):
+        """Meta data for the class"""
         icon = "code"
 
 
 class ImageBlock(StructBlock):
+    """A block which allows for image entry and alignment"""
     image = ImageChooserBlock()
+    alignment = ImageAlignmentChoiceBlock()
     caption = RichTextBlock(required=False)
 
 
 class IATIStreamBlock(StreamBlock):
+    """The main stream block used as the content editor sitewide"""
     h2 = CharBlock(icon="title", classname="title")
     h3 = CharBlock(icon="title", classname="title")
     h4 = CharBlock(icon="title", classname="title")
@@ -66,7 +84,8 @@ class AbstractBasePage(Page):
         "excerpt"
     ]
 
-    class Meta:
+    class Meta(object):
+        """Meta data for the class"""
         abstract = True
 
 
@@ -77,7 +96,8 @@ class AbstractContentPage(AbstractBasePage):
 
     translation_fields = AbstractBasePage.translation_fields + ["content_editor"]
 
-    class Meta:
+    class Meta(object):
+        """Meta data for the class"""
         abstract = True
 
 
@@ -104,7 +124,8 @@ class AbstractIndexPage(AbstractBasePage):
         except EmptyPage:
             return paginator.page(paginator.num_pages)
 
-    class Meta:
+    class Meta(object):
+        """Meta data for the class"""
         abstract = True
 
 
