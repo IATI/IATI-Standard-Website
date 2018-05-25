@@ -8,10 +8,9 @@ from guidance_and_support.models import GuidanceAndSupportPage
 from news.models import NewsIndexPage
 from wagtail_modeltranslation.contextlib import use_language
 from wagtail.core.templatetags.wagtailcore_tags import pageurl
-
 from django.utils import timezone
-import pytz
 from django.template.defaultfilters import date as _date
+
 
 register = template.Library()
 
@@ -74,6 +73,7 @@ def twopartdate(date_start, date_end):
     If the two dates are not the same, part 2 becomes the second date.
 
     If no end date exists, part 2 is just the start time.
+
     """
     part1 = _date(date_start, "DATE_FORMAT")
     enDash = u'\u2013'
