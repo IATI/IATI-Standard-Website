@@ -44,7 +44,7 @@
 </div>
 
 {% with siblings=self.get_siblings.live.specific %}
-  {% if siblings %}
+  {% if siblings|length > 1 %}
     <div class="row">
       <h2 class="section__heading">Related guidance</h2>
       <div class="l-cards">
@@ -56,17 +56,16 @@
           </div>
           {% endif %}
         {% endfor %}
-
       </div>
     </div>
   {% else %}
-    {% with aunts=self.get_parent.siblings_of.live.specific %}
-      {% if aunts and not siblings %}
+    {% with aunts=self.get_parent.get_siblings.live.specific %}
+      {% if aunts|length > 1 %}
         <div class="row">
           <h2 class="section__heading">Related guidance</h2>
           <div class="l-cards">
             {% for aunt in aunts %}
-              {% if aunt != self.get_parent %}
+              {% if aunt != self.get_parent.specific %}
               <div class="card card--guidance ">
                 <h2 class="card__heading"><a href="{% slugurl_trans aunt.slug %}"><span>{{ aunt.heading }}</span></a></h2>
                 <p class="card__excerpt">{{ aunt.excerpt|default:"" }}</p>
@@ -76,7 +75,7 @@
           </div>
         </div>
       {% else %}
-        <span>NOPE</span>
+
       {% endif %}
     {% endwith %}
   {% endif %}
