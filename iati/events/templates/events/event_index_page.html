@@ -27,9 +27,10 @@
       {% if request.GET.event_type|length %}
         <div class="section-header-link">
           <h2 class="section__heading">
-            {% blocktrans with event_type_name=request.GET.event_type|event_type_verbose %} Showing "{{ event_type_name }}" events{% endblocktrans %}
             {% if request.GET.year|length %}
-              {% blocktrans with year=request.GET.year %} in {{ year }}{% endblocktrans %}
+              {% blocktrans with year=request.GET.year event_type_name=request.GET.event_type|event_type_verbose %} Showing "{{ event_type_name }}" events from {{ year }}{% endblocktrans %}
+            {% else %}
+              {% blocktrans with event_type_name=request.GET.event_type|event_type_verbose %} Showing "{{ event_type_name }}" events{% endblocktrans %}
             {% endif %}
           </h2>
           <a class="section-header-link__action" href="{% slugurl_trans self.slug %}?{% for key,value in request.GET.items %}{% if key == 'past' %}{% if not forloop.first %}&amp;{% endif %}{{ key }}={{ value }}{% endif %}{% endfor %}">{% trans "Show all events" %}</a>
@@ -37,7 +38,7 @@
       {% elif request.GET.year|length %}
         <div class="section-header-link">
           <h2 class="section__heading">
-            {% blocktrans with year=request.GET.year %} Showing events in {{ year }}{% endblocktrans %}
+            {% blocktrans with year=request.GET.year %} Showing events from {{ year }}{% endblocktrans %}
           </h2>
           <a class="section-header-link__action" href="{% slugurl_trans self.slug %}?{% for key,value in request.GET.items %}{% if key == 'past' %}{% if not forloop.first %}&amp;{% endif %}{{ key }}={{ value }}{% endif %}{% endfor %}">{% trans "Show all events" %}</a>
        </div>
