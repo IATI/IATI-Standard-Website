@@ -30,11 +30,13 @@ def admin_browser(browser):
     return browser
 
 
-@pytest.fixture(scope='module')
+@pytest.fixture(scope='function')
 def django_db_setup(django_db_setup, django_db_blocker, live_server):
     os.environ['LIVE_SERVER_URL'] = live_server.url
     with django_db_blocker.unblock():
         if not User.objects.filter(username=DJANGO_ADMIN_USER).exists():
             User.objects.create_superuser(DJANGO_ADMIN_USER, "admin@email.com", DJANGO_ADMIN_PASS)
+        call_command('makemigrations')
+        call_command('migrate')
         call_command('createdefaultpages')
     return django_db_setup
