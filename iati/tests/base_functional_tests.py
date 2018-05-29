@@ -15,6 +15,11 @@ import random
 import time
 
 
+# def prevent_alerts(admin_browser):
+#     """Stop the Wagtail CMS from sending alerts"""
+#     admin_browser.driver.execute_script("window.removeEventListener('beforeunload', window.areYouSure);")
+
+
 def wait_for_clickability(element, wait_time=1):
     """Wait until an element is enabled before clicking."""
     end_time = time.time() + wait_time
@@ -262,36 +267,153 @@ class StreamFieldFiller():
             self.model_router(child_blocks, child_block, -1)
         find_and_click_toggle_button(self.admin_browser, depth)
 
+H2 = {'content': 'H2 heading', 'button': 'H2', 'id': 'content_editor_en-{}-value'}
+H3 = {'content': 'H3 heading', 'button': 'H3', 'id': 'content_editor_en-{}-value'}
+H4 = {'content': 'H4 heading', 'button': 'H4', 'id': 'content_editor_en-{}-value'}
+
+def navigate_to_default_page_cms_section(admin_browser, default_page_title):
+    """Navigate to the About page section of the CMS.
+
+    Args:
+        default_page_title (str): The title of a default page modelself.
+
+    """
+    admin_browser.click_link_by_text('Pages')
+    admin_browser.find_by_xpath('//span[@class="icon icon-arrow-right "]').click()
+    admin_browser.find_by_text(default_page_title).click()
+
+
+def enter_page_content(admin_browser, tab_name, cms_field, cms_content):
+    """Add title and slug to a page in the CMS.
+
+    Args:
+        tab_name (str): The name of a tab on an edit page of the CMS.
+        cms_field (str): The name of the field in the CMS you want to fill.
+        cms_content (str): The text content you want to fill the field with.
+
+    """
+    admin_browser.find_by_text(tab_name).click()
+    admin_browser.fill(cms_field, cms_content)
+
+
+def publish_page(admin_browser):
+    """Publish page created in the CMS."""
+    admin_browser.find_by_xpath('//div[@class="dropdown-toggle icon icon-arrow-up"]').click()
+    admin_browser.find_by_text('Publish').click()
+
+
+def create_about_child_page(admin_browser, page_type, page_title):
+    """Create a child page in the CMS.
+
+    Args:
+        page_type (str): The verbose name of the page model type you want to click on.
+        page_title (str): The title of the page you are editing.
+
+    """
+    navigate_to_default_page_cms_section(admin_browser, 'About')
+    admin_browser.find_by_text('Add child page').click()
+    admin_browser.find_by_text(page_type).click()
+    enter_page_content(admin_browser, 'English', 'title_en', page_title)
+    enter_page_content(admin_browser, 'Promote', 'slug_en', slugify(page_title))
+    publish_page(admin_browser)
+
+
+def view_live_page(admin_browser, page_title):
+    """Navigate to the published page on the site.
+
+    Args:
+        page_title (str): The page title text you are expecting on the live page.
+
+    """
+    admin_browser.find_by_text(page_title).mouse_over()
+    button_link = admin_browser.find_by_text('View live')
+    href = button_link[0].__dict__['_element'].get_property('href')
+    admin_browser.visit(href)
+
+
+def edit_page_header(admin_browser, page_title, cms_field, cms_content):
+    """Edit a page by adding content via the CMS.
+
+    Args:
+        page_title (str): The title of the page you want to edit.
+        cms_field (str): The name of the CMS field you want to enter content into.
+        cms_content (str): The text content you want to add to the CMS field.
+
+    TODO:
+        Rename this function to avoid confusion with content editor tests.
+
+    """
+    admin_browser.find_by_text(page_title).click()
+    enter_page_content(admin_browser, 'English', cms_field, cms_content)
+    publish_page(admin_browser)
+    view_live_page(admin_browser, page_title)
+
+
+def scroll_to_bottom_of_page(admin_browser):
+    """Scroll to the bottom of a page."""
+    admin_browser.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+
+
+def reveal_content_editor(admin_browser, button, element_count):
+    """Open content editor if it is not already in view.
+
+    Args:
+        button (str): The displayed text name of the button you want to click.
+        element_count (str): The element counter value of the content editor Streamfield block.
+
+    TODO:
+        Decide whether on convert element_count to int on assignment of variable.
+
+    """
+    if not admin_browser.find_by_text(button).visible:
+        admin_browser.find_by_xpath('//div[@id="content_editor_en-{}-appendmenu"]/a'.format(int(element_count)-1)).mouse_over()
+        admin_browser.find_by_xpath('//div[@id="content_editor_en-{}-appendmenu"]/a'.format(int(element_count)-1)).click()
+        scroll_to_bottom_of_page(admin_browser)
+
 
 @pytest.mark.django_db()
-class TestContentEditor():
+class TestContentPages():
     """A container for testing models that incorporate the default content editor"""
 
+    # @pytest.mark.parametrize('header', [
+    #     H2,
+    #     H3,
+    #     H4
+    # ])
     @pytest.mark.parametrize('content_model', collect_base_pages(AbstractContentPage))
-    def test_content_pages(self, admin_browser, content_model):
+    def test_content_editor_adds_headers(self, admin_browser, content_model):
         """
         Test templates for every content page.
         Fill in random content for every field and test to see if it exists on the template.
         """
         homepage = HomePage.objects.first()
-        admin_browser.visit(os.environ["LIVE_SERVER_URL"]+'/admin/pages/{}/'.format(homepage.pk))
+        admin_browser.visit(os.environ["LIVE_SERVER_URL"] + '/admin/pages/{}/'.format(homepage.pk))
         admin_browser.click_link_by_text('Add child page')
         verbose_page_name = content_model.get_verbose_name()
         if content_model.can_create_at(homepage):
             admin_browser.click_link_by_text(verbose_page_name)
+            # prevent_alerts(admin_browser)
             admin_browser.find_by_text('English').click()
             admin_browser.fill('title_en', verbose_page_name)
-            content_editor_filler = StreamFieldFiller(admin_browser, IATIStreamBlock)
-            content_editor_filler.start_filling()
-            promote_tab = admin_browser.find_by_text('Promote')[0]
-            scroll_and_click(admin_browser, promote_tab)
-            admin_browser.fill('slug_en', slugify(verbose_page_name))
-            publish_arrow = admin_browser.find_by_xpath('//div[@class="dropdown-toggle icon icon-arrow-up"]')[0]
-            scroll_and_click(admin_browser, publish_arrow)
-            publish_button = admin_browser.find_by_text('Publish')[0]
-            scroll_and_click(admin_browser, publish_button)
-            button_link = admin_browser.find_by_css('li.success a')[0]
-            href = button_link.__dict__['_element'].get_property('href')
-            admin_browser.visit(href)
-            for random_content in content_editor_filler.random_content:
-                assert admin_browser.is_text_present(random_content)
+            scroll_to_bottom_of_page(admin_browser)
+            element_count = admin_browser.find_by_id('content_editor_en-count').value
+            reveal_content_editor(admin_browser, H3['button'], element_count)
+            admin_browser.find_by_text(H3['button'])[int(element_count)].click()
+            admin_browser.find_by_id(H3['id'].format(element_count)).fill(H3['content'])
+            publish_page(admin_browser)
+            view_live_page(admin_browser, verbose_page_name)
+            assert admin_browser.is_text_present(H3['content'])
+            # content_editor_filler = StreamFieldFiller(admin_browser, IATIStreamBlock)
+            # content_editor_filler.start_filling()
+            # promote_tab = admin_browser.find_by_text('Promote')[0]
+            # scroll_and_click(admin_browser, promote_tab)
+            # admin_browser.fill('slug_en', slugify(verbose_page_name))
+            # publish_arrow = admin_browser.find_by_xpath('//div[@class="dropdown-toggle icon icon-arrow-up"]')[0]
+            # scroll_and_click(admin_browser, publish_arrow)
+            # publish_button = admin_browser.find_by_text('Publish')[0]
+            # scroll_and_click(admin_browser, publish_button)
+            # button_link = admin_browser.find_by_css('li.success a')[0]
+            # href = button_link.__dict__['_element'].get_property('href')
+            # admin_browser.visit(href)
+            # for random_content in content_editor_filler.random_content:
+            #     assert admin_browser.is_text_present(random_content)

@@ -19,7 +19,7 @@ install:
   - python iati/manage.py migrate_translation --no-input
   - python iati/manage.py createdefaultpages
 before_script:
-  - python iati/manage.py runserver &
+  - python iati/manage.py runserver > /dev/null 2>&1 &
 script:
   - make test
 
@@ -41,7 +41,7 @@ jobs:
             - python iati/manage.py migrate_translation --no-input
             - python iati/manage.py createdefaultpages
           before_script:
-            - python iati/manage.py runserver &
+            - python iati/manage.py runserver > /dev/null 2>&1 &
           script: make test
         - stage: strict lint
           install:
