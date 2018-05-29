@@ -72,7 +72,7 @@ class IATIStreamBlock(StreamBlock):
     pullquote = PullQuoteBlock()
     aligned_html = AlignedHTMLBlock(icon="code", label='Raw HTML')
     document_box = DocumentBoxBlock(icon="doc-full-inverse")
-    skip_anchor = CharBlock(icon="order-down")
+    anchor_point = CharBlock(icon="order-down")
 
 
 class AbstractBasePage(Page):

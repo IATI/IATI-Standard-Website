@@ -58,7 +58,7 @@
           {% endfor %}
         </div>
         <div class="is-typeset is-typeset--article">
-        {% elif child.block_type == 'skip_anchor' %}
+        {% elif child.block_type == 'anchor_point' %}
           <a id="{{ child }}"></a>
         {% else %}
             {{ child }}
