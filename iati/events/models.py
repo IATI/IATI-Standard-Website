@@ -1,12 +1,10 @@
 from django.db import models
-from wagtail.core.models import Orderable
 from home.models import IATIStreamBlock
-from wagtail.admin.edit_handlers import FieldPanel, InlinePanel
-from modelcluster.fields import ParentalKey, ParentalManyToManyField
+from wagtail.admin.edit_handlers import FieldPanel
+from modelcluster.fields import ParentalManyToManyField
 from wagtail.core.fields import StreamField
 from wagtail.snippets.models import register_snippet
 from django.utils import timezone
-from wagtail.documents.edit_handlers import DocumentChooserPanel
 from django.utils.text import slugify
 from django import forms
 from wagtail.images.edit_handlers import ImageChooserPanel
@@ -30,14 +28,22 @@ class EventIndexPage(AbstractIndexPage):
         Use the functions built into the abstract index page class to dynamically filter the child pages and apply pagination, limiting the results to 3 per page.
 
         """
+        now = timezone.now()
         filter_dict = {}
         children = EventPage.objects.live().descendant_of(self).order_by('-date_start')
-        past = request.GET.get('past')
-        now = timezone.now()
+        archive_years = EventPage.objects.live().descendant_of(self).filter(date_start__lte=now).dates('date_start', 'year', order='DESC')
+        past = request.GET.get('past') == "1"
         if past:
             filter_dict["date_start__lte"] = now
         else:
             filter_dict["date_start__gte"] = now
+
+        try:
+            year = int(request.GET.get('year'))
+        except (TypeError, ValueError):
+            year = None
+        if year:
+            filter_dict["date_start__year"] = year
 
         event_type = request.GET.get('event_type')
         if event_type:
@@ -48,6 +54,7 @@ class EventIndexPage(AbstractIndexPage):
         context = super(EventIndexPage, self).get_context(request)
         context['events'] = paginated_children
         context['past'] = past
+        context['archive_years'] = archive_years
         return context
 
 
@@ -86,7 +93,6 @@ class EventPage(AbstractContentPage):
         FieldPanel('registration_link'),
         FieldPanel('event_type', widget=forms.CheckboxSelectMultiple),
         ImageChooserPanel('feed_image'),
-        InlinePanel('event_documents', label="Event attachments")
     ]
 
 
@@ -111,15 +117,4 @@ class EventType(models.Model):
 
     panels = [
         FieldPanel('name'),
-    ]
-
-
-class EventDocument(Orderable):
-    page = ParentalKey(EventPage, related_name='event_documents')
-    document = models.ForeignKey(
-        'wagtaildocs.Document', on_delete=models.CASCADE, related_name='+'
-    )
-
-    panels = [
-        DocumentChooserPanel('document'),
     ]
