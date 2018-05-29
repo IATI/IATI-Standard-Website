@@ -20,7 +20,7 @@ class AnchorSource extends React.Component {
 
         if(anchorText){
 
-          const anchorHref = window.prompt('Skip anchor ID');
+          const anchorHref = window.prompt('Anchor point ID');
 
           if (anchorHref){
             // Uses the Draft.js API to create a new entity with the right data.
