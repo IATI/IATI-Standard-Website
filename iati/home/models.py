@@ -11,6 +11,10 @@ from wagtail.images.blocks import ImageChooserBlock
 from wagtail.documents.blocks import DocumentChooserBlock
 
 
+class DefaultPageHeaderImageBlock(ImageChooserBlock):
+    
+
+
 class DocumentBoxBlock(StreamBlock):
     """A block for holding a document box, with a single header and multiple documents"""
 
