@@ -23,18 +23,18 @@ class GuidanceGroupPage(AbstractContentPage):
     """A base for Guidance Group pages."""
     subpage_types = ['guidance_and_support.GuidanceGroupPage', 'guidance_and_support.GuidancePage']
 
-    feed_image = models.ForeignKey(
+    section_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
         related_name='+',
-        help_text='This is the image that will be displayed for the guidance index page on the main guidance and support page. Ignore if this page is being used as a sub-index page.'
+        help_text='This is the image that will be displayed for this page on the main guidance and support page. Ignore if this page is being used as a sub-index page.'
     )
 
-    feed_content = StreamField(IATIStreamBlock(required=False), null=True, blank=True, help_text='A small amount of content to appear on the main page (e.g. bullet points). Ignore if this page is being used as a sub-index page.')
+    section_summary = StreamField(IATIStreamBlock(required=False), null=True, blank=True, help_text='A small amount of content to appear on the main page (e.g. bullet points). Ignore if this page is being used as a sub-index page.')
 
-    feed_button_text = models.TextField(max_length=255, null=True, blank=True, help_text='The text to appear on the button of the main guidance and support page. Ignore if this page is being used as a sub-index page.')
+    button_link_text = models.TextField(max_length=255, null=True, blank=True, help_text='The text to appear on the button of the main guidance and support page. Ignore if this page is being used as a sub-index page.')
 
     @property
     def guidance_groups(self):
@@ -48,10 +48,10 @@ class GuidanceGroupPage(AbstractContentPage):
         guidance_group_list = [{"page": page, "count": len(page.get_children())} for page in guidance_groups]
         return guidance_group_list
 
-    translation_fields = AbstractContentPage.translation_fields + ["feed_content", "feed_button_text"]
+    translation_fields = AbstractContentPage.translation_fields + ["section_summary", "button_link_text"]
 
     multilingual_field_panels = [
-        ImageChooserPanel('feed_image'),
+        ImageChooserPanel('section_image'),
     ]
 
 
