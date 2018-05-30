@@ -7,6 +7,7 @@ from django.apps import apps
 from django.utils.text import slugify
 from django.conf import settings
 from home.models import AbstractContentPage, IATIStreamBlock, HomePage
+from tests.about_functional_tests import publish_page
 from wagtail.core.blocks import CharBlock, FieldBlock, RawHTMLBlock, RichTextBlock, StreamBlock, StructBlock, TextBlock
 from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.images.blocks import ImageChooserBlock
@@ -14,6 +15,9 @@ import string
 import random
 import time
 import pdb
+
+
+TEST_DATA_DIR = settings.BASE_DIR + '/tests/data/'
 
 
 def prevent_alerts(admin_browser):
@@ -210,8 +214,15 @@ class TestDefaultPages():
         admin_browser.find_by_xpath('//h3').find_by_text('Home').click()
         admin_browser.click_link_by_text('Home')
         admin_browser.find_by_text('Multilingual').click()
-
-
+        admin_browser.find_by_text('Choose an image').click()
+        admin_browser.find_by_text('Upload').click()
+        admin_browser.fill('title', 'Test image')
+        admin_browser.attach_file('file', TEST_DATA_DIR + 'pigeons.jpeg')
+        admin_browser.find_by_xpath('//em[contains(text(), "Upload")]').click()
+        click_obscured(admin_browser, admin_browser.find_by_xpath('//div[@class="dropdown-toggle icon icon-arrow-up"]').first)
+        click_obscured(admin_browser, admin_browser.find_by_text('Publish').first)
+        admin_browser.visit(LOCALHOST)
+        assert admin_browser.is_element_present_by_xpath('//img[@alt="Test image"]')
 
 
 class TestTopMenu():
