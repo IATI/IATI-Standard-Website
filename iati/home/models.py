@@ -8,11 +8,8 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from wagtail.core.blocks import TextBlock, StructBlock, StreamBlock, FieldBlock, CharBlock, RichTextBlock, RawHTMLBlock
 from wagtail.core.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
+# from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.documents.blocks import DocumentChooserBlock
-
-
-class DefaultPageHeaderImageBlock(ImageChooserBlock):
-    
 
 
 class DocumentBoxBlock(StreamBlock):
@@ -135,4 +132,15 @@ class AbstractIndexPage(AbstractBasePage):
 
 class HomePage(Page):  # pylint: disable=too-many-ancestors
     """Proof-of-concept model definition for the homepage."""
+    # header_image = models.ForeignKey(
+    #     'wagtailimages.Image',
+    #     null=True,
+    #     blank=True,
+    #     on_delete=models.SET_NULL,
+    #     related_name='+',
+    #     help_text='This is the image that will appear in the header banner at the top of the Home Page. If no image is added a placeholder image will be used.'
+    # )
     translation_fields = []
+    multilingual_field_panels = [
+        # ImageChooserPanel('header_image')
+    ]

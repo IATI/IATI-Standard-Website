@@ -167,7 +167,7 @@ def fill_content_editor_block(admin_browser, base_block, text_field_class, conte
 
 
 @pytest.mark.django_db()
-class TestCreateDefaultPages():
+class TestCreateDefaultPagesManagementCommand():
     """A container for tests that check createdefaultpages command."""
 
     def test_create_default_pages_idempotence(self, browser):
@@ -181,21 +181,37 @@ class TestCreateDefaultPages():
         assert browser.url == valid_url
 
 
-class TestDefaultPagesExist():
+class TestDefaultPages():
     """A container for tests that the default pages exist."""
 
-    @pytest.mark.parametrize("page_name", [
+    DEFAULT_PAGES = [
+        '',
         'about',
         'contact',
         'events',
         'news',
         'guidance_and_support'
-    ])
+    ]
+
+    @pytest.mark.parametrize("page_name", DEFAULT_PAGES)
     def test_default_pages_exist(self, browser, page_name):
         """Check default pages exist."""
         browser.visit(LOCALHOST + '{}'.format(page_name))
-        page_title = page_name.replace('_', ' ').capitalize()
+        if page_name == '':
+            page_title = 'Home'
+        else:
+            page_title = page_name.replace('_', ' ').capitalize()
         assert browser.title == page_title
+
+    @pytest.mark.django_db
+    def test_header_image_is_editable(self, admin_browser):
+        """Check that the header image for default pages can be edited in the CMS."""
+        admin_browser.click_link_by_text('Pages')
+        admin_browser.find_by_xpath('//h3').find_by_text('Home').click()
+        admin_browser.click_link_by_text('Home')
+        admin_browser.find_by_text('Multilingual').click()
+
+
 
 
 class TestTopMenu():
