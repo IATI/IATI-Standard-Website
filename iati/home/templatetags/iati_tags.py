@@ -1,5 +1,7 @@
 from django import template
 from django.conf import settings
+from django.utils import timezone
+from django.template.defaultfilters import date as _date
 from home.models import HomePage
 from about.models import AboutPage
 from contact.models import ContactPage
@@ -8,8 +10,6 @@ from guidance_and_support.models import GuidanceAndSupportPage
 from news.models import NewsIndexPage
 from wagtail_modeltranslation.contextlib import use_language
 from wagtail.core.templatetags.wagtailcore_tags import pageurl
-from django.utils import timezone
-from django.template.defaultfilters import date as _date
 
 
 register = template.Library()
@@ -76,10 +76,10 @@ def twopartdate(date_start, date_end):
 
     """
     part1 = _date(date_start, "DATE_FORMAT")
-    enDash = u'\u2013'
+    en_dash = u'\u2013'
     if date_end:
         if date_start.date() == date_end.date():
-            part2 = "{0}{1}{2}".format(_date(date_start, "TIME_FORMAT"), enDash, _date(date_end, "TIME_FORMAT"))
+            part2 = "{0}{1}{2}".format(_date(date_start, "TIME_FORMAT"), en_dash, _date(date_end, "TIME_FORMAT"))
             part2_is_time = True
         else:
             part2 = _date(date_end, "DATE_FORMAT")
