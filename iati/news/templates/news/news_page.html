@@ -1,82 +1,74 @@
 {% extends "base.html" %}
-
+{% load wagtail_modeltranslation %}
 {% block body_class %}body body--news-single{% endblock %}
 {% block body_id %}body-news-single{% endblock %}
-
 {% block content %}
 <div class="hero hero--minor">
-        <div class="row">
-            <div class="max-meter max-meter--center">
-                <div class="hero__caption">
-                    <h1 class="hero__heading">São Tomé and Príncipe is IATI’s first Portuguese-speaking Member</h1>
-                </div>
-            </div>
-        </div>
+  <div class="row">
+    <div class="max-meter max-meter--center">
+      <div class="hero__caption">
+        <h1 class="hero__heading">{{ page.heading }}</h1>
+      </div>
     </div>
+  </div>
+</div>
 
-			
-    <div class="row">
-        <div class="max-meter max-meter--center">
-            <div class="aside-m aside-m--clipping fill-land">
-                <ul class="aside-m__meta">
-                    <li><i role="presentation" aria-hidden="true" class="ico ico--14 ico-calendar-black"></i> 28 Feb 2018</li>
-                    <li><i role="presentation" aria-hidden="true" class="ico ico--14 ico-bookmark-black"></i> <a href="#">Category name</a>, <a href="#">Category name</a></li>
-                </ul>
-            </div>
-            <div class="is-typeset is-typeset--article">
-                <p>They join <a href="#">86 members</a> of the initiative including governments, multilaterals, NGOs, foundations and private sector organisations who are committed to improving the transparency of humanitarian and development spending.</p>
-<p>The government say they face “significant challenges” with accessing aid information and want to make use of IATI data published by a range of organisations who fund and implement development activities in São Tomé and Príncipe.</p>
-<blockquote>
-    <p>“IATI data offers us a radically new approach to address some of the key local constraints in accessing aid data”</p>
-</blockquote>
-<p>Geisel de Menezes, Director of Planning and Forecasting from the Ministry of Finance said: “Despite efforts from Government and partners, São Tomé and Príncipe still faces significant challenges related to donor coordination and a lack of up-to-date information on aid.</p>
-<p>“IATI data offers us a radically new approach to address some of the key local constraints in accessing aid data namely due to low incorporation of technology and a weak data transparency culture”.</p>
-<p>The government say the “most important” data on development cooperation needed for decision making is on disbursements and development project impact. They want to champion those development providers already making their spending transparent and encourage all other remaining organizations operating in São Tomé and Príncipe to “adhere to the same cooperation standard”.  </p>
-<p>The government first became aware of IATI last year when it was raised by the leader of the EU delegation team at a technical meeting in the capital São Tomé. By joining IAIT, they hope to learn more from other members on how to use the available data and contribute to the evolution of the IATI Standard so that it better caters to the data needs of countries similar to São Tomé and Príncipe.</p>
-<img class="alignleft" src="/static/assets/img/content-image.jpg" alt="Inline image">
-<p>“We intend to use IATI data to its full potential by making it available and understandable to everyone, including civil servants, policy makers, politicians and civil society”, says Mr. Menezes.</p>
-<p>“This will be done not only by taking part in future IATI meetings, but also through other forms of collaboration which include working with key donor organisations in order to improve the scope and data quality of the information they publish to IATI”.</p>
-<p>As the first Portuguese-speaking country to become a member, São Tomé and Príncipe says they are well placed to help “spread the IATI aid transparency message” throughout the Portuguese speaking community.</p>
-<p>For more information on IATI members or how to join the initiative, see the <a href="#">Members’ Assembly</a> section in our website.</p>
 
-            </div>
-        </div>
+<div class="row">
+  <div class="max-meter max-meter--center">
+    <div class="aside-m aside-m--clipping fill-land">
+      <ul class="aside-m__meta">
+        <li><i role="presentation" aria-hidden="true" class="ico ico--14 ico-calendar-black"></i> {{ page.date }}</li>
+        {% with parent=self.get_parent %}
+        <li>
+          <i role="presentation" aria-hidden="true" class="ico ico--14 ico-bookmark-black"></i>
+          {% for news_category in page.news_categories %}
+            <a href="{% slugurl_trans parent.slug %}?type={{ news_category.slug }}">{{ news_category.name }}</a>{% if not forloop.last %},{% endif %}
+          {% endfor %}
+        </li>
+        {% endwith %}
+      </ul>
     </div>
+    {% if page.content_editor %}
+      {% include "home/includes/streamfield.html" with content=page.content_editor %}
+    {% endif %}
+  </div>
+</div>
 
-    <div class="section">
-        <div class="row">
-            <h2 class="section__heading">Related news</h2>
-            <div class="l-2up">
-                <div class="l-2up__col">
-                    <article class="listing listing--article">
-                        <aside class="listing__aside">
-                            <div class="listing__media">
-                                <img src="/static/assets/img/content-image3.jpg" alt="alt tag">
-                            </div>
-                        </aside>
-                        <div class="listing__body" style="--translateY: 11.55px;">
-                            <h2 class="listing__heading"><a href=""><span>São Tomé and Príncipe is IATI’s first Portuguese-speaking Member</span></a></h2>
-                            <ul class="listing__metadata">
-                                <li class="listing__metadata__item">
-                                    <i role="presentation" aria-hidden="true" class="ico ico--14 ico-calendar-ocean"></i> <span class="listing__metadata__date">27 Feb 2018</span>
-                                </li>
-                            </ul>
-                            <div class="listing__excerpt">São Tomé and Príncipe has become the first Portuguese-speaking country to join IATI. They join 86 members of the initiative</div>
-                            <a href="#" class="button">Read more</a>
-                        </div>
-                    </article>
-                </div>
-
-                <div class="l-2up__col">
-                    <article class="listing listing--article listing--article-alt">
-                        <div class="listing__body" style="--translateY: 11.55px; width: 100%;">
-                            <h2 class="listing__heading"><a href=""><span>São Tomé and Príncipe is IATI’s first Portuguese-speaking Member</span></a></h2>
-                            <div class="listing__excerpt">São Tomé and Príncipe has become the first Portuguese-speaking country to join IATI. They join 86 members of the initiative</div>
-                            <a href="#" class="button">Read more</a>
-                        </div>
-                    </article>
-                </div>
+<div class="section">
+  <div class="row">
+    <h2 class="section__heading">Related news</h2>
+    <div class="l-2up">
+      <div class="l-2up__col">
+        <article class="listing listing--article">
+          <aside class="listing__aside">
+            <div class="listing__media">
+              <img src="/static/assets/img/content-image3.jpg" alt="alt tag">
             </div>
-        </div>
+          </aside>
+          <div class="listing__body" style="--translateY: 11.55px;">
+            <h2 class="listing__heading"><a href=""><span>São Tomé and Príncipe is IATI’s first Portuguese-speaking Member</span></a></h2>
+            <ul class="listing__metadata">
+              <li class="listing__metadata__item">
+                <i role="presentation" aria-hidden="true" class="ico ico--14 ico-calendar-ocean"></i> <span class="listing__metadata__date">27 Feb 2018</span>
+              </li>
+            </ul>
+            <div class="listing__excerpt">São Tomé and Príncipe has become the first Portuguese-speaking country to join IATI. They join 86 members of the initiative</div>
+            <a href="#" class="button">Read more</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="l-2up__col">
+        <article class="listing listing--article listing--article-alt">
+          <div class="listing__body" style="--translateY: 11.55px; width: 100%;">
+            <h2 class="listing__heading"><a href=""><span>São Tomé and Príncipe is IATI’s first Portuguese-speaking Member</span></a></h2>
+            <div class="listing__excerpt">São Tomé and Príncipe has become the first Portuguese-speaking country to join IATI. They join 86 members of the initiative</div>
+            <a href="#" class="button">Read more</a>
+          </div>
+        </article>
+      </div>
     </div>
+  </div>
+</div>
 {% endblock %}
