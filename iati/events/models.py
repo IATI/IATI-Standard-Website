@@ -1,18 +1,17 @@
+from django import forms
 from django.db import models
-from home.models import IATIStreamBlock
-from wagtail.admin.edit_handlers import FieldPanel
-from modelcluster.fields import ParentalManyToManyField
-from wagtail.core.fields import StreamField
-from wagtail.snippets.models import register_snippet
 from django.utils import timezone
 from django.utils.text import slugify
-from django import forms
+from modelcluster.fields import ParentalManyToManyField
+from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.core.fields import StreamField
+from wagtail.snippets.models import register_snippet
 from wagtail.images.edit_handlers import ImageChooserPanel
-
-from home.models import AbstractIndexPage, AbstractContentPage
+from home.models import AbstractIndexPage, AbstractContentPage, IATIStreamBlock
 
 
 class EventIndexPage(AbstractIndexPage):
+    """A model for event index pages, the main event landing page."""
     parent_page_types = ['home.HomePage']
     subpage_types = ['events.EventPage']
 
@@ -59,6 +58,7 @@ class EventIndexPage(AbstractIndexPage):
 
 
 class EventPage(AbstractContentPage):
+    """A model for event single pages"""
     parent_page_types = ['events.EventIndexPage']
     subpage_types = []
 
@@ -98,10 +98,12 @@ class EventPage(AbstractContentPage):
 
 @register_snippet
 class EventType(models.Model):
+    """A snippet model for event types, to be added in the snippet menu prior to creating events for uniformity."""
     name = models.CharField(max_length=255, unique=True)
     slug = models.SlugField(unique=True)
 
     def __str__(self):
+        """Explicit to string function"""
         return self.name
 
     def full_clean(self, *args, **kwargs):
