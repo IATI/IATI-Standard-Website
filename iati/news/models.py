@@ -59,7 +59,7 @@ class NewsPage(AbstractContentPage):
         FieldPanel('date'),
         FieldPanel('news_categories', widget=forms.CheckboxSelectMultiple),
         ImageChooserPanel('feed_image'),
-        InlinePanel('related_news', label="Related news")
+        InlinePanel('related_news', label="Related news", help_text="Looks best with two related news posts or fewer.")
 
     ]
 

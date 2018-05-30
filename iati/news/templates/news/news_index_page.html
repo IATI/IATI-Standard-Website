@@ -32,7 +32,7 @@
       <div class="l-listing">
         {% for news_post in news_posts %}
           {% with news_post=news_post.specific %}
-            <article class="listing listing--featured">
+            <article class="listing {% if forloop.first %}listing--featured{% else %}listing--article{% endif %}">
               <aside class="listing__aside">
                 <div class="listing__media">
                   {% if news_post.feed_image %}

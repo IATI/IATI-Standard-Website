@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtail_modeltranslation %}
+{% load wagtailimages_tags wagtail_modeltranslation %}
 {% block body_class %}body body--news-single{% endblock %}
 {% block body_id %}body-news-single{% endblock %}
 {% block content %}
@@ -19,13 +19,15 @@
     <div class="aside-m aside-m--clipping fill-land">
       <ul class="aside-m__meta">
         <li><i role="presentation" aria-hidden="true" class="ico ico--14 ico-calendar-black"></i> {{ page.date }}</li>
-        {% with parent=self.get_parent %}
+        {% with parent=self.get_parent news_categories=page.news_categories.all %}
+        {% if news_categories|length > 0 %}
         <li>
           <i role="presentation" aria-hidden="true" class="ico ico--14 ico-bookmark-black"></i>
-          {% for news_category in page.news_categories %}
+          {% for news_category in news_categories %}
             <a href="{% slugurl_trans parent.slug %}?type={{ news_category.slug }}">{{ news_category.name }}</a>{% if not forloop.last %},{% endif %}
           {% endfor %}
         </li>
+        {% endif %}
         {% endwith %}
       </ul>
     </div>
@@ -38,36 +40,40 @@
 <div class="section">
   <div class="row">
     <h2 class="section__heading">Related news</h2>
-    <div class="l-2up">
+    <div class="l-2up type-l--trailer">
+    {% for related_news_item in page.related_news.all %}
+    {% if not forloop.first and forloop.counter0|divisibleby:2 %}
+    </div>
+    <div class="l-2up type-l--trailer" >
+    {% endif %}
+      {% with news_post=related_news_item.related_post.specific %}
       <div class="l-2up__col">
-        <article class="listing listing--article">
+        <article class="listing {% cycle "listing--article" "listing--article-alt" %}">
           <aside class="listing__aside">
             <div class="listing__media">
-              <img src="/static/assets/img/content-image3.jpg" alt="alt tag">
+              {% if news_post.feed_image %}
+                {% image news_post.feed_image width-600 as img %}
+                <img src="{{ img.url }}" alt="{{ img.title }}" />
+               {% else %}
+                <img src="/static/assets/svg/source/logo-square.svg" alt="iati logo"/>
+               {% endif %}
             </div>
           </aside>
-          <div class="listing__body" style="--translateY: 11.55px;">
-            <h2 class="listing__heading"><a href=""><span>São Tomé and Príncipe is IATI’s first Portuguese-speaking Member</span></a></h2>
+          <div class="listing__body">
+            <h2 class="listing__heading"><a href="{% slugurl_trans news_post.slug %}"><span>{{ news_post.heading }}</span></a></h2>
             <ul class="listing__metadata">
               <li class="listing__metadata__item">
-                <i role="presentation" aria-hidden="true" class="ico ico--14 ico-calendar-ocean"></i> <span class="listing__metadata__date">27 Feb 2018</span>
+                <i role="presentation" aria-hidden="true" class="ico ico--14 ico-calendar-ocean"></i> <span class="listing__metadata__date">{{ news_post.date }}</span>
               </li>
             </ul>
-            <div class="listing__excerpt">São Tomé and Príncipe has become the first Portuguese-speaking country to join IATI. They join 86 members of the initiative</div>
-            <a href="#" class="button">Read more</a>
+            <div class="listing__excerpt">{{ news_post.excerpt|default:"" }}</div>
+            <a href="{% slugurl_trans news_post.slug %}" class="button">Read more</a>
           </div>
         </article>
       </div>
+      {% endwith %}
 
-      <div class="l-2up__col">
-        <article class="listing listing--article listing--article-alt">
-          <div class="listing__body" style="--translateY: 11.55px; width: 100%;">
-            <h2 class="listing__heading"><a href=""><span>São Tomé and Príncipe is IATI’s first Portuguese-speaking Member</span></a></h2>
-            <div class="listing__excerpt">São Tomé and Príncipe has become the first Portuguese-speaking country to join IATI. They join 86 members of the initiative</div>
-            <a href="#" class="button">Read more</a>
-          </div>
-        </article>
-      </div>
+    {% endfor %}
     </div>
   </div>
 </div>
