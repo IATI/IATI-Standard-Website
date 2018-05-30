@@ -1,0 +1,13 @@
+ {% load wagtail_modeltranslation %}
+
+{% for featured_event in featured_events %}
+<div class="aside-m">
+  <div class="aside-m__header fill-sunset">
+    <h3 class="aside-m__heading">{{ featured_event.event.heading|default:featured_event.event.title }}</h3>
+  </div>
+  <div class="aside-m__body">
+    <p class="aside-m__copy">{{ featured_event.event.excerpt|default:"" }}</p>
+    <a class="button" href="{% slugurl_trans featured_event.event.slug %}">View event</a>
+  </div>
+</div>
+{% endfor %}

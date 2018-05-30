@@ -1,12 +1,13 @@
 from django.db import models
 from home.models import IATIStreamBlock
-from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel
 from modelcluster.fields import ParentalManyToManyField
 from wagtail.core.fields import StreamField
 from wagtail.snippets.models import register_snippet
 from django.utils import timezone
 from django.utils.text import slugify
 from django import forms
+from django.template.defaultfilters import date as _date
 from wagtail.images.edit_handlers import ImageChooserPanel
 
 from home.models import AbstractIndexPage, AbstractContentPage
@@ -117,4 +118,16 @@ class EventType(models.Model):
 
     panels = [
         FieldPanel('name'),
+    ]
+
+
+@register_snippet
+class FeaturedEvent(models.Model):
+    event = models.ForeignKey('events.EventPage', on_delete=models.CASCADE, related_name="+")
+
+    def __str__(self):
+        return self.event.heading + " on " + _date(self.event.date_start)
+
+    panels = [
+        PageChooserPanel('event', 'events.EventPage')
     ]
