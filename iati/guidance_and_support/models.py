@@ -36,6 +36,8 @@ class GuidanceGroupPage(AbstractContentPage):
 
     button_link_text = models.TextField(max_length=255, null=True, blank=True, help_text='The text to appear on the button of the main guidance and support page. Ignore if this page is being used as a sub-index page.')
 
+    content_editor = StreamField(IATIStreamBlock(required=False), null=True, blank=True, help_text='The content to appear on the page itself, as opposed to "section summary" which appears on the parent page.')
+
     @property
     def guidance_groups(self):
         """Get all objects that are children of the instantiated GuidanceGroupPage.

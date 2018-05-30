@@ -1,3 +1,5 @@
+// From http://docs.wagtail.io/en/v2.0/advanced_topics/customisation/extending_draftail.html#creating-new-entities with modifications
+
 const React = window.React;
 const Modifier = window.DraftJS.Modifier;
 const EditorState = window.DraftJS.EditorState;
