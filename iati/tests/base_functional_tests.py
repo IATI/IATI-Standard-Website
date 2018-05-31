@@ -1,20 +1,18 @@
 """A module of functional tests for base site functionality."""
 import os
+import string
+import random
+import time
 import pytest
 from conftest import LOCALHOST
 from django.core.management import call_command
 from django.apps import apps
-from django.utils.text import slugify
+# from django.utils.text import slugify
 from django.conf import settings
-from home.models import AbstractContentPage, IATIStreamBlock, HomePage
-from tests.about_functional_tests import publish_page
+# from home.models import AbstractContentPage, IATIStreamBlock, HomePage
 from wagtail.core.blocks import CharBlock, FieldBlock, RawHTMLBlock, RichTextBlock, StreamBlock, StructBlock, TextBlock
 from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.images.blocks import ImageChooserBlock
-import string
-import random
-import time
-import pdb
 
 
 TEST_DATA_DIR = settings.BASE_DIR + '/tests/data/'
@@ -234,16 +232,11 @@ class TestDefaultPages():
 
     @pytest.mark.django_db
     def test_header_image_is_editable(self, admin_browser):
-        """Check that the header image for default pages can be edited in the CMS."""
-        # Navigate to Home Page editing in the CMS
+        """Check that the header image for the Home page can be edited in the CMS."""
         self.navigate_to_edit_home_page(admin_browser)
-        # Click the new Multilingual tab
         admin_browser.find_by_text('Multilingual').click()
-        # Upload an image to appear in the header
         self.upload_an_image(admin_browser)
-        # Publish the changes to the page
         self.publish_changes(admin_browser)
-        # Visit the live Home Page to see the changes
         self.view_live_page(admin_browser)
         assert admin_browser.is_element_present_by_xpath('//img[@alt="Test image"]')
 
