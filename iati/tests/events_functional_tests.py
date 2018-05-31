@@ -188,11 +188,6 @@ class TestEventIndexChildPages():
         find_and_click_toggle_button(admin_browser, 0)
         find_and_click_add_button(admin_browser, header['button'].lower())
         fill_content_editor_block(admin_browser, header['button'].lower(), " input", header['content'])
-        # scroll_to_bottom_of_page(admin_browser)
-        # element_count = admin_browser.find_by_id('content_editor_en-count').value
-        # reveal_content_editor(admin_browser, header['button'], element_count)
-        # admin_browser.find_by_text(header['button'])[int(element_count)].click()
-        # admin_browser.find_by_id(header['id'].format(element_count)).fill(header['content'])
         publish_page(admin_browser)
         view_live_page(admin_browser, EVENT_PAGE['title'])
         assert admin_browser.is_text_present(header['content'])
