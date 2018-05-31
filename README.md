@@ -16,7 +16,7 @@ The current scope of the project (to April 2018) focuses on the 'About IATI' and
 python3 -m venv pyenv
 source pyenv/bin/activate
 
-# Enter into project directory
+# Enter into the Django project directory
 cd iati
 
 # Install requirements
@@ -27,7 +27,7 @@ pip install -r requirements_dev.txt
 # Note local.py should not be under version control as it contains sensitive information
 # Without these steps, a SQLite database will be used to store data.
 createdb iati-website
-cp settings/local.py.example settings/local.py
+cp iati/settings/local.py.example iati/settings/local.py
 
 # Make and perform Django migrations AND bespoke translations for translated fields
 # Note this will ask you to approve bespoke SQL commands
