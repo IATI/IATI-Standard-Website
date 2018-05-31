@@ -1,4 +1,4 @@
-{% load wagtail_modeltranslation %}
+{% load wagtail_modeltranslation iati_tags %}
 
 <div class="aside-m">
     <div class="aside-m__header fill-sunrise">
@@ -27,3 +27,6 @@
         </ul>
     </nav>
 </div>
+{% if calling_page.show_featured_events %}
+  {% featured_events %}
+{% endif %}

@@ -133,11 +133,10 @@ def side_panel(calling_page):
         main_section = home_page.get_children().ancestor_of(calling_page).live().first().specific
 
     menu_to_display = discover_tree_recursive(main_section, calling_page)
-    return {"menu_to_display": menu_to_display}
+    return {"menu_to_display": menu_to_display, "calling_page": calling_page}
 
 
 @register.inclusion_tag('home/includes/featured_event.html')
 def featured_events():
-    """Return the featured event markup for upcoming featured events."""
-    now = timezone.now()
-    return {"featured_events": FeaturedEvent.objects.filter(event__live=True, event__date_start__gte=now)}
+    """Return the featured event markup for featured events."""
+    return {"featured_events": FeaturedEvent.objects.filter(event__live=True)}
