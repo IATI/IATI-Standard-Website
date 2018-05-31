@@ -130,7 +130,7 @@ class AbstractIndexPage(AbstractBasePage):
         abstract = True
 
 
-class HomePage(Page):  # pylint: disable=too-many-ancestors
+class HomePage(AbstractBasePage):  # pylint: disable=too-many-ancestors
     """Proof-of-concept model definition for the homepage."""
     header_image = models.ForeignKey(
         'wagtailimages.Image',
@@ -140,7 +140,6 @@ class HomePage(Page):  # pylint: disable=too-many-ancestors
         related_name='+',
         help_text='This is the image that will appear in the header banner at the top of the Home Page. If no image is added a placeholder image will be used.'
     )
-    translation_fields = []
     multilingual_field_panels = [
         ImageChooserPanel('header_image')
     ]
