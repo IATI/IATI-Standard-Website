@@ -3,3 +3,4 @@ psycopg2-binary==2.7.4
 wagtail==2.0.1
 wagtail-modeltranslation==0.8.1
 git+https://github.com/deschler/django-modeltranslation
+
