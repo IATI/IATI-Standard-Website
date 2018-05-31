@@ -1,4 +1,4 @@
-{% load wagtail_modeltranslation %}
+{% load wagtail_modeltranslation wagtailimages_tags %}
 
 <div class="row">
     <div class="hero__caption">
@@ -7,6 +7,9 @@
         <p class="hero__subheading">IATI is a common format to share data on aid and development for better decision making and outcomes</p>
     </div>
     <div class="hero__emblem">
-        <img class="hero__emblem__mask" src="/static/assets/img/hero-home.jpg" alt="alt tag">
+      {% if page.header_image %}
+        {% image page.header_image width-1400 as img %}
+        <img class="hero__emblem__mask" src="{{ img.url }}" alt="{{ img.alt }}">
+      {% endif %}
     </div>
 </div>
