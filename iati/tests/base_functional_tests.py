@@ -187,12 +187,12 @@ class TestDefaultPages():
     """A container for tests that the default pages exist."""
 
     DEFAULT_PAGES = [
-        '',
-        'about',
-        'contact',
-        'events',
-        'news',
-        'guidance_and_support'
+        {'slug': ''},
+        {'slug': 'about'},
+        {'slug': 'contact'},
+        {'slug': 'events'},
+        {'slug': 'news'},
+        {'slug': 'guidance_and_support'}
     ]
 
     def navigate_to_edit_home_page(self, admin_browser):
@@ -223,12 +223,13 @@ class TestDefaultPages():
     @pytest.mark.parametrize("page_name", DEFAULT_PAGES)
     def test_default_pages_exist(self, browser, page_name):
         """Check default pages exist."""
-        browser.visit(LOCALHOST + '{}'.format(page_name))
-        if page_name == '':
+        browser.visit(LOCALHOST + '{}'.format(page_name['slug']))
+        if page_name['slug'] == '':
             page_title = 'Home'
         else:
-            page_title = page_name.replace('_', ' ').capitalize()
+            page_title = page_name['slug'].replace('_', ' ').capitalize()
         assert browser.title == page_title
+
 
     @pytest.mark.django_db
     def test_header_image_is_editable(self, admin_browser):
