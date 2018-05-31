@@ -197,6 +197,31 @@ class TestDefaultPages():
         'guidance_and_support'
     ]
 
+    def navigate_to_edit_home_page(self, admin_browser):
+        """Navigate to the editable section of the CMS for the Home Page."""
+        admin_browser.click_link_by_text('Pages')
+        admin_browser.find_by_xpath('//h3').find_by_text('Home').click()
+        admin_browser.click_link_by_text('Home')
+
+    def upload_an_image(self, admin_browser):
+        """Upload an image in the CMS."""
+        admin_browser.find_by_text('Choose an image').click()
+        admin_browser.find_by_text('Upload').click()
+        admin_browser.fill('title', 'Test image')
+        admin_browser.attach_file('file', TEST_DATA_DIR + 'pigeons.jpeg')
+        admin_browser.find_by_xpath('//em[contains(text(), "Upload")]').click()
+
+    def publish_changes(self, admin_browser):
+        """Publish changes made in the CMS to the live page."""
+        click_obscured(admin_browser, admin_browser.find_by_xpath('//div[@class="dropdown-toggle icon icon-arrow-up"]').first)
+        click_obscured(admin_browser, admin_browser.find_by_text('Publish').first)
+
+    def view_live_page(self, admin_browser):
+        """Visit the url of the 'View live' button so tests don't open a new window"""
+        top_view_live_button = admin_browser.find_by_text('View live').first
+        page_url = top_view_live_button._element.get_property('href')
+        admin_browser.visit(page_url)
+
     @pytest.mark.parametrize("page_name", DEFAULT_PAGES)
     def test_default_pages_exist(self, browser, page_name):
         """Check default pages exist."""
@@ -210,18 +235,16 @@ class TestDefaultPages():
     @pytest.mark.django_db
     def test_header_image_is_editable(self, admin_browser):
         """Check that the header image for default pages can be edited in the CMS."""
-        admin_browser.click_link_by_text('Pages')
-        admin_browser.find_by_xpath('//h3').find_by_text('Home').click()
-        admin_browser.click_link_by_text('Home')
+        # Navigate to Home Page editing in the CMS
+        self.navigate_to_edit_home_page(admin_browser)
+        # Click the new Multilingual tab
         admin_browser.find_by_text('Multilingual').click()
-        admin_browser.find_by_text('Choose an image').click()
-        admin_browser.find_by_text('Upload').click()
-        admin_browser.fill('title', 'Test image')
-        admin_browser.attach_file('file', TEST_DATA_DIR + 'pigeons.jpeg')
-        admin_browser.find_by_xpath('//em[contains(text(), "Upload")]').click()
-        click_obscured(admin_browser, admin_browser.find_by_xpath('//div[@class="dropdown-toggle icon icon-arrow-up"]').first)
-        click_obscured(admin_browser, admin_browser.find_by_text('Publish').first)
-        admin_browser.visit(LOCALHOST)
+        # Upload an image to appear in the header
+        self.upload_an_image(admin_browser)
+        # Publish the changes to the page
+        self.publish_changes(admin_browser)
+        # Visit the live Home Page to see the changes
+        self.view_live_page(admin_browser)
         assert admin_browser.is_element_present_by_xpath('//img[@alt="Test image"]')
 
 
