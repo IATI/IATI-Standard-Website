@@ -22,6 +22,8 @@ EVENT_PAGE = {
     'excerpt': 'This is an excerpt for an Test Event page'
 }
 
+TEST_CATEGORY = "Test event type"
+
 H2 = {'content': 'H2 heading', 'button': 'H2', 'id': 'content_editor_en-{}-value'}
 H3 = {'content': 'H3 heading', 'button': 'H3', 'id': 'content_editor_en-{}-value'}
 H4 = {'content': 'H4 heading', 'button': 'H4', 'id': 'content_editor_en-{}-value'}
@@ -191,3 +193,29 @@ class TestEventIndexChildPages():
         publish_page(admin_browser)
         view_live_page(admin_browser, EVENT_PAGE['title'])
         assert admin_browser.is_text_present(header['content'])
+
+    def test_event_type_filter(self, admin_browser):
+        """Create an event type, assign it to 4 child pages, and test param"""
+        admin_browser.visit(os.environ['LIVE_SERVER_URL'] + '/admin/')
+        admin_browser.click_link_by_text("Snippets")
+        admin_browser.click_link_by_partial_text("Event types")
+        admin_browser.click_link_by_text("Add event type")
+        admin_browser.fill("name_en", TEST_CATEGORY)
+        admin_browser.find_by_css(".action-save").click()
+        for i in range(0, 4):
+            navigate_to_default_page_cms_section(admin_browser, EVENT_INDEX_PAGE['title'])
+            admin_browser.find_by_text('Add child page').click()
+            admin_browser.find_by_text(EVENT_PAGE['page_type']).click()
+            admin_browser.find_by_css(".xdsoft_next")[0].click()
+            admin_browser.find_by_css(".xdsoft_day_of_week3")[0].click()
+            check_box = admin_browser.find_by_css("input[name='event_type']")[0]
+            _ = check_box.__dict__['_element'].location_once_scrolled_into_view
+            admin_browser.check('event_type')
+            enter_page_content(admin_browser, 'English', 'title_en', EVENT_PAGE['title'] + str(i))
+            enter_page_content(admin_browser, 'Promote', 'slug_en', slugify(EVENT_PAGE['title'] + str(i)))
+            publish_page(admin_browser)
+        navigate_to_default_page_cms_section(admin_browser, EVENT_INDEX_PAGE['title'])
+        view_live_page(admin_browser, EVENT_INDEX_PAGE['title'])
+        assert admin_browser.is_text_present('1 / 2')
+        admin_browser.click_link_by_text(TEST_CATEGORY)
+        assert admin_browser.is_text_present("Show all events")
