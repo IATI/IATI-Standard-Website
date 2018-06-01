@@ -130,16 +130,28 @@ class AbstractIndexPage(AbstractBasePage):
         abstract = True
 
 
-class HomePage(AbstractBasePage):  # pylint: disable=too-many-ancestors
-    """Proof-of-concept model definition for the homepage."""
+class DefaultPageHeaderImageMixin(Page):
+    """A mixin to add a Multilingual tab with the ability to edit the header image for default pages.
+
+    As only default pages require an editable header image this mixin allows selective inclusion alongside other inherited abstract page models.
+
+    """
     header_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
         related_name='+',
-        help_text='This is the image that will appear in the header banner at the top of the Home Page. If no image is added a placeholder image will be used.'
+        help_text='This is the image that will appear in the header banner at the top of the page. If no image is added a placeholder image will be used.'
     )
     multilingual_field_panels = [
         ImageChooserPanel('header_image')
     ]
+
+    class Meta(object):
+        """Meta data for the class"""
+        abstract = True
+
+
+class HomePage(DefaultPageHeaderImageMixin, AbstractBasePage):  # pylint: disable=too-many-ancestors
+    """Proof-of-concept model definition for the homepage."""

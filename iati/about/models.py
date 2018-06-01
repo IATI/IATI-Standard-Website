@@ -5,10 +5,10 @@ from wagtail.core.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.images.edit_handlers import ImageChooserPanel
 
-from home.models import AbstractContentPage, AbstractIndexPage, PullQuoteBlock
+from home.models import AbstractContentPage, AbstractIndexPage, DefaultPageHeaderImageMixin, PullQuoteBlock
 
 
-class AboutPage(AbstractContentPage):
+class AboutPage(DefaultPageHeaderImageMixin, AbstractContentPage):
     """A model for the About landing page."""
 
     parent_page_types = ['home.HomePage']
@@ -86,6 +86,7 @@ class HistoryPage(AbstractContentPage):
 
 class PeopleProfileBlock(StreamBlock):
     """A block for People profiles."""
+
     section_heading = CharBlock(icon="title", classname="title")
     paragraph = CharBlock(icon="pilcrow")
     pullquote = PullQuoteBlock()
