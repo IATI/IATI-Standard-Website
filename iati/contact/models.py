@@ -1,5 +1,5 @@
 from django.db import models
-from home.models import AbstractContentPage
+from home.models import AbstractContentPage, DefaultPageHeaderImageMixin
 from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.core.blocks import RichTextBlock, StreamBlock, StructBlock, TextBlock
 from wagtail.core.fields import StreamField
@@ -15,7 +15,7 @@ class ContactTypeStreamBlock(StreamBlock):
     ], icon="title", classname="title")
 
 
-class ContactPage(AbstractContentPage):
+class ContactPage(DefaultPageHeaderImageMixin, AbstractContentPage):
     """Model to define the overall fields for the contact page."""
     parent_page_types = ['home.HomePage']
     subpage_types = []
