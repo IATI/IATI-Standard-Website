@@ -195,11 +195,11 @@ class TestDefaultPages():
         {'slug': 'guidance_and_support'}
     ]
 
-    def navigate_to_edit_home_page(self, admin_browser):
+    def navigate_to_edit_home_page(self, admin_browser, default_page_name):
         """Navigate to the editable section of the CMS for the Home Page."""
         admin_browser.click_link_by_text('Pages')
-        admin_browser.find_by_xpath('//h3').find_by_text('Home').click()
-        admin_browser.click_link_by_text('Home')
+        admin_browser.find_by_text('Home').click()
+        admin_browser.click_link_by_text(default_page_name)
 
     def upload_an_image(self, admin_browser):
         """Upload an image in the CMS."""
@@ -234,7 +234,7 @@ class TestDefaultPages():
     @pytest.mark.django_db
     def test_header_image_is_editable(self, admin_browser):
         """Check that the header image for the Home page can be edited in the CMS."""
-        self.navigate_to_edit_home_page(admin_browser)
+        self.navigate_to_edit_home_page(admin_browser, 'Home')
         admin_browser.find_by_text('Multilingual').click()
         self.upload_an_image(admin_browser)
         self.publish_changes(admin_browser)
