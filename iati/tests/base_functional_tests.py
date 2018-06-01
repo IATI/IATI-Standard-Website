@@ -187,12 +187,12 @@ class TestDefaultPages():
     """A container for tests that the default pages exist."""
 
     DEFAULT_PAGES = [
-        {'slug': ''},
-        {'slug': 'about'},
-        {'slug': 'contact'},
-        {'slug': 'events'},
-        {'slug': 'news'},
-        {'slug': 'guidance_and_support'}
+        {'name': 'Home', 'slug': ''},
+        {'name': 'About', 'slug': 'about'},
+        {'name': 'Contact', 'slug': 'contact'},
+        {'name': 'Events', 'slug': 'events'},
+        {'name': 'News', 'slug': 'news'},
+        {'name': 'Guidance and Support', 'slug': 'guidance_and_support'}
     ]
 
     def navigate_to_edit_home_page(self, admin_browser, default_page_name):
@@ -230,11 +230,12 @@ class TestDefaultPages():
             page_title = page_name['slug'].replace('_', ' ').capitalize()
         assert browser.title == page_title
 
-
+    @pytest.mark.parametrize('default_page', DEFAULT_PAGES)
     @pytest.mark.django_db
-    def test_header_image_is_editable(self, admin_browser):
+    def test_header_image_is_editable(self, admin_browser, default_page):
         """Check that the header image for the Home page can be edited in the CMS."""
-        self.navigate_to_edit_home_page(admin_browser, 'Home')
+        import pdb; pdb.set_trace()
+        self.navigate_to_edit_home_page(admin_browser, default_page['name'])
         admin_browser.find_by_text('Multilingual').click()
         self.upload_an_image(admin_browser)
         self.publish_changes(admin_browser)
