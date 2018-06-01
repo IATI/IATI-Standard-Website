@@ -21,6 +21,8 @@ NEWS_PAGE = {
     'heading': 'Test news Page Heading',
 }
 
+TEST_CATEGORY = "Test IATI news category"
+
 H2 = {'content': 'H2 heading', 'button': 'H2', 'id': 'content_editor_en-{}-value'}
 H3 = {'content': 'H3 heading', 'button': 'H3', 'id': 'content_editor_en-{}-value'}
 H4 = {'content': 'H4 heading', 'button': 'H4', 'id': 'content_editor_en-{}-value'}
@@ -176,3 +178,24 @@ class TestNewsIndexChildPages():
         publish_page(admin_browser)
         view_live_page(admin_browser, NEWS_PAGE['title'])
         assert admin_browser.is_text_present(header['content'])
+
+    def test_news_category_filter(self, admin_browser):
+        """Create a news category, assign it to 4 child pages, and test param"""
+        admin_browser.visit(os.environ['LIVE_SERVER_URL'] + '/admin/')
+        admin_browser.click_link_by_text("Snippets")
+        admin_browser.click_link_by_partial_text("News categories")
+        admin_browser.click_link_by_text("Add news category")
+        admin_browser.fill("name_en", TEST_CATEGORY)
+        admin_browser.find_by_css(".action-save").click()
+        for i in range(0, 4):
+            navigate_to_default_page_cms_section(admin_browser, 'News')
+            admin_browser.find_by_text('Add child page').click()
+            admin_browser.check('news_categories')
+            enter_page_content(admin_browser, 'English', 'title_en', NEWS_PAGE['title'] + str(i))
+            enter_page_content(admin_browser, 'Promote', 'slug_en', slugify(NEWS_PAGE['title'] + str(i)))
+            publish_page(admin_browser)
+        navigate_to_default_page_cms_section(admin_browser, 'News')
+        view_live_page(admin_browser, NEWS_INDEX_PAGE['title'])
+        assert admin_browser.is_element_present_by_text('1 / 2')
+        admin_browser.click_link_by_text(TEST_CATEGORY)
+        assert admin_browser.is_element_present_by_text("Show all posts")
