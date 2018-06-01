@@ -184,7 +184,12 @@ class TestCreateDefaultPagesManagementCommand():
 
 
 class TestDefaultPages():
-    """A container for tests that the default pages exist."""
+    """A container for tests that the default pages exist.
+
+    TODO:
+        Uncomment out DEFAULT_PAGES dicts as models are merged in.
+
+    """
 
     DEFAULT_PAGES = [
         {'name': 'Home', 'slug': ''},
