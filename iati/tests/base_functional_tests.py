@@ -234,7 +234,6 @@ class TestDefaultPages():
     @pytest.mark.django_db
     def test_header_image_is_editable(self, admin_browser, default_page):
         """Check that the header image for the Home page can be edited in the CMS."""
-        import pdb; pdb.set_trace()
         self.navigate_to_edit_home_page(admin_browser, default_page['name'])
         admin_browser.find_by_text('Multilingual').click()
         self.upload_an_image(admin_browser)
