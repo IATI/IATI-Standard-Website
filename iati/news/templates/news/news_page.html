@@ -36,7 +36,7 @@
     {% endif %}
   </div>
 </div>
-
+{% if page.related_news.all|length > 0 %}
 <div class="section">
   <div class="row">
     <h2 class="section__heading">Related news</h2>
@@ -77,4 +77,5 @@
     </div>
   </div>
 </div>
+{% endif %}
 {% endblock %}
