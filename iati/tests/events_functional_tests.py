@@ -74,7 +74,6 @@ def create_event_child_page(admin_browser, page_type, page_title):
     """
     navigate_to_default_page_cms_section(admin_browser, 'Events')
     admin_browser.find_by_text('Add child page').click()
-    # admin_browser.find_by_text(page_type).click()
     admin_browser.find_by_css(".xdsoft_next")[0].click()
     admin_browser.find_by_css(".xdsoft_day_of_week3")[0].click()
     enter_page_content(admin_browser, 'English', 'title_en', page_title)
@@ -205,7 +204,6 @@ class TestEventIndexChildPages():
         for i in range(0, 4):
             navigate_to_default_page_cms_section(admin_browser, EVENT_INDEX_PAGE['title'])
             admin_browser.find_by_text('Add child page').click()
-            # admin_browser.find_by_text(EVENT_PAGE['page_type']).click()
             admin_browser.find_by_css(".xdsoft_next")[0].click()
             admin_browser.find_by_css(".xdsoft_day_of_week3")[0].click()
             check_box = admin_browser.find_by_css("input[name='event_type']")[0]
