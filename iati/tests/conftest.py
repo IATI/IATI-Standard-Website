@@ -5,6 +5,7 @@ from django.core.management import call_command
 from iati.settings.dev import DJANGO_ADMIN_USER, DJANGO_ADMIN_PASS
 from django.contrib.auth.models import User
 
+
 LOCALHOST = 'http://127.0.0.1:8000/'
 os.environ['LIVE_SERVER_URL'] = LOCALHOST
 
@@ -21,6 +22,7 @@ def multibrowser(request):
 @pytest.fixture(scope='function')
 def admin_browser(browser):
     """Create a browser that is logged in to the CMS."""
+    browser.driver.set_speed(0.1)
     admin_page = os.environ['LIVE_SERVER_URL'] + '/admin/'
     browser.visit(admin_page)
     browser.fill('username', DJANGO_ADMIN_USER)
