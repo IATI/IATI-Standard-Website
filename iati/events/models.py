@@ -1,10 +1,122 @@
+from django import forms
 from django.db import models
+from django.utils import timezone
+from django.utils.text import slugify
+from modelcluster.fields import ParentalManyToManyField
+from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.core.fields import StreamField
+from wagtail.snippets.models import register_snippet
+from wagtail.images.edit_handlers import ImageChooserPanel
+from home.models import AbstractIndexPage, AbstractContentPage, IATIStreamBlock
 
-from wagtail.core.models import Page
+
+class EventIndexPage(AbstractIndexPage):
+    """A model for event index pages, the main event landing page."""
+    parent_page_types = ['home.HomePage']
+    subpage_types = ['events.EventPage']
+
+    @property
+    def event_types(self):
+        """A function to list all of the event types"""
+        event_types = EventType.objects.all()
+        return event_types
+
+    def get_context(self, request):
+        """Overwriting the default wagtail get_context function to allow for filtering based on params, including pagination.
+
+        Use the functions built into the abstract index page class to dynamically filter the child pages and apply pagination, limiting the results to 3 per page.
+
+        """
+        now = timezone.now()
+        filter_dict = {}
+        children = EventPage.objects.live().descendant_of(self).order_by('-date_start')
+        archive_years = EventPage.objects.live().descendant_of(self).filter(date_start__lte=now).dates('date_start', 'year', order='DESC')
+        past = request.GET.get('past') == "1"
+        if past:
+            filter_dict["date_start__lte"] = now
+        else:
+            filter_dict["date_start__gte"] = now
+
+        try:
+            year = int(request.GET.get('year'))
+        except (TypeError, ValueError):
+            year = None
+        if year:
+            filter_dict["date_start__year"] = year
+
+        event_type = request.GET.get('event_type')
+        if event_type:
+            filter_dict["event_type__slug"] = event_type
+
+        filtered_children = self.filter_children(children, filter_dict)
+        paginated_children = self.paginate(request, filtered_children, 3)
+        context = super(EventIndexPage, self).get_context(request)
+        context['events'] = paginated_children
+        context['past'] = past
+        context['archive_years'] = archive_years
+        return context
 
 
-class EventIndexPage(Page):
-    pass
+class EventPage(AbstractContentPage):
+    """A model for event single pages"""
+    parent_page_types = ['events.EventIndexPage']
+    subpage_types = []
 
-class EventPage(Page):
-    pass
+    date_start = models.DateTimeField("Event start date and time")
+    date_end = models.DateTimeField("Event end date and time", null=True, blank=True)
+    location = models.TextField(null=True, blank=True)
+    registration_link = models.URLField(max_length=255, null=True, blank=True)
+    feed_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    additional_information = StreamField(IATIStreamBlock(required=False), null=True, blank=True)
+    event_type = ParentalManyToManyField('events.EventType', blank=True)
+
+    @property
+    def event_type_concat(self):
+        """A function that takes all of the EventType snippets and concatenates them into a space separated one-liner."""
+        event_types = self.event_type.values_list('name', flat=True)
+
+        return " | ".join(event_types)
+
+    translation_fields = AbstractContentPage.translation_fields + ["additional_information"]
+
+    multilingual_field_panels = [
+        FieldPanel('date_start'),
+        FieldPanel('date_end'),
+        FieldPanel('location'),
+        FieldPanel('registration_link'),
+        FieldPanel('event_type', widget=forms.CheckboxSelectMultiple),
+        ImageChooserPanel('feed_image'),
+    ]
+
+
+@register_snippet
+class EventType(models.Model):
+    """A snippet model for event types, to be added in the snippet menu prior to creating events for uniformity."""
+    name = models.CharField(max_length=255, unique=True)
+    slug = models.SlugField(unique=True)
+
+    def __str__(self):
+        """Explicit to string function"""
+        return self.name
+
+    def full_clean(self, *args, **kwargs):
+        """Apply fixups that need to happen before per-field validation occurs"""
+        base_slug = slugify(self.name, allow_unicode=True)
+        if base_slug:
+            self.slug = base_slug
+        super(EventType, self).full_clean(*args, **kwargs)
+
+    translation_fields = [
+        'name',
+    ]
+
+    panels = [
+        FieldPanel('name'),
+    ]
