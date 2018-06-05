@@ -71,7 +71,7 @@ class NewsCategory(models.Model):
     slug = models.SlugField(unique=True)
 
     def __str__(self):
-        """Explicit to string function"""
+        """Display the category name in the CMS rather than the class."""
         return self.name
 
     class Meta(object):
