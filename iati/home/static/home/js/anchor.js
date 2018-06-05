@@ -1,4 +1,8 @@
 // From http://docs.wagtail.io/en/v2.0/advanced_topics/customisation/extending_draftail.html#creating-new-entities with modifications
+// Included into the CMS via home/wagtail_hooks.py, this file adds a custom button into the rich text editor.
+// This button creates two prompt windows, one which asks for text and another for an ID.
+// Using those two pieces of information, an <a> element with href equal to #ID is created.
+// If the user has highlighted some text prior to clicking the button, the text prompt is automatically filled.
 
 const React = window.React;
 const Modifier = window.DraftJS.Modifier;
