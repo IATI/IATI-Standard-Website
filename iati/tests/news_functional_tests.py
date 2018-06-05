@@ -190,6 +190,7 @@ class TestNewsIndexChildPages():
         for i in range(0, 4):
             navigate_to_default_page_cms_section(admin_browser, 'News')
             admin_browser.find_by_text('Add child page').click()
+            _ = admin_browser.find_by_css('input[name="news_categories"]')[0].__dict__['_element'].location_once_scrolled_into_view
             admin_browser.check('news_categories')
             enter_page_content(admin_browser, 'English', 'title_en', NEWS_PAGE['title'] + str(i))
             enter_page_content(admin_browser, 'Promote', 'slug_en', slugify(NEWS_PAGE['title'] + str(i)))
