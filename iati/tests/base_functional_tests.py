@@ -208,12 +208,14 @@ class TestDefaultPages():
 
     def upload_an_image(self, admin_browser):
         """Upload an image in the CMS."""
+        admin_browser.set_speed(5)
         admin_browser.find_by_text('Choose an image').click()
         click_obscured(admin_browser, admin_browser.find_by_text('Upload').first)
         admin_browser.fill('title', 'Test image')
         admin_browser.attach_file('file', TEST_DATA_DIR + 'pigeons.jpeg')
         # import pdb; pdb.set_trace()
         admin_browser.find_by_xpath('//em[contains(text(), "Upload")]').click()
+        admin_browser.set_speed(0)
 
     def publish_changes(self, admin_browser):
         """Publish changes made in the CMS to the live page."""
