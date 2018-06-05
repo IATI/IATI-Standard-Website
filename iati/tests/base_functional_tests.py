@@ -213,7 +213,6 @@ class TestDefaultPages():
         click_obscured(admin_browser, admin_browser.find_by_text('Upload').first)
         admin_browser.fill('title', 'Test image')
         admin_browser.attach_file('file', TEST_DATA_DIR + 'pigeons.jpeg')
-        # import pdb; pdb.set_trace()
         admin_browser.find_by_xpath('//em[contains(text(), "Upload")]').click()
         admin_browser.driver.set_speed(0)
 
