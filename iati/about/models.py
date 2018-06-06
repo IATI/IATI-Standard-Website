@@ -1,5 +1,6 @@
 from django.db import models
 
+from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.core.blocks import CharBlock, StreamBlock, StructBlock, TextBlock
 from wagtail.core.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
@@ -14,17 +15,31 @@ class AboutPage(DefaultPageHeaderImageMixin, AbstractContentPage):
     parent_page_types = ['home.HomePage']
     subpage_types = ['about.AboutSubPage', 'about.CaseStudyIndexPage', 'about.HistoryPage', 'about.PeoplePage']
 
+    show_featured_events = models.BooleanField(default=False)
+
+    multilingual_field_panels = [
+        FieldPanel('show_featured_events'),
+    ]
+
 
 class AboutSubPage(AbstractContentPage):
     """A model for generic About subpages."""
 
     subpage_types = ['about.AboutSubPage', 'about.PeoplePage']
 
+    show_featured_events = models.BooleanField(default=False)
+
+    multilingual_field_panels = [
+        FieldPanel('show_featured_events'),
+    ]
+
 
 class CaseStudyIndexPage(AbstractIndexPage):
     """A model for the Case Studies Index page."""
 
     subpage_types = ['about.CaseStudyPage']
+
+    show_featured_events = models.BooleanField(default=False)
 
     @property
     def case_studies(self):
@@ -43,6 +58,10 @@ class CaseStudyIndexPage(AbstractIndexPage):
         context = super(CaseStudyIndexPage, self).get_context(request)
         context['case_studies'] = paginated_children
         return context
+
+    multilingual_field_panels = [
+        FieldPanel('show_featured_events'),
+    ]
 
 
 class CaseStudyPage(AbstractContentPage):
@@ -81,7 +100,13 @@ class HistoryPage(AbstractContentPage):
 
     timeline_editor = StreamField(HistoryDateBlock, null=True, blank=True)
 
+    show_featured_events = models.BooleanField(default=False)
+
     translation_fields = AbstractContentPage.translation_fields + ['timeline_editor']
+
+    multilingual_field_panels = [
+        FieldPanel('show_featured_events'),
+    ]
 
 
 class PeopleProfileBlock(StreamBlock):
@@ -108,4 +133,10 @@ class PeoplePage(AbstractContentPage):
 
     profile_content_editor = StreamField(PeopleProfileBlock, null=True, blank=True)
 
+    show_featured_events = models.BooleanField(default=False)
+
     translation_fields = AbstractContentPage.translation_fields + ['profile_content_editor']
+
+    multilingual_field_panels = [
+        FieldPanel('show_featured_events'),
+    ]

@@ -10,7 +10,7 @@
             <div class="hero__caption">
                 <h1 class="hero__heading">{{ page.heading }}</h1>
 
-                    <p class="hero__excerpt">{{ page.excerpt }}</p>
+                    <p class="hero__excerpt"{% if page.excerpt %}>{{ page.excerpt }}{% else %} style="margin-bottom:5em;">{% endif %}</p>
 
             </div>
             <div class="hero__emblem">
@@ -27,12 +27,12 @@
                     {% include "home/includes/streamfield.html" with content=page.content_editor %}
                   {% endif %}
             	<div class="l-listing space-section-top">
-    {% for guidance_index in page.guidance_indexes %}
+    {% for guidance_group in page.guidance_groups %}
       <article class="listing listing--guidance">
       	<aside class="listing__aside">
       		<div class="listing__media">
-            {% if guidance_index.feed_image %}
-             {% image guidance_index.feed_image width-300 as img %}
+            {% if guidance_group.section_image %}
+             {% image guidance_group.section_image width-300 as img %}
              <img src="{{ img.url }}" alt="{{ img.title }}">
             {% else %}
       			<img src="/static/assets/img/image-placeholder.svg" alt="placeholder image">
@@ -40,17 +40,16 @@
       		</div>
       	</aside>
       	<div class="listing__body">
-      		<h2 class="listing__heading"><a href=""><span>{{ guidance_index.heading }}</span></a></h2>
+      		<h2 class="listing__heading"><a href="{% slugurl_trans guidance_group.slug %}"><span>{{ guidance_group.heading }}</span></a></h2>
       		<div class="listing__excerpt">
-            {% if guidance_index.feed_content %}
-              {% include "home/includes/streamfield.html" with content=guidance_index.feed_content %}
+            {% if guidance_group.section_summary %}
+              {% include "home/includes/streamfield.html" with content=guidance_group.section_summary %}
             {% endif %}
           </div>
-      		<a href="{% slugurl_trans guidance_index.slug %}" class="button">{{ guidance_index.feed_button_text }}</a>
+      		<a href="{% slugurl_trans guidance_group.slug %}" class="button">{{ guidance_group.button_link_text|default:"Read more" }}</a>
       	</div>
       </article>
     {% endfor %}
-
 
             	</div>
             </div>
