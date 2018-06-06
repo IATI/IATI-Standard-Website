@@ -30,15 +30,16 @@ class Command(BaseCommand):
                 json_data = json.load(json_file)
 
                 for page_data in json_data:
+                    page_slug = page_data['link'].split("/")[-1]
                     if page_data["type"] == "news":
                         try:
                             news_page = NewsPage(
                                 title_en=page_data["title"],
-                                slug_en=slugify(page_data["title"]),
+                                slug_en=page_slug,
                                 heading_en=page_data["title"],
                                 content_editor_en=json.dumps([{'type': 'paragraph', 'value': page_data["content"]}]),
                                 title=page_data["title"],
-                                slug=slugify(page_data["title"]),
+                                slug=page_slug,
                                 heading=page_data["title"],
                                 content_editor=json.dumps([{'type': 'paragraph', 'value': page_data["content"]}]),
                                 date=datetime.datetime.strptime(page_data["date"], "%Y-%m-%d").date()
@@ -52,11 +53,11 @@ class Command(BaseCommand):
                         try:
                             event_page = EventPage(
                                 title_en=page_data["title"],
-                                slug_en=slugify(page_data["title"]),
+                                slug_en=page_slug,
                                 heading_en=page_data["title"],
                                 content_editor_en=json.dumps([{'type': 'paragraph', 'value': page_data["content"]}]),
                                 title=page_data["title"],
-                                slug=slugify(page_data["title"]),
+                                slug=page_slug,
                                 heading=page_data["title"],
                                 content_editor=json.dumps([{'type': 'paragraph', 'value': page_data["content"]}]),
                                 date_start=datetime.datetime.strptime(page_data["date"], "%Y-%m-%d").replace(tzinfo=pytz.UTC)
