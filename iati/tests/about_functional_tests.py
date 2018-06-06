@@ -172,6 +172,7 @@ class TestAboutPage():
     def test_can_edit_about_page_with_header_text(self, admin_browser, header):
         """Check that an existing About page content editor can add a header."""
         admin_browser.find_by_text('About').click()
+        admin_browser.find_by_text('English').click()
         element_count = admin_browser.find_by_id('content_editor_en-count').value
         scroll_to_bottom_of_page(admin_browser)
         reveal_content_editor(admin_browser, header['button'], element_count)
