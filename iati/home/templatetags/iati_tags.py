@@ -5,7 +5,7 @@ from django.template.defaultfilters import date as _date
 from home.models import HomePage
 from about.models import AboutPage
 from contact.models import ContactPage
-from events.models import EventIndexPage, EventType
+from events.models import EventIndexPage, EventType, FeaturedEvent
 from guidance_and_support.models import GuidanceAndSupportPage
 from news.models import NewsIndexPage, NewsCategory
 from wagtail_modeltranslation.contextlib import use_language
@@ -133,7 +133,13 @@ def side_panel(calling_page):
         main_section = home_page.get_children().ancestor_of(calling_page).live().first().specific
 
     menu_to_display = discover_tree_recursive(main_section, calling_page)
-    return {"menu_to_display": menu_to_display}
+    return {"menu_to_display": menu_to_display, "calling_page": calling_page}
+
+
+@register.inclusion_tag('home/includes/featured_event.html')
+def featured_events():
+    """Return the featured event markup for featured events."""
+    return {"featured_events": FeaturedEvent.objects.filter(event__live=True)}
 
 
 @register.filter

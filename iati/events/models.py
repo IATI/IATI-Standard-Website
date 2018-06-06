@@ -2,8 +2,9 @@ from django import forms
 from django.db import models
 from django.utils import timezone
 from django.utils.text import slugify
+from django.template.defaultfilters import date as _date
 from modelcluster.fields import ParentalManyToManyField
-from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel
 from wagtail.core.fields import StreamField
 from wagtail.snippets.models import register_snippet
 from wagtail.images.edit_handlers import ImageChooserPanel
@@ -119,4 +120,17 @@ class EventType(models.Model):
 
     panels = [
         FieldPanel('name'),
+    ]
+
+
+@register_snippet
+class FeaturedEvent(models.Model):
+    """A snippet model for featured events, with a page chooser that only allows event pages to be selected."""
+    event = models.ForeignKey('events.EventPage', on_delete=models.CASCADE, related_name="+")
+
+    def __str__(self):
+        return self.event.heading + " on " + _date(self.event.date_start)
+
+    panels = [
+        PageChooserPanel('event', 'events.EventPage')
     ]
