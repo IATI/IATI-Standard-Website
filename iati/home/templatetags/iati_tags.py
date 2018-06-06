@@ -7,7 +7,7 @@ from about.models import AboutPage
 from contact.models import ContactPage
 from events.models import EventIndexPage, EventType, FeaturedEvent
 from guidance_and_support.models import GuidanceAndSupportPage
-from news.models import NewsIndexPage
+from news.models import NewsIndexPage, NewsCategory
 from wagtail_modeltranslation.contextlib import use_language
 from wagtail.core.templatetags.wagtailcore_tags import pageurl
 
@@ -140,3 +140,9 @@ def side_panel(calling_page):
 def featured_events():
     """Return the featured event markup for featured events."""
     return {"featured_events": FeaturedEvent.objects.filter(event__live=True)}
+
+
+@register.filter
+def news_category_verbose(news_category_slug):
+    """Returns the localized news category name given a slug"""
+    return NewsCategory.objects.get(slug=news_category_slug).name
