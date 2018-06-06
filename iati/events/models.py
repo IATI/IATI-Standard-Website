@@ -8,10 +8,10 @@ from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel
 from wagtail.core.fields import StreamField
 from wagtail.snippets.models import register_snippet
 from wagtail.images.edit_handlers import ImageChooserPanel
-from home.models import AbstractIndexPage, AbstractContentPage, IATIStreamBlock
+from home.models import AbstractIndexPage, AbstractContentPage, DefaultPageHeaderImageMixin, IATIStreamBlock
 
 
-class EventIndexPage(AbstractIndexPage):
+class EventIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
     """A model for event index pages, the main event landing page."""
     parent_page_types = ['home.HomePage']
     subpage_types = ['events.EventPage']

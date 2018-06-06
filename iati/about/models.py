@@ -17,7 +17,7 @@ class AboutPage(DefaultPageHeaderImageMixin, AbstractContentPage):
 
     show_featured_events = models.BooleanField(default=False)
 
-    multilingual_field_panels = [
+    multilingual_field_panels = DefaultPageHeaderImageMixin.multilingual_field_panels + [
         FieldPanel('show_featured_events'),
     ]
 
@@ -34,7 +34,7 @@ class AboutSubPage(AbstractContentPage):
     ]
 
 
-class CaseStudyIndexPage(AbstractIndexPage):
+class CaseStudyIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
     """A model for the Case Studies Index page."""
 
     subpage_types = ['about.CaseStudyPage']
@@ -59,7 +59,7 @@ class CaseStudyIndexPage(AbstractIndexPage):
         context['case_studies'] = paginated_children
         return context
 
-    multilingual_field_panels = [
+    multilingual_field_panels = DefaultPageHeaderImageMixin.multilingual_field_panels + [
         FieldPanel('show_featured_events'),
     ]
 

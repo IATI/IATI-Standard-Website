@@ -3,8 +3,8 @@
 {% block body_class %}body body--news-single{% endblock %}
 {% block body_id %}body-news-single{% endblock %}
 {% block content %}
-  {% if page.header_image %}
-    {% image page.header_image width-1400 as img %}
+  {% if page.feed_image %}
+    {% image page.feed_image width-1400 as img %}
     <div class="hero hero--image" style="background-image: url({{ img.url }})">
   {% else %}
     <div class="hero hero--minor">

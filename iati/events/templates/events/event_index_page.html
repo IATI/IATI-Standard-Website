@@ -6,20 +6,17 @@
 {% block body_id %}body-events{% endblock %}
 
 {% block content %}
- <div class="hero">
-        <div class="row">
-            <div class="hero__caption">
-                <h1 class="hero__heading">{% if past %}Past {% endif %}{{ page.heading }}</h1>
-
-                    <p class="hero__excerpt">{{ page.excerpt }}</p>
-
-            </div>
-            <div class="hero__emblem">
-                <img class="hero__emblem__mask" src="/static/assets/img/hero1.jpg" alt="alt tag">
-            </div>
-        </div>
+{% if past %}
+  {% with page.heading="Past "|add:page.heading %}
+    <div class="hero">
+      {% include "home/includes/hero_heading.html" %}
     </div>
-
+  {% endwith %}
+{% else %}
+<div class="hero">
+  {% include "home/includes/hero_heading.html" %}
+</div>
+{% endif %}
 
 <div class="row">
 	<div class="l-sidebar">
