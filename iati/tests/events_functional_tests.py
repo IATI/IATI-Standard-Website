@@ -217,3 +217,25 @@ class TestEventIndexChildPages():
         assert admin_browser.is_text_present('1 / 2')
         admin_browser.click_link_by_text(TEST_CATEGORY)
         assert admin_browser.is_text_present("Show all events")
+
+
+@pytest.mark.django_db()
+class TestFeaturedEvents():
+    def test_featured_event(self, admin_browser):
+        """Create an event to be featured, feature it, mark it to show, test that it is shown"""
+        TEST_PAGE_TITLE = "A test featured event"
+        create_event_child_page(admin_browser, "Event page", TEST_PAGE_TITLE)
+        admin_browser.visit(os.environ['LIVE_SERVER_URL'] + '/admin/')
+        admin_browser.click_link_by_text("Snippets")
+        admin_browser.click_link_by_partial_text("Featured events")
+        admin_browser.click_link_by_text("Add featured event")
+        admin_browser.find_by_text("Choose a page (Event Page)").click()
+        admin_browser.click_link_by_text(TEST_PAGE_TITLE)
+        admin_browser.find_by_css(".action-save").click()
+        admin_browser.visit(os.environ['LIVE_SERVER_URL'] + '/admin/')
+        navigate_to_default_page_cms_section(admin_browser, 'About')
+        admin_browser.click_link_by_text("Edit")
+        admin_browser.check("show_featured_events")
+        publish_page(admin_browser)
+        view_live_page(admin_browser, "About")
+        assert admin_browser.is_element_present_by_text(TEST_PAGE_TITLE)
