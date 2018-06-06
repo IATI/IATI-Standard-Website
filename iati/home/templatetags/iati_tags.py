@@ -5,7 +5,7 @@ from about.models import AboutPage
 from contact.models import ContactPage
 from events.models import EventIndexPage
 from guidance_and_support.models import GuidanceAndSupportPage
-from news.models import NewsIndexPage
+from news.models import NewsIndexPage, NewsCategory
 from wagtail_modeltranslation.contextlib import use_language
 from wagtail.core.templatetags.wagtailcore_tags import pageurl
 
@@ -92,3 +92,9 @@ def side_panel(calling_page):
 
     menu_to_display = discover_tree_recursive(main_section, calling_page)
     return {"menu_to_display": menu_to_display}
+
+
+@register.filter
+def news_category_verbose(news_category_slug):
+    """Returns the localized news category name given a slug"""
+    return NewsCategory.objects.get(slug=news_category_slug).name
