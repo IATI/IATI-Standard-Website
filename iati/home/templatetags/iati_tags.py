@@ -1,13 +1,16 @@
 from django import template
 from django.conf import settings
+from django.utils import timezone
+from django.template.defaultfilters import date as _date
 from home.models import HomePage
 from about.models import AboutPage
 from contact.models import ContactPage
-from events.models import EventIndexPage
+from events.models import EventIndexPage, EventType, FeaturedEvent
 from guidance_and_support.models import GuidanceAndSupportPage
-from news.models import NewsIndexPage
+from news.models import NewsIndexPage, NewsCategory
 from wagtail_modeltranslation.contextlib import use_language
 from wagtail.core.templatetags.wagtailcore_tags import pageurl
+
 
 register = template.Library()
 
@@ -54,6 +57,45 @@ def translation_links(context, calling_page):
     }
 
 
+@register.filter
+def haspassed(value):
+    """Takes a date and tells you if it's in the past"""
+    now = timezone.now()
+    return value < now
+
+
+@register.filter
+def twopartdate(date_start, date_end):
+    """Takes two datetimes and determines whether to display start and end times, or start and end dates.
+
+    If an end date exists, we can compare the two dates.
+    If the two dates are the same, localize the date for the first part and stringify the time range for the second.
+    If the two dates are not the same, part 2 becomes the second date.
+
+    If no end date exists, part 2 is just the start time.
+
+    """
+    part1 = _date(date_start, "DATE_FORMAT")
+    en_dash = u'\u2013'
+    if date_end:
+        if date_start.date() == date_end.date():
+            part2 = "{0}{1}{2}".format(_date(date_start, "TIME_FORMAT"), en_dash, _date(date_end, "TIME_FORMAT"))
+            part2_is_time = True
+        else:
+            part2 = _date(date_end, "DATE_FORMAT")
+            part2_is_time = False
+    else:
+        part2 = _date(date_start, "TIME_FORMAT")
+        part2_is_time = True
+    return {"part1": part1, "part2": part2, "part2_is_time": part2_is_time}
+
+
+@register.filter
+def event_type_verbose(event_type_slug):
+    """Returns the localized event type name given a slug"""
+    return EventType.objects.get(slug=event_type_slug).name
+
+
 def discover_tree_recursive(current_page, calling_page):
     """Return the 'section sub-menu' page hierarchy from the point-of-view of the `calling_page`, to the top of the main section.
     A recursive function that discovers children if the current page is an ancestor of the page we want to draw the hierarchy to.
@@ -91,4 +133,16 @@ def side_panel(calling_page):
         main_section = home_page.get_children().ancestor_of(calling_page).live().first().specific
 
     menu_to_display = discover_tree_recursive(main_section, calling_page)
-    return {"menu_to_display": menu_to_display}
+    return {"menu_to_display": menu_to_display, "calling_page": calling_page}
+
+
+@register.inclusion_tag('home/includes/featured_event.html')
+def featured_events():
+    """Return the featured event markup for featured events."""
+    return {"featured_events": FeaturedEvent.objects.filter(event__live=True)}
+
+
+@register.filter
+def news_category_verbose(news_category_slug):
+    """Returns the localized news category name given a slug"""
+    return NewsCategory.objects.get(slug=news_category_slug).name
