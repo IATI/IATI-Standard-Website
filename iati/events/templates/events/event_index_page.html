@@ -6,17 +6,9 @@
 {% block body_id %}body-events{% endblock %}
 
 {% block content %}
-{% if past %}
-  {% with page.heading="Past "|add:page.heading %}
-    <div class="hero">
-      {% include "home/includes/hero_heading.html" %}
-    </div>
-  {% endwith %}
-{% else %}
 <div class="hero">
   {% include "home/includes/hero_heading.html" %}
 </div>
-{% endif %}
 
 <div class="row">
 	<div class="l-sidebar">

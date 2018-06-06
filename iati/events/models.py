@@ -55,6 +55,10 @@ class EventIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
         context['events'] = paginated_children
         context['past'] = past
         context['archive_years'] = archive_years
+        if past:
+            heading = context['page'].heading
+            past_heading = "Past " + heading if heading is not None else None
+            setattr(context['page'], "heading", past_heading)
         return context
 
 
