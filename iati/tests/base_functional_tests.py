@@ -184,12 +184,7 @@ class TestCreateDefaultPagesManagementCommand():
 
 
 class TestDefaultPages():
-    """A container for tests that the default pages exist.
-
-    TODO:
-        Uncomment out DEFAULT_PAGES dicts as models are merged in.
-
-    """
+    """A container for tests that the default pages exist."""
 
     DEFAULT_PAGES = [
         {'name': 'Home', 'slug': ''},
@@ -208,11 +203,13 @@ class TestDefaultPages():
 
     def upload_an_image(self, admin_browser):
         """Upload an image in the CMS."""
+        admin_browser.driver.set_speed(5)
         admin_browser.find_by_text('Choose an image').click()
         click_obscured(admin_browser, admin_browser.find_by_text('Upload').first)
         admin_browser.fill('title', 'Test image')
         admin_browser.attach_file('file', TEST_DATA_DIR + 'pigeons.jpeg')
         admin_browser.find_by_xpath('//em[contains(text(), "Upload")]').click()
+        admin_browser.driver.set_speed(0)
 
     def publish_changes(self, admin_browser):
         """Publish changes made in the CMS to the live page."""
@@ -241,7 +238,6 @@ class TestDefaultPages():
         """Check that the header image for the Home page can be edited in the CMS."""
         self.navigate_to_edit_home_page(admin_browser, default_page['name'])
         admin_browser.find_by_text('Multilingual').click()
-        import pdb; pdb.set_trace()
         self.upload_an_image(admin_browser)
         self.publish_changes(admin_browser)
         self.view_live_page(admin_browser)
