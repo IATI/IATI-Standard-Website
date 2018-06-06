@@ -8,7 +8,6 @@ import os
 import pytest
 from django.utils.text import slugify
 from base_functional_tests import find_and_click_add_button, find_and_click_toggle_button, fill_content_editor_block
-import pdb
 
 
 EVENT_INDEX_PAGE = {
@@ -22,6 +21,8 @@ EVENT_PAGE = {
     'heading': 'Test Event Page Heading',
     'excerpt': 'This is an excerpt for an Test Event page'
 }
+
+TEST_CATEGORY = "Test event type"
 
 H2 = {'content': 'H2 heading', 'button': 'H2', 'id': 'content_editor_en-{}-value'}
 H3 = {'content': 'H3 heading', 'button': 'H3', 'id': 'content_editor_en-{}-value'}
@@ -73,7 +74,6 @@ def create_event_child_page(admin_browser, page_type, page_title):
     """
     navigate_to_default_page_cms_section(admin_browser, 'Events')
     admin_browser.find_by_text('Add child page').click()
-    admin_browser.find_by_text(page_type).click()
     admin_browser.find_by_css(".xdsoft_next")[0].click()
     admin_browser.find_by_css(".xdsoft_day_of_week3")[0].click()
     enter_page_content(admin_browser, 'English', 'title_en', page_title)
@@ -189,11 +189,31 @@ class TestEventIndexChildPages():
         find_and_click_toggle_button(admin_browser, 0)
         find_and_click_add_button(admin_browser, header['button'].lower())
         fill_content_editor_block(admin_browser, header['button'].lower(), " input", header['content'])
-        # scroll_to_bottom_of_page(admin_browser)
-        # element_count = admin_browser.find_by_id('content_editor_en-count').value
-        # reveal_content_editor(admin_browser, header['button'], element_count)
-        # admin_browser.find_by_text(header['button'])[int(element_count)].click()
-        # admin_browser.find_by_id(header['id'].format(element_count)).fill(header['content'])
         publish_page(admin_browser)
         view_live_page(admin_browser, EVENT_PAGE['title'])
         assert admin_browser.is_text_present(header['content'])
+
+    def test_event_type_filter(self, admin_browser):
+        """Create an event type, assign it to 4 child pages, and test param"""
+        admin_browser.visit(os.environ['LIVE_SERVER_URL'] + '/admin/')
+        admin_browser.click_link_by_text("Snippets")
+        admin_browser.click_link_by_partial_text("Event types")
+        admin_browser.click_link_by_text("Add event type")
+        admin_browser.fill("name_en", TEST_CATEGORY)
+        admin_browser.find_by_css(".action-save").click()
+        for i in range(0, 4):
+            navigate_to_default_page_cms_section(admin_browser, EVENT_INDEX_PAGE['title'])
+            admin_browser.find_by_text('Add child page').click()
+            admin_browser.find_by_css(".xdsoft_next")[0].click()
+            admin_browser.find_by_css(".xdsoft_day_of_week3")[0].click()
+            check_box = admin_browser.find_by_css("input[name='event_type']")[0]
+            _ = check_box.__dict__['_element'].location_once_scrolled_into_view
+            admin_browser.check('event_type')
+            enter_page_content(admin_browser, 'English', 'title_en', EVENT_PAGE['title'] + str(i))
+            enter_page_content(admin_browser, 'Promote', 'slug_en', slugify(EVENT_PAGE['title'] + str(i)))
+            publish_page(admin_browser)
+        navigate_to_default_page_cms_section(admin_browser, EVENT_INDEX_PAGE['title'])
+        view_live_page(admin_browser, EVENT_INDEX_PAGE['title'])
+        assert admin_browser.is_text_present('1 / 2')
+        admin_browser.click_link_by_text(TEST_CATEGORY)
+        assert admin_browser.is_text_present("Show all events")
