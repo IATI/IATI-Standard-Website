@@ -7,7 +7,7 @@ TODO:
 import os
 import pytest
 from django.utils.text import slugify
-from base_functional_tests import find_and_click_add_button, find_and_click_toggle_button, fill_content_editor_block
+from base_functional_tests import click_obscured, find_and_click_add_button, find_and_click_toggle_button, fill_content_editor_block, TEST_DATA_DIR
 
 
 EVENT_INDEX_PAGE = {
@@ -134,7 +134,7 @@ def reveal_content_editor(admin_browser, button, element_count):
 
 
 @pytest.mark.django_db
-class TestEventPage():
+class TestEventIndexPage():
     """A container for tests to check functionality of Event pages and child pages."""
 
     def test_can_edit_event_page_heading(self, admin_browser):
@@ -157,7 +157,7 @@ class TestEventPage():
 
 
 @pytest.mark.django_db
-class TestEventIndexChildPages():
+class TestEventPages():
     """A container for tests to check functionality of Event Index child pages."""
 
     def test_can_create_event_child_pages(self, admin_browser):
@@ -217,6 +217,41 @@ class TestEventIndexChildPages():
         assert admin_browser.is_text_present('1 / 2')
         admin_browser.click_link_by_text(TEST_CATEGORY)
         assert admin_browser.is_text_present("Show all events")
+
+    def test_feed_image_shows_on_index_page(self, admin_browser):
+        """Check that when a user adds a feed image it also becomes the header image."""
+        admin_browser.find_by_text(EVENT_PAGE['title']).click()
+        self.upload_an_image(admin_browser)
+        publish_page(admin_browser)
+        view_live_page(admin_browser, EVENT_PAGE['title'])
+        header_image = admin_browser.find_by_xpath('//div[@class="hero hero--image"]')
+        assert 'pigeons' in header_image.outer_html
+
+    def upload_an_image(self, admin_browser):
+        """Upload an image in the CMS.
+
+        Note:
+            This is a duplicate function from base_functional_tests.
+
+        """
+        admin_browser.find_by_text('Choose an image').click()
+        click_obscured(admin_browser, admin_browser.find_by_text('Upload').first)
+        admin_browser.fill('title', 'Test image')
+        admin_browser.attach_file('file', TEST_DATA_DIR + 'pigeons.jpeg')
+        admin_browser.find_by_xpath('//em[contains(text(), "Upload")]').click()
+
+    def test_feed_image_shows_in_page_header(self, admin_browser):
+        """Check that when a user adds a feed image it also becomes the header image.
+
+        Note:
+            This test currently requires the previous test to run due to lack of test isolation.
+
+        """
+        event_page_live_button = admin_browser.find_by_text('Live').first
+        page_url = event_page_live_button._element.get_property('href')
+        admin_browser.visit(page_url)
+        header_image = admin_browser.find_by_xpath('//div[@class="hero hero--image"]')
+        assert 'pigeons' in header_image.outer_html
 
 
 @pytest.mark.django_db()
