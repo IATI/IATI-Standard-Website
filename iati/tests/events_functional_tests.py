@@ -221,10 +221,13 @@ class TestEventPages():
     def test_feed_image_shows_on_index_page(self, admin_browser):
         """Check that when a user adds a feed image it also becomes the header image."""
         admin_browser.find_by_text(EVENT_PAGE['title']).click()
+        scroll_to_bottom_of_page(admin_browser)
+        # import pdb; pdb.set_trace()
         self.upload_an_image(admin_browser)
+        # import pdb; pdb.set_trace()
         publish_page(admin_browser)
         view_live_page(admin_browser, EVENT_PAGE['title'])
-        header_image = admin_browser.find_by_xpath('//div[@class="hero hero--image"]')
+        header_image = admin_browser.find_by_xpath('//div[@class="hero hero--image"]').first
         assert 'pigeons' in header_image.outer_html
 
     def upload_an_image(self, admin_browser):
@@ -250,7 +253,7 @@ class TestEventPages():
         event_page_live_button = admin_browser.find_by_text('Live').first
         page_url = event_page_live_button._element.get_property('href')
         admin_browser.visit(page_url)
-        header_image = admin_browser.find_by_xpath('//div[@class="hero hero--image"]')
+        header_image = admin_browser.find_by_xpath('//div[@class="hero hero--image"]').first
         assert 'pigeons' in header_image.outer_html
 
 
