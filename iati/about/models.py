@@ -76,7 +76,7 @@ class CaseStudyPage(AbstractContentPage):
         blank=True,
         on_delete=models.SET_NULL,
         related_name='+',
-        help_text='This is the image that will be displayed for the case study on the Case Studies list page.'
+        help_text='This is the image that will be displayed for the case study in the page header and on the Case Studies list page.'
     )
 
     multilingual_field_panels = [

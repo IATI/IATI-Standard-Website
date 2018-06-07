@@ -76,7 +76,8 @@ class EventPage(AbstractContentPage):
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        related_name='+'
+        related_name='+',
+        help_text='This is the image that will be displayed for the event in the page header and on the Events and Past Events list pages.'
     )
 
     additional_information = StreamField(IATIStreamBlock(required=False), null=True, blank=True)
