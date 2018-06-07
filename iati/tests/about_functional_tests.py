@@ -307,13 +307,9 @@ class TestCaseStudyPage():
 
     def test_feed_image_shows_on_index_page(self, admin_browser):
         """Check that when a user adds a feed image it also becomes the header image."""
-        # Edit case study page
         admin_browser.find_by_text(CASE_STUDY_PAGE['title']).click()
-        # Add feed image
         self.upload_an_image(admin_browser)
-        # Publish changes
         publish_page(admin_browser)
-        # Check feed image on index page
         view_live_page(admin_browser, self.CASE_STUDY_INDEX_PAGE_TITLE)
         header_image = admin_browser.find_by_xpath('//div[@class="hero hero--image"]')
         assert 'pigeons' in header_image.outer_html
@@ -325,7 +321,6 @@ class TestCaseStudyPage():
             This test currently requires the previous test to run due to lack of test isolation.
 
         """
-        # Check feed image is case study page header
         case_study_page_live_button = admin_browser.find_by_text('Live').first
         page_url = case_study_page_live_button._element.get_property('href')
         admin_browser.visit(page_url)
