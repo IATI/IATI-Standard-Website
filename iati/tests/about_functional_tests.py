@@ -6,6 +6,7 @@ TODO:
 """
 from django.utils.text import slugify
 import pytest
+from base_functional_tests import TEST_DATA_DIR, click_obscured
 
 
 ABOUT_PAGE = {
@@ -75,9 +76,14 @@ def enter_page_content(admin_browser, tab_name, cms_field, cms_content):
 
 
 def publish_page(admin_browser):
-    """Publish page created in the CMS."""
-    admin_browser.find_by_xpath('//div[@class="dropdown-toggle icon icon-arrow-up"]').click()
-    admin_browser.find_by_text('Publish').click()
+    """Publish page created in the CMS.
+
+    Note:
+        Duplicate of publish_changes in base_functional_tests.
+
+    """
+    click_obscured(admin_browser, admin_browser.find_by_xpath('//div[@class="dropdown-toggle icon icon-arrow-up"]').first)
+    click_obscured(admin_browser, admin_browser.find_by_text('Publish').first)
 
 
 def create_about_child_page(admin_browser, page_type, page_title):
@@ -103,10 +109,9 @@ def view_live_page(admin_browser, page_title):
         page_title (str): The page title text you are expecting on the live page.
 
     """
-    admin_browser.find_by_text(page_title).mouse_over()
-    button_link = admin_browser.find_by_text('View live')
-    href = button_link[0].__dict__['_element'].get_property('href')
-    admin_browser.visit(href)
+    top_view_live_button = admin_browser.find_by_text('View live').first
+    page_url = top_view_live_button._element.get_property('href')
+    admin_browser.visit(page_url)
 
 
 def edit_page_header(admin_browser, page_title, cms_field, cms_content):
@@ -242,10 +247,12 @@ class TestAboutChildPages():
 class TestCaseStudyPage():
     """A container for tests to check the ability to create Case Study pages."""
 
+    CASE_STUDY_INDEX_PAGE_TITLE = 'test case study index page 2'
+
+
     def setup_case_study_index_page(self, admin_browser):
         """Create a Case Study Index page as a child of the About page."""
-        case_study_index_page_title = 'test case study index page 2'
-        create_about_child_page(admin_browser, CASE_STUDY_INDEX_PAGE['page_type'], case_study_index_page_title)
+        create_about_child_page(admin_browser, CASE_STUDY_INDEX_PAGE['page_type'], self.CASE_STUDY_INDEX_PAGE_TITLE)
 
     def test_can_create_case_study_page(self, admin_browser):
         """Check that a Case Study page can be created as a child of the Case Study Index page."""
@@ -284,3 +291,43 @@ class TestCaseStudyPage():
         publish_page(admin_browser)
         view_live_page(admin_browser, CASE_STUDY_PAGE['title'])
         assert admin_browser.is_text_present(header['content'])
+
+    def upload_an_image(self, admin_browser):
+        """Upload an image in the CMS.
+
+        Note:
+            This is a duplicate function from base_functional_tests.
+
+        """
+        admin_browser.find_by_text('Choose an image').click()
+        click_obscured(admin_browser, admin_browser.find_by_text('Upload').first)
+        admin_browser.fill('title', 'Test image')
+        admin_browser.attach_file('file', TEST_DATA_DIR + 'pigeons.jpeg')
+        admin_browser.find_by_xpath('//em[contains(text(), "Upload")]').click()
+
+    def test_feed_image_shows_on_index_page(self, admin_browser):
+        """Check that when a user adds a feed image it also becomes the header image."""
+        # Edit case study page
+        admin_browser.find_by_text(CASE_STUDY_PAGE['title']).click()
+        # Add feed image
+        self.upload_an_image(admin_browser)
+        # Publish changes
+        publish_page(admin_browser)
+        # Check feed image on index page
+        view_live_page(admin_browser, self.CASE_STUDY_INDEX_PAGE_TITLE)
+        header_image = admin_browser.find_by_xpath('//div[@class="hero hero--image"]')
+        assert 'pigeons' in header_image.outer_html
+
+    def test_feed_image_shows_in_page_header(self, admin_browser):
+        """Check that when a user adds a feed image it also becomes the header image.
+
+        Note:
+            This test currently requires the previous test to run due to lack of test isolation.
+
+        """
+        # Check feed image is case study page header
+        case_study_page_live_button = admin_browser.find_by_text('Live').first
+        page_url = case_study_page_live_button._element.get_property('href')
+        admin_browser.visit(page_url)
+        header_image = admin_browser.find_by_xpath('//div[@class="hero hero--image"]')
+        assert 'pigeons' in header_image.outer_html
