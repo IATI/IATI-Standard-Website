@@ -239,7 +239,7 @@ class TestAboutChildPages():
 
 
 @pytest.mark.django_db
-class TestCaseStudyIndexChildPageCreation():
+class TestCaseStudyPage():
     """A container for tests to check the ability to create Case Study pages."""
 
     def setup_case_study_index_page(self, admin_browser):
