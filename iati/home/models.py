@@ -7,6 +7,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from wagtail.core.blocks import TextBlock, StructBlock, StreamBlock, FieldBlock, CharBlock, RichTextBlock, RawHTMLBlock
 from wagtail.core.fields import StreamField
+from wagtail.snippets.models import register_snippet
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.documents.blocks import DocumentChooserBlock
 
@@ -133,3 +134,17 @@ class AbstractIndexPage(AbstractBasePage):
 class HomePage(Page):  # pylint: disable=too-many-ancestors
     """Proof-of-concept model definition for the homepage."""
     translation_fields = []
+
+    def get_context(self, request):
+        """Overwriting the default wagtail get_context function to allow for dynamic statistics."""
+        statistics = HomePageStatistics.objects.first()
+        context = super(HomePage, self).get_context(request)
+        context['statistics'] = statistics
+        return context
+
+
+@register_snippet
+class HomePageStatistics(models.Model):
+    """A snippet model to update and maintain the statistics on the home page"""
+    activities = models.PositiveIntegerField(default=1000000)
+    organisations = models.PositiveIntegerField(default=700)

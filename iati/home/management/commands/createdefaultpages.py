@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
-from home.models import HomePage
+from home.models import HomePage, HomePageStatistics
 from about.models import AboutPage
 from contact.models import ContactPage
 from events.models import EventIndexPage
@@ -58,6 +58,10 @@ class Command(BaseCommand):
                     )
                     home_page.add_child(instance=default_page_instance)
                     default_page_instance.save_revision().publish()
+
+            home_page_stats = HomePageStatistics.objects.first()
+            if home_page_stats is None:
+                home_page_stats = HomePageStatistics().save()
 
 
             self.stdout.write(self.style.SUCCESS('Successfully checked/created default pages.'))
