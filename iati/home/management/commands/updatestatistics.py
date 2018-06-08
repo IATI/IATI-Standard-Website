@@ -1,7 +1,7 @@
 import requests
 import json
 from django.core.management.base import BaseCommand, CommandError
-from home.models import HomePageStatistics
+from home.models import HomePage
 
 
 class Command(BaseCommand):
@@ -13,9 +13,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         """The default function Django BaseCommand needs to run."""
 
-        home_page_stats = HomePageStatistics.objects.first()
-        if home_page_stats is None:
-            home_page_stats = HomePageStatistics().save()
+        home_page_queryset = HomePage.objects.live()
 
         activity_url = "https://iatiregistry.org/api/3/action/package_search?q=extras_filetype:activity&facet.field=[%22extras_activity_count%22]&start=0&rows=0&facet.limit=1000000"
         activity_request = requests.get(activity_url)
@@ -24,7 +22,7 @@ class Command(BaseCommand):
             activity_count = 0
             for key in activity_json["result"]["facets"]["extras_activity_count"]:
                 activity_count += int(key) * activity_json["result"]["facets"]["extras_activity_count"][key]
-            home_page_stats.activities = activity_count
+            home_page_queryset.update(activities=activity_count)
         else:
             raise CommandError('Unable to connect to IATI registry to query activities.')
 
@@ -33,10 +31,9 @@ class Command(BaseCommand):
         if organisation_request.status_code == 200:
             organisation_json = json.loads(organisation_request.content.decode('utf-8'))
             organisation_count = len(organisation_json["result"]["search_facets"]["organization"]["items"])
-            home_page_stats.organisations = organisation_count
+            home_page_queryset.update(organisations=organisation_count)
         else:
             raise CommandError('Unable to connect to IATI registry to query organisations.')
 
-        home_page_stats.save()
 
         self.stdout.write(self.style.SUCCESS('Successfully updated home page statistics.'))
