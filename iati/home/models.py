@@ -7,6 +7,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from wagtail.core.blocks import TextBlock, StructBlock, StreamBlock, FieldBlock, CharBlock, RichTextBlock, RawHTMLBlock
 from wagtail.core.fields import StreamField
+from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.documents.blocks import DocumentChooserBlock
 
@@ -133,3 +134,11 @@ class AbstractIndexPage(AbstractBasePage):
 class HomePage(Page):  # pylint: disable=too-many-ancestors
     """Proof-of-concept model definition for the homepage."""
     translation_fields = []
+
+    activities = models.PositiveIntegerField(default=1000000)
+    organisations = models.PositiveIntegerField(default=700)
+
+    multilingual_field_panels = [
+        FieldPanel("activities"),
+        FieldPanel("organisations")
+    ]

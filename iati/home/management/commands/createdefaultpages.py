@@ -59,5 +59,4 @@ class Command(BaseCommand):
                     home_page.add_child(instance=default_page_instance)
                     default_page_instance.save_revision().publish()
 
-
             self.stdout.write(self.style.SUCCESS('Successfully checked/created default pages.'))
