@@ -1,0 +1,11 @@
+{% load wagtailcore_tags %}
+
+{% for child in content %}
+  <div class="m-block">
+      <h2 class="m-block__heading">{{ child.value.heading }}</h2>
+
+      <div class="m-block__copy">{{ child.value.description|richtext }}</div>
+
+      <a class="button" href="mailto:{{ child.value.email }}">{{ child.value.email }}</a>
+  </div>
+{% endfor %}

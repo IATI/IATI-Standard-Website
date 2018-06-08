@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags iati_tags%}
 
 {% block body_class %}body body--about{% endblock %}
 {% block body_id %}body-about{% endblock %}
@@ -8,87 +8,44 @@
 <div class="hero hero--minor">
         <div class="row">
             <div class="hero__caption">
-                <h1 class="hero__heading">History of IATI</h1>
-                
-                    <p class="hero__excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                
+                <h1 class="hero__heading">{{ page.heading }}</h1>
+
+                    <p class="hero__excerpt">{{ page.excerpt }}</p>
+
             </div>
             <div class="hero__emblem"></div>
         </div>
     </div>
 
-			
+
 <div class="row">
 	<div class="l-sidebar l-sidebar--reverse">
 		<aside class="l-sidebar__aside">
-			
-	<div class="aside-m">
-        <div class="aside-m__header fill-sunrise">
-            <h3 class="aside-m__heading">In this section</h3>
-        </div>
-        <button class="navigation-secondary-toggle" type="button" id="navigation-secondary-toggle">pages in this section <i role="presentation" aria-hidden="true" class="ico ico--16 ico-plus-white"></i></button>
-        <nav class="navigation-secondary" id="navigation-secondary">
-            <ul class="navigation-secondary__list">
-                <li class="navigation-secondary__item"><a href="#">Why aid transparency matters</a></li>
-                <li class="navigation-secondary__item"><a href="#">How IATI works</a></li>
-                <li class="navigation-secondary__item"><a href="#">Who is IATI for?</a></li>
-                <li class="navigation-secondary__item"><a href="#">About the standard</a></li>
-                <li class="navigation-secondary__item navigation-secondary__item--active"><a href="#">History of IATI</a></li>
-                <li class="navigation-secondary__item"><a href="#">Case studies</a></li>
-                <li class="navigation-secondary__item"><a href="#">Governance</a></li>
-                <li class="navigation-secondary__item"><a href="#">Promote IATI</a></li>
-                <li class="navigation-secondary__item"><a href="#">Membership</a></li>
-                <li class="navigation-secondary__item"><a href="#">TAG - Technical Advisory Group</a></li>
-            </ul>
-        </nav>
-    </div>
-
+      {% side_panel calling_page=self %}
 		</aside>
 		<div class="l-sidebar__body">
-			
-    <div class="is-typeset is-typeset--additionals">
-        <p>A small paragraph to <em>emphasis</em> and show <strong>important</strong> bits. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-    </div>
+
+      {% if page.content_editor %}
+        {% include "home/includes/streamfield.html" with content=page.content_editor %}
+      {% endif %}
 
     <div class="timeline">
-        <div class="timeline-row">
-            <div class="timeline__date timeline__date--left">
-                <div class="timeline__date-panel">
-                    <h2 class="timeline__date-heading heading">October 2015</h2>
-                    <p class="timeline__date-copy">Nulla in tincidunt felis. Morbi quis scelerisque mi. Pellentesque sit amet arcu massa. Etiam ut vulputate magna, quis maximus velit. Vivamus iaculis nulla vel ipsum fringilla mollis.</p>
+      {% if page.timeline_editor %}
+        {% for event in page.timeline_editor %}
+          {% if forloop.counter0.first or forloop.counter0|divisibleby:2 %}
+            <div class="timeline-row">
+          {% endif %}
+                <div class="{% cycle "timeline__date timeline__date--left" "timeline__date timeline__date--right" %}">
+                    <div class="timeline__date-panel">
+                        <h2 class="timeline__date-heading heading">{{ event.value.heading }}</h2>
+                        <p class="timeline__date-copy">{{ event.value.description }}</p>
+                    </div>
                 </div>
+          {% if forloop.counter|divisibleby:2 %}
             </div>
-
-            <div class="timeline__date timeline__date--right">
-                <div class="timeline__date-panel">
-                    <h2 class="timeline__date-heading heading">September 2008</h2>
-                    <p class="timeline__date-copy">Nulla in tincidunt felis. Morbi quis scelerisque mi. Pellentesque sit amet arcu massa. Etiam ut vulputate magna, quis maximus velit. Vivamus iaculis nulla vel ipsum fringilla mollis.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="timeline-row">
-            <div class="timeline__date timeline__date--left">
-                <div class="timeline__date-panel">
-                    <h2 class="timeline__date-heading heading">Aug 2008</h2>
-                    <p class="timeline__date-copy">Nulla in tincidunt felis. Morbi quis scelerisque mi. Pellentesque sit amet arcu massa. Etiam ut vulputate magna, quis maximus velit. Vivamus iaculis nulla vel ipsum fringilla mollis.</p>
-                </div>
-            </div>
-
-            <div class="timeline__date timeline__date--right">
-                <div class="timeline__date-panel">
-                    <h2 class="timeline__date-heading heading">July 2008</h2>
-                    <p class="timeline__date-copy">Nulla in tincidunt felis. Morbi quis scelerisque mi. Pellentesque sit amet arcu massa. Etiam ut vulputate magna, quis maximus velit. Vivamus iaculis nulla vel ipsum fringilla mollis.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="timeline__date timeline__date--left">
-            <div class="timeline__date-panel">
-                <h2 class="timeline__date-heading heading">October 2004</h2>
-                <p class="timeline__date-copy">Nulla in tincidunt felis. Morbi quis scelerisque mi. Pellentesque sit amet arcu massa. Etiam ut vulputate magna, quis maximus velit. Vivamus iaculis nulla vel ipsum fringilla mollis.</p>
-            </div>
-        </div>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
     </div>
 
 		</div>
