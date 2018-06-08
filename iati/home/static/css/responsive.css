@@ -5,6 +5,7 @@
 
 .responsive-object {
     position: relative;
+    padding-bottom: 0px !important;
 }
 
 .responsive-object iframe,
