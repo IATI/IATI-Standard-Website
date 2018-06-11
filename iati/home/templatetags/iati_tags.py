@@ -43,14 +43,14 @@ def default_page_url(context, default_page_name="home"):
 
 
 @register.simple_tag(takes_context=True)
-def privacy_page_url(context):
-    """Return the relative url for a privacy page."""
-    privacy_page = StandardPage.objects.live().filter(privacy_page=True).first()
-    if privacy_page is None:
+def standard_page_url(context, page_type):
+    """Return the relative url for other fixed pages based on the StandardPage."""
+    standard_page = StandardPage.objects.live().filter(fixed_page_type=page_type).first()
+    if standard_page is None:
         return ''
     if not hasattr(context, 'request'):
         return ''
-    return privacy_page.get_url(context['request'])
+    return standard_page.get_url(context['request'])
 
 
 
