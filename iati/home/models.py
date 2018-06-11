@@ -4,7 +4,7 @@ from django.db import models
 from django import forms
 from wagtail.core.models import Page
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
+from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.core.blocks import TextBlock, StructBlock, StreamBlock, FieldBlock, CharBlock, RichTextBlock, RawHTMLBlock
 from wagtail.core.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
@@ -133,3 +133,12 @@ class AbstractIndexPage(AbstractBasePage):
 class HomePage(Page):  # pylint: disable=too-many-ancestors
     """Proof-of-concept model definition for the homepage."""
     translation_fields = []
+
+
+class StandardPage(AbstractContentPage):
+    """A standard content page for generic use, i.e. a Privacy page."""
+    privacy_page = models.BooleanField(default=False)
+
+    multilingual_field_panels = [
+        FieldPanel('privacy_page')
+    ]
