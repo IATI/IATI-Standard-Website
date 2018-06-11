@@ -4,6 +4,7 @@ TODO:
     Refactor most of these tests out into base functional tests.
 
 """
+import os
 from django.utils.text import slugify
 import pytest
 
@@ -256,6 +257,8 @@ class TestCaseStudyIndexChildPageCreation():
         publish_page(admin_browser)
         view_live_page(admin_browser, CASE_STUDY_PAGE['title'])
         assert admin_browser.is_text_present(CASE_STUDY_PAGE['title'])
+        admin_browser.visit(os.environ['LIVE_SERVER_URL'])
+        assert admin_browser.is_text_present("Case studies")
 
     def test_can_edit_case_study_page_heading(self, admin_browser):
         """Check that Case Study page headings can be edited."""

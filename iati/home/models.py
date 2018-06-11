@@ -1,6 +1,7 @@
 """Model definitions for the home app."""
 
 from django.db import models
+from django.apps import apps
 from django import forms
 from wagtail.core.models import Page
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -133,3 +134,11 @@ class AbstractIndexPage(AbstractBasePage):
 class HomePage(Page):  # pylint: disable=too-many-ancestors
     """Proof-of-concept model definition for the homepage."""
     translation_fields = []
+
+    def get_context(self, request):
+        """Overwriting the default get_context page to serve descendant case study pages"""
+        CaseStudyPage = apps.get_model(app_label='about', model_name='CaseStudyPage')
+        case_studies = CaseStudyPage.objects.live().descendant_of(self).specific()
+        context = super(HomePage, self).get_context(request)
+        context['case_studies'] = case_studies
+        return context
