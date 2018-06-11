@@ -2,7 +2,7 @@ from django import template
 from django.conf import settings
 from django.utils import timezone
 from django.template.defaultfilters import date as _date
-from home.models import HomePage
+from home.models import HomePage, StandardPage
 from about.models import AboutPage
 from contact.models import ContactPage
 from events.models import EventIndexPage, EventType, FeaturedEvent
@@ -40,6 +40,18 @@ def default_page_url(context, default_page_name="home"):
     if not hasattr(context, 'request'):
         return ''
     return default_page.get_url(context['request'])
+
+
+@register.simple_tag(takes_context=True)
+def privacy_page_url(context):
+    """Return the relative url for a privacy page."""
+    privacy_page = StandardPage.objects.live().filter(privacy_page=True).first()
+    if privacy_page is None:
+        return ''
+    if not hasattr(context, 'request'):
+        return ''
+    return privacy_page.get_url(context['request'])
+
 
 
 @register.inclusion_tag("home/includes/translation_links.html", takes_context=True)
