@@ -10,18 +10,23 @@ from django.utils.text import slugify
 from base_functional_tests import find_and_click_add_button, find_and_click_toggle_button, fill_content_editor_block
 
 
-PRIVACY_PAGE = {
-    'page_type': 'Standard page',
-    'title': 'Privacy page',
-    'heading': 'Privacy page header',
-    'excerpt': 'Privacy page excerpt'
+EVENT_INDEX_PAGE = {
+    'title': 'Events',
+    'heading': 'Test IATI Events',
+    'excerpt': 'This is an excerpt for the Event Index Page'
 }
-TERMS_PAGE = {
-    'page_type': 'Standard page',
-    'title': 'Terms and conditions page',
-    'heading': 'Terms and conditions page header',
-    'excerpt': 'Terms and conditions page excerpt'
+EVENT_PAGE = {
+    'page_type': 'Event page',
+    'title': 'test event page',
+    'heading': 'Test Event Page Heading',
+    'excerpt': 'This is an excerpt for an Test Event page'
 }
+
+TEST_CATEGORY = "Test event type"
+
+H2 = {'content': 'H2 heading', 'button': 'H2', 'id': 'content_editor_en-{}-value'}
+H3 = {'content': 'H3 heading', 'button': 'H3', 'id': 'content_editor_en-{}-value'}
+H4 = {'content': 'H4 heading', 'button': 'H4', 'id': 'content_editor_en-{}-value'}
 
 
 def navigate_to_default_page_cms_section(admin_browser, default_page_title):
