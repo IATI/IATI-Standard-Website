@@ -61,7 +61,8 @@ def enter_page_content(admin_browser, tab_name, cms_field, cms_content):
 def publish_page(admin_browser):
     """Publish page created in the CMS."""
     admin_browser.find_by_xpath('//div[@class="dropdown-toggle icon icon-arrow-up"]').click()
-    admin_browser.find_by_text('Publish').click()
+    pub_button = admin_browser.find_by_text('Publish')[0]
+    click_obscured(admin_browser, pub_button)
 
 
 def create_event_child_page(admin_browser, page_type, page_title):
