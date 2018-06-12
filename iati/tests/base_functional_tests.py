@@ -13,7 +13,9 @@ from wagtail.images.blocks import ImageChooserBlock
 import string
 import random
 import time
-import pdb
+
+
+TEST_DATA_DIR = settings.BASE_DIR + '/tests/data/'
 
 
 def prevent_alerts(admin_browser):
