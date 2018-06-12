@@ -7,7 +7,7 @@ TODO:
 import os
 import pytest
 from django.utils.text import slugify
-from base_functional_tests import find_and_click_add_button, find_and_click_toggle_button, fill_content_editor_block
+from base_functional_tests import click_obscured, find_and_click_add_button, find_and_click_toggle_button, fill_content_editor_block, TEST_DATA_DIR
 
 
 EVENT_INDEX_PAGE = {
@@ -74,6 +74,8 @@ def create_event_child_page(admin_browser, page_type, page_title):
     """
     navigate_to_default_page_cms_section(admin_browser, 'Events')
     admin_browser.find_by_text('Add child page').click()
+    admin_browser.find_by_css(".xdsoft_next")[0].click()
+    admin_browser.find_by_css(".xdsoft_day_of_week3")[0].click()
     enter_page_content(admin_browser, 'English', 'title_en', page_title)
     enter_page_content(admin_browser, 'Promote', 'slug_en', slugify(page_title))
     publish_page(admin_browser)
@@ -132,7 +134,7 @@ def reveal_content_editor(admin_browser, button, element_count):
 
 
 @pytest.mark.django_db
-class TestEventPage():
+class TestEventIndexPage():
     """A container for tests to check functionality of Event pages and child pages."""
 
     def test_can_edit_event_page_heading(self, admin_browser):
@@ -155,7 +157,7 @@ class TestEventPage():
 
 
 @pytest.mark.django_db
-class TestEventIndexChildPages():
+class TestEventPages():
     """A container for tests to check functionality of Event Index child pages."""
 
     def test_can_create_event_child_pages(self, admin_browser):
@@ -202,6 +204,8 @@ class TestEventIndexChildPages():
         for i in range(0, 4):
             navigate_to_default_page_cms_section(admin_browser, EVENT_INDEX_PAGE['title'])
             admin_browser.find_by_text('Add child page').click()
+            admin_browser.find_by_css(".xdsoft_next")[0].click()
+            admin_browser.find_by_css(".xdsoft_day_of_week3")[0].click()
             check_box = admin_browser.find_by_css("input[name='event_type']")[0]
             _ = check_box.__dict__['_element'].location_once_scrolled_into_view
             admin_browser.check('event_type')
@@ -210,10 +214,47 @@ class TestEventIndexChildPages():
             publish_page(admin_browser)
         navigate_to_default_page_cms_section(admin_browser, EVENT_INDEX_PAGE['title'])
         view_live_page(admin_browser, EVENT_INDEX_PAGE['title'])
-        admin_browser.visit(admin_browser.url + "?past=1")
         assert admin_browser.is_text_present('1 / 2')
         admin_browser.click_link_by_text(TEST_CATEGORY)
         assert admin_browser.is_text_present("Show all events")
+
+    def test_feed_image_shows_on_index_page(self, admin_browser):
+        """Check that when a user adds a feed image it also becomes the header image."""
+        admin_browser.find_by_text(EVENT_PAGE['title']).click()
+        scroll_to_bottom_of_page(admin_browser)
+        # import pdb; pdb.set_trace()
+        self.upload_an_image(admin_browser)
+        # import pdb; pdb.set_trace()
+        publish_page(admin_browser)
+        view_live_page(admin_browser, EVENT_PAGE['title'])
+        header_image = admin_browser.find_by_xpath('//div[@class="hero hero--image"]').first
+        assert 'pigeons' in header_image.outer_html
+
+    def upload_an_image(self, admin_browser):
+        """Upload an image in the CMS.
+
+        Note:
+            This is a duplicate function from base_functional_tests.
+
+        """
+        admin_browser.find_by_text('Choose an image').click()
+        click_obscured(admin_browser, admin_browser.find_by_text('Upload').first)
+        admin_browser.fill('title', 'Test image')
+        admin_browser.attach_file('file', TEST_DATA_DIR + 'pigeons.jpeg')
+        admin_browser.find_by_xpath('//em[contains(text(), "Upload")]').click()
+
+    def test_feed_image_shows_in_page_header(self, admin_browser):
+        """Check that when a user adds a feed image it also becomes the header image.
+
+        Note:
+            This test currently requires the previous test to run due to lack of test isolation.
+
+        """
+        event_page_live_button = admin_browser.find_by_text('Live').first
+        page_url = event_page_live_button._element.get_property('href')
+        admin_browser.visit(page_url)
+        header_image = admin_browser.find_by_xpath('//div[@class="hero hero--image"]').first
+        assert 'pigeons' in header_image.outer_html
 
 
 @pytest.mark.django_db()
@@ -228,7 +269,8 @@ class TestFeaturedEvents():
         admin_browser.click_link_by_text("Add featured event")
         admin_browser.find_by_text("Choose a page (Event Page)").click()
         admin_browser.click_link_by_text(TEST_PAGE_TITLE)
-        admin_browser.find_by_css(".action-save").click()
+        save_button = admin_browser.find_by_css(".action-save")[0]
+        click_obscured(admin_browser, save_button)
         admin_browser.visit(os.environ['LIVE_SERVER_URL'] + '/admin/')
         navigate_to_default_page_cms_section(admin_browser, 'About')
         admin_browser.click_link_by_text("Edit")
