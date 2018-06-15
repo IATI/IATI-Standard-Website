@@ -219,9 +219,7 @@ class TestEventPages():
         """Check that when a user adds a feed image it also becomes the header image."""
         admin_browser.find_by_text(EVENT_PAGE['title']).click()
         scroll_to_bottom_of_page(admin_browser)
-        # import pdb; pdb.set_trace()
         self.upload_an_image(admin_browser)
-        # import pdb; pdb.set_trace()
         publish_page(admin_browser)
         view_live_page(admin_browser, EVENT_PAGE['title'])
         header_image = admin_browser.find_by_xpath('//div[@class="hero hero--image"]').first
