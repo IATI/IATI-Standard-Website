@@ -6,14 +6,14 @@ from django.utils.text import slugify
 
 PRIVACY_PAGE = {
     'page_type': 'Standard page',
-    'fixed_page_type': 'p',
+    'fixed_page_type': 'privacy',
     'title': 'Privacy page',
     'heading': 'Privacy page header',
     'base_link_text': 'Privacy policy'
 }
 TERMS_PAGE = {
     'page_type': 'Standard page',
-    'fixed_page_type': 't',
+    'fixed_page_type': 'terms',
     'title': 'Terms and conditions page',
     'heading': 'Terms and conditions page header',
     'base_link_text': 'Terms and conditions'
@@ -38,7 +38,7 @@ def enter_page_content(admin_browser, tab_name, cms_field, cms_content):
 
 
 def publish_page(admin_browser):
-    """Publish page created in the CMS."""
+    """Publish page created in the CMS. A duplicate function from about_functional_tests.py."""
     admin_browser.find_by_xpath('//div[@class="dropdown-toggle icon icon-arrow-up"]').click()
     admin_browser.find_by_text('Publish').click()
 
@@ -48,7 +48,7 @@ def create_standard_home_page(admin_browser, page_type, fixed_page_type, page_ti
 
     Args:
         page_type (str): The verbose name of the page model type you want to click on.
-        fixed_page_type (str): The value of the fixed page dropdown (e.g. "p" for "privacy")
+        fixed_page_type (str): The value of the fixed page dropdown (e.g. "privacy" for "PrivacyPage")
         page_title (str): The title of the page you are editing.
 
     """

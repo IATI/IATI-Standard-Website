@@ -35,9 +35,7 @@ def default_page_url(context, default_page_name="home"):
 
     default_page = page_model_names[default_page_name].objects.live().first()
 
-    if default_page is None:
-        return ''
-    if not hasattr(context, 'request'):
+    if default_page is None or not hasattr(context, 'request'):
         return ''
     return default_page.get_url(context['request'])
 
@@ -46,12 +44,9 @@ def default_page_url(context, default_page_name="home"):
 def standard_page_url(context, page_type):
     """Return the relative url for other fixed pages based on the StandardPage."""
     standard_page = StandardPage.objects.live().filter(fixed_page_type=page_type).first()
-    if standard_page is None:
-        return ''
-    if not hasattr(context, 'request'):
+    if standard_page is None or not hasattr(context, 'request'):
         return ''
     return standard_page.get_url(context['request'])
-
 
 
 @register.inclusion_tag("home/includes/translation_links.html", takes_context=True)

@@ -138,10 +138,10 @@ class HomePage(Page):  # pylint: disable=too-many-ancestors
 class StandardPage(AbstractContentPage):
     """A standard content page for generic use, i.e. a Privacy page."""
     FIXED_PAGE_TYPES = (
-        ("p", "Privacy"),
-        ("t", "Terms and conditions")
+        ("privacy", "Privacy"),
+        ("terms", "Terms and conditions")
     )
-    fixed_page_type = models.CharField(max_length=1, choices=FIXED_PAGE_TYPES, null=True, blank=True)
+    fixed_page_type = models.CharField(max_length=7, choices=FIXED_PAGE_TYPES, null=True, blank=True)
 
     multilingual_field_panels = [
         FieldPanel('fixed_page_type'),
