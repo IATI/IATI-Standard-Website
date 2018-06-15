@@ -4,16 +4,15 @@ import pytest
 from conftest import LOCALHOST
 from django.core.management import call_command
 from django.apps import apps
-from django.utils.text import slugify
+# from ḍjango.utils.text import slugify
 from django.conf import settings
-from home.models import AbstractContentPage, IATIStreamBlock, HomePage
+# from home.models import AbstractContentPage, IATIStreamBlock, HomePage
 from wagtail.core.blocks import CharBlock, FieldBlock, RawHTMLBlock, RichTextBlock, StreamBlock, StructBlock, TextBlock
 from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.images.blocks import ImageChooserBlock
 import string
 import random
 import time
-import pdb
 
 
 def prevent_alerts(admin_browser):
