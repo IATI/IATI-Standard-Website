@@ -85,53 +85,60 @@
 <div class="section">
   <div class="row">
     <h2 class="section__heading">Contact support</h2>
-    <p class="para para--typeset">Please complete the form below and our team will be able to help you</p>
-    <form class="form form--support">
-      <div class="l-2up">
-        <div class="l-2up__col">
+    {% if form_success %}
+    {{test_obj}}
+      <p class="para para--typeset alert--success">Query successfully submitted. Our technical team will be in contact with you as soon as possible.</p>
+    {% else %}
+      <p class="para para--typeset">Please complete the form below and our team will be able to help you</p>
+      <form class="form form--support" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="l-2up">
+          <div class="l-2up__col">
 
 
-          <div class="form-field ">
+            <div class="form-field ">
 
-            <label for="name" id="" class="form-label ">Name</label>
-            <input id="name" class="form-item" name="name" type="text" placeholder="Text placeholder">
-
-
-          </div>
+              <label for="name" id="" class="form-label ">Name</label>
+              <input id="name" class="form-item" name="name" type="text" placeholder="Firstname Surname">
 
 
-          <div class="form-field form-field--spaced ">
-
-            <label for="email" id="" class="form-label ">Email</label>
-            <input id="email" class="form-item" name="email" type="email" placeholder="Email placeholder">
+            </div>
 
 
-          </div>
+            <div class="form-field form-field--spaced ">
 
-          <div class="form-field form-field--spaced">
-            <label class="form-label" for=file>Attachment</label>
-            <div class="form-item-inline">
-              <input class="form-file" type="file" name="file">
+              <label for="email" id="" class="form-label ">Email</label>
+              <input id="email" class="form-item" name="email" type="email" placeholder="your.email@address.com">
+
+
+            </div>
+
+            <div class="form-field form-field--spaced">
+              <label class="form-label" for=file>Attachment</label>
+              <div class="form-item-inline">
+                <input class="form-file" type="file" name="file">
+              </div>
             </div>
           </div>
-        </div>
-        <div class="l-2up__col">
+          <div class="l-2up__col">
 
 
-          <div class="form-field ">
+            <div class="form-field ">
 
-            <label for="textarea" class="form-label ">Query</label>
-            <textarea id="textarea" class="form-item" name="textarea"></textarea>
+              <label for="textarea" class="form-label ">Query</label>
+              <textarea id="textarea" class="form-item" name="textarea" placeholder="Your query..."></textarea>
 
+
+            </div>
 
           </div>
-
         </div>
-      </div>
-    </form>
-    <div class="form-field form-field--spaced">
-      <button onclick="window.alert('Support form functionality coming soon!')" class="button">Submit request</button>
-    </div>
+        <div class="form-field form-field--spaced">
+          <button class="button">Submit request</button>
+        </div>
+      </form>
+    {% endif %}
+
   </div>
 </div>
 {% endblock %}

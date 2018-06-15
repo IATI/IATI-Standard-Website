@@ -61,6 +61,21 @@ class GuidancePage(AbstractContentPage):
     """A base for a single guidance page."""
     subpage_types = []
 
+    def get_context(self, request):
+        """Overwrite context to intercept POST requests to pages on this template and pass them to Zendesk API"""
+        context = super(GuidancePage, self).get_context(request)
+
+        if request.method == 'POST':
+            attachment = request.FILES.get('file', None)
+            path = request.path
+            email = request.POST['email']
+            query = request.POST['textarea']
+            name = request.POST['name']
+            test_obj = {"path": path, "email": email, "query": query, "attachment": attachment, "name": name}
+            context["test_obj"] = test_obj
+            context['form_success'] = True
+        return context
+
 
 class KnowledgebaseIndexPage(AbstractIndexPage):
     """A base for a Knowledgebase index page."""
