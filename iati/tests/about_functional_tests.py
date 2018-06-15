@@ -248,7 +248,7 @@ class TestCaseStudyIndexChildPageCreation():
         case_study_index_page_title = 'test case study index page 2'
         create_about_child_page(admin_browser, CASE_STUDY_INDEX_PAGE['page_type'], case_study_index_page_title)
 
-    def text_no_case_studies_section_on_home(self, admin_browser):
+    def test_no_case_studies_section_on_home(self, admin_browser):
         """Before any case studies are published, test to see there is no Case studies section on the home page."""
         admin_browser.visit(os.environ['LIVE_SERVER_URL'])
         assert not admin_browser.is_text_present("Case studies")
@@ -263,7 +263,7 @@ class TestCaseStudyIndexChildPageCreation():
         view_live_page(admin_browser, CASE_STUDY_PAGE['title'])
         assert admin_browser.is_text_present(CASE_STUDY_PAGE['title'])
 
-    def text_case_studies_section_on_home(self, admin_browser):
+    def test_case_studies_section_on_home(self, admin_browser):
         """After one case study is published, check to see that the Case studies section has now appeared."""
         admin_browser.visit(os.environ['LIVE_SERVER_URL'])
         assert admin_browser.is_text_present("Case studies")
