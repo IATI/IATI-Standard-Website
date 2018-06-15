@@ -63,7 +63,7 @@ class EventPage(AbstractContentPage):
     parent_page_types = ['events.EventIndexPage']
     subpage_types = []
 
-    date_start = models.DateTimeField("Event start date and time")
+    date_start = models.DateTimeField("Event start date and time", default=timezone.now)
     date_end = models.DateTimeField("Event end date and time", null=True, blank=True)
     location = models.TextField(null=True, blank=True)
     registration_link = models.URLField(max_length=255, null=True, blank=True)
