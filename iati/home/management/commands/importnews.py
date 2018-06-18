@@ -60,7 +60,8 @@ class Command(BaseCommand):
                                 slug=page_slug,
                                 heading=page_data["title"],
                                 content_editor=json.dumps([{'type': 'paragraph', 'value': page_data["content"]}]),
-                                date_start=datetime.datetime.strptime(page_data["date"], "%Y-%m-%d").replace(tzinfo=pytz.UTC)
+                                date_start=datetime.datetime.strptime(page_data["date"], "%Y-%m-%d").replace(tzinfo=pytz.UTC),
+                                date_end=datetime.datetime.strptime(page_data["date"], "%Y-%m-%d").replace(tzinfo=pytz.UTC) 
                             )
                             event_index_page.add_child(instance=event_page)
                             event_page.save_revision().publish()

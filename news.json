@@ -172,7 +172,7 @@
         "title": "IATI Developers\u2019 Workshop \u2013 what we achieved",
         "link": "https://www.aidtransparency.net/news/iati-developers-workshop-what-we-achieved",
         "img": "https://www.aidtransparency.net/wp-content/uploads/2018/02/Developers-workshop-2.-jpg-190x119.png",
-        "type": "event",
+        "type": "news",
         "date": "2018-02-09"
     },
     {
@@ -356,7 +356,7 @@
         "title": "Members\u2019 Assembly 2017 papers",
         "link": "https://www.aidtransparency.net/news/members-assembly-meeting-2017",
         "img": "https://www.aidtransparency.net/wp-content/uploads/2017/07/804-190x119.jpg",
-        "type": "news",
+        "type": "event",
         "date": "2017-10-02"
     },
     {
@@ -572,7 +572,7 @@
         "title": "miniTAG on traceability, London (28 June)",
         "link": "https://www.aidtransparency.net/news/minitag-on-traceability-london-28-june",
         "img": "https://www.aidtransparency.net/wp-content/uploads/2017/06/Mini-Tag-Logo-300-x-120-190x119.png",
-        "type": "news",
+        "type": "event",
         "date": "2017-06-12"
     },
     {
@@ -628,7 +628,7 @@
         "title": "Members\u2019 Assembly 2017 planned for September/October",
         "link": "https://www.aidtransparency.net/news/members-assembly-2017-planned-for-septemberoctober",
         "img": "https://www.aidtransparency.net/wp-content/uploads/2016/07/804-190x119.jpg",
-        "type": "news",
+        "type": "event",
         "date": "2017-05-08"
     },
     {
@@ -740,7 +740,7 @@
         "title": "Webinar: Publishing humanitarian data to IATI \u00a0",
         "link": "https://www.aidtransparency.net/news/webinar-publishing-humanitarian-data-to-iati",
         "img": "https://www.aidtransparency.net/wp-content/uploads/2017/02/Grand-Bargain-190x119.png",
-        "type": "news",
+        "type": "event",
         "date": "2017-02-14"
     },
     {
@@ -788,7 +788,7 @@
         "title": "TAG 2017 announced",
         "link": "https://www.aidtransparency.net/news/tag-2017-announced",
         "img": "https://www.aidtransparency.net/wp-content/uploads/2016/09/TAGGED-2-190x119.jpg",
-        "type": "news",
+        "type": "event",
         "date": "2016-12-22"
     },
     {
@@ -1164,7 +1164,7 @@
         "title": "Zimmerman & Zimmerman join IATI",
         "link": "https://www.aidtransparency.net/news/zimmerman-zimmerman-join-iati",
         "img": "https://www.aidtransparency.net/wp-content/uploads/2016/06/ZZ-logo-2-190x119.png",
-        "type": "event",
+        "type": "news",
         "date": "2016-06-23"
     },
     {
@@ -1172,7 +1172,7 @@
         "title": "Members\u2019 Assembly papers out now",
         "link": "https://www.aidtransparency.net/news/members-assembly-papers-out-now",
         "img": "https://www.aidtransparency.net/wp-content/uploads/2013/10/UN-City-Copenhagen-190x119.jpg",
-        "type": "news",
+        "type": "event",
         "date": "2016-06-20"
     },
     {
@@ -1524,7 +1524,7 @@
         "title": "Steering Committee papers now available",
         "link": "https://www.aidtransparency.net/news/steering-committee-papers-now-available-2",
         "img": "https://www.aidtransparency.net/wp-content/uploads/2013/10/UN-City-Copenhagen-190x119.jpg",
-        "type": "news",
+        "type": "event",
         "date": "2015-11-18"
     },
     {
@@ -1572,7 +1572,7 @@
         "title": "IATI version 2.02 upgrade consultation calls",
         "link": "https://www.aidtransparency.net/news/iati-version-2-02-upgrade-consultation-calls",
         "img": "https://www.aidtransparency.net/wp-content/uploads/2015/10/noun_104087_cc-190x119.png",
-        "type": "news",
+        "type": "event",
         "date": "2015-10-05"
     },
     {
@@ -1668,7 +1668,7 @@
         "title": "IATI at the Third Financing for Development Conference in Addis Ababa",
         "link": "https://www.aidtransparency.net/news/iati-at-the-third-financing-for-development-conference-in-addis-ababa",
         "img": "https://www.aidtransparency.net/wp-content/uploads/2015/05/FfD_Logo-140_3.png",
-        "type": "news",
+        "type": "event",
         "date": "2015-07-10"
     },
     {
@@ -1708,7 +1708,7 @@
         "title": "TAG agenda is live!",
         "link": "https://www.aidtransparency.net/news/tag-agenda-is-live",
         "img": "https://www.aidtransparency.net/wp-content/uploads/2015/05/TAGagendapic-190x119.png",
-        "type": "news",
+        "type": "event",
         "date": "2015-05-20"
     },
     {
@@ -1764,7 +1764,7 @@
         "title": "TAG registration is now open!",
         "link": "https://www.aidtransparency.net/news/tag-registration-is-now-open",
         "img": "https://www.aidtransparency.net/wp-content/uploads/2015/03/Ottawa-City-In-Canada-190x119.jpg",
-        "type": "news",
+        "type": "event",
         "date": "2015-03-30"
     },
     {
@@ -1916,7 +1916,7 @@
         "title": "Hackunamatata: Hackathon for digital solutions",
         "link": "https://www.aidtransparency.net/news/hackunamatata-hackathon-for-digital-solutions",
         "img": "https://www.aidtransparency.net/wp-content/uploads/2014/10/Screen-Shot-2014-10-16-at-10.31.03-PM-190x119.jpg",
-        "type": "news",
+        "type": "event",
         "date": "2014-10-17"
     },
     {
@@ -1964,7 +1964,7 @@
         "title": "Steering Committee papers now available",
         "link": "https://www.aidtransparency.net/news/steering-committee-papers-now-available",
         "img": "https://www.aidtransparency.net/wp-content/uploads/2013/10/UN-City-Copenhagen-190x119.jpg",
-        "type": "news",
+        "type": "event",
         "date": "2014-10-01"
     },
     {
@@ -2036,7 +2036,7 @@
         "title": "OKFest kicks off in Berlin",
         "link": "https://www.aidtransparency.net/news/okfest-kicks-off-in-berlin",
         "img": "https://www.aidtransparency.net/wp-content/uploads/2014/07/okfest-logo-transparent-tagline-url-300x157.png",
-        "type": "news",
+        "type": "event",
         "date": "2014-07-15"
     },
     {
@@ -2108,7 +2108,7 @@
         "title": "Day One \u2013 Global Partnership High-Level Meeting",
         "link": "https://www.aidtransparency.net/news/day-one-global-partnership-high-level-meeting",
         "img": "https://www.aidtransparency.net/wp-content/uploads/2014/04/gpedc2014-e1397115091872.jpg",
-        "type": "event",
+        "type": "news",
         "date": "2014-04-16"
     },
     {
@@ -2116,7 +2116,7 @@
         "title": "Warm up \u2013 Global Partnership High-Level Meeting",
         "link": "https://www.aidtransparency.net/news/day-two-global-partnership-high-level-meeting",
         "img": "https://www.aidtransparency.net/wp-content/uploads/2014/04/mexico_city-190x119.jpg",
-        "type": "event",
+        "type": "news",
         "date": "2014-04-15"
     },
     {
@@ -2124,7 +2124,7 @@
         "title": "Four goals on transparency for the First Global Partnership High Level Meeting",
         "link": "https://www.aidtransparency.net/news/four-goals-on-transparency-for-the-first-global-partnership-high-level-meeting",
         "img": "https://www.aidtransparency.net/wp-content/uploads/2014/04/global-partnership-190x119.jpg",
-        "type": "event",
+        "type": "news",
         "date": "2014-04-14"
     },
     {
@@ -2908,7 +2908,7 @@
         "title": "Minutes from October Partner Country and Steering Committee Meetings now available",
         "link": "https://www.aidtransparency.net/news/minutes-from-october-partner-country-and-steering-committee-meetings-now-available",
         "img": "https://www.aidtransparency.net/wp-content/uploads/2010/09/Open-book-i-stock-300-x-2251-190x119.jpg",
-        "type": "news",
+        "type": "event",
         "date": "2010-11-12"
     },
     {

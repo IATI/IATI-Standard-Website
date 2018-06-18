@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load wagtail_modeltranslation wagtailimages_tags %}
 
 {% load iati_tags %}
 {% block body_class %}body body--home{% endblock %}
@@ -110,38 +111,43 @@
             </div>
         </div>
     </div>
+    {% if case_studies|length > 0 %}
     <div class="section section-alt-bottom">
         <div class="row">
             <h2 class="section__heading">Case studies</h2>
+
             <div class="max-meter is-typeset is-typeset--article">
                 <p class="section__copy">Duis sit amet aliquam enim. Donec tempus nisi est, vel finibus dolor finibus sit amet. Pellentesque maximus sollicitudin urna.</p>
             </div>
             <div class="l-2up">
-                <div class="l-2up__col">
-                    <div class="help help--standout">
-                        <div class="help__header help__header--big background-cover" style="background-image: url(/static/assets/img/case-study1.png)">
-                            <div class="help__panel fill-sunset">
-                                <h3 class="help__heading">Lorem ipsum dolor sit amet</h3>
-                                <p> Sed mattis orci eu nunc molestie placerat. In ultricies tellus at lorem porttitor fermentum.</p>
-                                <a href="#" title="Under construction">Read more</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="l-2up__col">
-                    <div class="help help--standout">
-                        <div class="help__header background-cover" style="background-image: url(/static/assets/img/case-study2.png)">
-                            <div class="help__panel fill-sunset">
-                                <h3 class="help__heading">Lorem ipsum dolor sit amet</h3>
-                                <p> Sed mattis orci eu nunc molestie placerat. In ultricies tellus at lorem porttitor fermentum.</p>
-                                <a href="#none">Read more</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+              {% for case_study in case_studies %}
+                {% if forloop.counter < 3 %}
+                  <div class="l-2up__col">
+                      <div class="help help--standout">
+                        {% if case_study.feed_image %}
+                          {% image case_study.feed_image width-600 as img %}
+                          <div class="help__header help__header--big background-cover" style="background-image: url({{ img.url }})">
+                        {% else %}
+                          <div class="help__header help__header--big background-cover" style="background-image: url(/static/assets/img/image-placeholder.svg)">
+                        {% endif %}
+
+                              <div class="help__panel fill-sunset">
+                                  <h3 class="help__heading">{{ case_study.heading }}</h3>
+                                  <p> {{ case_study.excerpt }}</p>
+                                  <a href="{% slugurl_trans case_study.slug %}">Read more</a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                {% endif %}
+              {% endfor %}
+
             </div>
         </div>
     </div>
+    {% endif %}
+
     <div class="row">
         <div class="section-alt">
             <h2 class="section__heading">Partners</h2>

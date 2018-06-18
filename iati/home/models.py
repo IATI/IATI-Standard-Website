@@ -1,10 +1,11 @@
 """Model definitions for the home app."""
 
 from django.db import models
+from django.apps import apps
 from django import forms
 from wagtail.core.models import Page
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
+from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.core.blocks import TextBlock, StructBlock, StreamBlock, FieldBlock, CharBlock, RichTextBlock, RawHTMLBlock
 from wagtail.core.fields import StreamField
 from wagtail.admin.edit_handlers import FieldPanel
@@ -138,7 +139,28 @@ class HomePage(Page):  # pylint: disable=too-many-ancestors
     activities = models.PositiveIntegerField(default=1000000)
     organisations = models.PositiveIntegerField(default=700)
 
+    def get_context(self, request):
+        """Overwriting the default get_context page to serve descendant case study pages"""
+        CaseStudyPage = apps.get_model(app_label='about', model_name='CaseStudyPage')
+        case_studies = CaseStudyPage.objects.live().descendant_of(self).specific()
+        context = super(HomePage, self).get_context(request)
+        context['case_studies'] = case_studies
+        return context
+
     multilingual_field_panels = [
         FieldPanel("activities"),
         FieldPanel("organisations")
+    ]
+
+
+class StandardPage(AbstractContentPage):
+    """A standard content page for generic use, i.e. a Privacy page."""
+    FIXED_PAGE_TYPES = (
+        ("privacy", "Privacy"),
+        ("terms", "Terms and conditions")
+    )
+    fixed_page_type = models.CharField(max_length=7, choices=FIXED_PAGE_TYPES, null=True, blank=True)
+
+    multilingual_field_panels = [
+        FieldPanel('fixed_page_type'),
     ]
