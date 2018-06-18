@@ -10,9 +10,13 @@ from guidance_and_support.models import GuidanceAndSupportPage
 from news.models import NewsIndexPage, NewsCategory
 from wagtail_modeltranslation.contextlib import use_language
 from wagtail.core.templatetags.wagtailcore_tags import pageurl
+from django.contrib.humanize.templatetags.humanize import intcomma
 
 
 register = template.Library()
+
+
+register.filter('intcomma', intcomma)
 
 
 @register.simple_tag(takes_context=True)
