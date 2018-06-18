@@ -1,4 +1,8 @@
+import requests
+import json
+
 from django.db import models
+from django.conf import settings
 
 from wagtail.core.fields import StreamField
 from wagtail.core.models import Page
@@ -62,18 +66,37 @@ class GuidancePage(AbstractContentPage):
     subpage_types = []
 
     def get_context(self, request):
-        """Overwrite context to intercept POST requests to pages on this template and pass them to Zendesk API"""
+        """Overwrite context to intercept POST requests to pages on this template and pass them to Zendesk API
+
+        Validate with some sort of captcha."""
         context = super(GuidancePage, self).get_context(request)
+        form_success = "none"
+        response = None
+        request_obj = {}
 
         if request.method == 'POST':
-            attachment = request.FILES.get('file', None)
+            form_success = "failure"
             path = request.path
+            captcha = request.POST.get('captcha', 'off') == 'on'
             email = request.POST['email']
             query = request.POST['textarea']
             name = request.POST['name']
-            test_obj = {"path": path, "email": email, "query": query, "attachment": attachment, "name": name}
-            context["test_obj"] = test_obj
-            context['form_success'] = True
+            if captcha:
+                request_obj = {
+                    "request": {
+                        "anonymous_requester_email": email,
+                        "subject": "Request from {} on {}".format(name, path),
+                        "description": query,
+                        "funding": []
+                    }
+                }
+                response = requests.post("https://iati.zendesk.com/api/v2/requests.json", json=request_obj)
+                if response.status_code == 200:
+                    form_success = "success"
+
+            context['form_success'] = form_success
+            context['zendesk_response'] = response
+            context['request_obj'] = json.dumps(request_obj)
         return context
 
 

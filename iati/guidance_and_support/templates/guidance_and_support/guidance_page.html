@@ -85,9 +85,14 @@
 <div class="section">
   <div class="row">
     <h2 class="section__heading">Contact support</h2>
-    {% if form_success %}
-    {{test_obj}}
+    {% if form_success == "success" %}
+    {{ zendesk_response }}
+    {{ request_obj }}
       <p class="para para--typeset alert--success">Query successfully submitted. Our technical team will be in contact with you as soon as possible.</p>
+    {% elif form_success == "failure" %}
+    {{ zendesk_response }}
+    {{ request_obj }}
+      <p class="para para--typeset alert--error">Sorry, something went wrong submitting your query. Please try again later.</p>
     {% else %}
       <p class="para para--typeset">Please complete the form below and our team will be able to help you</p>
       <form class="form form--support" method="post" enctype="multipart/form-data">
@@ -114,9 +119,9 @@
             </div>
 
             <div class="form-field form-field--spaced">
-              <label class="form-label" for=file>Attachment</label>
+              <label class="form-label" for="captcha">I am not a robot</label>
               <div class="form-item-inline">
-                <input class="form-file" type="file" name="file">
+                <input type="checkbox" name="captcha" required>
               </div>
             </div>
           </div>
@@ -126,7 +131,7 @@
             <div class="form-field ">
 
               <label for="textarea" class="form-label ">Query</label>
-              <textarea id="textarea" class="form-item" name="textarea" placeholder="Your query..."></textarea>
+              <textarea id="textarea" class="form-item" name="textarea" placeholder="Your query..." required></textarea>
 
 
             </div>
