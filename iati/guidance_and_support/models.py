@@ -1,5 +1,4 @@
 import requests
-import json
 
 from django.db import models
 from django.conf import settings
@@ -71,8 +70,6 @@ class GuidancePage(AbstractContentPage):
         Validate with some sort of captcha."""
         context = super(GuidancePage, self).get_context(request)
         form_success = "none"
-        response = None
-        request_obj = {}
 
         if request.method == 'POST':
             form_success = "failure"
@@ -94,8 +91,6 @@ class GuidancePage(AbstractContentPage):
                     form_success = "success"
 
             context['form_success'] = form_success
-            context['zendesk_response'] = response
-            context['request_obj'] = json.dumps(request_obj)
         return context
 
 
