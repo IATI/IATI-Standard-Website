@@ -36,7 +36,6 @@ class TestIATIStandardPageExists():
     def test_IATI_Standard_page_exists(self, admin_browser):
         """Check there is an IATI Standard landing page."""
         self.create_IATI_Standard_page(admin_browser)
-        # import pdb; pdb.set_trace()
         self.view_live_page(admin_browser)
         assert admin_browser.title == 'IATI standard'
 # I want to be able to edit the header image of this page
