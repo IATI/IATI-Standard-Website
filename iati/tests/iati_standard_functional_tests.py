@@ -55,7 +55,15 @@ class TestIATIStandardPageisEditable():
         publish_changes(admin_browser)
         view_live_page(admin_browser)
         assert admin_browser.is_text_present('IATI Standard')
+
 # I want to be able to edit the excerpt of this page
+    def test_excerpt_can_be_edited(self, admin_browser):
+        """Check that the page excerpt can be edited in the CMS."""
+        admin_browser.find_by_text('IATI standard').click()
+        admin_browser.fill('excerpt_en', 'This is an excerpt.')
+        publish_changes(admin_browser)
+        view_live_page(admin_browser)
+        assert admin_browser.is_text_present('This is an excerpt.')
 # I want to be able to edit the header image of this page
 # I want to be able to add summary content to this page
 # I want to be directed to the appropriate section of the site for me
