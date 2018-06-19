@@ -1,7 +1,6 @@
 import requests
 
 from django.db import models
-from django.conf import settings
 
 from wagtail.core.fields import StreamField
 from wagtail.core.models import Page
