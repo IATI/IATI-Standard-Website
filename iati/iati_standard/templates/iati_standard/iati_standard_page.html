@@ -1,3 +1,20 @@
 {% extends "base.html" %}
 {% load wagtailcore_tags iati_tags %}
+
+{% block body_class %}body body--standard{% endblock %}
+{% block body_id %}body-standard{% endblock %}
+
+{% block content %}
+<div class="hero">
+  <div class="row">
+      <div class="hero__caption">
+          <h1 class="hero__heading">{{ page.heading }}</h1>
+          <p class="hero__subheading">IATI is a common format to share data on aid and development for better decision making and outcomes</p>
+      </div>
+      <div class="hero__emblem">
+          <img class="hero__emblem__mask" src="/assets/img/hero1.jpg" alt="alt tag">
+      </div>
+  </div>
+</div>
+{% endblock %}
 <span>This is a template.<span>
