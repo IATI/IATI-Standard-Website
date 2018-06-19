@@ -80,18 +80,17 @@ class GuidancePage(AbstractContentPage):
             captcha = request.POST.get('captcha', 'off') == 'on'
             email = request.POST['email']
             query = request.POST['textarea']
-            name = request.POST['name']
-            if captcha:
+            name = request.POST.get('name', 'Anonymous requester')
+            if captcha and email and query:
                 request_obj = {
                     "request": {
-                        "anonymous_requester_email": email,
-                        "subject": "Request from {} on {}".format(name, path),
-                        "description": query,
-                        "funding": []
+                        "requester": {"name": name, "email": email},
+                        "subject": "Automated request from {}".format(name),
+                        "comment": {"body": "A request was sent from {}.\n{}".format(path, query)}
                     }
                 }
                 response = requests.post("https://iati.zendesk.com/api/v2/requests.json", json=request_obj)
-                if response.status_code == 200:
+                if response.status_code == 201:
                     form_success = "success"
 
             context['form_success'] = form_success
