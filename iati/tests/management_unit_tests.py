@@ -18,8 +18,8 @@ def test_update_statistics():
         responses.add(responses.GET, ORGANISATION_URL,
                       json=json.load(json_file), status=200)
 
-    assert get_total_num_activities() == 1074796
-    assert get_total_num_publishers() == 769
+    assert get_total_num_activities() == 18031
+    assert get_total_num_publishers() == 5
 
 
 @responses.activate
