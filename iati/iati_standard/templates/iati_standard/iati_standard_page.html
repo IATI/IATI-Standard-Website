@@ -6,15 +6,7 @@
 
 {% block content %}
 <div class="hero">
-  <div class="row">
-      <div class="hero__caption">
-          <h1 class="hero__heading">{{ page.heading }}</h1>
-          <p class="hero__subheading">{{ page.excerpt }}</p>
-      </div>
-      <div class="hero__emblem">
-          <img class="hero__emblem__mask" src="/assets/img/hero1.jpg" alt="alt tag">
-      </div>
-  </div>
+  {% include "home/includes/hero_heading.html" %}
 </div>
 
 <div class="row">
