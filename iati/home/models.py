@@ -8,6 +8,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.core.blocks import TextBlock, StructBlock, StreamBlock, FieldBlock, CharBlock, RichTextBlock, RawHTMLBlock
 from wagtail.core.fields import StreamField
+from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.documents.blocks import DocumentChooserBlock
 
@@ -135,6 +136,9 @@ class HomePage(Page):  # pylint: disable=too-many-ancestors
     """Proof-of-concept model definition for the homepage."""
     translation_fields = []
 
+    activities = models.PositiveIntegerField(default=1000000)
+    organisations = models.PositiveIntegerField(default=700)
+
     def get_context(self, request):
         """Overwriting the default get_context page to serve descendant case study pages"""
         CaseStudyPage = apps.get_model(app_label='about', model_name='CaseStudyPage')
@@ -142,6 +146,11 @@ class HomePage(Page):  # pylint: disable=too-many-ancestors
         context = super(HomePage, self).get_context(request)
         context['case_studies'] = case_studies
         return context
+
+    multilingual_field_panels = [
+        FieldPanel("activities"),
+        FieldPanel("organisations")
+    ]
 
 
 class StandardPage(AbstractContentPage):

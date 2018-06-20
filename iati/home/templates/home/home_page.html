@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load wagtail_modeltranslation wagtailimages_tags %}
 
+{% load iati_tags %}
 {% block body_class %}body body--home{% endblock %}
 {% block body_id %}body-home{% endblock %}
 
@@ -33,12 +34,12 @@
             </div>
             <div class="stat stat--flex">
                 <div class="stat__body stat__body--center">
-                    <h2 class="stat__heading stat__heading--large">1,000,000</h2>
+                    <h2 class="stat__heading stat__heading--large">{{ page.activities|intcomma }}</h2>
                     <p class="stat__copy">Development and humanitarian activities published to the IATI Standard</p>
                 </div>
 
                 <div class="stat__body stat__body--center">
-                    <h2 class="stat__heading stat__heading--large">700</h2>
+                    <h2 class="stat__heading stat__heading--large">{{ page.organisations|intcomma }}</h2>
                     <p class="stat__copy">IATI publishers that contribute data for decision-making and accountability</p>
                 </div>
             </div>

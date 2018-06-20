@@ -15,6 +15,9 @@ import random
 import time
 
 
+TEST_DATA_DIR = settings.BASE_DIR + '/tests/data/'
+
+
 def prevent_alerts(admin_browser):
     """Stop the Wagtail CMS from sending beforeunload alerts.
 
