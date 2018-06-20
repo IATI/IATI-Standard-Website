@@ -42,7 +42,7 @@
           <li class="aside-m__list-item">
             <div class="aside-m__list-item-block"><i role="presentation" aria-hidden="true" class="ico ico--24 ico-calendar-ocean"></i> <span class="listing__metadata__date">{{ formatted_dates.part1 }}{% if not formatted_dates.part2_is_time %}&ndash;{{ formatted_dates.part2 }}{% endif %}</span></div>
           </li>
-          {% if formatted_dates.part2_is_time %}
+          {% if formatted_dates.part2_is_time and formatted_dates.part2 %}
           <li class="aside-m__list-item">
             <div class="aside-m__list-item-block">
               <i role="presentation" aria-hidden="true" class="ico ico--24 ico-time-ocean"></i>

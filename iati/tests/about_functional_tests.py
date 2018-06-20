@@ -4,6 +4,7 @@ TODO:
     Refactor most of these tests out into base functional tests.
 
 """
+import os
 from django.utils.text import slugify
 import pytest
 from base_functional_tests import TEST_DATA_DIR, click_obscured
@@ -254,6 +255,11 @@ class TestCaseStudyPage():
         """Create a Case Study Index page as a child of the About page."""
         create_about_child_page(admin_browser, CASE_STUDY_INDEX_PAGE['page_type'], self.CASE_STUDY_INDEX_PAGE_TITLE)
 
+    def test_no_case_studies_section_on_home(self, admin_browser):
+        """Before any case studies are published, test to see there is no Case studies section on the home page."""
+        admin_browser.visit(os.environ['LIVE_SERVER_URL'])
+        assert not admin_browser.is_text_present("Case studies")
+
     def test_can_create_case_study_page(self, admin_browser):
         """Check that a Case Study page can be created as a child of the Case Study Index page."""
         self.setup_case_study_index_page(admin_browser)
@@ -263,6 +269,11 @@ class TestCaseStudyPage():
         publish_page(admin_browser)
         view_live_page(admin_browser, CASE_STUDY_PAGE['title'])
         assert admin_browser.is_text_present(CASE_STUDY_PAGE['title'])
+
+    def test_case_studies_section_on_home(self, admin_browser):
+        """After one case study is published, check to see that the Case studies section has now appeared."""
+        admin_browser.visit(os.environ['LIVE_SERVER_URL'])
+        assert admin_browser.is_text_present("Case studies")
 
     def test_can_edit_case_study_page_heading(self, admin_browser):
         """Check that Case Study page headings can be edited."""

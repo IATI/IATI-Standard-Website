@@ -2,7 +2,7 @@ from django import template
 from django.conf import settings
 from django.utils import timezone
 from django.template.defaultfilters import date as _date
-from home.models import HomePage
+from home.models import HomePage, StandardPage
 from about.models import AboutPage
 from contact.models import ContactPage
 from events.models import EventIndexPage, EventType, FeaturedEvent
@@ -35,11 +35,18 @@ def default_page_url(context, default_page_name="home"):
 
     default_page = page_model_names[default_page_name].objects.live().first()
 
-    if default_page is None:
-        return ''
-    if not hasattr(context, 'request'):
+    if default_page is None or not hasattr(context, 'request'):
         return ''
     return default_page.get_url(context['request'])
+
+
+@register.simple_tag(takes_context=True)
+def standard_page_url(context, page_type):
+    """Return the relative url for other fixed pages based on the StandardPage."""
+    standard_page = StandardPage.objects.live().filter(fixed_page_type=page_type).first()
+    if standard_page is None or not hasattr(context, 'request'):
+        return ''
+    return standard_page.get_url(context['request'])
 
 
 @register.inclusion_tag("home/includes/translation_links.html", takes_context=True)
@@ -69,6 +76,7 @@ def twopartdate(date_start, date_end):
     """Takes two datetimes and determines whether to display start and end times, or start and end dates.
 
     If an end date exists, we can compare the two dates.
+    If the two datetimes are exactly the same, localize and print just the date.
     If the two dates are the same, localize the date for the first part and stringify the time range for the second.
     If the two dates are not the same, part 2 becomes the second date.
 
@@ -78,7 +86,10 @@ def twopartdate(date_start, date_end):
     part1 = _date(date_start, "DATE_FORMAT")
     en_dash = u'\u2013'
     if date_end:
-        if date_start.date() == date_end.date():
+        if date_start == date_end:
+            part2 = ""
+            part2_is_time = True
+        elif date_start.date() == date_end.date():
             part2 = "{0}{1}{2}".format(_date(date_start, "TIME_FORMAT"), en_dash, _date(date_end, "TIME_FORMAT"))
             part2_is_time = True
         else:
