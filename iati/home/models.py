@@ -158,7 +158,7 @@ class DefaultPageHeaderImageMixin(Page):
 
 class HomePage(DefaultPageHeaderImageMixin, AbstractBasePage):  # pylint: disable=too-many-ancestors
     """Proof-of-concept model definition for the homepage."""
-    
+
     translation_fields = []
 
     activities = models.PositiveIntegerField(default=1000000)
@@ -172,7 +172,7 @@ class HomePage(DefaultPageHeaderImageMixin, AbstractBasePage):  # pylint: disabl
         context['case_studies'] = case_studies
         return context
 
-    multilingual_field_panels = [
+    multilingual_field_panels = DefaultPageHeaderImageMixin.multilingual_field_panels + [
         FieldPanel("activities"),
         FieldPanel("organisations")
     ]
