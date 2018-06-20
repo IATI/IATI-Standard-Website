@@ -210,7 +210,12 @@ class TestDefaultPages():
         admin_browser.find_by_xpath('//em[contains(text(), "Upload")]').click()
 
     def publish_changes(self, admin_browser):
-        """Publish changes made in the CMS to the live page."""
+        """Publish changes made in the CMS to the live page.
+
+        TODO:
+            This is a duplicate function that will be refactored out at a later date.
+
+        """
         click_obscured(admin_browser, admin_browser.find_by_xpath('//div[@class="dropdown-toggle icon icon-arrow-up"]').first)
         click_obscured(admin_browser, admin_browser.find_by_text('Publish').first)
 
