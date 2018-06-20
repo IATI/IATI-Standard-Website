@@ -15,6 +15,7 @@ def create_IATI_Standard_page(admin_browser):
     admin_browser.find_by_text('Home').click()
     admin_browser.click_link_by_text('Add child page')
     admin_browser.click_link_by_text('Iati standard page')
+    admin_browser.find_by_text('English')[0].click()
     admin_browser.fill('title_en', 'IATI standard')
     publish_changes(admin_browser)
 
@@ -57,6 +58,7 @@ class TestIATIStandardPageisEditable():
 
         """
         admin_browser.find_by_text('IATI standard').click()
+        admin_browser.find_by_text('English')[0].click()
         admin_browser.fill('heading_en', 'IATI Standard')
         publish_changes(admin_browser)
         view_live_page(admin_browser)
@@ -71,6 +73,7 @@ class TestIATIStandardPageisEditable():
 
         """
         admin_browser.find_by_text('IATI standard').click()
+        admin_browser.find_by_text('English')[0].click()
         admin_browser.fill('excerpt_en', 'This is an excerpt.')
         publish_changes(admin_browser)
         view_live_page(admin_browser)
@@ -86,6 +89,7 @@ class TestIATIStandardPageisEditable():
 
         """
         admin_browser.find_by_text('IATI standard').click()
+        admin_browser.find_by_text('English')[0].click()
         element_count = admin_browser.find_by_id('content_editor_en-count').value
         scroll_to_bottom_of_page(admin_browser)
         reveal_content_editor(admin_browser, 'Intro', element_count)
