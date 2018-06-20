@@ -10,7 +10,8 @@ HOME_PAGE = {
     'excerpt': 'This is an excerpt for the Home page'
 }
 
-def publish_changes(self, admin_browser):
+
+def publish_changes(admin_browser):
     """Publish changes made in the CMS to the live page."""
     click_obscured(admin_browser, admin_browser.find_by_xpath('//div[@class="dropdown-toggle icon icon-arrow-up"]').first)
     click_obscured(admin_browser, admin_browser.find_by_text('Publish').first)
@@ -28,10 +29,10 @@ class TestHomePage():
 
     def view_live_page(self, admin_browser):
         """Visit the url of the 'View live' button so tests don't open a new window.
-        
+
         TODO:
           Refactor to module level once it can be determined which view_live_page function is more reliable.
-         
+
          """
         top_view_live_button = admin_browser.find_by_text('View live').first
         page_url = top_view_live_button._element.get_property('href')
@@ -94,7 +95,7 @@ def enter_page_content(admin_browser, tab_name, cms_field, cms_content):
     _ = elem[0].__dict__['_element'].location_once_scrolled_into_view
     admin_browser.fill(cms_field, cms_content)
 
-    
+
 def create_standard_home_page(admin_browser, page_type, fixed_page_type, page_title):
     """Create a child page in the CMS.
 

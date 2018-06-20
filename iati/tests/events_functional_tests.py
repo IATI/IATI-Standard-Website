@@ -223,8 +223,8 @@ class TestEventPages():
         self.upload_an_image(admin_browser)
         publish_page(admin_browser)
         view_live_page(admin_browser, EVENT_INDEX_PAGE['title'])
-        admin_browser.visit(admin_browser.url + "?past=1")
-        feed_image = admin_browser.find_by_xpath('//div[@class="listing__media"/img]').first
+        admin_browser.visit(admin_browser.url + "?past=1&page=2")
+        feed_image = admin_browser.find_by_xpath('//div[@class="listing__media"]/img').last
         assert 'pigeons' in feed_image.outer_html
 
     def upload_an_image(self, admin_browser):
@@ -252,18 +252,6 @@ class TestEventPages():
         admin_browser.visit(page_url)
         header_image = admin_browser.find_by_xpath('//div[@class="hero hero--image"]').first
         assert 'pigeons' in header_image.outer_html
-
-    def test_feed_image_shows_on_index_page(self, admin_browser):
-        """Check that when a user adds a feed image it also becomes the header image."""
-        admin_browser.visit(os.environ['LIVE_SERVER_URL'] + '/admin/pages/6/')
-        admin_browser.find_by_text(EVENT_PAGE['title']).click()
-        scroll_to_bottom_of_page(admin_browser)
-        self.upload_an_image(admin_browser)
-        publish_page(admin_browser)
-        view_live_page(admin_browser, EVENT_INDEX_PAGE['title'])
-        admin_browser.visit(admin_browser.url + "?page=2")
-        test_image = admin_browser.find_by_xpath('//div[@class="listing__media"]').first
-        assert 'pigeons' in test_image.outer_html
 
     def upload_an_image(self, admin_browser):
         """Upload an image in the CMS.
