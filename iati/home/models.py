@@ -8,7 +8,9 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.core.blocks import TextBlock, StructBlock, StreamBlock, FieldBlock, CharBlock, RichTextBlock, RawHTMLBlock
 from wagtail.core.fields import StreamField
+from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.images.blocks import ImageChooserBlock
+from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.documents.blocks import DocumentChooserBlock
 
 
@@ -131,9 +133,34 @@ class AbstractIndexPage(AbstractBasePage):
         abstract = True
 
 
-class HomePage(Page):  # pylint: disable=too-many-ancestors
+class DefaultPageHeaderImageMixin(Page):
+    """A mixin to add a Multilingual tab with the ability to edit the header image for default pages.
+
+    As only default pages require an editable header image this mixin allows selective inclusion alongside other inherited abstract page models.
+
+    """
+    header_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text='This is the image that will appear in the header banner at the top of the page. If no image is added a placeholder image will be used.'
+    )
+    multilingual_field_panels = [
+        ImageChooserPanel('header_image')
+    ]
+
+    class Meta(object):
+        """Meta data for the class"""
+        abstract = True
+
+
+class HomePage(DefaultPageHeaderImageMixin, AbstractBasePage):  # pylint: disable=too-many-ancestors
     """Proof-of-concept model definition for the homepage."""
-    translation_fields = []
+
+    activities = models.PositiveIntegerField(default=1000000)
+    organisations = models.PositiveIntegerField(default=700)
 
     def get_context(self, request):
         """Overwriting the default get_context page to serve descendant case study pages"""
@@ -142,6 +169,11 @@ class HomePage(Page):  # pylint: disable=too-many-ancestors
         context = super(HomePage, self).get_context(request)
         context['case_studies'] = case_studies
         return context
+
+    multilingual_field_panels = DefaultPageHeaderImageMixin.multilingual_field_panels + [
+        FieldPanel("activities"),
+        FieldPanel("organisations")
+    ]
 
 
 class StandardPage(AbstractContentPage):

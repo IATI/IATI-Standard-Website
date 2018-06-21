@@ -6,10 +6,10 @@ from wagtail.core.fields import StreamField
 from wagtail.core.models import Page
 from wagtail.images.edit_handlers import ImageChooserPanel
 
-from home.models import AbstractContentPage, AbstractIndexPage, IATIStreamBlock
+from home.models import AbstractContentPage, AbstractIndexPage, DefaultPageHeaderImageMixin, IATIStreamBlock
 
 
-class GuidanceAndSupportPage(AbstractContentPage):
+class GuidanceAndSupportPage(DefaultPageHeaderImageMixin, AbstractContentPage):
     """A base for the Guidance and Support page."""
     parent_page_types = ['home.HomePage']
     subpage_types = ['guidance_and_support.GuidanceGroupPage', 'guidance_and_support.KnowledgebaseIndexPage']

@@ -1,9 +1,14 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags iati_tags %}
+{% load wagtailcore_tags iati_tags wagtailimages_tags %}
 {% block body_class %}body body--news-single{% endblock %}
 {% block body_id %}body-news-single{% endblock %}
 {% block content %}
-<div class="hero hero--image" style="background-image: url(/static/assets/img/hero-news-article.jpg)">
+  {% if page.feed_image %}
+    {% image page.feed_image width-1400 as img %}
+    <div class="hero hero--image" style="background-image: url({{ img.url }})">
+  {% else %}
+    <div class="hero hero--minor">
+  {% endif %}
   <div class="row">
     <div class="max-meter">
       <div class="hero__caption">

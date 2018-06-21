@@ -8,10 +8,10 @@ from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel
 from wagtail.core.fields import StreamField
 from wagtail.snippets.models import register_snippet
 from wagtail.images.edit_handlers import ImageChooserPanel
-from home.models import AbstractIndexPage, AbstractContentPage, IATIStreamBlock
+from home.models import AbstractIndexPage, AbstractContentPage, DefaultPageHeaderImageMixin, IATIStreamBlock
 
 
-class EventIndexPage(AbstractIndexPage):
+class EventIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
     """A model for event index pages, the main event landing page."""
     parent_page_types = ['home.HomePage']
     subpage_types = ['events.EventPage']
@@ -55,6 +55,10 @@ class EventIndexPage(AbstractIndexPage):
         context['events'] = paginated_children
         context['past'] = past
         context['archive_years'] = archive_years
+        if past:
+            heading = context['page'].heading
+            past_heading = "Past " + heading if heading is not None else None
+            setattr(context['page'], "heading", past_heading)
         return context
 
 
@@ -72,7 +76,8 @@ class EventPage(AbstractContentPage):
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        related_name='+'
+        related_name='+',
+        help_text='This is the image that will be displayed for the event in the page header and on the Events and Past Events list pages.'
     )
 
     additional_information = StreamField(IATIStreamBlock(required=False), null=True, blank=True)

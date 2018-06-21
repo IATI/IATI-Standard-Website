@@ -1,19 +1,21 @@
 """A module of functional tests for base site functionality."""
 import os
+import string
+import random
+import time
 import pytest
 from conftest import LOCALHOST
 from django.core.management import call_command
 from django.apps import apps
-from django.utils.text import slugify
+# from ḍjango.utils.text import slugify
 from django.conf import settings
-from home.models import AbstractContentPage, IATIStreamBlock, HomePage
+# from home.models import AbstractContentPage, IATIStreamBlock, HomePage
 from wagtail.core.blocks import CharBlock, FieldBlock, RawHTMLBlock, RichTextBlock, StreamBlock, StructBlock, TextBlock
 from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.images.blocks import ImageChooserBlock
-import string
-import random
-import time
-import pdb
+
+
+TEST_DATA_DIR = settings.BASE_DIR + '/tests/data/'
 
 
 def prevent_alerts(admin_browser):
@@ -167,7 +169,7 @@ def fill_content_editor_block(admin_browser, base_block, text_field_class, conte
 
 
 @pytest.mark.django_db()
-class TestCreateDefaultPages():
+class TestCreateDefaultPagesManagementCommand():
     """A container for tests that check createdefaultpages command."""
 
     def test_create_default_pages_idempotence(self, browser):
@@ -181,21 +183,68 @@ class TestCreateDefaultPages():
         assert browser.url == valid_url
 
 
-class TestDefaultPagesExist():
+class TestDefaultPages():
     """A container for tests that the default pages exist."""
 
-    @pytest.mark.parametrize("page_name", [
-        'about',
-        'contact',
-        'events',
-        'news',
-        'guidance_and_support'
-    ])
+    DEFAULT_PAGES = [
+        {'name': 'Home', 'slug': ''},
+        {'name': 'About', 'slug': 'about'},
+        {'name': 'Contact', 'slug': 'contact'},
+        {'name': 'Events', 'slug': 'events'},
+        {'name': 'News', 'slug': 'news'},
+        {'name': 'Guidance and support', 'slug': 'guidance_and_support'}
+    ]
+
+    def navigate_to_edit_home_page(self, admin_browser, default_page_name):
+        """Navigate to the editable section of the CMS for the Home Page."""
+        admin_browser.click_link_by_text('Pages')
+        admin_browser.find_by_text('Home').click()
+        admin_browser.click_link_by_text(default_page_name)
+
+    def upload_an_image(self, admin_browser):
+        """Upload an image in the CMS."""
+        admin_browser.find_by_text('Choose an image').click()
+        click_obscured(admin_browser, admin_browser.find_by_text('Upload').first)
+        admin_browser.fill('title', 'Test image')
+        admin_browser.attach_file('file', TEST_DATA_DIR + 'pigeons.jpeg')
+        admin_browser.find_by_xpath('//em[contains(text(), "Upload")]').click()
+
+    def publish_changes(self, admin_browser):
+        """Publish changes made in the CMS to the live page.
+
+        TODO:
+            This is a duplicate function that will be refactored out at a later date.
+
+        """
+        click_obscured(admin_browser, admin_browser.find_by_xpath('//div[@class="dropdown-toggle icon icon-arrow-up"]').first)
+        click_obscured(admin_browser, admin_browser.find_by_text('Publish').first)
+
+    def view_live_page(self, admin_browser):
+        """Visit the url of the 'View live' button so tests don't open a new window"""
+        top_view_live_button = admin_browser.find_by_text('View live').first
+        page_url = top_view_live_button._element.get_property('href')
+        admin_browser.visit(page_url)
+
+    @pytest.mark.parametrize("page_name", DEFAULT_PAGES)
     def test_default_pages_exist(self, browser, page_name):
         """Check default pages exist."""
-        browser.visit(LOCALHOST + '{}'.format(page_name))
-        page_title = page_name.replace('_', ' ').capitalize()
+        browser.visit(LOCALHOST + '{}'.format(page_name['slug']))
+        if page_name['slug'] == '':
+            page_title = 'Home'
+        else:
+            page_title = page_name['slug'].replace('_', ' ').capitalize()
         assert browser.title == page_title
+
+    @pytest.mark.parametrize('default_page', DEFAULT_PAGES)
+    @pytest.mark.django_db
+    def test_header_image_is_editable(self, admin_browser, default_page):
+        """Check that the header image for the Home page can be edited in the CMS."""
+        self.navigate_to_edit_home_page(admin_browser, default_page['name'])
+        admin_browser.find_by_text('Multilingual').click()
+        self.upload_an_image(admin_browser)
+        self.publish_changes(admin_browser)
+        self.view_live_page(admin_browser)
+        assert admin_browser.is_element_present_by_xpath('//img[@alt="Test image"]')
 
 
 class TestTopMenu():

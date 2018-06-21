@@ -6,18 +6,8 @@
 
 {% block content %}
 <div class="hero">
-        <div class="row">
-            <div class="hero__caption">
-                <h1 class="hero__heading">{{ page.heading }}</h1>
-
-                    <p class="hero__excerpt"{% if page.excerpt %}>{{ page.excerpt }}{% else %} style="margin-bottom:5em;">{% endif %}</p>
-
-            </div>
-            <div class="hero__emblem">
-                <img class="hero__emblem__mask" src="/static/assets/img/hero1.jpg" alt="alt tag">
-            </div>
-        </div>
-    </div>
+  {% include "home/includes/hero_heading.html" %}
+</div>
 
 
     <div class="l-standard">
