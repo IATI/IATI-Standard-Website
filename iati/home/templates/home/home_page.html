@@ -6,21 +6,9 @@
 {% block body_id %}body-home{% endblock %}
 
 {% block content %}
-
-    <div class="hero">
-        <div class="row">
-            <div class="hero__caption">
-                <h1 class="hero__heading">International Aid Transparency Initiative</h1>
-
-                <p class="hero__subheading">IATI is a common format to share data on aid and development for better decision making and outcomes</p>
-            </div>
-            <div class="hero__emblem">
-                <img class="hero__emblem__mask" src="/static/assets/img/hero-home.jpg" alt="alt tag">
-            </div>
-        </div>
-    </div>
-
-
+<div class="hero">
+  {% include "home/includes/hero_heading.html" %}
+</div>
     <div class="row">
         <div class="stats stats--standout">
             <div class="stat-quote fill-sunset">

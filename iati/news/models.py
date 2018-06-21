@@ -7,10 +7,10 @@ from wagtail.core.models import Orderable
 from wagtail.snippets.models import register_snippet
 from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel, InlinePanel
 from wagtail.images.edit_handlers import ImageChooserPanel
-from home.models import AbstractIndexPage, AbstractContentPage
+from home.models import AbstractIndexPage, AbstractContentPage, DefaultPageHeaderImageMixin
 
 
-class NewsIndexPage(AbstractIndexPage):
+class NewsIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
     """A model for news index pages, the main news landing page."""
     parent_page_types = ['home.HomePage']
     subpage_types = ['news.NewsPage']

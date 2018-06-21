@@ -6,10 +6,10 @@ from wagtail.core.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.images.edit_handlers import ImageChooserPanel
 
-from home.models import AbstractContentPage, AbstractIndexPage, PullQuoteBlock
+from home.models import AbstractContentPage, AbstractIndexPage, DefaultPageHeaderImageMixin, PullQuoteBlock
 
 
-class AboutPage(AbstractContentPage):
+class AboutPage(DefaultPageHeaderImageMixin, AbstractContentPage):
     """A model for the About landing page."""
 
     parent_page_types = ['home.HomePage']
@@ -17,7 +17,7 @@ class AboutPage(AbstractContentPage):
 
     show_featured_events = models.BooleanField(default=False)
 
-    multilingual_field_panels = [
+    multilingual_field_panels = DefaultPageHeaderImageMixin.multilingual_field_panels + [
         FieldPanel('show_featured_events'),
     ]
 
@@ -34,7 +34,7 @@ class AboutSubPage(AbstractContentPage):
     ]
 
 
-class CaseStudyIndexPage(AbstractIndexPage):
+class CaseStudyIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
     """A model for the Case Studies Index page."""
 
     subpage_types = ['about.CaseStudyPage']
@@ -59,7 +59,7 @@ class CaseStudyIndexPage(AbstractIndexPage):
         context['case_studies'] = paginated_children
         return context
 
-    multilingual_field_panels = [
+    multilingual_field_panels = DefaultPageHeaderImageMixin.multilingual_field_panels + [
         FieldPanel('show_featured_events'),
     ]
 
@@ -76,7 +76,7 @@ class CaseStudyPage(AbstractContentPage):
         blank=True,
         on_delete=models.SET_NULL,
         related_name='+',
-        help_text='This is the image that will be displayed for the case study on the Case Studies list page.'
+        help_text='This is the image that will be displayed for the case study in the page header and on the Case Studies list page.'
     )
 
     multilingual_field_panels = [
@@ -111,6 +111,7 @@ class HistoryPage(AbstractContentPage):
 
 class PeopleProfileBlock(StreamBlock):
     """A block for People profiles."""
+
     section_heading = CharBlock(icon="title", classname="title")
     paragraph = CharBlock(icon="pilcrow")
     pullquote = PullQuoteBlock()

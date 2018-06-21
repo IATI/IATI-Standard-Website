@@ -6,7 +6,9 @@ from home.translation_helper import add_language_content_panels
 
 @register(HomePage)
 class HomePageTR(TranslationOptions):
-    pass
+    fields = HomePage.translation_fields
+
+
 add_language_content_panels(HomePage)
 
 
