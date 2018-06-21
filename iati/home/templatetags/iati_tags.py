@@ -8,6 +8,7 @@ from contact.models import ContactPage
 from events.models import EventIndexPage, EventType, FeaturedEvent
 from guidance_and_support.models import GuidanceAndSupportPage
 from news.models import NewsIndexPage, NewsCategory
+from iati_standard.models import IATIStandardPage
 from wagtail_modeltranslation.contextlib import use_language
 from wagtail.core.templatetags.wagtailcore_tags import pageurl
 from django.contrib.humanize.templatetags.humanize import intcomma
@@ -35,6 +36,7 @@ def default_page_url(context, default_page_name="home"):
         'events': EventIndexPage,
         'guidance_and_support': GuidanceAndSupportPage,
         'news': NewsIndexPage,
+        'iati_standard': IATIStandardPage
     }
 
     default_page = page_model_names[default_page_name].objects.live().first()
