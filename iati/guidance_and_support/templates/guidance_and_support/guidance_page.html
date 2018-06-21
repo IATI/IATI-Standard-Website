@@ -100,7 +100,7 @@
             <div class="form-field ">
 
               <label for="name" id="" class="form-label ">Name</label>
-              <input id="name" class="form-item" name="name" type="text" placeholder="Firstname Surname">
+              <input id="name" class="form-item" name="name" type="text" placeholder="Your name">
 
 
             </div>
@@ -114,10 +114,10 @@
 
             </div>
 
-            <div class="form-field form-field--spaced">
-              <label class="form-label" for="captcha">I am not a robot</label>
+            <div class="form-field form-field--spaced" style="display: none;">
+              <label class="form-label" for="captcha">Phone number</label>
               <div class="form-item-inline">
-                <input type="checkbox" name="captcha" required>
+                <input type="text" class="form-item" name="phone" tabindex="-1" autocomplete="off" placeholder="(XXX)-XXX-XXXX">
               </div>
             </div>
           </div>
@@ -127,7 +127,7 @@
             <div class="form-field ">
 
               <label for="textarea" class="form-label ">Query</label>
-              <textarea id="textarea" class="form-item" name="textarea" placeholder="Your query..." required></textarea>
+              <textarea id="textarea" class="form-item" name="textarea" placeholder="Your query" required></textarea>
 
 
             </div>

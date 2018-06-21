@@ -73,7 +73,7 @@ class GuidancePage(AbstractContentPage):
         if request.method == 'POST':
             form_success = "failure"
             path = request.path
-            captcha = request.POST.get('captcha', 'off') == 'on'
+            captcha = request.POST['phone'] is None
             email = request.POST['email']
             query = request.POST['textarea']
             name = request.POST.get('name', 'Anonymous requester')
