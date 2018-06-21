@@ -68,10 +68,11 @@ class GuidancePage(AbstractContentPage):
 
         Validate with some sort of captcha."""
         context = super(GuidancePage, self).get_context(request)
-        form_success = "none"
+        form_submitted = False
+        form_success = False
 
         if request.method == 'POST':
-            form_success = "failure"
+            form_submitted = True
             path = request.path
             captcha = request.POST['phone'] is None
             email = request.POST['email']
@@ -87,8 +88,9 @@ class GuidancePage(AbstractContentPage):
                 }
                 response = requests.post("https://iati.zendesk.com/api/v2/requests.json", json=request_obj)
                 if response.status_code == 201:
-                    form_success = "success"
+                    form_success = True
 
+            context['form_submitted'] = form_submitted
             context['form_success'] = form_success
         return context
 
