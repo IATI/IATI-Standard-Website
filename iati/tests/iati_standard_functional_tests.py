@@ -1,13 +1,27 @@
 """A module of functional tests for the IATI Standard page."""
 import pytest
 from tests.base_functional_tests import click_obscured
-from tests.about_functional_tests import reveal_content_editor, scroll_to_bottom_of_page
+from tests.about_functional_tests import reveal_content_editor, scroll_to_bottom_of_page, TEST_DATA_DIR
 
 
 def navigate_to_Home_cms_section(admin_browser):
     """Navigate to the Home section of the CMS."""
     admin_browser.click_link_by_text('Pages')
     admin_browser.find_by_text('Home').click()
+
+
+def upload_an_image(admin_browser):
+    """Upload an image in the CMS.
+
+    Note:
+        Duplicate of the same helper function in base_functional_tests.
+
+    """
+    admin_browser.find_by_text('Choose an image').click()
+    click_obscured(admin_browser, admin_browser.find_by_text('Upload').first)
+    admin_browser.fill('title', 'Test image')
+    admin_browser.attach_file('file', TEST_DATA_DIR + 'pigeons.jpeg')
+    admin_browser.find_by_xpath('//em[contains(text(), "Upload")]').click()
 
 
 def publish_changes(admin_browser):
@@ -29,12 +43,7 @@ class TestIATIStandardPageisEditable():
 
 # I want to be able to edit the header text of this page
     def test_header_can_be_edited(self, admin_browser):
-        """Check that the page header can be edited in the CMS.
-
-        TODO:
-            Add line to click multilingual tab once editable header image branch gets merged in.
-
-        """
+        """Check that the page header can be edited in the CMS."""
         navigate_to_Home_cms_section(admin_browser)
         admin_browser.find_by_text('IATI Standard').click()
         admin_browser.find_by_text('English')[0].click()
@@ -45,12 +54,7 @@ class TestIATIStandardPageisEditable():
 
 # I want to be able to edit the excerpt of this page
     def test_excerpt_can_be_edited(self, admin_browser):
-        """Check that the page excerpt can be edited in the CMS.
-
-        TODO:
-            Add line to click multilingual tab once editable header image branch gets merged in.
-
-        """
+        """Check that the page excerpt can be edited in the CMS."""
         navigate_to_Home_cms_section(admin_browser)
         admin_browser.find_by_text('IATI Standard').click()
         admin_browser.find_by_text('English')[0].click()
@@ -58,16 +62,10 @@ class TestIATIStandardPageisEditable():
         publish_changes(admin_browser)
         view_live_page(admin_browser)
         assert admin_browser.is_text_present('This is an excerpt.')
-# I want to be able to edit the header image of this page - awiting merging of PR#129
 
 # I want to be able to add summary content to this page
     def test_body_content_can_be_edited_simple(self, admin_browser):
-        """Check that basic text content from the content editor in the CMS shows on the page.
-
-        TODO:
-            Add line to click multilingual tab once editable header image branch gets merged in.
-
-        """
+        """Check that basic text content from the content editor in the CMS shows on the page."""
         navigate_to_Home_cms_section(admin_browser)
         admin_browser.find_by_text('IATI Standard').click()
         admin_browser.find_by_text('English')[0].click()
