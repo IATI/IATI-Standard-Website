@@ -89,7 +89,7 @@ class TestRedirectLinksWorking():
     def visit_iati_standard_page(self, admin_browser):
         """Go to the IATI Stadard page from the admin site."""
         navigate_to_Home_cms_section(admin_browser)
-        page_button = admin_browser.find_by_xpath('//a[@href="/en/iati_standard/"]').first
+        page_button = admin_browser.find_by_xpath('//a[@href="/en/iati-standard/"]').first
         page_link = page_button._element.get_property('href')
         self.LOCALHOST_LINK = page_link[:-15]
         admin_browser.visit(page_link)
