@@ -32,9 +32,9 @@ class Command(BaseCommand):
                 {"model": AboutPage, "title": "About", "slug": "about"},
                 {"model": ContactPage, "title": "Contact", "slug": "contact"},
                 {"model": EventIndexPage, "title": "Events", "slug": "events"},
-                {"model": GuidanceAndSupportPage, "title": "Guidance and support", "slug": "guidance_and_support"},
+                {"model": GuidanceAndSupportPage, "title": "Guidance and support", "slug": "guidance"},
                 {"model": NewsIndexPage, "title": "News", "slug": "news"},
-                {'model': IATIStandardPage, 'title': "IATI Standard", 'slug': 'iati_standard'}
+                {'model': IATIStandardPage, 'title': "IATI Standard", 'slug': 'iati-standard'}
             ]
 
             for default_page in default_pages:
