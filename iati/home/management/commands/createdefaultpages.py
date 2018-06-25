@@ -5,6 +5,7 @@ from contact.models import ContactPage
 from events.models import EventIndexPage
 from guidance_and_support.models import GuidanceAndSupportPage
 from news.models import NewsIndexPage
+from iati_standard.models import IATIStandardPage
 
 
 class Command(BaseCommand):
@@ -33,6 +34,7 @@ class Command(BaseCommand):
                 {"model": EventIndexPage, "title": "Events", "slug": "events"},
                 {"model": GuidanceAndSupportPage, "title": "Guidance and support", "slug": "guidance_and_support"},
                 {"model": NewsIndexPage, "title": "News", "slug": "news"},
+                {'model': IATIStandardPage, 'title': "IATI Standard", 'slug': 'iati_standard'}
             ]
 
             for default_page in default_pages:

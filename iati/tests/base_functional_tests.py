@@ -192,7 +192,8 @@ class TestDefaultPages():
         {'name': 'Contact', 'slug': 'contact'},
         {'name': 'Events', 'slug': 'events'},
         {'name': 'News', 'slug': 'news'},
-        {'name': 'Guidance and support', 'slug': 'guidance_and_support'}
+        {'name': 'Guidance and support', 'slug': 'guidance_and_support'},
+        {'name': 'IATI Standard', 'slug': 'iati_standard'}
     ]
 
     def navigate_to_edit_home_page(self, admin_browser, default_page_name):
@@ -231,6 +232,8 @@ class TestDefaultPages():
         browser.visit(LOCALHOST + '{}'.format(page_name['slug']))
         if page_name['slug'] == '':
             page_title = 'Home'
+        elif page_name['slug'] == 'iati_standard':
+            page_title = 'IATI Standard'
         else:
             page_title = page_name['slug'].replace('_', ' ').capitalize()
         assert browser.title == page_title

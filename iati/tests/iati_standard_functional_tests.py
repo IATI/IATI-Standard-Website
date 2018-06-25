@@ -4,20 +4,10 @@ from tests.base_functional_tests import click_obscured
 from tests.about_functional_tests import reveal_content_editor, scroll_to_bottom_of_page, TEST_DATA_DIR
 
 
-def create_IATI_Standard_page(admin_browser):
-    """Create an IATI Standard Page.
-
-    TODO:
-        Add line to click multilingual tab once editable header image branch gets merged in.
-
-    """
+def navigate_to_Home_cms_section(admin_browser):
+    """Navigate to the Home section of the CMS."""
     admin_browser.click_link_by_text('Pages')
     admin_browser.find_by_text('Home').click()
-    admin_browser.click_link_by_text('Add child page')
-    admin_browser.click_link_by_text('Iati standard page')
-    admin_browser.find_by_text('English')[0].click()
-    admin_browser.fill('title_en', 'IATI standard')
-    publish_changes(admin_browser)
 
 
 def upload_an_image(admin_browser):
@@ -47,18 +37,6 @@ def view_live_page(admin_browser):
     admin_browser.visit(page_url)
 
 
-# I want to visit the IATI Standard page
-@pytest.mark.django_db
-class TestIATIStandardPageExists():
-    """Container for tests that assert the existence of an IATI Standard page."""
-
-    def test_IATI_Standard_page_exists(self, admin_browser):
-        """Check there is an IATI Standard landing page."""
-        create_IATI_Standard_page(admin_browser)
-        view_live_page(admin_browser)
-        assert admin_browser.title == 'IATI standard'
-
-
 @pytest.mark.django_db
 class TestIATIStandardPageisEditable():
     """Container for tests that an IATI Standard page is editable in expected ways."""
@@ -66,7 +44,8 @@ class TestIATIStandardPageisEditable():
 # I want to be able to edit the header text of this page
     def test_header_can_be_edited(self, admin_browser):
         """Check that the page header can be edited in the CMS."""
-        admin_browser.find_by_text('IATI standard').click()
+        navigate_to_Home_cms_section(admin_browser)
+        admin_browser.find_by_text('IATI Standard').click()
         admin_browser.find_by_text('English')[0].click()
         admin_browser.fill('heading_en', 'IATI Standard')
         publish_changes(admin_browser)
@@ -76,26 +55,19 @@ class TestIATIStandardPageisEditable():
 # I want to be able to edit the excerpt of this page
     def test_excerpt_can_be_edited(self, admin_browser):
         """Check that the page excerpt can be edited in the CMS."""
-        admin_browser.find_by_text('IATI standard').click()
+        navigate_to_Home_cms_section(admin_browser)
+        admin_browser.find_by_text('IATI Standard').click()
         admin_browser.find_by_text('English')[0].click()
         admin_browser.fill('excerpt_en', 'This is an excerpt.')
         publish_changes(admin_browser)
         view_live_page(admin_browser)
         assert admin_browser.is_text_present('This is an excerpt.')
 
-# I want to be able to edit the header image of this page
-    def test_header_image_can_be_edited(self, admin_browser):
-        """Check that the image in the header can be edited in the CMS."""
-        admin_browser.find_by_text('IATI standard').click()
-        upload_an_image(admin_browser)
-        publish_changes(admin_browser)
-        view_live_page(admin_browser)
-        assert admin_browser.is_element_present_by_xpath('//img[@alt="Test image"]')
-
 # I want to be able to add summary content to this page
     def test_body_content_can_be_edited_simple(self, admin_browser):
         """Check that basic text content from the content editor in the CMS shows on the page."""
-        admin_browser.find_by_text('IATI standard').click()
+        navigate_to_Home_cms_section(admin_browser)
+        admin_browser.find_by_text('IATI Standard').click()
         admin_browser.find_by_text('English')[0].click()
         element_count = admin_browser.find_by_id('content_editor_en-count').value
         scroll_to_bottom_of_page(admin_browser)
@@ -116,7 +88,8 @@ class TestRedirectLinksWorking():
 
     def visit_iati_standard_page(self, admin_browser):
         """Go to the IATI Stadard page from the admin site."""
-        page_button = admin_browser.find_by_xpath('//a[@href="/en/iati-standard/"]').first
+        navigate_to_Home_cms_section(admin_browser)
+        page_button = admin_browser.find_by_xpath('//a[@href="/en/iati_standard/"]').first
         page_link = page_button._element.get_property('href')
         self.LOCALHOST_LINK = page_link[:-15]
         admin_browser.visit(page_link)
