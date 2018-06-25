@@ -13,6 +13,11 @@ from django.conf import settings
 from wagtail.core.blocks import CharBlock, FieldBlock, RawHTMLBlock, RichTextBlock, StreamBlock, StructBlock, TextBlock
 from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.images.blocks import ImageChooserBlock
+from home.management.commands.createdefaultpages import DEFAULT_PAGES
+from home.models import HomePage
+
+
+DEFAULT_PAGES = DEFAULT_PAGES + [{'title': 'Home', 'slug': '', 'model': HomePage}]
 
 
 TEST_DATA_DIR = settings.BASE_DIR + '/tests/data/'
@@ -186,17 +191,6 @@ class TestCreateDefaultPagesManagementCommand():
 class TestDefaultPages():
     """A container for tests that the default pages exist."""
 
-    DEFAULT_PAGES = [
-        {'name': 'Home', 'slug': ''},
-        {'name': 'About', 'slug': 'about'},
-        {'name': 'Contact', 'slug': 'contact'},
-        {'name': 'Events', 'slug': 'events'},
-        {'name': 'News', 'slug': 'news'},
-        {'name': 'Guidance and support', 'slug': 'guidance'},
-        {'name': 'IATI Standard', 'slug': 'iati-standard'},
-        {'name': 'Using IATI Data', 'slug': 'using-data'}
-    ]
-
     def navigate_to_edit_home_page(self, admin_browser, default_page_name):
         """Navigate to the editable section of the CMS for the Home Page."""
         admin_browser.click_link_by_text('Pages')
@@ -231,19 +225,13 @@ class TestDefaultPages():
     def test_default_pages_exist(self, browser, page_name):
         """Check default pages exist."""
         browser.visit(LOCALHOST + '{}'.format(page_name['slug']))
-        if page_name['slug'] == '':
-            page_title = 'Home'
-        elif page_name['slug'] == 'iati_standard':
-            page_title = 'IATI Standard'
-        else:
-            page_title = page_name['slug'].replace('_', ' ').capitalize()
-        assert browser.title == page_title
+        assert browser.title == page_name['title']
 
     @pytest.mark.parametrize('default_page', DEFAULT_PAGES)
     @pytest.mark.django_db
     def test_header_image_is_editable(self, admin_browser, default_page):
         """Check that the header image for the Home page can be edited in the CMS."""
-        self.navigate_to_edit_home_page(admin_browser, default_page['name'])
+        self.navigate_to_edit_home_page(admin_browser, default_page['title'])
         admin_browser.find_by_text('Multilingual').click()
         self.upload_an_image(admin_browser)
         self.publish_changes(admin_browser)
