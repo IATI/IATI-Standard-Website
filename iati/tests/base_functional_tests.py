@@ -193,7 +193,8 @@ class TestDefaultPages():
         {'name': 'Events', 'slug': 'events'},
         {'name': 'News', 'slug': 'news'},
         {'name': 'Guidance and support', 'slug': 'guidance'},
-        {'name': 'IATI Standard', 'slug': 'iati-standard'}
+        {'name': 'IATI Standard', 'slug': 'iati-standard'},
+        {'name': 'Using IATI Data', 'slug': 'using-data'}
     ]
 
     def navigate_to_edit_home_page(self, admin_browser, default_page_name):

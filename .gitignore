@@ -123,6 +123,8 @@ iati/news/migrations/*
 !iati/news/migrations/__init__.py
 iati/iati_standard/migrations/*
 !iati/iati_standard/migrations/__init__.py
+iati/using_data/migrations/*
+!iati/using_data/migrations_/__init__.py
 
 # Ignore media
 media/
