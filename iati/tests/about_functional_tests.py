@@ -7,7 +7,7 @@ TODO:
 import os
 from django.utils.text import slugify
 import pytest
-from base_functional_tests import TEST_DATA_DIR, click_obscured
+from base_functional_tests import TEST_DATA_DIR, click_obscured, view_live_page
 
 
 ABOUT_PAGE = {
@@ -101,18 +101,6 @@ def create_about_child_page(admin_browser, page_type, page_title):
     enter_page_content(admin_browser, 'English', 'title_en', page_title)
     enter_page_content(admin_browser, 'Promote', 'slug_en', slugify(page_title))
     publish_page(admin_browser)
-
-
-def view_live_page(admin_browser, page_title):
-    """Navigate to the published page on the site.
-
-    Args:
-        page_title (str): The page title text you are expecting on the live page.
-
-    """
-    top_view_live_button = admin_browser.find_by_text('View live').first
-    page_url = top_view_live_button._element.get_property('href')
-    admin_browser.visit(page_url)
 
 
 def edit_page_header(admin_browser, page_title, cms_field, cms_content):
