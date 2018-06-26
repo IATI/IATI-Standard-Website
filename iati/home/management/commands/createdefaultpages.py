@@ -5,6 +5,19 @@ from contact.models import ContactPage
 from events.models import EventIndexPage
 from guidance_and_support.models import GuidanceAndSupportPage
 from news.models import NewsIndexPage
+from iati_standard.models import IATIStandardPage
+from using_data.models import UsingDataPage
+
+
+DEFAULT_PAGES = [
+    {"model": AboutPage, "title": "About", "slug": "about"},
+    {"model": ContactPage, "title": "Contact", "slug": "contact"},
+    {"model": EventIndexPage, "title": "Events", "slug": "events"},
+    {"model": GuidanceAndSupportPage, "title": "Guidance and support", "slug": "guidance"},
+    {"model": NewsIndexPage, "title": "News", "slug": "news"},
+    {'model': IATIStandardPage, 'title': "IATI Standard", 'slug': 'iati-standard'},
+    {'model': UsingDataPage, 'title': "Using IATI data", 'slug': 'using-data'}
+]
 
 
 class Command(BaseCommand):
@@ -27,15 +40,7 @@ class Command(BaseCommand):
         home_page = HomePage.objects.live().first()
         if home_page is not None:
 
-            default_pages = [
-                {"model": AboutPage, "title": "About", "slug": "about"},
-                {"model": ContactPage, "title": "Contact", "slug": "contact"},
-                {"model": EventIndexPage, "title": "Events", "slug": "events"},
-                {"model": GuidanceAndSupportPage, "title": "Guidance and support", "slug": "guidance_and_support"},
-                {"model": NewsIndexPage, "title": "News", "slug": "news"},
-            ]
-
-            for default_page in default_pages:
+            for default_page in DEFAULT_PAGES:
                 default_page_instance = default_page["model"].objects.live().first()
                 if default_page_instance is None:
                     missing_pages_detected = True
@@ -53,7 +58,7 @@ class Command(BaseCommand):
                 )
                 home_page = home_page_queryset.first()
                 home_page.save()
-                for default_page in default_pages:
+                for default_page in DEFAULT_PAGES:
                     default_page_instance = default_page["model"].objects.live().first()
                     if default_page_instance is None:
                         msg = 'No {} page! Creating about page...'.format(default_page["title"])
