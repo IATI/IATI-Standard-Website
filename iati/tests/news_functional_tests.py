@@ -7,7 +7,8 @@ TODO:
 import os
 import pytest
 from django.utils.text import slugify
-from base_functional_tests import find_and_click_add_button, find_and_click_toggle_button, fill_content_editor_block
+from base_functional_tests import find_and_click_add_button, find_and_click_toggle_button, fill_content_editor_block, click_obscured
+from iati.urls import ADMIN_SLUG
 
 
 NEWS_INDEX_PAGE = {
@@ -181,9 +182,9 @@ class TestNewsIndexChildPages():
 
     def test_news_category_filter(self, admin_browser):
         """Create a news category, assign it to 4 child pages, and test param"""
-        admin_browser.visit(os.environ['LIVE_SERVER_URL'] + '/admin/')
+        admin_browser.visit(os.environ['LIVE_SERVER_URL'] + '/{}/'.format(ADMIN_SLUG))
         admin_browser.click_link_by_text("Snippets")
-        admin_browser.click_link_by_partial_text("News categories")
+        click_obscured(admin_browser, admin_browser.find_by_xpath("//a[contains(normalize-space(.), 'News categories')]")[0])
         admin_browser.click_link_by_text("Add news category")
         admin_browser.fill("name_en", TEST_CATEGORY)
         admin_browser.find_by_css(".action-save").click()

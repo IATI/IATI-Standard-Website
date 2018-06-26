@@ -15,6 +15,7 @@ from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.images.blocks import ImageChooserBlock
 from home.management.commands.createdefaultpages import DEFAULT_PAGES
 from home.models import HomePage
+from iati.urls import ADMIN_SLUG
 
 
 DEFAULT_PAGES = DEFAULT_PAGES + [{'title': 'Home', 'slug': '', 'model': HomePage}]
@@ -473,7 +474,7 @@ class StreamFieldFiller():
 #         Fill in random content for every field and test to see if it exists on the template.
 #         """
 #         homepage = HomePage.objects.first()
-#         admin_browser.visit(os.environ["LIVE_SERVER_URL"]+'/admin/pages/{}/'.format(homepage.pk))
+#         admin_browser.visit(os.environ["LIVE_SERVER_URL"]+'/{}/pages/{}/'.format(ADMIN_SLUG, homepage.pk))
 #         admin_browser.click_link_by_text('Add child page')
 #         verbose_page_name = content_model.get_verbose_name()
 #         if content_model.can_create_at(homepage):

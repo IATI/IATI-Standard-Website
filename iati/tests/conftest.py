@@ -4,6 +4,7 @@ from splinter import Browser
 from django.core.management import call_command
 from iati.settings.dev import DJANGO_ADMIN_USER, DJANGO_ADMIN_PASS
 from django.contrib.auth.models import User
+from iati.urls import ADMIN_SLUG
 
 
 LOCALHOST = 'http://127.0.0.1:8000/'
@@ -23,7 +24,7 @@ def multibrowser(request):
 def admin_browser(browser):
     """Create a browser that is logged in to the CMS."""
     browser.driver.set_speed(0.1)
-    admin_page = os.environ['LIVE_SERVER_URL'] + '/admin/'
+    admin_page = os.environ['LIVE_SERVER_URL'] + '/{}/'.format(ADMIN_SLUG)
     browser.visit(admin_page)
     browser.fill('username', DJANGO_ADMIN_USER)
     browser.fill('password', DJANGO_ADMIN_PASS)

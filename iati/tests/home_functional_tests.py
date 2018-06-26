@@ -3,6 +3,7 @@ import os
 import pytest
 from django.utils.text import slugify
 from tests.base_functional_tests import click_obscured
+from iati.urls import ADMIN_SLUG
 
 HOME_PAGE = {
     'title': 'Home',
@@ -105,7 +106,7 @@ def create_standard_home_page(admin_browser, page_type, fixed_page_type, page_ti
         page_title (str): The title of the page you are editing.
 
     """
-    admin_browser.visit(os.environ['LIVE_SERVER_URL'] + "/admin/pages/3/")
+    admin_browser.visit(os.environ['LIVE_SERVER_URL'] + "/{}/pages/3/".format(ADMIN_SLUG))
     admin_browser.find_by_text('Add child page').click()
     admin_browser.find_by_text(page_type).click()
     dropdown = admin_browser.find_by_id("id_fixed_page_type")[0]
