@@ -13,9 +13,13 @@ from wagtail.documents import urls as wagtaildocs_urls
 from search import views as search_views
 from iati.activate_languages import i18n_patterns  # For internationalization
 
+
+ADMIN_SLUG = "cms"
+
+
 urlpatterns = [  # pylint: disable=invalid-name
-    url(r'^django-admin/', admin.site.urls),
-    url(r'^admin/', include(wagtailadmin_urls)),
+    url(r'^django-{}/'.format(ADMIN_SLUG), admin.site.urls),
+    url(r'^{}/'.format(ADMIN_SLUG), include(wagtailadmin_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
 ]
 
