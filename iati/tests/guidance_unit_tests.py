@@ -13,7 +13,18 @@ LEGITIMATE_USER.POST = {
     'textarea': 'A very serious matter.',
     'name': 'A legitimate user'
 }
-LEGITIMATE_USER.expected_output = {'request': {'requester': {'name': 'A legitimate user', 'email': 'test@user.com'}, 'comment': {'body': 'A request was sent from /en/a-test-path.\nA very serious matter.'}, 'subject': 'Automated request from A legitimate user'}}
+LEGITIMATE_USER.expected_output = {
+    'request': {
+        'requester': {
+            'name': 'A legitimate user',
+            'email': 'test@user.com'
+        },
+        'comment': {
+            'body': 'A request was sent from /en/a-test-path.\nA very serious matter.'
+        },
+        'subject': 'Automated request from A legitimate user'
+    }
+}
 
 
 SPAM_BOT = HttpRequest()
