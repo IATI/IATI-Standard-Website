@@ -6,6 +6,7 @@ from events.models import EventIndexPage
 from guidance_and_support.models import GuidanceAndSupportPage
 from news.models import NewsIndexPage
 from iati_standard.models import IATIStandardPage
+from using_data.models import UsingDataPage
 
 
 DEFAULT_PAGES = [
@@ -14,7 +15,8 @@ DEFAULT_PAGES = [
     {"model": EventIndexPage, "title": "Events", "slug": "events"},
     {"model": GuidanceAndSupportPage, "title": "Guidance and support", "slug": "guidance"},
     {"model": NewsIndexPage, "title": "News", "slug": "news"},
-    {'model': IATIStandardPage, 'title': "IATI Standard", 'slug': 'iati-standard'}
+    {'model': IATIStandardPage, 'title': "IATI Standard", 'slug': 'iati-standard'},
+    {'model': UsingDataPage, 'title': "Using IATI data", 'slug': 'using-data'}
 ]
 
 
