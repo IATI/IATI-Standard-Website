@@ -64,7 +64,7 @@
 				{% endwith %}
 			</li>
 		</ul>
-		<p class="listing__excerpt">{{ event.excerpt }}</p>
+		<p class="listing__excerpt">{{ event.excerpt|default:"" }}</p>
 		<a href="{% slugurl_trans event.slug %}" class="button">More details</a>
 	</div>
 </article>
