@@ -7,6 +7,7 @@ from wagtail.core.models import Page
 from wagtail.images.edit_handlers import ImageChooserPanel
 
 from home.models import AbstractContentPage, AbstractIndexPage, DefaultPageHeaderImageMixin, IATIStreamBlock
+from .zendeskhelper import generate_ticket
 
 
 class GuidanceAndSupportPage(DefaultPageHeaderImageMixin, AbstractContentPage):
@@ -73,23 +74,11 @@ class GuidancePage(AbstractContentPage):
 
         if request.method == 'POST':
             form_submitted = True
-            path = request.path
-            captcha = request.POST['phone'] is None
-            email = request.POST['email']
-            query = request.POST['textarea']
-            name = request.POST.get('name', 'Anonymous requester')
-            if captcha and email and query:
-                request_obj = {
-                    "request": {
-                        "requester": {"name": name, "email": email},
-                        "subject": "Automated request from {}".format(name),
-                        "comment": {"body": "A request was sent from {}.\n{}".format(path, query)}
-                    }
-                }
-                response = requests.post("https://iati.zendesk.com/api/v2/requests.json", json=request_obj)
+            ticket = generate_ticket(request)
+            if ticket:
+                response = requests.post("https://iati.zendesk.com/api/v2/requests.json", json=ticket)
                 if response.status_code == 201:
                     form_success = True
-
             context['form_submitted'] = form_submitted
             context['form_success'] = form_success
         return context
