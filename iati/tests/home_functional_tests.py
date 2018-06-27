@@ -2,8 +2,9 @@
 import os
 import pytest
 from django.utils.text import slugify
-from tests.base_functional_tests import click_obscured
+from tests.base_functional_tests import click_obscured, view_live_page
 from iati.urls import ADMIN_SLUG
+
 
 HOME_PAGE = {
     'title': 'Home',
@@ -28,17 +29,6 @@ class TestHomePage():
         admin_browser.find_by_xpath('//h3').find_by_text('Home').click()
         admin_browser.click_link_by_text('Home')
 
-    def view_live_page(self, admin_browser):
-        """Visit the url of the 'View live' button so tests don't open a new window.
-
-        TODO:
-          Refactor to module level once it can be determined which view_live_page function is more reliable.
-
-         """
-        top_view_live_button = admin_browser.find_by_text('View live').first
-        page_url = top_view_live_button._element.get_property('href')
-        admin_browser.visit(page_url)
-
     def test_can_edit_home_page_heading(self, admin_browser):
         """Check that the Home page heading can be edited."""
         self.navigate_to_edit_home_page(admin_browser)
@@ -48,7 +38,7 @@ class TestHomePage():
         admin_browser.fill('heading_en', HOME_PAGE['heading'])
         # Publish new page heading
         publish_changes(admin_browser)
-        self.view_live_page(admin_browser)
+        view_live_page(admin_browser, HOME_PAGE['title'])
         assert admin_browser.find_by_text(HOME_PAGE['heading'])
 
     def test_can_edit_home_page_excerpt(self, admin_browser):
@@ -60,7 +50,7 @@ class TestHomePage():
         admin_browser.fill('excerpt_en', HOME_PAGE['excerpt'])
         # Publish new page excerpt
         publish_changes(admin_browser)
-        self.view_live_page(admin_browser)
+        view_live_page(admin_browser, HOME_PAGE['title'])
         assert admin_browser.find_by_text(HOME_PAGE['excerpt'])
 
 
@@ -114,18 +104,6 @@ def create_standard_home_page(admin_browser, page_type, fixed_page_type, page_ti
     enter_page_content(admin_browser, 'English', 'title_en', page_title)
     enter_page_content(admin_browser, 'Promote', 'slug_en', slugify(page_title))
     publish_changes(admin_browser)
-
-
-def view_live_page(admin_browser, page_title):
-    """Navigate to the published page on the site.
-
-    Args:
-        page_title (str): The page title text you are expecting on the live page.
-
-    """
-    button_links = admin_browser.find_by_xpath('//a[@title="View live version of \'{}\'"]'.format(page_title))
-    href = button_links[0].__dict__['_element'].get_property('href')
-    admin_browser.visit(href)
 
 
 @pytest.mark.django_db

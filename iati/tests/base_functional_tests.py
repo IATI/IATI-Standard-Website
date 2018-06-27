@@ -24,6 +24,18 @@ DEFAULT_PAGES = DEFAULT_PAGES + [{'title': 'Home', 'slug': '', 'model': HomePage
 TEST_DATA_DIR = settings.BASE_DIR + '/tests/data/'
 
 
+def view_live_page(admin_browser, page_title):
+    """Navigate to the published page on the site.
+
+    Args:
+        page_title (str): The page title text you are expecting on the live page.
+
+    """
+    button_links = admin_browser.find_by_xpath('//a[@title="View live version of \'{}\'"]'.format(page_title))
+    href = button_links[0].__dict__['_element'].get_property('href')
+    admin_browser.visit(href)
+
+
 def prevent_alerts(admin_browser):
     """Stop the Wagtail CMS from sending beforeunload alerts.
 
@@ -216,12 +228,6 @@ class TestDefaultPages():
         click_obscured(admin_browser, admin_browser.find_by_xpath('//div[@class="dropdown-toggle icon icon-arrow-up"]').first)
         click_obscured(admin_browser, admin_browser.find_by_text('Publish').first)
 
-    def view_live_page(self, admin_browser):
-        """Visit the url of the 'View live' button so tests don't open a new window"""
-        top_view_live_button = admin_browser.find_by_text('View live').first
-        page_url = top_view_live_button._element.get_property('href')
-        admin_browser.visit(page_url)
-
     @pytest.mark.parametrize("page_name", DEFAULT_PAGES)
     def test_default_pages_exist(self, browser, page_name):
         """Check default pages exist."""
@@ -236,7 +242,7 @@ class TestDefaultPages():
         admin_browser.find_by_text('Multilingual').click()
         self.upload_an_image(admin_browser)
         self.publish_changes(admin_browser)
-        self.view_live_page(admin_browser)
+        view_live_page(admin_browser, default_page['title'])
         assert admin_browser.is_element_present_by_xpath('//img[@alt="Test image"]')
 
 
