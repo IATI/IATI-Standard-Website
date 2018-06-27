@@ -1,7 +1,7 @@
 """A module of functional tests for the IATI Standard page."""
 import pytest
 from tests.base_functional_tests import click_obscured
-from tests.about_functional_tests import reveal_content_editor, scroll_to_bottom_of_page, TEST_DATA_DIR
+from tests.about_functional_tests import reveal_content_editor, scroll_to_bottom_of_page, TEST_DATA_DIR, view_live_page
 
 
 def navigate_to_Home_cms_section(admin_browser):
@@ -30,13 +30,6 @@ def publish_changes(admin_browser):
     click_obscured(admin_browser, admin_browser.find_by_text('Publish').first)
 
 
-def view_live_page(admin_browser):
-    """Visit the url of the 'View live' button so tests don't open a new window"""
-    top_view_live_button = admin_browser.find_by_text('View live').first
-    page_url = top_view_live_button._element.get_property('href')
-    admin_browser.visit(page_url)
-
-
 @pytest.mark.django_db
 class TestIATIStandardPageisEditable():
     """Container for tests that an IATI Standard page is editable in expected ways."""
@@ -49,7 +42,7 @@ class TestIATIStandardPageisEditable():
         admin_browser.find_by_text('English')[0].click()
         admin_browser.fill('heading_en', 'IATI Standard')
         publish_changes(admin_browser)
-        view_live_page(admin_browser)
+        view_live_page(admin_browser, 'IATI Standard')
         assert admin_browser.is_text_present('IATI Standard')
 
 # I want to be able to edit the excerpt of this page
@@ -60,7 +53,7 @@ class TestIATIStandardPageisEditable():
         admin_browser.find_by_text('English')[0].click()
         admin_browser.fill('excerpt_en', 'This is an excerpt.')
         publish_changes(admin_browser)
-        view_live_page(admin_browser)
+        view_live_page(admin_browser, 'IATI Standard')
         assert admin_browser.is_text_present('This is an excerpt.')
 
 # I want to be able to add summary content to this page
@@ -75,7 +68,7 @@ class TestIATIStandardPageisEditable():
         admin_browser.find_by_text('Intro')[int(element_count)].click()
         admin_browser.find_by_xpath('//div[@class="notranslate public-DraftEditor-content"]').fill('This is some content.')
         publish_changes(admin_browser)
-        view_live_page(admin_browser)
+        view_live_page(admin_browser, 'IATI Standard')
         assert admin_browser.is_text_present('This is some content.')
 
 
