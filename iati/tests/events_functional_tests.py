@@ -7,7 +7,7 @@ TODO:
 import os
 import pytest
 from django.utils.text import slugify
-from base_functional_tests import click_obscured, find_and_click_add_button, find_and_click_toggle_button, fill_content_editor_block, TEST_DATA_DIR
+from base_functional_tests import click_obscured, find_and_click_add_button, find_and_click_toggle_button, fill_content_editor_block, TEST_DATA_DIR, view_live_page
 from iati.urls import ADMIN_SLUG
 
 
