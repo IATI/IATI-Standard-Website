@@ -4,10 +4,9 @@ TODO:
     Refactor most of these tests out into base functional tests.
 
 """
-import os
 from django.utils.text import slugify
 import pytest
-from base_functional_tests import TEST_DATA_DIR, click_obscured, view_live_page
+from base_functional_tests import click_obscured, view_live_page
 
 
 USING_DATA_PAGE = {
@@ -21,10 +20,6 @@ ABOUT_SUB_PAGE = {
     'heading': 'Test Sub Page',
     'excerpt': 'This is an excerpt for an About Sub page'
 }
-
-H2 = {'content': 'H2 heading', 'button': 'H2', 'id': 'content_editor_en-{}-value'}
-H3 = {'content': 'H3 heading', 'button': 'H3', 'id': 'content_editor_en-{}-value'}
-H4 = {'content': 'H4 heading', 'button': 'H4', 'id': 'content_editor_en-{}-value'}
 
 
 def navigate_to_default_page_cms_section(admin_browser, default_page_title):
@@ -97,28 +92,6 @@ def edit_page_header(admin_browser, page_title, cms_field, cms_content):
     view_live_page(admin_browser, page_title)
 
 
-def scroll_to_bottom_of_page(admin_browser):
-    """Scroll to the bottom of a page."""
-    admin_browser.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-
-
-def reveal_content_editor(admin_browser, button, element_count):
-    """Open content editor if it is not already in view.
-
-    Args:
-        button (str): The displayed text name of the button you want to click.
-        element_count (str): The element counter value of the content editor Streamfield block.
-
-    TODO:
-        Decide whether on convert element_count to int on assignment of variable.
-
-    """
-    if not admin_browser.find_by_text(button).visible:
-        admin_browser.find_by_xpath('//div[@id="content_editor_en-{}-appendmenu"]/a'.format(int(element_count) - 1)).mouse_over()
-        admin_browser.find_by_xpath('//div[@id="content_editor_en-{}-appendmenu"]/a'.format(int(element_count) - 1)).click()
-        scroll_to_bottom_of_page(admin_browser)
-
-
 @pytest.mark.django_db
 class TestUsingDataPage():
     """A container for tests to check functionality of Using data pages and child pages."""
@@ -133,24 +106,6 @@ class TestUsingDataPage():
         """Check that an existing Using data page excerpt can be edited."""
         edit_page_header(admin_browser, USING_DATA_PAGE['title'], 'excerpt_en', USING_DATA_PAGE['excerpt'])
         assert admin_browser.find_by_text(USING_DATA_PAGE['excerpt'])
-
-    @pytest.mark.parametrize('header', [
-        H2,
-        H3,
-        H4
-    ])
-    def test_can_edit_using_data_page_with_header_text(self, admin_browser, header):
-        """Check that an existing Using data page content editor can add a header."""
-        admin_browser.find_by_text('Using IATI data').click()
-        admin_browser.find_by_text('English').click()
-        element_count = admin_browser.find_by_id('content_editor_en-count').value
-        scroll_to_bottom_of_page(admin_browser)
-        reveal_content_editor(admin_browser, header['button'], element_count)
-        admin_browser.find_by_text(header['button'])[int(element_count)].click()
-        admin_browser.find_by_id(header['id'].format(element_count)).fill(header['content'])
-        publish_page(admin_browser)
-        view_live_page(admin_browser, 'Using IATI data')
-        assert admin_browser.is_text_present(header['content'])
 
 
 @pytest.mark.django_db
@@ -176,22 +131,3 @@ class TestUsingDataChildPage():
         child_page = ABOUT_SUB_PAGE
         edit_page_header(admin_browser, child_page['title'], 'excerpt_en', child_page['excerpt'])
         assert admin_browser.find_by_text(child_page['excerpt'])
-
-    @pytest.mark.parametrize('header', [
-        H2,
-        H3,
-        H4
-    ])
-    def test_can_edit_using_data_child_page_with_header_text(self, admin_browser, header):
-        """Check that an Using data child page content editor can add a header."""
-        child_page = ABOUT_SUB_PAGE
-        admin_browser.find_by_text(child_page['title']).click()
-        admin_browser.find_by_text('English').click()
-        scroll_to_bottom_of_page(admin_browser)
-        element_count = admin_browser.find_by_id('content_editor_en-count').value
-        reveal_content_editor(admin_browser, header['button'], element_count)
-        admin_browser.find_by_text(header['button'])[int(element_count)].click()
-        admin_browser.find_by_id(header['id'].format(element_count)).fill(header['content'])
-        publish_page(admin_browser)
-        view_live_page(admin_browser, child_page['title'])
-        assert admin_browser.is_text_present(header['content'])
