@@ -7,7 +7,7 @@ TODO:
 import os
 import pytest
 from django.utils.text import slugify
-from base_functional_tests import click_obscured, find_and_click_add_button, find_and_click_toggle_button, fill_content_editor_block, TEST_DATA_DIR
+from base_functional_tests import click_obscured, find_and_click_add_button, find_and_click_toggle_button, fill_content_editor_block, TEST_DATA_DIR, view_live_page
 
 
 EVENT_INDEX_PAGE = {
@@ -78,18 +78,6 @@ def create_event_child_page(admin_browser, page_type, page_title):
     enter_page_content(admin_browser, 'English', 'title_en', page_title)
     enter_page_content(admin_browser, 'Promote', 'slug_en', slugify(page_title))
     publish_page(admin_browser)
-
-
-def view_live_page(admin_browser, page_title):
-    """Navigate to the published page on the site.
-
-    Args:
-        page_title (str): The page title text you are expecting on the live page.
-
-    """
-    button_links = admin_browser.find_by_xpath('//a[@title="View live version of \'{}\'"]'.format(page_title))
-    href = button_links[0].__dict__['_element'].get_property('href')
-    admin_browser.visit(href)
 
 
 def edit_page_header(admin_browser, page_title, cms_field, cms_content):
