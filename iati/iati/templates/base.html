@@ -20,6 +20,15 @@
         </title>
         <meta name="description" content="" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {# Google Analytics gtag.js with IP Anonymization #}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-6109435-11"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'UA-6109435-11', { 'anonymize_ip': true });
+        </script>
 
         {# Global stylesheets #}
         <link rel="stylesheet" type="text/css" href="{% static 'home/css/responsive.css' %}">
