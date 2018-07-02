@@ -6,12 +6,15 @@ from django.conf.urls.i18n import i18n_patterns  # For internationalization
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
+from django.views.generic import RedirectView
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
 from search import views as search_views
 from iati.activate_languages import i18n_patterns  # For internationalization
+
+from home.views import reference_redirect
 
 
 ADMIN_SLUG = "cms"
@@ -21,6 +24,10 @@ urlpatterns = [  # pylint: disable=invalid-name
     url(r'^django-{}/'.format(ADMIN_SLUG), admin.site.urls),
     url(r'^{}/'.format(ADMIN_SLUG), include(wagtailadmin_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
+]
+
+urlpatterns += [
+    url(r'^(104|105|201|202|203)/', reference_redirect)
 ]
 
 urlpatterns += i18n_patterns(
