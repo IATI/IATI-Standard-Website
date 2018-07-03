@@ -26,7 +26,7 @@ urlpatterns = [  # pylint: disable=invalid-name
 ]
 
 urlpatterns += [
-    url(r'^(104|105|201|202|203)/', reference_redirect)
+    url(r'^(101|102|103|104|105|201|202|203)/', reference_redirect)
 ]
 
 urlpatterns += i18n_patterns(
