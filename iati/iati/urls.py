@@ -25,9 +25,34 @@ urlpatterns = [  # pylint: disable=invalid-name
     url(r'^documents/', include(wagtaildocs_urls)),
 ]
 
-urlpatterns += [
-    url(r'^(101|102|103|104|105|201|202|203)/', reference_redirect)
+
+reference_namespaces = [
+    "101",
+    "102",
+    "103",
+    "104",
+    "105",
+    "201",
+    "202",
+    "203",
+    "activity-standard",
+    "codelists",
+    "developer",
+    "introduction",
+    "namespaces-extensions",
+    "organisation-identifiers",
+    "organisation-standard",
+    "reference",
+    "rulesets",
+    "schema",
+    "upgrades"
 ]
+
+
+urlpatterns += [
+    url(r'^({})/'.format("|".join(reference_namespaces)), reference_redirect)
+]
+
 
 urlpatterns += i18n_patterns(
     # These URLs will have /<language_code>/ appended to the beginning
