@@ -91,6 +91,7 @@
       </div>
     {% endif %}
 
+    {% if page.event_types %}
     <div class="aside-m">
         <div class="aside-m__header fill-land">
             <h3 class="aside-m__heading">Event types</h3>
@@ -101,6 +102,7 @@
 	       {% endfor %}
         </ul>
     </div>
+    {% endif %}
     {% if past %}
     <div class="aside-m">
       <div class="aside-m__header fill-land">
