@@ -123,7 +123,7 @@
 
                               <div class="help__panel fill-sunset">
                                   <h3 class="help__heading">{{ case_study.heading }}</h3>
-                                  <p> {{ case_study.excerpt }}</p>
+                                  <p>{{ case_study.excerpt|default:"" }}</p>
                                   <a href="{% slugurl_trans case_study.slug %}">Read more</a>
                               </div>
                           </div>
