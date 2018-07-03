@@ -15,7 +15,9 @@
     <div class="max-meter">
       <div class="hero__caption">
         <h1 class="hero__heading">{{ page.heading }}</h1>
-        <p class="hero__subheading">{{ page.excerpt }}</p>
+
+        <p class="hero__subheading">{{ page.excerpt|default:"" }}</p>
+
       </div>
     </div>
   </div>
