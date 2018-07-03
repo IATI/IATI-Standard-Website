@@ -13,6 +13,8 @@ from wagtail.documents import urls as wagtaildocs_urls
 from search import views as search_views
 from iati.activate_languages import i18n_patterns  # For internationalization
 
+from home.views import reference_redirect
+
 
 ADMIN_SLUG = "cms"
 
@@ -22,6 +24,35 @@ urlpatterns = [  # pylint: disable=invalid-name
     url(r'^{}/'.format(ADMIN_SLUG), include(wagtailadmin_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
 ]
+
+
+reference_namespaces = [
+    "101",
+    "102",
+    "103",
+    "104",
+    "105",
+    "201",
+    "202",
+    "203",
+    "activity-standard",
+    "codelists",
+    "developer",
+    "introduction",
+    "namespaces-extensions",
+    "organisation-identifiers",
+    "organisation-standard",
+    "reference",
+    "rulesets",
+    "schema",
+    "upgrades"
+]
+
+
+urlpatterns += [
+    url(r'^({})/'.format("|".join(reference_namespaces)), reference_redirect)
+]
+
 
 urlpatterns += i18n_patterns(
     # These URLs will have /<language_code>/ appended to the beginning
