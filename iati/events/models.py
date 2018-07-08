@@ -30,13 +30,15 @@ class EventIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
         """
         now = timezone.now()
         filter_dict = {}
-        children = EventPage.objects.live().descendant_of(self).order_by('-date_start')
+        unsorted_children = EventPage.objects.live().descendant_of(self)
         archive_years = EventPage.objects.live().descendant_of(self).filter(date_start__lte=now).dates('date_start', 'year', order='DESC')
         past = request.GET.get('past') == "1"
         if past:
             filter_dict["date_start__lte"] = now
+            children = unsorted_children.order_by('-date_start')
         else:
             filter_dict["date_start__gte"] = now
+            children = unsorted_children.order_by('date_start')
 
         try:
             year = int(request.GET.get('year'))
