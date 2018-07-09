@@ -5,7 +5,7 @@ from home.models import HomePage
 
 ACTIVITY_URL = "https://iatiregistry.org/api/3/action/package_search?q=extras_filetype:activity&facet.field=[%22extras_activity_count%22]&start=0&rows=0&facet.limit=1000000"
 
-ORGANISATION_URL = "https://iatiregistry.org/api/3/action/package_search?q=extras_filetype:activity&facet.field=[%22organization%22,%22country%22]&start=0&rows=0&facet.limit=1000000"
+ORGANISATION_URL = "https://iatiregistry.org/api/3/action/package_search?facet.field=[%22organization%22,%22country%22]&start=0&rows=0&facet.limit=1000000"
 
 
 def get_total_num_activities():
