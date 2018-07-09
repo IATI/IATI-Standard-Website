@@ -8,5 +8,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunSQL(['DROP TABLE IF EXISTS wagtailsearch_editorspick CASCADE;']),
+        migrations.RunSQL(['DROP TABLE IF EXISTS wagtailsearch_editorspick;']),
     ]
