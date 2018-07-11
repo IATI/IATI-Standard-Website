@@ -78,7 +78,6 @@ class NewsCategory(models.Model):
         """Change verbose name for correct pluralization"""
         verbose_name_plural = "news categories"
 
-
     def full_clean(self, *args, **kwargs):
         """Apply fixups that need to happen before per-field validation occurs"""
         base_slug = slugify(self.name, allow_unicode=True)
