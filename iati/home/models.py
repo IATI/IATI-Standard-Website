@@ -14,23 +14,26 @@ from wagtail.documents.blocks import DocumentChooserBlock
 
 
 class DocumentBoxBlock(StreamBlock):
-    """A block for holding a document box, with a single header and multiple documents"""
+    """A block for holding a document box, with a single header and multiple documents."""
 
     document_box_heading = CharBlock(icon="title", classname="title", required=False, help_text="Only one heading per box.")
     document = DocumentChooserBlock(icon="doc-full-inverse", required=False)
 
 
 class PullQuoteBlock(StructBlock):
-    """A block for creating a pull quote"""
+    """A block for creating a pull quote."""
+
     quote = TextBlock("quote title")
 
     class Meta(object):
-        """Meta data for the class"""
+        """Meta data for the class."""
+
         icon = "openquote"
 
 
 class ImageAlignmentChoiceBlock(FieldBlock):
-    """A block which contains the choices and class names for image alignment"""
+    """A block which contains the choices and class names for image alignment."""
+
     field = forms.ChoiceField(choices=(
         ('media-figure', "Full width"),
         ('media-figure--center', "Small centered"),
@@ -40,31 +43,36 @@ class ImageAlignmentChoiceBlock(FieldBlock):
 
 
 class HTMLAlignmentChoiceBlock(FieldBlock):
-    """A block which contains the choices and class names for HTML alignment"""
+    """A block which contains the choices and class names for HTML alignment."""
+
     field = forms.ChoiceField(choices=(
         ('normal', 'Normal'), ('full', 'Full width'),
     ))
 
 
 class AlignedHTMLBlock(StructBlock):
-    """A block which allows for raw HTML entry and alignment"""
+    """A block which allows for raw HTML entry and alignment."""
+
     html = RawHTMLBlock()
     alignment = HTMLAlignmentChoiceBlock()
 
     class Meta(object):
-        """Meta data for the class"""
+        """Meta data for the class."""
+
         icon = "code"
 
 
 class ImageBlock(StructBlock):
-    """A block which allows for image entry and alignment"""
+    """A block which allows for image entry and alignment."""
+
     image = ImageChooserBlock()
     alignment = ImageAlignmentChoiceBlock()
     caption = RichTextBlock(required=False)
 
 
 class IATIStreamBlock(StreamBlock):
-    """The main stream block used as the content editor sitewide"""
+    """The main stream block used as the content editor sitewide."""
+
     h2 = CharBlock(icon="title", classname="title")
     h3 = CharBlock(icon="title", classname="title")
     h4 = CharBlock(icon="title", classname="title")
@@ -79,6 +87,7 @@ class IATIStreamBlock(StreamBlock):
 
 class AbstractBasePage(Page):
     """A base for all page types."""
+
     heading = models.CharField(max_length=255, null=True, blank=True)
     excerpt = models.TextField(null=True, blank=True)
 
@@ -88,7 +97,8 @@ class AbstractBasePage(Page):
     ]
 
     class Meta(object):
-        """Meta data for the class"""
+        """Meta data for the class."""
+
         abstract = True
 
 
@@ -100,12 +110,13 @@ class AbstractContentPage(AbstractBasePage):
     translation_fields = AbstractBasePage.translation_fields + ["content_editor"]
 
     class Meta(object):
-        """Meta data for the class"""
+        """Meta data for the class."""
+
         abstract = True
 
 
 class AbstractIndexPage(AbstractBasePage):
-    """"A base for the basic model block of all index type pages."""
+    """A base for the basic model block of all index type pages."""
 
     def filter_children(self, queryset, filter_dict):
         """Take a dict of filters and apply filters to child queryset."""
@@ -128,7 +139,8 @@ class AbstractIndexPage(AbstractBasePage):
             return paginator.page(paginator.num_pages)
 
     class Meta(object):
-        """Meta data for the class"""
+        """Meta data for the class."""
+
         abstract = True
 
 
@@ -138,6 +150,7 @@ class DefaultPageHeaderImageMixin(Page):
     As only default pages require an editable header image this mixin allows selective inclusion alongside other inherited abstract page models.
 
     """
+
     header_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -151,7 +164,8 @@ class DefaultPageHeaderImageMixin(Page):
     ]
 
     class Meta(object):
-        """Meta data for the class"""
+        """Meta data for the class."""
+
         abstract = True
 
 
@@ -162,7 +176,7 @@ class HomePage(DefaultPageHeaderImageMixin, AbstractBasePage):  # pylint: disabl
     organisations = models.PositiveIntegerField(default=700)
 
     def get_context(self, request, *args, **kwargs):
-        """Overwriting the default get_context page to serve descendant case study pages"""
+        """Overwrite the default get_context page to serve descendant case study pages."""
         CaseStudyPage = apps.get_model(app_label='about', model_name='CaseStudyPage')
         case_studies = CaseStudyPage.objects.live().descendant_of(self).specific()
         context = super(HomePage, self).get_context(request)
@@ -177,6 +191,7 @@ class HomePage(DefaultPageHeaderImageMixin, AbstractBasePage):  # pylint: disabl
 
 class StandardPage(AbstractContentPage):
     """A standard content page for generic use, i.e. a Privacy page."""
+
     FIXED_PAGE_TYPES = (
         ("privacy", "Privacy"),
         ("terms", "Terms and conditions")

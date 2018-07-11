@@ -74,7 +74,8 @@ def translation_links(context, calling_page):
 
 @register.filter
 def haspassed(value):
-    """Takes a date and tells you if it's in the past"""
+    """Return True if the given date is in the past; False otherwise."""
+
     now = timezone.now()
     return value < now
 

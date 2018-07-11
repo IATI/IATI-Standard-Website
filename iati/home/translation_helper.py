@@ -5,13 +5,14 @@ from wagtail.core.fields import Creator
 
 
 def add_language_content_panels(page_model):
-    """A function that dynamically adds tabbed content panels depending on the fields defined in the page model and the languages in settings
+    """Dynamically add tabbed content panels depending on the fields defined in the page model and the languages in settings.
 
     Args:
         page_model (Page): The page model class which needs tabbed content panels. Should have the array translation_fields defined in the page model.
 
     Returns:
         None: This doesn't return anything, it's modifying the provided page_model.
+
 
     TODO:
         Figure out whether using type(Creator) is sustainable. For some reason StreamBlocks are wagtail.core.fields.Creator and all other fiends are django.db.models.query_utils.DeferredAttribute

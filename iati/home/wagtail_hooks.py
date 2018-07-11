@@ -8,10 +8,8 @@ from django.conf import settings
 
 @hooks.register('register_rich_text_features')
 def register_anchor_feature(features):
-    """
-    Registering the `anchor` feature, which uses the `ANCHOR` Draft.js entity type,
-    and is stored as HTML with a `<a href>` tag.
-    """
+    """Register the `anchor` feature, which uses the `ANCHOR` Draft.js entity type, and is stored as HTML with a `<a href>` tag."""
+
     features.default_features.append('anchor')
     feature_name = 'anchor'
     type_ = 'ANCHOR'
@@ -37,6 +35,7 @@ def anchor_entity_decorator(props):
     Draft.js ContentState to database HTML.
     Converts the ANCHOR entities into an a tag.
     """
+
     return DOM.create_element('a', {
         'href': props['href'],
     }, props['children'])
@@ -47,12 +46,14 @@ class AnchorEntityElementHandler(InlineEntityElementHandler):
     Database HTML to Draft.js ContentState.
     Converts the a tag into an ANCHOR entity, with the right data.
     """
+
     mutability = 'IMMUTABLE'
 
     def get_attribute_data(self, attrs):
         """
         Take the ``href`` value from the ``href`` HTML attribute.
         """
+
         return {
             'href': attrs['href'],
         }
