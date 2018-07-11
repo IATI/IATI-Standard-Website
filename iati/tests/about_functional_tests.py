@@ -238,7 +238,6 @@ class TestCaseStudyPage():
 
     CASE_STUDY_INDEX_PAGE_TITLE = 'test case study index page 2'
 
-
     def setup_case_study_index_page(self, admin_browser):
         """Create a Case Study Index page as a child of the About page."""
         create_about_child_page(admin_browser, CASE_STUDY_INDEX_PAGE['page_type'], self.CASE_STUDY_INDEX_PAGE_TITLE)
