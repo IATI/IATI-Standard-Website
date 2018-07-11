@@ -21,7 +21,7 @@ class NewsIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
         news_categories = NewsCategory.objects.all()
         return news_categories
 
-    def get_context(self, request):
+    def get_context(self, request, *args, **kwargs):
         """Overwriting the default wagtail get_context function to allow for filtering based on params, including pagination.
         Use the functions built into the abstract index page class to dynamically filter the child pages and apply pagination, limiting the results to 3 per page.
         """
@@ -78,12 +78,12 @@ class NewsCategory(models.Model):
         """Change verbose name for correct pluralization"""
         verbose_name_plural = "news categories"
 
-    def full_clean(self, *args, **kwargs):
+    def full_clean(self, exclude=None, validate_unique=True):
         """Apply fixups that need to happen before per-field validation occurs"""
         base_slug = slugify(self.name, allow_unicode=True)
         if base_slug:
             self.slug = base_slug
-        super(NewsCategory, self).full_clean(*args, **kwargs)
+        super(NewsCategory, self).full_clean(exclude, validate_unique)
 
     translation_fields = [
         'name',
