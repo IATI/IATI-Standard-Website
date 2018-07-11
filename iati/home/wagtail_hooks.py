@@ -1,7 +1,7 @@
-import wagtail.admin.rich_text.editors.draftail.features as draftail_features
 from wagtail.core import hooks
-from draftjs_exporter.dom import DOM
+import wagtail.admin.rich_text.editors.draftail.features as draftail_features
 from wagtail.admin.rich_text.converters.html_to_contentstate import InlineEntityElementHandler
+from draftjs_exporter.dom import DOM
 from django.utils.html import format_html_join
 from django.conf import settings
 

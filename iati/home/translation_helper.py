@@ -1,7 +1,7 @@
 from django.conf import settings
+from django.utils.translation import gettext_lazy as _
 from wagtail.admin.edit_handlers import TabbedInterface, ObjectList, FieldPanel, MultiFieldPanel, StreamFieldPanel
 from wagtail.core.fields import Creator
-from django.utils.translation import gettext_lazy as _
 
 
 def add_language_content_panels(page_model):
