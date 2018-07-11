@@ -8,6 +8,8 @@ from .models import EventIndexPage, EventPage, EventType
 class EventIndexPageTR(TranslationOptions):
     """A class to allow for the event index page translation fields to be autopopulated in the database."""
     fields = EventIndexPage.translation_fields
+
+
 add_language_content_panels(EventIndexPage)
 
 
@@ -15,6 +17,8 @@ add_language_content_panels(EventIndexPage)
 class EventPageTR(TranslationOptions):
     """A class to allow for the event page translation fields to be autopopulated in the database."""
     fields = EventPage.translation_fields
+
+
 add_language_content_panels(EventPage)
 
 

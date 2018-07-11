@@ -15,4 +15,6 @@ add_language_content_panels(HomePage)
 @register(StandardPage)
 class StandardPageTR(TranslationOptions):
     fields = StandardPage.translation_fields
+
+
 add_language_content_panels(StandardPage)
