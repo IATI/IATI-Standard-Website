@@ -23,14 +23,14 @@ def add_language_content_panels(page_model):
         multi_field_panel_contents = [FieldPanel("title_{}".format(language_code))]
         stream_field_panel_contents = []
         for field_name in page_model.translation_fields:
-            localized_field_name = field_name+"_{}".format(language_code)
+            localized_field_name = field_name + "_{}".format(language_code)
             field_object = getattr(page_model, localized_field_name)
             if not isinstance(field_object, Creator):
                 multi_field_panel_contents.append(FieldPanel(localized_field_name))
             else:
                 stream_field_panel_contents.append(StreamFieldPanel(localized_field_name))
         for field_name in promote_panel_fields:
-            promote_panel_contents.append(FieldPanel(field_name+"_{}".format(language_code)))
+            promote_panel_contents.append(FieldPanel(field_name + "_{}".format(language_code)))
         local_content_panel = [MultiFieldPanel(multi_field_panel_contents)] + stream_field_panel_contents
         edit_handler_contents.append(ObjectList(local_content_panel, heading=language_name))
     promote_and_settings_panels = [ObjectList([MultiFieldPanel(promote_panel_contents)], heading=_('Promote')), ObjectList(page_model.settings_panels, heading=_('Settings'), classname='settings')]
