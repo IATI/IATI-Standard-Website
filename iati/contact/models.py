@@ -1,9 +1,6 @@
-from django.db import models
 from home.models import AbstractContentPage, DefaultPageHeaderImageMixin
-from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.core.blocks import RichTextBlock, StreamBlock, StructBlock, TextBlock
 from wagtail.core.fields import StreamField
-from wagtail.core.models import Page
 
 
 class ContactTypeStreamBlock(StreamBlock):

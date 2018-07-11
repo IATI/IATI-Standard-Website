@@ -1,7 +1,6 @@
 import json
 import datetime
 import pytz
-from django.utils.text import slugify
 from django.core.management.base import BaseCommand, CommandError
 from django.core.exceptions import ValidationError
 from news.models import NewsIndexPage, NewsPage
