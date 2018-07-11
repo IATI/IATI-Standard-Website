@@ -1,3 +1,5 @@
+"""Customise the formatting options shown to the editor when inserting images in the RichTextField editor."""
+
 from wagtail.images.formats import Format, register_image_format, unregister_image_format
 
 unregister_image_format("fullwidth")
