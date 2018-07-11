@@ -1,6 +1,6 @@
-from home.models import AbstractContentPage, DefaultPageHeaderImageMixin
 from wagtail.core.blocks import RichTextBlock, StreamBlock, StructBlock, TextBlock
 from wagtail.core.fields import StreamField
+from home.models import AbstractContentPage, DefaultPageHeaderImageMixin
 
 
 class ContactTypeStreamBlock(StreamBlock):

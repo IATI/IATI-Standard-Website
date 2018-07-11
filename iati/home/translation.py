@@ -1,7 +1,7 @@
-from .models import HomePage, StandardPage
 from modeltranslation.translator import TranslationOptions
 from modeltranslation.decorators import register
 from home.translation_helper import add_language_content_panels
+from .models import HomePage, StandardPage
 
 
 @register(HomePage)

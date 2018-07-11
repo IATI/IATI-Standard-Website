@@ -3,6 +3,8 @@ from django.conf import settings
 from django.utils import timezone
 from django.template.defaultfilters import date as _date
 from django.contrib.humanize.templatetags.humanize import intcomma
+from wagtail_modeltranslation.contextlib import use_language
+from wagtail.core.templatetags.wagtailcore_tags import pageurl
 from home.models import HomePage, StandardPage
 from about.models import AboutPage
 from contact.models import ContactPage
@@ -11,8 +13,6 @@ from guidance_and_support.models import GuidanceAndSupportPage
 from news.models import NewsIndexPage, NewsCategory
 from iati_standard.models import IATIStandardPage
 from using_data.models import UsingDataPage
-from wagtail_modeltranslation.contextlib import use_language
-from wagtail.core.templatetags.wagtailcore_tags import pageurl
 
 
 register = template.Library()
