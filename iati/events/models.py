@@ -23,6 +23,13 @@ class EventIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):  # pylint:
         event_types = EventType.objects.all()
         return event_types
 
+    def get_events(self, request, filter_dict):
+        """Return a filtered and paginated list of events."""
+        all_events = EventPage.objects.live().descendant_of(self).order_by('-date_start')
+        filtered_events = self.filter_children(all_events, filter_dict)
+        paginated_events = self.paginate(request, filtered_events, 3)
+        return paginated_events
+
     def get_context(self, request, *args, **kwargs):
         """Overwriting the default wagtail get_context function to allow for filtering based on params, including pagination.
 
@@ -31,7 +38,6 @@ class EventIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):  # pylint:
         """
         now = timezone.now()
         filter_dict = {}
-        children = EventPage.objects.live().descendant_of(self).order_by('-date_start')
         archive_years = EventPage.objects.live().descendant_of(self).filter(date_start__lte=now).dates('date_start', 'year', order='DESC')
         past = request.GET.get('past') == "1"
         if past:
@@ -50,10 +56,8 @@ class EventIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):  # pylint:
         if event_type:
             filter_dict["event_type__slug"] = event_type
 
-        filtered_children = self.filter_children(children, filter_dict)
-        paginated_children = self.paginate(request, filtered_children, 3)
         context = super(EventIndexPage, self).get_context(request)
-        context['events'] = paginated_children
+        context['events'] = self.get_events(request, filter_dict)
         context['past'] = past
         context['archive_years'] = archive_years
         if past:
