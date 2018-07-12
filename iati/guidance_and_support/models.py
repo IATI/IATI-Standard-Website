@@ -1,3 +1,5 @@
+"""Model definitions for the guidance_and_support app."""
+
 import requests
 
 from django.db import models

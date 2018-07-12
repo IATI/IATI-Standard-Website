@@ -1,4 +1,5 @@
 """A module for the IATI Standard page model."""
+
 from home.models import AbstractContentPage, DefaultPageHeaderImageMixin
 
 

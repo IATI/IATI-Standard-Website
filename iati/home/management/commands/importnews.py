@@ -1,3 +1,5 @@
+"""Management command that imports news from a JSON file."""
+
 import json
 import datetime
 import pytz
@@ -8,7 +10,7 @@ from events.models import EventIndexPage, EventPage
 
 
 class Command(BaseCommand):
-    """A command for manage.py that imports news from a JSON file."""
+    """Management command that imports news from a JSON file."""
 
     help = 'Import news given a JSON file.'
 
