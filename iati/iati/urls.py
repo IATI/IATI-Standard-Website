@@ -25,7 +25,7 @@ urlpatterns = [  # pylint: disable=invalid-name
 ]
 
 
-reference_namespaces = [
+REFERENCE_NAMESPACES = [
     "101",
     "102",
     "103",
@@ -49,7 +49,7 @@ reference_namespaces = [
 
 
 urlpatterns += [
-    url(r'^({})/'.format("|".join(reference_namespaces)), reference_redirect)
+    url(r'^({})/'.format("|".join(REFERENCE_NAMESPACES)), reference_redirect)
 ]
 
 
