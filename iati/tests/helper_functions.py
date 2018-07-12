@@ -1,6 +1,8 @@
+import os
 import time
 from django.utils.text import slugify
 from tests.about_functional_tests import TEST_DATA_DIR
+from iati.urls import ADMIN_SLUG
 
 
 # helpers from base_functional_tests.py
@@ -94,17 +96,6 @@ def navigate_to_default_page_cms_section(admin_browser, default_page_title):
     admin_browser.find_by_text(default_page_title).click()
 
 
-# def enter_page_content(admin_browser, tab_name, cms_field, cms_content):
-#     """Add title and slug to a page in the CMS.
-#
-#     Args:
-#         tab_name (str): The name of a tab on an edit page of the CMS.
-#         cms_field (str): The name of the field in the CMS you want to fill.
-#         cms_content (str): The text content you want to fill the field with.
-#
-#     """
-#     admin_browser.find_by_text(tab_name).click()
-#     admin_browser.fill(cms_field, cms_content)
 def enter_page_content(admin_browser, tab_name, cms_field, cms_content):
     """Add title and slug to a page in the CMS.
 
@@ -204,3 +195,23 @@ def create_news_child_page(admin_browser, page_type, page_title):
     enter_page_content(admin_browser, 'English', 'title_en', page_title)
     enter_page_content(admin_browser, 'Promote', 'slug_en', slugify(page_title))
     publish_page(admin_browser)
+
+
+# helper functions for home_functional_tests.py
+def create_standard_home_page(admin_browser, page_type, fixed_page_type, page_title):
+    """Create a child page in the CMS.
+
+    Args:
+        page_type (str): The verbose name of the page model type you want to click on.
+        fixed_page_type (str): The value of the fixed page dropdown (e.g. "privacy" for "PrivacyPage")
+        page_title (str): The title of the page you are editing.
+
+    """
+    admin_browser.visit(os.environ['LIVE_SERVER_URL'] + "/{}/pages/3/".format(ADMIN_SLUG))
+    admin_browser.find_by_text('Add child page').click()
+    admin_browser.find_by_text(page_type).click()
+    dropdown = admin_browser.find_by_id("id_fixed_page_type")[0]
+    dropdown.select(fixed_page_type)
+    enter_page_content(admin_browser, 'English', 'title_en', page_title)
+    enter_page_content(admin_browser, 'Promote', 'slug_en', slugify(page_title))
+    publish_changes(admin_browser)
