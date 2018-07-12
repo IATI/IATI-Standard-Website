@@ -10,7 +10,7 @@ from home.models import AbstractContentPage, AbstractIndexPage, DefaultPageHeade
 from .zendeskhelper import generate_ticket
 
 
-class GuidanceAndSupportPage(DefaultPageHeaderImageMixin, AbstractContentPage):
+class GuidanceAndSupportPage(DefaultPageHeaderImageMixin, AbstractContentPage):  # pylint: disable=too-many-ancestors
     """A base for the Guidance and Support page."""
 
     parent_page_types = ['home.HomePage']
@@ -23,7 +23,7 @@ class GuidanceAndSupportPage(DefaultPageHeaderImageMixin, AbstractContentPage):
         return guidance_groups
 
 
-class GuidanceGroupPage(AbstractContentPage):
+class GuidanceGroupPage(AbstractContentPage):  # pylint: disable=too-many-ancestors
     """A base for Guidance Group pages."""
 
     subpage_types = ['guidance_and_support.GuidanceGroupPage', 'guidance_and_support.GuidancePage']
@@ -62,7 +62,7 @@ class GuidanceGroupPage(AbstractContentPage):
     ]
 
 
-class GuidancePage(AbstractContentPage):
+class GuidancePage(AbstractContentPage):  # pylint: disable=too-many-ancestors
     """A base for a single guidance page."""
 
     subpage_types = []
@@ -87,13 +87,13 @@ class GuidancePage(AbstractContentPage):
         return context
 
 
-class KnowledgebaseIndexPage(AbstractIndexPage):
+class KnowledgebaseIndexPage(AbstractIndexPage):  # pylint: disable=too-many-ancestors
     """A base for a Knowledgebase index page."""
 
     subpage_types = ['guidance_and_support.KnowledgebasePage']
 
 
-class KnowledgebasePage(AbstractContentPage):
+class KnowledgebasePage(AbstractContentPage):  # pylint: disable=too-many-ancestors
     """A base for a single Knowledgebase page."""
 
     subpage_types = []

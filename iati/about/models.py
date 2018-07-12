@@ -9,7 +9,7 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from home.models import AbstractContentPage, AbstractIndexPage, DefaultPageHeaderImageMixin, PullQuoteBlock
 
 
-class AboutPage(DefaultPageHeaderImageMixin, AbstractContentPage):
+class AboutPage(DefaultPageHeaderImageMixin, AbstractContentPage):  # pylint: disable=too-many-ancestors
     """A model for the About landing page."""
 
     parent_page_types = ['home.HomePage']
@@ -22,7 +22,7 @@ class AboutPage(DefaultPageHeaderImageMixin, AbstractContentPage):
     ]
 
 
-class AboutSubPage(AbstractContentPage):
+class AboutSubPage(AbstractContentPage):  # pylint: disable=too-many-ancestors
     """A model for generic About subpages."""
 
     subpage_types = ['about.AboutSubPage', 'about.PeoplePage']
@@ -34,7 +34,7 @@ class AboutSubPage(AbstractContentPage):
     ]
 
 
-class CaseStudyIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
+class CaseStudyIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):  # pylint: disable=too-many-ancestors
     """A model for the Case Studies Index page."""
 
     subpage_types = ['about.CaseStudyPage']
@@ -64,7 +64,7 @@ class CaseStudyIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
     ]
 
 
-class CaseStudyPage(AbstractContentPage):
+class CaseStudyPage(AbstractContentPage):  # pylint: disable=too-many-ancestors
     """A model for Case Study pages."""
 
     parent_page_types = ['about.CaseStudyIndexPage']
@@ -93,7 +93,7 @@ class HistoryDateBlock(StreamBlock):
     ])
 
 
-class HistoryPage(AbstractContentPage):
+class HistoryPage(AbstractContentPage):  # pylint: disable=too-many-ancestors
     """A model for the History page."""
 
     subpage_types = []
@@ -126,7 +126,7 @@ class PeopleProfileBlock(StreamBlock):
     ], icon="image")
 
 
-class PeoplePage(AbstractContentPage):
+class PeoplePage(AbstractContentPage):  # pylint: disable=too-many-ancestors
     """A model for the People page."""
 
     subpage_types = ["about.PeoplePage", "about.AboutSubPage"]

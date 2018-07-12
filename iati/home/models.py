@@ -85,7 +85,7 @@ class IATIStreamBlock(StreamBlock):
     anchor_point = CharBlock(icon="order-down", help_text="Custom anchor points are expected to precede other content.")
 
 
-class AbstractBasePage(Page):
+class AbstractBasePage(Page):  # pylint: disable=too-many-ancestors
     """A base for all page types."""
 
     heading = models.CharField(max_length=255, null=True, blank=True)
@@ -102,7 +102,7 @@ class AbstractBasePage(Page):
         abstract = True
 
 
-class AbstractContentPage(AbstractBasePage):
+class AbstractContentPage(AbstractBasePage):  # pylint: disable=too-many-ancestors
     """A base for the basic model blocks of all content type pages."""
 
     content_editor = StreamField(IATIStreamBlock(required=False), null=True, blank=True)
@@ -115,7 +115,7 @@ class AbstractContentPage(AbstractBasePage):
         abstract = True
 
 
-class AbstractIndexPage(AbstractBasePage):
+class AbstractIndexPage(AbstractBasePage):  # pylint: disable=too-many-ancestors
     """A base for the basic model block of all index type pages."""
 
     def filter_children(self, queryset, filter_dict):
@@ -144,7 +144,7 @@ class AbstractIndexPage(AbstractBasePage):
         abstract = True
 
 
-class DefaultPageHeaderImageMixin(Page):
+class DefaultPageHeaderImageMixin(Page):  # pylint: disable=too-many-ancestors
     """A mixin to add a Multilingual tab with the ability to edit the header image for default pages.
 
     As only default pages require an editable header image this mixin allows selective inclusion alongside other inherited abstract page models.
@@ -189,7 +189,7 @@ class HomePage(DefaultPageHeaderImageMixin, AbstractBasePage):  # pylint: disabl
     ]
 
 
-class StandardPage(AbstractContentPage):
+class StandardPage(AbstractContentPage):  # pylint: disable=too-many-ancestors
     """A standard content page for generic use, i.e. a Privacy page."""
 
     FIXED_PAGE_TYPES = (

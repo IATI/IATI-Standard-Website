@@ -10,7 +10,7 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from home.models import AbstractIndexPage, AbstractContentPage, DefaultPageHeaderImageMixin
 
 
-class NewsIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
+class NewsIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):  # pylint: disable=too-many-ancestors
     """A model for news index pages, the main news landing page."""
 
     parent_page_types = ['home.HomePage']
@@ -41,7 +41,7 @@ class NewsIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
         return context
 
 
-class NewsPage(AbstractContentPage):
+class NewsPage(AbstractContentPage):  # pylint: disable=too-many-ancestors
     """A model for news single pages"""
 
     parent_page_types = ['news.NewsIndexPage']
