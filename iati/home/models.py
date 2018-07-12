@@ -177,8 +177,8 @@ class HomePage(DefaultPageHeaderImageMixin, AbstractBasePage):  # pylint: disabl
 
     def get_context(self, request, *args, **kwargs):
         """Overwrite the default get_context page to serve descendant case study pages."""
-        CaseStudyPage = apps.get_model(app_label='about', model_name='CaseStudyPage')
-        case_studies = CaseStudyPage.objects.live().descendant_of(self).specific()
+        case_study_page = apps.get_model(app_label='about', model_name='CaseStudyPage')
+        case_studies = case_study_page.objects.live().descendant_of(self).specific()
         context = super(HomePage, self).get_context(request)
         context['case_studies'] = case_studies
         return context
