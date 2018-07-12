@@ -72,7 +72,8 @@ class GuidancePage(AbstractContentPage):  # pylint: disable=too-many-ancestors
     def get_context(self, request, *args, **kwargs):
         """Overwrite context to intercept POST requests to pages on this template and pass them to Zendesk API
 
-        Validate with some sort of captcha."""
+        Validate with some sort of captcha.
+        """
         context = super(GuidancePage, self).get_context(request)
         form_submitted = False
         form_success = False

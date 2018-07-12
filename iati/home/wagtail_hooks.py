@@ -30,8 +30,7 @@ def register_anchor_feature(features):
 
 
 def anchor_entity_decorator(props):
-    """
-    Draft.js ContentState to database HTML.
+    """Draft.js ContentState to database HTML.
 
     Converts the ANCHOR entities into an a tag.
     """
@@ -41,8 +40,7 @@ def anchor_entity_decorator(props):
 
 
 class AnchorEntityElementHandler(InlineEntityElementHandler):
-    """
-    Database HTML to Draft.js ContentState.
+    """Database HTML to Draft.js ContentState.
 
     Converts the a tag into an ANCHOR entity, with the right data.
     """

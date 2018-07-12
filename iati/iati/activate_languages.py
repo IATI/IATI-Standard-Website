@@ -8,8 +8,7 @@ class ActiveLocalePrefixPattern(LocalePrefixPattern):
 
     @property
     def language_prefix(self):
-        """
-        Overwrite the default language_prefix function within LocalePrefixPattern.
+        """Overwrite the default language_prefix function within LocalePrefixPattern.
 
         This allows us to check for activated languages before resolving URL.
         """
@@ -24,8 +23,7 @@ class ActiveLocalePrefixPattern(LocalePrefixPattern):
 
 
 def i18n_patterns(*urls, prefix_default_language=True):
-    """
-    Add the language code prefix to every URL pattern within this function.
+    """Add the language code prefix to every URL pattern within this function.
 
     This may only be used in the root URLconf, not in an included URLconf.
     """
