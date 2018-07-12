@@ -13,6 +13,7 @@ from home.models import AbstractIndexPage, AbstractContentPage, DefaultPageHeade
 
 class EventIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
     """A model for event index pages, the main event landing page."""
+
     parent_page_types = ['home.HomePage']
     subpage_types = ['events.EventPage']
 
@@ -64,6 +65,7 @@ class EventIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
 
 class EventPage(AbstractContentPage):
     """A model for event single pages"""
+
     parent_page_types = ['events.EventIndexPage']
     subpage_types = []
 
@@ -105,6 +107,7 @@ class EventPage(AbstractContentPage):
 @register_snippet
 class EventType(models.Model):
     """A snippet model for event types, to be added in the snippet menu prior to creating events for uniformity."""
+
     name = models.CharField(max_length=255, unique=True)
     slug = models.SlugField(unique=True)
 
@@ -131,6 +134,7 @@ class EventType(models.Model):
 @register_snippet
 class FeaturedEvent(models.Model):
     """A snippet model for featured events, with a page chooser that only allows event pages to be selected."""
+
     event = models.ForeignKey('events.EventPage', on_delete=models.CASCADE, related_name="+")
 
     def __str__(self):

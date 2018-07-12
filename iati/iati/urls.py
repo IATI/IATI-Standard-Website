@@ -2,7 +2,6 @@
 
 from django.conf import settings
 from django.conf.urls import include, url
-from django.conf.urls.i18n import i18n_patterns  # For internationalization
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
@@ -26,7 +25,7 @@ urlpatterns = [  # pylint: disable=invalid-name
 ]
 
 
-reference_namespaces = [
+REFERENCE_NAMESPACES = [
     "101",
     "102",
     "103",
@@ -50,7 +49,7 @@ reference_namespaces = [
 
 
 urlpatterns += [
-    url(r'^({})/'.format("|".join(reference_namespaces)), reference_redirect)
+    url(r'^({})/'.format("|".join(REFERENCE_NAMESPACES)), reference_redirect)
 ]
 
 

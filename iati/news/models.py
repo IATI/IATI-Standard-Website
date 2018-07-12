@@ -12,6 +12,7 @@ from home.models import AbstractIndexPage, AbstractContentPage, DefaultPageHeade
 
 class NewsIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
     """A model for news index pages, the main news landing page."""
+
     parent_page_types = ['home.HomePage']
     subpage_types = ['news.NewsPage']
 
@@ -22,7 +23,8 @@ class NewsIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
         return news_categories
 
     def get_context(self, request, *args, **kwargs):
-        """Overwriting the default wagtail get_context function to allow for filtering based on params, including pagination.
+        """Overwrite the default wagtail get_context function to allow for filtering based on params, including pagination.
+
         Use the functions built into the abstract index page class to dynamically filter the child pages and apply pagination, limiting the results to 3 per page.
         """
         filter_dict = {}
@@ -41,6 +43,7 @@ class NewsIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
 
 class NewsPage(AbstractContentPage):
     """A model for news single pages"""
+
     parent_page_types = ['news.NewsIndexPage']
     subpage_types = []
 
@@ -67,6 +70,7 @@ class NewsPage(AbstractContentPage):
 @register_snippet
 class NewsCategory(models.Model):
     """A snippet model for news categories, to be added in the snippet menu prior to creating news posts for uniformity."""
+
     name = models.CharField(max_length=255, unique=True)
     slug = models.SlugField(unique=True)
 
@@ -76,6 +80,7 @@ class NewsCategory(models.Model):
 
     class Meta(object):
         """Change verbose name for correct pluralization"""
+
         verbose_name_plural = "news categories"
 
     def full_clean(self, exclude=None, validate_unique=True):

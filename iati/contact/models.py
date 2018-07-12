@@ -5,6 +5,7 @@ from home.models import AbstractContentPage, DefaultPageHeaderImageMixin
 
 class ContactTypeStreamBlock(StreamBlock):
     """Model allowing the CMS to bring together multiple struct block objects."""
+
     contact_type_editor = StructBlock([
         ('heading', TextBlock()),
         ('description', RichTextBlock(required=False)),
@@ -14,6 +15,7 @@ class ContactTypeStreamBlock(StreamBlock):
 
 class ContactPage(DefaultPageHeaderImageMixin, AbstractContentPage):
     """Model to define the overall fields for the contact page."""
+
     parent_page_types = ['home.HomePage']
     subpage_types = []
     contact_type = StreamField(ContactTypeStreamBlock, blank=True, null=True)

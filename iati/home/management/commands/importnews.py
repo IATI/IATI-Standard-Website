@@ -8,8 +8,7 @@ from events.models import EventIndexPage, EventPage
 
 
 class Command(BaseCommand):
-    """A command for manage.py that imports news from a JSON file.
-    """
+    """A command for manage.py that imports news from a JSON file."""
 
     help = 'Import news given a JSON file.'
 
@@ -18,7 +17,6 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         """The default function Django BaseCommand needs to run."""
-
         if not options['json_file']:
             raise CommandError('Please pass the path to a JSON file as the first positional argument.')
 
