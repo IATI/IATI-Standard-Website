@@ -1,23 +1,24 @@
 import os
 import pytest
-from splinter import Browser
+# from splinter import Browser
 from django.core.management import call_command
 from iati.settings.dev import DJANGO_ADMIN_USER, DJANGO_ADMIN_PASS
 from django.contrib.auth.models import User
 from iati.urls import ADMIN_SLUG
+# from tests import helper_functions
 
 
 LOCALHOST = 'http://127.0.0.1:8000/'
 os.environ['LIVE_SERVER_URL'] = LOCALHOST
 
 
-@pytest.fixture(scope='session', params=[
-    'chrome',
-    'firefox'
-])
-def multibrowser(request):
-    """Create multiple browsers for tests."""
-    return Browser(request.param)
+# @pytest.fixture(scope='session', params=[
+#     'chrome',
+#     'firefox'
+# ])
+# def multibrowser(request):
+#     """Create multiple browsers for tests."""
+#     return Browser(request.param)
 
 
 @pytest.fixture(scope='function')

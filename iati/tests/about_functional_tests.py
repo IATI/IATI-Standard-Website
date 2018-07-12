@@ -7,7 +7,7 @@ TODO:
 import os
 from django.utils.text import slugify
 import pytest
-from base_functional_tests import TEST_DATA_DIR, click_obscured, view_live_page
+from base_functional_tests import TEST_DATA_DIR
 
 
 ABOUT_PAGE = {
