@@ -49,7 +49,7 @@ jobs:
             - pip install -r iati/requirements_dev.txt
           env: LINTER=pylint
           script: make pylint
-          if: branch IN (master, dev, add-page-models)
+          if: branch IN (master, dev)
         - stage: strict lint
           install:
             - pip install -r iati/requirements_dev.txt
@@ -61,4 +61,4 @@ jobs:
             - pip install -r iati/requirements_dev.txt
           env: LINTER=pydocstyle
           script: make pydocstyle
-          if: branch IN (master, dev, add-page-models)
+          if: branch IN (master, dev)
