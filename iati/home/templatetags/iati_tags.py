@@ -2,6 +2,9 @@ from django import template
 from django.conf import settings
 from django.utils import timezone
 from django.template.defaultfilters import date as _date
+from django.contrib.humanize.templatetags.humanize import intcomma
+from wagtail_modeltranslation.contextlib import use_language
+from wagtail.core.templatetags.wagtailcore_tags import pageurl
 from home.models import HomePage, StandardPage
 from about.models import AboutPage
 from contact.models import ContactPage
@@ -10,9 +13,6 @@ from guidance_and_support.models import GuidanceAndSupportPage
 from news.models import NewsIndexPage, NewsCategory
 from iati_standard.models import IATIStandardPage
 from using_data.models import UsingDataPage
-from wagtail_modeltranslation.contextlib import use_language
-from wagtail.core.templatetags.wagtailcore_tags import pageurl
-from django.contrib.humanize.templatetags.humanize import intcomma
 
 
 register = template.Library()
@@ -74,7 +74,8 @@ def translation_links(context, calling_page):
 
 @register.filter
 def haspassed(value):
-    """Takes a date and tells you if it's in the past"""
+    """Return True if the given date is in the past; False otherwise."""
+
     now = timezone.now()
     return value < now
 

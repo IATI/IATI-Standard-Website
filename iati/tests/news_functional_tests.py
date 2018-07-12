@@ -4,11 +4,11 @@ TODO:
     Refactor most of these tests out into base functional tests.
 
 """
-import os
 import pytest
 from django.utils.text import slugify
-from base_functional_tests import find_and_click_add_button, find_and_click_toggle_button, fill_content_editor_block, click_obscured, view_live_page
-from iati.urls import ADMIN_SLUG
+from base_functional_tests import find_and_click_add_button, find_and_click_toggle_button, fill_content_editor_block, view_live_page
+# from base_functional_tests import click_obscured
+# from iati.urls import ADMIN_SLUG
 
 
 NEWS_INDEX_PAGE = {
