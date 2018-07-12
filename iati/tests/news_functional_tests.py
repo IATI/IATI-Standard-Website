@@ -27,29 +27,6 @@ H3 = {'content': 'H3 heading', 'button': 'H3', 'id': 'content_editor_en-{}-value
 H4 = {'content': 'H4 heading', 'button': 'H4', 'id': 'content_editor_en-{}-value'}
 
 
-def enter_page_content(admin_browser, tab_name, cms_field, cms_content):
-    """Add title and slug to a page in the CMS.
-
-    Args:
-        tab_name (str): The name of a tab on an edit page of the CMS.
-        cms_field (str): The name of the field in the CMS you want to fill.
-        cms_content (str): The text content you want to fill the field with.
-
-    """
-    tab = admin_browser.find_by_text(tab_name)
-    _ = tab[0].__dict__['_element'].location_once_scrolled_into_view
-    tab[0].click()
-    elem = admin_browser.find_by_css("[name='{}']".format(cms_field))
-    _ = elem[0].__dict__['_element'].location_once_scrolled_into_view
-    admin_browser.fill(cms_field, cms_content)
-
-
-def publish_page(admin_browser):
-    """Publish page created in the CMS."""
-    admin_browser.find_by_xpath('//div[@class="dropdown-toggle icon icon-arrow-up"]').click()
-    admin_browser.find_by_text('Publish').click()
-
-
 @pytest.mark.django_db
 class TestNewsPage():
     """A container for tests to check functionality of news pages and child pages."""
@@ -94,7 +71,7 @@ class TestNewsIndexChildPages():
         find_and_click_toggle_button(admin_browser, 0)
         find_and_click_add_button(admin_browser, header['button'].lower())
         fill_content_editor_block(admin_browser, header['button'].lower(), " input", header['content'])
-        publish_page(admin_browser)
+        helper_functions.publish_page(admin_browser)
         helper_functions.view_live_page(admin_browser, NEWS_PAGE['title'])
         assert admin_browser.is_text_present(header['content'])
     # TODO: Find out why this is consistently failing

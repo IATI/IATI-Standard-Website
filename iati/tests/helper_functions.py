@@ -94,6 +94,17 @@ def navigate_to_default_page_cms_section(admin_browser, default_page_title):
     admin_browser.find_by_text(default_page_title).click()
 
 
+# def enter_page_content(admin_browser, tab_name, cms_field, cms_content):
+#     """Add title and slug to a page in the CMS.
+#
+#     Args:
+#         tab_name (str): The name of a tab on an edit page of the CMS.
+#         cms_field (str): The name of the field in the CMS you want to fill.
+#         cms_content (str): The text content you want to fill the field with.
+#
+#     """
+#     admin_browser.find_by_text(tab_name).click()
+#     admin_browser.fill(cms_field, cms_content)
 def enter_page_content(admin_browser, tab_name, cms_field, cms_content):
     """Add title and slug to a page in the CMS.
 
@@ -103,7 +114,11 @@ def enter_page_content(admin_browser, tab_name, cms_field, cms_content):
         cms_content (str): The text content you want to fill the field with.
 
     """
-    admin_browser.find_by_text(tab_name).click()
+    tab = admin_browser.find_by_text(tab_name)
+    _ = tab[0].__dict__['_element'].location_once_scrolled_into_view
+    tab[0].click()
+    elem = admin_browser.find_by_css("[name='{}']".format(cms_field))
+    _ = elem[0].__dict__['_element'].location_once_scrolled_into_view
     admin_browser.fill(cms_field, cms_content)
 
 
