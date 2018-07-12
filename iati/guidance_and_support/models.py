@@ -64,7 +64,7 @@ class GuidancePage(AbstractContentPage):
     """A base for a single guidance page."""
     subpage_types = []
 
-    def get_context(self, request):
+    def get_context(self, request, *args, **kwargs):
         """Overwrite context to intercept POST requests to pages on this template and pass them to Zendesk API
 
         Validate with some sort of captcha."""

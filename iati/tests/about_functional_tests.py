@@ -138,8 +138,8 @@ def reveal_content_editor(admin_browser, button, element_count):
 
     """
     if not admin_browser.find_by_text(button).visible:
-        admin_browser.find_by_xpath('//div[@id="content_editor_en-{}-appendmenu"]/a'.format(int(element_count)-1)).mouse_over()
-        admin_browser.find_by_xpath('//div[@id="content_editor_en-{}-appendmenu"]/a'.format(int(element_count)-1)).click()
+        admin_browser.find_by_xpath('//div[@id="content_editor_en-{}-appendmenu"]/a'.format(int(element_count) - 1)).mouse_over()
+        admin_browser.find_by_xpath('//div[@id="content_editor_en-{}-appendmenu"]/a'.format(int(element_count) - 1)).click()
         scroll_to_bottom_of_page(admin_browser)
 
 
@@ -237,7 +237,6 @@ class TestCaseStudyPage():
     """A container for tests to check the ability to create Case Study pages."""
 
     CASE_STUDY_INDEX_PAGE_TITLE = 'test case study index page 2'
-
 
     def setup_case_study_index_page(self, admin_browser):
         """Create a Case Study Index page as a child of the About page."""
