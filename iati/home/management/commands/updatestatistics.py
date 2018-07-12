@@ -40,14 +40,12 @@ def get_total_num_publishers():
 
 
 class Command(BaseCommand):
-    """A command for manage.py that updates the home page statistics.
-    """
+    """A command for manage.py that updates the home page statistics."""
 
     help = 'Update statistics'
 
     def handle(self, *args, **options):
         """The default function Django BaseCommand needs to run."""
-
         home_page_queryset = HomePage.objects.live()
 
         activity_count = get_total_num_activities()
