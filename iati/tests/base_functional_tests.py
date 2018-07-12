@@ -2,7 +2,7 @@
 import os
 import string
 import random
-# import time
+import time
 import pytest
 from conftest import LOCALHOST
 from django.core.management import call_command
@@ -16,6 +16,7 @@ from wagtail.images.blocks import ImageChooserBlock
 from home.management.commands.createdefaultpages import DEFAULT_PAGES
 from home.models import HomePage
 from iati.urls import ADMIN_SLUG
+from tests import helper_functions
 
 
 DEFAULT_PAGES = DEFAULT_PAGES + [{'title': 'Home', 'slug': '', 'model': HomePage}]
@@ -139,7 +140,7 @@ def scroll_and_click(admin_browser, element):
 
     """
     scroll_to_element(admin_browser, element)
-    click_obscured(admin_browser, element)
+    helper_functions.click_obscured(admin_browser, element)
 
 
 def find_and_click_add_button(admin_browser, base_block):

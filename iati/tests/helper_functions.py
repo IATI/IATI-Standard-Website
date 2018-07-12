@@ -80,6 +80,7 @@ def publish_changes(admin_browser):
     click_obscured(admin_browser, admin_browser.find_by_xpath('//div[@class="dropdown-toggle icon icon-arrow-up"]').first)
     click_obscured(admin_browser, admin_browser.find_by_text('Publish').first)
 
+
 # helpers for using_data_functional_tests.py
 def navigate_to_default_page_cms_section(admin_browser, default_page_title):
     """Navigate to the Using data page section of the CMS.
@@ -149,3 +150,42 @@ def publish_page(admin_browser):
     """
     click_obscured(admin_browser, admin_browser.find_by_xpath('//div[@class="dropdown-toggle icon icon-arrow-up"]').first)
     click_obscured(admin_browser, admin_browser.find_by_text('Publish').first)
+
+
+# helpers for news_functional_tests.py
+def scroll_to_bottom_of_page(admin_browser):
+    """Scroll to the bottom of a page."""
+    admin_browser.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+
+
+def reveal_content_editor(admin_browser, button, element_count):
+    """Open content editor if it is not already in view.
+
+    Args:
+        button (str): The displayed text name of the button you want to click.
+        element_count (str): The element counter value of the content editor Streamfield block.
+
+    TODO:
+        Decide whether on convert element_count to int on assignment of variable.
+
+    """
+    if not admin_browser.find_by_text(button).visible and int(element_count) > 0:
+        toggle = admin_browser.find_by_xpath('//div[@id="content_editor_en-{}-appendmenu"]/a'.format(int(element_count) - 1))[0]
+        admin_browser.driver.execute_script("arguments[0].click();", toggle.__dict__['_element'])
+        scroll_to_bottom_of_page(admin_browser)
+
+
+def create_news_child_page(admin_browser, page_type, page_title):
+    """Create a child page in the CMS.
+
+    Args:
+        page_type (str): The verbose name of the page model type you want to click on.
+        page_title (str): The title of the page you are editing.
+
+    """
+    navigate_to_default_page_cms_section(admin_browser, 'News')
+    admin_browser.find_by_text('Add child page').click()
+    admin_browser.find_by_text(page_type).click()
+    enter_page_content(admin_browser, 'English', 'title_en', page_title)
+    enter_page_content(admin_browser, 'Promote', 'slug_en', slugify(page_title))
+    publish_page(admin_browser)
