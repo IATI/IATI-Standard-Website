@@ -116,8 +116,10 @@ def event_type_verbose(event_type_slug):
 
 
 def discover_tree_recursive(current_page, calling_page):
-    """Return the 'section sub-menu' page hierarchy from the point-of-view of the `calling_page`, to the top of the main section.
-    A recursive function that discovers children if the current page is an ancestor of the page we want to draw the hierarchy to.
+    """
+    Discover children of the current page, if it is an ancestor of the page we want to draw the hierarchy to.
+
+    Returns the 'section sub-menu' page hierarchy from the point-of-view of the `calling_page`, to the top of the main section.
 
     Args:
         current_page (Page): At any given level of recursion, the page which we're trying to relate to calling_page.

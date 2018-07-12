@@ -10,7 +10,8 @@ ORGANISATION_URL = "https://iatiregistry.org/api/3/action/package_search?facet.f
 
 def get_total_num_activities():
     """
-        A function that queries the IATI registry that returns a faceted list of activity counts and their frequencies.
+        Query the IATI registry and return a faceted list of activity counts and their frequencies.
+
         The total number of activities is then calculated as the sum of the product of a count and a frequency.
         E.g. if "30" is the count and the frequency is 2, then the total number of activities is 60.
     """
@@ -27,7 +28,8 @@ def get_total_num_activities():
 
 def get_total_num_publishers():
     """
-        A function that queries the IATI registry that returns a faceted list of activities by organisation.
+        Query the IATI registry and return a faceted list of activities by organisation.
+
         The total number of organisations is then calculated as the length of the facet object.
     """
     organisation_request = requests.get(ORGANISATION_URL)
