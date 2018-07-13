@@ -2,11 +2,11 @@
 
 <div class="is-typeset is-typeset--article">
     {% for child in content %}
-        {% if child.block_type == 'h2' %}
+        {% if child.block_type == 'heading_2' %}
             <h2>{{ child }}</h2>
-        {% elif child.block_type == 'h3' %}
+        {% elif child.block_type == 'heading_3' %}
             <h3>{{ child }}</h3>
-        {% elif child.block_type == 'h4' %}
+        {% elif child.block_type == 'heading_4' %}
             <h4>{{ child }}</h4>
         {% elif child.block_type == 'intro' %}
             <div class="intro">{{ child }}</div>
