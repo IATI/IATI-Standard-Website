@@ -15,7 +15,7 @@ from iati_standard.models import IATIStandardPage
 from using_data.models import UsingDataPage
 
 
-register = template.Library()
+register = template.Library()  # pylint: disable=invalid-name
 
 
 register.filter('intcomma', intcomma)
