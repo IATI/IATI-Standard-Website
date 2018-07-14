@@ -8,6 +8,8 @@ from .models import IATIStandardPage
 
 @register(IATIStandardPage)
 class IATIStandardPageTR(TranslationOptions):
+    """Class declaring which fields of the IATIStandardPage model to translate."""
+
     fields = IATIStandardPage.translation_fields
 
 

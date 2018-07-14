@@ -1,3 +1,5 @@
+"""Module for handling internationalisation in URL patterns."""
+
 from django.urls import LocalePrefixPattern, URLResolver
 from django.conf import settings
 from django.utils.translation import activate, get_language

@@ -8,6 +8,8 @@ from .models import ContactPage
 
 @register(ContactPage)
 class ContactPageTR(TranslationOptions):
+    """Class declaring which fields of the ContactPage model to translate."""
+
     fields = ContactPage.translation_fields
 
 
