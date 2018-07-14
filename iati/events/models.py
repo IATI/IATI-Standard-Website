@@ -145,7 +145,7 @@ class FeaturedEvent(models.Model):
 
     def __str__(self):
         """Override magic method to return event heading and start date."""
-        return self.event.heading + " on " + _date(self.event.date_start)
+        return "{0} on {1}".format(self.event.heading, _date(self.event.date_start))
 
     panels = [
         PageChooserPanel('event', 'events.EventPage')
