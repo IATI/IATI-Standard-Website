@@ -80,11 +80,8 @@ class EventPage(AbstractContentPage):  # pylint: disable=too-many-ancestors
     location = models.TextField(null=True, blank=True)
     registration_link = models.URLField(max_length=255, null=True, blank=True)
     feed_image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+',
+        'wagtailimages.Image', null=True, blank=True,
+        on_delete=models.SET_NULL, related_name='+',
         help_text='This is the image that will be displayed for the event in the page header and on the Events and Past Events list pages.'
     )
 
@@ -128,13 +125,9 @@ class EventType(models.Model):
             self.slug = base_slug
         super(EventType, self).full_clean(exclude, validate_unique)
 
-    translation_fields = [
-        'name',
-    ]
+    translation_fields = ['name']
 
-    panels = [
-        FieldPanel('name'),
-    ]
+    panels = [FieldPanel('name')]
 
 
 @register_snippet

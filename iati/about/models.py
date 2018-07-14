@@ -73,11 +73,8 @@ class CaseStudyPage(AbstractContentPage):  # pylint: disable=too-many-ancestors
     subpage_types = []
 
     feed_image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+',
+        'wagtailimages.Image', null=True, blank=True,
+        on_delete=models.SET_NULL, related_name='+',
         help_text='This is the image that will be displayed for the case study in the page header and on the Case Studies list page.'
     )
 

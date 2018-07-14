@@ -51,11 +51,8 @@ class NewsPage(AbstractContentPage):  # pylint: disable=too-many-ancestors
 
     date = models.DateField("News date", default=datetime.date.today)
     feed_image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
+        'wagtailimages.Image', null=True, blank=True,
+        on_delete=models.SET_NULL, related_name='+'
     )
 
     news_categories = ParentalManyToManyField('news.NewsCategory', blank=True)
@@ -92,13 +89,9 @@ class NewsCategory(models.Model):
             self.slug = base_slug
         super(NewsCategory, self).full_clean(exclude, validate_unique)
 
-    translation_fields = [
-        'name',
-    ]
+    translation_fields = ['name']
 
-    panels = [
-        FieldPanel('name'),
-    ]
+    panels = [FieldPanel('name')]
 
 
 class RelatedNews(Orderable):

@@ -31,11 +31,8 @@ class GuidanceGroupPage(AbstractContentPage):  # pylint: disable=too-many-ancest
     subpage_types = ['guidance_and_support.GuidanceGroupPage', 'guidance_and_support.GuidancePage']
 
     section_image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+',
+        'wagtailimages.Image', null=True, blank=True,
+        on_delete=models.SET_NULL, related_name='+',
         help_text='This is the image that will be displayed for this page on the main guidance and support page. Ignore if this page is being used as a sub-index page.'
     )
 

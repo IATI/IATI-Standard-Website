@@ -152,11 +152,8 @@ class DefaultPageHeaderImageMixin(Page):  # pylint: disable=too-many-ancestors
     """
 
     header_image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+',
+        'wagtailimages.Image', null=True, blank=True,
+        on_delete=models.SET_NULL, related_name='+',
         help_text='This is the image that will appear in the header banner at the top of the page. If no image is added a placeholder image will be used.'
     )
     multilingual_field_panels = [
