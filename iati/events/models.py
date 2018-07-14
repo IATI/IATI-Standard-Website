@@ -21,7 +21,7 @@ class EventIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):  # pylint:
 
     @property
     def event_types(self):
-        """A function to list all of the event types"""
+        """List all of the event types."""
         event_types = EventType.objects.all()
         return event_types
 
@@ -33,7 +33,7 @@ class EventIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):  # pylint:
         return paginated_events
 
     def get_context(self, request, *args, **kwargs):
-        """Overwriting the default wagtail get_context function to allow for filtering based on params, including pagination.
+        """Overwrite the default wagtail get_context function to allow for filtering based on params, including pagination.
 
         Use the functions built into the abstract index page class to dynamically filter the child pages and apply pagination, limiting the results to 3 per page.
 
@@ -70,7 +70,7 @@ class EventIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):  # pylint:
 
 
 class EventPage(AbstractContentPage):  # pylint: disable=too-many-ancestors
-    """A model for event single pages"""
+    """A model for event single pages."""
 
     parent_page_types = ['events.EventIndexPage']
     subpage_types = []
@@ -93,7 +93,7 @@ class EventPage(AbstractContentPage):  # pylint: disable=too-many-ancestors
 
     @property
     def event_type_concat(self):
-        """A function that takes all of the EventType snippets and concatenates them into a space separated one-liner."""
+        """Take all of the EventType snippets and concatenate them into a space separated one-liner."""
         event_types = self.event_type.values_list('name', flat=True)
 
         return " | ".join(event_types)
@@ -118,11 +118,11 @@ class EventType(models.Model):
     slug = models.SlugField(unique=True)
 
     def __str__(self):
-        """Explicit to string function"""
+        """Override magic method to return event type name."""
         return self.name
 
     def full_clean(self, exclude=None, validate_unique=True):
-        """Apply fixups that need to happen before per-field validation occurs"""
+        """Apply fixups that need to happen before per-field validation occurs."""
         base_slug = slugify(self.name, allow_unicode=True)
         if base_slug:
             self.slug = base_slug
@@ -144,6 +144,7 @@ class FeaturedEvent(models.Model):
     event = models.ForeignKey('events.EventPage', on_delete=models.CASCADE, related_name="+")
 
     def __str__(self):
+        """Override magic method to return event heading and start date."""
         return self.event.heading + " on " + _date(self.event.date_start)
 
     panels = [

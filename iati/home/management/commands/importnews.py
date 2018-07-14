@@ -15,10 +15,11 @@ class Command(BaseCommand):
     help = 'Import news given a JSON file.'
 
     def add_arguments(self, parser):
+        """Add custom command arguments."""
         parser.add_argument('json_file', nargs='+', type=str)
 
     def handle(self, *args, **options):
-        """The default function Django BaseCommand needs to run."""
+        """Implement the command handler."""
         if not options['json_file']:
             raise CommandError('Please pass the path to a JSON file as the first positional argument.')
 

@@ -25,12 +25,13 @@ DEFAULT_PAGES = [
 class Command(BaseCommand):
     """Management command that first rectifies some database problems with the HomePage model created by wagtail-modeltranslation and then creates the top-level default pages from the infrastructure architecture.
 
-       The home_page needed a queryset update before the HomePage model is allowed to save in the CMS.
-       The update method bypasses the validation of the save method and writes directly to the database, but the child pages need their URLs updated with save.
-       If no missing pages are detected for the children, the home page will not be changed.
+    The home_page needed a queryset update before the HomePage model is allowed to save in the CMS.
 
-       TODO:
-       1. If wagtail-modeltranslation or django-modeltranslation update, this command may no longer need to edit the home page.
+    The update method bypasses the validation of the save method and writes directly to the database, but the child pages need their URLs updated with save.
+    If no missing pages are detected for the children, the home page will not be changed.
+
+    TODO:
+    1. If wagtail-modeltranslation or django-modeltranslation update, this command may no longer need to edit the home page.
     """
 
     help = 'Create the default pages that constitute the skeleton of the website information architecture.'

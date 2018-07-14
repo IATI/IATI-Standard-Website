@@ -182,7 +182,7 @@ class TestEventPages():
         assert admin_browser.is_text_present(header['content'])
 
     def test_event_type_filter(self, admin_browser):
-        """Create an event type, assign it to 4 child pages, and test param"""
+        """Create an event type, assign it to 4 child pages, and test param."""
         admin_browser.visit(os.environ['LIVE_SERVER_URL'] + '/{}/'.format(ADMIN_SLUG))
         admin_browser.click_link_by_text("Snippets")
         admin_browser.click_link_by_partial_text("Event types")
@@ -246,7 +246,7 @@ class TestEventPages():
 @pytest.mark.django_db()
 class TestFeaturedEvents():
     def test_featured_event(self, admin_browser):
-        """Create an event to be featured, feature it, mark it to show, test that it is shown"""
+        """Create an event to be featured, feature it, mark it to show, and test that it is shown."""
         TEST_PAGE_TITLE = "A test featured event"
         create_event_child_page(admin_browser, "Event page", TEST_PAGE_TITLE)
         admin_browser.visit(os.environ['LIVE_SERVER_URL'] + '/{}/'.format(ADMIN_SLUG))

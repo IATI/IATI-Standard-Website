@@ -20,7 +20,7 @@ class NewsIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):  # pylint: 
 
     @property
     def news_categories(self):
-        """A function to list all of the news categories"""
+        """List all of the news categories."""
         news_categories = NewsCategory.objects.all()
         return news_categories
 
@@ -44,7 +44,7 @@ class NewsIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):  # pylint: 
 
 
 class NewsPage(AbstractContentPage):  # pylint: disable=too-many-ancestors
-    """A model for news single pages"""
+    """A model for news single pages."""
 
     parent_page_types = ['news.NewsIndexPage']
     subpage_types = []
@@ -81,12 +81,12 @@ class NewsCategory(models.Model):
         return self.name
 
     class Meta(object):
-        """Change verbose name for correct pluralization"""
+        """Change verbose name for correct pluralization."""
 
         verbose_name_plural = "news categories"
 
     def full_clean(self, exclude=None, validate_unique=True):
-        """Apply fixups that need to happen before per-field validation occurs"""
+        """Apply fixups that need to happen before per-field validation occurs."""
         base_slug = slugify(self.name, allow_unicode=True)
         if base_slug:
             self.slug = base_slug

@@ -70,7 +70,7 @@ class GuidancePage(AbstractContentPage):  # pylint: disable=too-many-ancestors
     subpage_types = []
 
     def get_context(self, request, *args, **kwargs):
-        """Overwrite context to intercept POST requests to pages on this template and pass them to Zendesk API
+        """Overwrite context to intercept POST requests to pages on this template and pass them to Zendesk API.
 
         Validate with some sort of captcha.
         """

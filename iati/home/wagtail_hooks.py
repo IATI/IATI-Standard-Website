@@ -1,3 +1,5 @@
+"""Wagtail hooks, registering functions to execute at certain points in Wagtail's execution."""
+
 from wagtail.core import hooks
 import wagtail.admin.rich_text.editors.draftail.features as draftail_features
 from wagtail.admin.rich_text.converters.html_to_contentstate import InlineEntityElementHandler
@@ -56,6 +58,7 @@ class AnchorEntityElementHandler(InlineEntityElementHandler):
 
 @hooks.register('insert_editor_js')
 def anchor_editor_js():
+    """Include some extra javascript in the editor."""
     js_files = [
         'wagtailadmin/js/draftail.js',
         'home/js/anchor.js',
