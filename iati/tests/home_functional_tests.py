@@ -64,6 +64,7 @@ TERMS_PAGE = {
 @pytest.mark.django_db
 class TestFixedStandardPages():
     """Tests to see if fixed standard pages are properly linked"""
+
     @pytest.mark.parametrize('fixed_page', [
         PRIVACY_PAGE,
         TERMS_PAGE

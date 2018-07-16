@@ -7,6 +7,7 @@ from .models import UsingDataPage
 @register(UsingDataPage)
 class UsingDataPageTR(TranslationOptions):
     """Inheriting from AboutPage already comes with translations."""
+
     fields = list()
 
 
