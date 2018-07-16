@@ -1,8 +1,11 @@
 import os
 import time
+from django.conf import settings
 from django.utils.text import slugify
-from tests.about_functional_tests import TEST_DATA_DIR
 from iati.urls import ADMIN_SLUG
+
+
+TEST_DATA_DIR = settings.BASE_DIR + '/tests/data/'
 
 
 # helpers from base_functional_tests.py
@@ -215,3 +218,19 @@ def create_standard_home_page(admin_browser, page_type, fixed_page_type, page_ti
     enter_page_content(admin_browser, 'English', 'title_en', page_title)
     enter_page_content(admin_browser, 'Promote', 'slug_en', slugify(page_title))
     publish_changes(admin_browser)
+
+
+# helper functions for events_functional_tests.py
+def create_event_child_page(admin_browser, page_type, page_title):
+    """Create a child page in the CMS.
+
+    Args:
+        page_type (str): The verbose name of the page model type you want to click on.
+        page_title (str): The title of the page you are editing.
+
+    """
+    navigate_to_default_page_cms_section(admin_browser, 'Events')
+    admin_browser.find_by_text('Add child page').click()
+    enter_page_content(admin_browser, 'English', 'title_en', page_title)
+    enter_page_content(admin_browser, 'Promote', 'slug_en', slugify(page_title))
+    publish_page(admin_browser)

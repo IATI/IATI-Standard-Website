@@ -7,7 +7,7 @@ TODO:
 import os
 from django.utils.text import slugify
 import pytest
-from base_functional_tests import TEST_DATA_DIR
+from tests import helper_functions
 
 
 ABOUT_PAGE = {
@@ -83,8 +83,8 @@ def publish_page(admin_browser):
         Duplicate of publish_changes in base_functional_tests.
 
     """
-    click_obscured(admin_browser, admin_browser.find_by_xpath('//div[@class="dropdown-toggle icon icon-arrow-up"]').first)
-    click_obscured(admin_browser, admin_browser.find_by_text('Publish').first)
+    helper_functions.click_obscured(admin_browser, admin_browser.find_by_xpath('//div[@class="dropdown-toggle icon icon-arrow-up"]').first)
+    helper_functions.click_obscured(admin_browser, admin_browser.find_by_text('Publish').first)
 
 
 def create_about_child_page(admin_browser, page_type, page_title):
@@ -118,7 +118,7 @@ def edit_page_header(admin_browser, page_title, cms_field, cms_content):
     admin_browser.find_by_text(page_title).click()
     enter_page_content(admin_browser, 'English', cms_field, cms_content)
     publish_page(admin_browser)
-    view_live_page(admin_browser, page_title)
+    helper_functions.view_live_page(admin_browser, page_title)
 
 
 def scroll_to_bottom_of_page(admin_browser):
@@ -173,7 +173,7 @@ class TestAboutPage():
         admin_browser.find_by_text(header['button'])[int(element_count)].click()
         admin_browser.find_by_id(header['id'].format(element_count)).fill(header['content'])
         publish_page(admin_browser)
-        view_live_page(admin_browser, 'About')
+        helper_functions.view_live_page(admin_browser, 'About')
         assert admin_browser.is_text_present(header['content'])
 
 
@@ -192,7 +192,7 @@ class TestAboutChildPages():
     def test_can_create_about_child_pages(self, admin_browser, child_page):
         """Check that when an about child page is created it appears in the website."""
         create_about_child_page(admin_browser, child_page['page_type'], child_page['title'])
-        view_live_page(admin_browser, child_page['title'])
+        helper_functions.view_live_page(admin_browser, child_page['title'])
         assert not admin_browser.is_text_present('Home')
         assert admin_browser.is_text_present(child_page['title'])
 
@@ -228,7 +228,7 @@ class TestAboutChildPages():
         admin_browser.find_by_text(header['button'])[int(element_count)].click()
         admin_browser.find_by_id(header['id'].format(element_count)).fill(header['content'])
         publish_page(admin_browser)
-        view_live_page(admin_browser, child_page['title'])
+        helper_functions.view_live_page(admin_browser, child_page['title'])
         assert admin_browser.is_text_present(header['content'])
 
 
@@ -254,7 +254,7 @@ class TestCaseStudyPage():
         enter_page_content(admin_browser, 'English', 'title_en', CASE_STUDY_PAGE['title'])
         enter_page_content(admin_browser, 'Promote', 'slug_en', slugify(CASE_STUDY_PAGE['title']))
         publish_page(admin_browser)
-        view_live_page(admin_browser, CASE_STUDY_PAGE['title'])
+        helper_functions.view_live_page(admin_browser, CASE_STUDY_PAGE['title'])
         assert admin_browser.is_text_present(CASE_STUDY_PAGE['title'])
 
     def test_case_studies_section_on_home(self, admin_browser):
@@ -287,7 +287,7 @@ class TestCaseStudyPage():
         admin_browser.find_by_text(header['button'])[int(element_count)].click()
         admin_browser.find_by_id(header['id'].format(element_count)).fill(header['content'])
         publish_page(admin_browser)
-        view_live_page(admin_browser, CASE_STUDY_PAGE['title'])
+        helper_functions.view_live_page(admin_browser, CASE_STUDY_PAGE['title'])
         assert admin_browser.is_text_present(header['content'])
 
     def upload_an_image(self, admin_browser):
@@ -298,9 +298,9 @@ class TestCaseStudyPage():
 
         """
         admin_browser.find_by_text('Choose an image').click()
-        click_obscured(admin_browser, admin_browser.find_by_text('Upload').first)
+        helper_functions.click_obscured(admin_browser, admin_browser.find_by_text('Upload').first)
         admin_browser.fill('title', 'Test image')
-        admin_browser.attach_file('file', TEST_DATA_DIR + 'pigeons.jpeg')
+        admin_browser.attach_file('file', helper_functions.TEST_DATA_DIR + 'pigeons.jpeg')
         admin_browser.find_by_xpath('//em[contains(text(), "Upload")]').click()
 
     def test_feed_image_shows_on_index_page(self, admin_browser):
@@ -308,7 +308,7 @@ class TestCaseStudyPage():
         admin_browser.find_by_text(CASE_STUDY_PAGE['title']).click()
         self.upload_an_image(admin_browser)
         publish_page(admin_browser)
-        view_live_page(admin_browser, self.CASE_STUDY_INDEX_PAGE_TITLE)
+        helper_functions.view_live_page(admin_browser, self.CASE_STUDY_INDEX_PAGE_TITLE)
         header_image = admin_browser.find_by_xpath('//div[@class="case-study__media background-cover"]')
         assert 'pigeons' in header_image.outer_html
 

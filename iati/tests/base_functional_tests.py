@@ -7,60 +7,16 @@ import pytest
 from conftest import LOCALHOST
 from django.core.management import call_command
 from django.apps import apps
-# from ḍjango.utils.text import slugify
-from django.conf import settings
 # from home.models import AbstractContentPage, IATIStreamBlock, HomePage
 from wagtail.core.blocks import CharBlock, FieldBlock, RawHTMLBlock, RichTextBlock, StreamBlock, StructBlock, TextBlock
 from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.images.blocks import ImageChooserBlock
 from home.management.commands.createdefaultpages import DEFAULT_PAGES
 from home.models import HomePage
-from iati.urls import ADMIN_SLUG
 from tests import helper_functions
 
 
 DEFAULT_PAGES = DEFAULT_PAGES + [{'title': 'Home', 'slug': '', 'model': HomePage}]
-
-
-TEST_DATA_DIR = settings.BASE_DIR + '/tests/data/'
-
-
-# def view_live_page(admin_browser, page_title):
-#     """Navigate to the published page on the site.
-#
-#     Args:
-#         page_title (str): The page title text you are expecting on the live page.
-#
-#     """
-#     button_links = admin_browser.find_by_xpath('//a[@title="View live version of \'{}\'"]'.format(page_title))
-#     href = button_links[0].__dict__['_element'].get_property('href')
-#     admin_browser.visit(href)
-#
-#
-# def prevent_alerts(admin_browser):
-#     """Stop the Wagtail CMS from sending beforeunload alerts.
-#
-#     Args:
-#         admin_browser (browser): The splinter browser instance.
-#
-#     """
-#     admin_browser.driver.execute_script("window.removeEventListener('beforeunload', window.areYouSure);")
-
-
-# def wait_for_clickability(element, wait_time=1):
-#     """Wait until an element is enabled before clicking.
-#
-#     Args:
-#         element (ElementAPI): The splinter element to be waited on.
-#         wait_time (int): The time in seconds to wait.
-#
-#     """
-#     end_time = time.time() + wait_time
-#
-#     while time.time() < end_time:
-#         if element and element.__dict__['_element'].is_enabled():
-#             return True
-#     return False
 
 
 def wait_for_visibility(element, wait_time=1):
@@ -102,18 +58,6 @@ def random_string(size=10, chars=string.ascii_uppercase + string.ascii_lowercase
 
     """
     return ''.join(random.choice(chars) for _ in range(size))
-
-
-# def click_obscured(admin_browser, element):
-#     """A function that clicks elements even if they're slightly obscured.
-#
-#     Args:
-#         admin_browser (browser): The splinter browser instance.
-#         element (ElementAPI): The splinter element to be waited on.
-#
-#     """
-#     wait_for_clickability(element)
-#     admin_browser.driver.execute_script("arguments[0].click();", element.__dict__['_element'])
 
 
 def scroll_to_element(admin_browser, element):
