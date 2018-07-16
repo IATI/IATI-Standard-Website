@@ -15,7 +15,7 @@ from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.images.blocks import ImageChooserBlock
 from home.management.commands.createdefaultpages import DEFAULT_PAGES
 from home.models import HomePage
-from iati.urls import ADMIN_SLUG
+# from iati.urls import ADMIN_SLUG
 
 
 DEFAULT_PAGES = DEFAULT_PAGES + [{'title': 'Home', 'slug': '', 'model': HomePage}]

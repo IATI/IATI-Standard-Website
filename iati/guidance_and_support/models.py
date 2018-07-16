@@ -12,6 +12,7 @@ from .zendeskhelper import generate_ticket
 
 class GuidanceAndSupportPage(DefaultPageHeaderImageMixin, AbstractContentPage):
     """A base for the Guidance and Support page."""
+
     parent_page_types = ['home.HomePage']
     subpage_types = ['guidance_and_support.GuidanceGroupPage', 'guidance_and_support.KnowledgebaseIndexPage']
 
@@ -24,6 +25,7 @@ class GuidanceAndSupportPage(DefaultPageHeaderImageMixin, AbstractContentPage):
 
 class GuidanceGroupPage(AbstractContentPage):
     """A base for Guidance Group pages."""
+
     subpage_types = ['guidance_and_support.GuidanceGroupPage', 'guidance_and_support.GuidancePage']
 
     section_image = models.ForeignKey(
@@ -62,9 +64,10 @@ class GuidanceGroupPage(AbstractContentPage):
 
 class GuidancePage(AbstractContentPage):
     """A base for a single guidance page."""
+
     subpage_types = []
 
-    def get_context(self, request):
+    def get_context(self, request, *args, **kwargs):
         """Overwrite context to intercept POST requests to pages on this template and pass them to Zendesk API
 
         Validate with some sort of captcha."""
@@ -86,9 +89,11 @@ class GuidancePage(AbstractContentPage):
 
 class KnowledgebaseIndexPage(AbstractIndexPage):
     """A base for a Knowledgebase index page."""
+
     subpage_types = ['guidance_and_support.KnowledgebasePage']
 
 
 class KnowledgebasePage(AbstractContentPage):
     """A base for a single Knowledgebase page."""
+
     subpage_types = []

@@ -2,6 +2,9 @@ from django import template
 from django.conf import settings
 from django.utils import timezone
 from django.template.defaultfilters import date as _date
+from django.contrib.humanize.templatetags.humanize import intcomma
+from wagtail_modeltranslation.contextlib import use_language
+from wagtail.core.templatetags.wagtailcore_tags import pageurl
 from home.models import HomePage, StandardPage
 from about.models import AboutPage
 from contact.models import ContactPage
@@ -10,9 +13,6 @@ from guidance_and_support.models import GuidanceAndSupportPage
 from news.models import NewsIndexPage, NewsCategory
 from iati_standard.models import IATIStandardPage
 from using_data.models import UsingDataPage
-from wagtail_modeltranslation.contextlib import use_language
-from wagtail.core.templatetags.wagtailcore_tags import pageurl
-from django.contrib.humanize.templatetags.humanize import intcomma
 
 
 register = template.Library()
@@ -74,7 +74,7 @@ def translation_links(context, calling_page):
 
 @register.filter
 def haspassed(value):
-    """Takes a date and tells you if it's in the past"""
+    """Return True if the given date is in the past; False otherwise."""
     now = timezone.now()
     return value < now
 
@@ -116,8 +116,10 @@ def event_type_verbose(event_type_slug):
 
 
 def discover_tree_recursive(current_page, calling_page):
-    """Return the 'section sub-menu' page hierarchy from the point-of-view of the `calling_page`, to the top of the main section.
-    A recursive function that discovers children if the current page is an ancestor of the page we want to draw the hierarchy to.
+    """
+    Discover children of the current page, if it is an ancestor of the page we want to draw the hierarchy to.
+
+    Returns the 'section sub-menu' page hierarchy from the point-of-view of the `calling_page`, to the top of the main section.
 
     Args:
         current_page (Page): At any given level of recursion, the page which we're trying to relate to calling_page.

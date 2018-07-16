@@ -20,12 +20,12 @@ DJANGO_ADMIN_PASS = 'password'
 if 'TRAVIS' in os.environ:
     DATABASES = {
         'default': {
-            'ENGINE':   'django.db.backends.postgresql_psycopg2',
-            'NAME':     'travisci',  # Must match DB name in travis.yml
-            'USER':     'postgres',
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'travisci',  # Must match DB name in travis.yml
+            'USER': 'postgres',
             'PASSWORD': '',
-            'HOST':     'localhost',
-            'PORT':     '',
+            'HOST': 'localhost',
+            'PORT': '',
         }
     }
 

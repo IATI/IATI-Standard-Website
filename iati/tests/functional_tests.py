@@ -1,5 +1,4 @@
 """A module for functional tests."""
-import pytest
 from conftest import LOCALHOST
 
 

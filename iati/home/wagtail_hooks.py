@@ -1,18 +1,15 @@
-import wagtail.admin.rich_text.editors.draftail.features as draftail_features
 from wagtail.core import hooks
-from draftjs_exporter.dom import DOM
+import wagtail.admin.rich_text.editors.draftail.features as draftail_features
 from wagtail.admin.rich_text.converters.html_to_contentstate import InlineEntityElementHandler
+from draftjs_exporter.dom import DOM
 from django.utils.html import format_html_join
 from django.conf import settings
 
 
 @hooks.register('register_rich_text_features')
 def register_anchor_feature(features):
+    """Register the `anchor` feature, which uses the `ANCHOR` Draft.js entity type, and is stored as HTML with a `<a href>` tag."""
     features.default_features.append('anchor')
-    """
-    Registering the `anchor` feature, which uses the `ANCHOR` Draft.js entity type,
-    and is stored as HTML with a `<a href>` tag.
-    """
     feature_name = 'anchor'
     type_ = 'ANCHOR'
 
@@ -35,6 +32,7 @@ def register_anchor_feature(features):
 def anchor_entity_decorator(props):
     """
     Draft.js ContentState to database HTML.
+
     Converts the ANCHOR entities into an a tag.
     """
     return DOM.create_element('a', {
@@ -45,14 +43,14 @@ def anchor_entity_decorator(props):
 class AnchorEntityElementHandler(InlineEntityElementHandler):
     """
     Database HTML to Draft.js ContentState.
+
     Converts the a tag into an ANCHOR entity, with the right data.
     """
+
     mutability = 'IMMUTABLE'
 
     def get_attribute_data(self, attrs):
-        """
-        Take the ``href`` value from the ``href`` HTML attribute.
-        """
+        """Take the ``href`` value from the ``href`` HTML attribute."""
         return {
             'href': attrs['href'],
         }

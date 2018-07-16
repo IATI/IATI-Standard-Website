@@ -13,6 +13,7 @@ from home.models import AbstractIndexPage, AbstractContentPage, DefaultPageHeade
 
 class EventIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
     """A model for event index pages, the main event landing page."""
+
     parent_page_types = ['home.HomePage']
     subpage_types = ['events.EventPage']
 
@@ -22,7 +23,7 @@ class EventIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
         event_types = EventType.objects.all()
         return event_types
 
-    def get_context(self, request):
+    def get_context(self, request, *args, **kwargs):
         """Overwriting the default wagtail get_context function to allow for filtering based on params, including pagination.
 
         Use the functions built into the abstract index page class to dynamically filter the child pages and apply pagination, limiting the results to 3 per page.
@@ -64,6 +65,7 @@ class EventIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
 
 class EventPage(AbstractContentPage):
     """A model for event single pages"""
+
     parent_page_types = ['events.EventIndexPage']
     subpage_types = []
 
@@ -105,6 +107,7 @@ class EventPage(AbstractContentPage):
 @register_snippet
 class EventType(models.Model):
     """A snippet model for event types, to be added in the snippet menu prior to creating events for uniformity."""
+
     name = models.CharField(max_length=255, unique=True)
     slug = models.SlugField(unique=True)
 
@@ -112,12 +115,12 @@ class EventType(models.Model):
         """Explicit to string function"""
         return self.name
 
-    def full_clean(self, *args, **kwargs):
+    def full_clean(self, exclude=None, validate_unique=True):
         """Apply fixups that need to happen before per-field validation occurs"""
         base_slug = slugify(self.name, allow_unicode=True)
         if base_slug:
             self.slug = base_slug
-        super(EventType, self).full_clean(*args, **kwargs)
+        super(EventType, self).full_clean(exclude, validate_unique)
 
     translation_fields = [
         'name',
@@ -131,6 +134,7 @@ class EventType(models.Model):
 @register_snippet
 class FeaturedEvent(models.Model):
     """A snippet model for featured events, with a page chooser that only allows event pages to be selected."""
+
     event = models.ForeignKey('events.EventPage', on_delete=models.CASCADE, related_name="+")
 
     def __str__(self):

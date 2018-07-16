@@ -1,12 +1,13 @@
-from .models import UsingDataPage
 from modeltranslation.translator import TranslationOptions
 from modeltranslation.decorators import register
 from home.translation_helper import add_language_content_panels
+from .models import UsingDataPage
 
 
 @register(UsingDataPage)
 class UsingDataPageTR(TranslationOptions):
     """Inheriting from AboutPage already comes with translations."""
+
     fields = list()
 
 

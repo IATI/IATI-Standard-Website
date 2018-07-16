@@ -1,8 +1,8 @@
-from .models import GuidanceAndSupportPage, GuidanceGroupPage, GuidancePage, KnowledgebaseIndexPage, KnowledgebasePage
 from modeltranslation.translator import TranslationOptions
 from modeltranslation.decorators import register
 
 from home.translation_helper import add_language_content_panels
+from .models import GuidanceAndSupportPage, GuidanceGroupPage, GuidancePage, KnowledgebaseIndexPage, KnowledgebasePage
 
 
 @register(GuidanceAndSupportPage)
