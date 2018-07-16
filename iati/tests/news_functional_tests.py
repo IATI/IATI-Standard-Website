@@ -24,9 +24,9 @@ NEWS_PAGE = {
 
 TEST_CATEGORY = "Test IATI news category"
 
-H2 = {'content': 'H2 heading', 'button': 'H2', 'id': 'content_editor_en-{}-value'}
-H3 = {'content': 'H3 heading', 'button': 'H3', 'id': 'content_editor_en-{}-value'}
-H4 = {'content': 'H4 heading', 'button': 'H4', 'id': 'content_editor_en-{}-value'}
+H2 = {'content': 'H2 heading', 'button': 'Heading 2', 'id': 'content_editor_en-{}-value'}
+H3 = {'content': 'H3 heading', 'button': 'Heading 3', 'id': 'content_editor_en-{}-value'}
+H4 = {'content': 'H4 heading', 'button': 'Heading 4', 'id': 'content_editor_en-{}-value'}
 
 
 def navigate_to_default_page_cms_section(admin_browser, default_page_title):
@@ -162,8 +162,9 @@ class TestNewsIndexChildPages():
         admin_browser.find_by_text(NEWS_PAGE['title'])[0].click()
         admin_browser.find_by_text('English')[0].click()
         find_and_click_toggle_button(admin_browser, 0)
-        find_and_click_add_button(admin_browser, header['button'].lower())
-        fill_content_editor_block(admin_browser, header['button'].lower(), " input", header['content'])
+        header_class = header['button'].lower().replace(' ', '_')
+        find_and_click_add_button(admin_browser, header_class)
+        fill_content_editor_block(admin_browser, header_class, " input", header['content'])
         publish_page(admin_browser)
         view_live_page(admin_browser, NEWS_PAGE['title'])
         assert admin_browser.is_text_present(header['content'])

@@ -73,9 +73,9 @@ class ImageBlock(StructBlock):
 class IATIStreamBlock(StreamBlock):
     """The main stream block used as the content editor sitewide."""
 
-    h2 = CharBlock(icon="title", classname="title")
-    h3 = CharBlock(icon="title", classname="title")
-    h4 = CharBlock(icon="title", classname="title")
+    heading_2 = CharBlock(icon="title", classname="title")
+    heading_3 = CharBlock(icon="title", classname="title")
+    heading_4 = CharBlock(icon="title", classname="title")
     intro = RichTextBlock(icon="pilcrow")
     paragraph = RichTextBlock(icon="pilcrow")
     image_figure = ImageBlock(label="Image figure", icon="image")

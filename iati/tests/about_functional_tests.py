@@ -46,9 +46,9 @@ CASE_STUDY_PAGE = {
     'excerpt': 'This is an excerpt for a Case Study page.'
 }
 
-H2 = {'content': 'H2 heading', 'button': 'H2', 'id': 'content_editor_en-{}-value'}
-H3 = {'content': 'H3 heading', 'button': 'H3', 'id': 'content_editor_en-{}-value'}
-H4 = {'content': 'H4 heading', 'button': 'H4', 'id': 'content_editor_en-{}-value'}
+H2 = {'content': 'H2 heading', 'button': 'Heading 2', 'id': 'content_editor_en-{}-value'}
+H3 = {'content': 'H3 heading', 'button': 'Heading 3', 'id': 'content_editor_en-{}-value'}
+H4 = {'content': 'H4 heading', 'button': 'Heading 4', 'id': 'content_editor_en-{}-value'}
 
 
 def navigate_to_default_page_cms_section(admin_browser, default_page_title):
