@@ -15,7 +15,7 @@ class ContactTypeStreamBlock(StreamBlock):
     ], icon="title", classname="title")
 
 
-class ContactPage(DefaultPageHeaderImageMixin, AbstractContentPage):  # pylint: disable=too-many-ancestors
+class ContactPage(DefaultPageHeaderImageMixin, AbstractContentPage):
     """Model to define the overall fields for the contact page."""
 
     parent_page_types = ['home.HomePage']

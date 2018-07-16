@@ -11,7 +11,7 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from home.models import AbstractContentPage, AbstractIndexPage, DefaultPageHeaderImageMixin, PullQuoteBlock
 
 
-class AboutPage(DefaultPageHeaderImageMixin, AbstractContentPage):  # pylint: disable=too-many-ancestors
+class AboutPage(DefaultPageHeaderImageMixin, AbstractContentPage):
     """A model for the About landing page."""
 
     parent_page_types = ['home.HomePage']
@@ -24,7 +24,7 @@ class AboutPage(DefaultPageHeaderImageMixin, AbstractContentPage):  # pylint: di
     ]
 
 
-class AboutSubPage(AbstractContentPage):  # pylint: disable=too-many-ancestors
+class AboutSubPage(AbstractContentPage):
     """A model for generic About subpages."""
 
     subpage_types = ['about.AboutSubPage', 'about.PeoplePage']
@@ -36,7 +36,7 @@ class AboutSubPage(AbstractContentPage):  # pylint: disable=too-many-ancestors
     ]
 
 
-class CaseStudyIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):  # pylint: disable=too-many-ancestors
+class CaseStudyIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
     """A model for the Case Studies Index page."""
 
     subpage_types = ['about.CaseStudyPage']
@@ -66,7 +66,7 @@ class CaseStudyIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):  # pyl
     ]
 
 
-class CaseStudyPage(AbstractContentPage):  # pylint: disable=too-many-ancestors
+class CaseStudyPage(AbstractContentPage):
     """A model for Case Study pages."""
 
     parent_page_types = ['about.CaseStudyIndexPage']
@@ -92,7 +92,7 @@ class HistoryDateBlock(StreamBlock):
     ])
 
 
-class HistoryPage(AbstractContentPage):  # pylint: disable=too-many-ancestors
+class HistoryPage(AbstractContentPage):
     """A model for the History page."""
 
     subpage_types = []
@@ -125,7 +125,7 @@ class PeopleProfileBlock(StreamBlock):
     ], icon="image")
 
 
-class PeoplePage(AbstractContentPage):  # pylint: disable=too-many-ancestors
+class PeoplePage(AbstractContentPage):
     """A model for the People page."""
 
     subpage_types = ["about.PeoplePage", "about.AboutSubPage"]

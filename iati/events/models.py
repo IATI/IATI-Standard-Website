@@ -13,7 +13,7 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from home.models import AbstractIndexPage, AbstractContentPage, DefaultPageHeaderImageMixin, IATIStreamBlock
 
 
-class EventIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):  # pylint: disable=too-many-ancestors
+class EventIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
     """A model for event index pages, the main event landing page."""
 
     parent_page_types = ['home.HomePage']
@@ -69,7 +69,7 @@ class EventIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):  # pylint:
         return context
 
 
-class EventPage(AbstractContentPage):  # pylint: disable=too-many-ancestors
+class EventPage(AbstractContentPage):
     """A model for event single pages."""
 
     parent_page_types = ['events.EventIndexPage']
