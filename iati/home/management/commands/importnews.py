@@ -1,7 +1,8 @@
+"""Management command that imports news from a JSON file."""
+
 import json
 import datetime
 import pytz
-from django.utils.text import slugify
 from django.core.management.base import BaseCommand, CommandError
 from django.core.exceptions import ValidationError
 from news.models import NewsIndexPage, NewsPage
@@ -9,17 +10,16 @@ from events.models import EventIndexPage, EventPage
 
 
 class Command(BaseCommand):
-    """A command for manage.py that imports news from a JSON file.
-    """
+    """Management command that imports news from a JSON file."""
 
     help = 'Import news given a JSON file.'
 
     def add_arguments(self, parser):
+        """Add custom command arguments."""
         parser.add_argument('json_file', nargs='+', type=str)
 
     def handle(self, *args, **options):
-        """The default function Django BaseCommand needs to run."""
-
+        """Implement the command handler."""
         if not options['json_file']:
             raise CommandError('Please pass the path to a JSON file as the first positional argument.')
 
@@ -61,7 +61,7 @@ class Command(BaseCommand):
                                 heading=page_data["title"],
                                 content_editor=json.dumps([{'type': 'paragraph', 'value': page_data["content"]}]),
                                 date_start=datetime.datetime.strptime(page_data["date"], "%Y-%m-%d").replace(tzinfo=pytz.UTC),
-                                date_end=datetime.datetime.strptime(page_data["date"], "%Y-%m-%d").replace(tzinfo=pytz.UTC) 
+                                date_end=datetime.datetime.strptime(page_data["date"], "%Y-%m-%d").replace(tzinfo=pytz.UTC)
                             )
                             event_index_page.add_child(instance=event_page)
                             event_page.save_revision().publish()

@@ -1,3 +1,5 @@
+"""Model definitions for the guidance_and_support app."""
+
 import requests
 
 from django.db import models
@@ -12,6 +14,7 @@ from .zendeskhelper import generate_ticket
 
 class GuidanceAndSupportPage(DefaultPageHeaderImageMixin, AbstractContentPage):
     """A base for the Guidance and Support page."""
+
     parent_page_types = ['home.HomePage']
     subpage_types = ['guidance_and_support.GuidanceGroupPage', 'guidance_and_support.KnowledgebaseIndexPage']
 
@@ -24,14 +27,12 @@ class GuidanceAndSupportPage(DefaultPageHeaderImageMixin, AbstractContentPage):
 
 class GuidanceGroupPage(AbstractContentPage):
     """A base for Guidance Group pages."""
+
     subpage_types = ['guidance_and_support.GuidanceGroupPage', 'guidance_and_support.GuidancePage']
 
     section_image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+',
+        'wagtailimages.Image', null=True, blank=True,
+        on_delete=models.SET_NULL, related_name='+',
         help_text='This is the image that will be displayed for this page on the main guidance and support page. Ignore if this page is being used as a sub-index page.'
     )
 
@@ -62,12 +63,14 @@ class GuidanceGroupPage(AbstractContentPage):
 
 class GuidancePage(AbstractContentPage):
     """A base for a single guidance page."""
+
     subpage_types = []
 
-    def get_context(self, request):
-        """Overwrite context to intercept POST requests to pages on this template and pass them to Zendesk API
+    def get_context(self, request, *args, **kwargs):
+        """Overwrite context to intercept POST requests to pages on this template and pass them to Zendesk API.
 
-        Validate with some sort of captcha."""
+        Validate with some sort of captcha.
+        """
         context = super(GuidancePage, self).get_context(request)
         form_submitted = False
         form_success = False
@@ -86,9 +89,11 @@ class GuidancePage(AbstractContentPage):
 
 class KnowledgebaseIndexPage(AbstractIndexPage):
     """A base for a Knowledgebase index page."""
+
     subpage_types = ['guidance_and_support.KnowledgebasePage']
 
 
 class KnowledgebasePage(AbstractContentPage):
     """A base for a single Knowledgebase page."""
+
     subpage_types = []

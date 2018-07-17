@@ -1,3 +1,1 @@
-from django.contrib import admin
-
-# Register your models here.
+"""Module for registering admin models for the guidance_and_support app."""
