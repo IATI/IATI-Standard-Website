@@ -1,3 +1,5 @@
+"""View definitions for the home app."""
+
 from django.shortcuts import redirect
 
 

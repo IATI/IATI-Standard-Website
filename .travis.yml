@@ -61,4 +61,4 @@ jobs:
             - pip install -r iati/requirements_dev.txt
           env: LINTER=pydocstyle
           script: make pydocstyle
-          if: branch IN (master, dev)
+          if: branch IN (master, dev, add-page-models)

@@ -1,3 +1,5 @@
+"""Wagtail hooks, registering functions to execute at certain points in Wagtail's execution."""
+
 from wagtail.core import hooks
 import wagtail.admin.rich_text.editors.draftail.features as draftail_features
 from wagtail.admin.rich_text.converters.html_to_contentstate import InlineEntityElementHandler
@@ -30,8 +32,7 @@ def register_anchor_feature(features):
 
 
 def anchor_entity_decorator(props):
-    """
-    Draft.js ContentState to database HTML.
+    """Draft.js ContentState to database HTML.
 
     Converts the ANCHOR entities into an a tag.
     """
@@ -41,8 +42,7 @@ def anchor_entity_decorator(props):
 
 
 class AnchorEntityElementHandler(InlineEntityElementHandler):
-    """
-    Database HTML to Draft.js ContentState.
+    """Database HTML to Draft.js ContentState.
 
     Converts the a tag into an ANCHOR entity, with the right data.
     """
@@ -58,6 +58,7 @@ class AnchorEntityElementHandler(InlineEntityElementHandler):
 
 @hooks.register('insert_editor_js')
 def anchor_editor_js():
+    """Include some extra javascript in the editor."""
     js_files = [
         'wagtailadmin/js/draftail.js',
         'home/js/anchor.js',

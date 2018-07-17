@@ -1,3 +1,5 @@
+"""Management command for updating homepage statistics."""
+
 import json
 import requests
 from django.core.management.base import BaseCommand, CommandError
@@ -9,11 +11,10 @@ ORGANISATION_URL = "https://iatiregistry.org/api/3/action/package_search?facet.f
 
 
 def get_total_num_activities():
-    """
-        Query the IATI registry and return a faceted list of activity counts and their frequencies.
+    """Query the IATI registry and return a faceted list of activity counts and their frequencies.
 
-        The total number of activities is then calculated as the sum of the product of a count and a frequency.
-        E.g. if "30" is the count and the frequency is 2, then the total number of activities is 60.
+    The total number of activities is then calculated as the sum of the product of a count and a frequency.
+    E.g. if "30" is the count and the frequency is 2, then the total number of activities is 60.
     """
     activity_request = requests.get(ACTIVITY_URL)
     if activity_request.status_code == 200:
@@ -27,10 +28,9 @@ def get_total_num_activities():
 
 
 def get_total_num_publishers():
-    """
-        Query the IATI registry and return a faceted list of activities by organisation.
+    """Query the IATI registry and return a faceted list of activities by organisation.
 
-        The total number of organisations is then calculated as the length of the facet object.
+    The total number of organisations is then calculated as the length of the facet object.
     """
     organisation_request = requests.get(ORGANISATION_URL)
     if organisation_request.status_code == 200:
@@ -42,12 +42,12 @@ def get_total_num_publishers():
 
 
 class Command(BaseCommand):
-    """A command for manage.py that updates the home page statistics."""
+    """Management command for updating homepage statistics."""
 
     help = 'Update statistics'
 
     def handle(self, *args, **options):
-        """The default function Django BaseCommand needs to run."""
+        """Implement the command handler."""
         home_page_queryset = HomePage.objects.live()
 
         activity_count = get_total_num_activities()

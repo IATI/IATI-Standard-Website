@@ -1,3 +1,5 @@
+"""Model definitions for the using_data app."""
+
 from about.models import AboutPage
 
 

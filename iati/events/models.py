@@ -1,3 +1,5 @@
+"""Model definitions for the events app."""
+
 from django import forms
 from django.db import models
 from django.utils import timezone
@@ -19,19 +21,25 @@ class EventIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
 
     @property
     def event_types(self):
-        """A function to list all of the event types"""
+        """List all of the event types."""
         event_types = EventType.objects.all()
         return event_types
 
+    def get_events(self, request, filter_dict):
+        """Return a filtered and paginated list of events."""
+        all_events = EventPage.objects.live().descendant_of(self).order_by('-date_start')
+        filtered_events = self.filter_children(all_events, filter_dict)
+        paginated_events = self.paginate(request, filtered_events, 3)
+        return paginated_events
+
     def get_context(self, request, *args, **kwargs):
-        """Overwriting the default wagtail get_context function to allow for filtering based on params, including pagination.
+        """Overwrite the default wagtail get_context function to allow for filtering based on params, including pagination.
 
         Use the functions built into the abstract index page class to dynamically filter the child pages and apply pagination, limiting the results to 3 per page.
 
         """
         now = timezone.now()
         filter_dict = {}
-        children = EventPage.objects.live().descendant_of(self).order_by('-date_start')
         archive_years = EventPage.objects.live().descendant_of(self).filter(date_start__lte=now).dates('date_start', 'year', order='DESC')
         past = request.GET.get('past') == "1"
         if past:
@@ -50,10 +58,8 @@ class EventIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
         if event_type:
             filter_dict["event_type__slug"] = event_type
 
-        filtered_children = self.filter_children(children, filter_dict)
-        paginated_children = self.paginate(request, filtered_children, 3)
         context = super(EventIndexPage, self).get_context(request)
-        context['events'] = paginated_children
+        context['events'] = self.get_events(request, filter_dict)
         context['past'] = past
         context['archive_years'] = archive_years
         if past:
@@ -64,7 +70,7 @@ class EventIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
 
 
 class EventPage(AbstractContentPage):
-    """A model for event single pages"""
+    """A model for event single pages."""
 
     parent_page_types = ['events.EventIndexPage']
     subpage_types = []
@@ -74,11 +80,8 @@ class EventPage(AbstractContentPage):
     location = models.TextField(null=True, blank=True)
     registration_link = models.URLField(max_length=255, null=True, blank=True)
     feed_image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+',
+        'wagtailimages.Image', null=True, blank=True,
+        on_delete=models.SET_NULL, related_name='+',
         help_text='This is the image that will be displayed for the event in the page header and on the Events and Past Events list pages.'
     )
 
@@ -87,7 +90,7 @@ class EventPage(AbstractContentPage):
 
     @property
     def event_type_concat(self):
-        """A function that takes all of the EventType snippets and concatenates them into a space separated one-liner."""
+        """Take all of the EventType snippets and concatenate them into a space separated one-liner."""
         event_types = self.event_type.values_list('name', flat=True)
 
         return " | ".join(event_types)
@@ -112,23 +115,19 @@ class EventType(models.Model):
     slug = models.SlugField(unique=True)
 
     def __str__(self):
-        """Explicit to string function"""
+        """Override magic method to return event type name."""
         return self.name
 
     def full_clean(self, exclude=None, validate_unique=True):
-        """Apply fixups that need to happen before per-field validation occurs"""
+        """Apply fixups that need to happen before per-field validation occurs."""
         base_slug = slugify(self.name, allow_unicode=True)
         if base_slug:
             self.slug = base_slug
         super(EventType, self).full_clean(exclude, validate_unique)
 
-    translation_fields = [
-        'name',
-    ]
+    translation_fields = ['name']
 
-    panels = [
-        FieldPanel('name'),
-    ]
+    panels = [FieldPanel('name')]
 
 
 @register_snippet
@@ -138,7 +137,8 @@ class FeaturedEvent(models.Model):
     event = models.ForeignKey('events.EventPage', on_delete=models.CASCADE, related_name="+")
 
     def __str__(self):
-        return self.event.heading + " on " + _date(self.event.date_start)
+        """Override magic method to return event heading and start date."""
+        return "{0} on {1}".format(self.event.heading, _date(self.event.date_start))
 
     panels = [
         PageChooserPanel('event', 'events.EventPage')

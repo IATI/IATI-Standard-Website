@@ -1,3 +1,5 @@
+"""Module providing helper functions for use with django-modeltranslation."""
+
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 from wagtail.admin.edit_handlers import TabbedInterface, ObjectList, FieldPanel, MultiFieldPanel, StreamFieldPanel
@@ -13,9 +15,9 @@ def add_language_content_panels(page_model):
     Returns:
         None: This doesn't return anything, it's modifying the provided page_model.
 
-
     TODO:
         Figure out whether using type(Creator) is sustainable. For some reason StreamBlocks are wagtail.core.fields.Creator and all other fiends are django.db.models.query_utils.DeferredAttribute
+
     """
     edit_handler_contents = []
     promote_panel_contents = []

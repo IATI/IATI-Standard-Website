@@ -1,3 +1,5 @@
+"""Custom template tags for use in Django templates."""
+
 from django import template
 from django.conf import settings
 from django.utils import timezone
@@ -15,7 +17,7 @@ from iati_standard.models import IATIStandardPage
 from using_data.models import UsingDataPage
 
 
-register = template.Library()
+register = template.Library()  # pylint: disable=invalid-name
 
 
 register.filter('intcomma', intcomma)
@@ -81,7 +83,7 @@ def haspassed(value):
 
 @register.filter
 def twopartdate(date_start, date_end):
-    """Takes two datetimes and determines whether to display start and end times, or start and end dates.
+    """Take two datetimes and determines whether to display start and end times, or start and end dates.
 
     If an end date exists, we can compare the two dates.
     If the two datetimes are exactly the same, localize and print just the date.
@@ -111,13 +113,12 @@ def twopartdate(date_start, date_end):
 
 @register.filter
 def event_type_verbose(event_type_slug):
-    """Returns the localized event type name given a slug"""
+    """Return the localized event type name given a slug."""
     return EventType.objects.get(slug=event_type_slug).name
 
 
 def discover_tree_recursive(current_page, calling_page):
-    """
-    Discover children of the current page, if it is an ancestor of the page we want to draw the hierarchy to.
+    """Discover children of the current page, if it is an ancestor of the page we want to draw the hierarchy to.
 
     Returns the 'section sub-menu' page hierarchy from the point-of-view of the `calling_page`, to the top of the main section.
 
@@ -128,6 +129,7 @@ def discover_tree_recursive(current_page, calling_page):
 
     Returns:
         list of dict: Flat list of dictionaries (each containing information about the page) that allows the template to draw the menu linearly, rather than hierarchically
+
     """
     parent_menu = []
     for child in current_page.get_children().live().specific():
@@ -165,5 +167,5 @@ def featured_events():
 
 @register.filter
 def news_category_verbose(news_category_slug):
-    """Returns the localized news category name given a slug"""
+    """Return the localized news category name given a slug."""
     return NewsCategory.objects.get(slug=news_category_slug).name

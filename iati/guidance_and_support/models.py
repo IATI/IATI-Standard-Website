@@ -1,3 +1,5 @@
+"""Model definitions for the guidance_and_support app."""
+
 import requests
 
 from django.db import models
@@ -29,11 +31,8 @@ class GuidanceGroupPage(AbstractContentPage):
     subpage_types = ['guidance_and_support.GuidanceGroupPage', 'guidance_and_support.GuidancePage']
 
     section_image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+',
+        'wagtailimages.Image', null=True, blank=True,
+        on_delete=models.SET_NULL, related_name='+',
         help_text='This is the image that will be displayed for this page on the main guidance and support page. Ignore if this page is being used as a sub-index page.'
     )
 
@@ -68,9 +67,10 @@ class GuidancePage(AbstractContentPage):
     subpage_types = []
 
     def get_context(self, request, *args, **kwargs):
-        """Overwrite context to intercept POST requests to pages on this template and pass them to Zendesk API
+        """Overwrite context to intercept POST requests to pages on this template and pass them to Zendesk API.
 
-        Validate with some sort of captcha."""
+        Validate with some sort of captcha.
+        """
         context = super(GuidancePage, self).get_context(request)
         form_submitted = False
         form_success = False
