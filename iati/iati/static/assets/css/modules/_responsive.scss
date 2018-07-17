@@ -1,0 +1,59 @@
+.hide-show-bvp{
+    display: none;
+    @include respond-to($b-vp) {
+        display: inline-block;
+        vertical-align: top;
+        zoom: 1; /* Fix for IE7 */
+        *display: inline; /* Fix for IE7 */
+    }
+}
+
+.show-hide-bvp{
+    display: inline-block;
+    vertical-align: top;
+    zoom: 1; /* Fix for IE7 */
+    *display: inline; /* Fix for IE7 */
+    @include respond-to($b-vp) {
+        display: none;
+    }
+}
+
+.hide-show-cvp{
+    display: none;
+    @include respond-to($c-vp) {
+        display: inline-block;
+        vertical-align: top;
+        zoom: 1; /* Fix for IE7 */
+        *display: inline; /* Fix for IE7 */
+    }
+}
+
+.show-hide-cvp{
+    display: inline-block;
+    vertical-align: top;
+    zoom: 1; /* Fix for IE7 */
+    *display: inline; /* Fix for IE7 */
+    @include respond-to($c-vp) {
+        display: none;
+    }
+}
+
+.hide-show-dvp{
+    display: none;
+    @include respond-to($d-vp) {
+        display: inline-block;
+        vertical-align: top;
+        zoom: 1; /* Fix for IE7 */
+        *display: inline; /* Fix for IE7 */
+    }
+}
+
+.show-hide-dvp{
+    display: inline-block;
+    vertical-align: top;
+    zoom: 1; /* Fix for IE7 */
+    *display: inline; /* Fix for IE7 */
+    @include respond-to($d-vp) {
+        display: none;
+    }
+}

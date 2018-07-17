@@ -52,7 +52,6 @@ coverage.xml
 
 # Django stuff:
 *.log
-local_settings.py
 
 # Flask stuff:
 instance/
@@ -86,6 +85,7 @@ celerybeat-schedule
 .venv
 venv/
 ENV/
+pyenv/
 
 # Spyder project settings
 .spyderproject
@@ -99,3 +99,14 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# local settings
+local.py
+local_settings.py
+
+# Ignore media
+media/
+
+#pytest-splinter files to ignore
+.pytest_cache/
+iati.tests.*

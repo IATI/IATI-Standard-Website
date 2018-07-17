@@ -1,0 +1,20 @@
+// ------------------------------------------------------------
+// Validation
+// ------------------------------------------------------------
+
+.form-field--error {
+	.form-item,
+	.form-field__select-dropdown  {
+		border-color: $error;
+	}
+}
+
+.form-message {
+	display: none;
+	@include leader($internal-spacing/4);
+	@include font-size($form-label-size - 2);
+	.form-field--error & {
+		display: block;
+		color: $error;
+	}
+}

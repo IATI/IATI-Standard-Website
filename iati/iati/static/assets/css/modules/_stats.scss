@@ -1,0 +1,118 @@
+.stats--standout {
+    @include respond-to($menu-respond) {
+        align-items: center;
+        display: flex;
+        // display: inline-block;
+        // width: 60%;
+    }
+}
+
+.stat {
+    background-color: #fff;
+    box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.1);
+    .stats--grid & {
+        border-left: 3px solid $iati-ocean;
+        padding: 1.5em 1.5em 1.5em 2em;
+    }
+    .stats--standout & {
+        // margin-bottom: 3em;
+    }
+    @include respond-to($menu-respond) {
+        .stats--grid & {
+            margin-bottom: 2em;
+        }
+        .stats--standout & {
+            &:not(:last-child) {
+                margin-right: 3em;
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+.stat--flex {
+    @include respond-to($menu-respond) {
+        align-self: flex-start;
+        display: flex;
+    }
+}
+
+.stat--center {
+    display: inline-block;
+    @include respond-to($menu-respond) {
+        width: 42%;
+    }
+}
+
+.stat__body {
+    align-self: flex-start;
+    padding: 3em 6em;
+    + .stat__body {
+        border-top: 3px solid $default-border-color;
+    }
+    @include respond-to($menu-respond) {
+        padding: 4em 8em;
+        width: 50%;
+        + .stat__body {
+            border-top: 0;
+            border-left: 3px solid $default-border-color;
+        }
+    }
+}
+
+.stat__body--center {
+    text-align: center;
+}
+
+.stat__heading {
+    color: $iati-ocean;
+}
+
+.stat__heading--large {
+    @include font-size($alpha);
+    line-height: 1.2;
+    margin-bottom: 0.15em;
+}
+
+.stat__copy {
+    @include font-size($epsilon);
+}
+
+.stat-quote {
+    align-self: flex-start;
+    color: #fff;
+    display: flex;
+    padding: 2em;
+    z-index: 100;
+    blockquote {
+        align-self: center;
+        p {
+            @include font-size($delta);
+        }
+        cite {
+            @include font-size($zeta);
+        }
+    }
+    @include respond-to($menu-respond) {
+        align-self: center;
+        margin-right: -2em;
+    }
+}
+
+.stat-quote__media {
+    align-self: flex-start;
+    margin-right: 5%;
+    width: 80px;
+    @include respond-to($menu-respond) {
+        margin-right: 7%;
+        width: 120px;
+    }
+}
+
+.stat-quote__img {
+    width: 100%;
+}
+
+.stat-quote__copy {
+    margin-bottom: 0.5em;
+}

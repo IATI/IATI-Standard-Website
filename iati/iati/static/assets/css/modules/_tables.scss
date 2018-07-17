@@ -1,0 +1,86 @@
+// ---------------------------------------
+// Table styles
+// ---------------------------------------
+
+.table-styled {
+	width: 100%;
+	border-top: $default-border-width solid $default-border-color;
+	td {
+		position: relative;
+		line-height: 1.4;
+		vertical-align: top;
+	}
+	@include respond-to-max($table-respond) {
+		border-collapse: separate;
+		table, thead, tbody, th, td, tr {
+			display: block;
+		}
+		thead, th {
+			position: absolute;
+			top: -9999px;
+			left: -9999px;
+		}
+		tr {
+			margin-bottom: $internal-spacing/2;
+			border-top: $default-border-width solid $default-border-color;
+			overflow: hidden;
+			&:first-child {
+				border-top: none;
+			}
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+		td {
+			position: relative;
+			background: #fff;
+			border-bottom: $default-border-width solid $default-border-color;
+			border-right: $default-border-width solid $default-border-color;
+			border-left: $default-border-width solid $default-border-color;
+			padding-left: 0;
+			vertical-align: top;
+			padding: $internal-spacing/4 0;
+			padding-left: 45%;
+			&:before {
+				position: relative;
+				display: inline-block;
+				width: 45%; 
+				word-break: break-word;
+				content: attr(title);
+				padding: $internal-spacing/4 $internal-spacing/2;
+				margin-right: $internal-spacing-percent*1.5;
+				color: $heading-color;
+				font-weight: 700;
+				position: absolute;
+				top: $internal-spacing-pixel/4;
+				left: 0;
+			}
+		}
+	}	
+	@include respond-to($table-respond) {
+		border: none;
+		th, td {
+			border-right: $default-border-width solid $default-border-color;
+			&:last-child {
+				border-right: none;
+			}
+		}
+		thead {
+			th {
+				padding: $internal-spacing/3 $internal-spacing/2;
+			}
+		}
+		tbody {
+			tr {
+				background: #fff;
+				border-bottom: $default-border-width solid $default-border-color;
+				&:nth-child(even) {
+					
+				}
+			}
+			td {
+				padding: $internal-spacing/4 $internal-spacing/2;
+			}
+		}
+	}
+}

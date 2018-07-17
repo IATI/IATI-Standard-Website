@@ -1,0 +1,44 @@
+.case-study {
+    justify-content: center;
+    display: flex;
+    margin-bottom: 4em;
+}
+
+.case-study__media {
+    @include maintain-ratio(16 7);
+    @include respond-to($menu-respond) {
+        margin-left: auto;
+        width: 90%;
+    }
+}
+
+.case-study__panel {
+    background-color: #fff;
+    box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.1);
+    padding: 1.75em;
+    position: relative;
+    z-index: 100;
+    @include respond-to($menu-respond) {
+        align-self: center;
+        padding: 2.5em;
+        position: absolute;
+        left: 0;
+        // margin-right: -2em;
+        width: 40%;
+    }
+}
+
+.case-study__heading {
+    @extend .heading;
+    @include font-size($delta);
+    border-bottom: 1px solid $default-border-color;
+    color: #fff;
+    line-height: 1.4;
+    margin-bottom: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+.case-study__excerpt {
+    @include font-size($para);
+    margin-bottom: 0.75em;
+}
