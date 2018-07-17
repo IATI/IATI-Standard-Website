@@ -52,7 +52,6 @@ coverage.xml
 
 # Django stuff:
 *.log
-local_settings.py
 
 # Flask stuff:
 instance/
@@ -103,3 +102,11 @@ pyenv/
 
 # local settings
 local.py
+local_settings.py
+
+# Ignore media
+media/
+
+#pytest-splinter files to ignore
+.pytest_cache/
+iati.tests.*

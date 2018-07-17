@@ -1,1 +1,1 @@
-"""Search module."""
+"""Package for the search app."""

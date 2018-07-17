@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtail_modeltranslation %}
+{% block body_class %}body body--support{% endblock %}
+{% block body_id %}body-support{% endblock %}
+{% block content %}
+<div class="hero hero--minor">
+  <div class="row">
+    <div class="hero__caption">
+      <h1 class="hero__heading">{{ page.heading }}</h1>
+
+      <p class="hero__excerpt">{{ page.excerpt|default:"" }}</p>
+
+    </div>
+    <div class="hero__emblem"></div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="l-sidebar">
+    <div class="l-sidebar__body">
+
+      {% include "home/includes/breadcrumbs.html" %}
+
+      <div class="is-typeset is-typeset--article">
+        {% if page.content_editor %} {% include "home/includes/streamfield.html" with content=page.content_editor %} {% endif %}
+      </div>
+
+    </div>
+    <aside class="l-sidebar__aside">
+
+      <div class="aside-m">
+        <div class="aside-m__header fill-sunset">
+          <h3 class="aside-m__heading">Contact support</h3>
+        </div>
+        <div class="aside-m__body">
+          <p class="aside-m__copy">Our technical team are ready to help you.</p>
+          <a class="button js-move" data-target="support" href="#support">Get help</a>
+        </div>
+      </div>
+
+    </aside>
+  </div>
+</div>
+
+{% with siblings=self.get_siblings.live.specific %}
+  {% if siblings|length > 1 %}
+    <div class="row">
+      <h2 class="section__heading">Related guidance</h2>
+      <div class="l-cards">
+        {% for sibling in siblings %}
+          {% if sibling != self %}
+          <div class="card card--guidance ">
+            <h2 class="card__heading"><a href="{% slugurl_trans sibling.slug %}"><span>{{ sibling.heading }}</span></a></h2>
+            <p class="card__excerpt">{{ sibling.excerpt|default:"" }}</p>
+          </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  {% else %}
+    {% with aunts=self.get_parent.get_siblings.live.specific %}
+      {% if aunts|length > 1 %}
+        <div class="row">
+          <h2 class="section__heading">Related guidance</h2>
+          <div class="l-cards">
+            {% for aunt in aunts %}
+              {% if aunt != self.get_parent.specific %}
+              <div class="card card--guidance ">
+                <h2 class="card__heading"><a href="{% slugurl_trans aunt.slug %}"><span>{{ aunt.heading }}</span></a></h2>
+                <p class="card__excerpt">{{ aunt.excerpt|default:"" }}</p>
+              </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      {% else %}
+
+      {% endif %}
+    {% endwith %}
+  {% endif %}
+{% endwith %}
+
+<a id="support"></a>
+<div class="section">
+  <div class="row">
+    <h2 class="section__heading">Contact support</h2>
+    {% if form_success %}
+      <p class="para para--typeset alert--success">Query successfully submitted. Our technical team will be in contact with you as soon as possible.</p>
+    {% elif form_submitted %}
+      <p class="para para--typeset alert--error">Sorry, something went wrong submitting your query. Please try again later.</p>
+    {% else %}
+      <p class="para para--typeset">Please complete the form below and our team will be able to help you</p>
+      <form class="form form--support" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="l-2up">
+          <div class="l-2up__col">
+
+
+            <div class="form-field ">
+
+              <label for="name" id="" class="form-label ">Name</label>
+              <input id="name" class="form-item" name="name" type="text" placeholder="Your name">
+
+
+            </div>
+
+
+            <div class="form-field form-field--spaced ">
+
+              <label for="email" id="" class="form-label ">Email</label>
+              <input id="email" class="form-item" name="email" type="email" placeholder="your.email@address.com" required>
+
+
+            </div>
+
+            <div class="form-field form-field--spaced" style="display: none !important;">
+              <label class="form-label" for="captcha">Phone number</label>
+              <div class="form-item-inline">
+                <input type="text" class="form-item" name="phone" tabindex="-1" autocomplete="off" placeholder="(XXX)-XXX-XXXX">
+              </div>
+            </div>
+          </div>
+          <div class="l-2up__col">
+
+
+            <div class="form-field ">
+
+              <label for="textarea" class="form-label ">Query</label>
+              <textarea id="textarea" class="form-item" name="textarea" placeholder="Your query" required></textarea>
+
+
+            </div>
+
+          </div>
+        </div>
+        <div class="form-field form-field--spaced">
+          <button class="button">Submit request</button>
+        </div>
+      </form>
+    {% endif %}
+
+  </div>
+</div>
+{% endblock %}

@@ -1,4 +1,4 @@
-{% load static wagtailuserbar %}
+{% load static wagtailuserbar wagtailcore_tags iati_tags %}
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -20,25 +20,194 @@
         </title>
         <meta name="description" content="" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {# Google Analytics gtag.js with IP Anonymization #}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-6109435-11"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'UA-6109435-11', { 'anonymize_ip': true });
+        </script>
 
         {# Global stylesheets #}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/iati.css' %}">
-
+        <link rel="stylesheet" type="text/css" href="{% static 'home/css/responsive.css' %}">
+        <link rel="stylesheet" type="text/css" href="https://styles.iatistandard.org/assets/css/screen.min.css">
+        <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700" rel="stylesheet">
+        <script>/*! grunt-grunticon Stylesheet Loader - v2.1.6 | https://github.com/filamentgroup/grunticon | (c) 2015 Scott Jehl, Filament Group, Inc. | MIT license. */
+        !function(){function e(e,n,t){"use strict";var o=window.document.createElement("link"),r=n||window.document.getElementsByTagName("script")[0],a=window.document.styleSheets;return o.rel="stylesheet",o.href=e,o.media="only x",r.parentNode.insertBefore(o,r),o.onloadcssdefined=function(e){for(var n,t=0;t<a.length;t++)a[t].href&&a[t].href===o.href&&(n=!0);n?e():setTimeout(function(){o.onloadcssdefined(e)})},o.onloadcssdefined(function(){o.media=t||"all"}),o}function n(e,n){e.onload=function(){e.onload=null,n&&n.call(e)},"isApplicationInstalled"in navigator&&"onloadcssdefined"in e&&e.onloadcssdefined(n)}!function(t){var o=function(r,a){"use strict";if(r&&3===r.length){var i=t.navigator,c=t.document,s=t.Image,d=!(!c.createElementNS||!c.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect||!c.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image","1.1")||t.opera&&-1===i.userAgent.indexOf("Chrome")||-1!==i.userAgent.indexOf("Series40")),l=new s;l.onerror=function(){o.method="png",o.href=r[2],e(r[2])},l.onload=function(){var t=1===l.width&&1===l.height,i=r[t&&d?0:t?1:2];t&&d?o.method="svg":t?o.method="datapng":o.method="png",o.href=i,n(e(i),a)},l.src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==",c.documentElement.className+=" grunticon"}};o.loadCSS=e,o.onloadCSS=n,t.grunticon=o}(this),function(e,n){"use strict";var t=n.document,o="grunticon:",r=function(e){if(t.attachEvent?"complete"===t.readyState:"loading"!==t.readyState)e();else{var n=!1;t.addEventListener("readystatechange",function(){n||(n=!0,e())},!1)}},a=function(e){return n.document.querySelector('link[href$="'+e+'"]')},i=function(e){var n,t,r,a,i,c,s={};if(n=e.sheet,!n)return s;t=n.cssRules?n.cssRules:n.rules;for(var d=0;d<t.length;d++)r=t[d].cssText,a=o+t[d].selectorText,i=r.split(");")[0].match(/US\-ASCII\,([^"']+)/),i&&i[1]&&(c=decodeURIComponent(i[1]),s[a]=c);return s},c=function(e){var n,r,a,i;a="data-grunticon-embed";for(var c in e){i=c.slice(o.length);try{n=t.querySelectorAll(i)}catch(s){continue}r=[];for(var d=0;d<n.length;d++)null!==n[d].getAttribute(a)&&r.push(n[d]);if(r.length)for(d=0;d<r.length;d++)r[d].innerHTML=e[c],r[d].style.backgroundImage="none",r[d].removeAttribute(a)}return r},s=function(n){"svg"===e.method&&r(function(){c(i(a(e.href))),"function"==typeof n&&n()})};e.embedIcons=c,e.getCSS=a,e.getIcons=i,e.ready=r,e.svgLoadedCallback=s,e.embedSVG=s}(grunticon,this)}();
+            grunticon(["https://styles.iatistandard.org/assets/icons/ico.data.svg.css", "https://styles.iatistandard.org/assets/icons/ico.data.png.css", "https://styles.iatistandard.org/assets/icons/ico.fallback.css"]);
+        </script>
+        <noscript><link href="https://styles.iatistandard.org/assets/icons/icon.fallback.css" rel="stylesheet"></noscript>
+        <script src="https://styles.iatistandard.org/assets/js/libs/modernizr.js"></script>
+		<link rel="icon" type="image/png" href="https://styles.iatistandard.org/assets/favicons/favicon-32x32.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="https://styles.iatistandard.org/assets/favicons/favicon-16x16.png" sizes="16x16">
         {% block extra_css %}
             {# Override this in templates to add extra stylesheets #}
         {% endblock %}
     </head>
 
-    <body class="{% block body_class %}{% endblock %}">
+    <body class="{% block body_class %}{% endblock %}" id="{% block body_id %}{% endblock %}">
         {% wagtailuserbar %}
+        	<div class="ui-base">
+		<a href="#pagecontent" class="skiplink" data-js="skiplink">Skip to main content</a>
 
+			<header role="banner" class="header">
+	<a href="{% default_page_url %}" class="branding"><span>IATI - International Aid Transparency Initiative</span></a>
+
+
+<ul class="navigation-utility">
+
+
+            <li id="section-news" class='navigation-utility__item'><a href="{% default_page_url 'news' %}">News</a></li>
+
+
+
+            <li id="section-events" class='navigation-utility__item'><a href="{% default_page_url 'events' %}">Events</a></li>
+
+
+
+            <li id="section-contact" class='navigation-utility__item'><a href="{% default_page_url 'contact' %}">Contact</a></li>
+
+
+</ul>
+
+
+
+
+<button role="button" class="navigation-primary-toggle" id="navigation-primary-toggle"><span>Menu</span></button>
+
+<nav class="navigation-primary" role="navigation" id="navigation-primary">
+	<ul class="navigation-primary__items">
+
+
+
+					<li id="section-about" class='navigation-primary__item'><a href="{% default_page_url 'about' %}">About</a></li>
+
+
+
+
+
+					<li id="section-standard" class='navigation-primary__item'><a href="{% default_page_url 'iati_standard' %}">IATI Standard</a></li>
+
+
+
+
+
+					<li id="section-data" class='navigation-primary__item'><a href="{% default_page_url 'using_data' %}">Using Data</a></li>
+
+
+
+
+
+					<li id="section-support" class='navigation-primary__item'><a href="{% default_page_url 'guidance_and_support' %}">Guidance & Support</a></li>
+
+
+
+
+
+					<li id="section-community" class='navigation-primary__item'><a href="https://discuss.iatistandard.org/">Community</a></li>
+
+
+
+
+
+				<li id="section-news" class='navigation-primary__item navigation-primary__item--ss-only'><a href="{% default_page_url 'news' %}">News</a></li>
+
+
+
+				<li id="section-events" class='navigation-primary__item navigation-primary__item--ss-only'><a href="{% default_page_url 'events' %}">Events</a></li>
+
+
+
+				<li id="section-contact" class='navigation-primary__item navigation-primary__item--ss-only'><a href="{% default_page_url 'contact' %}">Contact</a></li>
+
+
+	</ul>
+</nav>
+{% translation_links calling_page=self %}
+</header>
+
+
+		<!-- ID and -nofocus required for proper skiplink operation -->
+		<main id="pagecontent" class="pagecontent -nofocus" role="main" tabindex="-1">
         {% block content %}{% endblock %}
 
-        {# Global javascript #}
-        <script type="text/javascript" src="{% static 'js/iati.js' %}"></script>
+        </main>
 
         {% block extra_js %}
             {# Override this in templates to add extra javascript #}
         {% endblock %}
+        <footer role="contentinfo" class="footer">
+	<div class="footer__content">
+		<div class="row">
+			<div class="l-3up">
+				<div class="l-3up__col">
+					<span class="branding-footer"></span>
+					<!-- <h4 class="footer__heading">Contact details</h4>
+					<p class="footer__copy">Members of the Secretariat can be contacted about various aspects of IATI.</p>
+					<ul class="footer__list">
+						<li><a href="#">info@iatistandard.org</a></li>
+						<li><a href="#">media@iatistandard.org</a></li>
+						<li><a href="#">support@iatistandard.org</a></li>
+						<li><a href="#">code@iatistandard.org</a></li>
+					</ul> -->
+				</div>
+				<div class="l-3up__col">
+					<h4 class="footer__heading">Useful links</h4>
+					<ul class="footer__list">
+						<li><a href="{% default_page_url 'contact' %}">Contact</a></li>
+						<li><a href="{% standard_page_url 'terms' %}">Terms and conditions</a></li>
+						<li><a href="{% standard_page_url 'privacy' %}">Privacy policy</a></li>
+					</ul>
+				</div>
+				<div class="l-3up__col">
+					<h4 class="footer__heading">Newsletter</h4>
+					<form action="https://aidtransparency.us3.list-manage.com/subscribe/post?u=0e73fb60cf70bda74851aed09&amp;id=c189d66816" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
+						<div class="form-field">
+							<div class="form-flex">
+                <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_0e73fb60cf70bda74851aed09_c189d66816" tabindex="-1" value="" autocomplete="off"></div>
+                <label for="newsletter" id="newsletter" class="form-label">Sign up to our newsletter</label>
+								<input style="width:100%; margin-bottom:5px;" id="newsletter" class="form-item" type="email" value="" name="EMAIL" placeholder="Email address" required>
+	              <input style="width:100%; margin-bottom:5px;" class="form-item" type="text" value="" name="FNAME" id="mce-FNAME" placeholder="First name" required>
+	              <input style="width:100%; margin-bottom:5px;" class="form-item" type="text" value="" name="LNAME" id="mce-LNAME" placeholder="Surname" required>
+								<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer__meta">
+		<div class="row">
+			<p class="footer__legal">Copyright IATI 2018. All rights reserved</p>
+
+			<ul class="social-list">
+				<li class="social-list__item social-list__item--twitter"><a href="https://twitter.com/IATI_aid" rel="noopener noreferrer" target="_blank">Twitter</a></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+
+
+	</div>
+	<script src="https://styles.iatistandard.org/assets/js/libs/basicScroll.min.js"></script>
+<script>
+    const instance = basicScroll.create({
+       elem: document.querySelector('.listing__body'),
+       from: 'top-top',
+       to: 'bottom-bottom',
+       direct: true,
+       props: {
+          '--translateY': {
+             from: '-20px',
+             to: '20px'
+          }
+       }
+    })
+    instance.start()
+</script>
+<script type="text/javascript" src="https://styles.iatistandard.org/assets/js/app.bundle.js"></script>
     </body>
 </html>
