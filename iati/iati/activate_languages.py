@@ -1,3 +1,5 @@
+"""Module for handling internationalisation in URL patterns."""
+
 from django.urls import LocalePrefixPattern, URLResolver
 from django.conf import settings
 from django.utils.translation import activate, get_language
@@ -8,8 +10,7 @@ class ActiveLocalePrefixPattern(LocalePrefixPattern):
 
     @property
     def language_prefix(self):
-        """
-        Overwrite the default language_prefix function within LocalePrefixPattern.
+        """Overwrite the default language_prefix function within LocalePrefixPattern.
 
         This allows us to check for activated languages before resolving URL.
         """
@@ -24,8 +25,7 @@ class ActiveLocalePrefixPattern(LocalePrefixPattern):
 
 
 def i18n_patterns(*urls, prefix_default_language=True):
-    """
-    Add the language code prefix to every URL pattern within this function.
+    """Add the language code prefix to every URL pattern within this function.
 
     This may only be used in the root URLconf, not in an included URLconf.
     """

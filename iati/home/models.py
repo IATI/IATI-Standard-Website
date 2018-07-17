@@ -73,9 +73,9 @@ class ImageBlock(StructBlock):
 class IATIStreamBlock(StreamBlock):
     """The main stream block used as the content editor sitewide."""
 
-    h2 = CharBlock(icon="title", classname="title")
-    h3 = CharBlock(icon="title", classname="title")
-    h4 = CharBlock(icon="title", classname="title")
+    h2 = CharBlock(icon="title", classname="title")  # pylint: disable=invalid-name
+    h3 = CharBlock(icon="title", classname="title")  # pylint: disable=invalid-name
+    h4 = CharBlock(icon="title", classname="title")  # pylint: disable=invalid-name
     intro = RichTextBlock(icon="pilcrow")
     paragraph = RichTextBlock(icon="pilcrow")
     image_figure = ImageBlock(label="Image figure", icon="image")
@@ -152,11 +152,8 @@ class DefaultPageHeaderImageMixin(Page):
     """
 
     header_image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+',
+        'wagtailimages.Image', null=True, blank=True,
+        on_delete=models.SET_NULL, related_name='+',
         help_text='This is the image that will appear in the header banner at the top of the page. If no image is added a placeholder image will be used.'
     )
     multilingual_field_panels = [
@@ -177,8 +174,8 @@ class HomePage(DefaultPageHeaderImageMixin, AbstractBasePage):  # pylint: disabl
 
     def get_context(self, request, *args, **kwargs):
         """Overwrite the default get_context page to serve descendant case study pages."""
-        CaseStudyPage = apps.get_model(app_label='about', model_name='CaseStudyPage')
-        case_studies = CaseStudyPage.objects.live().descendant_of(self).specific()
+        case_study_page = apps.get_model(app_label='about', model_name='CaseStudyPage')
+        case_studies = case_study_page.objects.live().descendant_of(self).specific()
         context = super(HomePage, self).get_context(request)
         context['case_studies'] = case_studies
         return context

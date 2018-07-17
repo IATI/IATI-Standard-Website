@@ -1,3 +1,5 @@
+"""Model definitions for the contact app."""
+
 from wagtail.core.blocks import RichTextBlock, StreamBlock, StructBlock, TextBlock
 from wagtail.core.fields import StreamField
 from home.models import AbstractContentPage, DefaultPageHeaderImageMixin

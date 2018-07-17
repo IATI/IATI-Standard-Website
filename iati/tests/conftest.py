@@ -1,3 +1,5 @@
+"""Module for pytest hook implementations, and other test configuration."""
+
 import os
 import pytest
 # from splinter import Browser
@@ -36,6 +38,7 @@ def admin_browser(browser):
 
 @pytest.fixture(scope='module')
 def django_db_setup(django_db_setup, django_db_blocker, live_server):
+    """Populate the database. Create a superuser; add default pages."""
     os.environ['LIVE_SERVER_URL'] = live_server.url
     with django_db_blocker.unblock():
         if not User.objects.filter(username=DJANGO_ADMIN_USER).exists():

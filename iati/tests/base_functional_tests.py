@@ -60,8 +60,23 @@ def random_string(size=10, chars=string.ascii_uppercase + string.ascii_lowercase
     return ''.join(random.choice(chars) for _ in range(size))
 
 
+<<<<<<< HEAD
+=======
+def click_obscured(admin_browser, element):
+    """Click elements even if they're slightly obscured.
+
+    Args:
+        admin_browser (browser): The splinter browser instance.
+        element (ElementAPI): The splinter element to be waited on.
+
+    """
+    wait_for_clickability(element)
+    admin_browser.driver.execute_script("arguments[0].click();", element.__dict__['_element'])
+
+
+>>>>>>> fecc8ab2ec3e0199867208ca84f95e4b4d239b37
 def scroll_to_element(admin_browser, element):
-    """A function that scrolls to the location of an element.
+    """Scroll to the location of an element.
 
     Args:
         admin_browser (browser): The splinter browser instance.
@@ -76,7 +91,7 @@ def scroll_to_element(admin_browser, element):
 
 
 def scroll_and_click(admin_browser, element):
-    """A function that scrolls to, and clicks an element.
+    """Scroll to and click an element.
 
     Args:
         admin_browser (browser): The splinter browser instance.

@@ -10,9 +10,8 @@ from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
 from search import views as search_views
-from iati.activate_languages import i18n_patterns  # For internationalization
-
 from home.views import reference_redirect
+from .activate_languages import i18n_patterns  # For internationalization
 
 
 ADMIN_SLUG = "cms"

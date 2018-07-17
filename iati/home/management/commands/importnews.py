@@ -1,3 +1,5 @@
+"""Management command that imports news from a JSON file."""
+
 import json
 import datetime
 import pytz
@@ -8,15 +10,16 @@ from events.models import EventIndexPage, EventPage
 
 
 class Command(BaseCommand):
-    """A command for manage.py that imports news from a JSON file."""
+    """Management command that imports news from a JSON file."""
 
     help = 'Import news given a JSON file.'
 
     def add_arguments(self, parser):
+        """Add custom command arguments."""
         parser.add_argument('json_file', nargs='+', type=str)
 
     def handle(self, *args, **options):
-        """The default function Django BaseCommand needs to run."""
+        """Implement the command handler."""
         if not options['json_file']:
             raise CommandError('Please pass the path to a JSON file as the first positional argument.')
 

@@ -49,6 +49,12 @@ class TestEventIndexPage():
         assert admin_browser.find_by_text(EVENT_INDEX_PAGE['heading'])
 
     def test_events_past_parameter(self, admin_browser):
+        """Check the past parameter works as expected.
+
+        When the past parameter is set, the events page heading is prefixed with the word past.
+
+        When it isn't set, the word past isn't shown.
+        """
         admin_browser.visit(os.environ['LIVE_SERVER_URL'] + "/{}/pages/3/".format(ADMIN_SLUG))
         helper_functions.view_live_page(admin_browser, EVENT_INDEX_PAGE['title'])
         assert admin_browser.is_element_not_present_by_text("Past {}".format(EVENT_INDEX_PAGE['heading']))
@@ -99,7 +105,7 @@ class TestEventPages():
         assert admin_browser.is_text_present(header['content'])
 
     def test_event_type_filter(self, admin_browser):
-        """Create an event type, assign it to 4 child pages, and test param"""
+        """Create an event type, assign it to 4 child pages, and test param."""
         admin_browser.visit(os.environ['LIVE_SERVER_URL'] + '/{}/'.format(ADMIN_SLUG))
         admin_browser.click_link_by_text("Snippets")
         admin_browser.click_link_by_partial_text("Event types")
@@ -149,8 +155,10 @@ class TestEventPages():
 
 @pytest.mark.django_db()
 class TestFeaturedEvents():
+    """A container for tests to check Featured Event functionality."""
+
     def test_featured_event(self, admin_browser):
-        """Create an event to be featured, feature it, mark it to show, test that it is shown"""
+        """Create an event to be featured, feature it, mark it to show, and test that it is shown."""
         TEST_PAGE_TITLE = "A test featured event"
         helper_functions.create_event_child_page(admin_browser, "Event page", TEST_PAGE_TITLE)
         admin_browser.visit(os.environ['LIVE_SERVER_URL'] + '/{}/'.format(ADMIN_SLUG))

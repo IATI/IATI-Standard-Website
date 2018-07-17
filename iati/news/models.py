@@ -1,3 +1,5 @@
+"""Model definitions for the news app."""
+
 import datetime
 from django import forms
 from django.db import models
@@ -18,7 +20,7 @@ class NewsIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
 
     @property
     def news_categories(self):
-        """A function to list all of the news categories"""
+        """List all of the news categories."""
         news_categories = NewsCategory.objects.all()
         return news_categories
 
@@ -42,18 +44,15 @@ class NewsIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
 
 
 class NewsPage(AbstractContentPage):
-    """A model for news single pages"""
+    """A model for news single pages."""
 
     parent_page_types = ['news.NewsIndexPage']
     subpage_types = []
 
     date = models.DateField("News date", default=datetime.date.today)
     feed_image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
+        'wagtailimages.Image', null=True, blank=True,
+        on_delete=models.SET_NULL, related_name='+'
     )
 
     news_categories = ParentalManyToManyField('news.NewsCategory', blank=True)
@@ -79,24 +78,20 @@ class NewsCategory(models.Model):
         return self.name
 
     class Meta(object):
-        """Change verbose name for correct pluralization"""
+        """Change verbose name for correct pluralization."""
 
         verbose_name_plural = "news categories"
 
     def full_clean(self, exclude=None, validate_unique=True):
-        """Apply fixups that need to happen before per-field validation occurs"""
+        """Apply fixups that need to happen before per-field validation occurs."""
         base_slug = slugify(self.name, allow_unicode=True)
         if base_slug:
             self.slug = base_slug
         super(NewsCategory, self).full_clean(exclude, validate_unique)
 
-    translation_fields = [
-        'name',
-    ]
+    translation_fields = ['name']
 
-    panels = [
-        FieldPanel('name'),
-    ]
+    panels = [FieldPanel('name')]
 
 
 class RelatedNews(Orderable):
