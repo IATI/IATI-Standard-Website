@@ -15,7 +15,7 @@ from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.images.blocks import ImageChooserBlock
 from home.management.commands.createdefaultpages import DEFAULT_PAGES
 from home.models import HomePage
-from iati.urls import ADMIN_SLUG
+# from iati.urls import ADMIN_SLUG
 
 
 DEFAULT_PAGES = DEFAULT_PAGES + [{'title': 'Home', 'slug': '', 'model': HomePage}]
@@ -104,7 +104,7 @@ def random_string(size=10, chars=string.ascii_uppercase + string.ascii_lowercase
 
 
 def click_obscured(admin_browser, element):
-    """A function that clicks elements even if they're slightly obscured.
+    """Click elements even if they're slightly obscured.
 
     Args:
         admin_browser (browser): The splinter browser instance.
@@ -116,7 +116,7 @@ def click_obscured(admin_browser, element):
 
 
 def scroll_to_element(admin_browser, element):
-    """A function that scrolls to the location of an element.
+    """Scroll to the location of an element.
 
     Args:
         admin_browser (browser): The splinter browser instance.
@@ -131,7 +131,7 @@ def scroll_to_element(admin_browser, element):
 
 
 def scroll_and_click(admin_browser, element):
-    """A function that scrolls to, and clicks an element.
+    """Scroll to and click an element.
 
     Args:
         admin_browser (browser): The splinter browser instance.

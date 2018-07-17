@@ -20,7 +20,7 @@ persistent=yes
 
 # List of plugins (as comma separated values of python modules names) to load,
 # usually to register additional checkers.
-load-plugins=
+load-plugins=pylint_django
 
 # Use multiple processes to speed up Pylint.
 jobs=1
@@ -69,7 +69,7 @@ confidence=
 # --enable=similarities". If you want to run only the classes checker, but have
 # no Warning level messages displayed, use"--disable=all --enable=classes
 # --disable=W"
-disable=locally-disabled,no-self-use,too-few-public-methods
+disable=locally-disabled,no-self-use,too-few-public-methods,too-many-ancestors
 #disable=long-builtin,old-division,no-absolute-import,indexing-exception,suppressed-message,standarderror-builtin,execfile-builtin,oct-method,next-method-called,cmp-builtin,file-builtin,getslice-method,hex-method,backtick,round-builtin,dict-iter-method,using-cmp-argument,delslice-method,reduce-builtin,intern-builtin,input-builtin,long-suffix,basestring-builtin,raising-string,parameter-unpacking,old-octal-literal,buffer-builtin,xrange-builtin,cmp-method,coerce-builtin,nonzero-method,raw_input-builtin,print-statement,metaclass-assignment,apply-builtin,zip-builtin-not-iterating,dict-view-method,useless-suppression,filter-builtin-not-iterating,range-builtin-not-iterating,unpacking-in-except,setslice-method,coerce-method,unichr-builtin,reload-builtin,unicode-builtin,import-star-module-level,old-ne-operator,old-raise-syntax,map-builtin-not-iterating
 
 

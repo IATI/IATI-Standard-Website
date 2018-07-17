@@ -1,3 +1,5 @@
+"""Model definitions for the about app."""
+
 from django.db import models
 
 from wagtail.admin.edit_handlers import FieldPanel
@@ -47,7 +49,7 @@ class CaseStudyIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
         case_studies = CaseStudyPage.objects.child_of(self).live()
         return case_studies
 
-    def get_context(self, request):
+    def get_context(self, request, *args, **kwargs):
         """Overwrite the default wagtail get_context function to allow for pagination.
 
         Use the functions built into the abstract index page class to apply pagination, limiting the results to 3 per page.
@@ -71,11 +73,8 @@ class CaseStudyPage(AbstractContentPage):
     subpage_types = []
 
     feed_image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+',
+        'wagtailimages.Image', null=True, blank=True,
+        on_delete=models.SET_NULL, related_name='+',
         help_text='This is the image that will be displayed for the case study in the page header and on the Case Studies list page.'
     )
 

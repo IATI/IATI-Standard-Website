@@ -1,4 +1,4 @@
-"""A module of unit tests for guidance and support"""
+"""A module of unit tests for guidance and support."""
 import pytest
 from django.http import HttpRequest
 
@@ -40,6 +40,6 @@ SPAM_BOT.expected_output = False
 
 @pytest.mark.parametrize("user", [LEGITIMATE_USER, SPAM_BOT])
 def test_generate_ticket(user):
-    """Testing a ticket from a valid user and a spam bot"""
+    """Test a ticket from a valid user and a spam bot."""
     ticket = generate_ticket(user)
     assert ticket == user.expected_output

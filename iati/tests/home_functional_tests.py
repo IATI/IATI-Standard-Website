@@ -108,7 +108,8 @@ def create_standard_home_page(admin_browser, page_type, fixed_page_type, page_ti
 
 @pytest.mark.django_db
 class TestFixedStandardPages():
-    """Tests to see if fixed standard pages are properly linked"""
+    """Tests to see if fixed standard pages are properly linked."""
+
     @pytest.mark.parametrize('fixed_page', [
         PRIVACY_PAGE,
         TERMS_PAGE
