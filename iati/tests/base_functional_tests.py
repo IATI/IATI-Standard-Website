@@ -1,19 +1,39 @@
 """A module of functional tests for base site functionality."""
 import os
+import string
+import random
+import time
 import pytest
 from conftest import LOCALHOST
 from django.core.management import call_command
 from django.apps import apps
-from django.utils.text import slugify
+# from ḍjango.utils.text import slugify
 from django.conf import settings
-from home.models import AbstractContentPage, IATIStreamBlock, HomePage
+# from home.models import AbstractContentPage, IATIStreamBlock, HomePage
 from wagtail.core.blocks import CharBlock, FieldBlock, RawHTMLBlock, RichTextBlock, StreamBlock, StructBlock, TextBlock
 from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.images.blocks import ImageChooserBlock
-import string
-import random
-import time
-import pdb
+from home.management.commands.createdefaultpages import DEFAULT_PAGES
+from home.models import HomePage
+# from iati.urls import ADMIN_SLUG
+
+
+DEFAULT_PAGES = DEFAULT_PAGES + [{'title': 'Home', 'slug': '', 'model': HomePage}]
+
+
+TEST_DATA_DIR = settings.BASE_DIR + '/tests/data/'
+
+
+def view_live_page(admin_browser, page_title):
+    """Navigate to the published page on the site.
+
+    Args:
+        page_title (str): The page title text you are expecting on the live page.
+
+    """
+    button_links = admin_browser.find_by_xpath('//a[@title="View live version of \'{}\'"]'.format(page_title))
+    href = button_links[0].__dict__['_element'].get_property('href')
+    admin_browser.visit(href)
 
 
 def prevent_alerts(admin_browser):
@@ -84,7 +104,7 @@ def random_string(size=10, chars=string.ascii_uppercase + string.ascii_lowercase
 
 
 def click_obscured(admin_browser, element):
-    """A function that clicks elements even if they're slightly obscured.
+    """Click elements even if they're slightly obscured.
 
     Args:
         admin_browser (browser): The splinter browser instance.
@@ -96,7 +116,7 @@ def click_obscured(admin_browser, element):
 
 
 def scroll_to_element(admin_browser, element):
-    """A function that scrolls to the location of an element.
+    """Scroll to the location of an element.
 
     Args:
         admin_browser (browser): The splinter browser instance.
@@ -111,7 +131,7 @@ def scroll_to_element(admin_browser, element):
 
 
 def scroll_and_click(admin_browser, element):
-    """A function that scrolls to, and clicks an element.
+    """Scroll to and click an element.
 
     Args:
         admin_browser (browser): The splinter browser instance.
@@ -167,7 +187,7 @@ def fill_content_editor_block(admin_browser, base_block, text_field_class, conte
 
 
 @pytest.mark.django_db()
-class TestCreateDefaultPages():
+class TestCreateDefaultPagesManagementCommand():
     """A container for tests that check createdefaultpages command."""
 
     def test_create_default_pages_idempotence(self, browser):
@@ -181,21 +201,49 @@ class TestCreateDefaultPages():
         assert browser.url == valid_url
 
 
-class TestDefaultPagesExist():
+class TestDefaultPages():
     """A container for tests that the default pages exist."""
 
-    @pytest.mark.parametrize("page_name", [
-        'about',
-        'contact',
-        'events',
-        'news',
-        'guidance_and_support'
-    ])
+    def navigate_to_edit_home_page(self, admin_browser, default_page_name):
+        """Navigate to the editable section of the CMS for the Home Page."""
+        admin_browser.click_link_by_text('Pages')
+        admin_browser.find_by_text('Home').click()
+        admin_browser.click_link_by_text(default_page_name)
+
+    def upload_an_image(self, admin_browser):
+        """Upload an image in the CMS."""
+        admin_browser.find_by_text('Choose an image').click()
+        click_obscured(admin_browser, admin_browser.find_by_text('Upload').first)
+        admin_browser.fill('title', 'Test image')
+        admin_browser.attach_file('file', TEST_DATA_DIR + 'pigeons.jpeg')
+        admin_browser.find_by_xpath('//em[contains(text(), "Upload")]').click()
+
+    def publish_changes(self, admin_browser):
+        """Publish changes made in the CMS to the live page.
+
+        TODO:
+            This is a duplicate function that will be refactored out at a later date.
+
+        """
+        click_obscured(admin_browser, admin_browser.find_by_xpath('//div[@class="dropdown-toggle icon icon-arrow-up"]').first)
+        click_obscured(admin_browser, admin_browser.find_by_text('Publish').first)
+
+    @pytest.mark.parametrize("page_name", DEFAULT_PAGES)
     def test_default_pages_exist(self, browser, page_name):
         """Check default pages exist."""
-        browser.visit(LOCALHOST + '{}'.format(page_name))
-        page_title = page_name.replace('_', ' ').capitalize()
-        assert browser.title == page_title
+        browser.visit(LOCALHOST + '{}'.format(page_name['slug']))
+        assert browser.title == page_name['title']
+
+    @pytest.mark.parametrize('default_page', DEFAULT_PAGES)
+    @pytest.mark.django_db
+    def test_header_image_is_editable(self, admin_browser, default_page):
+        """Check that the header image for the Home page can be edited in the CMS."""
+        self.navigate_to_edit_home_page(admin_browser, default_page['title'])
+        admin_browser.find_by_text('Multilingual').click()
+        self.upload_an_image(admin_browser)
+        self.publish_changes(admin_browser)
+        view_live_page(admin_browser, default_page['title'])
+        assert admin_browser.is_element_present_by_xpath('//img[@alt="Test image"]')
 
 
 class TestTopMenu():
@@ -432,7 +480,7 @@ class StreamFieldFiller():
 #         Fill in random content for every field and test to see if it exists on the template.
 #         """
 #         homepage = HomePage.objects.first()
-#         admin_browser.visit(os.environ["LIVE_SERVER_URL"]+'/admin/pages/{}/'.format(homepage.pk))
+#         admin_browser.visit(os.environ["LIVE_SERVER_URL"]+'/{}/pages/{}/'.format(ADMIN_SLUG, homepage.pk))
 #         admin_browser.click_link_by_text('Add child page')
 #         verbose_page_name = content_model.get_verbose_name()
 #         if content_model.can_create_at(homepage):

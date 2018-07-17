@@ -1,44 +1,34 @@
 {% extends "base.html" %}
+{% load wagtail_modeltranslation wagtailimages_tags %}
 
+{% load iati_tags %}
 {% block body_class %}body body--home{% endblock %}
 {% block body_id %}body-home{% endblock %}
 
 {% block content %}
-
-    <div class="hero">
-        <div class="row">
-            <div class="hero__caption">
-                <h1 class="hero__heading">International Aid Transparency Initiative</h1>
-
-                <p class="hero__subheading">IATI is a common format to share data on aid and development for better decision making and outcomes</p>
-            </div>
-            <div class="hero__emblem">
-                <img class="hero__emblem__mask" src="/static/assets/img/hero-home.jpg" alt="alt tag">
-            </div>
-        </div>
-    </div>
-
-			
+<div class="hero">
+  {% include "home/includes/hero_heading.html" %}
+</div>
     <div class="row">
         <div class="stats stats--standout">
             <div class="stat-quote fill-sunset">
                 <div class="stat-quote__media">
-                    <img class="stat-quote__img" src="/static/assets/img/portrait.jpg" alt="alt tag">
+                    <img class="stat-quote__img" src="https://styles.iatistandard.org/assets/img/UNDP-Achim-Steiner.jpg" alt="Photo of Achim Steiner, UNDP Administrator">
                 </div>
                 <blockquote>
-                    <p class="stat-quote__copy">&ldquo;Everyone should use the IATI Standard&rdquo;</p>
-                    <cite>Hillary Clinton</cite>
+                    <p class="stat-quote__copy">&ldquo;Transparency is a cornerstone of our work at UNDP.&rdquo;</p>
+                    <cite>Achim Steiner, UNDP Administrator<br />IATI member</cite>
                 </blockquote>
             </div>
             <div class="stat stat--flex">
                 <div class="stat__body stat__body--center">
-                    <h2 class="stat__heading stat__heading--large">1,000,000</h2>
-                    <p class="stat__copy">Humanitarian and developlemnt activies published to the IATI Standard</p>
+                    <h2 class="stat__heading stat__heading--large" id="IATI-Website-Tests_num_iati_activities">{{ page.activities|intcomma }}</h2>
+                    <p class="stat__copy">Development and humanitarian activities published to the IATI Standard</p>
                 </div>
 
                 <div class="stat__body stat__body--center">
-                    <h2 class="stat__heading stat__heading--large">700</h2>
-                    <p class="stat__copy">Publishers and counting that contribute data to make the world a better place</p>
+                    <h2 class="stat__heading stat__heading--large" id="IATI-Website-Tests_num_iati_organisations">{{ page.organisations|intcomma }}</h2>
+                    <p class="stat__copy">IATI publishers that contribute data for decision-making and accountability</p>
                 </div>
             </div>
         </div>
@@ -49,40 +39,40 @@
             <div class="l-3up">
                 <div class="l-3up__col">
                     <div class="help">
-                        <div class="help__header background-cover" style="background-image: url(/static/assets/img/help1.png)">
+                        <div class="help__header background-cover" style="background-image: url(https://styles.iatistandard.org/assets/img/help1.png)">
                             <div class="help__panel fill-wind">
                                 <h3 class="help__heading">Explore our data</h3>
                             </div>
                         </div>
                         <div class="help__body">
-                            <p class="help__body-copy">Etiam ornare diam sit amet tellus cursus rhoncus. Nam pretium pretium orci, at ullamcorper felis pharetra vitae.</p>
-                            <a class="button">Explore our data</a>
+                            <p class="help__body-copy">Understand the ways you can access IATI data, what information you can find and the benefits of using it.</p>
+                            <a class="button" href="{% default_page_url 'using_data' %}">Explore IATI data</a>
                         </div>
                     </div>
                 </div>
                 <div class="l-3up__col">
                     <div class="help">
-                        <div class="help__header background-cover">
+                        <div class="help__header background-cover" style="background-image: url(https://styles.iatistandard.org/assets/img/help2.png)">
                             <div class="help__panel fill-wind">
                                 <h3 class="help__heading">Our publishing guide</h3>
                             </div>
                         </div>
                         <div class="help__body">
-                            <p class="help__body-copy">Etiam ornare diam sit amet tellus cursus rhoncus. Nam pretium pretium orci, at ullamcorper felis pharetra vitae.</p>
-                            <a class="button">Get started</a>
+                            <p class="help__body-copy">Find out how to publish data to the IATI Standard and improve your data by using our publishing guidance.</p>
+                            <a class="button" href="{% default_page_url 'guidance_and_support' %}">Get started</a>
                         </div>
                     </div>
                 </div>
                 <div class="l-3up__col">
                     <div class="help">
-                        <div class="help__header background-cover" style="background-image: url(/static/assets/img/help3.png)">
+                        <div class="help__header background-cover" style="background-image: url(https://styles.iatistandard.org/assets/img/help3.png)">
                             <div class="help__panel fill-wind">
                                 <h3 class="help__heading">Discover the Standard</h3>
                             </div>
                         </div>
                         <div class="help__body">
-                            <p class="help__body-copy">Etiam ornare diam sit amet tellus cursus rhoncus. Nam pretium pretium orci, at ullamcorper felis pharetra vitae.</p>
-                            <a class="button">Find out more</a>
+                            <p class="help__body-copy">View IATI reference pages that contain the rules and technical framework for publishing and interpreting IATI data.</p>
+                            <a class="button" href="{% default_page_url 'iati_standard' %}">Find out more</a>
                         </div>
                     </div>
                 </div>
@@ -96,51 +86,57 @@
                 <div class="l-2up__col">
                     <div class="is-typeset is-typeset--article">
                         <h3></h3>
-                        <p>Duis sit amet aliquam enim. Donec tempus nisi est, vel finibus dolor finibus sit amet. Pellentesque maximus sollicitudin urna.</p>
-                        <p>Nulla in nunc at ipsum tincidunt convallis. Duis sit amet aliquam enim. Donec tempus nisi est, vel finibus dolor finibus sit amet. Pellentesque maximus sollicitudin urna.</p>
-                        <a class="button" href="#none">Find out more about IATI</a>
+                        <p>IATI is a global initiative to improve the transparency of development and humanitarian resources and their results for addressing poverty and crises.</p>
+                        <p>IATI brings together governments, multilateral institutions, private sector and civil society organisations and others to increase the transparency of resources flowing into developing countries.</p>
+                        <p>We encourage all organisations that distribute or spend resources to publish information about their development and humanitarian activities using IATI’s data standard. This is a set of rules and guidance to ensure information is easy to access, understand and use.</p>
+                        <a class="button" href="{% default_page_url 'about' %}">Find out more about IATI</a>
                     </div>
                 </div>
                 <div class="l-2up__col">
                     <div class="media-video-wrapper">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/cfjxWLB9kpE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/PbwIUQwL_Jc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    {% if case_studies|length > 0 %}
     <div class="section section-alt-bottom">
         <div class="row">
             <h2 class="section__heading">Case studies</h2>
+
             <div class="max-meter is-typeset is-typeset--article">
-                <p class="section__copy">Duis sit amet aliquam enim. Donec tempus nisi est, vel finibus dolor finibus sit amet. Pellentesque maximus sollicitudin urna.</p>
+                <p class="section__copy">People all over the world use IATI to track the flow of aid, humanitarian and development resources. Some use IATI to publish their data, others access data to inform decision-making and hold authorities to account. Our case studies tell some of their stories.</p>
             </div>
             <div class="l-2up">
-                <div class="l-2up__col">
-                    <div class="help help--standout">
-                        <div class="help__header help__header--big background-cover" style="background-image: url(/static/assets/img/case-study1.png)">
-                            <div class="help__panel fill-sunset">
-                                <h3 class="help__heading">Netherlands Enterprise Agency</h3>
-                                <p>Sharing information on more than 1100 projects, across 125 countries.</p>
-                                <a href="#none">Read more</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="l-2up__col">
-                    <div class="help help--standout">
-                        <div class="help__header background-cover" style="background-image: url(/static/assets/img/case-study2.png)">
-                            <div class="help__panel fill-sunset">
-                                <h3 class="help__heading">Spotlight on IATI data use</h3>
-                                <p> IATI has launched a new series of profiles on data use in partner countries, starting with Bangladesh.</p>
-                                <a href="#none">Read more</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+              {% for case_study in case_studies %}
+                {% if forloop.counter < 3 %}
+                  <div class="l-2up__col">
+                      <div class="help help--standout">
+                        {% if case_study.feed_image %}
+                          {% image case_study.feed_image width-600 as img %}
+                          <div class="help__header help__header--big background-cover" style="background-image: url({{ img.url }})">
+                        {% else %}
+                          <div class="help__header help__header--big background-cover" style="background-image: url(https://styles.iatistandard.org/assets/img/image-placeholder.svg)">
+                        {% endif %}
+
+                              <div class="help__panel fill-sunset">
+                                  <h3 class="help__heading">{{ case_study.heading }}</h3>
+                                  <p>{{ case_study.excerpt|default:"" }}</p>
+                                  <a href="{% slugurl_trans case_study.slug %}">Read more</a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                {% endif %}
+              {% endfor %}
+
             </div>
         </div>
     </div>
+    {% endif %}
+
     <div class="row">
         <div class="section-alt">
             <h2 class="section__heading">Partners</h2>
@@ -149,15 +145,15 @@
                     <article class="listing listing--article listing--people">
                         <aside class="listing__aside">
                             <div class="listing__media">
-                                <img src="/static/assets/img/portrait.png" alt="alt tag">
+                                <img src="https://styles.iatistandard.org/assets/img/Hillevi-Ekberg-sida.jpg" alt="Photo of Hillevi Ekberg of Sida">
                             </div>
                         </aside>
                         <div class="listing__body">
                             <blockquote class="as-blockquote listing-quote">
-                                <p>&ldquo;Duis sit amet aliquam enim. Donec tempus nisi est, vel finibus dolor finibus sit amet. Pellentesque maximus sollicitudin urna.&rdquo;</p>
+                                <p>&ldquo;Transparency has driven us to strengthen data quality and improve our processes. Open data is a foundation for reinforcing trust and improving coordination with partners to achieve more effective aid.&rdquo;</p>
 
-                                <cite class="heading">Person Name</cite>
-                                <cite>Role</cite>
+                                <cite class="heading">Hillevi Ekberg</cite>
+                                <cite>Sida - Swedish International Development Cooperation Agency<br />IATI member</cite>
                             </blockquote>
                         </div>
                     </article>
@@ -166,15 +162,15 @@
                     <article class="listing listing--article listing--people">
                         <aside class="listing__aside">
                             <div class="listing__media">
-                                <img src="/static/assets/img/portrait.png" alt="alt tag">
+                                <img src="https://styles.iatistandard.org/assets/img/winnie-kamau.jpg" alt="Photo of Winnie Kamau, Data Journalist">
                             </div>
                         </aside>
                         <div class="listing__body">
                             <blockquote class="as-blockquote listing-quote">
-                                <p>&ldquo;Duis sit amet aliquam enim. Donec tempus nisi est, vel finibus dolor finibus sit amet. Pellentesque maximus sollicitudin urna.&rdquo;</p>
+                                <p>&ldquo;IATI is key to ensuring the public knows where development and humanitarian spending goes and what impact it makes. Accessing this data is vital when telling stories and holding decision makers to account.&rdquo;</p>
 
-                                <cite class="heading">Person Name</cite>
-                                <cite>Role</cite>
+                                <cite class="heading">Winnie Kamau</cite>
+                                <cite>Data Journalist<br />Association of Freelance Journalists<br />IATI member</cite>
                             </blockquote>
                         </div>
                     </article>
@@ -182,5 +178,5 @@
             </div>
         </div>
     </div>
-    
+
 {% endblock %}

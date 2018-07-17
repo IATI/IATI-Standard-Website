@@ -2,7 +2,6 @@
 
 from django.conf import settings
 from django.conf.urls import include, url
-from django.conf.urls.i18n import i18n_patterns  # For internationalization
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
@@ -11,13 +10,47 @@ from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
 from search import views as search_views
-from iati.activate_languages import i18n_patterns  # For internationalization
+from home.views import reference_redirect
+from .activate_languages import i18n_patterns  # For internationalization
+
+
+ADMIN_SLUG = "cms"
+
 
 urlpatterns = [  # pylint: disable=invalid-name
-    url(r'^django-admin/', admin.site.urls),
-    url(r'^admin/', include(wagtailadmin_urls)),
+    url(r'^django-{}/'.format(ADMIN_SLUG), admin.site.urls),
+    url(r'^{}/'.format(ADMIN_SLUG), include(wagtailadmin_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
 ]
+
+
+REFERENCE_NAMESPACES = [
+    "101",
+    "102",
+    "103",
+    "104",
+    "105",
+    "201",
+    "202",
+    "203",
+    "activity-standard",
+    "codelists",
+    "developer",
+    "introduction",
+    "namespaces-extensions",
+    "organisation-identifiers",
+    "organisation-standard",
+    "reference",
+    "rulesets",
+    "schema",
+    "upgrades"
+]
+
+
+urlpatterns += [
+    url(r'^({})/'.format("|".join(REFERENCE_NAMESPACES)), reference_redirect)
+]
+
 
 urlpatterns += i18n_patterns(
     # These URLs will have /<language_code>/ appended to the beginning

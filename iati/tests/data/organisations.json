@@ -1,0 +1,44 @@
+{
+  "help": "https://iatiregistry.org/api/3/action/help_show?name=package_search",
+  "success": true,
+  "result": {
+    "count": 5699,
+    "sort": "title_string asc",
+    "facets": {
+      "organization": {
+        "acfspain": 5,
+        "acted": 2,
+        "acodev": 1,
+        "arcfge": 1,
+        "foncaba": 1
+      }
+    },
+    "results": [],
+    "search_facets": {
+      "organization": {
+        "items": [{
+          "count": 5,
+          "display_name": "ACTION AGAINST HUNGER SPAIN",
+          "name": "acfspain"
+        }, {
+          "count": 2,
+          "display_name": "ACTED",
+          "name": "acted"
+        }, {
+          "count": 1,
+          "display_name": "ACODEV",
+          "name": "acodev"
+        }, {
+          "count": 1,
+          "display_name": "ABAAD - Resource Center for Gender Equality",
+          "name": "arcfge"
+        }, {
+          "count": 1,
+          "display_name": " VZW KBA FONCABA ASBL",
+          "name": "foncaba"
+        }],
+        "title": "organization"
+      }
+    }
+  }
+}

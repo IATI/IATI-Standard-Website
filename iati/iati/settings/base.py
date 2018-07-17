@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     'events',
     'guidance_and_support',
     'news',
+    'iati_standard',
+    'using_data',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',

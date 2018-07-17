@@ -10,7 +10,7 @@
     <div class="hero__caption">
       <h1 class="hero__heading">{{ page.heading }}</h1>
 
-      <p class="hero__excerpt">{{ page.excerpt }}</p>
+      <p class="hero__excerpt">{{ page.excerpt|default:"" }}</p>
 
     </div>
     <div class="hero__emblem"></div>
@@ -49,7 +49,7 @@
                         {% image child.value.profile_picture max-600x600 as profilepicture %}
                         <img src="{{ profilepicture.url }}" alt="{{ profilepicture.alt }}">
                       {% else %}
-                        <img src="/static/assets/img/portrait.png" alt="placeholder portrait">
+                        <img src="https://styles.iatistandard.org/assets/img/portrait.png" alt="placeholder portrait">
                       {% endif %}
                     </div>
                   </aside>
@@ -60,7 +60,7 @@
                         {% image child.value.organisation_logo max-80x30 as organisationlogo %}
                         <img class="listing__body-img" src="{{ organisationlogo.url }}" alt="{{ organisationlogo.alt }}">
                       {% else %}
-                        <img class="listing__body-img" src="/static/assets/svg/source/logo-square.svg" alt="IATI logo">
+                        <img class="listing__body-img" src="https://styles.iatistandard.org/assets/svg/source/logo-square.svg" alt="IATI logo">
                       {% endif %}
                       <ul class="listing__metadata">
                         <li class="listing__metadata__item">{{ child.value.IATI_role }}</li>

@@ -1,18 +1,27 @@
+"""Model definitions for the about app."""
+
 from django.db import models
 
+from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.core.blocks import CharBlock, StreamBlock, StructBlock, TextBlock
 from wagtail.core.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.images.edit_handlers import ImageChooserPanel
 
-from home.models import AbstractContentPage, AbstractIndexPage, PullQuoteBlock
+from home.models import AbstractContentPage, AbstractIndexPage, DefaultPageHeaderImageMixin, PullQuoteBlock
 
 
-class AboutPage(AbstractContentPage):
+class AboutPage(DefaultPageHeaderImageMixin, AbstractContentPage):
     """A model for the About landing page."""
 
     parent_page_types = ['home.HomePage']
     subpage_types = ['about.AboutSubPage', 'about.CaseStudyIndexPage', 'about.HistoryPage', 'about.PeoplePage']
+
+    show_featured_events = models.BooleanField(default=False)
+
+    multilingual_field_panels = DefaultPageHeaderImageMixin.multilingual_field_panels + [
+        FieldPanel('show_featured_events'),
+    ]
 
 
 class AboutSubPage(AbstractContentPage):
@@ -20,11 +29,19 @@ class AboutSubPage(AbstractContentPage):
 
     subpage_types = ['about.AboutSubPage', 'about.PeoplePage']
 
+    show_featured_events = models.BooleanField(default=False)
 
-class CaseStudyIndexPage(AbstractIndexPage):
+    multilingual_field_panels = [
+        FieldPanel('show_featured_events'),
+    ]
+
+
+class CaseStudyIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
     """A model for the Case Studies Index page."""
 
     subpage_types = ['about.CaseStudyPage']
+
+    show_featured_events = models.BooleanField(default=False)
 
     @property
     def case_studies(self):
@@ -32,7 +49,7 @@ class CaseStudyIndexPage(AbstractIndexPage):
         case_studies = CaseStudyPage.objects.child_of(self).live()
         return case_studies
 
-    def get_context(self, request):
+    def get_context(self, request, *args, **kwargs):
         """Overwrite the default wagtail get_context function to allow for pagination.
 
         Use the functions built into the abstract index page class to apply pagination, limiting the results to 3 per page.
@@ -44,6 +61,10 @@ class CaseStudyIndexPage(AbstractIndexPage):
         context['case_studies'] = paginated_children
         return context
 
+    multilingual_field_panels = DefaultPageHeaderImageMixin.multilingual_field_panels + [
+        FieldPanel('show_featured_events'),
+    ]
+
 
 class CaseStudyPage(AbstractContentPage):
     """A model for Case Study pages."""
@@ -52,12 +73,9 @@ class CaseStudyPage(AbstractContentPage):
     subpage_types = []
 
     feed_image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+',
-        help_text='This is the image that will be displayed for the case study on the Case Studies list page.'
+        'wagtailimages.Image', null=True, blank=True,
+        on_delete=models.SET_NULL, related_name='+',
+        help_text='This is the image that will be displayed for the case study in the page header and on the Case Studies list page.'
     )
 
     multilingual_field_panels = [
@@ -81,11 +99,18 @@ class HistoryPage(AbstractContentPage):
 
     timeline_editor = StreamField(HistoryDateBlock, null=True, blank=True)
 
+    show_featured_events = models.BooleanField(default=False)
+
     translation_fields = AbstractContentPage.translation_fields + ['timeline_editor']
+
+    multilingual_field_panels = [
+        FieldPanel('show_featured_events'),
+    ]
 
 
 class PeopleProfileBlock(StreamBlock):
     """A block for People profiles."""
+
     section_heading = CharBlock(icon="title", classname="title")
     paragraph = CharBlock(icon="pilcrow")
     pullquote = PullQuoteBlock()
@@ -107,4 +132,10 @@ class PeoplePage(AbstractContentPage):
 
     profile_content_editor = StreamField(PeopleProfileBlock, null=True, blank=True)
 
+    show_featured_events = models.BooleanField(default=False)
+
     translation_fields = AbstractContentPage.translation_fields + ['profile_content_editor']
+
+    multilingual_field_panels = [
+        FieldPanel('show_featured_events'),
+    ]
