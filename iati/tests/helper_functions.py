@@ -1,3 +1,4 @@
+"""A module of helper functions for current tests."""
 import os
 import random
 import string
