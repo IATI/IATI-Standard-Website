@@ -30,7 +30,7 @@ def wait_for_clickability(element, wait_time=1):
 
 
 def click_obscured(admin_browser, element):
-    """A function that clicks elements even if they're slightly obscured.
+    """Click elements even if they're slightly obscured.
 
     Args:
         admin_browser (browser): The splinter browser instance.
