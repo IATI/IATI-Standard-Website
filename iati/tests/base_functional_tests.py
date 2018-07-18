@@ -2,6 +2,7 @@
 import os
 import pytest
 from conftest import LOCALHOST
+from django.conf import settings
 from django.core.management import call_command
 # from home.models import AbstractContentPage, IATIStreamBlock, HomePage
 from wagtail.core.blocks import CharBlock, FieldBlock, RawHTMLBlock, RichTextBlock, StreamBlock, StructBlock, TextBlock

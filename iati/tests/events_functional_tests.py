@@ -159,7 +159,7 @@ class TestFeaturedEvents():
     def test_featured_event(self, admin_browser):
         """Create an event to be featured, feature it, mark it to show, and test that it is shown."""
         TEST_PAGE_TITLE = "A test featured event"
-        helper_functions.create_event_child_page(admin_browser, "Event page", TEST_PAGE_TITLE)
+        helper_functions.create_event_child_page(admin_browser, TEST_PAGE_TITLE)
         admin_browser.visit(os.environ['LIVE_SERVER_URL'] + '/{}/'.format(ADMIN_SLUG))
         admin_browser.click_link_by_text("Snippets")
         admin_browser.click_link_by_partial_text("Featured events")

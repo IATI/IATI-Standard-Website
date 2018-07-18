@@ -336,7 +336,7 @@ def create_standard_home_page(admin_browser, page_type, fixed_page_type, page_ti
 
 
 # helper functions for events_functional_tests.py
-def create_event_child_page(admin_browser, page_type, page_title):
+def create_event_child_page(admin_browser, page_title):
     """Create a child page in the CMS.
 
     Args:
