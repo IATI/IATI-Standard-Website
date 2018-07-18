@@ -72,7 +72,7 @@ class TestEventPages():
 
     def test_can_create_event_child_pages(self, admin_browser):
         """Check that when an event index child page is created it appears in the website."""
-        helper_functions.create_event_child_page(admin_browser, EVENT_PAGE['page_type'], EVENT_PAGE['title'])
+        helper_functions.create_event_child_page(admin_browser, EVENT_PAGE['title'])
         helper_functions.view_live_page(admin_browser, EVENT_PAGE['title'])
         assert not admin_browser.is_text_present('Home')
         assert admin_browser.title == EVENT_PAGE['title']
