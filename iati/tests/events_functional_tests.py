@@ -7,7 +7,6 @@ TODO:
 import os
 import pytest
 from django.utils.text import slugify
-from base_functional_tests import find_and_click_add_button, find_and_click_toggle_button, fill_content_editor_block
 from iati.urls import ADMIN_SLUG
 from tests import helper_functions
 
@@ -97,9 +96,9 @@ class TestEventPages():
         """Check that an Event index child page content editor can add a header."""
         admin_browser.find_by_text(EVENT_PAGE['title'])[0].click()
         admin_browser.find_by_text('English')[0].click()
-        find_and_click_toggle_button(admin_browser, 0)
-        find_and_click_add_button(admin_browser, header['button'].lower())
-        fill_content_editor_block(admin_browser, header['button'].lower(), " input", header['content'])
+        helper_functions.find_and_click_toggle_button(admin_browser, 0)
+        helper_functions.find_and_click_add_button(admin_browser, header['button'].lower())
+        helper_functions.fill_content_editor_block(admin_browser, header['button'].lower(), " input", header['content'])
         publish_page(admin_browser)
         helper_functions.view_live_page(admin_browser, EVENT_PAGE['title'])
         assert admin_browser.is_text_present(header['content'])

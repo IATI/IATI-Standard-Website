@@ -1,7 +1,6 @@
 """A module of functional tests for the IATI Standard page."""
 import pytest
 from tests import helper_functions
-from tests.about_functional_tests import reveal_content_editor, scroll_to_bottom_of_page
 
 
 @pytest.mark.django_db
@@ -37,8 +36,8 @@ class TestIATIStandardPageisEditable():
         admin_browser.find_by_text('IATI Standard').click()
         admin_browser.find_by_text('English')[0].click()
         element_count = admin_browser.find_by_id('content_editor_en-count').value
-        scroll_to_bottom_of_page(admin_browser)
-        reveal_content_editor(admin_browser, 'Intro', element_count)
+        helper_functions.scroll_to_bottom_of_page(admin_browser)
+        helper_functions.reveal_content_editor(admin_browser, 'Intro', element_count)
         admin_browser.find_by_text('Intro')[int(element_count)].click()
         admin_browser.find_by_xpath('//div[@class="notranslate public-DraftEditor-content"]').fill('This is some content.')
         helper_functions.publish_changes(admin_browser)

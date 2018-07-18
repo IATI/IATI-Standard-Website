@@ -6,7 +6,6 @@ TODO:
 """
 import pytest
 from tests import helper_functions
-from base_functional_tests import find_and_click_add_button, find_and_click_toggle_button, fill_content_editor_block
 
 
 NEWS_INDEX_PAGE = {
@@ -68,9 +67,9 @@ class TestNewsIndexChildPages():
         """Check that an news index child page content editor can add a header."""
         admin_browser.find_by_text(NEWS_PAGE['title'])[0].click()
         admin_browser.find_by_text('English')[0].click()
-        find_and_click_toggle_button(admin_browser, 0)
-        find_and_click_add_button(admin_browser, header['button'].lower())
-        fill_content_editor_block(admin_browser, header['button'].lower(), " input", header['content'])
+        helper_functions.find_and_click_toggle_button(admin_browser, 0)
+        helper_functions.find_and_click_add_button(admin_browser, header['button'].lower())
+        helper_functions.fill_content_editor_block(admin_browser, header['button'].lower(), " input", header['content'])
         helper_functions.publish_page(admin_browser)
         helper_functions.view_live_page(admin_browser, NEWS_PAGE['title'])
         assert admin_browser.is_text_present(header['content'])

@@ -4,17 +4,17 @@ import pytest
 import responses
 from django.core.management.base import CommandError
 from home.management.commands.updatestatistics import ACTIVITY_URL, ORGANISATION_URL, get_total_num_activities, get_total_num_publishers
-from base_functional_tests import TEST_DATA_DIR
+from tests import helper_functions
 
 
 @responses.activate
 def test_update_statistics():
     """A quick test with a static export of registry data for valid sums."""
-    with open(TEST_DATA_DIR + "activities.json") as json_file:
+    with open(helper_functions.TEST_DATA_DIR + "activities.json") as json_file:
         responses.add(responses.GET, ACTIVITY_URL,
                       json=json.load(json_file), status=200)
 
-    with open(TEST_DATA_DIR + "organisations.json") as json_file:
+    with open(helper_functions.TEST_DATA_DIR + "organisations.json") as json_file:
         responses.add(responses.GET, ORGANISATION_URL,
                       json=json.load(json_file), status=200)
 

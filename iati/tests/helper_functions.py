@@ -1,5 +1,8 @@
 import os
+import random
+import string
 import time
+from django.apps import apps
 from django.conf import settings
 from django.utils.text import slugify
 from iati.urls import ADMIN_SLUG
@@ -57,6 +60,118 @@ def prevent_alerts(admin_browser):
 
     """
     admin_browser.driver.execute_script("window.removeEventListener('beforeunload', window.areYouSure);")
+
+
+def wait_for_visibility(element, wait_time=1):
+    """Wait until an element is visible before scrolling.
+
+    Args:
+        element (ElementAPI): The splinter element to be waited on.
+        wait_time (int): The time in seconds to wait.
+
+    """
+    end_time = time.time() + wait_time
+
+    while time.time() < end_time:
+        if element and element.visible:
+            return True
+    return False
+
+
+def collect_base_pages(base_page_class):
+    """Given an base page class, return models belonging to that app that inherit from the base page class.
+
+    Args:
+        base_page_class (Page): The abstract page model to filter all app models by.
+
+    """
+    models = list()
+    for model in apps.get_models():
+        if issubclass(model, base_page_class):
+            models.append(model)
+    return models
+
+
+def random_string(size=10, chars=string.ascii_uppercase + string.ascii_lowercase):
+    """Return a random string for testing fields.
+
+    Args:
+        size (int): Length of desired string.
+        chars (list): List of allowable characters in the desired string.
+
+    """
+    return ''.join(random.choice(chars) for _ in range(size))
+
+
+def scroll_to_element(admin_browser, element):
+    """Scroll to the location of an element.
+
+    Args:
+        admin_browser (browser): The splinter browser instance.
+        element (ElementAPI): The splinter element to be waited on.
+
+    """
+    wait_for_visibility(element)
+    rect = admin_browser.driver.execute_script("return arguments[0].getBoundingClientRect();", element.__dict__['_element'])
+    mid_point_x = int(rect['x'] + (rect['width'] / 2))
+    end_point_y = int(rect['y'] + (rect['height']))
+    admin_browser.driver.execute_script("window.scrollTo({}, {});".format(mid_point_x, end_point_y))
+
+
+def scroll_and_click(admin_browser, element):
+    """Scroll to and click an element.
+
+    Args:
+        admin_browser (browser): The splinter browser instance.
+        element (ElementAPI): The splinter element to be waited on.
+
+    """
+    scroll_to_element(admin_browser, element)
+    click_obscured(admin_browser, element)
+
+
+def find_and_click_add_button(admin_browser, base_block):
+    """Find a content editor add field button and click it.
+
+    Args:
+        admin_browser (browser): The splinter browser instance.
+        base_block (str): The name of the block to be added.
+
+    """
+    add_button_class = ".action-add-block-{}".format(base_block)
+    add_button = admin_browser.find_by_css(add_button_class)[0]
+    scroll_and_click(admin_browser, add_button)
+
+
+def find_and_click_toggle_button(admin_browser, toggle_index):
+    """Find a content editor add block button and click it.
+
+    Args:
+        admin_browser (browser): The splinter browser instance.
+        toggle_index (int): The zero-based index to select the toggle button.
+
+    """
+    toggle_button = admin_browser.find_by_css(".toggle")[toggle_index]
+    scroll_and_click(admin_browser, toggle_button)
+
+
+def fill_content_editor_block(admin_browser, base_block, text_field_class, content):
+    """Find a content editor text field by class name and fill it.
+
+    Args:
+        admin_browser (browser): The splinter browser instance.
+        base_block (str): The name of the block to be added.
+        text_field_cass (str): The additional CSS selector needed to find the input field.
+        content (str): The content to fill the input.
+
+    """
+    full_text_field_class = ".fieldname-{}".format(base_block) + text_field_class
+    text_field = admin_browser.find_by_css(full_text_field_class)[0]
+    scroll_and_click(admin_browser, text_field)
+    if text_field.tag_name in ["input", "textarea"]:
+        admin_browser.driver.execute_script("arguments[0].value = '{}';".format(content), text_field.__dict__['_element'])
+    else:
+        text_field.fill(content)
 
 
 # helpers for iati_standard_functional_tests.py
@@ -231,6 +346,23 @@ def create_event_child_page(admin_browser, page_type, page_title):
     """
     navigate_to_default_page_cms_section(admin_browser, 'Events')
     admin_browser.find_by_text('Add child page').click()
+    enter_page_content(admin_browser, 'English', 'title_en', page_title)
+    enter_page_content(admin_browser, 'Promote', 'slug_en', slugify(page_title))
+    publish_page(admin_browser)
+
+
+# helper functions for about_functional_tests.py
+def create_about_child_page(admin_browser, page_type, page_title):
+    """Create a child page in the CMS.
+
+    Args:
+        page_type (str): The verbose name of the page model type you want to click on.
+        page_title (str): The title of the page you are editing.
+
+    """
+    navigate_to_default_page_cms_section(admin_browser, 'About')
+    admin_browser.find_by_text('Add child page').click()
+    admin_browser.find_by_text(page_type).click()
     enter_page_content(admin_browser, 'English', 'title_en', page_title)
     enter_page_content(admin_browser, 'Promote', 'slug_en', slugify(page_title))
     publish_page(admin_browser)
