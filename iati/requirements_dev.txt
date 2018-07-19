@@ -9,5 +9,5 @@ responses==0.9.0
 # Linters
 flake8==3.5.0
 pydocstyle==2.1.1
-pylint==1.9.2
+pylint>=2.0.0
 pylint-django==0.11.1
