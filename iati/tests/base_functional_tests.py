@@ -38,25 +38,6 @@ class TestDefaultPages():
         """Navigate to the editable section of the CMS for the Home Page."""
         admin_browser.click_link_by_text('Pages')
         admin_browser.find_by_text('Home').click()
-        admin_browser.click_link_by_text(default_page_name)
-
-    def upload_an_image(self, admin_browser):
-        """Upload an image in the CMS."""
-        admin_browser.find_by_text('Choose an image').click()
-        helper_functions.click_obscured(admin_browser, admin_browser.find_by_text('Upload').first)
-        admin_browser.fill('title', 'Test image')
-        admin_browser.attach_file('file', helper_functions.TEST_DATA_DIR + 'pigeons.jpeg')
-        admin_browser.find_by_xpath('//em[contains(text(), "Upload")]').click()
-
-    def publish_changes(self, admin_browser):
-        """Publish changes made in the CMS to the live page.
-
-        TODO:
-            This is a duplicate function that will be refactored out at a later date.
-
-        """
-        helper_functions.click_obscured(admin_browser, admin_browser.find_by_xpath('//div[@class="dropdown-toggle icon icon-arrow-up"]').first)
-        helper_functions.click_obscured(admin_browser, admin_browser.find_by_text('Publish').first)
 
     @pytest.mark.parametrize("page_name", DEFAULT_PAGES)
     def test_default_pages_exist(self, browser, page_name):
@@ -68,10 +49,11 @@ class TestDefaultPages():
     @pytest.mark.django_db
     def test_header_image_is_editable(self, admin_browser, default_page):
         """Check that the header image for the Home page can be edited in the CMS."""
-        self.navigate_to_edit_home_page(admin_browser, default_page['title'])
+        helper_functions.navigate_to_Home_cms_section(admin_browser)
+        admin_browser.click_link_by_text(default_page['title'])
         admin_browser.find_by_text('Multilingual').click()
-        self.upload_an_image(admin_browser)
-        self.publish_changes(admin_browser)
+        helper_functions.upload_an_image(admin_browser)
+        helper_functions.publish_changes(admin_browser)
         helper_functions.view_live_page(admin_browser, default_page['title'])
         assert admin_browser.is_element_present_by_xpath('//img[@alt="Test image"]')
 
@@ -93,205 +75,205 @@ class TestTopMenu():
         assert browser.find_by_css('body').first.has_class('body--{}'.format(main_section))
 
 
-class StreamFieldFiller():
-    """A class for autofilling streamfield blocks."""
-
-    def __init__(self, admin_browser, stream_block_model):
-        """Initialize the class.
-
-        Args:
-            admin_browser (browser): The splinter browser instance.
-            stream_block_model (StreamBlock): The model for the streamblock to be filled.
-
-        """
-        self.random_content = list()
-        self.admin_browser = admin_browser
-        self.stream_block_model = stream_block_model
-        self.possible_ancestors = [
-            (CharBlock, self.fill_charblock),
-            (TextBlock, self.fill_textblock),
-            (RawHTMLBlock, self.fill_textblock),
-            (RichTextBlock, self.fill_richtextblock),
-            (DocumentChooserBlock, self.fill_documentchooserblock),
-            (ImageChooserBlock, self.fill_imagechooserblock),
-            (StructBlock, self.fill_structblock),
-            (StreamBlock, self.fill_streamblock),
-            (FieldBlock, self.pass_block),
-        ]
-
-    def find_filler(self, block_model):
-        """Given the list of possible ancestors above, find the match and return the appropriate filler function.
-
-        Args:
-            block_model (FieldBlock): Base wagtail block of the field to fill.
-
-        """
-        for (possible_ancestor, filler_function) in self.possible_ancestors:
-            if isinstance(block_model, possible_ancestor):
-                return filler_function
-
-    def model_router(self, parent_model_blocks, base_block, depth=0):
-        """Route a block to a filler function.
-
-        Args:
-            parent_model_blocks (list): List of all sibling blocks.
-            base_block (str): Name of the block being filled.
-            depth (int): For cases where there are nested streamblocks or structblocks, to change adding behavior.
-
-        """
-        block_model = parent_model_blocks[base_block]
-        filler_function = self.find_filler(block_model)
-        filler_function(parent_model_blocks, base_block, depth)
-
-    def start_filling(self):
-        """Iterate through first layer of child models and start filling them."""
-        for base_block in self.stream_block_model.base_blocks:
-            self.model_router(self.stream_block_model.base_blocks, base_block)
-
-    def gen_rs(self):
-        """Generate a random string and append it to the list to test the live page against."""
-        the_string = helper_functions.random_string()
-        self.random_content.append(the_string)
-        return the_string
-
-    def pass_block(self, _, base_block, depth):
-        """Ignore a block. Used for drop-down choices with default settings.
-
-        Args:
-            base_block (str): Name of the block being filled.
-            depth (int): For cases where there are nested streamblocks or structblocks, to change adding behavior.
-
-        """
-        if depth >= 0:
-            helper_functions.find_and_click_add_button(self.admin_browser, base_block)
-            helper_functions.find_and_click_toggle_button(self.admin_browser, depth)
-
-    def fill_charblock(self, _, base_block, depth):
-        """Fill a character block.
-
-        Args:
-            base_block (str): Name of the block being filled.
-            depth (int): For cases where there are nested streamblocks or structblocks, to change adding behavior.
-
-        """
-        if depth >= 0:
-            helper_functions.find_and_click_add_button(self.admin_browser, base_block)
-            helper_functions.find_and_click_toggle_button(self.admin_browser, depth)
-        helper_functions.fill_content_editor_block(self.admin_browser, base_block, " input", self.gen_rs())
-
-    def fill_textblock(self, _, base_block, depth):
-        """Fill a text block.
-
-        Args:
-            base_block (str): Name of the block being filled.
-            depth (int): For cases where there are nested streamblocks or structblocks, to change adding behavior.
-
-        """
-        if depth >= 0:
-            helper_functions.find_and_click_add_button(self.admin_browser, base_block)
-            helper_functions.find_and_click_toggle_button(self.admin_browser, depth)
-        helper_functions.fill_content_editor_block(self.admin_browser, base_block, " textarea", self.gen_rs())
-
-    def fill_richtextblock(self, _, base_block, depth):
-        """Fill a richtext block.
-
-        Args:
-            base_block (str): Name of the block being filled.
-            depth (int): For cases where there are nested streamblocks or structblocks, to change adding behavior.
-
-        """
-        if depth >= 0:
-            helper_functions.find_and_click_add_button(self.admin_browser, base_block)
-            helper_functions.find_and_click_toggle_button(self.admin_browser, depth)
-        helper_functions.fill_content_editor_block(self.admin_browser, base_block, " .public-DraftEditor-content", self.gen_rs())
-
-    def fill_documentchooserblock(self, _, base_block, depth):
-        """Fill a document block.
-
-        Args:
-            base_block (str): Name of the block being filled.
-            depth (int): For cases where there are nested streamblocks or structblocks, to change adding behavior.
-
-        """
-        if depth >= 0:
-            helper_functions.find_and_click_add_button(self.admin_browser, base_block)
-            helper_functions.find_and_click_toggle_button(self.admin_browser, depth)
-        choose_doc_button = self.admin_browser.find_by_text("Choose a document")[0]
-        helper_functions.scroll_and_click(self.admin_browser, choose_doc_button)
-        doc_title = "Annual report"
-        self.random_content.append(doc_title)
-        annual_report_link = self.admin_browser.find_by_text(doc_title)
-        if annual_report_link:
-            helper_functions.scroll_and_click(self.admin_browser, annual_report_link[0])
-        else:
-            upload_tab, upload_button = self.admin_browser.find_by_text('Upload')
-            helper_functions.scroll_and_click(self.admin_browser, upload_tab)
-            title_field = self.admin_browser.find_by_xpath("//input[@name='title']")[0]
-            helper_functions.scroll_and_click(self.admin_browser, title_field)
-            title_field.fill(doc_title)
-            self.admin_browser.attach_file('file', settings.BASE_DIR + "/tests/data/annual-report.pdf")
-            helper_functions.scroll_and_click(self.admin_browser, upload_button)
-            self.admin_browser.is_element_not_present_by_text("Upload", wait_time=1)
-
-    def fill_imagechooserblock(self, _, base_block, depth):
-        """Fill an image block.
-
-        Args:
-            base_block (str): Name of the block being filled.
-            depth (int): For cases where there are nested streamblocks or structblocks, to change adding behavior.
-
-        """
-        if depth >= 0:
-            helper_functions.find_and_click_add_button(self.admin_browser, base_block)
-            helper_functions.find_and_click_toggle_button(self.admin_browser, depth)
-        choose_image_button = self.admin_browser.find_by_text("Choose an image")[0]
-        helper_functions.scroll_and_click(self.admin_browser, choose_image_button)
-        image_title = "Placeholder image"
-        image_link = self.admin_browser.find_by_text(image_title)
-        if image_link:
-            helper_functions.scroll_and_click(self.admin_browser, image_link[0])
-        else:
-            upload_tab, upload_button = self.admin_browser.find_by_text('Upload')
-            helper_functions.scroll_and_click(self.admin_browser, upload_tab)
-            title_field = self.admin_browser.find_by_xpath("//input[@name='title']")[0]
-            helper_functions.scroll_and_click(self.admin_browser, title_field)
-            title_field.fill(image_title)
-            self.admin_browser.attach_file('file', settings.BASE_DIR + "/tests/data/placeholder.jpg")
-            helper_functions.scroll_and_click(self.admin_browser, upload_button)
-            self.admin_browser.is_element_not_present_by_text("Upload", wait_time=1)
-
-    def fill_streamblock(self, parent_model_blocks, base_block, depth):
-        """Route a block to a filler function.
-
-        Args:
-            parent_model_blocks (list): List of all sibling blocks.
-            base_block (str): Name of the block being filled.
-            depth (int): For cases where there are nested streamblocks or structblocks, to change adding behavior.
-
-        """
-        helper_functions.find_and_click_add_button(self.admin_browser, base_block)
-        block_model = parent_model_blocks[base_block]
-        child_blocks = block_model.child_blocks
-        depth_1 = depth + 1
-        for child_block in child_blocks:
-            self.model_router(child_blocks, child_block, depth_1)
-        helper_functions.find_and_click_toggle_button(self.admin_browser, depth)
-
-    def fill_structblock(self, parent_model_blocks, base_block, depth):
-        """Route a block to a filler function.
-
-        Args:
-            parent_model_blocks (list): List of all sibling blocks.
-            base_block (str): Name of the block being filled.
-            depth (int): For cases where there are nested streamblocks or structblocks, to change adding behavior.
-
-        """
-        helper_functions.find_and_click_add_button(self.admin_browser, base_block)
-        block_model = parent_model_blocks[base_block]
-        child_blocks = block_model.child_blocks
-        for child_block in child_blocks:
-            self.model_router(child_blocks, child_block, -1)
-        helper_functions.find_and_click_toggle_button(self.admin_browser, depth)
+# class StreamFieldFiller():
+#     """A class for autofilling streamfield blocks."""
+#
+#     def __init__(self, admin_browser, stream_block_model):
+#         """Initialize the class.
+#
+#         Args:
+#             admin_browser (browser): The splinter browser instance.
+#             stream_block_model (StreamBlock): The model for the streamblock to be filled.
+#
+#         """
+#         self.random_content = list()
+#         self.admin_browser = admin_browser
+#         self.stream_block_model = stream_block_model
+#         self.possible_ancestors = [
+#             (CharBlock, self.fill_charblock),
+#             (TextBlock, self.fill_textblock),
+#             (RawHTMLBlock, self.fill_textblock),
+#             (RichTextBlock, self.fill_richtextblock),
+#             (DocumentChooserBlock, self.fill_documentchooserblock),
+#             (ImageChooserBlock, self.fill_imagechooserblock),
+#             (StructBlock, self.fill_structblock),
+#             (StreamBlock, self.fill_streamblock),
+#             (FieldBlock, self.pass_block),
+#         ]
+#
+#     def find_filler(self, block_model):
+#         """Given the list of possible ancestors above, find the match and return the appropriate filler function.
+#
+#         Args:
+#             block_model (FieldBlock): Base wagtail block of the field to fill.
+#
+#         """
+#         for (possible_ancestor, filler_function) in self.possible_ancestors:
+#             if isinstance(block_model, possible_ancestor):
+#                 return filler_function
+#
+#     def model_router(self, parent_model_blocks, base_block, depth=0):
+#         """Route a block to a filler function.
+#
+#         Args:
+#             parent_model_blocks (list): List of all sibling blocks.
+#             base_block (str): Name of the block being filled.
+#             depth (int): For cases where there are nested streamblocks or structblocks, to change adding behavior.
+#
+#         """
+#         block_model = parent_model_blocks[base_block]
+#         filler_function = self.find_filler(block_model)
+#         filler_function(parent_model_blocks, base_block, depth)
+#
+#     def start_filling(self):
+#         """Iterate through first layer of child models and start filling them."""
+#         for base_block in self.stream_block_model.base_blocks:
+#             self.model_router(self.stream_block_model.base_blocks, base_block)
+#
+#     def gen_rs(self):
+#         """Generate a random string and append it to the list to test the live page against."""
+#         the_string = helper_functions.random_string()
+#         self.random_content.append(the_string)
+#         return the_string
+#
+#     def pass_block(self, _, base_block, depth):
+#         """Ignore a block. Used for drop-down choices with default settings.
+#
+#         Args:
+#             base_block (str): Name of the block being filled.
+#             depth (int): For cases where there are nested streamblocks or structblocks, to change adding behavior.
+#
+#         """
+#         if depth >= 0:
+#             helper_functions.find_and_click_add_button(self.admin_browser, base_block)
+#             helper_functions.find_and_click_toggle_button(self.admin_browser, depth)
+#
+#     def fill_charblock(self, _, base_block, depth):
+#         """Fill a character block.
+#
+#         Args:
+#             base_block (str): Name of the block being filled.
+#             depth (int): For cases where there are nested streamblocks or structblocks, to change adding behavior.
+#
+#         """
+#         if depth >= 0:
+#             helper_functions.find_and_click_add_button(self.admin_browser, base_block)
+#             helper_functions.find_and_click_toggle_button(self.admin_browser, depth)
+#         helper_functions.fill_content_editor_block(self.admin_browser, base_block, " input", self.gen_rs())
+#
+#     def fill_textblock(self, _, base_block, depth):
+#         """Fill a text block.
+#
+#         Args:
+#             base_block (str): Name of the block being filled.
+#             depth (int): For cases where there are nested streamblocks or structblocks, to change adding behavior.
+#
+#         """
+#         if depth >= 0:
+#             helper_functions.find_and_click_add_button(self.admin_browser, base_block)
+#             helper_functions.find_and_click_toggle_button(self.admin_browser, depth)
+#         helper_functions.fill_content_editor_block(self.admin_browser, base_block, " textarea", self.gen_rs())
+#
+#     def fill_richtextblock(self, _, base_block, depth):
+#         """Fill a richtext block.
+#
+#         Args:
+#             base_block (str): Name of the block being filled.
+#             depth (int): For cases where there are nested streamblocks or structblocks, to change adding behavior.
+#
+#         """
+#         if depth >= 0:
+#             helper_functions.find_and_click_add_button(self.admin_browser, base_block)
+#             helper_functions.find_and_click_toggle_button(self.admin_browser, depth)
+#         helper_functions.fill_content_editor_block(self.admin_browser, base_block, " .public-DraftEditor-content", self.gen_rs())
+#
+#     def fill_documentchooserblock(self, _, base_block, depth):
+#         """Fill a document block.
+#
+#         Args:
+#             base_block (str): Name of the block being filled.
+#             depth (int): For cases where there are nested streamblocks or structblocks, to change adding behavior.
+#
+#         """
+#         if depth >= 0:
+#             helper_functions.find_and_click_add_button(self.admin_browser, base_block)
+#             helper_functions.find_and_click_toggle_button(self.admin_browser, depth)
+#         choose_doc_button = self.admin_browser.find_by_text("Choose a document")[0]
+#         helper_functions.scroll_and_click(self.admin_browser, choose_doc_button)
+#         doc_title = "Annual report"
+#         self.random_content.append(doc_title)
+#         annual_report_link = self.admin_browser.find_by_text(doc_title)
+#         if annual_report_link:
+#             helper_functions.scroll_and_click(self.admin_browser, annual_report_link[0])
+#         else:
+#             upload_tab, upload_button = self.admin_browser.find_by_text('Upload')
+#             helper_functions.scroll_and_click(self.admin_browser, upload_tab)
+#             title_field = self.admin_browser.find_by_xpath("//input[@name='title']")[0]
+#             helper_functions.scroll_and_click(self.admin_browser, title_field)
+#             title_field.fill(doc_title)
+#             self.admin_browser.attach_file('file', settings.BASE_DIR + "/tests/data/annual-report.pdf")
+#             helper_functions.scroll_and_click(self.admin_browser, upload_button)
+#             self.admin_browser.is_element_not_present_by_text("Upload", wait_time=1)
+#
+#     def fill_imagechooserblock(self, _, base_block, depth):
+#         """Fill an image block.
+#
+#         Args:
+#             base_block (str): Name of the block being filled.
+#             depth (int): For cases where there are nested streamblocks or structblocks, to change adding behavior.
+#
+#         """
+#         if depth >= 0:
+#             helper_functions.find_and_click_add_button(self.admin_browser, base_block)
+#             helper_functions.find_and_click_toggle_button(self.admin_browser, depth)
+#         choose_image_button = self.admin_browser.find_by_text("Choose an image")[0]
+#         helper_functions.scroll_and_click(self.admin_browser, choose_image_button)
+#         image_title = "Placeholder image"
+#         image_link = self.admin_browser.find_by_text(image_title)
+#         if image_link:
+#             helper_functions.scroll_and_click(self.admin_browser, image_link[0])
+#         else:
+#             upload_tab, upload_button = self.admin_browser.find_by_text('Upload')
+#             helper_functions.scroll_and_click(self.admin_browser, upload_tab)
+#             title_field = self.admin_browser.find_by_xpath("//input[@name='title']")[0]
+#             helper_functions.scroll_and_click(self.admin_browser, title_field)
+#             title_field.fill(image_title)
+#             self.admin_browser.attach_file('file', settings.BASE_DIR + "/tests/data/placeholder.jpg")
+#             helper_functions.scroll_and_click(self.admin_browser, upload_button)
+#             self.admin_browser.is_element_not_present_by_text("Upload", wait_time=1)
+#
+#     def fill_streamblock(self, parent_model_blocks, base_block, depth):
+#         """Route a block to a filler function.
+#
+#         Args:
+#             parent_model_blocks (list): List of all sibling blocks.
+#             base_block (str): Name of the block being filled.
+#             depth (int): For cases where there are nested streamblocks or structblocks, to change adding behavior.
+#
+#         """
+#         helper_functions.find_and_click_add_button(self.admin_browser, base_block)
+#         block_model = parent_model_blocks[base_block]
+#         child_blocks = block_model.child_blocks
+#         depth_1 = depth + 1
+#         for child_block in child_blocks:
+#             self.model_router(child_blocks, child_block, depth_1)
+#         helper_functions.find_and_click_toggle_button(self.admin_browser, depth)
+#
+#     def fill_structblock(self, parent_model_blocks, base_block, depth):
+#         """Route a block to a filler function.
+#
+#         Args:
+#             parent_model_blocks (list): List of all sibling blocks.
+#             base_block (str): Name of the block being filled.
+#             depth (int): For cases where there are nested streamblocks or structblocks, to change adding behavior.
+#
+#         """
+#         helper_functions.find_and_click_add_button(self.admin_browser, base_block)
+#         block_model = parent_model_blocks[base_block]
+#         child_blocks = block_model.child_blocks
+#         for child_block in child_blocks:
+#             self.model_router(child_blocks, child_block, -1)
+#         helper_functions.find_and_click_toggle_button(self.admin_browser, depth)
 
 
 # @pytest.mark.django_db()

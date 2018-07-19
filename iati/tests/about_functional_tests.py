@@ -198,23 +198,10 @@ class TestCaseStudyPage():
         helper_functions.view_live_page(admin_browser, CASE_STUDY_PAGE['title'])
         assert admin_browser.is_text_present(header['content'])
 
-    def upload_an_image(self, admin_browser):
-        """Upload an image in the CMS.
-
-        Note:
-            This is a duplicate function from base_functional_tests.
-
-        """
-        admin_browser.find_by_text('Choose an image').click()
-        helper_functions.click_obscured(admin_browser, admin_browser.find_by_text('Upload').first)
-        admin_browser.fill('title', 'Test image')
-        admin_browser.attach_file('file', helper_functions.TEST_DATA_DIR + 'pigeons.jpeg')
-        admin_browser.find_by_xpath('//em[contains(text(), "Upload")]').click()
-
     def test_feed_image_shows_on_index_page(self, admin_browser):
         """Check that when a user adds a feed image it also becomes the header image."""
         admin_browser.find_by_text(CASE_STUDY_PAGE['title']).click()
-        self.upload_an_image(admin_browser)
+        helper_functions.upload_an_image(admin_browser)
         helper_functions.publish_page(admin_browser)
         helper_functions.view_live_page(admin_browser, self.CASE_STUDY_INDEX_PAGE_TITLE)
         header_image = admin_browser.find_by_xpath('//div[@class="case-study__media background-cover"]')
@@ -228,7 +215,7 @@ class TestCaseStudyPage():
 
         """
         case_study_page_live_button = admin_browser.find_by_text('Live').first
-        page_url = case_study_page_live_button._element.get_property('href')
+        page_url = case_study_page_live_button._element.get_property('href')  # pylint: disable=W0212
         admin_browser.visit(page_url)
         header_image = admin_browser.find_by_xpath('//div[@class="hero hero--image"]')
         assert 'pigeons' in header_image.outer_html

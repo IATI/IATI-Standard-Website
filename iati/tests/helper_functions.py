@@ -183,12 +183,7 @@ def navigate_to_Home_cms_section(admin_browser):
 
 
 def upload_an_image(admin_browser):
-    """Upload an image in the CMS.
-
-    Note:
-        Duplicate of the same helper function in base_functional_tests.
-
-    """
+    """Upload an image in the CMS."""
     admin_browser.find_by_text('Choose an image').click()
     click_obscured(admin_browser, admin_browser.find_by_text('Upload').first)
     admin_browser.fill('title', 'Test image')
