@@ -48,7 +48,7 @@ REFERENCE_NAMESPACES = [
 
 
 urlpatterns += [
-    url(r'^({})/'.format("|".join(REFERENCE_NAMESPACES)), reference_redirect)
+    url(r'^(?:{})/'.format("|".join(REFERENCE_NAMESPACES)), reference_redirect)
 ]
 
 
