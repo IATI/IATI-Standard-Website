@@ -7,7 +7,7 @@ The current scope of the project (to April 2018) focuses on the 'About IATI' and
 ## Pre-requites
 
 - Python3
-- SQLite or PostgreSQL
+- PostgreSQL
 
 
 ## Dev setup
@@ -22,10 +22,10 @@ cd iati
 # Install requirements
 pip install -r requirements_dev.txt
 
-# Optional: Create a local PostgreSQL database (with appropriate user permissions)
+# Create a local PostgreSQL database (with appropriate user permissions)
 # Then, copy the example local settings file and enter database settings accordingly
 # Note local.py should not be under version control as it contains sensitive information
-# Without these steps, a SQLite database will be used to store data.
+# Without these steps, Django will attempt to create a SQLite3 database which will not work correctly.
 createdb iati-website
 cp iati/settings/local.py.example iati/settings/local.py
 
