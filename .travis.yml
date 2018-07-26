@@ -55,10 +55,10 @@ jobs:
             - pip install -r iati/requirements_dev.txt
           env: LINTER=flake8
           script: make flake8
-          if: branch IN (master, dev, add-page-models)
+          if: branch IN (master, dev)
         - stage: strict lint
           install:
             - pip install -r iati/requirements_dev.txt
           env: LINTER=pydocstyle
           script: make pydocstyle
-          if: branch IN (master, dev, add-page-models)
+          if: branch IN (master, dev)
