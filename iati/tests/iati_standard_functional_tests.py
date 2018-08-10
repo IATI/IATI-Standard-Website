@@ -1,7 +1,6 @@
 """A module of functional tests for the IATI Standard page."""
 import pytest
-from tests.base_functional_tests import click_obscured
-from tests.about_functional_tests import reveal_content_editor, scroll_to_bottom_of_page, TEST_DATA_DIR, view_live_page
+from tests.base_functional_tests import click_obscured, reveal_content_editor, scroll_to_bottom_of_page, TEST_DATA_DIR, view_live_page
 
 
 def navigate_to_Home_cms_section(admin_browser):
