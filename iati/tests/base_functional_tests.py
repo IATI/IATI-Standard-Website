@@ -186,6 +186,28 @@ def fill_content_editor_block(admin_browser, base_block, text_field_class, conte
         text_field.fill(content)
 
 
+def scroll_to_bottom_of_page(admin_browser):
+    """Scroll to the bottom of a page."""
+    admin_browser.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+
+
+def reveal_content_editor(admin_browser, button, element_count):
+    """Open content editor if it is not already in view.
+
+    Args:
+        button (str): The displayed text name of the button you want to click.
+        element_count (str): The element counter value of the content editor Streamfield block.
+
+    TODO:
+        Decide whether on convert element_count to int on assignment of variable.
+
+    """
+    if not admin_browser.find_by_text(button).visible:
+        admin_browser.find_by_xpath('//div[@id="content_editor_en-{}-appendmenu"]/a'.format(int(element_count) - 1)).mouse_over()
+        admin_browser.find_by_xpath('//div[@id="content_editor_en-{}-appendmenu"]/a'.format(int(element_count) - 1)).click()
+        scroll_to_bottom_of_page(admin_browser)
+
+
 @pytest.mark.django_db()
 class TestCreateDefaultPagesManagementCommand():
     """A container for tests that check createdefaultpages command."""

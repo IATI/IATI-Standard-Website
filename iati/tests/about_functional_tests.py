@@ -7,7 +7,7 @@ TODO:
 import os
 from django.utils.text import slugify
 import pytest
-from base_functional_tests import TEST_DATA_DIR, click_obscured, view_live_page
+from base_functional_tests import TEST_DATA_DIR, click_obscured, view_live_page, reveal_content_editor, scroll_to_bottom_of_page
 
 
 ABOUT_PAGE = {
@@ -119,28 +119,6 @@ def edit_page_header(admin_browser, page_title, cms_field, cms_content):
     enter_page_content(admin_browser, 'English', cms_field, cms_content)
     publish_page(admin_browser)
     view_live_page(admin_browser, page_title)
-
-
-def scroll_to_bottom_of_page(admin_browser):
-    """Scroll to the bottom of a page."""
-    admin_browser.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-
-
-def reveal_content_editor(admin_browser, button, element_count):
-    """Open content editor if it is not already in view.
-
-    Args:
-        button (str): The displayed text name of the button you want to click.
-        element_count (str): The element counter value of the content editor Streamfield block.
-
-    TODO:
-        Decide whether on convert element_count to int on assignment of variable.
-
-    """
-    if not admin_browser.find_by_text(button).visible:
-        admin_browser.find_by_xpath('//div[@id="content_editor_en-{}-appendmenu"]/a'.format(int(element_count) - 1)).mouse_over()
-        admin_browser.find_by_xpath('//div[@id="content_editor_en-{}-appendmenu"]/a'.format(int(element_count) - 1)).click()
-        scroll_to_bottom_of_page(admin_browser)
 
 
 @pytest.mark.django_db
