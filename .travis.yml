@@ -25,8 +25,8 @@ script:
   - make test
 
 stages:
-  - test
   - strict lint
+  - test
 
 jobs:
     include:
