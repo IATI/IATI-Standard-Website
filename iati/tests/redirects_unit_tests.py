@@ -1,3 +1,4 @@
+"""A module of unit tests for redirects."""
 import pytest
 
 
