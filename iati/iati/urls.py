@@ -44,7 +44,7 @@ REFERENCE_NAMESPACES = [
     "rulesets",
     "schema",
     "upgrades",
-    "guidance/datastore/",
+    "guidance/datastore",
 ]
 
 
