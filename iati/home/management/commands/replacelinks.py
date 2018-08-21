@@ -23,7 +23,7 @@ class Command(BaseCommand):
             old_link = page_data["OldLink"]
             new_link = page_data["NewLink"]
             link_location = page_data["NewLocation"]
-            link_slug = "/home" + link_location[20:] + "/"
+            link_slug = "home" + link_location[20:] + "/"
             link_matches = Page.objects.filter(url_path_en=link_slug)
             if link_matches.exists():
                 self.stdout.write(self.style.SUCCESS("Found page: " + link_slug))
