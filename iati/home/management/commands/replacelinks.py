@@ -8,7 +8,7 @@ from wagtail.core.models import Page
 class Command(BaseCommand):
     """Management command that fixed aidtransparency links."""
 
-    help = 'Import news given a JSON file.'
+    help = 'Replace links given a JSON file.'
 
     def add_arguments(self, parser):
         """Add custom command arguments."""
