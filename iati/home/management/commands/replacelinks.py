@@ -1,7 +1,7 @@
 """Management command that replaces aidtransparency links."""
 
 import json
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 from wagtail.core.models import Page
 
 
@@ -16,9 +16,6 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         """Implement the command handler."""
-        if not options['json_file']:
-            raise CommandError('Please pass the path to a JSON file as the first positional argument.')
-
         with open(options['json_file'][0]) as json_file:
             json_data = json.load(json_file)
 
