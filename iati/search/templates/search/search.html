@@ -1,38 +1,88 @@
 {% extends "base.html" %}
 {% load static wagtailcore_tags wagtail_modeltranslation %}
-
 {% block body_class %}template-searchresults{% endblock %}
-
 {% block title %}Search{% endblock %}
-
 {% block content %}
-    <h1>Search</h1>
+<div class="hero hero--minor">
+    <div class="row">
+        <div class="hero__caption">
+            <h1 class="hero__heading">Search</h1>
+        </div>
+    </div>
+</div>
 
-    <form action="{% url 'search' %}" method="get">
-        <input type="text" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
-        <input type="submit" value="Search" class="button">
-    </form>
+<form class="m-search" action="{% url 'search' %}" method="get">
+    <div class="row">
+        <div class="form-field">
+            <label class="form-label" for="search">Search site</label>
+            <input class="form-item" id="query" type="text" name="query" value="{% if search_query %}{{ search_query }}{% else %}Search term...{% endif %}">
+        </div>
+        <div class="form-field">
+            <input class="button button--block" type="submit">
+        </div>
+    </div>
+</form>
 
-    {% if search_results %}
-        <ul>
-            {% for result in search_results %}
-                <li>
-                    <h4><a href="{% slugurl_trans result %}">{{ result }}</a></h4>
-                    {% if result.search_description %}
-                        {{ result.search_description }}
+    <div class="row">
+        <div class="l-sidebar">
+            <div class="l-sidebar__body">
+                {% if search_results %}
+                <h2 class="type-l type-l--trailer heading">Showing {{ search_results.start_index }}–{{ search_results.end_index }} of {{ paginator.count }} results</h2>
+
+                <div class="l-cards-block">
+
+                    {% for result in search_results %}
+
+                    <div class="card card--knowledge card--block">
+                        <h2 class="card__heading"><a href="{{ result.url }}"><span>{{ result.title }}</span></a></h2>
+                    </div>
+
+                    {% endfor %}
+                </div>
+
+                <ul class="pagination">
+                    {% if search_results.has_previous %}
+                    <li class="pagination__item pagination__item--prev">
+                        <a class="pagination__item-prev-link" href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">Prev</a>
+                    </li>
                     {% endif %}
-                </li>
-            {% endfor %}
-        </ul>
 
-        {% if search_results.has_previous %}
-            <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">Previous</a>
-        {% endif %}
+                    {% for page in paginator.page_range %}
+                    <li class="pagination__item">
+                        <a class="pagination__item-link" href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ page }}">{{ page }}</a>
+                    </li>
+                    {% endfor %}
 
-        {% if search_results.has_next %}
-            <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Next</a>
-        {% endif %}
-    {% elif search_query %}
-        No results found
-    {% endif %}
+                    {% if search_results.has_next %}
+                    <li class="pagination__item pagination__item--next">
+                        <a class="pagination__item-next-link" href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Next</a>
+                    </li>
+                    {% endif %}
+
+                </ul>
+
+                {% elif search_query %}
+                <div class="alert alert--notice">
+                    <h3 class="type-s type-s--trailer">No results found</h3>
+                    <p>Your search did not return any results, please try again</p>
+                </div>
+                {% endif %}
+
+            </div>
+
+            <aside class="l-sidebar__aside">
+                <div class="aside-m">
+                    <div class="aside-m__header fill-sunset">
+                        <h3 class="aside-m__heading">Contact support</h3>
+                    </div>
+                    <div class="aside-m__body">
+                        <p class="aside-m__copy">Our technical team are ready to help you.</p>
+                        <a class="button js-move" data-target="support" href="#support">Get help</a>
+                    </div>
+                </div>
+            </aside>
+
+        </div>
+
+    </div>
 {% endblock %}

@@ -9,6 +9,7 @@ from wagtail.search.models import Query
 
 def search(request):
     """Process a user input for a search query and return a page containing results."""
+    per_page = 10
     search_query = request.GET.get('query', None)
     page = request.GET.get('page', 1)
 
@@ -23,7 +24,7 @@ def search(request):
         search_results = Page.objects.none()
 
     # Pagination
-    paginator = Paginator(search_results, 10)
+    paginator = Paginator(search_results, per_page)
     try:
         search_results = paginator.page(page)
     except PageNotAnInteger:
@@ -34,4 +35,5 @@ def search(request):
     return render(request, 'search/search.html', {
         'search_query': search_query,
         'search_results': search_results,
+        'paginator': paginator,
     })
