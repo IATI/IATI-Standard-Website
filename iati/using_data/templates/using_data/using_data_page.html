@@ -7,79 +7,79 @@
   <div class="hero">
     {% include "home/includes/hero_heading.html" %}
   </div>
-
-
-  <div class="space-section-top">
-        <div class="row">
-            <div class="l-2up l-2up--offset">
-                <div class="l-2up__col">
-                    <h2 class="type-m type-m--trailer heading">What data can I find?</h2>
-                    <div class="is-typeset max-meter">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    </div>
-                </div>
-                <div class="l-2up__col">
-                    <div class="stat-quote fill-sunset">
-                        <div class="stat-quote__media">
-                            <img class="stat-quote__img" src="https://styles.iatistandard.org/assets/img/portrait.png" alt="alt tag">
-                        </div>
-                        <blockquote>
-                            <p class="stat-quote__copy">&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit&rdquo;</p>
-                            <cite>Persons name</cite>
-                        </blockquote>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
+<div class="row">
+  <div class="l-sidebar l-sidebar--reverse">
+    <aside class="l-sidebar__aside">
+      {% side_panel calling_page=self %}
+    </aside>
+    <div class="l-sidebar__body">
     <div class="space-section-top">
-        <div class="row">
-            <div class="l-cards">
-                <div class="card card--alt">
-                    <h2 class="card__heading">Why you should use the data</h2>
-                    <p class="card__excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <a href="#" class="button">Learn more</a>
-                </div>
-                <div class="card card--alt">
-                    <h2 class="card__heading">Types of data available</h2>
-                    <p class="card__excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <a href="#" class="button">Find out more</a>
-                </div>
-                <div class="card card--alt">
-                    <h2 class="card__heading">How to use IATI data</h2>
-                    <p class="card__excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <a href="#" class="button">Find out more</a>
-                </div>
-                <div class="card card--alt">
-                    <h2 class="card__heading">Help and support</h2>
-                    <p class="card__excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <a href="#" class="button">Get help</a>
-                </div>
-                <div class="card card--alt">
-                    <h2 class="card__heading">Improving data use</h2>
-                    <p class="card__excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <a href="#" class="button">Learn more</a>
-                </div>
-            </div>
-        </div>
-    </div>
+          <div class="row">
+              <div class="l-2up l-2up--offset">
+                  <div class="l-2up__col">
+                    {% if page.content_editor %}
+                      {% include "home/includes/streamfield.html" with content=page.content_editor %}
+                    {% endif %}
+                  </div>
+                  {% if page.quote_text %}
+                  <div class="l-2up__col">
+                      <div class="stat-quote fill-sunset">
+                        {% if page.quote_portrait %}
+                          {% image page.quote_portrait fill-60x60 as img %}
+                          <div class="stat-quote__media">
+                              <img class="stat-quote__img" src="{{ img.url }}" alt="{{ img.alt }}">
+                          </div>
+                        {% else %}
+                          <div class="stat-quote__media">
+                              <img class="stat-quote__img" src="https://styles.iatistandard.org/assets/img/portrait.png" alt="alt tag">
+                          </div>
+                        {% endif %}
 
-    <div class="section">
-        <div class="row">
-            <div class="l-2up">
-                <div class="l-2up__col">
-                    <h2 class="section__heading">Tools and resources for data use</h2>
-                    <div class="is-typeset">
-                        <p>Duis sit amet aliquam enim. Donec tempus nisi est, vel finibus dolor finibus sit amet. Pellentesque maximus sollicitudin urna.</p>
-                        <p>Nulla in nunc at ipsum tincidunt convallis. Duis sit amet aliquam enim. Donec tempus nisi est, vel finibus dolor finibus sit amet. Pellentesque maximus sollicitudin urna.</p>
-                        <a class="button" href="#none">View tools an resources</a>
-                    </div>
-                </div>
-                <div class="l-2up__col">
-                    <img src="http://styles.iatistandard.org/assets/img/content-image3.jpg" alt="alt tag">
-                </div>
-            </div>
-        </div>
-    </div>
+                          <blockquote>
+                              <p class="stat-quote__copy">&ldquo;{{ page.quote_text }}&rdquo;</p>
+                              <cite>{{ page.quote_name }}</cite>
+                          </blockquote>
+
+                      </div>
+                  </div>
+                  {% endif %}
+              </div>
+          </div>
+      </div>
+
+      <div class="space-section-top">
+          <div class="row">
+              <div class="l-cards">
+                {% for subpage in subpages %}
+                    {% with subpage=subpage.specific %}
+                  <div class="card card--alt">
+                      <h2 class="card__heading">{{ subpage.header }}</h2>
+                      <p class="card__excerpt">{{ subpage.excerpt|default:"" }}</p>
+                      <a href="{{ slugurl_trans subpage.slug }}" class="button">Find out more</a>
+                  </div>
+                {% endfor %}
+              </div>
+          </div>
+      </div>
+
+</div>
+</div>
+</div>
+
+      <div class="section">
+          <div class="row">
+              <div class="l-2up">
+                  <div class="l-2up__col">
+                      <h2 class="section__heading">{{ toolsindex.header }}</h2>
+                      <div class="is-typeset">
+                          {{ toolsindex.excerpt|default:"" }}
+                          <a class="button" href="{{ slugurl_trans toolsindex.slug }}">View tools and resources</a>
+                      </div>
+                  </div>
+                  <div class="l-2up__col">
+                      <img src="http://styles.iatistandard.org/assets/img/content-image3.jpg" alt="alt tag">
+                  </div>
+              </div>
+          </div>
+      </div>
 {% endblock %}
