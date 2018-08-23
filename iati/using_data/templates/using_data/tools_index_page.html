@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load iati_tags %}
 {% block body_class %}body body--data{% endblock %}
 {% block body_id %}body-data{% endblock %}
 {% block content %}
@@ -16,29 +17,25 @@
 
 <div class="row">
 	<div class="l-sidebar">
+    <aside class="l-sidebar__aside">
+      {% side_panel calling_page=self %}
+      <div class="aside-m">
+        <div class="aside-m__header fill-sunset">
+            <h3 class="aside-m__heading">Support</h3>
+        </div>
+        <div class="aside-m__body">
+            <p class="aside-m__copy">Find out what support is available for you using IATI data.</p>
+            <a class="button" href="{% default_page_url 'guidance_and_support' %}">Get help</a>
+        </div>
+      </div>
+    </aside>
 		<div class="l-sidebar__body">
 
-    <div class="is-typeset">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    </div>
+      {% if page.content_editor %}
+        {% include "home/includes/streamfield.html" with content=page.content_editor notarticle=True %}
+      {% endif %}
 
 		</div>
-		<aside class="l-sidebar__aside">
-
-    <div class="aside-m">
-    <div class="aside-m__header fill-sunset">
-        <h3 class="aside-m__heading">Support</h3>
-    </div>
-    <div class="aside-m__body">
-        <p class="aside-m__copy">Find out what support is available for you using IATI data.</p>
-        <a class="button" href="#">Get help</a>
-    </div>
-</div>
-
-
-		</aside>
 	</div>
 </div>
 
