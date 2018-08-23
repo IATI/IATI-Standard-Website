@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailimages_tags wagtail_modeltranslation %}
+{% load wagtailimages_tags wagtail_modeltranslation iati_tags %}
 {% block body_class %}body body--data{% endblock %}
 {% block body_id %}body-data{% endblock %}
 
@@ -7,12 +7,14 @@
   <div class="hero">
     {% include "home/includes/hero_heading.html" %}
   </div>
+
 <div class="row">
   <div class="l-sidebar l-sidebar--reverse">
     <aside class="l-sidebar__aside">
       {% side_panel calling_page=self %}
     </aside>
     <div class="l-sidebar__body">
+
     <div class="space-section-top">
           <div class="row">
               <div class="l-2up l-2up--offset">
@@ -55,8 +57,9 @@
                   <div class="card card--alt">
                       <h2 class="card__heading">{{ subpage.header }}</h2>
                       <p class="card__excerpt">{{ subpage.excerpt|default:"" }}</p>
-                      <a href="{{ slugurl_trans subpage.slug }}" class="button">Find out more</a>
+                      <a href="{% slugurl_trans subpage.slug %}" class="button">Find out more</a>
                   </div>
+                  {% endwith %}
                 {% endfor %}
               </div>
           </div>
@@ -73,7 +76,7 @@
                       <h2 class="section__heading">{{ toolsindex.header }}</h2>
                       <div class="is-typeset">
                           {{ toolsindex.excerpt|default:"" }}
-                          <a class="button" href="{{ slugurl_trans toolsindex.slug }}">View tools and resources</a>
+                          <a class="button" href="{% slugurl_trans toolsindex.slug %}">View tools and resources</a>
                       </div>
                   </div>
                   <div class="l-2up__col">
