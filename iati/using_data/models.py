@@ -8,6 +8,13 @@ class UsingDataPage(AboutPage):
 
     subpage_types = ['using_data.ToolsIndexPage', 'about.AboutSubPage']
 
+    def get_context(self, request):
+        """Overwrite the default wagtail get_context function to add all subpages of UsingDataPage."""
+        context = super(UsingDataPage, self).get_context(request)
+
+        context['subpages'] = AboutSubPage.objects.child_of(self)
+        return context
+
 
 class ToolsIndexPage(AboutSubPage):
     """A page model for the Tools & Resources page. Inherits all from AboutSubPage."""
@@ -17,6 +24,6 @@ class ToolsIndexPage(AboutSubPage):
 
 
 class ToolsPage(AboutSubPage):
-    """A page model for single Tools & Resources pages. Inherits all form AboutSubPage."""
+    """A page model for single Tools & Resources pages. Inherits all from AboutSubPage."""
 
     parent_page_types = ['using_data.ToolsIndexPage']
