@@ -9,7 +9,7 @@ class UsingDataPage(AboutPage):
 
     subpage_types = ['using_data.ToolsIndexPage', 'about.AboutSubPage']
 
-    def get_context(self, request):
+    def get_context(self, request, *args, **kwargs):
         """Overwrite the default wagtail get_context function to add all subpages of UsingDataPage."""
         context = super(UsingDataPage, self).get_context(request)
 
