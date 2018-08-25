@@ -11,6 +11,7 @@ from wagtail.core.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.documents.blocks import DocumentChooserBlock
+from wagtail.search.index import FilterField, SearchField
 
 
 class DocumentBoxBlock(StreamBlock):
@@ -95,6 +96,11 @@ class AbstractBasePage(Page):
         "heading",
         "excerpt"
     ]
+    search_fields = [
+        FilterField('live'),
+        SearchField('heading'),
+        SearchField('excerpt'),
+    ]
 
     class Meta(object):
         """Meta data for the class."""
@@ -108,6 +114,7 @@ class AbstractContentPage(AbstractBasePage):
     content_editor = StreamField(IATIStreamBlock(required=False), null=True, blank=True)
 
     translation_fields = AbstractBasePage.translation_fields + ["content_editor"]
+    search_fields = AbstractBasePage.search_fields + [SearchField('content_editor')]
 
     class Meta(object):
         """Meta data for the class."""
