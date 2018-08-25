@@ -14,7 +14,7 @@
 <form class="m-search" action="{% url 'search' %}" method="get">
     <div class="row">
         <div class="form-field">
-            <label class="form-label" for="search">Search site</label>
+            <label class="form-label" for="query">Search site</label>
             <input class="form-item" id="query" type="text" name="query" value="{% if search_query %}{{ search_query }}{% else %}Search term...{% endif %}">
         </div>
         <div class="form-field">
