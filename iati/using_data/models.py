@@ -2,6 +2,8 @@
 
 from about.models import AboutSubPage, AboutPage
 from home.models import AbstractContentPage
+from wagtail.core.fields import StreamField
+from wagtail.core.blocks import RichTextBlock, StreamBlock
 
 
 class UsingDataPage(AboutPage):
@@ -18,11 +20,21 @@ class UsingDataPage(AboutPage):
         return context
 
 
+class ToolBoxBlock(StreamBlock):
+    """A block for holding a list of tool pages."""
+
+    tool_box_text = RichTextBlock(required=False)
+
+
 class ToolsIndexPage(AbstractContentPage):
     """A page model for the Tools & Resources page. Inherits all from AboutSubPage."""
 
     parent_page_types = ['using_data.UsingDataPage']
     subpage_types = ['using_data.ToolsPage']
+
+    tool_box_editor = StreamField(ToolBoxBlock, null=True, blank=True)
+
+    translation_fields = AbstractContentPage.translation_fields + ['tool_box_editor']
 
 
 class ToolsPage(AboutSubPage):

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load iati_tags %}
+{% load iati_tags wagtailcore_tags %}
 {% block body_class %}body body--data{% endblock %}
 {% block body_id %}body-data{% endblock %}
 {% block content %}
@@ -43,34 +43,22 @@
     <div class="space-section-bottom">
         <div class="row">
             <div class="l-cards l-cards--2up">
-                <div class="card card--alt">
-                    <h2 class="card__heading">Non-technical tools and resources</h2>
-                    <ul class="card__list card__list--alt">
-                        <li>Built by IATI</li>
-                        <li><a href="#">d-portal</a></li>
-                        <li><a href="#">CSV Query Builder</a></li>
-                    </ul>
-                    <ul class="card__list card__list--alt">
-                        <li>Third-party non-technical tools:</li>
-                        <li><a href="#">Third-party tools and services for data use</a></li>
-                    </ul>
-                    <ul class="card__list card__list--alt">
-                        <li>Information on importing IATI data onto government Aid Information Managemnet Systems (AIMS)</li>
-                        <li><a href="#">IATI-AIMS import</a></li>
-                    </ul>
+              {% for card in self.tool_box_editor %}
+                <div class="card card--alt card__list card__list--alt">
+                  {{ card.value|richtext }}
                 </div>
-                <div class="card card--alt">
-                    <h2 class="card__heading">Technical tools and resources</h2>
-                    <ul class="card__list card__list--alt">
-                        <li>Built by IATI</li>
-                        <li><a href="#">IATI Registry</a></li>
-                        <li><a href="#">IATI Datasore</a></li>
-                    </ul>
-                    <ul class="card__list card__list--alt">
-                        <li>Third-party non-technical tools:</li>
-                        <li><a href="#">Third-party tools and services for data use</a></li>
-                    </ul>
-                </div>
+              {% endfor %}
+              <script>
+              var cards = document.getElementsByClassName("card");
+              for(var i = 0; i < cards.length; i++){
+                var card = cards[i];
+                var h2s = card.getElementsByTagName("h2");
+                for(var j = 0; j < h2s.length; j++){
+                  var h2 = h2s[j];
+                  h2.classList.add("card__heading");
+                }
+              }
+              </script>
             </div>
         </div>
     </div>
