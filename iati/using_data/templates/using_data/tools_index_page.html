@@ -48,17 +48,6 @@
                   {{ card.value|richtext }}
                 </div>
               {% endfor %}
-              <script>
-              var cards = document.getElementsByClassName("card");
-              for(var i = 0; i < cards.length; i++){
-                var card = cards[i];
-                var h2s = card.getElementsByTagName("h2");
-                for(var j = 0; j < h2s.length; j++){
-                  var h2 = h2s[j];
-                  h2.classList.add("card__heading");
-                }
-              }
-              </script>
             </div>
         </div>
     </div>
