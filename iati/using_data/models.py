@@ -1,9 +1,9 @@
 """Model definitions for the using_data app."""
 
-from about.models import AboutSubPage, AboutPage
-from home.models import AbstractContentPage
 from wagtail.core.fields import StreamField
 from wagtail.core.blocks import RichTextBlock, StreamBlock
+from about.models import AboutSubPage, AboutPage
+from home.models import AbstractContentPage
 
 
 class UsingDataPage(AboutPage):
