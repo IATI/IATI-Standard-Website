@@ -1,6 +1,6 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
-<div class="is-typeset is-typeset--article">
+<div class="is-typeset {% if not notarticle %}is-typeset--article{% endif %}">
     {% for child in content %}
         {% if child.block_type == 'h2' %}
             <h2>{{ child }}</h2>
@@ -57,7 +57,7 @@
             {% endif %}
           {% endfor %}
         </div>
-        <div class="is-typeset is-typeset--article">
+        <div class="is-typeset {% if not notarticle %}is-typeset--article{% endif %}">
         {% elif child.block_type == 'anchor_point' %}
           <a id="{{ child }}"></a>
         {% else %}
