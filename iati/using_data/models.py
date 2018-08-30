@@ -1,7 +1,5 @@
 """Model definitions for the using_data app."""
 
-from django.db import models
-from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.core.fields import StreamField
 from wagtail.core.blocks import RichTextBlock, StreamBlock
 from about.models import AboutSubPage, AboutPage
@@ -13,13 +11,6 @@ class UsingDataPage(AboutPage):
 
     subpage_types = ['using_data.ToolsIndexPage', 'about.AboutSubPage']
 
-    quote_portrait = models.ForeignKey(
-        'wagtailimages.Image', null=True, blank=True,
-        on_delete=models.SET_NULL, related_name='+'
-    )
-    quote_text = models.TextField(null=True, blank=True)
-    quote_name = models.CharField(max_length=255, null=True, blank=True)
-
     def get_context(self, request, *args, **kwargs):
         """Overwrite the default wagtail get_context function to add all subpages of UsingDataPage."""
         context = super(UsingDataPage, self).get_context(request)
@@ -27,12 +18,6 @@ class UsingDataPage(AboutPage):
         context['subpages'] = AboutSubPage.objects.child_of(self)
         context['toolsindex'] = ToolsIndexPage.objects.child_of(self).first()
         return context
-
-    translation_fields = ["quote_text", "quote_name"]
-
-    multilingual_field_panels = [
-        ImageChooserPanel('quote_portrait')
-    ]
 
 
 class ToolBoxBlock(StreamBlock):

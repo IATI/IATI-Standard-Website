@@ -10,7 +10,7 @@ from .models import UsingDataPage, ToolsIndexPage
 class UsingDataPageTR(TranslationOptions):
     """Inheriting from AboutPage already comes with translations."""
 
-    fields = UsingDataPage.translation_fields
+    fields = list()
 
 
 add_language_content_panels(UsingDataPage)
