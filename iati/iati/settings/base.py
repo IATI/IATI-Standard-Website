@@ -60,6 +60,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'modeltranslation_sync',
 ]
 
 MIDDLEWARE = [
@@ -181,3 +183,7 @@ WAGTAIL_SITE_NAME = "iati"
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 BASE_URL = 'http://example.com'
+
+# Modeltranslation sync Settings
+MODELTRANSLATION_LOCALE_PATH = os.path.join(BASE_DIR, 'locale')
+MODELTRANSLATION_PO_FILE = "iati.po"
