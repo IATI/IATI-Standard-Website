@@ -1,6 +1,5 @@
 # pylint: disable=too-many-locals
 # pylint: disable=too-many-branches
-# pylint: disable=duplicate-code
 """Management command that saves locale .po files from database."""
 
 from __future__ import unicode_literals
@@ -15,7 +14,7 @@ from babel.messages.catalog import Catalog
 from babel.messages.pofile import write_po
 
 
-class Command(BaseCommand):
+class Command(BaseCommand):  # pylint: disable=duplicate-code
     """Management command that saves locale .po files from database."""
 
     def handle(self, *args, **options):

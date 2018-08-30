@@ -1,5 +1,4 @@
 # pylint: disable=too-many-locals
-# pylint: disable=duplicate-code
 """Management command that loads locale .po files into database."""
 
 from __future__ import unicode_literals
@@ -11,8 +10,8 @@ from django.apps import apps
 from babel.messages.pofile import read_po
 
 
-class Command(BaseCommand):
-    """The command that loads locale .po files into database."""
+class Command(BaseCommand):  # pylint: disable=duplicate-code
+    """Management command that loads locale .po files into database."""
 
     def handle(self, *args, **options):
         """Handle the load_trans command."""
