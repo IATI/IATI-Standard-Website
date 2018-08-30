@@ -1,4 +1,5 @@
 # pylint: disable=too-many-locals
+# pylint: disable=duplicate-code
 """Management command that loads locale .po files into database."""
 
 from __future__ import unicode_literals
@@ -12,7 +13,9 @@ from babel.messages.pofile import read_po
 
 class Command(BaseCommand):
     """Management command that loads locale .po files into database."""
+
     def handle(self, *args, **options):
+        """Handle the load_trans command."""
 
         if not hasattr(settings, 'MODELTRANSLATION_LOCALE_PATH'):
             raise CommandError("Settings has no attribute 'MODELTRANSLATION_LOCALE_PATH'")
