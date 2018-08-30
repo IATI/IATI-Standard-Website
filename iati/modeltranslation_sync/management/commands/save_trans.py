@@ -1,3 +1,5 @@
+# pylint: disable=too-many-locals
+# pylint: disable=too-many-branches
 """Management command that saves locale .po files from database."""
 
 from __future__ import unicode_literals
@@ -45,10 +47,7 @@ class Command(BaseCommand):
                         msgstr = "%s" % getattr(item, tr_field)
                         enval = getattr(item, en_field)
                         if enval is not None and field != "url_path":
-                            if hasattr(enval, "stream_data"):
-                                enstr = json.dumps(enval.stream_data)
-                            else:
-                                enstr = "%s" % enval
+                            enstr = json.dumps(enval.stream_data) if hasattr(enval, "stream_data") else "%s" % enval
                             catalog.add(id=enstr, string=msgstr, auto_comments=[msgid, ])
 
             # write catalog to file

@@ -1,3 +1,4 @@
+# pylint: disable=duplicate-code
 """Application configuration for the guidance_and_support app."""
 
 from django.apps import AppConfig

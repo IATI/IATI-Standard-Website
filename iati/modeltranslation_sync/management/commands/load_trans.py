@@ -1,3 +1,4 @@
+# pylint: disable=too-many-locals
 """Management command that loads locale .po files into database."""
 
 from __future__ import unicode_literals
