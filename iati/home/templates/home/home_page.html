@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtail_modeltranslation wagtailimages_tags %}
+{% load wagtail_modeltranslation wagtailimages_tags i18n %}
 
 {% load iati_tags %}
 {% block body_class %}body body--home{% endblock %}
@@ -13,40 +13,40 @@
         <div class="stats stats--standout">
             <div class="stat-quote fill-sunset">
                 <div class="stat-quote__media">
-                    <img class="stat-quote__img" src="https://styles.iatistandard.org/assets/img/UNDP-Achim-Steiner.jpg" alt="Photo of Achim Steiner, UNDP Administrator">
+                    <img class="stat-quote__img" src="https://styles.iatistandard.org/assets/img/UNDP-Achim-Steiner.jpg" alt="{% trans 'Photo of Achim Steiner, UNDP Administrator' %}">
                 </div>
                 <blockquote>
-                    <p class="stat-quote__copy">&ldquo;Transparency is a cornerstone of our work at UNDP.&rdquo;</p>
-                    <cite>Achim Steiner, UNDP Administrator<br />IATI member</cite>
+                    <p class="stat-quote__copy">&ldquo;{% trans "Transparency is a cornerstone of our work at UNDP." %}&rdquo;</p>
+                    <cite>{% trans "Achim Steiner, UNDP Administrator" %}<br />{% trans "IATI member" %}</cite>
                 </blockquote>
             </div>
             <div class="stat stat--flex">
                 <div class="stat__body stat__body--center">
                     <h2 class="stat__heading stat__heading--large" id="IATI-Website-Tests_num_iati_activities">{{ page.activities|intcomma }}</h2>
-                    <p class="stat__copy">Development and humanitarian activities published to the IATI Standard</p>
+                    <p class="stat__copy">{% trans "Development and humanitarian activities published to the IATI Standard" %}</p>
                 </div>
 
                 <div class="stat__body stat__body--center">
                     <h2 class="stat__heading stat__heading--large" id="IATI-Website-Tests_num_iati_organisations">{{ page.organisations|intcomma }}</h2>
-                    <p class="stat__copy">IATI publishers that contribute data for decision-making and accountability</p>
+                    <p class="stat__copy">{% trans "IATI publishers that contribute data for decision-making and accountability" %}</p>
                 </div>
             </div>
         </div>
     </div>
     <div class="section">
         <div class="row">
-            <h2 class="section__heading">Getting started</h2>
+            <h2 class="section__heading">{% trans "Getting started" %}</h2>
             <div class="l-3up">
                 <div class="l-3up__col">
                     <div class="help">
                         <div class="help__header background-cover" style="background-image: url(https://styles.iatistandard.org/assets/img/help1.png)">
                             <div class="help__panel fill-wind">
-                                <h3 class="help__heading">Explore our data</h3>
+                                <h3 class="help__heading">{% trans "Explore our data" %}</h3>
                             </div>
                         </div>
                         <div class="help__body">
-                            <p class="help__body-copy">Understand the ways you can access IATI data, what information you can find and the benefits of using it.</p>
-                            <a class="button" href="{% default_page_url 'using_data' %}">Explore IATI data</a>
+                            <p class="help__body-copy">{% trans "Understand the ways you can access IATI data, what information you can find and the benefits of using it." %}</p>
+                            <a class="button" href="{% default_page_url 'using_data' %}">{% trans "Explore IATI data" %}</a>
                         </div>
                     </div>
                 </div>
@@ -54,12 +54,12 @@
                     <div class="help">
                         <div class="help__header background-cover" style="background-image: url(https://styles.iatistandard.org/assets/img/help2.png)">
                             <div class="help__panel fill-wind">
-                                <h3 class="help__heading">Our publishing guide</h3>
+                                <h3 class="help__heading">{% trans "Our publishing guide" %}</h3>
                             </div>
                         </div>
                         <div class="help__body">
-                            <p class="help__body-copy">Find out how to publish data to the IATI Standard and improve your data by using our publishing guidance.</p>
-                            <a class="button" href="{% default_page_url 'guidance_and_support' %}">Get started</a>
+                            <p class="help__body-copy">{% trans "Find out how to publish data to the IATI Standard and improve your data by using our publishing guidance." %}</p>
+                            <a class="button" href="{% default_page_url 'guidance_and_support' %}">{% trans "Get started" %}</a>
                         </div>
                     </div>
                 </div>
@@ -67,12 +67,12 @@
                     <div class="help">
                         <div class="help__header background-cover" style="background-image: url(https://styles.iatistandard.org/assets/img/help3.png)">
                             <div class="help__panel fill-wind">
-                                <h3 class="help__heading">Discover the Standard</h3>
+                                <h3 class="help__heading">{% trans "Discover the Standard" %}</h3>
                             </div>
                         </div>
                         <div class="help__body">
-                            <p class="help__body-copy">View IATI reference pages that contain the rules and technical framework for publishing and interpreting IATI data.</p>
-                            <a class="button" href="{% default_page_url 'iati_standard' %}">Find out more</a>
+                            <p class="help__body-copy">{% trans "View IATI reference pages that contain the rules and technical framework for publishing and interpreting IATI data." %}</p>
+                            <a class="button" href="{% default_page_url 'iati_standard' %}">{% trans "Find out more" %}</a>
                         </div>
                     </div>
                 </div>
@@ -81,15 +81,27 @@
     </div>
     <div class="row">
         <div class="section-alt-top section-alt-bottom">
-            <h2 class="section__heading">About IATI</h2>
+            <h2 class="section__heading">{% trans "About IATI" %}</h2>
             <div class="l-2up">
                 <div class="l-2up__col">
                     <div class="is-typeset is-typeset--article">
                         <h3></h3>
-                        <p>IATI is a global initiative to improve the transparency of development and humanitarian resources and their results for addressing poverty and crises.</p>
-                        <p>IATI brings together governments, multilateral institutions, private sector and civil society organisations and others to increase the transparency of resources flowing into developing countries.</p>
-                        <p>We encourage all organisations that distribute or spend resources to publish information about their development and humanitarian activities using IATI’s data standard. This is a set of rules and guidance to ensure information is easy to access, understand and use.</p>
-                        <a class="button" href="{% default_page_url 'about' %}">Find out more about IATI</a>
+                        <p>
+                          {% blocktrans %}
+                          IATI is a global initiative to improve the transparency of development and humanitarian resources and their results for addressing poverty and crises.
+                          {% endblocktrans %}
+                        </p>
+                        <p>
+                          {% blocktrans %}
+                          IATI brings together governments, multilateral institutions, private sector and civil society organisations and others to increase the transparency of resources flowing into developing countries.
+                          {% endblocktrans %}
+                        </p>
+                        <p>
+                          {% blocktrans %}
+                          We encourage all organisations that distribute or spend resources to publish information about their development and humanitarian activities using IATI’s data standard. This is a set of rules and guidance to ensure information is easy to access, understand and use.
+                          {% endblocktrans %}
+                        </p>
+                        <a class="button" href="{% default_page_url 'about' %}">{% trans "Find out more about IATI" %}</a>
                     </div>
                 </div>
                 <div class="l-2up__col">
@@ -103,10 +115,14 @@
     {% if case_studies|length > 0 %}
     <div class="section section-alt-bottom">
         <div class="row">
-            <h2 class="section__heading">Case studies</h2>
+            <h2 class="section__heading">{% trans "Case studies" %}</h2>
 
             <div class="max-meter is-typeset is-typeset--article">
-                <p class="section__copy">People all over the world use IATI to track the flow of aid, humanitarian and development resources. Some use IATI to publish their data, others access data to inform decision-making and hold authorities to account. Our case studies tell some of their stories.</p>
+                <p class="section__copy">
+                  {% blocktrans %}
+                  People all over the world use IATI to track the flow of aid, humanitarian and development resources. Some use IATI to publish their data, others access data to inform decision-making and hold authorities to account. Our case studies tell some of their stories.
+                  {% endblocktrans %}
+                </p>
             </div>
             <div class="l-2up">
 
@@ -124,7 +140,7 @@
                               <div class="help__panel fill-sunset">
                                   <h3 class="help__heading">{{ case_study.heading }}</h3>
                                   <p>{{ case_study.excerpt|default:"" }}</p>
-                                  <a href="{% slugurl_trans case_study.slug %}">Read more</a>
+                                  <a href="{% slugurl_trans case_study.slug %}">{% trans "Read more" %}</a>
                               </div>
                           </div>
                       </div>
@@ -139,21 +155,21 @@
 
     <div class="row">
         <div class="section-alt">
-            <h2 class="section__heading">Partners</h2>
+            <h2 class="section__heading">{% trans "Partners" %}</h2>
             <div class="l-2up">
                 <div class="l-2up__col">
                     <article class="listing listing--article listing--people">
                         <aside class="listing__aside">
                             <div class="listing__media">
-                                <img src="https://styles.iatistandard.org/assets/img/Hillevi-Ekberg-sida.jpg" alt="Photo of Hillevi Ekberg of Sida">
+                                <img src="https://styles.iatistandard.org/assets/img/Hillevi-Ekberg-sida.jpg" alt="{% trans 'Photo of Hillevi Ekberg of Sida' %}">
                             </div>
                         </aside>
                         <div class="listing__body">
                             <blockquote class="as-blockquote listing-quote">
-                                <p>&ldquo;Transparency has driven us to strengthen data quality and improve our processes. Open data is a foundation for reinforcing trust and improving coordination with partners to achieve more effective aid.&rdquo;</p>
+                                <p>&ldquo;{% blocktrans %}Transparency has driven us to strengthen data quality and improve our processes. Open data is a foundation for reinforcing trust and improving coordination with partners to achieve more effective aid.{% endblocktrans %}&rdquo;</p>
 
                                 <cite class="heading">Hillevi Ekberg</cite>
-                                <cite>Sida - Swedish International Development Cooperation Agency<br />IATI member</cite>
+                                <cite>{% trans "Sida - Swedish International Development Cooperation Agency" %}<br />{% trans "IATI member" %}</cite>
                             </blockquote>
                         </div>
                     </article>
@@ -162,15 +178,15 @@
                     <article class="listing listing--article listing--people">
                         <aside class="listing__aside">
                             <div class="listing__media">
-                                <img src="https://styles.iatistandard.org/assets/img/winnie-kamau.jpg" alt="Photo of Winnie Kamau, Data Journalist">
+                                <img src="https://styles.iatistandard.org/assets/img/winnie-kamau.jpg" alt="{% trans 'Photo of Winnie Kamau, Data Journalist' %}">
                             </div>
                         </aside>
                         <div class="listing__body">
                             <blockquote class="as-blockquote listing-quote">
-                                <p>&ldquo;IATI is key to ensuring the public knows where development and humanitarian spending goes and what impact it makes. Accessing this data is vital when telling stories and holding decision makers to account.&rdquo;</p>
+                                <p>&ldquo;{% blocktrans %}IATI is key to ensuring the public knows where development and humanitarian spending goes and what impact it makes. Accessing this data is vital when telling stories and holding decision makers to account.{% endblocktrans %}&rdquo;</p>
 
                                 <cite class="heading">Winnie Kamau</cite>
-                                <cite>Data Journalist<br />Association of Freelance Journalists<br />IATI member</cite>
+                                <cite>{% trans "Data Journalist" %}<br />{% trans "Association of Freelance Journalists" %}<br />{% trans "IATI member" %}</cite>
                             </blockquote>
                         </div>
                     </article>

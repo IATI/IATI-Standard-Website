@@ -1,10 +1,10 @@
-{% load wagtail_modeltranslation iati_tags %}
+{% load wagtail_modeltranslation iati_tags i18n %}
 
 <div class="aside-m">
     <div class="aside-m__header fill-sunrise">
-        <h3 class="aside-m__heading">In this section</h3>
+        <h3 class="aside-m__heading">{% trans "In this section" %}</h3>
     </div>
-    <button class="navigation-secondary-toggle" type="button" id="navigation-secondary-toggle">pages in this section <i role="presentation" aria-hidden="true" class="ico ico--16 ico-plus-white"></i></button>
+    <button class="navigation-secondary-toggle" type="button" id="navigation-secondary-toggle">{% trans "pages in this section" %} <i role="presentation" aria-hidden="true" class="ico ico--16 ico-plus-white"></i></button>
     <nav class="navigation-secondary" id="navigation-secondary">
         <ul class="navigation-secondary__list">
           {% for item in menu_to_display %}

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags iati_tags wagtailimages_tags %}
+{% load wagtailcore_tags iati_tags wagtailimages_tags i18n %}
 {% block body_class %}body body--news-single{% endblock %}
 {% block body_id %}body-news-single{% endblock %}
 {% block content %}
@@ -13,7 +13,7 @@
     <div class="max-meter">
       <div class="hero__caption">
         <h1 class="hero__heading">{{ page.heading }}</h1> {% if page.date_start|haspassed %}
-        <span class="badge">Past event</span> {% endif %}
+        <span class="badge">{% trans "Past event" %}</span> {% endif %}
         <p class="hero__subheading">{{ page.excerpt|default:"" }}</p>
 
         <span class="hero__type">{{ page.event_type_concat }}</span>
@@ -29,7 +29,7 @@
 
       <div class="aside-m">
         <div class="aside-m__header fill-sunset">
-          <h3 class="aside-m__heading">Where &amp; when</h3>
+          <h3 class="aside-m__heading">{% trans "Where &amp; when" %}</h3>
         </div>
         <ul class="aside-m__list">
           {% if page.location %}
@@ -54,7 +54,7 @@
       </div>
       {% if page.registration_link %}
       <div class="aside-m">
-        <a class="button button--large button--block" target="_blank" rel="noopener noreferrer" href="{{ page.registration_link }}">Register your place</a>
+        <a class="button button--large button--block" target="_blank" rel="noopener noreferrer" href="{{ page.registration_link }}">{% trans "Register your place" %}</a>
       </div>
       {% endif %}
 
@@ -66,7 +66,7 @@
       {% endif %}
       {% if page.additional_information %}
       <div class="m-additional fill-white">
-        <h2 class="m-additional__heading heading">Additional information</h2>
+        <h2 class="m-additional__heading heading">{% trans "Additional information" %}</h2>
         {% include "home/includes/streamfield.html" with content=page.additional_information %}
       </div>
       {% endif %}

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags wagtail_modeltranslation %}
+{% load wagtailcore_tags wagtail_modeltranslation i18n %}
 {% block body_class %}body body--support{% endblock %}
 {% block body_id %}body-support{% endblock %}
 {% block content %}
@@ -31,11 +31,11 @@
 
       <div class="aside-m">
         <div class="aside-m__header fill-sunset">
-          <h3 class="aside-m__heading">Contact support</h3>
+          <h3 class="aside-m__heading">{% trans "Contact support" %}</h3>
         </div>
         <div class="aside-m__body">
-          <p class="aside-m__copy">Our technical team are ready to help you.</p>
-          <a class="button js-move" data-target="support" href="#support">Get help</a>
+          <p class="aside-m__copy">{% trans "Our technical team are ready to help you." %}</p>
+          <a class="button js-move" data-target="support" href="#support">{% trans "Get help" %}</a>
         </div>
       </div>
 
@@ -46,7 +46,7 @@
 {% with siblings=self.get_siblings.live.specific %}
   {% if siblings|length > 1 %}
     <div class="row">
-      <h2 class="section__heading">Related guidance</h2>
+      <h2 class="section__heading">{% trans "Related guidance" %}</h2>
       <div class="l-cards">
         {% for sibling in siblings %}
           {% if sibling != self %}
@@ -62,7 +62,7 @@
     {% with aunts=self.get_parent.get_siblings.live.specific %}
       {% if aunts|length > 1 %}
         <div class="row">
-          <h2 class="section__heading">Related guidance</h2>
+          <h2 class="section__heading">{% trans "Related guidance" %}</h2>
           <div class="l-cards">
             {% for aunt in aunts %}
               {% if aunt != self.get_parent.specific %}
@@ -84,13 +84,25 @@
 <a id="support"></a>
 <div class="section">
   <div class="row">
-    <h2 class="section__heading">Contact support</h2>
+    <h2 class="section__heading">{% trans "Contact support" %}</h2>
     {% if form_success %}
-      <p class="para para--typeset alert--success">Query successfully submitted. Our technical team will be in contact with you as soon as possible.</p>
+      <p class="para para--typeset alert--success">
+        {% blocktrans %}
+        Query successfully submitted. Our technical team will be in contact with you as soon as possible.
+        {% endblocktrans %}
+      </p>
     {% elif form_submitted %}
-      <p class="para para--typeset alert--error">Sorry, something went wrong submitting your query. Please try again later.</p>
+      <p class="para para--typeset alert--error">
+        {% blocktrans %}
+        Sorry, something went wrong submitting your query. Please try again later.
+        {% endblocktrans %}
+      </p>
     {% else %}
-      <p class="para para--typeset">Please complete the form below and our team will be able to help you</p>
+      <p class="para para--typeset">
+        {% blocktrans %}
+        Please complete the form below and our team will be able to help you
+        {% endblocktrans %}
+      </p>
       <form class="form form--support" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="l-2up">
@@ -99,8 +111,8 @@
 
             <div class="form-field ">
 
-              <label for="name" id="" class="form-label ">Name</label>
-              <input id="name" class="form-item" name="name" type="text" placeholder="Your name">
+              <label for="name" id="" class="form-label ">{% trans "Name" %}</label>
+              <input id="name" class="form-item" name="name" type="text" placeholder="{% trans 'Your name' %}">
 
 
             </div>
@@ -108,8 +120,8 @@
 
             <div class="form-field form-field--spaced ">
 
-              <label for="email" id="" class="form-label ">Email</label>
-              <input id="email" class="form-item" name="email" type="email" placeholder="your.email@address.com" required>
+              <label for="email" id="" class="form-label ">{% trans "Email" %}</label>
+              <input id="email" class="form-item" name="email" type="email" placeholder="{% trans 'your.email@address.com' %}" required>
 
 
             </div>
@@ -126,8 +138,8 @@
 
             <div class="form-field ">
 
-              <label for="textarea" class="form-label ">Query</label>
-              <textarea id="textarea" class="form-item" name="textarea" placeholder="Your query" required></textarea>
+              <label for="textarea" class="form-label ">{% trans "Query" %}</label>
+              <textarea id="textarea" class="form-item" name="textarea" placeholder="{% trans 'Your query' %}" required></textarea>
 
 
             </div>
@@ -135,7 +147,7 @@
           </div>
         </div>
         <div class="form-field form-field--spaced">
-          <button class="button">Submit request</button>
+          <button class="button">{% trans "Submit request" %}</button>
         </div>
       </form>
     {% endif %}
