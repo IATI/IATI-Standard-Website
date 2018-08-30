@@ -23,28 +23,14 @@
                       {% include "home/includes/streamfield.html" with content=page.content_editor notarticle=True %}
                     {% endif %}
                   </div>
-                  {% if page.quote_text %}
                   <div class="l-2up__col">
                       <div class="stat-quote fill-sunset">
-                        {% if page.quote_portrait %}
-                          {% image page.quote_portrait fill-60x60 as img %}
-                          <div class="stat-quote__media">
-                              <img class="stat-quote__img" src="{{ img.url }}" alt="{{ img.alt }}">
-                          </div>
-                        {% else %}
-                          <div class="stat-quote__media">
-                              <img class="stat-quote__img" src="https://styles.iatistandard.org/assets/img/portrait.png" alt="alt tag">
-                          </div>
-                        {% endif %}
-
                           <blockquote>
-                              <p class="stat-quote__copy">&ldquo;{{ page.quote_text }}&rdquo;</p>
-                              <cite>{{ page.quote_name }}</cite>
+                              <p class="stat-quote__copy">&ldquo;{% blocktrans %}IATI data is used to complement and complete my locally collected data. It is very helpful because it provides a realistic picture of most, if not all external resources available to Liberia.{% endblocktrans %}&rdquo;</p>
+                              <cite>Frederick Krah<br/>{% trans "Ministry of Finance and Development" %}<br/>{% trans "Government of Liberia" %}</cite>
                           </blockquote>
-
                       </div>
                   </div>
-                  {% endif %}
               </div>
           </div>
       </div>
