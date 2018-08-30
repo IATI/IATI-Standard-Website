@@ -45,7 +45,4 @@ class Command(BaseCommand):
                                 obj = model.objects.get(pk=pk)
                                 tr_field = "%s_%s" % (field, lang)
                                 setattr(obj, tr_field, message.string)
-                                if hasattr(obj, "save_revision"):
-                                    obj.save_revision().publish()
-                                else:
-                                    obj.save()
+                                obj.save()

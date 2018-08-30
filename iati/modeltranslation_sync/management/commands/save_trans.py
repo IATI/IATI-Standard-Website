@@ -1,5 +1,6 @@
 # coding: utf-8
 from __future__ import unicode_literals
+import json
 from os import mkdir
 from os.path import join, isdir
 
@@ -44,7 +45,10 @@ class Command(BaseCommand):
                             msgstr = "%s" % getattr(item, tr_field)
                             enval = getattr(item, en_field)
                             if enval is not None:
-                                enstr = "%s" % enval
+                                if hasattr(enval, "stream_data"):
+                                    enstr = json.dumps(enval.stream_data)
+                                else:
+                                    enstr = "%s" % enval
                                 catalog.add(id=enstr, string=msgstr, auto_comments=[msgid, ])
 
             # write catalog to file
