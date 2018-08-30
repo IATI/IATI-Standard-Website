@@ -1,4 +1,5 @@
-# coding: utf-8
+"""Management command that saves locale .po files from database."""
+
 from __future__ import unicode_literals
 import json
 from os import mkdir
@@ -12,7 +13,7 @@ from babel.messages.pofile import write_po
 
 
 class Command(BaseCommand):
-
+    """Management command that saves locale .po files from database."""
     def handle(self, *args, **options):
 
         if not hasattr(settings, 'MODELTRANSLATION_LOCALE_PATH'):
@@ -37,25 +38,24 @@ class Command(BaseCommand):
                 opts = translator.get_options_for_model(model)
 
                 for field in opts.get_field_names():
-                    if field != "url_path":
-                        tr_field = "%s_%s" % (field, lang)
-                        en_field = "%s_%s" % (field, "en")
-                        for item in model.objects.all():
-                            msgid = "%s.%s.%s" % (item._meta, item.pk, field)
-                            msgstr = "%s" % getattr(item, tr_field)
-                            enval = getattr(item, en_field)
-                            if enval is not None:
-                                if hasattr(enval, "stream_data"):
-                                    enstr = json.dumps(enval.stream_data)
-                                else:
-                                    enstr = "%s" % enval
-                                catalog.add(id=enstr, string=msgstr, auto_comments=[msgid, ])
+                    tr_field = "%s_%s" % (field, lang)
+                    en_field = "%s_%s" % (field, "en")
+                    for item in model.objects.all():
+                        msgid = "%s.%s.%s" % (item._meta, item.pk, field)
+                        msgstr = "%s" % getattr(item, tr_field)
+                        enval = getattr(item, en_field)
+                        if enval is not None and field != "url_path":
+                            if hasattr(enval, "stream_data"):
+                                enstr = json.dumps(enval.stream_data)
+                            else:
+                                enstr = "%s" % enval
+                            catalog.add(id=enstr, string=msgstr, auto_comments=[msgid, ])
 
             # write catalog to file
             lang_path = join(locale_path, lang)
             if not isdir(lang_path):
                 mkdir(lang_path)
                 mkdir(join(lang_path, "LC_MESSAGES"))
-            f = open(join(lang_path, "LC_MESSAGES", filename_po), "wb")
-            write_po(f, catalog)
-            f.close()
+            po_file = open(join(lang_path, "LC_MESSAGES", filename_po), "wb")
+            write_po(po_file, catalog)
+            po_file.close()

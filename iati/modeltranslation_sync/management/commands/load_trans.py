@@ -1,4 +1,5 @@
-# coding: utf-8
+"""Management command that loads locale .po files into database."""
+
 from __future__ import unicode_literals
 from os.path import join, isdir
 from django.conf import settings
@@ -9,7 +10,7 @@ from babel.messages.pofile import read_po
 
 
 class Command(BaseCommand):
-
+    """Management command that loads locale .po files into database."""
     def handle(self, *args, **options):
 
         if not hasattr(settings, 'MODELTRANSLATION_LOCALE_PATH'):
@@ -32,17 +33,16 @@ class Command(BaseCommand):
                 lang_path = join(locale_path, lang)
                 if not isdir(lang_path):
                     raise CommandError("Language directory does not exists.")
-                f = open(join(lang_path, "LC_MESSAGES", filename_po), "r")
-                catalog = read_po(f)
-                f.close()
+                po_file = open(join(lang_path, "LC_MESSAGES", filename_po), "r")
+                catalog = read_po(po_file)
+                po_file.close()
 
                 for message in catalog:
-                    if message.string not in ["None", ""] and message.string is not None:
-                        if message.auto_comments:
-                            for field_id in message.auto_comments:
-                                [app, class_name, pk, field] = field_id.split('.')
-                                model = apps.get_model(app, class_name)
-                                obj = model.objects.get(pk=pk)
-                                tr_field = "%s_%s" % (field, lang)
-                                setattr(obj, tr_field, message.string)
-                                obj.save()
+                    if message.string not in [None, "None", ""] and message.auto_comments:
+                        for field_id in message.auto_comments:
+                            [app, class_name, primary_key, field] = field_id.split('.')
+                            model = apps.get_model(app, class_name)
+                            obj = model.objects.get(pk=primary_key)
+                            tr_field = "%s_%s" % (field, lang)
+                            setattr(obj, tr_field, message.string)
+                            obj.save()
