@@ -7,7 +7,7 @@ from home.models import AbstractContentPage
 
 
 class UsingDataPage(AboutPage):
-    """A page model for the Using IATI data page. Inherits all from AbstractContentPage."""
+    """A page model for the Using IATI data page. Inherits all from AboutPage."""
 
     subpage_types = ['using_data.ToolsIndexPage', 'about.AboutSubPage']
 
