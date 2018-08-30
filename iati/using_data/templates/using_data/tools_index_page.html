@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load iati_tags wagtailcore_tags %}
+{% load iati_tags wagtailcore_tags i18n %}
 {% block body_class %}body body--data{% endblock %}
 {% block body_id %}body-data{% endblock %}
 {% block content %}
@@ -21,11 +21,11 @@
       {% side_panel calling_page=self %}
       <div class="aside-m">
         <div class="aside-m__header fill-sunset">
-            <h3 class="aside-m__heading">Support</h3>
+            <h3 class="aside-m__heading">{% trans "Support" %}</h3>
         </div>
         <div class="aside-m__body">
-            <p class="aside-m__copy">Find out what support is available for you using IATI data.</p>
-            <a class="button" href="{% default_page_url 'guidance_and_support' %}">Get help</a>
+            <p class="aside-m__copy">{% trans "Find out what support is available for you using IATI data." %}</p>
+            <a class="button" href="{% default_page_url 'guidance_and_support' %}">{% trans "Get help" %}</a>
         </div>
       </div>
     </aside>

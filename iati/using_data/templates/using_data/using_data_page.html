@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailimages_tags wagtail_modeltranslation iati_tags %}
+{% load wagtailimages_tags wagtail_modeltranslation iati_tags i18n %}
 {% block body_class %}body body--data{% endblock %}
 {% block body_id %}body-data{% endblock %}
 
@@ -60,7 +60,7 @@
                   <div class="card card--alt">
                       <h2 class="card__heading">{{ subpage.heading }}</h2>
                       <p class="card__excerpt">{{ subpage.excerpt|default:"" }}</p>
-                      <a href="{% slugurl_trans subpage.slug %}" class="button">Find out more</a>
+                      <a href="{% slugurl_trans subpage.slug %}" class="button">{% trans "Find out more" %}</a>
                   </div>
                   {% endwith %}
                 {% endfor %}
@@ -78,7 +78,7 @@
                       <h2 class="section__heading">{{ toolsindex.heading }}</h2>
                       <div class="is-typeset">
                           <p>{{ toolsindex.excerpt|default:"" }}</p>
-                          <a class="button" href="{% slugurl_trans toolsindex.slug %}">View tools and resources</a>
+                          <a class="button" href="{% slugurl_trans toolsindex.slug %}">{% trans "View tools and resources" %}</a>
                       </div>
                   </div>
                   <div class="l-2up__col">
