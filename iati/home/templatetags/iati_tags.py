@@ -65,9 +65,8 @@ def translation_links(context, calling_page):
     language_results = []
     for language_code, language_name in settings.ACTIVE_LANGUAGES:
         with use_language(language_code):
-            if hasattr(context, 'url'):
-                language_url = pageurl(context, calling_page)
-                language_results.append({"code": language_code, "name": language_name, "url": language_url})
+            language_url = pageurl(context, calling_page)
+            language_results.append({"code": language_code, "name": language_name, "url": language_url})
 
     return {
         'languages': language_results,
