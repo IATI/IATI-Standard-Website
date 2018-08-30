@@ -12,7 +12,7 @@ from babel.messages.pofile import read_po
 
 
 class Command(BaseCommand):
-    """Management command that loads locale .po files into database."""
+    """The command that loads locale .po files into database."""
 
     def handle(self, *args, **options):
         """Handle the load_trans command."""
