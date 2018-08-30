@@ -20,7 +20,6 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         """Handle the save_trans command."""
-
         if not hasattr(settings, 'MODELTRANSLATION_LOCALE_PATH'):
             raise CommandError("Settings has no attribute 'MODELTRANSLATION_LOCALE_PATH'")
 
