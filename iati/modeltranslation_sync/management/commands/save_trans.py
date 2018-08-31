@@ -13,12 +13,12 @@ from babel.messages.catalog import Catalog
 from babel.messages.pofile import write_po
 
 
-def load_translation_settings(settings):
-    """A function to check app settings and load configuration for translation"""
-    if not hasattr(settings, 'MODELTRANSLATION_LOCALE_PATH'):
+def load_translation_settings(django_settings):
+    """Checks app settings and loads configuration for translation."""
+    if not hasattr(django_settings, 'MODELTRANSLATION_LOCALE_PATH'):
         raise CommandError("Settings has no attribute 'MODELTRANSLATION_LOCALE_PATH'")
 
-    if not hasattr(settings, 'MODELTRANSLATION_PO_FILE'):
+    if not hasattr(django_settings, 'MODELTRANSLATION_PO_FILE'):
         filename_po = "modeltranslation.po"
     else:
         filename_po = settings.MODELTRANSLATION_PO_FILE
