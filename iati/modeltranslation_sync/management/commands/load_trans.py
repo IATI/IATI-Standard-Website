@@ -8,6 +8,7 @@ from django.conf import settings
 from django.core.management.base import BaseCommand as LoadCommand, CommandError
 from django.apps import apps
 from babel.messages.pofile import read_po
+from .save_trans import load_translation_settings
 
 
 class Command(LoadCommand):
@@ -15,15 +16,7 @@ class Command(LoadCommand):
 
     def handle(self, *args, **options):
         """Handle the load_trans command."""
-        if not hasattr(settings, 'MODELTRANSLATION_LOCALE_PATH'):
-            raise CommandError("Settings has no attribute 'MODELTRANSLATION_LOCALE_PATH'")
-
-        if not hasattr(settings, 'MODELTRANSLATION_PO_FILE'):
-            filename_po = "modeltranslation.po"
-        else:
-            filename_po = settings.MODELTRANSLATION_PO_FILE
-            if not filename_po.endswith(".po"):
-                filename_po += '.po'
+        po_filename = load_translation_settings(settings)
 
         locale_path = settings.MODELTRANSLATION_LOCALE_PATH
         if not isdir(locale_path):
@@ -35,7 +28,7 @@ class Command(LoadCommand):
                 lang_path = join(locale_path, lang)
                 if not isdir(lang_path):
                     raise CommandError("Language directory does not exists.")
-                po_file = open(join(lang_path, "LC_MESSAGES", filename_po), "r")
+                po_file = open(join(lang_path, "LC_MESSAGES", po_filename), "r")
                 catalog = read_po(po_file)
                 po_file.close()
 
