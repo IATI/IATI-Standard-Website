@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load wagtailimages_tags wagtail_modeltranslation iati_tags i18n %}
+{% block body_class %}body body--data{% endblock %}
+{% block body_id %}body-data{% endblock %}
+
+{% block content %}
+  <div class="hero">
+    {% include "home/includes/hero_heading.html" %}
+  </div>
+
+<div class="row">
+  <div class="l-sidebar l-sidebar--reverse">
+    <aside class="l-sidebar__aside">
+      {% side_panel calling_page=self %}
+    </aside>
+    <div class="l-sidebar__body">
+
+    <div class="space-section-top">
+          <div class="row">
+              <div class="l-2up l-2up--offset">
+                  <div class="l-2up__col">
+                    {% if page.content_editor %}
+                      {% include "home/includes/streamfield.html" with content=page.content_editor notarticle=True %}
+                    {% endif %}
+                  </div>
+                  <div class="l-2up__col">
+                      <div class="stat-quote fill-sunset">
+                          <blockquote>
+                              <p class="stat-quote__copy">&ldquo;{% blocktrans %}IATI data is used to complement and complete my locally collected data. It is very helpful because it provides a realistic picture of most, if not all external resources available to Liberia.{% endblocktrans %}&rdquo;</p>
+                              <cite>Frederick Krah<br/>{% trans "Ministry of Finance and Development" %}<br/>{% trans "Government of Liberia" %}</cite>
+                          </blockquote>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+</div>
+</div>
+
+      <div class="space-section-top">
+          <div class="row">
+              <div class="l-cards">
+                {% for subpage in subpages %}
+                    {% with subpage=subpage.specific %}
+                  <div class="card card--alt">
+                      <h2 class="card__heading">{{ subpage.heading }}</h2>
+                      <p class="card__excerpt">{{ subpage.excerpt|default:"" }}</p>
+                      <a href="{% slugurl_trans subpage.slug %}" class="button">{% trans "Find out more" %}</a>
+                  </div>
+                  {% endwith %}
+                {% endfor %}
+              </div>
+          </div>
+      </div>
+
+
+</div>
+
+      <div class="section">
+          <div class="row">
+              <div class="l-2up">
+                  <div class="l-2up__col">
+                      <h2 class="section__heading">{{ toolsindex.heading }}</h2>
+                      <div class="is-typeset">
+                          <p>{{ toolsindex.excerpt|default:"" }}</p>
+                          <a class="button" href="{% slugurl_trans toolsindex.slug %}">{% trans "View tools and resources" %}</a>
+                      </div>
+                  </div>
+                  <div class="l-2up__col">
+                      <img src="http://styles.iatistandard.org/assets/img/content-image3.jpg" alt="alt tag">
+                  </div>
+              </div>
+          </div>
+      </div>
+{% endblock %}
