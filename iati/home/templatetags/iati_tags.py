@@ -63,10 +63,11 @@ def standard_page_url(context, page_type):
 def translation_links(context, calling_page):
     """Take the inclusion template 'translation_links.html' and return a snippet of HTML with links to the requesting page in all offered languages."""
     language_results = []
-    for language_code, language_name in settings.ACTIVE_LANGUAGES:
-        with use_language(language_code):
-            language_url = pageurl(context, calling_page)
-            language_results.append({"code": language_code, "name": language_name, "url": language_url})
+    if calling_page != "":
+        for language_code, language_name in settings.ACTIVE_LANGUAGES:
+            with use_language(language_code):
+                language_url = pageurl(context, calling_page)
+                language_results.append({"code": language_code, "name": language_name, "url": language_url})
 
     return {
         'languages': language_results,
