@@ -14,7 +14,7 @@ from babel.messages.pofile import write_po
 
 
 def load_translation_settings(django_settings):
-    """Checks app settings and loads configuration for translation."""
+    """Check app settings and load configuration for translation."""
     if not hasattr(django_settings, 'MODELTRANSLATION_LOCALE_PATH'):
         raise CommandError("Settings has no attribute 'MODELTRANSLATION_LOCALE_PATH'")
 
@@ -32,7 +32,6 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         """Handle the save_trans command."""
-
         filename_po = load_translation_settings(settings)
 
         locale_path = settings.MODELTRANSLATION_LOCALE_PATH
