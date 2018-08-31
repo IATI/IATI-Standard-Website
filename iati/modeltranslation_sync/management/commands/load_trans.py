@@ -5,12 +5,12 @@ from __future__ import unicode_literals
 from os.path import join, isdir
 from django.conf import settings
 
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand as LoadCommand, CommandError
 from django.apps import apps
 from babel.messages.pofile import read_po
 
 
-class Command(BaseCommand):
+class Command(LoadCommand):
     """Management command that loads locale .po files into database."""
 
     def handle(self, *args, **options):
