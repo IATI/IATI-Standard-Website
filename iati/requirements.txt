@@ -4,3 +4,4 @@ psycopg2-binary==2.7.4
 requests==2.18.4
 wagtail==2.0.1
 wagtail-modeltranslation==0.8.1
+Babel==2.6.0
