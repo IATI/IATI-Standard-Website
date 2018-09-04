@@ -52,7 +52,7 @@ class Command(BaseCommand):
                         msgid = "%s.%s.%s" % (item._meta, item.pk, field)
                         msgstr = "%s" % getattr(item, tr_field)
                         enval = getattr(item, en_field)
-                        if enval is not None and field != "url_path":
+                        if enval is not None and field not in ["slug", "url_path"]:
                             enstr = json.dumps(enval.stream_data) if hasattr(enval, "stream_data") else "%s" % enval
                             catalog.add(id=enstr, string=msgstr, auto_comments=[msgid, ])
 
