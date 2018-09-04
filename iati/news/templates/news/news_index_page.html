@@ -42,7 +42,7 @@
 
                 </ul>
                 <div class="listing__excerpt">{{ news_post.excerpt|default:"" }}</div>
-                <a href="{% slugurl_trans news_post.slug %}" class="button">Read more</a>
+                <a href="{% slugurl_trans news_post.slug %}" class="button">{% trans "Read more" %}</a>
               </div>
             </article>
           {% endwith %}
@@ -58,7 +58,7 @@
     {% if self.news_categories %}
       <div class="aside-m">
         <div class="aside-m__header fill-land">
-          <h3 class="aside-m__heading">Categories</h3>
+          <h3 class="aside-m__heading">{% trans "Categories" %}</h3>
         </div>
         <ul class="aside-m__list">
           {% for news_category in self.news_categories %}

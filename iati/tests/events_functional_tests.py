@@ -263,6 +263,7 @@ class TestFeaturedEvents():
         admin_browser.click_link_by_text("Add featured event")
         admin_browser.find_by_text("Choose a page (Event Page)")[0].__dict__['_element'].location_once_scrolled_into_view
         admin_browser.find_by_text("Choose a page (Event Page)").click()
+        admin_browser.find_by_text(TEST_PAGE_TITLE)[0].__dict__['_element'].location_once_scrolled_into_view
         admin_browser.click_link_by_text(TEST_PAGE_TITLE)
         save_button = admin_browser.find_by_css(".action-save")[0]
         click_obscured(admin_browser, save_button)
