@@ -17,25 +17,13 @@
 
     <div class="space-section-top">
           <div class="row">
-              <div class="l-2up l-2up--offset">
-                  <div class="l-2up__col">
-                    {% if page.content_editor %}
-                      {% include "home/includes/streamfield.html" with content=page.content_editor notarticle=True %}
-                    {% endif %}
-                  </div>
-                  <div class="l-2up__col">
-                      <div class="stat-quote fill-sunset">
-                          <blockquote>
-                              <p class="stat-quote__copy">&ldquo;{% blocktrans %}IATI data is used to complement and complete my locally collected data. It is very helpful because it provides a realistic picture of most, if not all external resources available to Liberia.{% endblocktrans %}&rdquo;</p>
-                              <cite>Frederick Krah<br/>{% trans "Ministry of Finance and Development" %}<br/>{% trans "Government of Liberia" %}</cite>
-                          </blockquote>
-                      </div>
-                  </div>
-              </div>
+            {% if page.content_editor %}
+              {% include "home/includes/streamfield.html" with content=page.content_editor notarticle=True %}
+            {% endif %}
           </div>
       </div>
 
-</div>
+    </div>
 </div>
 
       <div class="space-section-top">
