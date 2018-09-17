@@ -118,6 +118,7 @@ class PeopleProfileBlock(StreamBlock):
         ('name', CharBlock(required=False, max_length=100)),
         ('profile_picture', ImageChooserBlock(required=False, label="Profile picture", icon="image")),
         ('organisation_logo', ImageChooserBlock(required=False, label="Organisation logo", icon="image")),
+        ('organisation_name', CharBlock(required=False, max_length=100)),
         ('IATI_role', CharBlock(required=False, max_length=100)),
         ('external_role', CharBlock(required=False, max_length=200)),
         ('description', TextBlock(required=False)),
