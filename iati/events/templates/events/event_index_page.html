@@ -52,7 +52,7 @@
         {% if event.location %}
 		<h3 class="listing__location"><i role="presentation" aria-hidden="true" class="ico ico--14 ico-location-ocean"></i>{{ event.location }}</h3>
         {% endif %}
-		<span class="badge">Past event</span>
+		<span class="badge">{% trans "Past event" %}</span>
 	</aside>
 	<div class="listing__body">
 		<h2 class="listing__heading"><a href="{% slugurl_trans event.slug %}"><span>{{ event.heading }}</span></a></h2>
@@ -65,7 +65,7 @@
 			</li>
 		</ul>
 		<p class="listing__excerpt">{{ event.excerpt|default:"" }}</p>
-		<a href="{% slugurl_trans event.slug %}" class="button">More details</a>
+		<a href="{% slugurl_trans event.slug %}" class="button">{% trans "More details" %}</a>
 	</div>
 </article>
 
@@ -82,11 +82,11 @@
     {% if not past %}
       <div class="aside-m">
         <div class="aside-m__header fill-sunset">
-          <h3 class="aside-m__heading">Past events</h3>
+          <h3 class="aside-m__heading">{% trans "Past events" %}</h3>
         </div>
         <div class="aside-m__body">
-          <p class="aside-m__copy">See events that have happened</p>
-          <a class="button" href="?past=1">View past events</a>
+          <p class="aside-m__copy">{% trans "See events that have happened" %}</p>
+          <a class="button" href="?past=1">{% trans "View past events" %}</a>
         </div>
       </div>
     {% endif %}
@@ -94,7 +94,7 @@
     {% if page.event_types %}
     <div class="aside-m">
         <div class="aside-m__header fill-land">
-            <h3 class="aside-m__heading">Event types</h3>
+            <h3 class="aside-m__heading">{% trans "Event types" %}</h3>
         </div>
         <ul class="aside-m__list">
 		{% for event_type in page.event_types %}
@@ -106,7 +106,7 @@
     {% if past %}
     <div class="aside-m">
       <div class="aside-m__header fill-land">
-        <h3 class="aside-m__heading">Archive</h3>
+        <h3 class="aside-m__heading">{% trans "Archive" %}</h3>
       </div>
       <ul class="aside-m__list">
         {% for year in archive_years %}

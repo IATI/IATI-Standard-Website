@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailimages_tags wagtail_modeltranslation %}
+{% load wagtailimages_tags wagtail_modeltranslation i18n %}
 {% block body_class %}body body--news-single{% endblock %}
 {% block body_id %}body-news-single{% endblock %}
 {% block content %}
@@ -39,7 +39,7 @@
 {% if page.related_news.all|length > 0 %}
 <div class="section">
   <div class="row">
-    <h2 class="section__heading">Related news</h2>
+    <h2 class="section__heading">{% trans "Related news" %}</h2>
     <div class="l-2up type-l--trailer">
     {% for related_news_item in page.related_news.all %}
     {% if not forloop.first and forloop.counter0|divisibleby:2 %}
@@ -67,7 +67,7 @@
               </li>
             </ul>
             <div class="listing__excerpt">{{ news_post.excerpt|default:"" }}</div>
-            <a href="{% slugurl_trans news_post.slug %}" class="button">Read more</a>
+            <a href="{% slugurl_trans news_post.slug %}" class="button">{% trans "Read more" %}</a>
           </div>
         </article>
       </div>
