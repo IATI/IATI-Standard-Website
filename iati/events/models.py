@@ -25,9 +25,12 @@ class EventIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
         event_types = EventType.objects.all()
         return event_types
 
-    def get_events(self, request, filter_dict=None, order_by=['date_start']):
+    def get_events(self, request, filter_dict=None, order_by=None):
         """Return a filtered and paginated list of events."""
-        all_events = EventPage.objects.live().descendant_of(self).order_by(*order_by)
+        if order_by:
+            all_events = EventPage.objects.live().descendant_of(self).order_by(*order_by)
+        else:
+            all_events = EventPage.objects.live().descendant_of(self).order_by('date_start')
         if filter_dict:
             filtered_events = self.filter_children(all_events, filter_dict)
         else:
