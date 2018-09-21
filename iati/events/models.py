@@ -50,7 +50,7 @@ class EventIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
             order_by = ['-date_start']
         else:
             filter_dict["date_start__gte"] = now
-            order_by = ['featured_event', 'date_start']
+            order_by = ['-featured_event', 'date_start']
 
         try:
             year = int(request.GET.get('year'))
