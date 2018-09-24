@@ -25,10 +25,13 @@ class EventIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
         event_types = EventType.objects.all()
         return event_types
 
-    def get_events(self, request, filter_dict):
+    def get_events(self, request, filter_dict=None, order_by='date_start'):
         """Return a filtered and paginated list of events."""
-        all_events = EventPage.objects.live().descendant_of(self).order_by('-date_start')
-        filtered_events = self.filter_children(all_events, filter_dict)
+        all_events = EventPage.objects.live().descendant_of(self).order_by(order_by)
+        if filter_dict:
+            filtered_events = self.filter_children(all_events, filter_dict)
+        else:
+            filtered_events = all_events
         paginated_events = self.paginate(request, filtered_events, 3)
         return paginated_events
 
@@ -44,8 +47,10 @@ class EventIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
         past = request.GET.get('past') == "1"
         if past:
             filter_dict["date_start__lte"] = now
+            order_by = '-date_start'
         else:
             filter_dict["date_start__gte"] = now
+            order_by = 'date_start'
 
         try:
             year = int(request.GET.get('year'))
@@ -59,7 +64,7 @@ class EventIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
             filter_dict["event_type__slug"] = event_type
 
         context = super(EventIndexPage, self).get_context(request)
-        context['events'] = self.get_events(request, filter_dict)
+        context['events'] = self.get_events(request, filter_dict, order_by)
         context['past'] = past
         context['archive_years'] = archive_years
         if past:
