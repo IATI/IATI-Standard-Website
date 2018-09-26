@@ -56,7 +56,7 @@ urlpatterns += [
 
 urlpatterns += i18n_patterns(
     # Wagtail sitemap
-    url('^sitemap\.xml$', sitemap),
+    url(r'^sitemap.xml$', sitemap),
 
     # These URLs will have /<language_code>/ appended to the beginning
     url(r'^search/$', search_views.search, name='search'),
