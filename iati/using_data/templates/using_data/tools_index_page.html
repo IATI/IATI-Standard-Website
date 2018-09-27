@@ -32,7 +32,7 @@
 		<div class="l-sidebar__body">
 
       {% if page.content_editor %}
-        {% include "home/includes/streamfield.html" with content=page.content_editor notarticle=True %}
+        {% include "home/includes/streamfield.html" with content=page.content_editor %}
       {% endif %}
 
 		</div>
@@ -40,7 +40,7 @@
 </div>
 
 
-    <div class="space-section-bottom">
+    <div class="space-section-bottom" id="toolbox">
         <div class="row">
             <div class="l-cards l-cards--2up">
               {% for card in self.tool_box_editor %}
