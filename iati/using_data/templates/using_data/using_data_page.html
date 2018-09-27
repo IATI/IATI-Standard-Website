@@ -13,16 +13,11 @@
     <aside class="l-sidebar__aside">
       {% side_panel calling_page=self %}
     </aside>
+    
     <div class="l-sidebar__body">
-
-    <div class="space-section-top">
-          <div class="row">
-            {% if page.content_editor %}
-              {% include "home/includes/streamfield.html" with content=page.content_editor %}
-            {% endif %}
-          </div>
-      </div>
-
+        {% if page.content_editor %}
+          {% include "home/includes/streamfield.html" with content=page.content_editor %}
+        {% endif %}
     </div>
 </div>
 
