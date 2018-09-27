@@ -40,26 +40,7 @@
                     {% endfor %}
                 </div>
 
-                <ul class="pagination">
-                    {% if search_results.has_previous %}
-                    <li class="pagination__item pagination__item--prev">
-                        <a class="pagination__item-prev-link" href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">Prev</a>
-                    </li>
-                    {% endif %}
-
-                    {% for page in paginator.page_range %}
-                    <li class="pagination__item">
-                        <a class="pagination__item-link" href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ page }}">{{ page }}</a>
-                    </li>
-                    {% endfor %}
-
-                    {% if search_results.has_next %}
-                    <li class="pagination__item pagination__item--next">
-                        <a class="pagination__item-next-link" href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Next</a>
-                    </li>
-                    {% endif %}
-
-                </ul>
+                {% include 'home/includes/pagination_links.html' with children=search_results %}
 
                 {% elif search_query %}
                 <div class="alert alert--notice">
