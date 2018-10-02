@@ -1,4 +1,5 @@
 """Model definitions for the home app."""
+import re
 
 from django.db import models
 from django.apps import apps
@@ -106,6 +107,18 @@ class AbstractBasePage(Page):
         """Meta data for the class."""
 
         abstract = True
+
+    def save(self, *args, **kwargs):
+        """Override of the save function to clean slugs."""
+        if(self.slug_en):
+            self.slug_en = re.sub(r'[^\w\s-]', '', self.slug_en).strip("-").lower()
+        if(self.slug_fr):
+            self.slug_fr = re.sub(r'[^\w\s-]', '', self.slug_fr).strip("-").lower()
+        if(self.slug_es):
+            self.slug_es = re.sub(r'[^\w\s-]', '', self.slug_es).strip("-").lower()
+        if(self.slug_pt):
+            self.slug_pt = re.sub(r'[^\w\s-]', '', self.slug_pt).strip("-").lower()
+        super(AbstractBasePage, self).save()
 
 
 class AbstractContentPage(AbstractBasePage):
