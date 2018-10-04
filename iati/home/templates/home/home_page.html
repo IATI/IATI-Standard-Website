@@ -22,13 +22,17 @@
             </div>
             <div class="stat stat--flex">
                 <div class="stat__body stat__body--center">
-                    <h2 class="stat__heading stat__heading--large" id="IATI-Website-Tests_num_iati_activities">{{ page.activities|intcomma }}</h2>
-                    <p class="stat__copy">{% trans "Development and humanitarian activities published to the IATI Standard" %}</p>
+                    <a class="stat__heading__cta" href="http://d-portal.org/ctrack.html?search&year_min=1960&year=1960#view=main">
+                        <h2 class="stat__heading stat__heading--large" id="IATI-Website-Tests_num_iati_activities">{{ page.activities|intcomma }}</h2>
+                        <p class="stat__copy">{% trans "Development and humanitarian activities published to the IATI Standard" %}</p>
+                    </a>
                 </div>
 
                 <div class="stat__body stat__body--center">
-                    <h2 class="stat__heading stat__heading--large" id="IATI-Website-Tests_num_iati_organisations">{{ page.organisations|intcomma }}</h2>
-                    <p class="stat__copy">{% trans "IATI publishers that contribute data for decision-making and accountability" %}</p>
+                    <a class="stat__heading__cta" href="https://www.iatiregistry.org/publisher">
+                        <h2 class="stat__heading stat__heading--large" id="IATI-Website-Tests_num_iati_organisations">{{ page.organisations|intcomma }}</h2>
+                        <p class="stat__copy">{% trans "IATI publishers that contribute data for decision-making and accountability" %}</p>
+                    </a>
                 </div>
             </div>
         </div>

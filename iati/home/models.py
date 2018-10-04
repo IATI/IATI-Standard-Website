@@ -1,4 +1,5 @@
 """Model definitions for the home app."""
+import re
 
 from django.db import models
 from django.apps import apps
@@ -11,6 +12,7 @@ from wagtail.core.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.documents.blocks import DocumentChooserBlock
+from wagtail.search.index import FilterField, SearchField
 
 
 class DocumentBoxBlock(StreamBlock):
@@ -95,11 +97,26 @@ class AbstractBasePage(Page):
         "heading",
         "excerpt"
     ]
+    search_fields = [
+        FilterField('live'),
+        SearchField('heading'),
+        SearchField('excerpt'),
+    ]
 
     class Meta(object):
         """Meta data for the class."""
 
         abstract = True
+
+    def clean(self):
+        """Override clean to remove trailing dashes from slugs with whitespaces."""
+        for lang in ['en', 'fr', 'es', 'pt']:
+            slug_field = 'slug_{}'.format(lang)
+            slug = getattr(self, slug_field)
+            if slug:
+                slug_clean = re.sub(r'[^\w\s-]', '', slug).strip("-").lower()
+                setattr(self, slug_field, slug_clean)
+        super(AbstractBasePage, self).clean()
 
 
 class AbstractContentPage(AbstractBasePage):
@@ -108,6 +125,7 @@ class AbstractContentPage(AbstractBasePage):
     content_editor = StreamField(IATIStreamBlock(required=False), null=True, blank=True)
 
     translation_fields = AbstractBasePage.translation_fields + ["content_editor"]
+    search_fields = AbstractBasePage.search_fields + [SearchField('content_editor')]
 
     class Meta(object):
         """Meta data for the class."""

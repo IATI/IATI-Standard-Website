@@ -39,7 +39,7 @@
 	{% endif %}
 	{% for event in events %}
             {% with event=event.specific %}
-			<article class="listing listing--article  listing--archived">
+			<article class="listing {% if event.featured_event %}listing--featured{% else %}listing--article{% endif %} listing--archived">
 	<aside class="listing__aside">
 		<div class="listing__media">
 		{% if event.feed_image %}

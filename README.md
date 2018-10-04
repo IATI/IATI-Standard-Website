@@ -1,5 +1,5 @@
 # IATI Website (pre-Alpha)
-[![Build Status](https://travis-ci.org/IATI/preview-website.svg?branch=master)](https://travis-ci.org/IATI/preview-website)
+[![Build Status](https://travis-ci.org/IATI/IATI-Standard-Website.svg?branch=master)](https://travis-ci.org/IATI/IATI-Standard-Website)
 
 This repository hosts the new IATI website based on Django and Wagtail CMS.  A PostgreSQL database stores the underlaying content and user data.
 
