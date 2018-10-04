@@ -5,6 +5,7 @@ import responses
 from django.core.management.base import CommandError
 from home.management.commands.updatestatistics import ACTIVITY_URL, ORGANISATION_URL, get_total_num_activities, get_total_num_publishers
 from base_functional_tests import TEST_DATA_DIR
+from home.models import AbstractBasePage
 
 
 @responses.activate
@@ -32,3 +33,11 @@ def test_update_statistics_error():
     responses.add(responses.GET, ORGANISATION_URL, status=500, json={'error': 500})
     with pytest.raises(CommandError):
         get_total_num_publishers()
+
+
+@pytest.mark.django_db
+def test_clean_dashes():
+    """Test to clean trailing and leading dashes from slugs."""
+    page = AbstractBasePage(slug_en="--dashes-")
+    page.clean()
+    assert page.slug_en == "dashes"
