@@ -110,13 +110,13 @@ class AbstractBasePage(Page):
 
     def clean(self):
         """Override clean to remove trailing dashes from slugs with whitespaces."""
-        if(self.slug_en):
+        if hasattr(self, 'slug_en'):
             self.slug_en = re.sub(r'[^\w\s-]', '', self.slug_en).strip("-").lower()
-        if(self.slug_fr):
+        if hasattr(self, 'slug_fr'):
             self.slug_fr = re.sub(r'[^\w\s-]', '', self.slug_fr).strip("-").lower()
-        if(self.slug_es):
+        if hasattr(self, 'slug_es'):
             self.slug_es = re.sub(r'[^\w\s-]', '', self.slug_es).strip("-").lower()
-        if(self.slug_pt):
+        if hasattr(self, 'slug_pt'):
             self.slug_pt = re.sub(r'[^\w\s-]', '', self.slug_pt).strip("-").lower()
         super(AbstractBasePage, self).clean()
 
