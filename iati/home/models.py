@@ -108,8 +108,8 @@ class AbstractBasePage(Page):
 
         abstract = True
 
-    def save(self, *args, **kwargs):
-        """Override of the save function to clean slugs."""
+    def clean(self):
+        """Override clean to remove trailing dashes from slugs with whitespaces."""
         if(self.slug_en):
             self.slug_en = re.sub(r'[^\w\s-]', '', self.slug_en).strip("-").lower()
         if(self.slug_fr):
@@ -118,7 +118,7 @@ class AbstractBasePage(Page):
             self.slug_es = re.sub(r'[^\w\s-]', '', self.slug_es).strip("-").lower()
         if(self.slug_pt):
             self.slug_pt = re.sub(r'[^\w\s-]', '', self.slug_pt).strip("-").lower()
-        super(AbstractBasePage, self).save()
+        super(AbstractBasePage, self).clean()
 
 
 class AbstractContentPage(AbstractBasePage):
