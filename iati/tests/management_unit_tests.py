@@ -6,6 +6,7 @@ from django.core.management.base import CommandError
 from home.management.commands.updatestatistics import ACTIVITY_URL, ORGANISATION_URL, get_total_num_activities, get_total_num_publishers
 from base_functional_tests import TEST_DATA_DIR
 from home.models import AbstractBasePage
+from django.utils.text import slugify
 
 
 @responses.activate
@@ -41,3 +42,12 @@ def test_clean_dashes():
     page = AbstractBasePage(slug_en="--dashes-")
     page.clean()
     assert page.slug_en == "dashes"
+
+
+@pytest.mark.django_db
+def test_clean_whitespaces():
+    """Test to clean trailing and leading dashes and whitespaces from slugs when titles have whitespace."""
+    page = AbstractBasePage(title=" whitespaces ")
+    page.slug_en = slugify(page.title, allow_unicode=True)
+    page.clean()
+    assert page.slug_en == "whitespaces"
