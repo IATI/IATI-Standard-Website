@@ -1,4 +1,5 @@
 """Model definitions for the home app."""
+import re
 
 from django.db import models
 from django.apps import apps
@@ -106,6 +107,16 @@ class AbstractBasePage(Page):
         """Meta data for the class."""
 
         abstract = True
+
+    def clean(self):
+        """Override clean to remove trailing dashes from slugs with whitespaces."""
+        for lang in ['en', 'fr', 'es', 'pt']:
+            slug_field = 'slug_{}'.format(lang)
+            slug = getattr(self, slug_field)
+            if slug:
+                slug_clean = re.sub(r'[^\w\s-]', '', slug).strip("-").lower()
+                setattr(self, slug_field, slug_clean)
+        super(AbstractBasePage, self).clean()
 
 
 class AbstractContentPage(AbstractBasePage):
