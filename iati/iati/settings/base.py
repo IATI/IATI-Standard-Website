@@ -147,6 +147,7 @@ LANGUAGES = [
 
 ACTIVE_LANGUAGES = [
     ('en', _('English')),
+    ('fr', _('French')),
 ]
 
 TIME_ZONE = 'UTC'
