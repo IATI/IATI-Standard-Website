@@ -17,3 +17,7 @@
     width: 100%;
     height: 100%;
 }
+
+.stat__heading__cta:hover {
+    color: #06dbe4;
+}

@@ -1,0 +1,13 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+<form class="m-search" action="{% url 'search' %}" method="get">
+    <div class="row">
+        <div class="form-field">
+            <label class="form-label" for="query">Search the site</label>
+            <input class="form-item" id="query" type="text" name="query" value="{% if search_query %}{{ search_query }}{% endif %}" placeholder="Search term...">
+        </div>
+        <div class="form-field">
+            <input class="button button--block" type="submit" value="Search">
+        </div>
+    </div>
+</form>
