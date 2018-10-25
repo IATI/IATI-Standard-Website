@@ -1,4 +1,5 @@
+{% load i18n %}
 {% extends "error-base.html" %}
 
-{% block h1 %}500 error{% endblock %}
-{% block p %}Something technical has gone wrong. It's not your fault. We've been notified and this page will be back soon.{% endblock %}
+{% block h1 %}{% trans "500 error" %}{% endblock %}
+{% block p %}{% trans "Something technical has gone wrong. It's not your fault. We've been notified and this page will be back soon." %}{% endblock %}
