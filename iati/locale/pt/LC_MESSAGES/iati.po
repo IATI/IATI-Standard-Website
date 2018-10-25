@@ -1170,7 +1170,7 @@ msgstr "None"
 #. wagtailcore.page.125.title
 #. news.newspage.125.heading
 #. news.newspage.125.title
-#, python-format
+#, no-python-format
 msgid "50% increase in support to improve transparency"
 msgstr "None"
 
@@ -31765,4 +31765,3 @@ msgstr "None"
 #. about.aboutsubpage.42.heading
 msgid "Technical Advisory Group (TAG)"
 msgstr "None"
-
