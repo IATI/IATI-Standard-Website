@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-04 18:53+0000\n"
+"POT-Creation-Date: 2018-10-25 15:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -90,15 +90,18 @@ msgid "%(pagecount)s pages"
 msgstr ""
 
 #: guidance_and_support/templates/guidance_and_support/guidance_page.html:34
-#: guidance_and_support/templates/guidance_and_support/guidance_page.html:87
+#: guidance_and_support/templates/guidance_and_support/guidance_page.html:86
+#: search/templates/search/search.html:47
 msgid "Contact support"
 msgstr ""
 
 #: guidance_and_support/templates/guidance_and_support/guidance_page.html:37
+#: search/templates/search/search.html:50
 msgid "Our technical team are ready to help you."
 msgstr ""
 
 #: guidance_and_support/templates/guidance_and_support/guidance_page.html:38
+#: search/templates/search/search.html:51
 #: using_data/templates/using_data/tools_index_page.html:28
 msgid "Get help"
 msgstr ""
@@ -108,7 +111,7 @@ msgstr ""
 msgid "Related guidance"
 msgstr ""
 
-#: guidance_and_support/templates/guidance_and_support/guidance_page.html:90
+#: guidance_and_support/templates/guidance_and_support/guidance_page.html:89
 msgid ""
 "\n"
 "        Query successfully submitted. Our technical team will be in contact "
@@ -116,7 +119,7 @@ msgid ""
 "        "
 msgstr ""
 
-#: guidance_and_support/templates/guidance_and_support/guidance_page.html:96
+#: guidance_and_support/templates/guidance_and_support/guidance_page.html:95
 msgid ""
 "\n"
 "        Sorry, something went wrong submitting your query. Please try again "
@@ -124,7 +127,7 @@ msgid ""
 "        "
 msgstr ""
 
-#: guidance_and_support/templates/guidance_and_support/guidance_page.html:102
+#: guidance_and_support/templates/guidance_and_support/guidance_page.html:101
 msgid ""
 "\n"
 "        Please complete the form below and our team will be able to help "
@@ -132,31 +135,31 @@ msgid ""
 "        "
 msgstr ""
 
-#: guidance_and_support/templates/guidance_and_support/guidance_page.html:114
+#: guidance_and_support/templates/guidance_and_support/guidance_page.html:113
 msgid "Name"
 msgstr ""
 
-#: guidance_and_support/templates/guidance_and_support/guidance_page.html:115
+#: guidance_and_support/templates/guidance_and_support/guidance_page.html:114
 msgid "Your name"
 msgstr ""
 
-#: guidance_and_support/templates/guidance_and_support/guidance_page.html:123
+#: guidance_and_support/templates/guidance_and_support/guidance_page.html:122
 msgid "Email"
 msgstr ""
 
-#: guidance_and_support/templates/guidance_and_support/guidance_page.html:124
+#: guidance_and_support/templates/guidance_and_support/guidance_page.html:123
 msgid "your.email@address.com"
 msgstr ""
 
-#: guidance_and_support/templates/guidance_and_support/guidance_page.html:141
+#: guidance_and_support/templates/guidance_and_support/guidance_page.html:140
 msgid "Query"
 msgstr ""
 
-#: guidance_and_support/templates/guidance_and_support/guidance_page.html:142
+#: guidance_and_support/templates/guidance_and_support/guidance_page.html:141
 msgid "Your query"
 msgstr ""
 
-#: guidance_and_support/templates/guidance_and_support/guidance_page.html:150
+#: guidance_and_support/templates/guidance_and_support/guidance_page.html:149
 msgid "Submit request"
 msgstr ""
 
@@ -172,72 +175,72 @@ msgstr ""
 msgid "Achim Steiner, UNDP Administrator"
 msgstr ""
 
-#: home/templates/home/home_page.html:20 home/templates/home/home_page.html:172
-#: home/templates/home/home_page.html:189
+#: home/templates/home/home_page.html:20 home/templates/home/home_page.html:176
+#: home/templates/home/home_page.html:193
 msgid "IATI member"
 msgstr ""
 
-#: home/templates/home/home_page.html:26
+#: home/templates/home/home_page.html:27
 msgid "Development and humanitarian activities published to the IATI Standard"
 msgstr ""
 
-#: home/templates/home/home_page.html:31
+#: home/templates/home/home_page.html:34
 msgid ""
 "IATI publishers that contribute data for decision-making and accountability"
 msgstr ""
 
-#: home/templates/home/home_page.html:38
+#: home/templates/home/home_page.html:42
 msgid "Getting started"
 msgstr ""
 
-#: home/templates/home/home_page.html:44
+#: home/templates/home/home_page.html:48
 msgid "Explore our data"
 msgstr ""
 
-#: home/templates/home/home_page.html:48
+#: home/templates/home/home_page.html:52
 msgid ""
 "Understand the ways you can access IATI data, what information you can find "
 "and the benefits of using it."
 msgstr ""
 
-#: home/templates/home/home_page.html:49
+#: home/templates/home/home_page.html:53
 msgid "Explore IATI data"
 msgstr ""
 
-#: home/templates/home/home_page.html:57
+#: home/templates/home/home_page.html:61
 msgid "Our publishing guide"
 msgstr ""
 
-#: home/templates/home/home_page.html:61
+#: home/templates/home/home_page.html:65
 msgid ""
 "Find out how to publish data to the IATI Standard and improve your data by "
 "using our publishing guidance."
 msgstr ""
 
-#: home/templates/home/home_page.html:62
+#: home/templates/home/home_page.html:66
 msgid "Get started"
 msgstr ""
 
-#: home/templates/home/home_page.html:70
+#: home/templates/home/home_page.html:74
 msgid "Discover the Standard"
 msgstr ""
 
-#: home/templates/home/home_page.html:74
+#: home/templates/home/home_page.html:78
 msgid ""
 "View IATI reference pages that contain the rules and technical framework for "
 "publishing and interpreting IATI data."
 msgstr ""
 
-#: home/templates/home/home_page.html:75
-#: using_data/templates/using_data/using_data_page.html:49
+#: home/templates/home/home_page.html:79
+#: using_data/templates/using_data/using_data_page.html:32
 msgid "Find out more"
 msgstr ""
 
-#: home/templates/home/home_page.html:84
+#: home/templates/home/home_page.html:88
 msgid "About IATI"
 msgstr ""
 
-#: home/templates/home/home_page.html:90
+#: home/templates/home/home_page.html:94
 msgid ""
 "\n"
 "                          IATI is a global initiative to improve the "
@@ -246,7 +249,7 @@ msgid ""
 "                          "
 msgstr ""
 
-#: home/templates/home/home_page.html:95
+#: home/templates/home/home_page.html:99
 msgid ""
 "\n"
 "                          IATI brings together governments, multilateral "
@@ -255,7 +258,7 @@ msgid ""
 "                          "
 msgstr ""
 
-#: home/templates/home/home_page.html:100
+#: home/templates/home/home_page.html:104
 msgid ""
 "\n"
 "                          We encourage all organisations that distribute or "
@@ -265,15 +268,15 @@ msgid ""
 "                          "
 msgstr ""
 
-#: home/templates/home/home_page.html:104
+#: home/templates/home/home_page.html:108
 msgid "Find out more about IATI"
 msgstr ""
 
-#: home/templates/home/home_page.html:118
+#: home/templates/home/home_page.html:122
 msgid "Case studies"
 msgstr ""
 
-#: home/templates/home/home_page.html:122
+#: home/templates/home/home_page.html:126
 msgid ""
 "\n"
 "                  People all over the world use IATI to track the flow of "
@@ -283,47 +286,47 @@ msgid ""
 "                  "
 msgstr ""
 
-#: home/templates/home/home_page.html:143
+#: home/templates/home/home_page.html:147
 #: news/templates/news/news_index_page.html:45
 #: news/templates/news/news_page.html:70
 msgid "Read more"
 msgstr ""
 
-#: home/templates/home/home_page.html:158
+#: home/templates/home/home_page.html:162
 msgid "Partners"
 msgstr ""
 
-#: home/templates/home/home_page.html:164
+#: home/templates/home/home_page.html:168
 msgid "Photo of Hillevi Ekberg of Sida"
 msgstr ""
 
-#: home/templates/home/home_page.html:169
+#: home/templates/home/home_page.html:173
 msgid ""
 "Transparency has driven us to strengthen data quality and improve our "
 "processes. Open data is a foundation for reinforcing trust and improving "
 "coordination with partners to achieve more effective aid."
 msgstr ""
 
-#: home/templates/home/home_page.html:172
+#: home/templates/home/home_page.html:176
 msgid "Sida - Swedish International Development Cooperation Agency"
 msgstr ""
 
-#: home/templates/home/home_page.html:181
+#: home/templates/home/home_page.html:185
 msgid "Photo of Winnie Kamau, Data Journalist"
 msgstr ""
 
-#: home/templates/home/home_page.html:186
+#: home/templates/home/home_page.html:190
 msgid ""
 "IATI is key to ensuring the public knows where development and humanitarian "
 "spending goes and what impact it makes. Accessing this data is vital when "
 "telling stories and holding decision makers to account."
 msgstr ""
 
-#: home/templates/home/home_page.html:189
+#: home/templates/home/home_page.html:193
 msgid "Data Journalist"
 msgstr ""
 
-#: home/templates/home/home_page.html:189
+#: home/templates/home/home_page.html:193
 msgid "Association of Freelance Journalists"
 msgstr ""
 
@@ -364,20 +367,131 @@ msgstr ""
 msgid "Multilingual"
 msgstr ""
 
-#: iati/settings/base.py:141 iati/settings/base.py:148
+#: iati/settings/base.py:142 iati/settings/base.py:149
 msgid "English"
 msgstr ""
 
-#: iati/settings/base.py:142
+#: iati/settings/base.py:143 iati/settings/base.py:150
 msgid "French"
 msgstr ""
 
-#: iati/settings/base.py:143
+#: iati/settings/base.py:144
 msgid "Spanish"
 msgstr ""
 
-#: iati/settings/base.py:144
+#: iati/settings/base.py:145
 msgid "Portuguese"
+msgstr ""
+
+#: iati/templates/404.html:4
+msgid "There's been an error"
+msgstr ""
+
+#: iati/templates/404.html:5
+msgid "What you were looking for cannot be found."
+msgstr ""
+
+#: iati/templates/500.html:4
+msgid "500 error"
+msgstr ""
+
+#: iati/templates/500.html:5
+msgid ""
+"Something technical has gone wrong. It's not your fault. We've been notified "
+"and this page will be back soon."
+msgstr ""
+
+#: iati/templates/base.html:53
+msgid "Skip to main content"
+msgstr ""
+
+#: iati/templates/base.html:56
+msgid "IATI - International Aid Transparency Initiative"
+msgstr ""
+
+#: iati/templates/base.html:62 iati/templates/base.html:119
+msgid "News"
+msgstr ""
+
+#: iati/templates/base.html:66 iati/templates/base.html:123
+msgid "Events"
+msgstr ""
+
+#: iati/templates/base.html:70 iati/templates/base.html:127
+#: iati/templates/base.html:155
+msgid "Contact"
+msgstr ""
+
+#: iati/templates/base.html:74 search/templates/search/search.html:4
+msgid "Search"
+msgstr ""
+
+#: iati/templates/base.html:82
+msgid "Menu"
+msgstr ""
+
+#: iati/templates/base.html:89
+msgid "About"
+msgstr ""
+
+#: iati/templates/base.html:95
+msgid "IATI Standard"
+msgstr ""
+
+#: iati/templates/base.html:101
+msgid "Using Data"
+msgstr ""
+
+#: iati/templates/base.html:107
+msgid "Guidance & Support"
+msgstr ""
+
+#: iati/templates/base.html:113
+msgid "Community"
+msgstr ""
+
+#: iati/templates/base.html:153
+msgid "Useful links"
+msgstr ""
+
+#: iati/templates/base.html:156
+msgid "Terms and conditions"
+msgstr ""
+
+#: iati/templates/base.html:157
+msgid "Privacy policy"
+msgstr ""
+
+#: iati/templates/base.html:161
+msgid "Newsletter"
+msgstr ""
+
+#: iati/templates/base.html:166
+msgid "Sign up to our newsletter"
+msgstr ""
+
+#: iati/templates/base.html:167
+msgid "Email address"
+msgstr ""
+
+#: iati/templates/base.html:168
+msgid "First name"
+msgstr ""
+
+#: iati/templates/base.html:169
+msgid "Surname"
+msgstr ""
+
+#: iati/templates/base.html:170
+msgid "Subscribe"
+msgstr ""
+
+#: iati/templates/base.html:180
+msgid "Copyright IATI 2018. All rights reserved"
+msgstr ""
+
+#: iati/templates/base.html:183
+msgid "Twitter"
 msgstr ""
 
 #: iati_standard/templates/iati_standard/iati_standard_page.html:23
@@ -453,6 +567,25 @@ msgstr ""
 msgid "Related news"
 msgstr ""
 
+#: search/templates/search/search.html:9
+msgid "Search iatistandard.org"
+msgstr ""
+
+#: search/templates/search/search.html:20
+#, python-format
+msgid ""
+"Showing %(search_results.start_index)s–%(search_results.end_index)s of "
+"%(paginator.count)s results"
+msgstr ""
+
+#: search/templates/search/search.html:37
+msgid "No results found"
+msgstr ""
+
+#: search/templates/search/search.html:38
+msgid "Your search did not return any results, please try again"
+msgstr ""
+
 #: using_data/templates/using_data/tools_index_page.html:24
 msgid "Support"
 msgstr ""
@@ -461,21 +594,6 @@ msgstr ""
 msgid "Find out what support is available for you using IATI data."
 msgstr ""
 
-#: using_data/templates/using_data/using_data_page.html:29
-msgid ""
-"IATI data is used to complement and complete my locally collected data. It "
-"is very helpful because it provides a realistic picture of most, if not all "
-"external resources available to Liberia."
-msgstr ""
-
-#: using_data/templates/using_data/using_data_page.html:30
-msgid "Ministry of Finance and Development"
-msgstr ""
-
-#: using_data/templates/using_data/using_data_page.html:30
-msgid "Government of Liberia"
-msgstr ""
-
-#: using_data/templates/using_data/using_data_page.html:67
+#: using_data/templates/using_data/using_data_page.html:50
 msgid "View tools and resources"
 msgstr ""
