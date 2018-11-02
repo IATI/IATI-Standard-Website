@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-25 15:24+0000\n"
-"PO-Revision-Date: 2018-11-01 16:10+0200\n"
+"PO-Revision-Date: 2018-11-02 17:54+0200\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -395,16 +395,12 @@ msgid "News"
 msgstr "Actualités"
 
 #: iati/templates/base.html:66 iati/templates/base.html:123
-#, fuzzy
-#| msgid "Event types"
 msgid "Events"
-msgstr "Catégories d’événements"
+msgstr "Événements"
 
 #: iati/templates/base.html:70 iati/templates/base.html:127 iati/templates/base.html:155
-#, fuzzy
-#| msgid "Contact support"
 msgid "Contact"
-msgstr "Contacter l’équipe technique"
+msgstr "Contact"
 
 #: iati/templates/base.html:74 search/templates/search/search.html:4
 msgid "Search"
@@ -415,10 +411,8 @@ msgid "Menu"
 msgstr "Menu"
 
 #: iati/templates/base.html:89
-#, fuzzy
-#| msgid "About IATI"
 msgid "About"
-msgstr "À propos de l’IITA"
+msgstr "À propos de"
 
 #: iati/templates/base.html:95
 msgid "IATI Standard"
@@ -461,16 +455,12 @@ msgid "Email address"
 msgstr "Adresse électronique"
 
 #: iati/templates/base.html:168
-#, fuzzy
-#| msgid "Your name"
 msgid "First name"
-msgstr "Votre nom"
+msgstr "Prénom"
 
 #: iati/templates/base.html:169
-#, fuzzy
-#| msgid "Your name"
 msgid "Surname"
-msgstr "Votre nom"
+msgstr "Nom"
 
 #: iati/templates/base.html:170
 msgid "Subscribe"
