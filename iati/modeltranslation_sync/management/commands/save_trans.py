@@ -64,8 +64,13 @@ class Command(BaseCommand):
                         msgstr = "%s" % getattr(item, tr_field)
                         enval = getattr(item, en_field)
                         if enval is not None and field not in ["slug", "url_path"]:
-                            enstr = json.dumps(enval.stream_data) if hasattr(enval, "stream_data") else "%s" % enval
-                            catalog.add(id=enstr, string=msgstr, auto_comments=[msgid, ])
+                            if hasattr(enval, "stream_data"):
+                                enstr = json.dumps(enval.stream_data)
+                                new_msg = catalog.add(id=enstr, string=msgstr, auto_comments=[msgid, ])
+                                new_msg.python_format = False
+                            else:
+                                enstr = "%s" % enval
+                                catalog.add(id=enstr, string=msgstr, auto_comments=[msgid, ])
 
             # write catalog to file
             po_file = open(po_filepath, "wb")
