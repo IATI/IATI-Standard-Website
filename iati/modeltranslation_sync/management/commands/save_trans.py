@@ -69,5 +69,5 @@ class Command(BaseCommand):
 
             # write catalog to file
             po_file = open(po_filepath, "wb")
-            write_po(po_file, catalog)
+            write_po(po_file, catalog, width=None)
             po_file.close()
