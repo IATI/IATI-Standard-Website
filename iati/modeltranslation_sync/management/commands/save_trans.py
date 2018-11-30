@@ -4,13 +4,13 @@
 from __future__ import unicode_literals
 import json
 from os import mkdir
-from os.path import join, isdir
+from os.path import join, isdir, exists
 
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
 from modeltranslation.translator import translator
 from babel.messages.catalog import Catalog
-from babel.messages.pofile import write_po
+from babel.messages.pofile import read_po, write_po
 
 
 def load_translation_settings(django_settings):
@@ -40,7 +40,18 @@ class Command(BaseCommand):
 
         for lang in [l[0] for l in list(settings.LANGUAGES)]:
 
-            catalog = Catalog(locale=lang)
+            lang_path = join(locale_path, lang)
+            if not isdir(lang_path):
+                mkdir(lang_path)
+                mkdir(join(lang_path, "LC_MESSAGES"))
+
+            po_filepath = join(lang_path, "LC_MESSAGES", filename_po)
+            if exists(po_filepath):
+                po_file = open(po_filepath, "r")
+                catalog = read_po(po_file)
+                po_file.close()
+            else:
+                catalog = Catalog(locale=lang)
 
             for model in translator.get_registered_models():
                 opts = translator.get_options_for_model(model)
@@ -57,10 +68,6 @@ class Command(BaseCommand):
                             catalog.add(id=enstr, string=msgstr, auto_comments=[msgid, ])
 
             # write catalog to file
-            lang_path = join(locale_path, lang)
-            if not isdir(lang_path):
-                mkdir(lang_path)
-                mkdir(join(lang_path, "LC_MESSAGES"))
-            po_file = open(join(lang_path, "LC_MESSAGES", filename_po), "wb")
+            po_file = open(po_filepath, "wb")
             write_po(po_file, catalog)
             po_file.close()
