@@ -66,8 +66,7 @@ class Command(BaseCommand):
                         if enval is not None and field not in ["slug", "url_path"]:
                             if hasattr(enval, "stream_data"):
                                 enstr = json.dumps(enval.stream_data)
-                                new_msg = catalog.add(id=enstr, string=msgstr, auto_comments=[msgid, ])
-                                new_msg.python_format = False
+                                new_msg = catalog.add(id=enstr, string=msgstr, auto_comments=[msgid, ], flags=[])
                             else:
                                 enstr = "%s" % enval
                                 catalog.add(id=enstr, string=msgstr, auto_comments=[msgid, ])
