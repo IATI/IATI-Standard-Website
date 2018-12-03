@@ -77,4 +77,4 @@ class Command(BaseCommand):
             po_file = open(po_filepath, "wb")
             write_po(po_file, catalog, width=None)
             po_file.close()
-            print("New word count: {}".format(word_count))
+            print("New {} word count: {}".format(lang, word_count))
