@@ -79,9 +79,23 @@ class Command(BaseCommand):
                                 catalog.add(id=enstr, string=msgstr, auto_comments=[msgid, ])
                             # We don't have an exact translation, but we've translated the page before
                             elif msgid in existing_trans.keys():
-                                import pdb
-                                pdb.set_trace()
-
+                                # If it's JSON, the dumped strings might not match, but the objs can
+                                if hasattr(enval, "stream_data"):
+                                    new_json = json.loads(enstr)
+                                    old_json = json.loads(existing_trans[msgid])
+                                    # If it doesn't match, delete the old and readd. If it does match, do nothing
+                                    if new_json != old_json:
+                                        catalog.delete(id=existing_trans[msgid])
+                                        catalog.add(id=enstr, string=msgstr, auto_comments=[msgid, ])
+                                        word_count += len(enstr.split())
+                                # If it's not JSON, just add it. We can't delete because can't guarantee it's not reused later
+                                else:
+                                    catalog.add(id=enstr, string=msgstr, auto_comments=[msgid, ])
+                                    word_count += len(enstr.split())
+                            # If we don't have a translation, and it's not in a previously translated page, it's brand new
+                            else:
+                                catalog.add(id=enstr, string=msgstr, auto_comments=[msgid, ])
+                                word_count += len(enstr.split())
             # write catalog to file
             po_file = open(po_filepath, "wb")
             write_po(po_file, catalog, width=None)
