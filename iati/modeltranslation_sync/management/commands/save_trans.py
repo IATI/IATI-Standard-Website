@@ -32,7 +32,6 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         """Handle the save_trans command."""
-        word_count = 0
 
         filename_po = load_translation_settings(settings)
 
@@ -41,6 +40,8 @@ class Command(BaseCommand):
             mkdir(locale_path)
 
         for lang in [l[0] for l in list(settings.LANGUAGES)]:
+
+            word_count = 0
 
             lang_path = join(locale_path, lang)
             if not isdir(lang_path):
