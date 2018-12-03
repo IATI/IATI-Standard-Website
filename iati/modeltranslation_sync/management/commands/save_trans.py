@@ -32,6 +32,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         """Handle the save_trans command."""
+        word_count = 0
+
         filename_po = load_translation_settings(settings)
 
         locale_path = settings.MODELTRANSLATION_LOCALE_PATH
@@ -46,10 +48,12 @@ class Command(BaseCommand):
                 mkdir(join(lang_path, "LC_MESSAGES"))
 
             po_filepath = join(lang_path, "LC_MESSAGES", filename_po)
+            existing_ids = []
             if exists(po_filepath):
                 po_file = open(po_filepath, "r")
                 catalog = read_po(po_file)
                 po_file.close()
+                existing_ids = [message.id for message in catalog]
             else:
                 catalog = Catalog(locale=lang)
 
@@ -65,9 +69,12 @@ class Command(BaseCommand):
                         enval = getattr(item, en_field)
                         if enval is not None and field not in ["slug", "url_path"]:
                             enstr = json.dumps(enval.stream_data) if hasattr(enval, "stream_data") else "%s" % enval
+                            if enstr not in existing_ids:
+                                word_count += len(enstr.split())
                             catalog.add(id=enstr, string=msgstr, auto_comments=[msgid, ])
 
             # write catalog to file
             po_file = open(po_filepath, "wb")
             write_po(po_file, catalog, width=None)
             po_file.close()
+            print("New word count: {}".format(word_count))
