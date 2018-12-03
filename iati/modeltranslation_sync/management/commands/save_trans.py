@@ -50,11 +50,15 @@ class Command(BaseCommand):
 
             po_filepath = join(lang_path, "LC_MESSAGES", filename_po)
             existing_ids = []
+            existing_trans = {}
             if exists(po_filepath):
                 po_file = open(po_filepath, "r")
                 catalog = read_po(po_file)
                 po_file.close()
-                existing_ids = [message.id for message in catalog]
+                for message in catalog:
+                    existing_ids.append(message.id)
+                    for auto_comment in message.auto_comments:
+                        existing_trans[auto_comment] = message.id
             else:
                 catalog = Catalog(locale=lang)
 
@@ -70,9 +74,13 @@ class Command(BaseCommand):
                         enval = getattr(item, en_field)
                         if enval is not None and field not in ["slug", "url_path"]:
                             enstr = json.dumps(enval.stream_data) if hasattr(enval, "stream_data") else "%s" % enval
-                            if enstr not in existing_ids:
-                                word_count += len(enstr.split())
-                            catalog.add(id=enstr, string=msgstr, auto_comments=[msgid, ])
+                            # We already have a translation, just add the new comment to pick it up
+                            if enstr in existing_ids:
+                                catalog.add(id=enstr, string=msgstr, auto_comments=[msgid, ])
+                            # We don't have an exact translation, but we've translated the page before
+                            elif msgid in existing_trans.keys():
+                                import pdb
+                                pdb.set_trace()
 
             # write catalog to file
             po_file = open(po_filepath, "wb")
