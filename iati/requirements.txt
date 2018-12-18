@@ -1,4 +1,4 @@
-Django==2.0.5
+Django==2.0.8
 django-modeltranslation==0.13b1
 psycopg2-binary==2.7.4
 requests==2.18.4
