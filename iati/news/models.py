@@ -17,12 +17,19 @@ class NewsIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
 
     parent_page_types = ['home.HomePage']
     subpage_types = ['news.NewsPage']
+    PER_PAGE = 10
 
     @property
     def news_categories(self):
         """List all of the news categories."""
         news_categories = NewsCategory.objects.all()
         return news_categories
+
+    def _get_paginator_range(self, pages):
+        # always shows a 10 numbers range
+        range_start = pages.number - 5 if pages.number > 5 else 1
+        range_end = pages.number + 4 if pages.number < (pages.paginator.num_pages - 4) else pages.paginator.num_pages
+        return [i for i in range(range_start, range_end + 1)]
 
     def get_context(self, request, *args, **kwargs):
         """Overwrite the default wagtail get_context function to allow for filtering based on params, including pagination.
@@ -37,9 +44,12 @@ class NewsIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
             filter_dict["news_categories__slug"] = news_category
 
         filtered_children = self.filter_children(children, filter_dict)
-        paginated_children = self.paginate(request, filtered_children, 10)
+        paginated_children = self.paginate(request, filtered_children, self.PER_PAGE)
         context = super(NewsIndexPage, self).get_context(request)
+
         context['news_posts'] = paginated_children
+        context['paginator_range'] = self._get_paginator_range(paginated_children)
+
         return context
 
 
