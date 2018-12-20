@@ -49,6 +49,12 @@ class CaseStudyIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
         case_studies = CaseStudyPage.objects.child_of(self).live()
         return case_studies
 
+    def _get_paginator_range(self, pages):
+        # always shows a 10 numbers range
+        range_start = pages.number - 5 if pages.number > 5 else 1
+        range_end = pages.number + 4 if pages.number < (pages.paginator.num_pages - 4) else pages.paginator.num_pages
+        return [i for i in range(range_start, range_end + 1)]
+
     def get_context(self, request, *args, **kwargs):
         """Overwrite the default wagtail get_context function to allow for pagination.
 
@@ -59,6 +65,7 @@ class CaseStudyIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
         paginated_children = self.paginate(request, children, max_results=3)
         context = super(CaseStudyIndexPage, self).get_context(request)
         context['case_studies'] = paginated_children
+        context['paginator_range'] = self._get_paginator_range(paginated_children)
         return context
 
     multilingual_field_panels = DefaultPageHeaderImageMixin.multilingual_field_panels + [
