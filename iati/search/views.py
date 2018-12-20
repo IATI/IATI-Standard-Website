@@ -50,10 +50,13 @@ def search(request):
     # Pagination range
     # TODO: currently the logic for this lives in home.models.AbstractIndexPage
     # this is a duplication that might be worth looking into and DRYing
+    total_pages = search_results.paginator.num_pages
+
     range_start = search_results.number - 5 if search_results.number > 5 else 1
-    range_end = search_results.number + 4 \
-                if search_results.number < (search_results.paginator.num_pages - 4) else \
-                search_results.paginator.num_pages
+    if search_results.number < (total_pages - 4):
+        range_end = search_results.number + 4
+    else:
+        range_end = total_pages
 
     return render(request, 'search/search.html', {
         'search_query': search_query,

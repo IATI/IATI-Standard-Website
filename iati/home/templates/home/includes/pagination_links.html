@@ -11,6 +11,9 @@
 				{{ item }}
 			</a>
 		{% endfor %}
+		{% if children.paginator.num_pages > 1 %}
+			<p class="pagination">{{ children.paginator.num_pages }} pages</p>
+		{% endif %}
   </li>
 	{% if children.has_next %}
 	  <li class="pagination__item pagination__item--next">
