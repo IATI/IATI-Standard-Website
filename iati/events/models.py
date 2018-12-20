@@ -25,12 +25,6 @@ class EventIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
         event_types = EventType.objects.all()
         return event_types
 
-    def _get_paginator_range(self, pages):
-        # always shows a 10 numbers range
-        range_start = pages.number - 5 if pages.number > 5 else 1
-        range_end = pages.number + 4 if pages.number < (pages.paginator.num_pages - 4) else pages.paginator.num_pages
-        return [i for i in range(range_start, range_end + 1)]
-
     def get_events(self, request, filter_dict=None, order_by=None):
         """Return a filtered and paginated list of events."""
         if order_by:
