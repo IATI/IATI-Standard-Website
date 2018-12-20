@@ -7,7 +7,7 @@
 	{% endif %}
   <li class="pagination__item">
 		{% for item in paginator_range %}
-			<a href="?page={{ item }}" class="pagination__item-link {% if item == children.number %}pagination__item-link--active{% endif %}">
+			<a href="?page={{ item }}{% for key,value in request.GET.items %}{% if not key == 'page' %}&amp;{{ key }}={{ value }}{% endif %}{% endfor %}" class="pagination__item-link {% if item == children.number %}pagination__item-link--active{% endif %}">
 				{{ item }}
 			</a>
 		{% endfor %}
