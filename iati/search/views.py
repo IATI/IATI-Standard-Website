@@ -15,6 +15,12 @@ from home.models import StandardPage
 from iati_standard.models import IATIStandardPage
 
 
+def _get_paginator_range(pages):
+    # always shows a 10 numbers range
+    range_start = pages.number - 5 if pages.number > 5 else 1
+    range_end = pages.number + 4 if pages.number < (pages.paginator.num_pages - 4) else pages.paginator.num_pages
+    return [i for i in range(range_start, range_end + 1)]
+
 def search(request):
     """Process a user input for a search query and return a page containing results."""
     per_page = 10
@@ -50,5 +56,6 @@ def search(request):
     return render(request, 'search/search.html', {
         'search_query': search_query,
         'search_results': search_results,
+        'paginator_range': _get_paginator_range(search_results),
         'paginator': paginator,
     })
