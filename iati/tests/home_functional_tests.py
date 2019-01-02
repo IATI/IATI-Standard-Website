@@ -22,7 +22,7 @@ def publish_changes(admin_browser):
 @pytest.mark.django_db
 class TestHomePage():
     """A container for tests to check functionality of the Home Page."""
-    
+
     def _navigate_to_edit_home_page(self, admin_browser):
         """Navigate to the editable section of the CMS for the Home Page."""
         admin_browser.click_link_by_text('Pages')
@@ -41,7 +41,7 @@ class TestHomePage():
         publish_changes(admin_browser)
         view_live_page(admin_browser, HOME_PAGE['title'])
         assert admin_browser.find_by_text(HOME_PAGE['heading'])
-    
+
     @pytest.mark.skip
     def test_can_edit_home_page_excerpt(self, admin_browser):
         """Check that the Home page excerpt can be edited."""
