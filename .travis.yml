@@ -22,10 +22,11 @@ install:
 before_script:
   - python iati/manage.py runserver &
 script:
-  - make pylint
+  - make test
 
 stages:
   - strict lint
+  - test
 
 jobs:
     include:
@@ -42,7 +43,7 @@ jobs:
             - python iati/manage.py createdefaultpages
           before_script:
             - python iati/manage.py runserver &
-          script: make pylint
+          script: make test
         - stage: strict lint
           install:
             - pip install -r iati/requirements_dev.txt
