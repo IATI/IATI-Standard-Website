@@ -68,6 +68,7 @@ class EventIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
 
         context = super(EventIndexPage, self).get_context(request)
         context['events'] = self.get_events(request, filter_dict, order_by)
+        context['paginator_range'] = self._get_paginator_range(context['events'])
         context['past'] = past
         context['archive_years'] = archive_years
         if past:

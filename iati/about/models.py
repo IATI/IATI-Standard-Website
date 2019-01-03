@@ -59,6 +59,7 @@ class CaseStudyIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
         paginated_children = self.paginate(request, children, max_results=3)
         context = super(CaseStudyIndexPage, self).get_context(request)
         context['case_studies'] = paginated_children
+        context['paginator_range'] = self._get_paginator_range(paginated_children)
         return context
 
     multilingual_field_panels = DefaultPageHeaderImageMixin.multilingual_field_panels + [
