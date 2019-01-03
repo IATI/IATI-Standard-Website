@@ -195,7 +195,7 @@ class TestEventPages():
         admin_browser.click_link_by_text("Add event type")
         admin_browser.fill("name_en", TEST_CATEGORY)
         admin_browser.find_by_css(".action-save").click()
-        for i in range(0, 11):
+        for i in range(0, 4):
             navigate_to_default_page_cms_section(admin_browser, EVENT_INDEX_PAGE['title'])
             admin_browser.find_by_text('Add child page').click()
             check_box = admin_browser.find_by_css("input[name='event_type']")[0]
@@ -206,14 +206,12 @@ class TestEventPages():
             publish_page(admin_browser)
         navigate_to_default_page_cms_section(admin_browser, EVENT_INDEX_PAGE['title'])
         view_live_page(admin_browser, EVENT_INDEX_PAGE['title'])
-        admin_browser.visit(admin_browser.url + "?past=1")
-        assert admin_browser.is_text_present('4 PAGES')
         admin_browser.visit(admin_browser.url + "?past=1&year=2019")
         assert admin_browser.is_text_present("Show all events")
 
     def test_feed_image_shows_on_index_page(self, admin_browser):
         """Check that when a user adds a feed image it also becomes the header image."""
-        admin_browser.find_by_text(EVENT_PAGE['title']).click()
+        admin_browser.find_by_text(EVENT_PAGE['title']).first.click()
         scroll_to_bottom_of_page(admin_browser)
         self.upload_an_image(admin_browser)
         publish_page(admin_browser)
