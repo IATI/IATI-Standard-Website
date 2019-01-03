@@ -188,14 +188,14 @@ class TestEventPages():
         assert admin_browser.is_text_present(header['content'])
 
     def test_event_type_filter(self, admin_browser):
-        """Create an event type, assign it to 4 child pages, and test param."""
+        """Create an event type, assign it to 11 child pages, and test param."""
         admin_browser.visit(os.environ['LIVE_SERVER_URL'] + '/{}/'.format(ADMIN_SLUG))
         admin_browser.click_link_by_text("Snippets")
         admin_browser.click_link_by_partial_text("Event types")
         admin_browser.click_link_by_text("Add event type")
         admin_browser.fill("name_en", TEST_CATEGORY)
         admin_browser.find_by_css(".action-save").click()
-        for i in range(0, 4):
+        for i in range(0, 11):
             navigate_to_default_page_cms_section(admin_browser, EVENT_INDEX_PAGE['title'])
             admin_browser.find_by_text('Add child page').click()
             check_box = admin_browser.find_by_css("input[name='event_type']")[0]
@@ -207,8 +207,8 @@ class TestEventPages():
         navigate_to_default_page_cms_section(admin_browser, EVENT_INDEX_PAGE['title'])
         view_live_page(admin_browser, EVENT_INDEX_PAGE['title'])
         admin_browser.visit(admin_browser.url + "?past=1")
-        assert admin_browser.is_text_present('1 / 2')
-        admin_browser.click_link_by_text(TEST_CATEGORY)
+        assert admin_browser.is_text_present('4 PAGES')
+        admin_browser.visit(admin_browser.url + "?past=1&year=2019")
         assert admin_browser.is_text_present("Show all events")
 
     def test_feed_image_shows_on_index_page(self, admin_browser):
