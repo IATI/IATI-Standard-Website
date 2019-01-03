@@ -1,4 +1,4 @@
-# pylint: disable=too-many-locals, too-many-branches, duplicate-code
+# pylint: disable=too-many-locals, too-many-branches, duplicate-code, R0101
 """Management command that saves locale .po files from database."""
 
 from __future__ import unicode_literals
@@ -29,7 +29,6 @@ def load_translation_settings(django_settings):
 
 class Command(BaseCommand):
     """Management command that saves locale .po files from database."""
-
     def handle(self, *args, **options):
         """Handle the save_trans command."""
 
