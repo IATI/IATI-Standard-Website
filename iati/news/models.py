@@ -39,7 +39,7 @@ class NewsIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
             filter_dict["title_{}__isnull".format(request.LANGUAGE_CODE)] = False
 
         filtered_children = self.filter_children(children, filter_dict)
-        paginated_children = self.paginate(request, filtered_children, 3)
+        paginated_children = self.paginate(request, filtered_children, 10)
         context = super(NewsIndexPage, self).get_context(request)
         context['news_posts'] = paginated_children
         return context
