@@ -29,6 +29,7 @@ def load_translation_settings(django_settings):
 
 class Command(BaseCommand):
     """Management command that saves locale .po files from database."""
+    
     def handle(self, *args, **options):
         """Handle the save_trans command."""
         filename_po = load_translation_settings(settings)
