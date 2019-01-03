@@ -140,6 +140,15 @@ class AbstractIndexPage(AbstractBasePage):
         """Take a dict of filters and apply filters to child queryset."""
         return queryset.filter(**filter_dict)
 
+    def _get_paginator_range(self, pages):
+        """Return a 10 elements long list containing a range of page numbers (int)."""
+        range_start = pages.number - 5 if pages.number > 5 else 1
+        if pages.number < (pages.paginator.num_pages - 4):
+            range_end = pages.number + 4
+        else:
+            range_end = pages.paginator.num_pages
+        return [i for i in range(range_start, range_end + 1)]
+
     def paginate(self, request, queryset, max_results):
         """Paginate querysets of AbstractIndexPage children.
 

@@ -6,7 +6,14 @@
 	  </li>
 	{% endif %}
   <li class="pagination__item">
-    <a class="pagination__item-link pagination__item-link--active">{{ children.number }} / {{ children.paginator.num_pages }}</a>
+		{% for item in paginator_range %}
+			<a href="?page={{ item }}{% for key,value in request.GET.items %}{% if not key == 'page' %}&amp;{{ key }}={{ value }}{% endif %}{% endfor %}" class="pagination__item-link {% if item == children.number %}pagination__item-link--active{% endif %}">
+				{{ item }}
+			</a>
+		{% endfor %}
+		{% if children.paginator.num_pages > 1 %}
+			<p class="pagination">{{ children.paginator.num_pages }} pages</p>
+		{% endif %}
   </li>
 	{% if children.has_next %}
 	  <li class="pagination__item pagination__item--next">

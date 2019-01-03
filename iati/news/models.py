@@ -17,6 +17,7 @@ class NewsIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
 
     parent_page_types = ['home.HomePage']
     subpage_types = ['news.NewsPage']
+    PER_PAGE = 10
 
     @property
     def news_categories(self):
@@ -39,9 +40,12 @@ class NewsIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
             filter_dict["title_{}__isnull".format(request.LANGUAGE_CODE)] = False
 
         filtered_children = self.filter_children(children, filter_dict)
-        paginated_children = self.paginate(request, filtered_children, 10)
+        paginated_children = self.paginate(request, filtered_children, self.PER_PAGE)
         context = super(NewsIndexPage, self).get_context(request)
+
         context['news_posts'] = paginated_children
+        context['paginator_range'] = self._get_paginator_range(paginated_children)
+
         return context
 
 
