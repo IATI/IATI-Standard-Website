@@ -4,29 +4,77 @@
 }
 
 .pagination__item-link--active {
-    color: #155366 !important;
     border-bottom: 2px solid #155366 !important;
+    color: #155366 !important;
 }
 
-/* overrides google search box */
-.gsc-search-box .gsc-search-box-tools table, tbody, tr, thead, td {
-    background-color: #F6F6F6 !important;
-    border: none !important;
-}
 
-/* overrides google search results */
+/* overrides google custom search background color */
+#___gcse_1,
+.gsc-expansionArea,
+.gsc-results,
 .gsc-control-cse .gsc-control-cse-en {
     background-color: #F6F6F6 !important;
-    border: none !important;
 }
 
-/* overrides results: bold title, hide text snippet */
-.gsc-table-cell-snippet-close {
-    display: none !important;
+
+/* overrides google search box */
+.gsc-input-box,
+.gsc-input-box table, tbody, tr, thead, td {
+    background-color: #FFF !important;
 }
+
+.gsc-search-box .gsc-search-box-tools table, tbody, tr, thead, td {
+    border: none !important;
+    background-color: #F6F6F6 !important;
+}
+
+
+/* overrides google search results */
+#___gcse_1,
+.gsc-control-cse .gsc-control-cse-en {
+    border: none !important;
+    margin-left: 10px !important;
+}
+
+.cse .gsc-control-cse, .gsc-control-cse {
+    padding: 0 !important;
+}
+
+
+/* overrides results */
+.gsc-table-cell-snippet-close {
+    padding: 0 10px !important;
+}
+.gsc-table-result {
+    border: none !important;
+    font-style: italic !important;
+    font-size: 12px !important;
+}
+
+.gsc-table-cell-snippet-close {
+    background-color: #155366 !important;
+}
+
+.gsc-result .gs-title {
+    font-weight: bold !important;
+    height: 2.2em !important;
+}
+
+a.gs-title:hover {
+    text-decoration: underline !important;
+}
+
+.gsc-webResult .gsc-result {
+    margin-bottom: 15px !important;
+}
+
 
 /* overrides empty resultset */
 .gs-no-results-result .gs-snippet {
     background-color: #155366 !important;
     border: none !important;
+    font-weight: bolder !important;
+    text-align: center !important;
+    text-transform: uppercase !important;
 }
