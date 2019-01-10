@@ -78,3 +78,23 @@ a.gs-title:hover {
     text-align: center !important;
     text-transform: uppercase !important;
 }
+
+
+/* overrides pagination */
+.gsc-cursor-box.gs-bidi-start-align {
+    background-color: #155366 !important;
+    margin: 0 !important;
+    text-align: center !important;
+}
+
+.gsc-cursor-page {
+    font-weight: bold !important;
+    font-size: 14px !important;
+}
+
+.gsc-cursor-page.gsc-cursor-current-page {
+    background-color: #155366 !important;
+    border: none !important;
+    text-decoration: underline !important;
+    text-decoration-color: #00C497 !important;
+}
