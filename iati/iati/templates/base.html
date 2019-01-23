@@ -61,25 +61,19 @@
 
 <ul class="navigation-utility">
 
+            <li id="section-news" class='navigation-utility__item {% check_active "news" %}'>
+                <a href="{% default_page_url 'news' %}">News</a></li>
 
-            <li id="section-news" class='navigation-utility__item'><a href="{% default_page_url 'news' %}">News</a></li>
+            <li id="section-events" class='navigation-utility__item {% check_active "events" %}'>
+                <a href="{% default_page_url 'events' %}">Events</a></li>
 
+            <li id="section-contact" class='navigation-utility__item {% check_active "contact" %}'>
+                <a href="{% default_page_url 'contact' %}">Contact</a></li>
 
-
-            <li id="section-events" class='navigation-utility__item'><a href="{% default_page_url 'events' %}">Events</a></li>
-
-
-
-            <li id="section-contact" class='navigation-utility__item'><a href="{% default_page_url 'contact' %}">Contact</a></li>
-
-
-
-            <li id="section-search" class='navigation-utility__item'><a href="{% url 'search' %}">Search</a></li>
-
+            <li id="section-search" class='navigation-utility__item {% check_active "search" %}'>
+                <a href="{% url 'search' %}">Search</a></li>
 
 </ul>
-
-
 
 
 <button role="button" class="navigation-primary-toggle" id="navigation-primary-toggle"><span>Menu</span></button>
@@ -87,51 +81,32 @@
 <nav class="navigation-primary" role="navigation" id="navigation-primary">
 	<ul class="navigation-primary__items">
 
+        <li id="section-about" class='navigation-primary__item {% check_active "about" "primary"%}'>
+            <a href="{% default_page_url 'about' %}">About</a></li>
 
+        <li id="section-standard" class='navigation-primary__item {% check_active "iati-standard" "primary"%}'>
+            <a href="{% default_page_url 'iati_standard' %}">IATI Standard</a></li>
 
-					<li id="section-about" class='navigation-primary__item'><a href="{% default_page_url 'about' %}">About</a></li>
+        <li id="section-data" class='navigation-primary__item {% check_active "using-data" "primary"%}'>
+            <a href="{% default_page_url 'using_data' %}">Using Data</a></li>
 
+        <li id="section-support" class='navigation-primary__item {% check_active "guidance" "primary"%}'>
+            <a href="{% default_page_url 'guidance_and_support' %}">Guidance & Support</a></li>
 
+        <li id="section-community" class='navigation-primary__item {% check_active "community" "primary"%}'>
+            <a href="https://discuss.iatistandard.org/">Community</a></li>
 
+        <li id="section-news" class='navigation-primary__item navigation-primary__item--ss-only {% check_active "news" %}'>
+            <a href="{% default_page_url 'news' %}">News</a></li>
 
+        <li id="section-events" class='navigation-primary__item navigation-primary__item--ss-only {% check_active "events" %}'>
+            <a href="{% default_page_url 'events' %}">Events</a></li>
 
-					<li id="section-standard" class='navigation-primary__item'><a href="{% default_page_url 'iati_standard' %}">IATI Standard</a></li>
+        <li id="section-contact" class='navigation-primary__item navigation-primary__item--ss-only {% check_active "contact" %}'>
+            <a href="{% default_page_url 'contact' %}">Contact</a></li>
 
-
-
-
-
-					<li id="section-data" class='navigation-primary__item'><a href="{% default_page_url 'using_data' %}">Using Data</a></li>
-
-
-
-
-
-					<li id="section-support" class='navigation-primary__item'><a href="{% default_page_url 'guidance_and_support' %}">Guidance & Support</a></li>
-
-
-
-
-
-					<li id="section-community" class='navigation-primary__item'><a href="https://discuss.iatistandard.org/">Community</a></li>
-
-
-
-
-
-				<li id="section-news" class='navigation-primary__item navigation-primary__item--ss-only'><a href="{% default_page_url 'news' %}">News</a></li>
-
-
-
-				<li id="section-events" class='navigation-primary__item navigation-primary__item--ss-only'><a href="{% default_page_url 'events' %}">Events</a></li>
-
-
-
-				<li id="section-contact" class='navigation-primary__item navigation-primary__item--ss-only'><a href="{% default_page_url 'contact' %}">Contact</a></li>
-
-
-
-        <li id="section-search" class='navigation-primary__item navigation-primary__item--ss-only'><a href="{% url 'search' %}">Search</a></li>
+        <li id="section-search" class='navigation-primary__item navigation-primary__item--ss-only {% check_active "search" %}'>
+            <a href="{% url 'search' %}">Search</a></li>
 
 
 	</ul>

@@ -1,4 +1,5 @@
 """Custom template tags for use in Django templates."""
+import re
 
 from django import template
 from django.conf import settings
@@ -7,6 +8,7 @@ from django.template.defaultfilters import date as _date
 from django.contrib.humanize.templatetags.humanize import intcomma
 from wagtail_modeltranslation.contextlib import use_language
 from wagtail.core.templatetags.wagtailcore_tags import pageurl
+from django.urls import reverse, NoReverseMatch
 from home.models import HomePage, StandardPage
 from about.models import AboutPage
 from contact.models import ContactPage
@@ -48,6 +50,18 @@ def default_page_url(context, default_page_name="home"):
     if default_page is None or not hasattr(context, 'request'):
         return ''
     return default_page.get_url(context['request'])
+
+
+@register.simple_tag(takes_context=True)
+def check_active(context, urlname, nav_type="utility"):
+    try:
+        pattern = '^' + reverse(urlname)
+    except NoReverseMatch:
+        pattern = urlname
+    path = context['request'].path
+    if re.search(pattern, path):
+        return 'navigation-%s__item--active' % nav_type
+    return ''
 
 
 @register.simple_tag(takes_context=True)
