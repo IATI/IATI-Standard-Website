@@ -1,14 +1,14 @@
 """Custom template tags for use in Django templates."""
-import re
 
+import re
 from django import template
 from django.conf import settings
-from django.utils import timezone
-from django.template.defaultfilters import date as _date
 from django.contrib.humanize.templatetags.humanize import intcomma
+from django.template.defaultfilters import date as _date
+from django.urls import reverse, NoReverseMatch
+from django.utils import timezone
 from wagtail_modeltranslation.contextlib import use_language
 from wagtail.core.templatetags.wagtailcore_tags import pageurl
-from django.urls import reverse, NoReverseMatch
 from home.models import HomePage, StandardPage
 from about.models import AboutPage
 from contact.models import ContactPage
@@ -54,6 +54,7 @@ def default_page_url(context, default_page_name="home"):
 
 @register.simple_tag(takes_context=True)
 def check_active(context, urlname, nav_type="utility"):
+    """ Returns the correct nav menu active class for the checked page """
     try:
         pattern = '^' + reverse(urlname)
     except NoReverseMatch:
