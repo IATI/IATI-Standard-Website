@@ -54,7 +54,7 @@ def default_page_url(context, default_page_name="home"):
 
 @register.simple_tag(takes_context=True)
 def check_active(context, urlname, nav_type="utility"):
-    """ Returns the correct nav menu active class for the checked page """
+    """Return the correct nav menu active class for the checked page."""
     try:
         pattern = '^' + reverse(urlname)
     except NoReverseMatch:
