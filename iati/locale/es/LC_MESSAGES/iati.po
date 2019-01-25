@@ -1094,7 +1094,6 @@ msgstr "None"
 #. wagtailcore.page.125.title
 #. news.newspage.125.heading
 #. news.newspage.125.title
-#, no-python-format, python-format
 msgid "50% increase in support to improve transparency"
 msgstr "None"
 
