@@ -1,4 +1,4 @@
-# pylint: disable=too-many-locals, too-many-branches, duplicate-code
+# pylint: disable=too-many-locals, too-many-branches, duplicate-code, R0101
 """Management command that saves locale .po files from database."""
 
 from __future__ import unicode_literals
@@ -32,7 +32,6 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         """Handle the save_trans command."""
-
         filename_po = load_translation_settings(settings)
 
         locale_path = settings.MODELTRANSLATION_LOCALE_PATH

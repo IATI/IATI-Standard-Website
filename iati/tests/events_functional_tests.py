@@ -188,7 +188,7 @@ class TestEventPages():
         assert admin_browser.is_text_present(header['content'])
 
     def test_event_type_filter(self, admin_browser):
-        """Create an event type, assign it to 4 child pages, and test param."""
+        """Create an event type, assign it to 11 child pages, and test param."""
         admin_browser.visit(os.environ['LIVE_SERVER_URL'] + '/{}/'.format(ADMIN_SLUG))
         admin_browser.click_link_by_text("Snippets")
         admin_browser.click_link_by_partial_text("Event types")
@@ -206,14 +206,12 @@ class TestEventPages():
             publish_page(admin_browser)
         navigate_to_default_page_cms_section(admin_browser, EVENT_INDEX_PAGE['title'])
         view_live_page(admin_browser, EVENT_INDEX_PAGE['title'])
-        admin_browser.visit(admin_browser.url + "?past=1")
-        assert admin_browser.is_text_present('1 / 2')
-        admin_browser.click_link_by_text(TEST_CATEGORY)
+        admin_browser.visit(admin_browser.url + "?past=1&year=2019")
         assert admin_browser.is_text_present("Show all events")
 
     def test_feed_image_shows_on_index_page(self, admin_browser):
         """Check that when a user adds a feed image it also becomes the header image."""
-        admin_browser.find_by_text(EVENT_PAGE['title']).click()
+        admin_browser.find_by_text(EVENT_PAGE['title']).first.click()
         scroll_to_bottom_of_page(admin_browser)
         self.upload_an_image(admin_browser)
         publish_page(admin_browser)

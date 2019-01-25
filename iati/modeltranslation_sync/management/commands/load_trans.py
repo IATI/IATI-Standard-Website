@@ -17,13 +17,10 @@ class Command(LoadCommand):
     def handle(self, *args, **options):
         """Handle the load_trans command."""
         po_filename = load_translation_settings(settings)
-
         locale_path = settings.MODELTRANSLATION_LOCALE_PATH
         if not isdir(locale_path):
             raise CommandError("Locale directory does not exists.")
-
         for lang in [l[0] for l in list(settings.LANGUAGES)]:
-
             if lang != "en":
                 lang_path = join(locale_path, lang)
                 if not isdir(lang_path):
@@ -31,7 +28,6 @@ class Command(LoadCommand):
                 po_file = open(join(lang_path, "LC_MESSAGES", po_filename), "r")
                 catalog = read_po(po_file)
                 po_file.close()
-
                 for message in catalog:
                     if message.string not in [None, "None", ""] and message.auto_comments:
                         for field_id in message.auto_comments:
