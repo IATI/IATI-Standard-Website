@@ -7,28 +7,30 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-25 15:24+0000\n"
+"POT-Creation-Date: 2019-01-30 13:24+0000\n"
 "PO-Revision-Date: 2018-11-02 17:54+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"Last-Translator: \n"
-"Language-Team: \n"
 "X-Generator: Poedit 2.2\n"
 
 #: events/templates/events/event_index_page.html:20
 #, python-format
 msgid " Showing \"%(event_type_name)s\" events from %(year)s"
-msgstr " Voir les événements de la catégorie « %(event_type_name)s » de %(year)s"
+msgstr ""
+" Voir les événements de la catégorie « %(event_type_name)s » de %(year)s"
 
 #: events/templates/events/event_index_page.html:22
 #, python-format
 msgid " Showing \"%(event_type_name)s\" events"
 msgstr " Voir les événements de la catégorie « %(event_type_name)s »"
 
-#: events/templates/events/event_index_page.html:25 events/templates/events/event_index_page.html:32
+#: events/templates/events/event_index_page.html:25
+#: events/templates/events/event_index_page.html:32
 msgid "Show all events"
 msgstr "Voir tous les événements"
 
@@ -37,7 +39,8 @@ msgstr "Voir tous les événements"
 msgid " Showing events from %(year)s"
 msgstr " Voir les événements de %(year)s"
 
-#: events/templates/events/event_index_page.html:55 events/templates/events/event_page.html:16
+#: events/templates/events/event_index_page.html:55
+#: events/templates/events/event_page.html:16
 msgid "Past event"
 msgstr "Événement passé"
 
@@ -77,7 +80,8 @@ msgstr "Enregistrer un nouveau lieu"
 msgid "Additional information"
 msgstr "Informations complémentaires"
 
-#: guidance_and_support/templates/guidance_and_support/guidance_group_page.html:29 home/templates/home/includes/sidepanel.html:5
+#: guidance_and_support/templates/guidance_and_support/guidance_group_page.html:29
+#: home/templates/home/includes/sidepanel.html:5
 msgid "In this section"
 msgstr "Dans cette partie"
 
@@ -86,50 +90,62 @@ msgstr "Dans cette partie"
 msgid "%(pagecount)s pages"
 msgstr "%(pagecount)s pages"
 
-#: guidance_and_support/templates/guidance_and_support/guidance_page.html:34 guidance_and_support/templates/guidance_and_support/guidance_page.html:86 search/templates/search/search.html:47
+#: guidance_and_support/templates/guidance_and_support/guidance_page.html:34
+#: guidance_and_support/templates/guidance_and_support/guidance_page.html:86
+#: search/templates/search/search.html:25
 msgid "Contact support"
 msgstr "Contacter l’équipe technique"
 
-#: guidance_and_support/templates/guidance_and_support/guidance_page.html:37 search/templates/search/search.html:50
+#: guidance_and_support/templates/guidance_and_support/guidance_page.html:37
+#: search/templates/search/search.html:28
 msgid "Our technical team are ready to help you."
 msgstr "Notre équipe technique est là pour vous aider."
 
-#: guidance_and_support/templates/guidance_and_support/guidance_page.html:38 search/templates/search/search.html:51 using_data/templates/using_data/tools_index_page.html:28
+#: guidance_and_support/templates/guidance_and_support/guidance_page.html:38
+#: search/templates/search/search.html:29
+#: using_data/templates/using_data/tools_index_page.html:28
 msgid "Get help"
 msgstr "Obtenir de l’aide"
 
-#: guidance_and_support/templates/guidance_and_support/guidance_page.html:49 guidance_and_support/templates/guidance_and_support/guidance_page.html:65
+#: guidance_and_support/templates/guidance_and_support/guidance_page.html:49
+#: guidance_and_support/templates/guidance_and_support/guidance_page.html:65
 msgid "Related guidance"
 msgstr "Conseils pertinents"
 
 #: guidance_and_support/templates/guidance_and_support/guidance_page.html:89
 msgid ""
 "\n"
-"        Query successfully submitted. Our technical team will be in contact with you as soon as possible.\n"
+"        Query successfully submitted. Our technical team will be in contact "
+"with you as soon as possible.\n"
 "        "
 msgstr ""
 "\n"
-"        Votre requête a été envoyée. Notre équipe technique vous contactera dès que possible.\n"
+"        Votre requête a été envoyée. Notre équipe technique vous contactera "
+"dès que possible.\n"
 "        "
 
 #: guidance_and_support/templates/guidance_and_support/guidance_page.html:95
 msgid ""
 "\n"
-"        Sorry, something went wrong submitting your query. Please try again later.\n"
+"        Sorry, something went wrong submitting your query. Please try again "
+"later.\n"
 "        "
 msgstr ""
 "\n"
-"        Nous sommes navrés, mais un problème est survenu lors de l’envoi de votre requête. Veuillez réessayer ultérieurement.\n"
+"        Nous sommes navrés, mais un problème est survenu lors de l’envoi de "
+"votre requête. Veuillez réessayer ultérieurement.\n"
 "        "
 
 #: guidance_and_support/templates/guidance_and_support/guidance_page.html:101
 msgid ""
 "\n"
-"        Please complete the form below and our team will be able to help you\n"
+"        Please complete the form below and our team will be able to help "
+"you\n"
 "        "
 msgstr ""
 "\n"
-"        Veuillez remplir le formulaire ci-dessous pour que notre équipe puisse vous aider.\n"
+"        Veuillez remplir le formulaire ci-dessous pour que notre équipe "
+"puisse vous aider.\n"
 "        "
 
 #: guidance_and_support/templates/guidance_and_support/guidance_page.html:113
@@ -170,19 +186,27 @@ msgstr "La transparence est un principe essentiel de la mission du PNUD."
 
 #: home/templates/home/home_page.html:20
 msgid "Achim Steiner, UNDP Administrator"
-msgstr "Achim Steiner, administrateur du Programme des Nations Unies pour le développement (PNUD)"
+msgstr ""
+"Achim Steiner, administrateur du Programme des Nations Unies pour le "
+"développement (PNUD)"
 
-#: home/templates/home/home_page.html:20 home/templates/home/home_page.html:176 home/templates/home/home_page.html:193
+#: home/templates/home/home_page.html:20 home/templates/home/home_page.html:176
+#: home/templates/home/home_page.html:193
 msgid "IATI member"
 msgstr "Membre de l’IITA"
 
 #: home/templates/home/home_page.html:27
 msgid "Development and humanitarian activities published to the IATI Standard"
-msgstr "Activités humanitaires et de développement ayant fait l’objet d’une publication conforme à la norme de l’IITA"
+msgstr ""
+"Activités humanitaires et de développement ayant fait l’objet d’une "
+"publication conforme à la norme de l’IITA"
 
 #: home/templates/home/home_page.html:34
-msgid "IATI publishers that contribute data for decision-making and accountability"
-msgstr "Signataires de l’IITA communiquant des données aux fins décisionnelles et de responsabilité"
+msgid ""
+"IATI publishers that contribute data for decision-making and accountability"
+msgstr ""
+"Signataires de l’IITA communiquant des données aux fins décisionnelles et de "
+"responsabilité"
 
 #: home/templates/home/home_page.html:42
 msgid "Getting started"
@@ -193,8 +217,12 @@ msgid "Explore our data"
 msgstr "Découvrir nos données"
 
 #: home/templates/home/home_page.html:52
-msgid "Understand the ways you can access IATI data, what information you can find and the benefits of using it."
-msgstr "Découvrez les différents moyens d’accéder aux données de l’IITA, les informations disponibles et l’intérêt de les utiliser."
+msgid ""
+"Understand the ways you can access IATI data, what information you can find "
+"and the benefits of using it."
+msgstr ""
+"Découvrez les différents moyens d’accéder aux données de l’IITA, les "
+"informations disponibles et l’intérêt de les utiliser."
 
 #: home/templates/home/home_page.html:53
 msgid "Explore IATI data"
@@ -205,8 +233,12 @@ msgid "Our publishing guide"
 msgstr "Guide de publication de l’IITA"
 
 #: home/templates/home/home_page.html:65
-msgid "Find out how to publish data to the IATI Standard and improve your data by using our publishing guidance."
-msgstr "Découvrez comment publier vos données conformément à la norme de l’IITA et améliorez vos données grâce à notre guide de publication."
+msgid ""
+"Find out how to publish data to the IATI Standard and improve your data by "
+"using our publishing guidance."
+msgstr ""
+"Découvrez comment publier vos données conformément à la norme de l’IITA et "
+"améliorez vos données grâce à notre guide de publication."
 
 #: home/templates/home/home_page.html:66
 msgid "Get started"
@@ -217,10 +249,16 @@ msgid "Discover the Standard"
 msgstr "Découvrir la norme de l’IITA"
 
 #: home/templates/home/home_page.html:78
-msgid "View IATI reference pages that contain the rules and technical framework for publishing and interpreting IATI data."
-msgstr "Consultez le guide de référence de l’IITA, qui présente les règles et le cadre technique régissant la publication et l’interprétation des données de l’IITA."
+msgid ""
+"View IATI reference pages that contain the rules and technical framework for "
+"publishing and interpreting IATI data."
+msgstr ""
+"Consultez le guide de référence de l’IITA, qui présente les règles et le "
+"cadre technique régissant la publication et l’interprétation des données de "
+"l’IITA."
 
-#: home/templates/home/home_page.html:79 using_data/templates/using_data/using_data_page.html:32
+#: home/templates/home/home_page.html:79
+#: using_data/templates/using_data/using_data_page.html:32
 msgid "Find out more"
 msgstr "Pour en savoir plus"
 
@@ -231,32 +269,50 @@ msgstr "À propos de l’IITA"
 #: home/templates/home/home_page.html:94
 msgid ""
 "\n"
-"                          IATI is a global initiative to improve the transparency of development and humanitarian resources and their results for addressing poverty and crises.\n"
+"                          IATI is a global initiative to improve the "
+"transparency of development and humanitarian resources and their results for "
+"addressing poverty and crises.\n"
 "                          "
 msgstr ""
 "\n"
-"                          L’Initiative internationale pour la transparence de l’aide (IITA) est une initiative mondiale visant à améliorer la transparence des ressources allouées au développement et à l’action humanitaire ainsi que de leurs résultats en matière de lutte contre les crises et la pauvreté.\n"
+"                          L’Initiative internationale pour la transparence "
+"de l’aide (IITA) est une initiative mondiale visant à améliorer la "
+"transparence des ressources allouées au développement et à l’action "
+"humanitaire ainsi que de leurs résultats en matière de lutte contre les "
+"crises et la pauvreté.\n"
 "                          "
 
 #: home/templates/home/home_page.html:99
 msgid ""
 "\n"
-"                          IATI brings together governments, multilateral institutions, private sector and civil society organisations and others to increase the transparency of resources flowing into developing countries.\n"
+"                          IATI brings together governments, multilateral "
+"institutions, private sector and civil society organisations and others to "
+"increase the transparency of resources flowing into developing countries.\n"
 "                          "
 msgstr ""
 "\n"
-"                          Elle réunit des gouvernements, des institutions multilatérales, des organisations du secteur privé ou de la société civile et d’autres acteurs afin d’accroître la transparence des ressources versées aux pays en développement.\n"
+"                          Elle réunit des gouvernements, des institutions "
+"multilatérales, des organisations du secteur privé ou de la société civile "
+"et d’autres acteurs afin d’accroître la transparence des ressources versées "
+"aux pays en développement.\n"
 "                          "
 
 #: home/templates/home/home_page.html:104
 msgid ""
 "\n"
-"                          We encourage all organisations that distribute or spend resources to publish information about their development and humanitarian activities using IATI’s data standard. This is a set of rules and guidance to ensure information is easy to access, understand and use.\n"
+"                          We encourage all organisations that distribute or "
+"spend resources to publish information about their development and "
+"humanitarian activities using IATI’s data standard. This is a set of rules "
+"and guidance to ensure information is easy to access, understand and use.\n"
 "                          "
 msgstr ""
 "\n"
-"                          Nous encourageons toutes les organisations qui distribuent ou dépensent des ressources à publier les informations relatives à leurs activités humanitaires et de développement conformément à la norme de l’IITA. Celle-ci consiste en un ensemble de règles et d’orientations visant à "
-"garantir que les informations publiées soient facilement accessibles, compréhensibles et utilisables.\n"
+"                          Nous encourageons toutes les organisations qui "
+"distribuent ou dépensent des ressources à publier les informations relatives "
+"à leurs activités humanitaires et de développement conformément à la norme "
+"de l’IITA. Celle-ci consiste en un ensemble de règles et d’orientations "
+"visant à garantir que les informations publiées soient facilement "
+"accessibles, compréhensibles et utilisables.\n"
 "                          "
 
 #: home/templates/home/home_page.html:108
@@ -270,15 +326,24 @@ msgstr "Études de cas"
 #: home/templates/home/home_page.html:126
 msgid ""
 "\n"
-"                  People all over the world use IATI to track the flow of aid, humanitarian and development resources. Some use IATI to publish their data, others access data to inform decision-making and hold authorities to account. Our case studies tell some of their stories.\n"
+"                  People all over the world use IATI to track the flow of "
+"aid, humanitarian and development resources. Some use IATI to publish their "
+"data, others access data to inform decision-making and hold authorities to "
+"account. Our case studies tell some of their stories.\n"
 "                  "
 msgstr ""
 "\n"
-"                  L’IITA permet à ses utilisateurs du monde entier de suivre les flux de ressources liés à l’aide, aux actions humanitaires et au développement. Certains d’entre eux ont recours à la norme de l’IITA pour publier leurs données ; d’autres consultent ces données afin d’étayer leurs prises de "
-"décisions et de demander des comptes aux autorités. Nos études de cas vous présentent quelques-uns d’entre eux.\n"
+"                  L’IITA permet à ses utilisateurs du monde entier de suivre "
+"les flux de ressources liés à l’aide, aux actions humanitaires et au "
+"développement. Certains d’entre eux ont recours à la norme de l’IITA pour "
+"publier leurs données ; d’autres consultent ces données afin d’étayer leurs "
+"prises de décisions et de demander des comptes aux autorités. Nos études de "
+"cas vous présentent quelques-uns d’entre eux.\n"
 "                  "
 
-#: home/templates/home/home_page.html:147 news/templates/news/news_index_page.html:45 news/templates/news/news_page.html:70
+#: home/templates/home/home_page.html:147
+#: news/templates/news/news_index_page.html:45
+#: news/templates/news/news_page.html:70
 msgid "Read more"
 msgstr "Davantage d’informations"
 
@@ -291,8 +356,15 @@ msgid "Photo of Hillevi Ekberg of Sida"
 msgstr "Photographie d’Hillevi Ekberg, de l’ASDI"
 
 #: home/templates/home/home_page.html:173
-msgid "Transparency has driven us to strengthen data quality and improve our processes. Open data is a foundation for reinforcing trust and improving coordination with partners to achieve more effective aid."
-msgstr "Notre transparence nous a amenés à accroître la qualité de nos données et à améliorer nos procédures. La fondation Open data a pour objectif de renforcer la confiance et la coordination entre partenaires pour augmenter l’efficacité de l’aide."
+msgid ""
+"Transparency has driven us to strengthen data quality and improve our "
+"processes. Open data is a foundation for reinforcing trust and improving "
+"coordination with partners to achieve more effective aid."
+msgstr ""
+"Notre transparence nous a amenés à accroître la qualité de nos données et à "
+"améliorer nos procédures. La fondation Open data a pour objectif de "
+"renforcer la confiance et la coordination entre partenaires pour augmenter "
+"l’efficacité de l’aide."
 
 #: home/templates/home/home_page.html:176
 msgid "Sida - Swedish International Development Cooperation Agency"
@@ -303,8 +375,16 @@ msgid "Photo of Winnie Kamau, Data Journalist"
 msgstr "Photographie de Winnie Kamau, journaliste de données"
 
 #: home/templates/home/home_page.html:190
-msgid "IATI is key to ensuring the public knows where development and humanitarian spending goes and what impact it makes. Accessing this data is vital when telling stories and holding decision makers to account."
-msgstr "L’IITA est essentielle pour porter à la connaissance du public la manière dont les financements en faveur du développement et de l’action humanitaire sont dépensés ainsi que leurs effets. L’accès à ces données est indispensable pour rendre compte de la situation et demander des comptes aux décideurs."
+msgid ""
+"IATI is key to ensuring the public knows where development and humanitarian "
+"spending goes and what impact it makes. Accessing this data is vital when "
+"telling stories and holding decision makers to account."
+msgstr ""
+"L’IITA est essentielle pour porter à la connaissance du public la manière "
+"dont les financements en faveur du développement et de l’action humanitaire "
+"sont dépensés ainsi que leurs effets. L’accès à ces données est "
+"indispensable pour rendre compte de la situation et demander des comptes aux "
+"décideurs."
 
 #: home/templates/home/home_page.html:193
 msgid "Data Journalist"
@@ -312,7 +392,9 @@ msgstr "Journaliste de données"
 
 #: home/templates/home/home_page.html:193
 msgid "Association of Freelance Journalists"
-msgstr "Association of Freelance Journalists (Association des journalistes indépendants, Kenya)"
+msgstr ""
+"Association of Freelance Journalists (Association des journalistes "
+"indépendants, Kenya)"
 
 #: home/templates/home/includes/featured_event.html:9
 msgid "View event"
@@ -322,7 +404,8 @@ msgstr "Voir l’événement"
 msgid "Prev"
 msgstr "Page précédente"
 
-#: home/templates/home/includes/pagination_links.html:13 home/templates/home/includes/sibling_links.html:10
+#: home/templates/home/includes/pagination_links.html:20
+#: home/templates/home/includes/sibling_links.html:10
 msgid "Next"
 msgstr "Page suivante"
 
@@ -379,98 +462,90 @@ msgid "500 error"
 msgstr "Erreur 500"
 
 #: iati/templates/500.html:5
-msgid "Something technical has gone wrong. It's not your fault. We've been notified and this page will be back soon."
-msgstr "Une erreur technique est survenue. Ceci n’est pas de votre faute. Nous avons été prévenus ; la page demandée sera accessible sous peu."
+msgid ""
+"Something technical has gone wrong. It's not your fault. We've been notified "
+"and this page will be back soon."
+msgstr ""
+"Une erreur technique est survenue. Ceci n’est pas de votre faute. Nous avons "
+"été prévenus ; la page demandée sera accessible sous peu."
 
-#: iati/templates/base.html:53
+#: iati/templates/base.html:56
 msgid "Skip to main content"
 msgstr "Accéder directement au contenu principal."
 
-#: iati/templates/base.html:56
+#: iati/templates/base.html:59
 msgid "IATI - International Aid Transparency Initiative"
 msgstr "IITA – Initiative internationale pour la transparence de l’aide"
 
-#: iati/templates/base.html:62 iati/templates/base.html:119
-msgid "News"
-msgstr "Actualités"
-
-#: iati/templates/base.html:66 iati/templates/base.html:123
+#: iati/templates/base.html:68
 msgid "Events"
 msgstr "Événements"
-
-#: iati/templates/base.html:70 iati/templates/base.html:127 iati/templates/base.html:155
-msgid "Contact"
-msgstr "Contact"
 
 #: iati/templates/base.html:74 search/templates/search/search.html:4
 msgid "Search"
 msgstr "Recherche"
 
-#: iati/templates/base.html:82
+#: iati/templates/base.html:79
 msgid "Menu"
 msgstr "Menu"
 
-#: iati/templates/base.html:89
-msgid "About"
-msgstr "À propos de"
-
-#: iati/templates/base.html:95
-msgid "IATI Standard"
-msgstr "Norme de l’IITA"
-
-#: iati/templates/base.html:101
+#: iati/templates/base.html:91
 msgid "Using Data"
 msgstr "Utilisation des données"
 
-#: iati/templates/base.html:107
-msgid "Guidance & Support"
-msgstr "Conseils et assistance"
+#: iati/templates/base.html:100
+msgid "News"
+msgstr "Actualités"
 
-#: iati/templates/base.html:113
-msgid "Community"
-msgstr "Communauté"
-
-#: iati/templates/base.html:153
+#: iati/templates/base.html:135
 msgid "Useful links"
 msgstr "Liens utiles"
 
-#: iati/templates/base.html:156
+#: iati/templates/base.html:137
+msgid "Contact"
+msgstr "Contact"
+
+#: iati/templates/base.html:138
 msgid "Terms and conditions"
 msgstr "Conditions générales"
 
-#: iati/templates/base.html:157
+#: iati/templates/base.html:139
 msgid "Privacy policy"
 msgstr "Politique de confidentialité"
 
-#: iati/templates/base.html:161
+#: iati/templates/base.html:140
+msgid "Translation FAQs"
+msgstr ""
+
+#: iati/templates/base.html:144
 msgid "Newsletter"
 msgstr "Bulletin d’information"
 
-#: iati/templates/base.html:166
+#: iati/templates/base.html:149
 msgid "Sign up to our newsletter"
 msgstr "Abonnez-vous à notre bulletin d’information"
 
-#: iati/templates/base.html:167
+#: iati/templates/base.html:150
 msgid "Email address"
 msgstr "Adresse électronique"
 
-#: iati/templates/base.html:168
+#: iati/templates/base.html:151
 msgid "First name"
 msgstr "Prénom"
 
-#: iati/templates/base.html:169
+#: iati/templates/base.html:152
 msgid "Surname"
 msgstr "Nom"
 
-#: iati/templates/base.html:170
+#: iati/templates/base.html:153
 msgid "Subscribe"
 msgstr "S’abonner"
 
-#: iati/templates/base.html:180
+#: iati/templates/base.html:163
 msgid "Copyright IATI 2018. All rights reserved"
 msgstr "Copyright IITA 2018. Tous droits réservés."
 
-#: iati/templates/base.html:183
+#: iati/templates/base.html:166
 msgid "Twitter"
 msgstr "Twitter"
 
@@ -533,7 +608,8 @@ msgstr "Banque de données de l’IITA"
 #: news/templates/news/news_index_page.html:17
 #, python-format
 msgid " Showing \"%(news_category_name)s\" news posts"
-msgstr " Voir les nouvelles publications de la catégorie « %(news_category_name)s »"
+msgstr ""
+" Voir les nouvelles publications de la catégorie « %(news_category_name)s »"
 
 #: news/templates/news/news_index_page.html:19
 msgid "Show all posts"
@@ -551,33 +627,54 @@ msgstr "Actualités associées"
 msgid "Search iatistandard.org"
 msgstr "Recherche iatistandard.org"
 
-#: search/templates/search/search.html:20
-#, python-format
-msgid "Showing %(search_results.start_index)s–%(search_results.end_index)s of %(paginator.count)s results"
-msgstr "Afficher %(search_results.start_index)s-%(search_results.end_index)sdes %(paginator.count)srésultats"
-
-#: search/templates/search/search.html:37
-msgid "No results found"
-msgstr "Aucun résultat trouvé"
-
-#: search/templates/search/search.html:38
-msgid "Your search did not return any results, please try again"
-msgstr "Votre recherche n’a donné aucun résultat. Veuillez réessayer."
-
 #: using_data/templates/using_data/tools_index_page.html:24
 msgid "Support"
 msgstr "Aide"
 
 #: using_data/templates/using_data/tools_index_page.html:27
 msgid "Find out what support is available for you using IATI data."
-msgstr "Découvrez l’aide dont vous pouvez bénéficier dans le cadre de l’utilisation des données de l’IITA."
+msgstr ""
+"Découvrez l’aide dont vous pouvez bénéficier dans le cadre de l’utilisation "
+"des données de l’IITA."
 
 #: using_data/templates/using_data/using_data_page.html:50
 msgid "View tools and resources"
 msgstr "Accéder aux outils et aux ressources"
 
-#~ msgid "IATI data is used to complement and complete my locally collected data. It is very helpful because it provides a realistic picture of most, if not all external resources available to Liberia."
-#~ msgstr "Les données de l’IITA nous permettent d’enrichir et de compléter les données que nous recueillons localement. Elles nous sont donc très utiles, car elles nous donnent un aperçu réaliste de la plupart, sinon de la totalité, des ressources extérieures à la disposition du Libéria."
+#~ msgid "About"
+#~ msgstr "À propos de"
+
+#~ msgid "IATI Standard"
+#~ msgstr "Norme de l’IITA"
+
+#~ msgid "Guidance & Support"
+#~ msgstr "Conseils et assistance"
+
+#~ msgid "Community"
+#~ msgstr "Communauté"
+
+#~ msgid ""
+#~ "Showing %(search_results.start_index)s–%(search_results.end_index)s of "
+#~ "%(paginator.count)s results"
+#~ msgstr ""
+#~ "Afficher %(search_results.start_index)s-%(search_results.end_index)sdes "
+#~ "%(paginator.count)srésultats"
+
+#~ msgid "No results found"
+#~ msgstr "Aucun résultat trouvé"
+
+#~ msgid "Your search did not return any results, please try again"
+#~ msgstr "Votre recherche n’a donné aucun résultat. Veuillez réessayer."
+
+#~ msgid ""
+#~ "IATI data is used to complement and complete my locally collected data. "
+#~ "It is very helpful because it provides a realistic picture of most, if "
+#~ "not all external resources available to Liberia."
+#~ msgstr ""
+#~ "Les données de l’IITA nous permettent d’enrichir et de compléter les "
+#~ "données que nous recueillons localement. Elles nous sont donc très "
+#~ "utiles, car elles nous donnent un aperçu réaliste de la plupart, sinon de "
+#~ "la totalité, des ressources extérieures à la disposition du Libéria."
 
 #~ msgid "Ministry of Finance and Development"
 #~ msgstr "Ministère des Finances et du Développement"
