@@ -1,4 +1,4 @@
-# IATI Website (pre-Alpha)
+# IATI Website
 [![Build Status](https://travis-ci.org/IATI/IATI-Standard-Website.svg?branch=master)](https://travis-ci.org/IATI/IATI-Standard-Website)
 
 This repository hosts the new IATI website based on Django and Wagtail CMS.  A PostgreSQL database stores the underlaying content and user data.
@@ -13,37 +13,57 @@ The current scope of the project (to April 2018) focuses on the 'About IATI' and
 
 
 ## Dev setup
+
+Set-up and activate virtual environment
 ```
-# Set-up and activate virtual environment
 python3 -m venv pyenv
 source pyenv/bin/activate
+```
 
-# Enter into the Django project directory
+Enter into the Django project directory
+```
 cd iati
+```
 
-# Install requirements
+Install requirements
+```
 pip install -r requirements_dev.txt
+```
 
-# Create a local PostgreSQL database (with appropriate user permissions)
-# Then, copy the example local settings file and enter database settings accordingly
-# Note local.py should not be under version control as it contains sensitive information
-# Without these steps, Django will attempt to create a SQLite3 database which will not work correctly.
+Create a local PostgreSQL database (with appropriate user permissions. Copy the example local settings file and enter database settings accordingly.
+
+**Note local.py should not be under version control as it contains sensitive information**
+
+Without these steps, Django will attempt to create a SQLite3 database which will not work correctly.
+```
 createdb iati-website
 cp iati/settings/local.py.example iati/settings/local.py
+```
 
-# Make and perform Django migrations AND bespoke translations for translated fields
-# Note this will ask you to approve bespoke SQL commands
-python manage.py makemigrations_translation
-python manage.py migrate_translation
+Make and perform Django migrations AND bespoke translations for translated fields.
 
-# Create default pages for each of the main sections (e.g. home, about, events etc) of the website
+**Note this will ask you to approve bespoke SQL commands**
+
+You can auto-approve the bespoke commands by adding the flag `--noinput`
+```
+python manage.py makemigrations
+python manage.py migrate
+```
+
+Create default pages for each of the main sections (e.g. home, about, events etc) of the website
+```
 python manage.py createdefaultpages
+```
 
-# Create an initial superuser
+Create an initial superuser.
+
+**Be sure to update your local.py file with the credentials you specify with this command**
+```
 python manage.py createsuperuser
-# Be sure to update your local.py file with the credentials you specify with this command
+```
 
-# Run a development server
+Run a development server
+```
 python manage.py runserver
 ```
 
