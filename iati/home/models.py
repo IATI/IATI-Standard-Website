@@ -218,7 +218,8 @@ class StandardPage(AbstractContentPage):
 
     FIXED_PAGE_TYPES = (
         ("privacy", "Privacy"),
-        ("terms", "Terms and conditions")
+        ("terms", "Terms and conditions"),
+        ("trans", "Translation FAQs"),
     )
     fixed_page_type = models.CharField(max_length=7, choices=FIXED_PAGE_TYPES, null=True, blank=True)
 
