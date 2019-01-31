@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-25 15:24+0000\n"
+"POT-Creation-Date: 2019-01-30 13:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -91,17 +91,17 @@ msgstr ""
 
 #: guidance_and_support/templates/guidance_and_support/guidance_page.html:34
 #: guidance_and_support/templates/guidance_and_support/guidance_page.html:86
-#: search/templates/search/search.html:47
+#: search/templates/search/search.html:25
 msgid "Contact support"
 msgstr ""
 
 #: guidance_and_support/templates/guidance_and_support/guidance_page.html:37
-#: search/templates/search/search.html:50
+#: search/templates/search/search.html:28
 msgid "Our technical team are ready to help you."
 msgstr ""
 
 #: guidance_and_support/templates/guidance_and_support/guidance_page.html:38
-#: search/templates/search/search.html:51
+#: search/templates/search/search.html:29
 #: using_data/templates/using_data/tools_index_page.html:28
 msgid "Get help"
 msgstr ""
@@ -338,7 +338,7 @@ msgstr ""
 msgid "Prev"
 msgstr ""
 
-#: home/templates/home/includes/pagination_links.html:13
+#: home/templates/home/includes/pagination_links.html:20
 #: home/templates/home/includes/sibling_links.html:10
 msgid "Next"
 msgstr ""
@@ -401,96 +401,83 @@ msgid ""
 "and this page will be back soon."
 msgstr ""
 
-#: iati/templates/base.html:53
+#: iati/templates/base.html:56
 msgid "Skip to main content"
 msgstr ""
 
-#: iati/templates/base.html:56
+#: iati/templates/base.html:59
 msgid "IATI - International Aid Transparency Initiative"
 msgstr ""
 
-#: iati/templates/base.html:62 iati/templates/base.html:119
-msgid "News"
-msgstr ""
-
-#: iati/templates/base.html:66 iati/templates/base.html:123
+#: iati/templates/base.html:68
 msgid "Events"
-msgstr ""
-
-#: iati/templates/base.html:70 iati/templates/base.html:127
-#: iati/templates/base.html:155
-msgid "Contact"
 msgstr ""
 
 #: iati/templates/base.html:74 search/templates/search/search.html:4
 msgid "Search"
 msgstr ""
 
-#: iati/templates/base.html:82
+#: iati/templates/base.html:79
 msgid "Menu"
 msgstr ""
 
-#: iati/templates/base.html:89
-msgid "About"
-msgstr ""
-
-#: iati/templates/base.html:95
-msgid "IATI Standard"
-msgstr ""
-
-#: iati/templates/base.html:101
+#: iati/templates/base.html:91
 msgid "Using Data"
 msgstr ""
 
-#: iati/templates/base.html:107
-msgid "Guidance & Support"
+#: iati/templates/base.html:100
+msgid "News"
 msgstr ""
 
-#: iati/templates/base.html:113
-msgid "Community"
-msgstr ""
-
-#: iati/templates/base.html:153
+#: iati/templates/base.html:135
 msgid "Useful links"
 msgstr ""
 
-#: iati/templates/base.html:156
+#: iati/templates/base.html:137
+msgid "Contact"
+msgstr ""
+
+#: iati/templates/base.html:138
 msgid "Terms and conditions"
 msgstr ""
 
-#: iati/templates/base.html:157
+#: iati/templates/base.html:139
 msgid "Privacy policy"
 msgstr ""
 
-#: iati/templates/base.html:161
+#: iati/templates/base.html:140
+msgid "Translation FAQs"
+msgstr ""
+
+#: iati/templates/base.html:144
 msgid "Newsletter"
 msgstr ""
 
-#: iati/templates/base.html:166
+#: iati/templates/base.html:149
 msgid "Sign up to our newsletter"
 msgstr ""
 
-#: iati/templates/base.html:167
+#: iati/templates/base.html:150
 msgid "Email address"
 msgstr ""
 
-#: iati/templates/base.html:168
+#: iati/templates/base.html:151
 msgid "First name"
 msgstr ""
 
-#: iati/templates/base.html:169
+#: iati/templates/base.html:152
 msgid "Surname"
 msgstr ""
 
-#: iati/templates/base.html:170
+#: iati/templates/base.html:153
 msgid "Subscribe"
 msgstr ""
 
-#: iati/templates/base.html:180
+#: iati/templates/base.html:163
 msgid "Copyright IATI 2018. All rights reserved"
 msgstr ""
 
-#: iati/templates/base.html:183
+#: iati/templates/base.html:166
 msgid "Twitter"
 msgstr ""
 
@@ -569,21 +556,6 @@ msgstr ""
 
 #: search/templates/search/search.html:9
 msgid "Search iatistandard.org"
-msgstr ""
-
-#: search/templates/search/search.html:20
-#, python-format
-msgid ""
-"Showing %(search_results.start_index)s–%(search_results.end_index)s of "
-"%(paginator.count)s results"
-msgstr ""
-
-#: search/templates/search/search.html:37
-msgid "No results found"
-msgstr ""
-
-#: search/templates/search/search.html:38
-msgid "Your search did not return any results, please try again"
 msgstr ""
 
 #: using_data/templates/using_data/tools_index_page.html:24
