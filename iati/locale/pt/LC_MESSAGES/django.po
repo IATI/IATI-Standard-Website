@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-30 13:24+0000\n"
+"POT-Creation-Date: 2019-02-04 14:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -91,17 +91,17 @@ msgstr ""
 
 #: guidance_and_support/templates/guidance_and_support/guidance_page.html:34
 #: guidance_and_support/templates/guidance_and_support/guidance_page.html:86
-#: search/templates/search/search.html:25
+#: search/templates/search/search.html:47
 msgid "Contact support"
 msgstr ""
 
 #: guidance_and_support/templates/guidance_and_support/guidance_page.html:37
-#: search/templates/search/search.html:28
+#: search/templates/search/search.html:50
 msgid "Our technical team are ready to help you."
 msgstr ""
 
 #: guidance_and_support/templates/guidance_and_support/guidance_page.html:38
-#: search/templates/search/search.html:29
+#: search/templates/search/search.html:51
 #: using_data/templates/using_data/tools_index_page.html:28
 msgid "Get help"
 msgstr ""
@@ -168,7 +168,7 @@ msgid "Photo of Achim Steiner, UNDP Administrator"
 msgstr ""
 
 #: home/templates/home/home_page.html:19
-msgid "Transparency is a cornerstone of our work at UNDP."
+msgid "&ldquo;Transparency is a cornerstone of our work at UNDP.&rdquo;"
 msgstr ""
 
 #: home/templates/home/home_page.html:20
@@ -302,9 +302,9 @@ msgstr ""
 
 #: home/templates/home/home_page.html:173
 msgid ""
-"Transparency has driven us to strengthen data quality and improve our "
+"&ldquo;Transparency has driven us to strengthen data quality and improve our "
 "processes. Open data is a foundation for reinforcing trust and improving "
-"coordination with partners to achieve more effective aid."
+"coordination with partners to achieve more effective aid.&rdquo;"
 msgstr ""
 
 #: home/templates/home/home_page.html:176
@@ -317,9 +317,9 @@ msgstr ""
 
 #: home/templates/home/home_page.html:190
 msgid ""
-"IATI is key to ensuring the public knows where development and humanitarian "
-"spending goes and what impact it makes. Accessing this data is vital when "
-"telling stories and holding decision makers to account."
+"&ldquo;IATI is key to ensuring the public knows where development and "
+"humanitarian spending goes and what impact it makes. Accessing this data is "
+"vital when telling stories and holding decision makers to account.&rdquo;"
 msgstr ""
 
 #: home/templates/home/home_page.html:193
@@ -409,11 +409,21 @@ msgstr ""
 msgid "IATI - International Aid Transparency Initiative"
 msgstr ""
 
-#: iati/templates/base.html:68
+#: iati/templates/base.html:65 iati/templates/base.html:100
+msgid "News"
+msgstr ""
+
+#: iati/templates/base.html:68 iati/templates/base.html:103
 msgid "Events"
 msgstr ""
 
-#: iati/templates/base.html:74 search/templates/search/search.html:4
+#: iati/templates/base.html:71 iati/templates/base.html:106
+#: iati/templates/base.html:137
+msgid "Contact"
+msgstr ""
+
+#: iati/templates/base.html:74 iati/templates/base.html:109
+#: search/templates/search/search.html:4
 msgid "Search"
 msgstr ""
 
@@ -421,20 +431,28 @@ msgstr ""
 msgid "Menu"
 msgstr ""
 
+#: iati/templates/base.html:85
+msgid "About"
+msgstr ""
+
+#: iati/templates/base.html:88
+msgid "IATI Standard"
+msgstr ""
+
 #: iati/templates/base.html:91
 msgid "Using Data"
 msgstr ""
 
-#: iati/templates/base.html:100
-msgid "News"
+#: iati/templates/base.html:94
+msgid "Guidance & Support"
+msgstr ""
+
+#: iati/templates/base.html:97
+msgid "Community"
 msgstr ""
 
 #: iati/templates/base.html:135
 msgid "Useful links"
-msgstr ""
-
-#: iati/templates/base.html:137
-msgid "Contact"
 msgstr ""
 
 #: iati/templates/base.html:138

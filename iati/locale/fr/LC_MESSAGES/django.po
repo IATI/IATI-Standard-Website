@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-30 13:24+0000\n"
+"POT-Creation-Date: 2019-02-04 14:13+0000\n"
 "PO-Revision-Date: 2018-11-02 17:54+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -92,17 +92,17 @@ msgstr "%(pagecount)s pages"
 
 #: guidance_and_support/templates/guidance_and_support/guidance_page.html:34
 #: guidance_and_support/templates/guidance_and_support/guidance_page.html:86
-#: search/templates/search/search.html:25
+#: search/templates/search/search.html:47
 msgid "Contact support"
 msgstr "Contacter l’équipe technique"
 
 #: guidance_and_support/templates/guidance_and_support/guidance_page.html:37
-#: search/templates/search/search.html:28
+#: search/templates/search/search.html:50
 msgid "Our technical team are ready to help you."
 msgstr "Notre équipe technique est là pour vous aider."
 
 #: guidance_and_support/templates/guidance_and_support/guidance_page.html:38
-#: search/templates/search/search.html:29
+#: search/templates/search/search.html:51
 #: using_data/templates/using_data/tools_index_page.html:28
 msgid "Get help"
 msgstr "Obtenir de l’aide"
@@ -181,7 +181,9 @@ msgid "Photo of Achim Steiner, UNDP Administrator"
 msgstr "Photographie d’Achim Steiner, administrateur du PNUD"
 
 #: home/templates/home/home_page.html:19
-msgid "Transparency is a cornerstone of our work at UNDP."
+#, fuzzy
+#| msgid "Transparency is a cornerstone of our work at UNDP."
+msgid "&ldquo;Transparency is a cornerstone of our work at UNDP.&rdquo;"
 msgstr "La transparence est un principe essentiel de la mission du PNUD."
 
 #: home/templates/home/home_page.html:20
@@ -356,10 +358,15 @@ msgid "Photo of Hillevi Ekberg of Sida"
 msgstr "Photographie d’Hillevi Ekberg, de l’ASDI"
 
 #: home/templates/home/home_page.html:173
+#, fuzzy
+#| msgid ""
+#| "Transparency has driven us to strengthen data quality and improve our "
+#| "processes. Open data is a foundation for reinforcing trust and improving "
+#| "coordination with partners to achieve more effective aid."
 msgid ""
-"Transparency has driven us to strengthen data quality and improve our "
+"&ldquo;Transparency has driven us to strengthen data quality and improve our "
 "processes. Open data is a foundation for reinforcing trust and improving "
-"coordination with partners to achieve more effective aid."
+"coordination with partners to achieve more effective aid.&rdquo;"
 msgstr ""
 "Notre transparence nous a amenés à accroître la qualité de nos données et à "
 "améliorer nos procédures. La fondation Open data a pour objectif de "
@@ -375,10 +382,15 @@ msgid "Photo of Winnie Kamau, Data Journalist"
 msgstr "Photographie de Winnie Kamau, journaliste de données"
 
 #: home/templates/home/home_page.html:190
+#, fuzzy
+#| msgid ""
+#| "IATI is key to ensuring the public knows where development and "
+#| "humanitarian spending goes and what impact it makes. Accessing this data "
+#| "is vital when telling stories and holding decision makers to account."
 msgid ""
-"IATI is key to ensuring the public knows where development and humanitarian "
-"spending goes and what impact it makes. Accessing this data is vital when "
-"telling stories and holding decision makers to account."
+"&ldquo;IATI is key to ensuring the public knows where development and "
+"humanitarian spending goes and what impact it makes. Accessing this data is "
+"vital when telling stories and holding decision makers to account.&rdquo;"
 msgstr ""
 "L’IITA est essentielle pour porter à la connaissance du public la manière "
 "dont les financements en faveur du développement et de l’action humanitaire "
@@ -477,11 +489,21 @@ msgstr "Accéder directement au contenu principal."
 msgid "IATI - International Aid Transparency Initiative"
 msgstr "IITA – Initiative internationale pour la transparence de l’aide"
 
-#: iati/templates/base.html:68
+#: iati/templates/base.html:65 iati/templates/base.html:100
+msgid "News"
+msgstr "Actualités"
+
+#: iati/templates/base.html:68 iati/templates/base.html:103
 msgid "Events"
 msgstr "Événements"
 
-#: iati/templates/base.html:74 search/templates/search/search.html:4
+#: iati/templates/base.html:71 iati/templates/base.html:106
+#: iati/templates/base.html:137
+msgid "Contact"
+msgstr "Contact"
+
+#: iati/templates/base.html:74 iati/templates/base.html:109
+#: search/templates/search/search.html:4
 msgid "Search"
 msgstr "Recherche"
 
@@ -489,21 +511,29 @@ msgstr "Recherche"
 msgid "Menu"
 msgstr "Menu"
 
+#: iati/templates/base.html:85
+msgid "About"
+msgstr "À propos de"
+
+#: iati/templates/base.html:88
+msgid "IATI Standard"
+msgstr "Norme de l’IITA"
+
 #: iati/templates/base.html:91
 msgid "Using Data"
 msgstr "Utilisation des données"
 
-#: iati/templates/base.html:100
-msgid "News"
-msgstr "Actualités"
+#: iati/templates/base.html:94
+msgid "Guidance & Support"
+msgstr "Conseils et assistance"
+
+#: iati/templates/base.html:97
+msgid "Community"
+msgstr "Communauté"
 
 #: iati/templates/base.html:135
 msgid "Useful links"
 msgstr "Liens utiles"
-
-#: iati/templates/base.html:137
-msgid "Contact"
-msgstr "Contact"
 
 #: iati/templates/base.html:138
 msgid "Terms and conditions"
@@ -640,18 +670,6 @@ msgstr ""
 #: using_data/templates/using_data/using_data_page.html:50
 msgid "View tools and resources"
 msgstr "Accéder aux outils et aux ressources"
-
-#~ msgid "About"
-#~ msgstr "À propos de"
-
-#~ msgid "IATI Standard"
-#~ msgstr "Norme de l’IITA"
-
-#~ msgid "Guidance & Support"
-#~ msgstr "Conseils et assistance"
-
-#~ msgid "Community"
-#~ msgstr "Communauté"
 
 #~ msgid ""
 #~ "Showing %(search_results.start_index)s–%(search_results.end_index)s of "
