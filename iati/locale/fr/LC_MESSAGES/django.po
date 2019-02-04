@@ -46,7 +46,7 @@ msgstr "Événement passé"
 
 #: events/templates/events/event_index_page.html:68
 msgid "More details"
-msgstr "Davantage d’informations"
+msgstr "Pour en savoir plus"
 
 #: events/templates/events/event_index_page.html:85
 msgid "Past events"
@@ -347,7 +347,7 @@ msgstr ""
 #: news/templates/news/news_index_page.html:45
 #: news/templates/news/news_page.html:70
 msgid "Read more"
-msgstr "Davantage d’informations"
+msgstr "Pour en savoir plus"
 
 #: home/templates/home/home_page.html:162
 msgid "Partners"
