@@ -1,16 +1,13 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
+<form class="m-search" action="{% url 'search' %}" method="get">
     <div class="row">
-            <script>
-                (function() {
-                    var cx = '007725150068805491441:gue4hx1us_o';
-                    var gcse = document.createElement('script');
-                    gcse.type = 'text/javascript';
-                    gcse.async = true;
-                    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-                    var s = document.getElementsByTagName('script')[0];
-                    s.parentNode.insertBefore(gcse, s);
-                })();
-            </script>
-            <gcse:searchbox></gcse:searchbox>
+        <div class="form-field">
+            <label class="form-label" for="query">Search the site</label>
+            <input class="form-item" id="query" type="text" name="query" value="{% if search_query %}{{ search_query }}{% endif %}" placeholder="Search term...">
+        </div>
+        <div class="form-field">
+            <input class="button button--block" type="submit" value="Search">
+        </div>
     </div>
+</form>
