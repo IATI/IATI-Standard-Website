@@ -184,7 +184,7 @@ msgstr "Photographie d’Achim Steiner, administrateur du PNUD"
 #, fuzzy
 #| msgid "Transparency is a cornerstone of our work at UNDP."
 msgid "&ldquo;Transparency is a cornerstone of our work at UNDP.&rdquo;"
-msgstr "La transparence est un principe essentiel de la mission du PNUD."
+msgstr "«La transparence est un principe essentiel de la mission du PNUD.»"
 
 #: home/templates/home/home_page.html:20
 msgid "Achim Steiner, UNDP Administrator"
@@ -368,10 +368,10 @@ msgid ""
 "processes. Open data is a foundation for reinforcing trust and improving "
 "coordination with partners to achieve more effective aid.&rdquo;"
 msgstr ""
-"Notre transparence nous a amenés à accroître la qualité de nos données et à "
+"«Notre transparence nous a amenés à accroître la qualité de nos données et à "
 "améliorer nos procédures. La fondation Open data a pour objectif de "
 "renforcer la confiance et la coordination entre partenaires pour augmenter "
-"l’efficacité de l’aide."
+"l’efficacité de l’aide.»"
 
 #: home/templates/home/home_page.html:176
 msgid "Sida - Swedish International Development Cooperation Agency"
@@ -392,11 +392,11 @@ msgid ""
 "humanitarian spending goes and what impact it makes. Accessing this data is "
 "vital when telling stories and holding decision makers to account.&rdquo;"
 msgstr ""
-"L’IITA est essentielle pour porter à la connaissance du public la manière "
+"«L’IITA est essentielle pour porter à la connaissance du public la manière "
 "dont les financements en faveur du développement et de l’action humanitaire "
 "sont dépensés ainsi que leurs effets. L’accès à ces données est "
 "indispensable pour rendre compte de la situation et demander des comptes aux "
-"décideurs."
+"décideurs.»"
 
 #: home/templates/home/home_page.html:193
 msgid "Data Journalist"
