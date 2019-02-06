@@ -1,38 +1,37 @@
 {% extends "base.html" %}
 {% load static wagtailcore_tags wagtail_modeltranslation %}
-
 {% block body_class %}template-searchresults{% endblock %}
-
 {% block title %}Search{% endblock %}
-
 {% block content %}
-    <h1>Search</h1>
+<div class="hero hero--minor">
+    <div class="row">
+        <div class="hero__caption">
+            <h1 class="hero__heading">Search iatistandard.org</h1>
+        </div>
+    </div>
+</div>
 
-    <form action="{% url 'search' %}" method="get">
-        <input type="text" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
-        <input type="submit" value="Search" class="button">
-    </form>
+{% include 'home/includes/search_bar.html' %}
 
-    {% if search_results %}
-        <ul>
-            {% for result in search_results %}
-                <li>
-                    <h4><a href="{% slugurl_trans result %}">{{ result }}</a></h4>
-                    {% if result.search_description %}
-                        {{ result.search_description }}
-                    {% endif %}
-                </li>
-            {% endfor %}
-        </ul>
+    <div class="row">
+        <div class="l-sidebar">
+            <div class="l-sidebar__body">
+                <gcse:searchresults></gcse:searchresults>
+            </div>
 
-        {% if search_results.has_previous %}
-            <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">Previous</a>
-        {% endif %}
+            <aside class="l-sidebar__aside">
+                <div class="aside-m">
+                    <div class="aside-m__header fill-sunset">
+                        <h3 class="aside-m__heading">Contact support</h3>
+                    </div>
+                    <div class="aside-m__body">
+                        <p class="aside-m__copy">Our technical team are ready to help you.</p>
+                        <a class="button js-move" data-target="support" href="#support">Get help</a>
+                    </div>
+                </div>
+            </aside>
 
-        {% if search_results.has_next %}
-            <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Next</a>
-        {% endif %}
-    {% elif search_query %}
-        No results found
-    {% endif %}
+        </div>
+
+    </div>
 {% endblock %}

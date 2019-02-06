@@ -1,15 +1,23 @@
+ {% load i18n %}
 <ul class="pagination">
 	{% if children.has_previous %}
 	  <li class="pagination__item pagination__item--prev">
-      <a class="pagination__item-prev-link" href="?page={{ children.previous_page_number }}{% for key,value in request.GET.items %}{% if not key == 'page' %}&amp;{{ key }}={{ value }}{% endif %}{% endfor %}">Prev</a>
+      <a class="pagination__item-prev-link" href="?page={{ children.previous_page_number }}{% for key,value in request.GET.items %}{% if not key == 'page' %}&amp;{{ key }}={{ value }}{% endif %}{% endfor %}">{% trans "Prev" %}</a>
 	  </li>
 	{% endif %}
   <li class="pagination__item">
-    <a class="pagination__item-link pagination__item-link--active">{{ children.number }} / {{ children.paginator.num_pages }}</a>
+		{% for item in paginator_range %}
+			<a href="?page={{ item }}{% for key,value in request.GET.items %}{% if not key == 'page' %}&amp;{{ key }}={{ value }}{% endif %}{% endfor %}" class="pagination__item-link {% if item == children.number %}pagination__item-link--active{% endif %}">
+				{{ item }}
+			</a>
+		{% endfor %}
+		{% if children.paginator.num_pages > 1 %}
+			<p class="pagination">{{ children.paginator.num_pages }} pages</p>
+		{% endif %}
   </li>
 	{% if children.has_next %}
 	  <li class="pagination__item pagination__item--next">
-      <a class="pagination__item-next-link" href="?page={{ children.next_page_number }}{% for key,value in request.GET.items %}{% if not key == 'page' %}&amp;{{ key }}={{ value }}{% endif %}{% endfor %}">Next</a>
+      <a class="pagination__item-next-link" href="?page={{ children.next_page_number }}{% for key,value in request.GET.items %}{% if not key == 'page' %}&amp;{{ key }}={{ value }}{% endif %}{% endfor %}">{% trans "Next" %}</a>
 	  </li>
 	{% endif %}
 </ul>

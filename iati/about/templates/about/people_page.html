@@ -59,8 +59,8 @@
                       {% if child.value.organisation_logo %}
                         {% image child.value.organisation_logo max-80x30 as organisationlogo %}
                         <img class="listing__body-img" src="{{ organisationlogo.url }}" alt="{{ organisationlogo.alt }}">
-                      {% else %}
-                        <img class="listing__body-img" src="https://styles.iatistandard.org/assets/svg/source/logo-square.svg" alt="IATI logo">
+                      {% elif child.value.organisation_name %}
+                        <span class="listing__body-img--text">{{child.value.organisation_name}}</span>
                       {% endif %}
                       <ul class="listing__metadata">
                         <li class="listing__metadata__item">{{ child.value.IATI_role }}</li>

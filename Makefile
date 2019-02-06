@@ -1,5 +1,6 @@
 # folders
 IATI_FOLDER = iati/
+TEST_FOLDER = $(IATI_FOLDER)tests/
 
 # useful constants
 LINE_SEP = ---
