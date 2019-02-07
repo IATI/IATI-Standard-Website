@@ -513,7 +513,7 @@ msgstr "Menu"
 
 #: iati/templates/base.html:85
 msgid "About"
-msgstr "À propos de"
+msgstr "À propos"
 
 #: iati/templates/base.html:88
 msgid "IATI Standard"
