@@ -181,7 +181,6 @@ msgid "Photo of Achim Steiner, UNDP Administrator"
 msgstr "Photographie d’Achim Steiner, administrateur du PNUD"
 
 #: home/templates/home/home_page.html:19
-#, fuzzy
 #| msgid "Transparency is a cornerstone of our work at UNDP."
 msgid "&ldquo;Transparency is a cornerstone of our work at UNDP.&rdquo;"
 msgstr "«La transparence est un principe essentiel de la mission du PNUD.»"
@@ -358,7 +357,6 @@ msgid "Photo of Hillevi Ekberg of Sida"
 msgstr "Photographie d’Hillevi Ekberg, de l’ASDI"
 
 #: home/templates/home/home_page.html:173
-#, fuzzy
 #| msgid ""
 #| "Transparency has driven us to strengthen data quality and improve our "
 #| "processes. Open data is a foundation for reinforcing trust and improving "
@@ -382,7 +380,6 @@ msgid "Photo of Winnie Kamau, Data Journalist"
 msgstr "Photographie de Winnie Kamau, journaliste de données"
 
 #: home/templates/home/home_page.html:190
-#, fuzzy
 #| msgid ""
 #| "IATI is key to ensuring the public knows where development and "
 #| "humanitarian spending goes and what impact it makes. Accessing this data "
