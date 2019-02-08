@@ -109,8 +109,9 @@ class AbstractBasePage(Page):
 
         abstract = True
 
-    def get_context(self, request):
-        context = super(AbstractBasePage, self).get_context(request)
+    def get_context(self, request, *args, **kwargs):
+        """Override get_context method to check for active language length."""
+        context = super(AbstractBasePage, self).get_context(request, *args, **kwargs)
         context['has_multilanguage_support'] = len(settings.ACTIVE_LANGUAGES)
         return context
 
