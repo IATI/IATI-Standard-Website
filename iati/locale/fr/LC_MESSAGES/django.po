@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-04 14:13+0000\n"
+"POT-Creation-Date: 2019-02-08 17:21+0000\n"
 "PO-Revision-Date: 2018-11-02 17:54+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -181,7 +181,6 @@ msgid "Photo of Achim Steiner, UNDP Administrator"
 msgstr "Photographie d’Achim Steiner, administrateur du PNUD"
 
 #: home/templates/home/home_page.html:19
-#| msgid "Transparency is a cornerstone of our work at UNDP."
 msgid "&ldquo;Transparency is a cornerstone of our work at UNDP.&rdquo;"
 msgstr "«La transparence est un principe essentiel de la mission du PNUD.»"
 
@@ -357,10 +356,6 @@ msgid "Photo of Hillevi Ekberg of Sida"
 msgstr "Photographie d’Hillevi Ekberg, de l’ASDI"
 
 #: home/templates/home/home_page.html:173
-#| msgid ""
-#| "Transparency has driven us to strengthen data quality and improve our "
-#| "processes. Open data is a foundation for reinforcing trust and improving "
-#| "coordination with partners to achieve more effective aid."
 msgid ""
 "&ldquo;Transparency has driven us to strengthen data quality and improve our "
 "processes. Open data is a foundation for reinforcing trust and improving "
@@ -380,10 +375,6 @@ msgid "Photo of Winnie Kamau, Data Journalist"
 msgstr "Photographie de Winnie Kamau, journaliste de données"
 
 #: home/templates/home/home_page.html:190
-#| msgid ""
-#| "IATI is key to ensuring the public knows where development and "
-#| "humanitarian spending goes and what impact it makes. Accessing this data "
-#| "is vital when telling stories and holding decision makers to account."
 msgid ""
 "&ldquo;IATI is key to ensuring the public knows where development and "
 "humanitarian spending goes and what impact it makes. Accessing this data is "
@@ -426,7 +417,7 @@ msgstr "Précédent"
 msgid "pages in this section"
 msgstr "pages dans cette partie"
 
-#: home/templates/home/includes/translation_links.html:4
+#: home/templates/home/includes/translation_links.html:3
 msgid "Language"
 msgstr "Langue"
 
@@ -486,93 +477,93 @@ msgstr "Accéder directement au contenu principal."
 msgid "IATI - International Aid Transparency Initiative"
 msgstr "IITA – Initiative internationale pour la transparence de l’aide"
 
-#: iati/templates/base.html:65 iati/templates/base.html:100
+#: iati/templates/base.html:65 iati/templates/base.html:107
 msgid "News"
 msgstr "Actualités"
 
-#: iati/templates/base.html:68 iati/templates/base.html:103
+#: iati/templates/base.html:68 iati/templates/base.html:110
 msgid "Events"
 msgstr "Événements"
 
-#: iati/templates/base.html:71 iati/templates/base.html:106
-#: iati/templates/base.html:137
+#: iati/templates/base.html:71 iati/templates/base.html:113
+#: iati/templates/base.html:148
 msgid "Contact"
 msgstr "Contact"
 
-#: iati/templates/base.html:74 iati/templates/base.html:109
+#: iati/templates/base.html:74 iati/templates/base.html:116
 #: search/templates/search/search.html:4
 msgid "Search"
 msgstr "Recherche"
 
-#: iati/templates/base.html:79
+#: iati/templates/base.html:86
 msgid "Menu"
 msgstr "Menu"
 
-#: iati/templates/base.html:85
+#: iati/templates/base.html:92
 msgid "About"
 msgstr "À propos"
 
-#: iati/templates/base.html:88
+#: iati/templates/base.html:95
 msgid "IATI Standard"
 msgstr "Norme de l’IITA"
 
-#: iati/templates/base.html:91
+#: iati/templates/base.html:98
 msgid "Using Data"
 msgstr "Utilisation des données"
 
-#: iati/templates/base.html:94
+#: iati/templates/base.html:101
 msgid "Guidance & Support"
 msgstr "Conseils et assistance"
 
-#: iati/templates/base.html:97
+#: iati/templates/base.html:104
 msgid "Community"
 msgstr "Communauté"
 
-#: iati/templates/base.html:135
+#: iati/templates/base.html:146
 msgid "Useful links"
 msgstr "Liens utiles"
 
-#: iati/templates/base.html:138
+#: iati/templates/base.html:149
 msgid "Terms and conditions"
 msgstr "Conditions générales"
 
-#: iati/templates/base.html:139
+#: iati/templates/base.html:150
 msgid "Privacy policy"
 msgstr "Politique de confidentialité"
 
-#: iati/templates/base.html:140
+#: iati/templates/base.html:151
 msgid "Translation FAQs"
-msgstr ""
+msgstr "Questions fréquentes concernant la traduction"
 
-#: iati/templates/base.html:144
+#: iati/templates/base.html:155
 msgid "Newsletter"
 msgstr "Bulletin d’information"
 
-#: iati/templates/base.html:149
+#: iati/templates/base.html:160
 msgid "Sign up to our newsletter"
 msgstr "Abonnez-vous à notre bulletin d’information"
 
-#: iati/templates/base.html:150
+#: iati/templates/base.html:161
 msgid "Email address"
 msgstr "Adresse électronique"
 
-#: iati/templates/base.html:151
+#: iati/templates/base.html:162
 msgid "First name"
 msgstr "Prénom"
 
-#: iati/templates/base.html:152
+#: iati/templates/base.html:163
 msgid "Surname"
 msgstr "Nom"
 
-#: iati/templates/base.html:153
+#: iati/templates/base.html:164
 msgid "Subscribe"
 msgstr "S’abonner"
 
-#: iati/templates/base.html:163
+#: iati/templates/base.html:174
 msgid "Copyright IATI 2018. All rights reserved"
 msgstr "Copyright IITA 2018. Tous droits réservés."
 
-#: iati/templates/base.html:166
+#: iati/templates/base.html:177
 msgid "Twitter"
 msgstr "Twitter"
 

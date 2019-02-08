@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-04 14:13+0000\n"
+"POT-Creation-Date: 2019-02-08 17:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -351,7 +351,7 @@ msgstr ""
 msgid "pages in this section"
 msgstr ""
 
-#: home/templates/home/includes/translation_links.html:4
+#: home/templates/home/includes/translation_links.html:3
 msgid "Language"
 msgstr ""
 
@@ -409,93 +409,93 @@ msgstr ""
 msgid "IATI - International Aid Transparency Initiative"
 msgstr ""
 
-#: iati/templates/base.html:65 iati/templates/base.html:100
+#: iati/templates/base.html:65 iati/templates/base.html:107
 msgid "News"
 msgstr ""
 
-#: iati/templates/base.html:68 iati/templates/base.html:103
+#: iati/templates/base.html:68 iati/templates/base.html:110
 msgid "Events"
 msgstr ""
 
-#: iati/templates/base.html:71 iati/templates/base.html:106
-#: iati/templates/base.html:137
+#: iati/templates/base.html:71 iati/templates/base.html:113
+#: iati/templates/base.html:148
 msgid "Contact"
 msgstr ""
 
-#: iati/templates/base.html:74 iati/templates/base.html:109
+#: iati/templates/base.html:74 iati/templates/base.html:116
 #: search/templates/search/search.html:4
 msgid "Search"
 msgstr ""
 
-#: iati/templates/base.html:79
+#: iati/templates/base.html:86
 msgid "Menu"
 msgstr ""
 
-#: iati/templates/base.html:85
+#: iati/templates/base.html:92
 msgid "About"
 msgstr ""
 
-#: iati/templates/base.html:88
+#: iati/templates/base.html:95
 msgid "IATI Standard"
 msgstr ""
 
-#: iati/templates/base.html:91
+#: iati/templates/base.html:98
 msgid "Using Data"
 msgstr ""
 
-#: iati/templates/base.html:94
+#: iati/templates/base.html:101
 msgid "Guidance & Support"
 msgstr ""
 
-#: iati/templates/base.html:97
+#: iati/templates/base.html:104
 msgid "Community"
 msgstr ""
 
-#: iati/templates/base.html:135
+#: iati/templates/base.html:146
 msgid "Useful links"
 msgstr ""
 
-#: iati/templates/base.html:138
+#: iati/templates/base.html:149
 msgid "Terms and conditions"
 msgstr ""
 
-#: iati/templates/base.html:139
+#: iati/templates/base.html:150
 msgid "Privacy policy"
 msgstr ""
 
-#: iati/templates/base.html:140
+#: iati/templates/base.html:151
 msgid "Translation FAQs"
 msgstr ""
 
-#: iati/templates/base.html:144
+#: iati/templates/base.html:155
 msgid "Newsletter"
 msgstr ""
 
-#: iati/templates/base.html:149
+#: iati/templates/base.html:160
 msgid "Sign up to our newsletter"
 msgstr ""
 
-#: iati/templates/base.html:150
+#: iati/templates/base.html:161
 msgid "Email address"
 msgstr ""
 
-#: iati/templates/base.html:151
+#: iati/templates/base.html:162
 msgid "First name"
 msgstr ""
 
-#: iati/templates/base.html:152
+#: iati/templates/base.html:163
 msgid "Surname"
 msgstr ""
 
-#: iati/templates/base.html:153
+#: iati/templates/base.html:164
 msgid "Subscribe"
 msgstr ""
 
-#: iati/templates/base.html:163
+#: iati/templates/base.html:174
 msgid "Copyright IATI 2018. All rights reserved"
 msgstr ""
 
-#: iati/templates/base.html:166
+#: iati/templates/base.html:177
 msgid "Twitter"
 msgstr ""
 
