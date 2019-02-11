@@ -1,5 +1,6 @@
 """Settings for dev environments (overrides base settings)."""
 import os
+import dj_database_url
 from .base import *  # noqa: F401, F403 # pylint: disable=unused-wildcard-import, wildcard-import
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -27,6 +28,10 @@ if 'TRAVIS' in os.environ:
             'HOST': 'localhost',
             'PORT': '',
         }
+    }
+else:
+    DATABASES = {
+        'default': dj_database_url.config()
     }
 
 try:

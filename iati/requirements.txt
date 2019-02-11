@@ -1,5 +1,6 @@
 django==2.0.8
 django-modeltranslation==0.13b1
+dj-database-url==0.4.2
 psycopg2-binary==2.7.4
 requests>=2.20.0
 wagtail==2.0.1

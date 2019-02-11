@@ -9,7 +9,7 @@ responses==0.9.0
 selenium
 
 # Linters
-flake8==3.5.0
-pydocstyle==2.1.1
-pylint==1.9.2
-pylint-django==0.11.1
+flake8==3.7.5
+pydocstyle==3.0.0
+pylint==1.9.4
+pylint-django==2.0.5

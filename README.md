@@ -6,66 +6,89 @@ This repository hosts the new IATI website based on Django and Wagtail CMS.  A P
 The current scope of the project (to April 2018) focuses on the 'About IATI' and 'Publisher guidance' sections.
 
 
-## Pre-requites
+## Local Development
 
-- Python3
-- PostgreSQL
+### Pre-requites
 
+- Docker _(See Docker documentation for installation instructions per OS [https://docs.docker.com/install/](https://docs.docker.com/install/))_
+- Docker Compose
 
-## Dev setup
+**Important:** Ensure that native Postgres and Elasticsearch services are stopped. Docker will attempt to use these ports for its own services.
 
-Set-up and activate virtual environment
-```
-python3 -m venv pyenv
-source pyenv/bin/activate
-```
+### Dev setup
 
 Enter into the Django project directory
 ```
 cd iati
 ```
 
-Install requirements
-```
-pip install -r requirements_dev.txt
-```
-
-Create a local PostgreSQL database (with appropriate user permissions. Copy the example local settings file and enter database settings accordingly.
+Copy the example local settings file and enter database settings accordingly.
 
 **Note local.py should not be under version control as it contains sensitive information**
 
-Without these steps, Django will attempt to create a SQLite3 database which will not work correctly.
 ```
 createdb iati-website
 cp iati/settings/local.py.example iati/settings/local.py
 ```
 
-Make and perform Django migrations AND bespoke translations for translated fields.
+Build the project. The following will build linked `web`, `postgres` and `elasticsearch` containers.
 
-**Note this will ask you to approve bespoke SQL commands**
-
-You can auto-approve the bespoke commands by adding the flag `--noinput`
 ```
-python manage.py makemigrations
-python manage.py migrate
+docker-compose build
+```
+
+Start the containers in detached mode. This keeps the containers running.
+
+```
+docker-compose up -d
+```
+
+You can interact with the `web` container directly (in this example, when running a `manage.py` command), like so:
+
+```
+docker-compose run web python manage.py [command]
+```
+
+This can feel verbose, so making an alias could be a good idea.
+
+```
+echo 'alias dcrun="docker-compose run web"' >>~/.bash_profile
+dcrun python manage.py [command]
+
+echo 'alias dcmanage="docker-compose run web python manage.py"' >>~/.bash_profile
+dcmanage [command]
+```
+
+Make and perform Django database migrations AND bespoke translations for translated fields.
+
+Django will ask you to approve bespoke SQL commands for the translated fields. You can auto-approve the bespoke commands by adding the flag `--noinput`
+
+```
+docker-compose run web python manage.py makemigrations
+docker-compose run web python manage.py migrate
 ```
 
 Create default pages for each of the main sections (e.g. home, about, events etc) of the website
 ```
-python manage.py createdefaultpages
+docker-compose run web python manage.py createdefaultpages
 ```
 
 Create an initial superuser.
 
 **Be sure to update your local.py file with the credentials you specify with this command**
+
 ```
-python manage.py createsuperuser
+docker-compose run web python manage.py createsuperuser
 ```
 
-Run a development server
+The website is browseable at `http://localhost/`. Make changes locally.
+
+For logging, use:
+
 ```
-python manage.py runserver
+docker-compose logs -f web
 ```
+
 
 ## Tests & linters
 
