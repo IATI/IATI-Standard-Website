@@ -317,7 +317,7 @@ msgstr "Pour en savoir plus à propos de l’IITA"
 
 #: home/templates/home/home_page.html:113
 msgid "https://www.youtube.com/embed/PbwIUQwL_Jc"
-msgstr "https://www.youtube.com/watch?v=eH-FBw5zFgc"
+msgstr "https://www.youtube.com/embed/eH-FBw5zFgc"
 
 #: home/templates/home/home_page.html:122
 msgid "Case studies"
