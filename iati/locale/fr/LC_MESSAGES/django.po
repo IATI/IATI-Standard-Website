@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-08 17:21+0000\n"
+"POT-Creation-Date: 2019-02-11 12:20+0000\n"
 "PO-Revision-Date: 2018-11-02 17:54+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19,13 +19,11 @@ msgstr ""
 "X-Generator: Poedit 2.2\n"
 
 #: events/templates/events/event_index_page.html:20
-#, python-format
 msgid " Showing \"%(event_type_name)s\" events from %(year)s"
 msgstr ""
 " Voir les événements de la catégorie « %(event_type_name)s » de %(year)s"
 
 #: events/templates/events/event_index_page.html:22
-#, python-format
 msgid " Showing \"%(event_type_name)s\" events"
 msgstr " Voir les événements de la catégorie « %(event_type_name)s »"
 
@@ -35,7 +33,6 @@ msgid "Show all events"
 msgstr "Voir tous les événements"
 
 #: events/templates/events/event_index_page.html:30
-#, python-format
 msgid " Showing events from %(year)s"
 msgstr " Voir les événements de %(year)s"
 
@@ -86,7 +83,6 @@ msgid "In this section"
 msgstr "Dans cette partie"
 
 #: guidance_and_support/templates/guidance_and_support/guidance_group_page.html:39
-#, python-format
 msgid "%(pagecount)s pages"
 msgstr "%(pagecount)s pages"
 
@@ -318,6 +314,10 @@ msgstr ""
 #: home/templates/home/home_page.html:108
 msgid "Find out more about IATI"
 msgstr "Pour en savoir plus à propos de l’IITA"
+
+#: home/templates/home/home_page.html:113
+msgid "https://www.youtube.com/embed/PbwIUQwL_Jc"
+msgstr "https://www.youtube.com/watch?v=eH-FBw5zFgc"
 
 #: home/templates/home/home_page.html:122
 msgid "Case studies"
@@ -624,7 +624,6 @@ msgid "The IATI Datastore"
 msgstr "Banque de données de l’IITA"
 
 #: news/templates/news/news_index_page.html:17
-#, python-format
 msgid " Showing \"%(news_category_name)s\" news posts"
 msgstr ""
 " Voir les nouvelles publications de la catégorie « %(news_category_name)s »"
