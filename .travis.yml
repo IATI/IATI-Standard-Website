@@ -17,7 +17,6 @@ install:
   - cd iati
   - pip install -r requirements_dev.txt
   - psql -c "CREATE DATABASE travisci;" -U postgres  # Must match DB name in iati.settings.dev
-after_install:
   - python manage.py makemigrations_translation
   - python manage.py migrate_translation --no-input
   - python manage.py createdefaultpages
@@ -41,7 +40,6 @@ jobs:
             - cd iati
             - pip install -r requirements_dev.txt
             - psql -c "CREATE DATABASE travisci;" -U postgres  # Must match DB name in iati.settings.dev
-          after_install:
             - python manage.py makemigrations_translation
             - python manage.py migrate_translation --no-input
             - python manage.py createdefaultpages
