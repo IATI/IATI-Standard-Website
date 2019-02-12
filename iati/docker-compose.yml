@@ -7,7 +7,7 @@ web:
    - postgres
    - elasticsearch
   ports:
-   - "80:80"
+   - 80:80
   environment:
     - DATABASE_URL=postgres://postgres:@postgres:5432/postgres
     - ELASTICSEARCH_URL=http://elasticsearch:9200
@@ -15,8 +15,8 @@ web:
 postgres:
   image: postgres:9.6
   ports:
-   - "5432:5432"
+   - 5432
 elasticsearch:
   image: elasticsearch:2
   ports:
-    - "9200:9200"
+    - 9200:9200

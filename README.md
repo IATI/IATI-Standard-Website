@@ -27,7 +27,6 @@ Copy the example local settings file and enter database settings accordingly.
 **Note local.py should not be under version control as it contains sensitive information**
 
 ```
-createdb iati-website
 cp iati/settings/local.py.example iati/settings/local.py
 ```
 
