@@ -1,6 +1,7 @@
 """Model definitions for the home app."""
 import re
 
+from django.conf import settings
 from django.db import models
 from django.apps import apps
 from django import forms
@@ -107,6 +108,12 @@ class AbstractBasePage(Page):
         """Meta data for the class."""
 
         abstract = True
+
+    def get_context(self, request, *args, **kwargs):
+        """Override get_context method to check for active language length."""
+        context = super(AbstractBasePage, self).get_context(request, *args, **kwargs)
+        context['has_multilanguage_support'] = len(settings.ACTIVE_LANGUAGES)
+        return context
 
     def clean(self):
         """Override clean to remove trailing dashes from slugs with whitespaces."""

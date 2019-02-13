@@ -36,6 +36,8 @@ class NewsIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
         news_category = request.GET.get('type')
         if news_category:
             filter_dict["news_categories__slug"] = news_category
+        if request.LANGUAGE_CODE:
+            filter_dict["title_{}__isnull".format(request.LANGUAGE_CODE)] = False
 
         filtered_children = self.filter_children(children, filter_dict)
         paginated_children = self.paginate(request, filtered_children, self.PER_PAGE)

@@ -6,3 +6,7 @@
     color: #155366 !important;
     border-bottom: 2px solid #155366 !important;
 }
+
+.langs-ss a{
+    display: inline-block;
+}

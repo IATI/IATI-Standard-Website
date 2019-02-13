@@ -66,6 +66,9 @@ class EventIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
         if event_type:
             filter_dict["event_type__slug"] = event_type
 
+        if request.LANGUAGE_CODE:
+            filter_dict["title_{}__isnull".format(request.LANGUAGE_CODE)] = False
+
         context = super(EventIndexPage, self).get_context(request)
         context['events'] = self.get_events(request, filter_dict, order_by)
         context['paginator_range'] = self._get_paginator_range(context['events'])

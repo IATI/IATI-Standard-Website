@@ -147,6 +147,7 @@ LANGUAGES = [
 
 ACTIVE_LANGUAGES = [
     ('en', _('English')),
+    ('fr', _('French')),
 ]
 
 TIME_ZONE = 'UTC'
@@ -187,4 +188,5 @@ BASE_URL = 'http://example.com'
 
 # Modeltranslation sync Settings
 MODELTRANSLATION_LOCALE_PATH = os.path.join(BASE_DIR, 'locale')
+LOCALE_PATHS = (MODELTRANSLATION_LOCALE_PATH,)
 MODELTRANSLATION_PO_FILE = "iati.po"
