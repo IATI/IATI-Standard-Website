@@ -10,15 +10,6 @@ RUN apt-get update && apt-get install -y python3 \
    python3-dev python3-pip wget firefox
 
 RUN ln -s /usr/bin/python3 /usr/bin/python
-# RUN apt-get update && apt-get install software-properties-common -y
-# RUN add-apt-repository ppa:mozillateam/firefox-next
-# RUN apt-get install firefox -y
-# firefox-esr=52.8.1
-# RUN apt-get update && apt-get install -y wget firefox
-
-# RUN add-apt-repository ppa:jonathonf/firefox-esr-52
-# RUN apt-get update
-# RUN apt-get install firefox-esr
 
 RUN wget https://github.com/mozilla/geckodriver/releases/download/v0.16.0/geckodriver-v0.16.0-linux64.tar.gz
 RUN tar -xvzf geckodriver*
