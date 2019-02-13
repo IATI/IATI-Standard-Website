@@ -15,6 +15,7 @@ The current scope of the project (to April 2018) focuses on the 'About IATI' and
 
 **Important:** Ensure that native Postgres and Elasticsearch services are stopped. Docker will attempt to use these ports for its own services.
 
+
 ### Dev setup
 
 Enter into the Django project directory
@@ -88,6 +89,25 @@ For logging, use:
 docker-compose logs -f web
 ```
 
+## Moving from `pyenv` development environment to `docker` development environment
+
+Previous iterations of this project utilised `pyenv` for development. This included using postgres natively, and adding local database credentials to `local.py`. 
+
+* Firstly, remove the `pyenv` directory.
+
+```
+rm -r pyenv/
+```
+
+* Secondly, remove the `DATABASES` dict from `local.py` entirely. The database config is now handled in `dev.py`, and does not need user customisation.
+
+If you are recieving the following error on `web`:
+
+```
+psql: could not connect to server: Connection refused Is the server running on host "" and accepting TCP/IP connections on port 5432?
+```
+
+Follow the instructions on [this SO answer](https://stackoverflow.com/a/41161674). Your postgres configuration may need amending to listen for all addresses. Postgres will need restarting, and importantly, **your computer will require a restart** for changes to take place.
 
 ## Tests & linters
 
@@ -97,22 +117,22 @@ Please be aware that very rarely tests using the database may return an Operatio
 
 ```
 # Run tests from the project root
-pytest
+docker-compose run web pytest
 ```
 
 Code linting is performed using [pylint](https://github.com/PyCQA/pylint) (with the [pylint-django](https://github.com/PyCQA/pylint-django) plugin), [flake8](http://flake8.pycqa.org) and [pydocstyle](http://www.pydocstyle.org).
 ```
-pylint iati/
-flake8 iati/
-pydocstyle iati/
+docker-compose run web pylint .
+docker-compose run web flake8
+docker-compose run web pydocstyle 
 ```
 
 Alternatively, the Makefile can be used:
 ```
-make test
-make lint
+docker-compose run web make test
+docker-compose run web make lint
 
 # OR
 
-make all
+docker-compose run web make all
 ```
