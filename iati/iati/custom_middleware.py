@@ -1,6 +1,7 @@
 """Middleware for redirecting uppercase urls into lowercase."""
 from django import http
 from django.conf import settings
+import iati.urls
 
 
 class LowercaseMiddleware:
@@ -15,6 +16,9 @@ class LowercaseMiddleware:
         response = self.get_response(request)
         path = request.get_full_path()
         lower = path.lower()
+        for reference in iati.urls.REFERENCE_NAMESPACES:
+            if reference in path:
+                return response
         if lower != path and not("/documents/" in path or settings.MEDIA_URL in path):
             return http.HttpResponseRedirect(lower)
         return response
