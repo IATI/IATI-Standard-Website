@@ -2,12 +2,38 @@
 from django import http
 from django.conf import settings
 
+EXTERNAL_REDIRECTS = [
+    "/101/",
+    "/102/",
+    "/103/",
+    "/104/",
+    "/105/",
+    "/201/",
+    "/202/",
+    "/203/",
+    "/activity-standard/",
+    "/codelists/",
+    "/developer/",
+    "/introduction/",
+    "/namespaces-extensions/",
+    "/organisation-identifiers/",
+    "/organisation-standard/",
+    "/reference/",
+    "/rulesets/",
+    "/schema/",
+    "/upgrades/",
+    "/guidance/datastore/",
+]
+
 
 def check_exceptions(path):
     """Review exceptions to the lowercase ruling."""
     if path.startswith(settings.MEDIA_URL):
         # Make sure it's not a media file
         return False
+    for external in EXTERNAL_REDIRECTS:
+            if path.startswith(external):
+                return False
     for code, _ in settings.ACTIVE_LANGUAGES:
         # Check for all active languages
         if path.startswith("/" + code + "/documents/"):
@@ -26,7 +52,7 @@ class LowercaseMiddleware:
         """Redirect url paths as lowercase except for documents or media files."""
         response = self.get_response(request)
         path = request.get_full_path()
-        if not response.get_host().startswith("iatistandard.org") or not check_exceptions(path):
-            return response
         lower_path = path.lower()
-        return http.HttpResponsePermanentRedirect(lower_path)
+        if lower_path != path and check_exceptions(path):
+            return http.HttpResponsePermanentRedirect(lower_path)
+        return response
