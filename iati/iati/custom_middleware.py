@@ -32,8 +32,8 @@ def check_exceptions(path):
         # Make sure it's not a media file
         return False
     for external in EXTERNAL_REDIRECTS:
-            if path.startswith(external):
-                return False
+        if path.startswith(external):
+            return False
     for code, _ in settings.ACTIVE_LANGUAGES:
         # Check for all active languages
         if path.startswith("/" + code + "/documents/"):
