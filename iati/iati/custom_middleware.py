@@ -1,4 +1,4 @@
-"""Middleware for redirecting uppercase urls into lowercase."""
+"""Middleware for redirecting mixed case urls into lowercase."""
 from django import http
 from django.conf import settings
 
@@ -26,21 +26,33 @@ EXTERNAL_REDIRECTS = [
 ]
 
 
+def check_exceptions(path):
+    """Review exceptions to the lowercase ruling."""
+    print(path)
+    if path.startswith(settings.MEDIA_URL):
+        return False
+    for code, lang in settings.ACTIVE_LANGUAGES:
+        if path.startswith("/" + code + "/documents/"):
+            print("Exit here")
+            return False
+        for external in EXTERNAL_REDIRECTS:
+            if path.startswith("/" + code + external):
+                return False
+    return True
+
+
 class LowercaseMiddleware:
-    """Middleware class."""
+    """Middleware class to address incoming URLs with mixed cases into lowercase."""
 
     def __init__(self, get_response):
-        """Initialise."""
+        """Initialise class."""
         self.get_response = get_response
 
     def __call__(self, request):
         """Redirect url paths as lowercase except for documents or media files."""
         response = self.get_response(request)
         path = request.get_full_path()
-        lower = path.lower()
-        for external in EXTERNAL_REDIRECTS:
-            if external in path:
-                return response
-        if lower != path and not("/documents/" in path or settings.MEDIA_URL in path):
-            return http.HttpResponseRedirect(lower)
+        lower_path = path.lower()
+        if lower_path != path and check_exceptions(path):
+            return http.HttpResponseRedirect(lower_path)
         return response
