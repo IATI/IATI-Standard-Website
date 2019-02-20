@@ -29,10 +29,10 @@ EXTERNAL_REDIRECTS = [
 def check_exceptions(path):
     """Review exceptions to the lowercase ruling."""
     if path.startswith(settings.MEDIA_URL):
-        #Make sure it's not a media file
+        # Make sure it's not a media file
         return False
     for code, _ in settings.ACTIVE_LANGUAGES:
-        #Check for all active languages
+        # Check for all active languages
         if path.startswith("/" + code + "/documents/"):
             return False
         for external in EXTERNAL_REDIRECTS:
