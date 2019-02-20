@@ -31,10 +31,9 @@ def check_exceptions(path):
     if path.startswith(settings.MEDIA_URL):
         #Make sure it's not a media file
         return False
-    for code, lang in settings.ACTIVE_LANGUAGES:
+    for code, _ in settings.ACTIVE_LANGUAGES:
         #Check for all active languages
         if path.startswith("/" + code + "/documents/"):
-            print("Exit here")
             return False
         for external in EXTERNAL_REDIRECTS:
             if path.startswith("/" + code + external):
