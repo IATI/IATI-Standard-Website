@@ -7,9 +7,8 @@ TODO:
 import os
 import pytest
 from django.utils.text import slugify
+from django.conf import settings
 from base_functional_tests import click_obscured, find_and_click_add_button, find_and_click_toggle_button, fill_content_editor_block, TEST_DATA_DIR, view_live_page
-from iati.urls import ADMIN_SLUG
-
 
 EVENT_INDEX_PAGE = {
     'title': 'Events',
@@ -138,7 +137,7 @@ class TestEventIndexPage():
 
         When it isn't set, the word past isn't shown.
         """
-        admin_browser.visit(os.environ['LIVE_SERVER_URL'] + "/{}/pages/3/".format(ADMIN_SLUG))
+        admin_browser.visit(os.environ['LIVE_SERVER_URL'] + "/{}/pages/3/".format(settings.ADMIN_SLUG))
         view_live_page(admin_browser, EVENT_INDEX_PAGE['title'])
         assert admin_browser.is_element_not_present_by_text("Past {}".format(EVENT_INDEX_PAGE['heading']))
         admin_browser.visit(admin_browser.url + "?past=1")
@@ -189,7 +188,7 @@ class TestEventPages():
 
     def test_event_type_filter(self, admin_browser):
         """Create an event type, assign it to 11 child pages, and test param."""
-        admin_browser.visit(os.environ['LIVE_SERVER_URL'] + '/{}/'.format(ADMIN_SLUG))
+        admin_browser.visit(os.environ['LIVE_SERVER_URL'] + '/{}/'.format(settings.ADMIN_SLUG))
         admin_browser.click_link_by_text("Snippets")
         admin_browser.click_link_by_partial_text("Event types")
         admin_browser.click_link_by_text("Add event type")
@@ -255,7 +254,7 @@ class TestFeaturedEvents():
         """Create an event to be featured, feature it, mark it to show, and test that it is shown."""
         TEST_PAGE_TITLE = "A test featured event"
         create_event_child_page(admin_browser, "Event page", TEST_PAGE_TITLE)
-        admin_browser.visit(os.environ['LIVE_SERVER_URL'] + '/{}/'.format(ADMIN_SLUG))
+        admin_browser.visit(os.environ['LIVE_SERVER_URL'] + '/{}/'.format(settings.ADMIN_SLUG))
         admin_browser.click_link_by_text("Snippets")
         admin_browser.click_link_by_partial_text("Featured events")
         admin_browser.click_link_by_text("Add featured event")
@@ -265,7 +264,7 @@ class TestFeaturedEvents():
         admin_browser.click_link_by_text(TEST_PAGE_TITLE)
         save_button = admin_browser.find_by_css(".action-save")[0]
         click_obscured(admin_browser, save_button)
-        admin_browser.visit(os.environ['LIVE_SERVER_URL'] + '/{}/'.format(ADMIN_SLUG))
+        admin_browser.visit(os.environ['LIVE_SERVER_URL'] + '/{}/'.format(settings.ADMIN_SLUG))
         navigate_to_default_page_cms_section(admin_browser, 'About')
         admin_browser.click_link_by_text("Edit")
         admin_browser.check("show_featured_events")
