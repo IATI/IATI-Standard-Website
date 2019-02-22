@@ -39,10 +39,7 @@ class LowercaseMiddleware:
         if path == '/':
             return False
         if path.startswith(self.exception_values):
-            return True
+            return False
         if path.startswith(self.redirects):
-            return True
-
-        # documents still fail, we need to investigate why
-
-        return False
+            return False
+        return True
