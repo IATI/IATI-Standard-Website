@@ -3,8 +3,6 @@ from django import http
 from django.conf import settings
 from django.utils.functional import cached_property
 
-from wagtail.contrib.redirects.models import Redirect
-
 
 class LowercaseMiddleware:
     """Middleware class to address incoming URLs with mixed cases into lowercase."""
@@ -18,14 +16,10 @@ class LowercaseMiddleware:
         response = self.get_response(request)
         path = request.get_full_path()
         lower_path = path.lower()
+        # import pdb; pdb.set_trace()
         if self.path_is_exception(path, lower_path):
             return http.HttpResponsePermanentRedirect(lower_path)
         return response
-
-    @cached_property
-    def redirects(self):
-        """Return tuple of original redirect paths if redirect is external."""
-        return tuple(x.old_path for x in Redirect.objects.all() if x.redirect_link)
 
     @cached_property
     def exception_values(self):
@@ -39,7 +33,5 @@ class LowercaseMiddleware:
         if path == '/':
             return False
         if path.startswith(self.exception_values):
-            return False
-        if path.startswith(self.redirects):
             return False
         return True
