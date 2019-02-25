@@ -75,10 +75,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-
     'wagtail.core.middleware.SiteMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
-
     'iati.custom_middleware.LowercaseMiddleware',
 
 ]
@@ -215,6 +213,7 @@ REFERENCE_NAMESPACES = [
     "guidance/datastore",
 ]
 
+REFERENCE_REDIRECT_BASE_URL = 'http://reference.iatistandard.org'
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash

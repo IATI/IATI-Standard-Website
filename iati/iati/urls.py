@@ -11,7 +11,6 @@ from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
 from search import views as search_views
-from home.views import reference_redirect
 from .activate_languages import i18n_patterns  # For internationalization
 
 
@@ -19,7 +18,6 @@ urlpatterns = [  # pylint: disable=invalid-name
     url(r'^django-{}/'.format(settings.ADMIN_SLUG), admin.site.urls),
     url(r'^{}/'.format(settings.ADMIN_SLUG), include(wagtailadmin_urls)),
     url(r'^{}/'.format(settings.DOCUMENTS_SLUG), include(wagtaildocs_urls)),
-    url(r'^(?:{})/'.format("|".join(settings.REFERENCE_NAMESPACES)), reference_redirect)
 ]
 
 
