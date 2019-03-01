@@ -5,3 +5,4 @@ requests>=2.20.0
 wagtail==2.0.1
 wagtail-modeltranslation==0.8.1
 Babel==2.6.0
+django-extensions==2.1.6

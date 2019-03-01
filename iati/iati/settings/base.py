@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'modeltranslation_sync',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
