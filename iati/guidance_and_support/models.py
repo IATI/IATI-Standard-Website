@@ -2,6 +2,7 @@
 
 import requests
 
+from django.conf import settings
 from django.db import models
 
 from wagtail.core.fields import StreamField
@@ -79,7 +80,7 @@ class GuidancePage(AbstractContentPage):
             form_submitted = True
             ticket = generate_ticket(request)
             if ticket:
-                response = requests.post("https://iati.zendesk.com/api/v2/requests.json", json=ticket)
+                response = requests.post(settings.ZENDESK_REQUEST_URL, json=ticket)
                 if response.status_code == 201:
                     form_success = True
             context['form_submitted'] = form_submitted
