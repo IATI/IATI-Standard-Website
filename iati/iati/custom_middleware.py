@@ -60,7 +60,7 @@ class LowercaseMiddleware:
     @cached_property
     def exception_values(self):
         """Return values to except from lowercase ruling."""
-        return (settings.ADMIN_URL, settings.MEDIA_URL, settings.DOCUMENTS_URL)
+        return (settings.ADMIN_URL, settings.MEDIA_URL, settings.DOCUMENTS_URL, settings.STATIC_URL)
 
     @cached_property
     def path_is_exception(self):
