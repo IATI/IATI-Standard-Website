@@ -139,7 +139,7 @@ class EventType(models.Model):
             self.slug = base_slug
         super(EventType, self).full_clean(exclude, validate_unique)
 
-    def save(self, *args, **kwargs):  # pylint: disable=W:142
+    def save(self, *args, **kwargs):  # pylint: disable=bad-option-value
         """Call full_clean method for slug validation."""
         self.full_clean()
         super().save(*args, **kwargs)
