@@ -33,6 +33,7 @@ class TestRedirectMiddleware():
         ('/rulesets/MiXeDCaSe/', 'http://reference.iatistandard.org/rulesets/MiXeDCaSe/'),
         ('/schema/MiXeDCaSe/', 'http://reference.iatistandard.org/schema/MiXeDCaSe/'),
         ('/upgrades/MiXeDCaSe/', 'http://reference.iatistandard.org/upgrades/MiXeDCaSe/'),
+        (settings.STATIC_URL + "MiXeDCaSe/", "/en" + settings.STATIC_URL + "MiXeDCaSe/")
     ])
     def test_redirect_middleware_default(self, client, redirect_mapping):
         response = client.get(redirect_mapping[0])
@@ -45,6 +46,5 @@ class TestRedirectMiddleware():
 
     def test_redirect_middleware_image(self, client):
         image = self.create_image()
-        import pdb; pdb.set_trace()
         response = client.get(image.url)
         assert response.url == image.url
