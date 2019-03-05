@@ -2,7 +2,7 @@
 import os
 from .base import *  # noqa: F401, F403 # pylint: disable=unused-wildcard-import, wildcard-import
 
-DEBUG = False
+ALLOWED_HOSTS = ['*']
 
 SECRET_KEY = '-sg0o=f6(j3!4u6^86!j@0&l^3clslh-#f@02d2^p_4vy0ma0y'
 
