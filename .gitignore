@@ -110,3 +110,6 @@ media/
 #pytest-splinter files to ignore
 .pytest_cache/
 iati.tests.*
+
+# ignore sqlite databases
+db.sqlite3

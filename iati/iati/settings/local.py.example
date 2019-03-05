@@ -23,9 +23,3 @@ DATABASES = {
 }
 
 SECRET_KEY = 'enter-a-long-unguessable-string-here'
-
-# Tests
-# in order to run all tests the following must be specified:
-
-DJANGO_ADMIN_USER = 'myadminusername'
-DJANGO_ADMIN_PASS = 'myadminpassword'
