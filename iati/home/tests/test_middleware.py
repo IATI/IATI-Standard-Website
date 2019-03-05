@@ -1,6 +1,8 @@
 """A module of unit tests for redirects."""
 import pytest
 from django.conf import settings
+from django.contrib.auth.models import User
+from iati.settings.dev import DJANGO_ADMIN_USER, DJANGO_ADMIN_PASS
 from factories import DocumentFactory, ImageFactory
 
 
@@ -48,3 +50,9 @@ class TestRedirectMiddleware():
         image = self.create_image()
         response = client.get(image.url)
         assert response.url == image.url
+
+    def test_redirect_middleware_cms(self, client):
+        adminuser = User.objects.create_superuser(DJANGO_ADMIN_USER, "emailtest@iatistandard.org", DJANGO_ADMIN_PASS)
+        client.login(username=DJANGO_ADMIN_USER, password=DJANGO_ADMIN_PASS)
+        response = client.get("/cms/MiXeDCaSe/")
+        assert response.url == "/cms/MiXeDCaSe/"
