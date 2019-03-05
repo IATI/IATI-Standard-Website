@@ -17,3 +17,9 @@ if 'TRAVIS' in os.environ:
             'PORT': '',
         }
     }
+
+
+try:
+    from .local import *  # # noqa: F401, F403  # pylint: disable=unused-wildcard-import, wildcard-import
+except ImportError:
+    pass
