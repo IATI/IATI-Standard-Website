@@ -5,6 +5,8 @@ python:
 
 services: postgresql
 
+before_install:
+  - export DJANGO_SETTINGS_MODULE=iati.settings.test
 install:
   - pip install -r iati/requirements_dev.txt
   - psql -c "CREATE DATABASE travisci;" -U postgres  # Must match DB name in iati.settings.dev
@@ -24,6 +26,8 @@ stages:
 jobs:
     include:
         - stage: test
+          before_install:
+            - export DJANGO_SETTINGS_MODULE=iati.settings.test
           install:
             - pip install -r iati/requirements_dev.txt
             - psql -c "CREATE DATABASE travisci;" -U postgres  # Must match DB name in iati.settings.dev
