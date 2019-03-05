@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'modeltranslation_sync',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -223,3 +224,5 @@ BASE_URL = 'http://iatistandard.org'
 MODELTRANSLATION_LOCALE_PATH = os.path.join(BASE_DIR, 'locale')
 LOCALE_PATHS = (MODELTRANSLATION_LOCALE_PATH,)
 MODELTRANSLATION_PO_FILE = "iati.po"
+
+ZENDESK_REQUEST_URL = 'https://iati.zendesk.com/api/v2/requests.json'
