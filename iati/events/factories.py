@@ -1,6 +1,7 @@
 import datetime
 import factory
 import random
+import pytz
 from wagtail_factories import ImageFactory
 from factory.fuzzy import FuzzyChoice
 from django.utils import timezone
@@ -25,11 +26,11 @@ class EventPageFactory(BasePageFactory):
         choices=(True, False)
     )
     date_start = factory.fuzzy.FuzzyDate(
-        start_date=timezone.now() - datetime.timedelta(weeks=520),
-        end_date=timezone.now() + datetime.timedelta(weeks=52),
+        start_date=timezone.now() - timezone.timedelta(weeks=520),
+        end_date=timezone.now() + timezone.timedelta(weeks=52),
     )
     date_end = factory.LazyAttribute(
-        lambda o: o.date_start + datetime.timedelta(days=random.randint(0, 10))
+        lambda o: o.date_start + timezone.timedelta(days=random.randint(0, 10))
     )
     location = factory.Faker(
         provider='city',
@@ -44,12 +45,12 @@ class EventPageFactory(BasePageFactory):
         starts_in_future = factory.Trait(
             date_start=factory.fuzzy.FuzzyDate(
                 start_date=timezone.now(),
-                end_date=timezone.now() + datetime.timedelta(days=30),
+                end_date=timezone.now() + timezone.timedelta(days=30),
             )
         )
         starts_in_past = factory.Trait(
             date_start=factory.fuzzy.FuzzyDate(
-                start_date=timezone.now()- datetime.timedelta(weeks=12),
-                end_date=timezone.now() - datetime.timedelta(days=1),
+                start_date=timezone.now()- timezone.timedelta(weeks=12),
+                end_date=timezone.now() - timezone.timedelta(days=1),
             ),
         )

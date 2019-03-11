@@ -18,6 +18,7 @@ if 'TRAVIS' in os.environ:
         }
     }
 
+USE_TZ = True
 
 try:
     from .local import *  # # noqa: F401, F403  # pylint: disable=unused-wildcard-import, wildcard-import
