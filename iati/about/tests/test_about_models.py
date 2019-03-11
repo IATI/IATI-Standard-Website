@@ -6,7 +6,8 @@ from home.factories import HomePageFactory
 @pytest.mark.django_db
 def test_case_study_page(client):
     """Test that the Case Study page is created."""
-    home_page = HomePageFactory(title='Home', parent=None)
+    import pdb; pdb.set_trace()
+    home_page = HomePageFactory(title='Home', path='00010001', parent=None)
     case_study_index = CaseStudyIndexPageFactory(
         title='Case Studies',
         parent=home_page

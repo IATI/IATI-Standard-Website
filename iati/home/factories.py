@@ -48,7 +48,7 @@ class BasePageFactory(InPageFactory):
     )
 
 
-class HomePageFactory(PageFactory):
+class HomePageFactory(BasePageFactory):
     """Factory with fake data for HomePage."""
 
     class Meta:
@@ -56,5 +56,6 @@ class HomePageFactory(PageFactory):
         django_get_or_create = ('title', 'path',)
 
     title = 'Home'
+    path = '00010001'
     activities = FuzzyInteger(1000000, 1500000)
     organisations = FuzzyInteger(700, 900)
