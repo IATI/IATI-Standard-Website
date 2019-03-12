@@ -13,33 +13,30 @@ class TestRedirectMiddleware():
         return DocumentFactory.create()
 
     @pytest.mark.parametrize('redirect_mapping', [
-        ('/HoMe/', '/home/'),
-        ('/HOME/', '/home/'),
-        ('/home/', '/en/home/'),
-        ('/104/MiXeDCaSe/', 'http://reference.iatistandard.org/104/MiXeDCaSe/'),
-        ('/105/MiXeDCaSe/', 'http://reference.iatistandard.org/105/MiXeDCaSe/'),
-        ('/201/MiXeDCaSe/', 'http://reference.iatistandard.org/201/MiXeDCaSe/'),
-        ('/202/MiXeDCaSe/', 'http://reference.iatistandard.org/202/MiXeDCaSe/'),
-        ('/203/MiXeDCaSe/', 'http://reference.iatistandard.org/203/MiXeDCaSe/'),
-        ('/activity-standard/MiXeDCaSe/', 'http://reference.iatistandard.org/activity-standard/MiXeDCaSe/'),
-        ('/codelists/MiXeDCaSe/', 'http://reference.iatistandard.org/codelists/MiXeDCaSe/'),
-        ('/developer/MiXeDCaSe/', 'http://reference.iatistandard.org/developer/MiXeDCaSe/'),
-        ('/introduction/MiXeDCaSe/', 'http://reference.iatistandard.org/introduction/MiXeDCaSe/'),
-        ('/namespaces-extensions/MiXeDCaSe/', 'http://reference.iatistandard.org/namespaces-extensions/MiXeDCaSe/'),
-        ('/organisation-identifiers/MiXeDCaSe/', 'http://reference.iatistandard.org/organisation-identifiers/MiXeDCaSe/'),
-        ('/organisation-standard/MiXeDCaSe/', 'http://reference.iatistandard.org/organisation-standard/MiXeDCaSe/'),
-        ('/reference/MiXeDCaSe/', 'http://reference.iatistandard.org/reference/MiXeDCaSe/'),
-        ('/rulesets/MiXeDCaSe/', 'http://reference.iatistandard.org/rulesets/MiXeDCaSe/'),
-        ('/schema/MiXeDCaSe/', 'http://reference.iatistandard.org/schema/MiXeDCaSe/'),
-        ('/upgrades/MiXeDCaSe/', 'http://reference.iatistandard.org/upgrades/MiXeDCaSe/'),
-        (settings.STATIC_URL + "HOME/css/", "/en" + settings.STATIC_URL + "HOME/css/")
+        ('/About/', '/about/'),
+        ('/ABOUT/', '/about/'),
+        ('/about/', '/en/about/')
     ])
-    def test_redirect_middleware_default(self, client, redirect_mapping):
-        """Test default behavior for redirects."""
+    def test_redirect_middleware_internal(self, client, redirect_mapping):
+        """Test behavior for internal redirects."""
         response = client.get(redirect_mapping[0])
-        if response.status_code == 301:
-            retry = client.get(response.url)
-            assert retry.url == redirect_mapping[1]
+        assert response.url == redirect_mapping[1]
+
+    @pytest.mark.parametrize('redirect_mapping', [
+        ('/203/codelists/OtherIdentifierType/', 'http://reference.iatistandard.org/203/codelists/OtherIdentifierType/'),
+        ('/schema/downloads/CHANGES.txt', 'http://reference.iatistandard.org/schema/downloads/CHANGES.txt')
+    ])
+    def test_redirect_middleware_external(self, client, redirect_mapping):
+        """Test behavior for external redirects."""
+        response = client.get(redirect_mapping[0])
+        assert response.url == redirect_mapping[1]
+
+    @pytest.mark.parametrize('redirect_mapping', [
+        ("{}HOME/css/".format(settings.STATIC_URL), "/en{}HOME/css/".format(settings.STATIC_URL))
+    ])
+    def test_redirect_middleware_static(self, client, redirect_mapping):
+        """Test behavior for static pages going through the middleware."""
+        response = client.get(redirect_mapping[0])
         assert response.url == redirect_mapping[1]
 
     def test_redirect_middleware_document(self, client):
