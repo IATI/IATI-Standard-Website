@@ -4,7 +4,7 @@ from wagtail_factories import ImageFactory
 from factory.fuzzy import FuzzyChoice
 from django.utils import timezone
 from django.utils.text import slugify
-from events.models import EventIndexPage, EventPage, EventType
+from events.models import EventIndexPage, EventPage, EventType, FeaturedEvent
 from home.factories import BasePageFactory
 
 
@@ -74,3 +74,11 @@ class EventTypeFactory(factory.django.DjangoModelFactory):
         'word',
     )
     slug = factory.LazyAttribute(lambda obj: slugify(obj.name))
+
+
+class FeaturedEventFactory(factory.django.DjangoModelFactory):
+
+    class Meta:
+        model = FeaturedEvent
+
+    event = factory.SubFactory(EventPageFactory)
