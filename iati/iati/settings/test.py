@@ -20,6 +20,8 @@ if 'TRAVIS' in os.environ:
 
 USE_TZ = False
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'test_media') # noqa
+
 try:
     from .local import *  # # noqa: F401, F403  # pylint: disable=unused-wildcard-import, wildcard-import
 except ImportError:

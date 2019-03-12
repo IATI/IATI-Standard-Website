@@ -1,4 +1,3 @@
-import factory
 from about.models import CaseStudyPage, CaseStudyIndexPage
 from home.factories import BasePageFactory
 

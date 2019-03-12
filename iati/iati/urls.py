@@ -9,6 +9,7 @@ from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.contrib.sitemaps.views import sitemap
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
+from wagtail.images.views.serve import serve
 
 from search import views as search_views
 from home.views import reference_redirect
@@ -65,6 +66,7 @@ urlpatterns += i18n_patterns(
     # Wagtail's page serving mechanism. This should be the last pattern in
     # the list:
     url(r'', include(wagtail_urls)),
+    url(r'^([^/]*)/(\d*)/([^/]*)/[^/]*$', serve, name='wagtailimages_serve'),
 
     # Alternatively, if you want Wagtail pages to be served from a subpath
     # of your site, rather than the site root:

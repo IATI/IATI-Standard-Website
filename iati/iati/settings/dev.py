@@ -1,5 +1,4 @@
 """Settings for dev environments (overrides base settings)."""
-import os
 from .base import *  # noqa: F401, F403 # pylint: disable=unused-wildcard-import, wildcard-import
 
 # SECURITY WARNING: don't run with debug turned on in production!

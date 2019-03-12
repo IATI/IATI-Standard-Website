@@ -1,12 +1,10 @@
 import factory
-from factory.fuzzy import FuzzyInteger
 from wagtail_factories import PageFactory
 from django.utils.text import slugify
 from wagtail.core.models import Page
-from home.models import HomePage
 
 
-class InPageFactory(PageFactory):
+class BasePageFactory(PageFactory):
 
     class Meta:
         model = Page
@@ -23,13 +21,6 @@ class InPageFactory(PageFactory):
     )
     slug_fr = factory.LazyAttribute(lambda obj: slugify(obj.title_fr))
     url_path_fr = factory.LazyAttribute(lambda n: "/%s/" % n)
-
-
-class BasePageFactory(InPageFactory):
-
-    class Meta:
-        model = Page
-        abstract = True
 
     heading = factory.Faker(
         'sentence',
