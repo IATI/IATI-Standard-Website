@@ -1,9 +1,7 @@
 """A module of unit tests for redirects."""
 import pytest
 from django.conf import settings
-from django.contrib.auth.models import User
-from iati.settings.dev import DJANGO_ADMIN_USER, DJANGO_ADMIN_PASS
-from factories import DocumentFactory, ImageFactory
+from factories import DocumentFactory
 
 
 @pytest.mark.django_db
@@ -13,10 +11,6 @@ class TestRedirectMiddleware():
     def create_document(self):
         """Call the DocumentFactory to save a new document."""
         return DocumentFactory.create()
-
-    def create_image(self):
-        """Call the ImageFactory to save a new image."""
-        return ImageFactory.create()
 
     @pytest.mark.parametrize('redirect_mapping', [
         ('/HoMe/', '/home/'),
@@ -52,20 +46,4 @@ class TestRedirectMiddleware():
         """Test that documents are excluded from the middleware."""
         document = self.create_document()
         response = client.get(document.url)
-        assert response.status_code == 200
-
-    # def test_redirect_middleware_image(self, client):
-    #     """Test that images are excluded from the middleware."""
-    #     image = self.create_image()
-    #     adminuser = User.objects.create_superuser(DJANGO_ADMIN_USER, "emailtest@iatistandard.org", DJANGO_ADMIN_PASS)
-    #     client.login(username=DJANGO_ADMIN_USER, password=DJANGO_ADMIN_PASS)
-    #     response = client.get(image.usage_url)
-    #     import pdb; pdb.set_trace()
-    #     assert response.status_code == 200
-
-    def test_redirect_middleware_cms(self, client):
-        """Test that admin pages are excluded from the middleware."""
-        adminuser = User.objects.create_superuser(DJANGO_ADMIN_USER, "emailtest@iatistandard.org", DJANGO_ADMIN_PASS)
-        client.login(username=DJANGO_ADMIN_USER, password=DJANGO_ADMIN_PASS)
-        response = client.get("/cms/Pages/")
         assert response.status_code == 200

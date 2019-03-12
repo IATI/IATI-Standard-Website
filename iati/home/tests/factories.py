@@ -2,7 +2,6 @@
 import factory
 from factory.faker import faker
 from wagtail.documents.models import Document
-from wagtail.images.models import Image
 
 
 def random_filename():
@@ -21,15 +20,3 @@ class DocumentFactory(factory.django.DjangoModelFactory):
         """Define the Document model as meta class."""
 
         model = Document
-
-
-class ImageFactory(factory.django.DjangoModelFactory):
-    """Factory for wagtail images."""
-
-    title = factory.Sequence(lambda n: f"image {n}")
-    file = factory.django.ImageField(filename="MiXeDcAsE.jpg", data=b'Test image')
-
-    class Meta:
-        """Define the Image model as meta class."""
-
-        model = Image
