@@ -1,6 +1,6 @@
 import pytest
 from wagtail_factories import ImageFactory
-from events.factories import EventPageFactory, EventIndexPageFactory
+from events.factories import EventPageFactory, EventIndexPageFactory, EventTypeFactory
 from home.models import HomePage
 from home.utils import generate_image_url
 
@@ -17,7 +17,11 @@ class TestEventPage():
     def test_random_event(self, client):
         """Test that event with random date is created."""
         event_listing = EventIndexPageFactory(parent=self.home_page)
-        random_event = EventPageFactory(parent=event_listing)
+        event_types = EventTypeFactory.create_batch(2)
+        random_event = EventPageFactory.create(
+            parent=event_listing,
+            event_type=(event_types),
+        )
         assert random_event is not None
 
     def test_future_event(self, client):

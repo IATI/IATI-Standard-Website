@@ -3,7 +3,8 @@ import random
 from wagtail_factories import ImageFactory
 from factory.fuzzy import FuzzyChoice
 from django.utils import timezone
-from events.models import EventIndexPage, EventPage
+from django.utils.text import slugify
+from events.models import EventIndexPage, EventPage, EventType
 from home.factories import BasePageFactory
 
 
@@ -39,6 +40,16 @@ class EventPageFactory(BasePageFactory):
     )
     feed_image = factory.SubFactory(ImageFactory)
 
+    @factory.post_generation
+    def event_type(self, create, events, **kwargs):
+        """Factory for multiple event types."""
+        if not create:
+            return
+
+        if events:
+            for event in events:
+                self.event_type.add(event)
+
     class Params:
         starts_in_future = factory.Trait(
             date_start=factory.fuzzy.FuzzyDate(
@@ -52,3 +63,14 @@ class EventPageFactory(BasePageFactory):
                 end_date=timezone.now() - timezone.timedelta(days=1),
             ),
         )
+
+
+class EventTypeFactory(factory.django.DjangoModelFactory):
+
+    class Meta:
+        model = EventType
+
+    name = factory.Faker(
+        'word',
+    )
+    slug = factory.LazyAttribute(lambda obj: slugify(obj.name))
