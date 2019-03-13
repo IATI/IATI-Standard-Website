@@ -9,12 +9,14 @@ from home.factories import BasePageFactory
 
 
 class GuidanceAndSupportPageFactory(BasePageFactory):
+    """Factory generating data for GuidanceAndSupportPage."""
 
     class Meta:
         model = GuidanceAndSupportPage
 
 
 class GuidanceGroupPageFactory(BasePageFactory):
+    """Factory generating data for GuidanceGroupPage."""
 
     section_image = factory.SubFactory(ImageFactory)
     button_link_text = factory.Faker(
@@ -32,6 +34,7 @@ class GuidanceGroupPageFactory(BasePageFactory):
 
 
 class GuidancePageFactory(BasePageFactory):
+    """Factory generating data for GuidancePage."""
 
     class Meta:
         model = GuidancePage

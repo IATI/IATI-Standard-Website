@@ -5,6 +5,7 @@ from wagtail.core.models import Page
 
 
 class BasePageFactory(PageFactory):
+    """Factory generating data for all Page models."""
 
     class Meta:
         model = Page
