@@ -1,20 +1,26 @@
 language: python
 sudo: required
+env:
+  - MOZ_HEADLESS=1
+addons:
+  firefox: latest
 python:
   - 3.6
 
 services: postgresql
 
-before_install:
-  - export DJANGO_SETTINGS_MODULE=iati.settings.test
 install:
+  - wget https://github.com/mozilla/geckodriver/releases/download/v0.23.0/geckodriver-v0.23.0-linux64.tar.gz
+  - mkdir geckodriver
+  - tar -xzf geckodriver*.tar.gz -C geckodriver
+  - export PATH=$PATH:$PWD/geckodriver
   - pip install -r iati/requirements_dev.txt
   - psql -c "CREATE DATABASE travisci;" -U postgres  # Must match DB name in iati.settings.dev
-  - cd iati
-  - python manage.py makemigrations_translation
-  - python manage.py migrate_translation --no-input
+  - python iati/manage.py makemigrations_translation
+  - python iati/manage.py migrate_translation --no-input
+  - python iati/manage.py createdefaultpages
 before_script:
-  - python manage.py runserver &
+  - python iati/manage.py runserver &
 script:
   - make test
 
@@ -25,32 +31,34 @@ stages:
 jobs:
     include:
         - stage: test
-          before_install:
-            - export DJANGO_SETTINGS_MODULE=iati.settings.test
           install:
+            - wget https://github.com/mozilla/geckodriver/releases/download/v0.23.0/geckodriver-v0.23.0-linux64.tar.gz
+            - mkdir geckodriver
+            - tar -xzf geckodriver*.tar.gz -C geckodriver
+            - export PATH=$PATH:$PWD/geckodriver
             - pip install -r iati/requirements_dev.txt
             - psql -c "CREATE DATABASE travisci;" -U postgres  # Must match DB name in iati.settings.dev
-            - cd iati
-            - python manage.py makemigrations_translation
-            - python manage.py migrate_translation --no-input
+            - python iati/manage.py makemigrations_translation
+            - python iati/manage.py migrate_translation --no-input
+            - python iati/manage.py createdefaultpages
           before_script:
-            - python manage.py runserver &
+            - python iati/manage.py runserver &
           script: make test
         - stage: strict lint
           install:
-            - pip install -r requirements_dev.txt
+            - pip install -r iati/requirements_dev.txt
           env: LINTER=pylint
           script: make pylint
           if: branch IN (master, dev)
         - stage: strict lint
           install:
-            - pip install -r requirements_dev.txt
+            - pip install -r iati/requirements_dev.txt
           env: LINTER=flake8
           script: make flake8
           if: branch IN (master, dev)
         - stage: strict lint
           install:
-            - pip install -r requirements_dev.txt
+            - pip install -r iati/requirements_dev.txt
           env: LINTER=pydocstyle
           script: make pydocstyle
           if: branch IN (master, dev)
