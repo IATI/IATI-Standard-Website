@@ -64,7 +64,6 @@ INSTALLED_APPS = [
 
     'modeltranslation_sync',
     'django_extensions',
-    # 'wagtail_factories',
 ]
 
 MIDDLEWARE = [
