@@ -8,10 +8,9 @@ services: postgresql
 before_install:
   - export DJANGO_SETTINGS_MODULE=iati.settings.test
 install:
-  - pwd
-  - pip install -r iati/requirements_dev.txt
-  - psql -c "CREATE DATABASE travisci;" -U postgres  # Must match DB name in iati.settings.dev
   - cd iati
+  - pip install -r requirements_dev.txt
+  - psql -c "CREATE DATABASE travisci;" -U postgres  # Must match DB name in iati.settings.dev
   - python manage.py makemigrations_translation
   - python manage.py migrate_translation --no-input
 before_script:
@@ -29,9 +28,9 @@ jobs:
           before_install:
             - export DJANGO_SETTINGS_MODULE=iati.settings.test
           install:
-            - pip install -r iati/requirements_dev.txt
-            - psql -c "CREATE DATABASE travisci;" -U postgres  # Must match DB name in iati.settings.dev
             - cd iati
+            - pip install -r requirements_dev.txt
+            - psql -c "CREATE DATABASE travisci;" -U postgres  # Must match DB name in iati.settings.dev
             - python manage.py makemigrations_translation
             - python manage.py migrate_translation --no-input
           before_script:
