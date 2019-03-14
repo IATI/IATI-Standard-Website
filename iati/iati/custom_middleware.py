@@ -4,11 +4,9 @@ from django.conf import settings
 from django.utils.functional import cached_property
 
 
-class LowercaseMiddleware:
-    """Middleware class to address incoming URLs with mixed cases into lowercase."""
+class RedirectIATISites:
 
     def __init__(self, get_response):
-        """Initialise class."""
         self.get_response = get_response
         self.path = ''
         self.stripped_path = ''
@@ -16,8 +14,8 @@ class LowercaseMiddleware:
         self.path_parts = ''
 
     def __call__(self, request):
-        """Redirect url paths as lowercase except for documents or media files."""
         response = self.get_response(request)
+
         self.path = request.get_full_path()
         self.lower_path = self.path.lower()
 
@@ -29,11 +27,6 @@ class LowercaseMiddleware:
 
         if self.path_is_redirect:
             return http.HttpResponsePermanentRedirect(self.redirected_url)
-
-        if self.path_is_exception:
-            return response
-        else:
-            return http.HttpResponsePermanentRedirect(self.lower_path)
 
         return response
 
@@ -58,6 +51,45 @@ class LowercaseMiddleware:
     def redirected_url(self):
         """Construct redirect URL from base url and request path."""
         return '{}{}'.format(settings.REFERENCE_REDIRECT_BASE_URL, self.path)
+
+
+class LowercaseMiddleware:
+    """Middleware class to address incoming URLs with mixed cases into lowercase."""
+
+    def __init__(self, get_response):
+        """Initialise class."""
+        self.get_response = get_response
+        self.path = ''
+        self.stripped_path = ''
+        self.lower_path = ''
+        self.path_parts = ''
+
+    def __call__(self, request):
+        """Redirect url paths as lowercase except for documents or media files."""
+        response = self.get_response(request)
+        self.path = request.get_full_path()
+        self.lower_path = self.path.lower()
+
+        # sanitize the path ready for comparison
+        split_path = self.path.split('/')
+        valid_path_parts = list(filter(None, split_path))
+        self.path_parts = self.remove_language_code(valid_path_parts)
+        self.stripped_path = '/'.join(self.path_parts)
+
+        # if self.path_is_redirect:
+        #     return http.HttpResponsePermanentRedirect(self.redirected_url)
+
+        if self.path_is_exception:
+            return response
+        else:
+            return http.HttpResponsePermanentRedirect(self.lower_path)
+
+        return response
+
+    def remove_language_code(self, path_parts_list):
+        """Remove language code from path parts if exists."""
+        codes = [x[0] for x in settings.ACTIVE_LANGUAGES]
+        return tuple(x for x in path_parts_list if x not in codes)
 
     @cached_property
     def exception_values(self):
