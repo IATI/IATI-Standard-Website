@@ -27,10 +27,12 @@ class LowercaseMiddleware:
         self.path_parts = self.remove_language_code(valid_path_parts)
         self.stripped_path = '/'.join(self.path_parts)
 
-        # if self.path_is_redirect:
-        #     return http.HttpResponsePermanentRedirect(self.redirected_url)
+        if self.path_is_redirect:
+            return http.HttpResponsePermanentRedirect(self.redirected_url)
 
         if self.path_is_exception:
+            return response
+        else:
             return http.HttpResponsePermanentRedirect(self.lower_path)
 
         return response
@@ -66,9 +68,9 @@ class LowercaseMiddleware:
     def path_is_exception(self):
         """Review exceptions to the lowercase ruling."""
         if self.lower_path == self.path:
-            return False
+            return True
         if self.path == '/':
-            return False
+            return True
         if self.path.startswith(self.exception_values):
-            return False
-        return True
+            return True
+        return False
