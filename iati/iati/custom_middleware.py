@@ -45,14 +45,14 @@ class LowercaseMiddleware:
         """Construct tuple of cached redirect urls from settings."""
         return tuple(x for x in settings.REFERENCE_NAMESPACES)
 
-    @cached_property
+    @property
     def path_is_redirect(self):
         """Verify if path is redirect."""
         if self.stripped_path.startswith(self.redirect_urls):
             return True
         return False
 
-    @cached_property
+    @property
     def redirected_url(self):
         """Construct redirect URL from base url and request path."""
         return '{}{}'.format(settings.REFERENCE_REDIRECT_BASE_URL, self.path)
