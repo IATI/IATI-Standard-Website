@@ -35,7 +35,7 @@ class RedirectIATISites:
         codes = [x[0] for x in settings.ACTIVE_LANGUAGES]
         return tuple(x for x in path_parts_list if x not in codes)
 
-    @cached_property
+    @property
     def redirect_urls(self):
         """Construct tuple of cached redirect urls from settings."""
         return tuple(x for x in settings.REFERENCE_NAMESPACES)
@@ -59,37 +59,33 @@ class LowercaseMiddleware:
     def __init__(self, get_response):
         """Initialise class."""
         self.get_response = get_response
+        self.host = ''
         self.path = ''
-        self.stripped_path = ''
         self.lower_path = ''
-        self.path_parts = ''
+        self.site_host = ''
+        self.request_host = ''
 
     def __call__(self, request):
         """Redirect url paths as lowercase except for documents or media files."""
         response = self.get_response(request)
+
+        self.request_host = request.get_host()
+        self.site_hostname = request.site.hostname
         self.path = request.get_full_path()
         self.lower_path = self.path.lower()
 
-        # sanitize the path ready for comparison
-        split_path = self.path.split('/')
-        valid_path_parts = list(filter(None, split_path))
-        self.path_parts = self.remove_language_code(valid_path_parts)
-        self.stripped_path = '/'.join(self.path_parts)
-
-        # if self.path_is_redirect:
-        #     return http.HttpResponsePermanentRedirect(self.redirected_url)
-
-        if self.path_is_exception:
-            return response
-        else:
+        if self.request_is_internal and self.path_is_not_lowercase and self.path_is_not_exception:
             return http.HttpResponsePermanentRedirect(self.lower_path)
 
         return response
 
-    def remove_language_code(self, path_parts_list):
-        """Remove language code from path parts if exists."""
-        codes = [x[0] for x in settings.ACTIVE_LANGUAGES]
-        return tuple(x for x in path_parts_list if x not in codes)
+    @property
+    def request_is_internal(self):
+        return self.request_host == self.site_hostname
+
+    @property
+    def path_is_not_lowercase(self):
+        return self.path != self.lower_path
 
     @cached_property
     def exception_values(self):
@@ -97,12 +93,10 @@ class LowercaseMiddleware:
         return (settings.ADMIN_URL, settings.MEDIA_URL, settings.DOCUMENTS_URL, settings.STATIC_URL)
 
     @cached_property
-    def path_is_exception(self):
+    def path_is_not_exception(self):
         """Review exceptions to the lowercase ruling."""
-        if self.lower_path == self.path:
-            return True
         if self.path == '/':
-            return True
+            return False
         if self.path.startswith(self.exception_values):
-            return True
-        return False
+            return False
+        return True
