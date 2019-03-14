@@ -27,8 +27,8 @@ class LowercaseMiddleware:
         self.path_parts = self.remove_language_code(valid_path_parts)
         self.stripped_path = '/'.join(self.path_parts)
 
-        if self.path_is_redirect:
-            return http.HttpResponsePermanentRedirect(self.redirected_url)
+        # if self.path_is_redirect:
+        #     return http.HttpResponsePermanentRedirect(self.redirected_url)
 
         if self.path_is_exception:
             return http.HttpResponsePermanentRedirect(self.lower_path)
