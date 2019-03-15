@@ -15,15 +15,20 @@ class TestRedirectMiddleware():
         return DocumentFactory.create()
 
     def test_redirect_middleware_internal(self, client):
-        """Test behavior for internal redirects."""
+        """
+        Test behavior for internal redirects.
+
+        Create about page not dependent on default pages being added
+        via management command.
+        """
         client_request = client.get('/', follow=True).context.get('request')
         site = Site.find_for_request(client_request)
         site.hostname = client_request.get_host()
         site.save()
         home = Page.objects.get(id=3)
-        about = AboutPage(title='About')
+        about = AboutPage(title='About us')
         home.add_child(instance=about)
-        response = client.get('/About', follow=True)
+        response = client.get('/About-Us', follow=True)
         assert response.status_code == 200
 
     @pytest.mark.parametrize('redirect_mapping', [
