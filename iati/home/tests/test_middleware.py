@@ -14,9 +14,6 @@ class TestRedirectMiddleware():
         """Call the DocumentFactory to save a new document."""
         return DocumentFactory.create()
 
-    # @pytest.mark.parametrize('redirect_mapping', [
-    #     ('/About/', '/en/about/'),
-    # ])
     def test_redirect_middleware_internal(self, client):
         """Test behavior for internal redirects."""
         client_request = client.get('/', follow=True).context.get('request')

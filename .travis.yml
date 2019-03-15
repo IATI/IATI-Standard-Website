@@ -43,7 +43,7 @@ jobs:
             - python iati/manage.py migrate_translation --no-input
           before_script:
             - python iati/manage.py runserver &
-          script: pytest iati/home
+          script: make test
         - stage: strict lint
           install:
             - pip install -r iati/requirements_dev.txt
