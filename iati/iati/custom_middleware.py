@@ -5,6 +5,7 @@ from django.utils.functional import cached_property
 
 
 class RedirectIATISites:
+    """Middleware to redirect old URLs to new URLs."""
 
     def __init__(self, get_response):
         self.get_response = get_response
@@ -81,10 +82,12 @@ class LowercaseMiddleware:
 
     @property
     def request_is_internal(self):
+        """Check that request is to an internal page."""
         return self.request_host == self.site_hostname
 
     @property
     def path_is_not_lowercase(self):
+        """Check that path is not lowercase already."""
         return self.path != self.lower_path
 
     @cached_property

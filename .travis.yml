@@ -24,7 +24,7 @@ install:
 before_script:
   - python iati/manage.py runserver &
 script:
-  - pytest iati/home
+  - make test
 
 stages:
   - strict lint
