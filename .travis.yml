@@ -4,6 +4,8 @@ env:
   - MOZ_HEADLESS=1
 addons:
   firefox: latest
+  hosts:
+    - iatistandarg.org
 python:
   - 3.6
 
@@ -22,7 +24,7 @@ install:
 before_script:
   - python iati/manage.py runserver &
 script:
-  - make test
+  - pytest iati/home
 
 stages:
   - strict lint
@@ -43,7 +45,7 @@ jobs:
             - python iati/manage.py createdefaultpages
           before_script:
             - python iati/manage.py runserver &
-          script: make test
+          script: pytest iati/home
         - stage: strict lint
           install:
             - pip install -r iati/requirements_dev.txt
