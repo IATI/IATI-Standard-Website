@@ -14,14 +14,14 @@ class TestRedirectMiddleware():
         """Call the DocumentFactory to save a new document."""
         return DocumentFactory.create()
 
-    def test_redirect_middleware_internal(self, client):
+    def test_redirect_middleware_internal(self, client, rf):
         """
         Test behavior for internal redirects.
 
         Create about page not dependent on default pages being added
         via management command.
         """
-        client_request = client.get('/', follow=True).context.get('request')
+        client_request = rf.get('/', follow=True)
         site = Site.find_for_request(client_request)
         site.hostname = client_request.get_host()
         site.save()
