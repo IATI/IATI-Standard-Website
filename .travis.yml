@@ -5,7 +5,7 @@ env:
 addons:
   firefox: latest
   hosts:
-    - iatistandarg.org
+    - iatistandard.org
 python:
   - 3.6
 
