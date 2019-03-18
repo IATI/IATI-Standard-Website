@@ -208,17 +208,6 @@ class TestEventPages():
         admin_browser.visit(admin_browser.url + "?past=1&year=2019")
         assert admin_browser.is_text_present("Show all events")
 
-    def test_feed_image_shows_on_index_page(self, admin_browser):
-        """Check that when a user adds a feed image it also becomes the header image."""
-        admin_browser.find_by_text(EVENT_PAGE['title']).first.click()
-        scroll_to_bottom_of_page(admin_browser)
-        self.upload_an_image(admin_browser)
-        publish_page(admin_browser)
-        view_live_page(admin_browser, EVENT_INDEX_PAGE['title'])
-        admin_browser.visit(admin_browser.url + "?past=1&page=2")
-        feed_image = admin_browser.find_by_xpath('//div[@class="listing__media"]/img').last
-        assert 'pigeons' in feed_image.outer_html
-
     def upload_an_image(self, admin_browser):
         """Upload an image in the CMS.
 

@@ -303,15 +303,6 @@ class TestCaseStudyPage():
         admin_browser.attach_file('file', TEST_DATA_DIR + 'pigeons.jpeg')
         admin_browser.find_by_xpath('//em[contains(text(), "Upload")]').click()
 
-    def test_feed_image_shows_on_index_page(self, admin_browser):
-        """Check that when a user adds a feed image it also becomes the header image."""
-        admin_browser.find_by_text(CASE_STUDY_PAGE['title']).click()
-        self.upload_an_image(admin_browser)
-        publish_page(admin_browser)
-        view_live_page(admin_browser, self.CASE_STUDY_INDEX_PAGE_TITLE)
-        header_image = admin_browser.find_by_xpath('//div[@class="case-study__media background-cover"]')
-        assert 'pigeons' in header_image.outer_html
-
     def test_feed_image_shows_in_page_header(self, admin_browser):
         """Check that when a user adds a feed image it also becomes the header image.
 
