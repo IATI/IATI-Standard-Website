@@ -30,7 +30,7 @@ stages:
 jobs:
   include:
     - stage: test
-      script: pytest iati/home
+      script: make test
     - stage: strict lint
       env: LINTER=pylint
       script: make pylint
