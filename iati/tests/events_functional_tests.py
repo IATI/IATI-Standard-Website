@@ -8,7 +8,7 @@ import os
 import pytest
 from django.utils.text import slugify
 from django.conf import settings
-from base_functional_tests import click_obscured, find_and_click_add_button, find_and_click_toggle_button, fill_content_editor_block, TEST_DATA_DIR, view_live_page
+from base_functional_tests import click_obscured, find_and_click_add_button, find_and_click_toggle_button, fill_content_editor_block, view_live_page
 
 EVENT_INDEX_PAGE = {
     'title': 'Events',
