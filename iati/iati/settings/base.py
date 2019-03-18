@@ -79,7 +79,7 @@ MIDDLEWARE = [
     'wagtail.core.middleware.SiteMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
     'iati.custom_middleware.LowercaseMiddleware',
-
+    'iati.custom_middleware.RedirectIATISites',
 ]
 
 ROOT_URLCONF = 'iati.urls'

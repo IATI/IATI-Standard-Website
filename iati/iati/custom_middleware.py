@@ -4,11 +4,10 @@ from django.conf import settings
 from django.utils.functional import cached_property
 
 
-class LowercaseMiddleware:
-    """Middleware class to address incoming URLs with mixed cases into lowercase."""
+class RedirectIATISites:
+    """Middleware to redirect old URLs to new URLs."""
 
     def __init__(self, get_response):
-        """Initialise class."""
         self.get_response = get_response
         self.path = ''
         self.stripped_path = ''
@@ -16,8 +15,8 @@ class LowercaseMiddleware:
         self.path_parts = ''
 
     def __call__(self, request):
-        """Redirect url paths as lowercase except for documents or media files."""
         response = self.get_response(request)
+
         self.path = request.get_full_path()
         self.lower_path = self.path.lower()
 
@@ -30,9 +29,6 @@ class LowercaseMiddleware:
         if self.path_is_redirect:
             return http.HttpResponsePermanentRedirect(self.redirected_url)
 
-        if self.path_is_exception:
-            return http.HttpResponsePermanentRedirect(self.lower_path)
-
         return response
 
     def remove_language_code(self, path_parts_list):
@@ -40,7 +36,7 @@ class LowercaseMiddleware:
         codes = [x[0] for x in settings.ACTIVE_LANGUAGES]
         return tuple(x for x in path_parts_list if x not in codes)
 
-    @cached_property
+    @property
     def redirect_urls(self):
         """Construct tuple of cached redirect urls from settings."""
         return tuple(x for x in settings.REFERENCE_NAMESPACES)
@@ -57,16 +53,51 @@ class LowercaseMiddleware:
         """Construct redirect URL from base url and request path."""
         return '{}{}'.format(settings.REFERENCE_REDIRECT_BASE_URL, self.path)
 
+
+class LowercaseMiddleware:
+    """Middleware class to address incoming URLs with mixed cases into lowercase."""
+
+    def __init__(self, get_response):
+        """Initialise class."""
+        self.get_response = get_response
+        self.host = ''
+        self.path = ''
+        self.lower_path = ''
+        self.site_host = ''
+        self.request_host = ''
+
+    def __call__(self, request):
+        """Redirect url paths as lowercase except for documents or media files."""
+        response = self.get_response(request)
+
+        self.request_host = request.get_host()
+        self.site_hostname = request.site.hostname
+        self.path = request.get_full_path()
+        self.lower_path = self.path.lower()
+
+        if self.request_is_internal and self.path_is_not_lowercase and self.path_is_not_exception:
+            return http.HttpResponsePermanentRedirect(self.lower_path)
+
+        return response
+
+    @property
+    def request_is_internal(self):
+        """Check that request is to an internal page."""
+        return self.request_host == self.site_hostname
+
+    @property
+    def path_is_not_lowercase(self):
+        """Check that path is not lowercase already."""
+        return self.path != self.lower_path
+
     @cached_property
     def exception_values(self):
         """Return values to except from lowercase ruling."""
         return (settings.ADMIN_URL, settings.MEDIA_URL, settings.DOCUMENTS_URL, settings.STATIC_URL)
 
     @cached_property
-    def path_is_exception(self):
+    def path_is_not_exception(self):
         """Review exceptions to the lowercase ruling."""
-        if self.lower_path == self.path:
-            return False
         if self.path == '/':
             return False
         if self.path.startswith(self.exception_values):

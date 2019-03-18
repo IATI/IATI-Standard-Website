@@ -6,6 +6,7 @@ from django.db import models
 from django.apps import apps
 from django import forms
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.template.defaultfilters import slugify
 from wagtail.core.models import Page
 from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.core.blocks import TextBlock, StructBlock, StreamBlock, FieldBlock, CharBlock, RichTextBlock, RawHTMLBlock
@@ -117,12 +118,13 @@ class AbstractBasePage(Page):
 
     def clean(self):
         """Override clean to remove trailing dashes from slugs with whitespaces."""
-        for lang in ['en', 'fr', 'es', 'pt']:
+        for lang in tuple(x[0] for x in settings.LANGUAGES):
             slug_field = 'slug_{}'.format(lang)
             slug = getattr(self, slug_field)
             if slug:
-                slug_clean = re.sub(r'[^\w\s-]', '', slug).strip("-").lower()
-                setattr(self, slug_field, slug_clean)
+                slug_stripped = re.sub(r'[^\w\s-]', '', slug).strip("-")
+                slug_valid = slugify(slug_stripped)
+                setattr(self, slug_field, slug_valid)
         super(AbstractBasePage, self).clean()
 
 
