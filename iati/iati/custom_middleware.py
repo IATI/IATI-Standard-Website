@@ -65,6 +65,7 @@ class LowercaseMiddleware:
         self.lower_path = ''
         self.site_host = ''
         self.request_host = ''
+        self.site_hostname = ''
 
     def __call__(self, request):
         """Redirect url paths as lowercase except for documents or media files."""
