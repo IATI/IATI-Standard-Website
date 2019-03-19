@@ -7,7 +7,7 @@ from wagtail.documents.models import Document
 def random_filename():
     """Use factory.faker to generate a random file name which includes an uppercase character."""
     filegen = faker.Faker()
-    return filegen.random_uppercase_letter() + filegen.file_name()
+    return filegen.file_name().title()
 
 
 class DocumentFactory(factory.django.DjangoModelFactory):
