@@ -28,14 +28,20 @@ jobs:
     - stage: test
       script: make -C iati test
     - stage: strict lint
-      env: LINTER=pylint
+      env: 
+        - LINTER=pylint
+        - DJANGO_SETTINGS_MODULE=iati.settings.test
       script: make -C iati pylint
       if: branch IN (master, dev)
     - stage: strict lint
-      env: LINTER=flake8
+      env: 
+        - LINTER=flake8
+        - DJANGO_SETTINGS_MODULE=iati.settings.test
       script: make -C iati flake8
       if: branch IN (master, dev)
     - stage: strict lint
-      env: LINTER=pydocstyle
+      env: 
+        - LINTER=pydocstyle
+        - DJANGO_SETTINGS_MODULE=iati.settings.test
       script: make -C iati pydocstyle
       if: branch IN (master, dev)
