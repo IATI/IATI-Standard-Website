@@ -87,10 +87,10 @@ pydocstyle iati/
 
 Alternatively, the Makefile can be used:
 ```
-make test
-make lint
+make -C iati test
+make -C iati lint
 
 # OR
 
-make all
+make -C iati all
 ```
