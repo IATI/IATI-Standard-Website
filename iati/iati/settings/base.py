@@ -76,9 +76,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-
     'wagtail.core.middleware.SiteMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
+    'iati.custom_middleware.LowercaseMiddleware',
+    'iati.custom_middleware.RedirectIATISites',
 ]
 
 ROOT_URLCONF = 'iati.urls'
@@ -178,10 +179,42 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+DOCUMENTS_SLUG = 'documents'
+DOCUMENTS_URL = '/{}/'.format(DOCUMENTS_SLUG)
+
+ADMIN_SLUG = 'cms'
+ADMIN_URL = '/{}/'.format(ADMIN_SLUG)
 
 # Wagtail settings
 
 WAGTAIL_SITE_NAME = "iati"
+
+
+# Reference namespaces for URL redirection
+REFERENCE_NAMESPACES = [
+    "101",
+    "102",
+    "103",
+    "104",
+    "105",
+    "201",
+    "202",
+    "203",
+    "activity-standard",
+    "codelists",
+    "developer",
+    "introduction",
+    "namespaces-extensions",
+    "organisation-identifiers",
+    "organisation-standard",
+    "reference",
+    "rulesets",
+    "schema",
+    "upgrades",
+    "guidance/datastore",
+]
+
+REFERENCE_REDIRECT_BASE_URL = 'http://reference.iatistandard.org'
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash

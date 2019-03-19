@@ -15,7 +15,6 @@ from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.images.blocks import ImageChooserBlock
 from home.management.commands.createdefaultpages import DEFAULT_PAGES
 from home.models import HomePage
-# from iati.urls import ADMIN_SLUG
 
 
 DEFAULT_PAGES = DEFAULT_PAGES + [{'title': 'Home', 'slug': '', 'model': HomePage}]
@@ -210,14 +209,6 @@ class TestDefaultPages():
         admin_browser.find_by_text('Home').click()
         admin_browser.click_link_by_text(default_page_name)
 
-    def upload_an_image(self, admin_browser):
-        """Upload an image in the CMS."""
-        admin_browser.find_by_text('Choose an image').click()
-        click_obscured(admin_browser, admin_browser.find_by_text('Upload').first)
-        admin_browser.fill('title', 'Test image')
-        admin_browser.attach_file('file', TEST_DATA_DIR + 'pigeons.jpeg')
-        admin_browser.find_by_xpath('//em[contains(text(), "Upload")]').click()
-
     def publish_changes(self, admin_browser):
         """Publish changes made in the CMS to the live page.
 
@@ -233,17 +224,6 @@ class TestDefaultPages():
         """Check default pages exist."""
         browser.visit(LOCALHOST + '{}'.format(page_name['slug']))
         assert browser.title == page_name['title']
-
-    @pytest.mark.parametrize('default_page', DEFAULT_PAGES)
-    @pytest.mark.django_db
-    def test_header_image_is_editable(self, admin_browser, default_page):
-        """Check that the header image for the Home page can be edited in the CMS."""
-        self.navigate_to_edit_home_page(admin_browser, default_page['title'])
-        admin_browser.find_by_text('Multilingual').click()
-        self.upload_an_image(admin_browser)
-        self.publish_changes(admin_browser)
-        view_live_page(admin_browser, default_page['title'])
-        assert admin_browser.is_element_present_by_xpath('//img[@alt="Test image"]')
 
 
 class TestTopMenu():
