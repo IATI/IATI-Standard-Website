@@ -73,13 +73,16 @@ Tests are run using [pytest](https://pytest.org/) as it [provides a number of be
 
 Please be aware that very rarely tests using the database may return an OperationalError warning that the database cannot be destroyed as it is being accessed by other users. If the tests are otherwise passing it is advised that tests should be run again as this is a rare race condition glitch in pytest-django test teardown. The likelihood of this error occurring increases if subsets of tests that use the test database are run on their own. For example, if `pytest -k test_can_create_about_child_pages` is run.
 
+Configurations for tests and linting can be found in the `iati/` directory.
+
 ```
 # Run tests from the project root
-pytest
+pytest iati/
 ```
 
 Code linting is performed using [pylint](https://github.com/PyCQA/pylint) (with the [pylint-django](https://github.com/PyCQA/pylint-django) plugin), [flake8](http://flake8.pycqa.org) and [pydocstyle](http://www.pydocstyle.org).
 ```
+# Run linting from the project root
 pylint iati/
 flake8 iati/
 pydocstyle iati/
@@ -87,6 +90,7 @@ pydocstyle iati/
 
 Alternatively, the Makefile can be used:
 ```
+# Run make scripts from project root
 make -C iati test
 make -C iati lint
 

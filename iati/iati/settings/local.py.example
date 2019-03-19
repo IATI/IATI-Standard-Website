@@ -1,5 +1,4 @@
-"""
-If local.py is present, any settings in it will override those in base.py and dev.py.
+"""If local.py is present, any settings in it will override those in base.py and dev.py.
 
 Use this for any settings that are specific to this one installation, such as developer API keys.
 
