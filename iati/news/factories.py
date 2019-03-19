@@ -12,12 +12,14 @@ from news.models import (
 
 
 class NewsIndexPageFactory(BasePageFactory):
+    """Factory generating data for NewsIndexPage."""
 
     class Meta:
         model = NewsIndexPage
 
 
 class NewsPageFactory(BasePageFactory):
+    """Factory generating data for NewsPage."""
 
     class Meta:
         model = NewsPage
@@ -30,7 +32,7 @@ class NewsPageFactory(BasePageFactory):
 
     @factory.post_generation
     def news_categories(self, create, categories, **kwargs):
-        """Factory for multiple event types."""
+        """Generate M2M for news categories."""
         if not create:
             return
 
@@ -40,7 +42,7 @@ class NewsPageFactory(BasePageFactory):
 
     @factory.post_generation
     def related_news(self, create, articles, **kwargs):
-        """Factory for multiple event types."""
+        """Generate M2M for related news."""
         if not create:
             return
 
@@ -50,6 +52,7 @@ class NewsPageFactory(BasePageFactory):
 
 
 class NewsCategoryFactory(factory.django.DjangoModelFactory):
+    """Factory generating data for NewsCategory snippet."""
 
     class Meta:
         model = NewsCategory
@@ -62,6 +65,7 @@ class NewsCategoryFactory(factory.django.DjangoModelFactory):
 
 
 class RelatedNewsFactory(factory.django.DjangoModelFactory):
+    """Factory generating data for RelatedNews snippet."""
 
     class Meta:
         model = RelatedNews

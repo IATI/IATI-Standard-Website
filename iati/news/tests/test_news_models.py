@@ -1,10 +1,8 @@
 import pytest
-import random
 from news.factories import (
     NewsIndexPageFactory,
     NewsPageFactory,
     NewsCategoryFactory,
-    RelatedNewsFactory,
 )
 from home.models import HomePage
 

@@ -9,6 +9,7 @@ from home.factories import BasePageFactory
 
 
 class EventIndexPageFactory(BasePageFactory):
+    """Factory generating data for EventIndexPage."""
 
     class Meta:
         model = EventIndexPage
@@ -16,6 +17,7 @@ class EventIndexPageFactory(BasePageFactory):
 
 
 class EventPageFactory(BasePageFactory):
+    """Factory generating data for EventPage."""
 
     class Meta:
         model = EventPage
@@ -42,7 +44,7 @@ class EventPageFactory(BasePageFactory):
 
     @factory.post_generation
     def event_type(self, create, events, **kwargs):
-        """Factory for multiple event types."""
+        """Generate M2M for event types."""
         if not create:
             return
 
@@ -66,6 +68,7 @@ class EventPageFactory(BasePageFactory):
 
 
 class EventTypeFactory(factory.django.DjangoModelFactory):
+    """Factory generating data for EventType snippet."""
 
     class Meta:
         model = EventType
@@ -77,6 +80,7 @@ class EventTypeFactory(factory.django.DjangoModelFactory):
 
 
 class FeaturedEventFactory(factory.django.DjangoModelFactory):
+    """Factory generating data for FeaturedEvent snippet."""
 
     class Meta:
         model = FeaturedEvent
