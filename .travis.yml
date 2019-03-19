@@ -1,56 +1,41 @@
 language: python
 sudo: required
+addons:
+  hosts:
+    - iatistandard.org
 python:
   - 3.6
 
-services: postgresql
+env:
+  - DJANGO_SETTINGS_MODULE=iati.settings.test
 
-before_install:
-  - export DJANGO_SETTINGS_MODULE=iati.settings.test
 install:
   - pip install -r iati/requirements_dev.txt
   - psql -c "CREATE DATABASE travisci;" -U postgres  # Must match DB name in iati.settings.dev
-  - cd iati
-  - python manage.py makemigrations_translation
-  - python manage.py migrate_translation --no-input
+  - python iati/manage.py makemigrations_translation
+  - python iati/manage.py migrate_translation --no-input
 before_script:
-  - python manage.py runserver &
+  - python iati/manage.py runserver &
 script:
-  - make test
+  - make -C iati test
 
 stages:
   - strict lint
   - test
 
 jobs:
-    include:
-        - stage: test
-          before_install:
-            - export DJANGO_SETTINGS_MODULE=iati.settings.test
-          install:
-            - pip install -r iati/requirements_dev.txt
-            - psql -c "CREATE DATABASE travisci;" -U postgres  # Must match DB name in iati.settings.dev
-            - cd iati
-            - python manage.py makemigrations_translation
-            - python manage.py migrate_translation --no-input
-          before_script:
-            - python manage.py runserver &
-          script: make test
-        - stage: strict lint
-          install:
-            - pip install -r requirements_dev.txt
-          env: LINTER=pylint
-          script: make pylint
-          if: branch IN (master, dev)
-        - stage: strict lint
-          install:
-            - pip install -r requirements_dev.txt
-          env: LINTER=flake8
-          script: make flake8
-          if: branch IN (master, dev)
-        - stage: strict lint
-          install:
-            - pip install -r requirements_dev.txt
-          env: LINTER=pydocstyle
-          script: make pydocstyle
-          if: branch IN (master, dev)
+  include:
+    - stage: test
+      script: make -C iati test
+    - stage: strict lint
+      env: LINTER=pylint
+      script: make -C iati pylint
+      if: branch IN (master, dev)
+    - stage: strict lint
+      env: LINTER=flake8
+      script: make -C iati flake8
+      if: branch IN (master, dev)
+    - stage: strict lint
+      env: LINTER=pydocstyle
+      script: make -C iati pydocstyle
+      if: branch IN (master, dev)
