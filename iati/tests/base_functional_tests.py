@@ -225,17 +225,6 @@ class TestDefaultPages():
         browser.visit(LOCALHOST + '{}'.format(page_name['slug']))
         assert browser.title == page_name['title']
 
-    @pytest.mark.parametrize('default_page', DEFAULT_PAGES)
-    @pytest.mark.django_db
-    def test_header_image_is_editable(self, admin_browser, default_page):
-        """Check that the header image for the Home page can be edited in the CMS."""
-        self.navigate_to_edit_home_page(admin_browser, default_page['title'])
-        admin_browser.find_by_text('Multilingual').click()
-        self.upload_an_image(admin_browser)
-        self.publish_changes(admin_browser)
-        view_live_page(admin_browser, default_page['title'])
-        assert admin_browser.is_element_present_by_xpath('//img[@alt="Test image"]')
-
 
 class TestTopMenu():
     """A container for tests that the top menu navigation works."""
