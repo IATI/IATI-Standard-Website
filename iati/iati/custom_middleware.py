@@ -8,6 +8,7 @@ class RedirectIATISites:
     """Middleware to redirect old URLs to new URLs."""
 
     def __init__(self, get_response):
+        """Initialise class."""
         self.get_response = get_response
         self.path = ''
         self.stripped_path = ''
@@ -15,6 +16,7 @@ class RedirectIATISites:
         self.path_parts = ''
 
     def __call__(self, request):
+        """Call response to redirect old urls externally."""
         response = self.get_response(request)
 
         self.path = request.get_full_path()
