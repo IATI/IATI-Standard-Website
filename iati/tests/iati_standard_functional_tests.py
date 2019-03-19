@@ -1,27 +1,13 @@
 """A module of functional tests for the IATI Standard page."""
 import pytest
 from tests.base_functional_tests import click_obscured
-from tests.about_functional_tests import reveal_content_editor, scroll_to_bottom_of_page, TEST_DATA_DIR, view_live_page
+from tests.about_functional_tests import reveal_content_editor, scroll_to_bottom_of_page, view_live_page
 
 
 def navigate_to_Home_cms_section(admin_browser):
     """Navigate to the Home section of the CMS."""
     admin_browser.click_link_by_text('Pages')
     admin_browser.find_by_text('Home').click()
-
-
-def upload_an_image(admin_browser):
-    """Upload an image in the CMS.
-
-    Note:
-        Duplicate of the same helper function in base_functional_tests.
-
-    """
-    admin_browser.find_by_text('Choose an image').click()
-    click_obscured(admin_browser, admin_browser.find_by_text('Upload').first)
-    admin_browser.fill('title', 'Test image')
-    admin_browser.attach_file('file', TEST_DATA_DIR + 'pigeons.jpeg')
-    admin_browser.find_by_xpath('//em[contains(text(), "Upload")]').click()
 
 
 def publish_changes(admin_browser):
