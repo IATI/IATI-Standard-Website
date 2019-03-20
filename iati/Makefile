@@ -1,6 +1,5 @@
 # folders
-# IATI_FOLDER = iati/
-# TEST_FOLDER = $(IATI_FOLDER)tests/
+IATI_FOLDER = .
 
 # useful constants
 LINE_SEP = ---
@@ -8,7 +7,7 @@ LINE_SEP = ---
 all: test lint
 
 
-lint: $(CURDIR)
+lint: $(IATI_FOLDER)
 	-make pylint
 	echo $(LINE_SEP)
 	-make flake8
@@ -16,17 +15,17 @@ lint: $(CURDIR)
 	-make pydocstyle
 
 
-pylint: $(CURDIR)
-	pylint $(CURDIR)
+pylint: $(IATI_FOLDER)
+	pylint $(IATI_FOLDER)
 
 
-flake8: $(CURDIR)
-	flake8 $(CURDIR)
+flake8: $(IATI_FOLDER)
+	flake8 $(IATI_FOLDER)
 
 
-pydocstyle: $(CURDIR)
-	pydocstyle $(CURDIR)
+pydocstyle: $(IATI_FOLDER)
+	pydocstyle $(IATI_FOLDER)
 
 
-test: $(CURDIR)
-	pytest $(CURDIR)
+test: $(IATI_FOLDER)
+	pytest $(IATI_FOLDER)

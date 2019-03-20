@@ -9,48 +9,16 @@ from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.contrib.sitemaps.views import sitemap
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
+from wagtail.images.views.serve import serve
 
 from search import views as search_views
-from home.views import reference_redirect
 from .activate_languages import i18n_patterns  # For internationalization
 
 
-ADMIN_SLUG = "cms"
-
-
 urlpatterns = [  # pylint: disable=invalid-name
-    url(r'^django-{}/'.format(ADMIN_SLUG), admin.site.urls),
-    url(r'^{}/'.format(ADMIN_SLUG), include(wagtailadmin_urls)),
-    url(r'^documents/', include(wagtaildocs_urls)),
-]
-
-
-REFERENCE_NAMESPACES = [
-    "101",
-    "102",
-    "103",
-    "104",
-    "105",
-    "201",
-    "202",
-    "203",
-    "activity-standard",
-    "codelists",
-    "developer",
-    "introduction",
-    "namespaces-extensions",
-    "organisation-identifiers",
-    "organisation-standard",
-    "reference",
-    "rulesets",
-    "schema",
-    "upgrades",
-    "guidance/datastore",
-]
-
-
-urlpatterns += [
-    url(r'^(?:{})/'.format("|".join(REFERENCE_NAMESPACES)), reference_redirect)
+    url(r'^django-{}/'.format(settings.ADMIN_SLUG), admin.site.urls),
+    url(r'^{}/'.format(settings.ADMIN_SLUG), include(wagtailadmin_urls)),
+    url(r'^{}/'.format(settings.DOCUMENTS_SLUG), include(wagtaildocs_urls)),
 ]
 
 
@@ -65,6 +33,7 @@ urlpatterns += i18n_patterns(
     # Wagtail's page serving mechanism. This should be the last pattern in
     # the list:
     url(r'', include(wagtail_urls)),
+    url(r'^([^/]*)/(\d*)/([^/]*)/[^/]*$', serve, name='wagtailimages_serve'),
 
     # Alternatively, if you want Wagtail pages to be served from a subpath
     # of your site, rather than the site root:

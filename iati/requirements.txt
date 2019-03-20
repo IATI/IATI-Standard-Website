@@ -7,3 +7,4 @@ wagtail==2.0.1
 wagtail-modeltranslation==0.8.1
 Babel==2.6.0
 elasticsearch==2.4.1
+django-extensions==2.1.6

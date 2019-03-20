@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import dj_database_url
 
 # Mark language names as translation strings
 from django.utils.translation import gettext_lazy as _
@@ -63,6 +64,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'modeltranslation_sync',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -75,9 +77,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-
     'wagtail.core.middleware.SiteMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
+    'iati.custom_middleware.LowercaseMiddleware',
+    'iati.custom_middleware.RedirectIATISites',
 ]
 
 ROOT_URLCONF = 'iati.urls'
@@ -107,10 +110,7 @@ WSGI_APPLICATION = 'iati.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    'default': dj_database_url.config()
 }
 
 
@@ -147,6 +147,7 @@ LANGUAGES = [
 
 ACTIVE_LANGUAGES = [
     ('en', _('English')),
+    ('fr', _('French')),
 ]
 
 TIME_ZONE = 'UTC'
@@ -176,6 +177,11 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+DOCUMENTS_SLUG = 'documents'
+DOCUMENTS_URL = '/{}/'.format(DOCUMENTS_SLUG)
+
+ADMIN_SLUG = 'cms'
+ADMIN_URL = '/{}/'.format(ADMIN_SLUG)
 
 WAGTAILSEARCH_BACKENDS = {
     'default': {
@@ -189,10 +195,40 @@ WAGTAILSEARCH_BACKENDS = {
 
 WAGTAIL_SITE_NAME = "iati"
 
+
+# Reference namespaces for URL redirection
+REFERENCE_NAMESPACES = [
+    "101",
+    "102",
+    "103",
+    "104",
+    "105",
+    "201",
+    "202",
+    "203",
+    "activity-standard",
+    "codelists",
+    "developer",
+    "introduction",
+    "namespaces-extensions",
+    "organisation-identifiers",
+    "organisation-standard",
+    "reference",
+    "rulesets",
+    "schema",
+    "upgrades",
+    "guidance/datastore",
+]
+
+REFERENCE_REDIRECT_BASE_URL = 'http://reference.iatistandard.org'
+
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-BASE_URL = 'http://example.com'
+BASE_URL = 'http://iatistandard.org'
 
 # Modeltranslation sync Settings
 MODELTRANSLATION_LOCALE_PATH = os.path.join(BASE_DIR, 'locale')
+LOCALE_PATHS = (MODELTRANSLATION_LOCALE_PATH,)
 MODELTRANSLATION_PO_FILE = "iati.po"
+
+ZENDESK_REQUEST_URL = 'https://iati.zendesk.com/api/v2/requests.json'
