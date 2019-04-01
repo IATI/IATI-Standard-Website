@@ -98,3 +98,16 @@ class KnowledgebasePage(AbstractContentPage):
     """A base for a single Knowledgebase page."""
 
     subpage_types = []
+
+
+class CommunityPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
+    """A base for the Community page."""
+
+    parent_page_types = ['home.HomePage']
+    subpage_types = []
+
+    text_box = StreamField(IATIStreamBlock(required=False), null=True, blank=True, help_text='A small ammount of text explaing what IATI-Discuss is.')
+
+    button_link_text = models.TextField(max_length=255, null=True, blank=True, help_text='The text to appear on the button of the community page.')
+
+    translation_fields = AbstractIndexPage.translation_fields + ["text_box", "button_link_text"]
