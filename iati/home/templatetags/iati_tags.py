@@ -43,7 +43,7 @@ def default_page_url(context, default_page_name="home"):
         'news': NewsIndexPage,
         'iati_standard': IATIStandardPage,
         'using_data': UsingDataPage,
-        'community': CommunityPage
+        'community': CommunityPage,
     }
 
     default_page = page_model_names[default_page_name].objects.live().first()
