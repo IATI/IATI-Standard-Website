@@ -107,7 +107,7 @@ class CommunityPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
     parent_page_types = ['home.HomePage']
     subpage_types = []
 
-    text_box = models.TextField(max_length=255, null=True, blank=True, help_text='A small ammount of text explaing what IATI-Discuss is.')
+    text_box = models.TextField(max_length=255, null=True, blank=True, help_text='A small ammount of text describing the community page.')
 
     button_link_text = models.CharField(max_length=255, null=True, blank=True, help_text='The text to appear on the button of the community page.')
 
