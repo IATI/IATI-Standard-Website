@@ -111,10 +111,13 @@ class CommunityPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
 
     button_link_text = models.CharField(max_length=255, null=True, blank=True, help_text='The text to appear on the button of the community page.')
 
+    button_url = models.URLField(null=True, blank=True, help_text='The url for the community page being linked')
+
     translation_fields = AbstractIndexPage.translation_fields + ["text_box", "button_link_text"]
 
     content_panels = AbstractIndexPage.content_panels + [
         FieldPanel('heading'),
         FieldPanel('button_link_text'),
+        FieldPanel('button_url'),
         FieldPanel('text_box')
     ]
