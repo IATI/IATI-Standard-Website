@@ -2,14 +2,14 @@
 
 <div class="row">
     <div class="hero__caption">
-        <h1 class="hero__heading" style="font-size: 3.8;">{{ page.heading }}</h1>
+        <h1 class="hero__heading">{{ page.heading }}</h1>
 
-        <p class="hero__subheading" style="font-size: 1.6;">{{ page.excerpt|default:"" }}</p>
+        <p class="hero__subheading">{{ page.excerpt|default:"" }}</p>
 
     </div>
     <div class="hero__emblem">
       {% if page.header_image %}
-        {% image page.header_image width-1120 as img %}
+        {% image page.header_image width-1400 as img %}
         <img class="hero__emblem__mask" src="{{ img.url }}" alt="{{ img.alt }}">
       {% endif %}
     </div>
