@@ -33,13 +33,16 @@
         {% endwith %}
       </ul>
     </div>
-    <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
-      <a class="a2a_button_facebook"></a>
-      <a class="a2a_button_twitter"></a>
-      <a class="a2a_button_email"></a>
-    </div>
-    
-      <script async src="https://static.addtoany.com/menu/page.js"></script>
+    <ul class="social-list">
+      <li class="social-list__item">
+        <div class="fb-share-button" data-href="{{ page.url }}" data-layout="button" data-size="small">
+          <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a>
+        </div>
+      </li>
+      <li class="social-list__item">
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      </li>
+    </ul>
     {% if page.content_editor %}
       {% include "home/includes/streamfield.html" with content=page.content_editor %}
     {% endif %}
