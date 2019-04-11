@@ -1,4 +1,4 @@
-{% load static wagtailuserbar wagtailcore_tags iati_tags i18n %}
+{% load static wagtailuserbar wagtailcore_tags iati_tags wagtailimages_tags i18n %}
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -29,6 +29,32 @@
 
           gtag('config', 'UA-6109435-11', { 'anonymize_ip': true });
         </script>
+
+        {# Social Media Meta #}
+        <!-- Twitter https://dev.twitter.com/cards/types/summary -->
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@IATI_aid" />
+        <meta name="twitter:title" content="{{ page.title }}" />
+        <meta name="twitter:description" content="{{ page.search_description|default:page.excerpt|default:'' }}">
+        {% if page.social_media_image %}
+            {% image page.social_media_image width-320 as social_media_image %}
+            <meta name="twitter:image" content="{{ social_media_image.url }}">
+        {% else %}
+            <meta name="twitter:image" content="{% static 'assets/img/iati-share-social.png' %}">
+        {% endif %}
+
+        <!--Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="{{ request.site.hostname }}{{ page.url }}" />
+        <meta property="og:title" content="{{ page.title }}" />
+        <meta property="og:description" content="{{ page.search_description|default:page.excerpt|default:'' }}" />
+        <meta property="og:site_name" content="IATI Standard" />
+        {% if page.social_media_image %}
+            {% image page.social_media_image width-320 as social_media_image %}
+            <meta property="og:image" content="{{ social_media_image.url }}" />
+        {% else %}
+            <meta property="og:image" content="{% static 'assets/img/iati-share-social.png' %}" />
+        {% endif %}
 
         {# Global stylesheets #}
         <link rel="stylesheet" type="text/css" href="{% static 'home/css/responsive.css' %}">

@@ -94,6 +94,11 @@ class AbstractBasePage(Page):
 
     heading = models.CharField(max_length=255, null=True, blank=True)
     excerpt = models.TextField(null=True, blank=True)
+    social_media_image = models.ForeignKey(
+        'wagtailimages.Image', null=True, blank=True,
+        on_delete=models.SET_NULL, related_name='+',
+        help_text='This image will be used as the image for social media sharing cards.'
+    )
 
     translation_fields = [
         "heading",
@@ -103,6 +108,10 @@ class AbstractBasePage(Page):
         FilterField('live'),
         SearchField('heading'),
         SearchField('excerpt'),
+    ]
+
+    promote_panels = Page.promote_panels + [
+        ImageChooserPanel('social_media_image'),
     ]
 
     class Meta(object):

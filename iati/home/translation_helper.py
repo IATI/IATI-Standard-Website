@@ -3,6 +3,7 @@
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 from wagtail.admin.edit_handlers import TabbedInterface, ObjectList, FieldPanel, MultiFieldPanel, StreamFieldPanel
+from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.core.fields import Creator
 
 
@@ -21,7 +22,14 @@ def add_language_content_panels(page_model):
     """
     edit_handler_contents = []
     promote_panel_contents = []
-    promote_panel_fields = ["slug", "seo_title", "search_description"]
+    promote_panel_translation_fields = [
+        FieldPanel('slug'),
+        FieldPanel('seo_title'),
+        FieldPanel('search_description'),
+    ]
+    promote_panel_non_translation_fields = [
+        ImageChooserPanel('social_media_image'),
+    ]
     for language_code, language_name in settings.LANGUAGES:
         multi_field_panel_contents = [FieldPanel("title_{}".format(language_code))]
         stream_field_panel_contents = []
@@ -32,10 +40,14 @@ def add_language_content_panels(page_model):
                 multi_field_panel_contents.append(FieldPanel(localized_field_name))
             else:
                 stream_field_panel_contents.append(StreamFieldPanel(localized_field_name))
-        for field_name in promote_panel_fields:
-            promote_panel_contents.append(FieldPanel(field_name + "_{}".format(language_code)))
+        for field in promote_panel_translation_fields:
+            promote_panel_contents.append(FieldPanel(field.field_name + "_{}".format(language_code)))
+
         local_content_panel = [MultiFieldPanel(multi_field_panel_contents)] + stream_field_panel_contents
         edit_handler_contents.append(ObjectList(local_content_panel, heading=language_name))
+
+    for field in promote_panel_non_translation_fields:
+        promote_panel_contents.append(field)
     promote_and_settings_panels = [ObjectList([MultiFieldPanel(promote_panel_contents)], heading=_('Promote')), ObjectList(page_model.settings_panels, heading=_('Settings'), classname='settings')]
     if hasattr(page_model, "multilingual_field_panels"):
         edit_handler_contents = [ObjectList([field for field in page_model.multilingual_field_panels], heading=_('Multilingual'))] + edit_handler_contents
