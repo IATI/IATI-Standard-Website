@@ -78,15 +78,10 @@ class LowercaseMiddleware:
         self.path = request.get_full_path()
         self.lower_path = self.path.lower()
 
-        if self.request_is_internal and self.path_is_not_lowercase and self.path_is_not_exception:
+        if self.path_is_not_lowercase and self.path_is_not_exception:
             return http.HttpResponsePermanentRedirect(self.lower_path)
 
         return response
-
-    @property
-    def request_is_internal(self):
-        """Check that request is to an internal page."""
-        return self.request_host == self.site_hostname
 
     @property
     def path_is_not_lowercase(self):
