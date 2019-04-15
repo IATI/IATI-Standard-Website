@@ -2,7 +2,7 @@
 import pytest
 from django.conf import settings
 from factories import DocumentFactory
-from wagtail.core.models import Site, Page
+from wagtail.core.models import Page
 from about.models import AboutPage
 
 
@@ -14,17 +14,13 @@ class TestRedirectMiddleware():
         """Call the DocumentFactory to save a new document."""
         return DocumentFactory.create()
 
-    def test_redirect_middleware_internal(self, client, rf):
+    def test_redirect_middleware_internal(self, client):
         """
         Test behavior for internal redirects.
 
         Create about page not dependent on default pages being added
         via management command.
         """
-        client_request = rf.get('/', follow=True)
-        site = Site.find_for_request(client_request)
-        site.hostname = client_request.get_host()
-        site.save()
         home = Page.objects.get(id=3)
         about = AboutPage(title='About us')
         home.add_child(instance=about)
