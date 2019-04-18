@@ -1,7 +1,6 @@
 """Middleware for redirecting mixed case urls into lowercase."""
 from django import http
 from django.conf import settings
-from django.utils.functional import cached_property
 
 
 class RedirectIATISites:
