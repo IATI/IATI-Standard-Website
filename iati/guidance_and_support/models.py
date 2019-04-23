@@ -5,6 +5,7 @@ import requests
 from django.conf import settings
 from django.db import models
 
+from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.core.fields import StreamField
 from wagtail.core.models import Page
 from wagtail.images.edit_handlers import ImageChooserPanel
@@ -98,3 +99,25 @@ class KnowledgebasePage(AbstractContentPage):
     """A base for a single Knowledgebase page."""
 
     subpage_types = []
+
+
+class CommunityPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
+    """A base for the Community page."""
+
+    parent_page_types = ['home.HomePage']
+    subpage_types = []
+
+    text_box = models.TextField(max_length=255, null=True, blank=True, help_text='A small ammount of text describing the community page.')
+
+    button_link_text = models.CharField(max_length=255, null=True, blank=True, help_text='The text to appear on the button of the community page.')
+
+    button_url = models.URLField(null=True, blank=True, help_text='The url for the community page being linked')
+
+    translation_fields = AbstractIndexPage.translation_fields + ["text_box", "button_link_text"]
+
+    content_panels = AbstractIndexPage.content_panels + [
+        FieldPanel('heading'),
+        FieldPanel('button_link_text'),
+        FieldPanel('button_url'),
+        FieldPanel('text_box')
+    ]
