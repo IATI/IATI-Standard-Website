@@ -123,6 +123,8 @@ class AbstractBasePage(Page):
         """Override get_context method to check for active language length."""
         context = super(AbstractBasePage, self).get_context(request, *args, **kwargs)
         context['has_multilanguage_support'] = len(settings.ACTIVE_LANGUAGES)
+        context['social_twitter_handle'] = settings.TWITTER_HANDLE
+        context['social_youtube_url'] = settings.YOUTUBE_CHANNEL_URL
         return context
 
     def clean(self):
