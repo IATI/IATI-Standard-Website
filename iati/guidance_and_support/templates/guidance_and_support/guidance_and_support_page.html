@@ -25,7 +25,7 @@
              {% image guidance_group.section_image width-300 as img %}
              <img src="{{ img.url }}" alt="{{ img.title }}">
             {% else %}
-      			<img src="https://styles.iatistandard.org/assets/img/image-placeholder.svg" alt="placeholder image">
+      			<img src="{{ PATTERN_LIBRARY_URL }}assets/img/image-placeholder.svg" alt="placeholder image">
             {% endif %}
       		</div>
       	</aside>

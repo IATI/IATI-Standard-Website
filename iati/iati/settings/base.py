@@ -78,8 +78,8 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'wagtail.core.middleware.SiteMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
-    'iati.custom_middleware.LowercaseMiddleware',
     'iati.custom_middleware.RedirectIATISites',
+    'iati.custom_middleware.LowercaseMiddleware',
 ]
 
 ROOT_URLCONF = 'iati.urls'
@@ -97,6 +97,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'iati.context_processors.assets_library_url',
             ],
         },
     },
@@ -184,6 +185,8 @@ DOCUMENTS_URL = '/{}/'.format(DOCUMENTS_SLUG)
 
 ADMIN_SLUG = 'cms'
 ADMIN_URL = '/{}/'.format(ADMIN_SLUG)
+
+PATTERN_LIBRARY_URL = 'https://iati-styles-staging.netlify.com/'
 
 # Wagtail settings
 
