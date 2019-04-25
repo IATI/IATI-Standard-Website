@@ -1,4 +1,5 @@
 import pytest
+from django.utils import timezone
 from events.factories import EventPageFactory, EventIndexPageFactory, EventTypeFactory
 from events.models import EventPage
 from home.models import HomePage
