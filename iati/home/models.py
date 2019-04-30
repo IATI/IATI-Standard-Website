@@ -94,6 +94,11 @@ class AbstractBasePage(Page):
 
     heading = models.CharField(max_length=255, null=True, blank=True)
     excerpt = models.TextField(null=True, blank=True)
+    social_media_image = models.ForeignKey(
+        'wagtailimages.Image', null=True, blank=True,
+        on_delete=models.SET_NULL, related_name='+',
+        help_text='This image will be used as the image for social media sharing cards.'
+    )
 
     translation_fields = [
         "heading",
@@ -105,6 +110,10 @@ class AbstractBasePage(Page):
         SearchField('excerpt'),
     ]
 
+    promote_panels = Page.promote_panels + [
+        ImageChooserPanel('social_media_image'),
+    ]
+
     class Meta(object):
         """Meta data for the class."""
 
@@ -114,6 +123,8 @@ class AbstractBasePage(Page):
         """Override get_context method to check for active language length."""
         context = super(AbstractBasePage, self).get_context(request, *args, **kwargs)
         context['has_multilanguage_support'] = len(settings.ACTIVE_LANGUAGES)
+        context['social_twitter_handle'] = settings.TWITTER_HANDLE
+        context['social_youtube_url'] = settings.YOUTUBE_CHANNEL_URL
         return context
 
     def clean(self):

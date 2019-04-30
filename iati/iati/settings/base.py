@@ -97,6 +97,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'iati.context_processors.assets_library_url',
             ],
         },
     },
@@ -185,6 +186,9 @@ DOCUMENTS_URL = '/{}/'.format(DOCUMENTS_SLUG)
 ADMIN_SLUG = 'cms'
 ADMIN_URL = '/{}/'.format(ADMIN_SLUG)
 
+# URL for pattern library, including trailing slash
+PATTERN_LIBRARY_URL = 'https://iati-styles-staging.netlify.com/'
+
 # Wagtail settings
 
 WAGTAIL_SITE_NAME = "iati"
@@ -226,3 +230,7 @@ LOCALE_PATHS = (MODELTRANSLATION_LOCALE_PATH,)
 MODELTRANSLATION_PO_FILE = "iati.po"
 
 ZENDESK_REQUEST_URL = 'https://iati.zendesk.com/api/v2/requests.json'
+
+# Social Media
+TWITTER_HANDLE = 'IATI_aid'
+YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/channel/UCAVH1gcgJXElsj8ENC-bDQQ'

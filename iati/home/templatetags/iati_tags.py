@@ -13,7 +13,7 @@ from home.models import HomePage, StandardPage
 from about.models import AboutPage
 from contact.models import ContactPage
 from events.models import EventIndexPage, EventType, FeaturedEvent
-from guidance_and_support.models import GuidanceAndSupportPage
+from guidance_and_support.models import GuidanceAndSupportPage, CommunityPage
 from news.models import NewsIndexPage, NewsCategory
 from iati_standard.models import IATIStandardPage
 from using_data.models import UsingDataPage
@@ -42,7 +42,8 @@ def default_page_url(context, default_page_name="home"):
         'guidance_and_support': GuidanceAndSupportPage,
         'news': NewsIndexPage,
         'iati_standard': IATIStandardPage,
-        'using_data': UsingDataPage
+        'using_data': UsingDataPage,
+        'community': CommunityPage,
     }
 
     default_page = page_model_names[default_page_name].objects.live().first()

@@ -1,4 +1,4 @@
-{% load static wagtailuserbar wagtailcore_tags iati_tags i18n %}
+{% load static wagtailuserbar wagtailcore_tags iati_tags wagtailimages_tags i18n %}
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -6,6 +6,13 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-K6488R2');</script>
+        <!-- End Google Tag Manager -->
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <title>
@@ -30,27 +37,59 @@
           gtag('config', 'UA-6109435-11', { 'anonymize_ip': true });
         </script>
 
+        {# Social Media Meta #}
+        {% if page %}
+            <!-- Twitter https://dev.twitter.com/cards/types/summary -->
+            <meta name="twitter:card" content="summary" />
+            <meta name="twitter:site" content="@{{ social_twitter_handle }}" />
+            <meta name="twitter:title" content="{{ page.title }}" />
+            <meta name="twitter:description" content="{{ page.search_description|default:page.excerpt|default:'' }}">
+            {% if page.social_media_image %}
+                {% image page.social_media_image width-320 as social_media_image %}
+                <meta name="twitter:image" content="{{ social_media_image.url }}">
+            {% else %}
+                <meta name="twitter:image" content="{% static 'assets/img/iati-share-social.png' %}">
+            {% endif %}
+
+            <!--Facebook -->
+            <meta property="og:type" content="website" />
+            <meta property="og:url" content="{{ request.site.hostname }}{{ page.url }}" />
+            <meta property="og:title" content="{{ page.title }}" />
+            <meta property="og:description" content="{{ page.search_description|default:page.excerpt|default:'' }}" />
+            <meta property="og:site_name" content="IATI Standard" />
+            {% if page.social_media_image %}
+                {% image page.social_media_image width-320 as social_media_image %}
+                <meta property="og:image" content="{{ social_media_image.url }}" />
+            {% else %}
+                <meta property="og:image" content="{% static 'assets/img/iati-share-social.png' %}" />
+            {% endif %}
+        {% endif %}
+
         {# Global stylesheets #}
         <link rel="stylesheet" type="text/css" href="{% static 'home/css/responsive.css' %}">
-        <link rel="stylesheet" type="text/css" href="https://styles.iatistandard.org/assets/css/screen.min.css">
+        <link rel="stylesheet" type="text/css" href="{{ PATTERN_LIBRARY_URL }}assets/css/screen.min.css">
         <!-- overrides -->
         <link rel="stylesheet" type="text/css" href="{% static 'home/css/custom.css' %}">
 
         <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700" rel="stylesheet">
         <script>/*! grunt-grunticon Stylesheet Loader - v2.1.6 | https://github.com/filamentgroup/grunticon | (c) 2015 Scott Jehl, Filament Group, Inc. | MIT license. */
         !function(){function e(e,n,t){"use strict";var o=window.document.createElement("link"),r=n||window.document.getElementsByTagName("script")[0],a=window.document.styleSheets;return o.rel="stylesheet",o.href=e,o.media="only x",r.parentNode.insertBefore(o,r),o.onloadcssdefined=function(e){for(var n,t=0;t<a.length;t++)a[t].href&&a[t].href===o.href&&(n=!0);n?e():setTimeout(function(){o.onloadcssdefined(e)})},o.onloadcssdefined(function(){o.media=t||"all"}),o}function n(e,n){e.onload=function(){e.onload=null,n&&n.call(e)},"isApplicationInstalled"in navigator&&"onloadcssdefined"in e&&e.onloadcssdefined(n)}!function(t){var o=function(r,a){"use strict";if(r&&3===r.length){var i=t.navigator,c=t.document,s=t.Image,d=!(!c.createElementNS||!c.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect||!c.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image","1.1")||t.opera&&-1===i.userAgent.indexOf("Chrome")||-1!==i.userAgent.indexOf("Series40")),l=new s;l.onerror=function(){o.method="png",o.href=r[2],e(r[2])},l.onload=function(){var t=1===l.width&&1===l.height,i=r[t&&d?0:t?1:2];t&&d?o.method="svg":t?o.method="datapng":o.method="png",o.href=i,n(e(i),a)},l.src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==",c.documentElement.className+=" grunticon"}};o.loadCSS=e,o.onloadCSS=n,t.grunticon=o}(this),function(e,n){"use strict";var t=n.document,o="grunticon:",r=function(e){if(t.attachEvent?"complete"===t.readyState:"loading"!==t.readyState)e();else{var n=!1;t.addEventListener("readystatechange",function(){n||(n=!0,e())},!1)}},a=function(e){return n.document.querySelector('link[href$="'+e+'"]')},i=function(e){var n,t,r,a,i,c,s={};if(n=e.sheet,!n)return s;t=n.cssRules?n.cssRules:n.rules;for(var d=0;d<t.length;d++)r=t[d].cssText,a=o+t[d].selectorText,i=r.split(");")[0].match(/US\-ASCII\,([^"']+)/),i&&i[1]&&(c=decodeURIComponent(i[1]),s[a]=c);return s},c=function(e){var n,r,a,i;a="data-grunticon-embed";for(var c in e){i=c.slice(o.length);try{n=t.querySelectorAll(i)}catch(s){continue}r=[];for(var d=0;d<n.length;d++)null!==n[d].getAttribute(a)&&r.push(n[d]);if(r.length)for(d=0;d<r.length;d++)r[d].innerHTML=e[c],r[d].style.backgroundImage="none",r[d].removeAttribute(a)}return r},s=function(n){"svg"===e.method&&r(function(){c(i(a(e.href))),"function"==typeof n&&n()})};e.embedIcons=c,e.getCSS=a,e.getIcons=i,e.ready=r,e.svgLoadedCallback=s,e.embedSVG=s}(grunticon,this)}();
-            grunticon(["https://styles.iatistandard.org/assets/icons/ico.data.svg.css", "https://styles.iatistandard.org/assets/icons/ico.data.png.css", "https://styles.iatistandard.org/assets/icons/ico.fallback.css"]);
+            grunticon(["{{ PATTERN_LIBRARY_URL }}assets/icons/ico.data.svg.css", "{{ PATTERN_LIBRARY_URL }}assets/icons/ico.data.png.css", "{{ PATTERN_LIBRARY_URL }}assets/icons/ico.fallback.css"]);
         </script>
-        <noscript><link href="https://styles.iatistandard.org/assets/icons/ico.fallback.css" rel="stylesheet"></noscript>
-        <script src="https://styles.iatistandard.org/assets/js/libs/modernizr.js"></script>
-		<link rel="icon" type="image/png" href="https://styles.iatistandard.org/assets/favicons/favicon-32x32.png" sizes="32x32" />
-        <link rel="icon" type="image/png" href="https://styles.iatistandard.org/assets/favicons/favicon-16x16.png" sizes="16x16">
+        <noscript><link href="{{ PATTERN_LIBRARY_URL }}assets/icons/ico.fallback.css" rel="stylesheet"></noscript>
+        <script src="{{ PATTERN_LIBRARY_URL }}assets/js/libs/modernizr.js"></script>
+		<link rel="icon" type="image/png" href="{{ PATTERN_LIBRARY_URL }}assets/favicons/favicon-32x32.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="{{ PATTERN_LIBRARY_URL }}assets/favicons/favicon-16x16.png" sizes="16x16">
         {% block extra_css %}
             {# Override this in templates to add extra stylesheets #}
         {% endblock %}
     </head>
 
     <body class="{% block body_class %}{% endblock %}" id="{% block body_id %}{% endblock %}">
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K6488R2"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
         {% wagtailuserbar %}
         	<div class="ui-base">
 		<a href="#pagecontent" class="skiplink" data-js="skiplink">{% trans "Skip to main content" %}</a>
@@ -101,7 +140,7 @@
             <a href="{% default_page_url 'guidance_and_support' %}">{% trans "Guidance & Support" %}</a></li>
 
         <li id="section-community" class='navigation-primary__item {% check_active "community" "primary"%}'>
-            <a href="https://discuss.iatistandard.org/">{% trans "Community" %}</a></li>
+            <a href="{% default_page_url 'community' %}">{% trans "Community" %}</a></li>
 
         <li id="section-news" class='navigation-primary__item navigation-primary__item--ss-only {% check_active "news" %}'>
             <a href="{% default_page_url 'news' %}">{% trans "News" %}</a></li>
@@ -174,7 +213,8 @@
 			<p class="footer__legal">{% trans "Copyright IATI 2018. All rights reserved" %}</p>
 
 			<ul class="social-list">
-				<li class="social-list__item social-list__item--twitter"><a href="https://twitter.com/IATI_aid" rel="noopener noreferrer" target="_blank">{% trans "Twitter" %}</a></li>
+				<li class="social-list__item social-list__item--twitter"><a href="https://twitter.com/{{ social_twitter_handle }}" rel="noopener noreferrer" target="_blank">{% trans "Twitter" %}</a></li>
+                <li class="social-list__item social-list__item--youtube"><a href="{{ social_youtube_url }}" rel="noopener noreferrer" target="_blank">{% trans "YouTube" %}</a></li>
 			</ul>
 		</div>
 	</div>
@@ -182,7 +222,7 @@
 
 
 	</div>
-	<script src="https://styles.iatistandard.org/assets/js/libs/basicScroll.min.js"></script>
+	<script src="{{ PATTERN_LIBRARY_URL }}assets/js/libs/basicScroll.min.js"></script>
 <script>
     const instance = basicScroll.create({
        elem: document.querySelector('.listing__body'),
@@ -198,6 +238,6 @@
     })
     instance.start()
 </script>
-<script type="text/javascript" src="https://styles.iatistandard.org/assets/js/app.bundle.js"></script>
+<script type="text/javascript" src="{{ PATTERN_LIBRARY_URL }}assets/js/app.bundle.js"></script>
     </body>
 </html>
