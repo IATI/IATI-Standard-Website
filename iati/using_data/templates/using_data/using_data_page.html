@@ -29,7 +29,7 @@
                   <div class="card card--alt">
                       <h2 class="card__heading">{{ subpage.heading }}</h2>
                       <p class="card__excerpt">{{ subpage.excerpt|default:"" }}</p>
-                      <p class="card__excerpt--truncated">{{ subpage.excerpt|truncatechars:35|default:"" }}</p>
+                      <p class="card__excerpt--truncated">{{ subpage.excerpt|default:""|truncatechars:35 }}</p>
                       <a href="{% slugurl_trans subpage.slug %}" class="button">{% trans "Find out more" %}</a>
                   </div>
                   {% endwith %}
