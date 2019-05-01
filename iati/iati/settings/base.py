@@ -237,3 +237,6 @@ COMMUNITY_URL = 'https://discuss.iatistandard.org/'
 # Social Media
 TWITTER_HANDLE = 'IATI_aid'
 YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/channel/UCAVH1gcgJXElsj8ENC-bDQQ'
+
+# Relative URL for the default social media sharing image
+DEFAULT_SHARE_IMAGE_URL = 'assets/img/iati-share-social.png'
