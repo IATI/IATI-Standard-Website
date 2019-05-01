@@ -145,7 +145,8 @@ class AbstractBasePage(Page):
         if self.social_media_image:
             return self.social_media_image.get_rendition('width-320|jpegquality-60').url
         if hasattr(self, 'feed_image'):
-            return self.feed_image.get_rendition('width-320|jpegquality-60').url
+            if self.feed_image:
+                return self.feed_image.get_rendition('width-320|jpegquality-60').url
         return static(settings.DEFAULT_SHARE_IMAGE_URL)
 
 
