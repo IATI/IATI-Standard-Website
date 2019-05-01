@@ -44,12 +44,7 @@
             <meta name="twitter:site" content="@{{ social_twitter_handle }}" />
             <meta name="twitter:title" content="{{ page.title }}" />
             <meta name="twitter:description" content="{{ page.search_description|default:page.excerpt|default:'' }}">
-            {% if page.social_media_image %}
-                {% image page.social_media_image width-320 as social_media_image %}
-                <meta name="twitter:image" content="{{ social_media_image.url }}">
-            {% else %}
-                <meta name="twitter:image" content="{% static 'assets/img/iati-share-social.png' %}">
-            {% endif %}
+            <meta name="twitter:image" content="{{ page.social_share_image_url }}">
 
             <!--Facebook -->
             <meta property="og:type" content="website" />
@@ -57,19 +52,14 @@
             <meta property="og:title" content="{{ page.title }}" />
             <meta property="og:description" content="{{ page.search_description|default:page.excerpt|default:'' }}" />
             <meta property="og:site_name" content="IATI Standard" />
-            {% if page.social_media_image %}
-                {% image page.social_media_image width-320 as social_media_image %}
-                <meta property="og:image" content="{{ social_media_image.url }}" />
-            {% else %}
-                <meta property="og:image" content="{% static 'assets/img/iati-share-social.png' %}" />
-            {% endif %}
+            <meta property="og:image" content="{{ page.social_share_image_url }}">
         {% endif %}
 
         {# Global stylesheets #}
-        <link rel="stylesheet" type="text/css" href="{% static 'home/css/responsive.css' %}">
+        <link rel="stylesheet" type="text/css" href="{{ request.site.hostname }}{% static 'home/css/responsive.css' %}">
         <link rel="stylesheet" type="text/css" href="{{ PATTERN_LIBRARY_URL }}assets/css/screen.min.css">
         <!-- overrides -->
-        <link rel="stylesheet" type="text/css" href="{% static 'home/css/custom.css' %}">
+        <link rel="stylesheet" type="text/css" href="{{ request.site.hostname }}{% static 'home/css/custom.css' %}">
 
         <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700" rel="stylesheet">
         <script>/*! grunt-grunticon Stylesheet Loader - v2.1.6 | https://github.com/filamentgroup/grunticon | (c) 2015 Scott Jehl, Filament Group, Inc. | MIT license. */

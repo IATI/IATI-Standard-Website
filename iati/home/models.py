@@ -5,6 +5,7 @@ from django.conf import settings
 from django.db import models
 from django.apps import apps
 from django import forms
+from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template.defaultfilters import slugify
 from wagtail.core.models import Page
@@ -137,6 +138,16 @@ class AbstractBasePage(Page):
                 slug_valid = slugify(slug_stripped)
                 setattr(self, slug_field, slug_valid)
         super(AbstractBasePage, self).clean()
+
+    @property
+    def social_share_image_url(self):
+        """Return a default social media image for any page."""
+        if self.social_media_image:
+            return self.social_media_image.get_rendition('width-320|jpegquality-60').url
+        if hasattr(self, 'feed_image'):
+            if self.feed_image:
+                return self.feed_image.get_rendition('width-320|jpegquality-60').url
+        return static(settings.DEFAULT_SHARE_IMAGE_URL)
 
 
 class AbstractContentPage(AbstractBasePage):
