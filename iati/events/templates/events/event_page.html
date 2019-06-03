@@ -60,7 +60,7 @@
 
     </aside>
     <div class="l-sidebar__body">
-
+      {% include 'partials/social-share.html' %}
       {% if page.content_editor %}
         {% include "home/includes/streamfield.html" with content=page.content_editor %}
       {% endif %}

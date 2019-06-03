@@ -79,8 +79,8 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'wagtail.core.middleware.SiteMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
-    'iati.custom_middleware.LowercaseMiddleware',
     'iati.custom_middleware.RedirectIATISites',
+    'iati.custom_middleware.LowercaseMiddleware',
 ]
 
 ROOT_URLCONF = 'iati.urls'
@@ -98,6 +98,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'iati.context_processors.assets_library_url',
             ],
         },
     },
@@ -191,6 +192,9 @@ WAGTAILSEARCH_BACKENDS = {
     },
 }
 
+# URL for pattern library, including trailing slash
+PATTERN_LIBRARY_URL = 'https://iati-styles-staging.netlify.com/'
+
 # Wagtail settings
 
 WAGTAIL_SITE_NAME = "iati"
@@ -232,3 +236,13 @@ LOCALE_PATHS = (MODELTRANSLATION_LOCALE_PATH,)
 MODELTRANSLATION_PO_FILE = "iati.po"
 
 ZENDESK_REQUEST_URL = 'https://iati.zendesk.com/api/v2/requests.json'
+
+# Community URL
+COMMUNITY_URL = 'https://discuss.iatistandard.org/'
+
+# Social Media
+TWITTER_HANDLE = 'IATI_aid'
+YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/channel/UCAVH1gcgJXElsj8ENC-bDQQ'
+
+# Relative URL for the default social media sharing image
+DEFAULT_SHARE_IMAGE_URL = 'assets/img/iati-share-social.png'

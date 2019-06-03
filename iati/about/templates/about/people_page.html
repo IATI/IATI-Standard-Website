@@ -49,7 +49,7 @@
                         {% image child.value.profile_picture max-600x600 as profilepicture %}
                         <img src="{{ profilepicture.url }}" alt="{{ profilepicture.alt }}">
                       {% else %}
-                        <img src="https://styles.iatistandard.org/assets/img/portrait.png" alt="placeholder portrait">
+                        <img src="{{ PATTERN_LIBRARY_URL }}assets/img/portrait.png" alt="placeholder portrait">
                       {% endif %}
                     </div>
                   </aside>

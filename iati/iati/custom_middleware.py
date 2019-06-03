@@ -1,7 +1,6 @@
 """Middleware for redirecting mixed case urls into lowercase."""
 from django import http
 from django.conf import settings
-from django.utils.functional import cached_property
 
 
 class RedirectIATISites:
@@ -78,31 +77,26 @@ class LowercaseMiddleware:
         self.path = request.get_full_path()
         self.lower_path = self.path.lower()
 
-        if self.request_is_internal and self.path_is_not_lowercase and self.path_is_not_exception:
+        if self.path_is_not_lowercase and self.path_is_not_exception:
             return http.HttpResponsePermanentRedirect(self.lower_path)
 
         return response
-
-    @property
-    def request_is_internal(self):
-        """Check that request is to an internal page."""
-        return self.request_host == self.site_hostname
 
     @property
     def path_is_not_lowercase(self):
         """Check that path is not lowercase already."""
         return self.path != self.lower_path
 
-    @cached_property
+    @property
     def exception_values(self):
         """Return values to except from lowercase ruling."""
-        return (settings.ADMIN_URL, settings.MEDIA_URL, settings.DOCUMENTS_URL, settings.STATIC_URL)
+        return [settings.ADMIN_URL, settings.MEDIA_URL, settings.DOCUMENTS_URL, settings.STATIC_URL]
 
-    @cached_property
+    @property
     def path_is_not_exception(self):
         """Review exceptions to the lowercase ruling."""
         if self.path == '/':
             return False
-        if self.path.startswith(self.exception_values):
+        if any(item in self.path for item in self.exception_values):
             return False
         return True

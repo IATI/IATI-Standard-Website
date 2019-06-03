@@ -46,7 +46,7 @@
 		  {% image event.feed_image width-200 as img %}
 		  <img src="{{ img.url }}" alt="{{ img.title }}" />
 		  {% else %}
-		  <img src="https://styles.iatistandard.org/assets/svg/source/logo-square.svg" alt="iati logo"/>
+		  <img src="{{ PATTERN_LIBRARY_URL }}assets/svg/source/logo-square.svg" alt="iati logo"/>
 		  {% endif %}
 		</div>
         {% if event.location %}

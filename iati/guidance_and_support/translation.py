@@ -4,7 +4,7 @@ from modeltranslation.translator import TranslationOptions
 from modeltranslation.decorators import register
 
 from home.translation_helper import add_language_content_panels
-from .models import GuidanceAndSupportPage, GuidanceGroupPage, GuidancePage, KnowledgebaseIndexPage, KnowledgebasePage
+from .models import GuidanceAndSupportPage, GuidanceGroupPage, GuidancePage, KnowledgebaseIndexPage, KnowledgebasePage, CommunityPage
 
 
 @register(GuidanceAndSupportPage)
@@ -55,3 +55,10 @@ class KnowledgebasePageTR(TranslationOptions):
 
 
 add_language_content_panels(KnowledgebasePage)
+
+
+@register(CommunityPage)
+class CommunityPageTR(TranslationOptions):
+    """Class declaring which fields of CommunityPage model to translate."""
+
+    fields = CommunityPage.translation_fields
