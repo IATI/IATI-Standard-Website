@@ -23,12 +23,6 @@ Enter into the Django project directory
 cd iati
 ```
 
-Copy the example local settings file and enter local, unversioned settings accordingly.
-
-```
-cp iati/settings/local.py.example iati/settings/local.py
-```
-
 Build the project. The following will build linked `web`, `postgres` and `elasticsearch` containers.
 
 ```
