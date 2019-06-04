@@ -23,9 +23,7 @@ Enter into the Django project directory
 cd iati
 ```
 
-Copy the example local settings file and enter database settings accordingly.
-
-**Note local.py should not be under version control as it contains sensitive information**
+Copy the example local settings file and enter local, unversioned settings accordingly.
 
 ```
 cp iati/settings/local.py.example iati/settings/local.py
@@ -46,16 +44,16 @@ docker-compose up -d
 You can interact with the `web` container directly (in this example, when running a `manage.py` command), like so:
 
 ```
-docker-compose run web python manage.py [command]
+docker-compose exec web python manage.py [command]
 ```
 
 This can feel verbose, so making an alias could be a good idea.
 
 ```
-echo 'alias dcrun="docker-compose run web"' >>~/.bash_profile
+echo 'alias dcrun="docker-compose exec web"' >>~/.bash_profile
 dcrun python manage.py [command]
 
-echo 'alias dcmanage="docker-compose run web python manage.py"' >>~/.bash_profile
+echo 'alias dcmanage="docker-compose exec web python manage.py"' >>~/.bash_profile
 dcmanage [command]
 ```
 
@@ -64,13 +62,13 @@ Make and perform Django database migrations AND bespoke translations for transla
 Django will ask you to approve bespoke SQL commands for the translated fields. You can auto-approve the bespoke commands by adding the flag `--noinput`
 
 ```
-docker-compose run web python manage.py makemigrations
-docker-compose run web python manage.py migrate
+docker-compose exec web python manage.py makemigrations
+docker-compose exec web python manage.py migrate
 ```
 
 Create default pages for each of the main sections (e.g. home, about, events etc) of the website
 ```
-docker-compose run web python manage.py createdefaultpages
+docker-compose exec web python manage.py createdefaultpages
 ```
 
 Create an initial superuser.
@@ -78,7 +76,7 @@ Create an initial superuser.
 **Be sure to update your local.py file with the credentials you specify with this command**
 
 ```
-docker-compose run web python manage.py createsuperuser
+docker-compose exec web python manage.py createsuperuser
 ```
 
 The website is browseable at `http://localhost/`. Make changes locally.
@@ -119,22 +117,22 @@ Configurations for tests and linting can be found in the `iati/` directory.
 
 ```
 # Run tests from the project root
-docker-compose run web pytest
+docker-compose exec web pytest
 ```
 
 Code linting is performed using [pylint](https://github.com/PyCQA/pylint) (with the [pylint-django](https://github.com/PyCQA/pylint-django) plugin), [flake8](http://flake8.pycqa.org) and [pydocstyle](http://www.pydocstyle.org).
 ```
-docker-compose run web pylint .
-docker-compose run web flake8
-docker-compose run web pydocstyle 
+docker-compose exec web pylint .
+docker-compose exec web flake8
+docker-compose exec web pydocstyle 
 ```
 
 Alternatively, the Makefile can be used:
 ```
-docker-compose run web make test
-docker-compose run web make lint
+docker-compose exec web make test
+docker-compose exec web make lint
 
 # OR
 
-docker-compose run web make all
+docker-compose exec web make all
 ```
