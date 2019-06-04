@@ -93,7 +93,7 @@ rm -r pyenv/
 
 * Secondly, remove the `DATABASES` dict from `local.py` entirely. The database config is now handled in `dev.py`, and does not need user customisation.
 
-If you are recieving the following error on `web`:
+If you are receiving the following error on `web`:
 
 ```
 psql: could not connect to server: Connection refused Is the server running on host "" and accepting TCP/IP connections on port 5432?
