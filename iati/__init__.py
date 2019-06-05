@@ -1,1 +1,1 @@
-"""A top-level namespace package for IATI."""
+"""A package for site settings and error templates."""

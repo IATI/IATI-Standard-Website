@@ -18,11 +18,6 @@ The current scope of the project (to April 2018) focuses on the 'About IATI' and
 
 ### Dev setup
 
-Enter into the Django project directory
-```
-cd iati
-```
-
 Build the project. The following will build linked `web`, `postgres` and `elasticsearch` containers.
 
 ```

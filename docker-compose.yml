@@ -1,5 +1,6 @@
 web:
   build: .
+  dockerfile: .dockerfile
   command: python manage.py runserver 0.0.0.0:80 --settings=iati.settings.dev
   volumes:
     - ./:/usr/src/app
