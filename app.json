@@ -1,0 +1,9 @@
+{
+  "name": "iati",
+  "description": "iati standard website",
+  "scripts": {
+    "dokku": {
+      "predeploy": "python manage.py migrate --noinput && python manage.py update_index"
+    }
+  }
+}
