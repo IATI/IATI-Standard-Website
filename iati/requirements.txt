@@ -8,4 +8,7 @@ wagtail-modeltranslation==0.8.1
 Wand==0.5.2
 Babel==2.6.0
 elasticsearch==2.4.1
+sentry-sdk==0.7.2
+gunicorn==19.7.1
+whitenoise==4.1.2
 django-extensions==2.1.6
