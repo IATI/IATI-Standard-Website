@@ -8,15 +8,9 @@ all: test lint
 
 
 lint: $(IATI_FOLDER)
-	-make pylint
-	echo $(LINE_SEP)
 	-make flake8
 	echo $(LINE_SEP)
 	-make pydocstyle
-
-
-pylint: $(IATI_FOLDER)
-	pylint $(IATI_FOLDER)
 
 
 flake8: $(IATI_FOLDER)
