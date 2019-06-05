@@ -184,14 +184,6 @@ DOCUMENTS_URL = '/{}/'.format(DOCUMENTS_SLUG)
 ADMIN_SLUG = 'cms'
 ADMIN_URL = '/{}/'.format(ADMIN_SLUG)
 
-WAGTAILSEARCH_BACKENDS = {
-    'default': {
-        'BACKEND': 'wagtail.search.backends.elasticsearch2',
-        'URLS': [os.getenv('ELASTICSEARCH_URL', 'http://localhost:9200')],
-        'INDEX': 'iati',
-    },
-}
-
 # URL for pattern library, including trailing slash
 PATTERN_LIBRARY_URL = 'https://iati-styles-staging.netlify.com/'
 
