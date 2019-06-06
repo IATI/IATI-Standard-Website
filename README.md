@@ -18,16 +18,22 @@ The current scope of the project (to April 2018) focuses on the 'About IATI' and
 
 ### Dev setup
 
-Build the project. The following will build linked `web`, `postgres` and `elasticsearch` containers.
+Build the project. The following will build linked `web` and `postgres` containers.
 
 ```
 docker-compose build
 ```
 
-Start the containers in detached mode. This keeps the containers running.
+Start the containers in detached mode. This will run migrations and run the Django server. Using in detached (`-d`) mode means that the containers will continue to run in the background - ommitting the `-d` flag will mean that the containers will run only until the command is exited.
 
 ```
 docker-compose up -d
+```
+
+See the status of your containers by using
+
+```
+docker ps
 ```
 
 You can interact with the `web` container directly (in this example, when running a `manage.py` command), like so:
@@ -59,23 +65,12 @@ docker volume ls -qf dangling=true | xargs -r docker volume rm  //remove all vol
 
 ```
 
-Make and perform Django database migrations AND bespoke translations for translated fields.
-
-Django will ask you to approve bespoke SQL commands for the translated fields. You can auto-approve the bespoke commands by adding the flag `--noinput`
-
-```
-docker-compose exec web python manage.py makemigrations
-docker-compose exec web python manage.py migrate
-```
-
 Create default pages for each of the main sections (e.g. home, about, events etc) of the website
 ```
 docker-compose exec web python manage.py createdefaultpages
 ```
 
 Create an initial superuser.
-
-**Be sure to update your local.py file with the credentials you specify with this command**
 
 ```
 docker-compose exec web python manage.py createsuperuser
