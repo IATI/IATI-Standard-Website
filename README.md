@@ -46,6 +46,19 @@ echo 'alias dcmanage="docker-compose exec web python manage.py"' >>~/.bash_profi
 dcmanage [command]
 ```
 
+Other useful commands (use with caution)
+
+```
+docker kill $(docker ps -q)  //stop all containers
+
+docker rm $(docker ps -a -q)  //remove all containers
+
+docker rmi $(docker images -q) //remove all images
+
+docker volume ls -qf dangling=true | xargs -r docker volume rm  //remove all volumes
+
+```
+
 Make and perform Django database migrations AND bespoke translations for translated fields.
 
 Django will ask you to approve bespoke SQL commands for the translated fields. You can auto-approve the bespoke commands by adding the flag `--noinput`
