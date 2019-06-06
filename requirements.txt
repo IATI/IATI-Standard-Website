@@ -1,9 +1,11 @@
-django==2.0.8
+django==2.0.12
 django-modeltranslation==0.13b1
+dj-database-url==0.4.2
 psycopg2-binary==2.7.4
 requests>=2.20.0
 wagtail==2.0.1
 wagtail-modeltranslation==0.8.1
 Wand==0.5.2
 Babel==2.6.0
+elasticsearch==2.4.1
 django-extensions==2.1.6

@@ -10,14 +10,14 @@ services: postgresql
 env:
   - DJANGO_SETTINGS_MODULE=iati.settings.test
 install:
-  - pip install -r iati/requirements_dev.txt
-  - psql -c "CREATE DATABASE travisci;" -U postgres  # Must match DB name in iati.settings.dev
-  - python iati/manage.py makemigrations_translation
-  - python iati/manage.py migrate_translation --no-input
+  - pip install -r requirements_dev.txt
+  - psql -c "CREATE DATABASE travisci;" -U postgres  # Must match DB name in iati.settings.test
+  - python manage.py makemigrations_translation
+  - python manage.py migrate_translation --no-input
 before_script:
-  - python iati/manage.py runserver &
+  - python manage.py runserver &
 script:
-  - make -C iati test
+  - make test
 
 stages:
   - strict lint
@@ -26,22 +26,16 @@ stages:
 jobs:
   include:
     - stage: test
-      script: make -C iati test
+      script: make test
     - stage: strict lint
-      env: 
-        - LINTER=pylint
-        - DJANGO_SETTINGS_MODULE=iati.settings.test
-      script: make -C iati pylint
-      if: branch IN (master, dev)
-    - stage: strict lint
-      env: 
+      env:
         - LINTER=flake8
         - DJANGO_SETTINGS_MODULE=iati.settings.test
-      script: make -C iati flake8
+      script: make flake8
       if: branch IN (master, dev)
     - stage: strict lint
-      env: 
+      env:
         - LINTER=pydocstyle
         - DJANGO_SETTINGS_MODULE=iati.settings.test
-      script: make -C iati pydocstyle
+      script: make pydocstyle
       if: branch IN (master, dev)

@@ -113,8 +113,17 @@ test_media/
 .pytest_cache/
 iati.tests.*
 
-# ignore sqlite databases
-db.sqlite3
+#sqlite databases
+*.sqlite3
+
+#sql files
+*.sql
 
 # ignore OS specific files
 .DS_Store
+
+# ignore old geckodriver logs
+geckodriver.log
+
+# any compiled staticfiles
+staticfiles/

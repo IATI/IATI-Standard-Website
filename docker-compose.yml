@@ -1,0 +1,16 @@
+web:
+  build: .
+  dockerfile: .dockerfile
+  volumes:
+    - ./:/usr/src/app
+  links:
+   - postgres
+  ports:
+   - 80:80
+  environment:
+    - DATABASE_URL=postgres://postgres:@postgres:5432/postgres
+    - SECRET_KEY=enter-a-long-unguessable-string-here
+postgres:
+  image: postgres:9.6
+  ports:
+   - 5432
