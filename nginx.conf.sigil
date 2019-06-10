@@ -10,8 +10,8 @@
 server {
   listen      [::]:{{ $listen_port }};
   listen      {{ $listen_port }};
-  server_name  live.iatistandard.org;
-  rewrite ^(.*) http://live.iatistandard.org$1 permanent;
+  server_name  iatistandard.org;
+  rewrite ^(.*) http://iatistandard.org$1 permanent;
 }
 {{ end }}
 
@@ -58,7 +58,7 @@ server {
 server {
   listen      [::]:{{ $listen_port }} ssl {{ if eq $.SPDY_SUPPORTED "true" }}spdy{{ else }}http2{{ end }};
   listen      {{ $listen_port }} ssl {{ if eq $.SPDY_SUPPORTED "true" }}spdy{{ else }}http2{{ end }};
-  server_name  live.iatistandard.org;
+  server_name  iatistandard.org;
   ssl_certificate     {{ $.APP_SSL_PATH }}/server.crt;
   ssl_certificate_key {{ $.APP_SSL_PATH }}/server.key;
   rewrite ^(.*) https://iatistandard.org$1 permanent;
