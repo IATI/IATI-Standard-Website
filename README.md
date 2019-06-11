@@ -3,8 +3,6 @@
 
 This repository hosts the new IATI website based on Django and Wagtail CMS.  A PostgreSQL database stores the underlaying content and user data.
 
-The current scope of the project (to April 2018) focuses on the 'About IATI' and 'Publisher guidance' sections.
-
 
 ## Local Development
 
