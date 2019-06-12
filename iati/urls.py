@@ -5,6 +5,7 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
+from django.urls import path
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.contrib.sitemaps.views import sitemap
 from wagtail.core import urls as wagtail_urls
@@ -20,6 +21,10 @@ urlpatterns = [  # pylint: disable=invalid-name
     url(r'^{}/'.format(settings.ADMIN_SLUG), include(wagtailadmin_urls)),
     url(r'^{}/'.format(settings.DOCUMENTS_SLUG), include(wagtaildocs_urls)),
 ]
+
+
+def trigger_error(request):
+    division_by_zero = 1 / 0
 
 
 urlpatterns += i18n_patterns(
@@ -38,6 +43,7 @@ urlpatterns += i18n_patterns(
     # Alternatively, if you want Wagtail pages to be served from a subpath
     # of your site, rather than the site root:
     #    url(r'^pages/', include(wagtail_urls)),
+    path('sentry-debug/', trigger_error),
 )
 
 
