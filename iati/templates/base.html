@@ -48,7 +48,7 @@
 
             <!--Facebook -->
             <meta property="og:type" content="website" />
-            <meta property="og:url" content="{{ request.site.hostname }}{{ page.url }}" />
+            <meta property="og:url" content="{{ request.scheme }}://{{ request.site.hostname }}{{ page.url }}" />
             <meta property="og:title" content="{{ page.title }}" />
             <meta property="og:description" content="{{ page.search_description|default:page.excerpt|default:'' }}" />
             <meta property="og:site_name" content="IATI Standard" />
@@ -56,10 +56,10 @@
         {% endif %}
 
         {# Global stylesheets #}
-        <link rel="stylesheet" type="text/css" href="{{ request.site.hostname }}{% static 'home/css/responsive.css' %}">
+        <link rel="stylesheet" type="text/css" href="{{ request.scheme }}://{{ request.site.hostname }}{% static 'home/css/responsive.css' %}">
         <link rel="stylesheet" type="text/css" href="{{ PATTERN_LIBRARY_URL }}assets/css/screen.min.css">
         <!-- overrides -->
-        <link rel="stylesheet" type="text/css" href="{{ request.site.hostname }}{% static 'home/css/custom.css' %}">
+        <link rel="stylesheet" type="text/css" href="{{ request.scheme }}://{{ request.site.hostname }}{% static 'home/css/custom.css' %}">
 
         <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700" rel="stylesheet">
         <script>/*! grunt-grunticon Stylesheet Loader - v2.1.6 | https://github.com/filamentgroup/grunticon | (c) 2015 Scott Jehl, Filament Group, Inc. | MIT license. */
