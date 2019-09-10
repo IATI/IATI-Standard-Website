@@ -46,13 +46,13 @@ class EventIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
         """
         now = timezone.now()
         filter_dict = {}
-        archive_years = EventPage.objects.live().descendant_of(self).filter(date_start__lte=now).dates('date_start', 'year', order='DESC')
+        archive_years = EventPage.objects.live().descendant_of(self).filter(date_end__lte=now).dates('date_end', 'year', order='DESC')
         past = request.GET.get('past') == "1"
         if past:
-            filter_dict["date_start__lte"] = now
+            filter_dict["date_end__lte"] = now
             order_by = ['-date_start']
         else:
-            filter_dict["date_start__gte"] = now
+            filter_dict["date_end__gt"] = now
             order_by = ['-featured_event', 'date_start']
 
         try:
