@@ -49,10 +49,10 @@ class EventIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
         archive_years = EventPage.objects.live().descendant_of(self).filter(date_end__lte=now).dates('date_end', 'year', order='DESC')
         past = request.GET.get('past') == "1"
         if past:
-            filter_dict["date_end__lte"] = now
+            filter_dict["date_end__lt"] = now  # an event is in the past if it ended "yesterday"
             order_by = ['-date_start']
         else:
-            filter_dict["date_end__gt"] = now
+            filter_dict["date_end__gte"] = now  # an event is current / not in the past if the end date is before and up to today
             order_by = ['-featured_event', 'date_start']
 
         try:

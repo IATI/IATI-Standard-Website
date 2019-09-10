@@ -39,7 +39,7 @@ class TestEventPage():
     def test_past_events(self, client, events):
         """Test that past parameter calls past events."""
         response = client.get(events.url, {'past': 1}, follow=True)
-        events_before_now = EventPage.objects.filter(date_end__lte=timezone.now()).values_list('id', flat=True)
+        events_before_now = EventPage.objects.filter(date_end__lt=timezone.now()).values_list('id', flat=True)
         events_in_response = response.context['events'].paginator.object_list.values_list('id', flat=True)
         assert set(events_before_now) == set(events_in_response)
         assert response.context['past'] == 1
