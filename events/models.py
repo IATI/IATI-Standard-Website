@@ -44,15 +44,15 @@ class EventIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
         Use the functions built into the abstract index page class to dynamically filter the child pages and apply pagination, limiting the results to 3 per page.
 
         """
-        now = timezone.now()
+        final_valid_day_begin = timezone.datetime.combine(timezone.now(), timezone.datetime.min.time())
         filter_dict = {}
-        archive_years = EventPage.objects.live().descendant_of(self).filter(date_end__lte=now).dates('date_end', 'year', order='DESC')
+        archive_years = EventPage.objects.live().descendant_of(self).filter(date_end__lte=final_valid_day_begin).dates('date_end', 'year', order='DESC')
         past = request.GET.get('past') == "1"
         if past:
-            filter_dict["date_end__lt"] = now  # an event is in the past if it ended "yesterday"
+            filter_dict["date_end__lt"] = final_valid_day_begin  # an event is in the past if it ended before today's 00:00am
             order_by = ['-date_start']
         else:
-            filter_dict["date_end__gte"] = now  # an event is current / not in the past if the end date is before and up to today
+            filter_dict["date_end__gte"] = final_valid_day_begin  # an event stays as current/future till end date is prior to today's 11:59pm
             order_by = ['-featured_event', 'date_start']
 
         try:
