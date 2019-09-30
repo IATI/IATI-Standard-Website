@@ -29,6 +29,12 @@ jobs:
       script: make test
     - stage: strict lint
       env:
+        - LINTER=pylint
+        - DJANGO_SETTINGS_MODULE=iati.settings.test
+      script: make pylint
+      if: branch IN (master, dev)
+    - stage: strict lint
+      env:
         - LINTER=flake8
         - DJANGO_SETTINGS_MODULE=iati.settings.test
       script: make flake8
