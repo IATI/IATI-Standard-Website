@@ -143,10 +143,10 @@ class AbstractBasePage(Page):
     def social_share_image_url(self):
         """Return a default social media image for any page."""
         if self.social_media_image:
-            return self.social_media_image.get_rendition('width-320|jpegquality-60').url
+            return self.social_media_image.get_rendition('min-300x300|jpegquality-60').url
         if hasattr(self, 'feed_image'):
             if self.feed_image:
-                return self.feed_image.get_rendition('width-320|jpegquality-60').url
+                return self.feed_image.get_rendition('min-300x300|jpegquality-60').url
         return static(settings.DEFAULT_SHARE_IMAGE_URL)
 
 
