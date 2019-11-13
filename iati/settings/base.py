@@ -56,6 +56,7 @@ INSTALLED_APPS = [
 
     'modelcluster',
     'taggit',
+    'django_elasticsearch_dsl',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -242,3 +243,9 @@ YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/channel/UCAVH1gcgJXElsj8ENC-bDQQ'
 
 # Relative URL for the default social media sharing image
 DEFAULT_SHARE_IMAGE_URL = 'assets/img/iati-share-social.png'
+
+ELASTICSEARCH_DSL = {
+    'default': {
+        'hosts': 'http://websitesearch:9200'
+    },
+}
