@@ -89,6 +89,15 @@ class IATIStreamBlock(StreamBlock):
     document_box = DocumentBoxBlock(icon="doc-full-inverse")
     anchor_point = CharBlock(icon="order-down", help_text="Custom anchor points are expected to precede other content.")
 
+    def get_searchable_content(self, value):
+        content = []
+
+        if value:
+            for child in value:
+                content.extend(child.block.get_searchable_content(child.value))
+
+        return content
+
 
 class AbstractBasePage(Page):
     """A base for all page types."""

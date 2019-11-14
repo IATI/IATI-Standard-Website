@@ -56,7 +56,7 @@ INSTALLED_APPS = [
 
     'modelcluster',
     'taggit',
-    'django_elasticsearch_dsl',
+    'haystack',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -244,8 +244,18 @@ YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/channel/UCAVH1gcgJXElsj8ENC-bDQQ'
 # Relative URL for the default social media sharing image
 DEFAULT_SHARE_IMAGE_URL = 'assets/img/iati-share-social.png'
 
-ELASTICSEARCH_DSL = {
+
+# Search settings
+WAGTAILSEARCH_BACKENDS = {
     'default': {
-        'hosts': 'http://websitesearch:9200'
+        'BACKEND': 'wagtail.search.backends.elasticsearch2',
+        'URLS': [os.getenv('ELASTICSEARCH_URL', 'http://localhost:9200')],
+        'INDEX': 'iati',
     },
 }
+
+HAYSTACK_CONNECTIONS = {
+    'default': {},
+}
+
+HAYSTACK_CUSTOM_HIGHLIGHTER = 'search.utils.CustomHighlighter'

@@ -1,24 +1,10 @@
 version: '3.3'
 services:
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.4.2
+    image: elasticsearch:2
     container_name: websitesearch
-    environment:
-    - discovery.type=single-node
-    - xpack.security.enabled=false
     ports:
-    - 9200:9200
-    - 9300:9300
-    command: ["elasticsearch", "-Elogger.level=WARN"]
-  kibana:
-    image: docker.elastic.co/kibana/kibana:7.4.2
-    container_name: websitekibana
-    environment:
-      SERVER_HOST: 0.0.0.0
-      ELASTICSEARCH_URL: http://websitesearch:9200
-    ports:
-    - "5601:5601"
-
+      - "9200:9200"
   web:
     build:
       context: .
@@ -27,11 +13,13 @@ services:
       - ./:/usr/src/app
     links:
      - postgres
+     - elasticsearch
     ports:
      - 80:80
     environment:
       - DATABASE_URL=postgres://postgres:@postgres:5432/postgres
       - SECRET_KEY=enter-a-long-unguessable-string-here
+      - ELASTICSEARCH_URL=http://websitesearch:9200
   postgres:
     image: postgres:9.6
     ports:
