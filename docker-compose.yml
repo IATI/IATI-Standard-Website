@@ -9,6 +9,7 @@ services:
     ports:
     - 9200:9200
     - 9300:9300
+    command: ["elasticsearch", "-Elogger.level=WARN"]
   kibana:
     image: docker.elastic.co/kibana/kibana:7.4.2
     container_name: websitekibana
@@ -34,4 +35,4 @@ services:
   postgres:
     image: postgres:9.6
     ports:
-     - 5432
+     - 5432:5432
