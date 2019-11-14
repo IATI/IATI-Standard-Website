@@ -4,12 +4,12 @@ from wagtail.core.blocks.stream_block import StreamValue
 from common.templatetags.string_utils import return_all_content
 
 ALLOWED_BLOCK_TYPES = [
-    'case_study',
-    'definition_list',
-    'infographic',
-    'rich_text',
-    'section_heading',
-    'table',
+    'h2',
+    'h3',
+    'h4',
+    'intro',
+    'paragraph',
+    'pullquote',
 ]
 
 register = template.Library()
@@ -27,13 +27,13 @@ def verbose_name(obj):
 def search_content(obj):
     # TODO: amend to convert line breaks to spaces in rich content
     indexable_text = []
-    if hasattr(obj, 'excerpt_field'):
-        indexable_text.append(obj.excerpt_field)
+    if hasattr(obj, 'excerpt'):
+        indexable_text.append(obj.excerpt)
 
-    if not hasattr(obj, 'content'):
+    if not hasattr(obj, 'content_editor'):
         return ' '.join(indexable_text)
 
-    content = obj.content
+    content = obj.content_editor
 
     if isinstance(content, str):
         indexable_text.append(return_all_content(content))

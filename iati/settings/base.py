@@ -190,7 +190,7 @@ ADMIN_SLUG = 'cms'
 ADMIN_URL = '/{}/'.format(ADMIN_SLUG)
 
 # URL for pattern library, including trailing slash
-PATTERN_LIBRARY_URL = 'https://iati-styles-staging.netlify.com/'
+PATTERN_LIBRARY_URL = 'https://iati.surge.sh/'
 
 # Wagtail settings
 
