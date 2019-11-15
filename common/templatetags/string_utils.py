@@ -19,4 +19,4 @@ def strip_tags(text):
 
 # Helper function to return untruncated stripped content
 def return_all_content(content):
-    return mark_safe(strip_tags(str(content))) if content else None
+    return mark_safe(str(content).replace('><', '> <')) if content else None
