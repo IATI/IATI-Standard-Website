@@ -123,7 +123,14 @@ class EventPage(AbstractContentPage):
     @property
     def search_display_date(self):
         """Return a date for search display."""
-        return '%s - %s' % (self.date_start, self.date_end)
+        DATE_FORMAT = '%-d %b %Y'
+        start_date = self.date_start.date()
+        end_date = self.date_end.date()
+        dates = start_date.strftime(DATE_FORMAT)
+        if start_date != end_date:
+            dates = '%s — %s' % (start_date.strftime(DATE_FORMAT), end_date.strftime(DATE_FORMAT))
+
+        return dates
 
 
 @register_snippet
