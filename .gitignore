@@ -127,3 +127,6 @@ geckodriver.log
 
 # any compiled staticfiles
 staticfiles/
+
+# visual regression testing
+regression/
