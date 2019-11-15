@@ -159,6 +159,16 @@ class AbstractBasePage(Page):
                 return self.feed_image.get_rendition('min-300x300|jpegquality-60').url
         return static(settings.DEFAULT_SHARE_IMAGE_URL)
 
+    @property
+    def search_display_name(self):
+        """Return the verbose name for search display."""
+        return self._meta.verbose_name.replace(' page', '')
+
+    @property
+    def search_display_date(self):
+        """Return a date for search display."""
+        return ''
+
 
 class AbstractContentPage(AbstractBasePage):
     """A base for the basic model blocks of all content type pages."""

@@ -71,6 +71,11 @@ class NewsPage(AbstractContentPage):
 
     ]
 
+    @property
+    def search_display_date(self):
+        """Return a date for search display."""
+        return self.date
+
 
 @register_snippet
 class NewsCategory(models.Model):

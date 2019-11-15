@@ -2,7 +2,7 @@
 
 <div class="listing-search__item">
     <h3 class="listing-search__title"><a href="{{ item.url }}"><span>{% highlight item.title with search_query css_class 'listing-search__highlight' max_length 200 %}</span></a></h3>
-    <span class="listing-search__tag">Blog</span><span class="listing-search__date"> - 28 Oct 2017</span>
+    <span class="listing-search__tag">{{ item.search_display_name }}</span>{% if item.search_display_date %}<span class="listing-search__date"> - {{ item.search_display_date }}</span>{% endif %}
     {% with item|search_content as content %}
         {% if content %}
             <p class="listing-search__copy">{% highlight content with search_query css_class 'listing-search__highlight' max_length 500 %}</p>

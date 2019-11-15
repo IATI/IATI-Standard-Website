@@ -120,6 +120,11 @@ class EventPage(AbstractContentPage):
         ImageChooserPanel('feed_image'),
     ]
 
+    @property
+    def search_display_date(self):
+        """Return a date for search display."""
+        return '%s - %s' % (self.date_start, self.date_end)
+
 
 @register_snippet
 class EventType(models.Model):
