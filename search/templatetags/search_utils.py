@@ -25,7 +25,6 @@ def verbose_name(obj):
 
 @register.filter()
 def search_content(obj):
-    # TODO: amend to convert line breaks to spaces in rich content
     indexable_text = []
     if hasattr(obj, 'excerpt'):
         indexable_text.append(obj.excerpt)
