@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtail_modeltranslation wagtailimages_tags i18n %}
+{% load wagtail_modeltranslation wagtailimages_tags i18n static %}
 
 {% load iati_tags %}
 {% block body_class %}body body--home{% endblock %}
@@ -13,7 +13,7 @@
         <div class="stats stats--standout">
             <div class="stat-quote fill-sunset">
                 <div class="stat-quote__media">
-                    <img class="stat-quote__img" src="{{ PATTERN_LIBRARY_URL }}assets/img/UNDP-Achim-Steiner.jpg" alt="{% trans 'Photo of Achim Steiner, UNDP Administrator' %}">
+                    <img class="stat-quote__img" src="{% static 'img/UNDP-Achim-Steiner.jpg' %}" alt="{% trans 'Photo of Achim Steiner, UNDP Administrator' %}">
                 </div>
                 <blockquote>
                     <p class="stat-quote__copy">{% trans "&ldquo;Transparency is a cornerstone of our work at UNDP.&rdquo;" %}</p>
@@ -43,7 +43,7 @@
             <div class="l-3up">
                 <div class="l-3up__col">
                     <div class="help">
-                        <div class="help__header background-cover" style="background-image: url({{ PATTERN_LIBRARY_URL }}assets/img/help1.png)">
+                        <div class="help__header background-cover" style="background-image: url({% static 'img/help1.png' %})">
                             <div class="help__panel fill-wind">
                                 <h3 class="help__heading">{% trans "Explore our data" %}</h3>
                             </div>
@@ -56,7 +56,7 @@
                 </div>
                 <div class="l-3up__col">
                     <div class="help">
-                        <div class="help__header background-cover" style="background-image: url({{ PATTERN_LIBRARY_URL }}assets/img/help2.png)">
+                        <div class="help__header background-cover" style="background-image: url({% static 'img/help2.png' %})">
                             <div class="help__panel fill-wind">
                                 <h3 class="help__heading">{% trans "Our publishing guide" %}</h3>
                             </div>
@@ -69,7 +69,7 @@
                 </div>
                 <div class="l-3up__col">
                     <div class="help">
-                        <div class="help__header background-cover" style="background-image: url({{ PATTERN_LIBRARY_URL }}assets/img/help3.png)">
+                        <div class="help__header background-cover" style="background-image: url({% static 'img/help3.png' %})">
                             <div class="help__panel fill-wind">
                                 <h3 class="help__heading">{% trans "Discover the Standard" %}</h3>
                             </div>
@@ -138,7 +138,7 @@
                           {% image case_study.feed_image width-600 as img %}
                           <div class="help__header help__header--big background-cover" style="background-image: url({{ img.url }})">
                         {% else %}
-                          <div class="help__header help__header--big background-cover" style="background-image: url({{ PATTERN_LIBRARY_URL }}assets/img/image-placeholder.svg)">
+                          <div class="help__header help__header--big background-cover" style="background-image: url({% static 'img/image-placeholder.svg' %})">
                         {% endif %}
 
                               <div class="help__panel fill-sunset">
@@ -165,7 +165,7 @@
                     <article class="listing listing--article listing--people">
                         <aside class="listing__aside">
                             <div class="listing__media">
-                                <img src="{{ PATTERN_LIBRARY_URL }}assets/img/Hillevi-Ekberg-sida.jpg" alt="{% trans 'Photo of Hillevi Ekberg of Sida' %}">
+                                <img src="{% static 'img/Hillevi-Ekberg-sida.jpg' %}" alt="{% trans 'Photo of Hillevi Ekberg of Sida' %}">
                             </div>
                         </aside>
                         <div class="listing__body">
@@ -182,7 +182,7 @@
                     <article class="listing listing--article listing--people">
                         <aside class="listing__aside">
                             <div class="listing__media">
-                                <img src="{{ PATTERN_LIBRARY_URL }}assets/img/winnie-kamau.jpg" alt="{% trans 'Photo of Winnie Kamau, Data Journalist' %}">
+                                <img src="{% static 'img/winnie-kamau.jpg' %}" alt="{% trans 'Photo of Winnie Kamau, Data Journalist' %}">
                             </div>
                         </aside>
                         <div class="listing__body">

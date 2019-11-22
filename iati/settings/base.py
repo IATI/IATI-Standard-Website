@@ -103,7 +103,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'iati.context_processors.assets_library_url',
             ],
         },
     },
@@ -174,6 +173,7 @@ STATICFILES_FINDERS = [
 ]
 
 STATICFILES_DIRS = [
+    os.path.join(PROJECT_DIR, 'static'),
     os.path.join(BASE_DIR, 'patterns/converted-html/assets'),
 ]
 
@@ -190,9 +190,6 @@ ADMIN_SLUG = 'cms'
 ADMIN_URL = '/{}/'.format(ADMIN_SLUG)
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-# URL for pattern library, including trailing slash
-PATTERN_LIBRARY_URL = 'http://iati.surge.sh/'
 
 # Wagtail settings
 

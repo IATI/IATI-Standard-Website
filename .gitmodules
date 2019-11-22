@@ -1,0 +1,4 @@
+[submodule "patterns"]
+	path = patterns
+	url = git@github.com:IATI/IATI-Pattern-Library.git
+	branch = feature/elasticsearch

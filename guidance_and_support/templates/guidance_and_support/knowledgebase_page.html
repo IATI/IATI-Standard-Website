@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags static %}
 
 {% block body_class %}body body--support{% endblock %}
 {% block body_id %}body-support{% endblock %}
@@ -55,7 +55,7 @@
 <h4>A sub heading which is not as important as the first, but is quite imporant overall</h4>
 <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
 <figure class="media-figure">
-	<img src="{{ PATTERN_LIBRARY_URL }}assets/img/ptn-example.jpg" alt="Inline image">
+	<img src="{% static 'img/ptn-example.jpg' %}" alt="Inline image">
 	<figcaption class="media-figure__caption">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</figcaption>
 </figure>
 <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>

@@ -26,7 +26,7 @@
 
         {% for case_study in case_studies %}
         <article class="case-study">
-          {% if false %}
+          {% if case_study.feed_image %}
             {% image case_study.feed_image width-600 as img %}
           <div title="{{ img.title }}" class="case-study__media background-cover" style="background-image: url({{ img.url }});"></div>
           {% else %}
