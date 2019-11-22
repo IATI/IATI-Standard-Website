@@ -9,6 +9,7 @@ services:
     build:
       context: .
       dockerfile: .dockerfile
+    command: python manage.py runserver 0.0.0.0:80
     volumes:
       - ./:/usr/src/app
     links:
@@ -20,6 +21,7 @@ services:
       - DATABASE_URL=postgres://postgres:@postgres:5432/postgres
       - SECRET_KEY=enter-a-long-unguessable-string-here
       - ELASTICSEARCH_URL=http://websitesearch:9200
+      - DJANGO_SETTINGS_MODULE=iati.settings.dev
   postgres:
     image: postgres:9.6
     ports:

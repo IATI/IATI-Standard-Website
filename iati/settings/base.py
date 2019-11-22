@@ -174,11 +174,11 @@ STATICFILES_FINDERS = [
 ]
 
 STATICFILES_DIRS = [
-    os.path.join(PROJECT_DIR, 'static'),
+    os.path.join(BASE_DIR, 'patterns/converted-html/assets'),
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
+STATIC_URL = '/assets/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
@@ -189,8 +189,10 @@ DOCUMENTS_URL = '/{}/'.format(DOCUMENTS_SLUG)
 ADMIN_SLUG = 'cms'
 ADMIN_URL = '/{}/'.format(ADMIN_SLUG)
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 # URL for pattern library, including trailing slash
-PATTERN_LIBRARY_URL = 'https://iati.surge.sh/'
+PATTERN_LIBRARY_URL = 'http://iati.surge.sh/'
 
 # Wagtail settings
 
