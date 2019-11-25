@@ -140,7 +140,10 @@ class Command(LoadCommand):
                             soup = BeautifulSoup(message.string, "html5lib")
                             elements = soup.findAll("div", {"class": "block-document_box"})
                             for element in elements:
-                                heading = element.find("div", {"class": "block-document_box_heading"}).decode_contents()
+                                try:
+                                    heading = element.find("div", {"class": "block-document_box_heading"}).decode_contents()
+                                except AttributeError:
+                                    heading = ""
                                 json_obj = {
                                     "type": "document_box", "value": [
                                         {"type": "document_box_heading", "value": heading}
@@ -149,7 +152,10 @@ class Command(LoadCommand):
                                 documents = element.findAll("div", {"class": "block-document"})
                                 for document in documents:
                                     doc_anchor = document.find("a")
-                                    doc_name = doc_anchor.decode_contents()
+                                    try:
+                                        doc_name = doc_anchor.decode_contents()
+                                    except AttributeError:
+                                        doc_name = None
                                     doc_check = Document.objects.filter(title=doc_name)
                                     if doc_check:
                                         doc_pk = doc_check.first().pk
