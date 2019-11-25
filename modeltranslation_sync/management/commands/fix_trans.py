@@ -170,7 +170,7 @@ class Command(LoadCommand):
                                 json_obj = {"type": "anchor_point", "value": richText.decode_contents()}
                                 message_json.append(json_obj)
                         if culprit:
-                            message.string = json.dumps(message_json)
+                            message.string = json.dumps(message_json, ensure_ascii=False)
                 po_file = open(join(lang_path, "LC_MESSAGES", po_filename), "wb")
                 write_po(po_file, catalog, width=None)
                 po_file.close()
