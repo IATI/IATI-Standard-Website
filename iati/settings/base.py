@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.sitemaps',
+    'wagtail.contrib.search_promotions',
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
 
