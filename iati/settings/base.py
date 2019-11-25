@@ -19,6 +19,10 @@ from django.utils.translation import gettext_lazy as _
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
+ADMINS = (
+    ('Russell Kirkland', 'russell@mashandgravy.co.uk'),
+)
+
 SECRET_KEY = 'enter-a-long-unguessable-string-here'
 
 
@@ -241,7 +245,7 @@ TWITTER_HANDLE = 'IATI_aid'
 YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/channel/UCAVH1gcgJXElsj8ENC-bDQQ'
 
 # Relative URL for the default social media sharing image
-DEFAULT_SHARE_IMAGE_URL = 'assets/img/iati-share-social.png'
+DEFAULT_SHARE_IMAGE_URL = 'img/iati-share-social.png'
 
 
 # Search settings
