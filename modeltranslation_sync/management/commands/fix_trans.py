@@ -38,139 +38,141 @@ class Command(LoadCommand):
                 for message in catalog:
                     if message.string not in [None, "None", ""] and message.auto_comments:
                         field_id = message.auto_comments[0]
-                        message_json = []
-                        culprit = False
-                        if "block-h2" in message.string:
-                            culprit = True
-                            soup = BeautifulSoup(message.string, "html5lib")
-                            richTexts = soup.findAll("div", {"class": "block-h2"})
-                            for richText in richTexts:
-                                json_obj = {"type": "h2", "value": richText.decode_contents()}
-                                message_json.append(json_obj)
-                        if "block-h3" in message.string:
-                            culprit = True
-                            soup = BeautifulSoup(message.string, "html5lib")
-                            richTexts = soup.findAll("div", {"class": "block-h3"})
-                            for richText in richTexts:
-                                json_obj = {"type": "h3", "value": richText.decode_contents()}
-                                message_json.append(json_obj)
-                        if "block-h4" in message.string:
-                            culprit = True
-                            soup = BeautifulSoup(message.string, "html5lib")
-                            richTexts = soup.findAll("div", {"class": "block-h4"})
-                            for richText in richTexts:
-                                json_obj = {"type": "h5", "value": richText.decode_contents()}
-                                message_json.append(json_obj)
-                        if "block-intro" in message.string:
-                            culprit = True
-                            soup = BeautifulSoup(message.string, "html5lib")
-                            elements = soup.findAll("div", {"class": "block-intro"})
-                            for element in elements:
-                                richText = element.find("div", {"class": "rich-text"})
-                                json_obj = {"type": "intro", "value": richText.decode_contents()}
-                                message_json.append(json_obj)
-                        if "block-paragraph" in message.string:
-                            culprit = True
-                            soup = BeautifulSoup(message.string, "html5lib")
-                            elements = soup.findAll("div", {"class": "block-paragraph"})
-                            for element in elements:
-                                richText = element.find("div", {"class": "rich-text"})
-                                try:
-                                    json_obj = {"type": "paragraph", "value": richText.decode_contents()}
-                                except AttributeError:
-                                    json_obj = {"type": "paragraph", "value": element.decode_contents()}
-                                message_json.append(json_obj)
-                        if "block-image_figure" in message.string:
-                            culprit = True
-                            soup = BeautifulSoup(message.string, "html5lib")
-                            elements = soup.findAll("div", {"class": "block-image_figure"})
-                            for element in elements:
-                                subelements = element.findAll("dd")
-                                subelement_keys = element.findAll("dt")
-                                subelement_dict = {}
-                                for i in range(0, len(subelement_keys)):
-                                    subelement = subelements[i]
-                                    subelement_key = subelement_keys[i].decode_contents()
-                                    subelement_dict[subelement_key] = subelement
-                                image_name = subelement_dict["image"].decode_contents()
-                                image_alignment = subelement_dict["alignment"].decode_contents()
-                                caption = subelement_dict["caption"].find("div", {"class": "rich-text"}).decode_contents()
-                                img_check = Image.objects.filter(title=image_name)
-                                if img_check:
-                                    image_pk = img_check.first().pk
+                        [app, class_name, primary_key, field] = field_id.split('.')
+                        if field == 'content_editor':
+                            message_json = []
+                            culprit = False
+                            if "block-h2" in message.string:
+                                culprit = True
+                                soup = BeautifulSoup(message.string, "html5lib")
+                                richTexts = soup.findAll("div", {"class": "block-h2"})
+                                for richText in richTexts:
+                                    json_obj = {"type": "h2", "value": richText.decode_contents()}
+                                    message_json.append(json_obj)
+                            if "block-h3" in message.string:
+                                culprit = True
+                                soup = BeautifulSoup(message.string, "html5lib")
+                                richTexts = soup.findAll("div", {"class": "block-h3"})
+                                for richText in richTexts:
+                                    json_obj = {"type": "h3", "value": richText.decode_contents()}
+                                    message_json.append(json_obj)
+                            if "block-h4" in message.string:
+                                culprit = True
+                                soup = BeautifulSoup(message.string, "html5lib")
+                                richTexts = soup.findAll("div", {"class": "block-h4"})
+                                for richText in richTexts:
+                                    json_obj = {"type": "h5", "value": richText.decode_contents()}
+                                    message_json.append(json_obj)
+                            if "block-intro" in message.string:
+                                culprit = True
+                                soup = BeautifulSoup(message.string, "html5lib")
+                                elements = soup.findAll("div", {"class": "block-intro"})
+                                for element in elements:
+                                    richText = element.find("div", {"class": "rich-text"})
+                                    json_obj = {"type": "intro", "value": richText.decode_contents()}
+                                    message_json.append(json_obj)
+                            if "block-paragraph" in message.string:
+                                culprit = True
+                                soup = BeautifulSoup(message.string, "html5lib")
+                                elements = soup.findAll("div", {"class": "block-paragraph"})
+                                for element in elements:
+                                    richText = element.find("div", {"class": "rich-text"})
+                                    try:
+                                        json_obj = {"type": "paragraph", "value": richText.decode_contents()}
+                                    except AttributeError:
+                                        json_obj = {"type": "paragraph", "value": element.decode_contents()}
+                                    message_json.append(json_obj)
+                            if "block-image_figure" in message.string:
+                                culprit = True
+                                soup = BeautifulSoup(message.string, "html5lib")
+                                elements = soup.findAll("div", {"class": "block-image_figure"})
+                                for element in elements:
+                                    subelements = element.findAll("dd")
+                                    subelement_keys = element.findAll("dt")
+                                    subelement_dict = {}
+                                    for i in range(0, len(subelement_keys)):
+                                        subelement = subelements[i]
+                                        subelement_key = subelement_keys[i].decode_contents()
+                                        subelement_dict[subelement_key] = subelement
+                                    image_name = subelement_dict["image"].decode_contents()
+                                    image_alignment = subelement_dict["alignment"].decode_contents()
+                                    caption = subelement_dict["caption"].find("div", {"class": "rich-text"}).decode_contents()
+                                    img_check = Image.objects.filter(title=image_name)
+                                    if img_check:
+                                        image_pk = img_check.first().pk
+                                        json_obj = {
+                                            "type": "pullquote", "value": {
+                                                "alignment": image_alignment,
+                                                "caption": caption,
+                                                "image": image_pk
+                                            }
+                                        }
+                                        message_json.append(json_obj)
+                                    else:
+                                        print("ERR: Unable to serialize image {} from {}".format(image_name, field_id))
+                            if "block-pullquote" in message.string:
+                                culprit = True
+                                soup = BeautifulSoup(message.string, "html5lib")
+                                elements = soup.findAll("div", {"class": "block-pullquote"})
+                                for element in elements:
+                                    richText = element.find("dd")
+                                    json_obj = {"type": "pullquote", "value": {"quote": richText.decode_contents()}}
+                                    message_json.append(json_obj)
+                            if "block-aligned_html" in message.string:
+                                culprit = True
+                                soup = BeautifulSoup(message.string, "html5lib")
+                                elements = soup.findAll("div", {"class": "block-aligned_html"})
+                                for element in elements:
+                                    subelements = element.findAll("dd")
+                                    subelement_keys = element.findAll("dt")
+                                    subelement_dict = {}
+                                    for i in range(0, len(subelement_keys)):
+                                        subelement = subelements[i]
+                                        subelement_key = subelement_keys[i].decode_contents()
+                                        subelement_dict[subelement_key] = subelement
                                     json_obj = {
-                                        "type": "pullquote", "value": {
-                                            "alignment": image_alignment,
-                                            "caption": caption,
-                                            "image": image_pk
+                                        "type": "aligned_html", "value": {
+                                            "alignment": subelement_dict["alignment"].decode_contents(),
+                                            "html": subelement_dict["html"].decode_contents()
                                         }
                                     }
                                     message_json.append(json_obj)
-                                else:
-                                    print("ERR: Unable to serialize image {} from {}".format(image_name, field_id))
-                        if "block-pullquote" in message.string:
-                            culprit = True
-                            soup = BeautifulSoup(message.string, "html5lib")
-                            elements = soup.findAll("div", {"class": "block-pullquote"})
-                            for element in elements:
-                                richText = element.find("dd")
-                                json_obj = {"type": "pullquote", "value": {"quote": richText.decode_contents()}}
-                                message_json.append(json_obj)
-                        if "block-aligned_html" in message.string:
-                            culprit = True
-                            soup = BeautifulSoup(message.string, "html5lib")
-                            elements = soup.findAll("div", {"class": "block-aligned_html"})
-                            for element in elements:
-                                subelements = element.findAll("dd")
-                                subelement_keys = element.findAll("dt")
-                                subelement_dict = {}
-                                for i in range(0, len(subelement_keys)):
-                                    subelement = subelements[i]
-                                    subelement_key = subelement_keys[i].decode_contents()
-                                    subelement_dict[subelement_key] = subelement
-                                json_obj = {
-                                    "type": "aligned_html", "value": {
-                                        "alignment": subelement_dict["alignment"].decode_contents(),
-                                        "html": subelement_dict["html"].decode_contents()
-                                    }
-                                }
-                                message_json.append(json_obj)
-                        if "block-document_box" in message.string:
-                            culprit = True
-                            soup = BeautifulSoup(message.string, "html5lib")
-                            elements = soup.findAll("div", {"class": "block-document_box"})
-                            for element in elements:
-                                try:
-                                    heading = element.find("div", {"class": "block-document_box_heading"}).decode_contents()
-                                except AttributeError:
-                                    heading = ""
-                                json_obj = {
-                                    "type": "document_box", "value": [
-                                        {"type": "document_box_heading", "value": heading}
-                                    ]
-                                }
-                                documents = element.findAll("div", {"class": "block-document"})
-                                for document in documents:
-                                    doc_anchor = document.find("a")
+                            if "block-document_box" in message.string:
+                                culprit = True
+                                soup = BeautifulSoup(message.string, "html5lib")
+                                elements = soup.findAll("div", {"class": "block-document_box"})
+                                for element in elements:
                                     try:
-                                        doc_name = doc_anchor.decode_contents()
+                                        heading = element.find("div", {"class": "block-document_box_heading"}).decode_contents()
                                     except AttributeError:
-                                        doc_name = None
-                                    doc_check = Document.objects.filter(title=doc_name)
-                                    if doc_check:
-                                        doc_pk = doc_check.first().pk
-                                        json_obj["value"].append({"type": "document", "value": doc_pk})
-                                    else:
-                                        print("ERR: Unable to serialize document {} from {}".format(doc_name, field_id))
-                        if "block-anchor_point" in message.string:
-                            culprit = True
-                            soup = BeautifulSoup(message.string, "html5lib")
-                            richTexts = soup.findAll("div", {"class": "block-anchor_point"})
-                            for richText in richTexts:
-                                json_obj = {"type": "anchor_point", "value": richText.decode_contents()}
-                                message_json.append(json_obj)
-                        if culprit:
-                            message.string = json.dumps(message_json, ensure_ascii=False)
+                                        heading = ""
+                                    json_obj = {
+                                        "type": "document_box", "value": [
+                                            {"type": "document_box_heading", "value": heading}
+                                        ]
+                                    }
+                                    documents = element.findAll("div", {"class": "block-document"})
+                                    for document in documents:
+                                        doc_anchor = document.find("a")
+                                        try:
+                                            doc_name = doc_anchor.decode_contents()
+                                        except AttributeError:
+                                            doc_name = None
+                                        doc_check = Document.objects.filter(title=doc_name)
+                                        if doc_check:
+                                            doc_pk = doc_check.first().pk
+                                            json_obj["value"].append({"type": "document", "value": doc_pk})
+                                        else:
+                                            print("ERR: Unable to serialize document {} from {}".format(doc_name, field_id))
+                            if "block-anchor_point" in message.string:
+                                culprit = True
+                                soup = BeautifulSoup(message.string, "html5lib")
+                                richTexts = soup.findAll("div", {"class": "block-anchor_point"})
+                                for richText in richTexts:
+                                    json_obj = {"type": "anchor_point", "value": richText.decode_contents()}
+                                    message_json.append(json_obj)
+                            if culprit:
+                                message.string = json.dumps(message_json, ensure_ascii=False)
                 po_file = open(join(lang_path, "LC_MESSAGES", po_filename), "wb")
                 write_po(po_file, catalog, width=None)
                 po_file.close()
