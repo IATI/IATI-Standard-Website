@@ -68,7 +68,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.sitemaps',
-    'wagtail.contrib.search_promotions',  # TODO: comment this out, deploy, run migrations, uncomment, redeploy, run migrations
+    # 'wagtail.contrib.search_promotions',  # TODO: comment this out, deploy, run migrations, uncomment, redeploy, run migrations
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
 
