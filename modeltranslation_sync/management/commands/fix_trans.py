@@ -19,6 +19,16 @@ from babel.messages.pofile import read_po, write_po
 from .save_trans import load_translation_settings
 
 
+def find_image_pk(image_key, subelement_dict, field_id):
+    if image_key in subelement_dict.keys():
+        image_name = html.unescape(subelement_dict[image_key].decode_contents())
+        img_check = Image.objects.filter(title=image_name)
+        if img_check:
+            return img_check.first().pk
+        print("ERR: Unable to serialize image {} from {}".format(image_name, field_id))
+    return None
+
+
 class Command(LoadCommand):
     """Management command that loads locale .po files into database."""
 
@@ -40,9 +50,9 @@ class Command(LoadCommand):
                     if message.string not in [None, "None", ""] and message.auto_comments:
                         field_id = message.auto_comments[0]
                         [app, class_name, primary_key, field] = field_id.split('.')
+                        message_json = []
+                        culprit = False
                         if field == 'content_editor':
-                            message_json = []
-                            culprit = False
                             if "block-h2" in message.string:
                                 culprit = True
                                 soup = BeautifulSoup(message.string, "html5lib")
@@ -172,8 +182,54 @@ class Command(LoadCommand):
                                 for richText in richTexts:
                                     json_obj = {"type": "anchor_point", "value": richText.decode_contents()}
                                     message_json.append(json_obj)
-                            if culprit:
-                                message.string = json.dumps(message_json, ensure_ascii=False)
+                        if field == 'timeline_editor':
+                            if "block-event_block_editor" in message.string:
+                                culprit = True
+                                soup = BeautifulSoup(message.string, "html5lib")
+                                elements = soup.findAll("div", {"class": "block-event_block_editor"})
+                                for element in elements:
+                                    subelements = element.findAll("dd")
+                                    subelement_keys = element.findAll("dt")
+                                    subelement_dict = {}
+                                    for i in range(0, len(subelement_keys)):
+                                        subelement = subelements[i]
+                                        subelement_key = subelement_keys[i].decode_contents()
+                                        subelement_dict[subelement_key] = subelement
+                                    json_obj = {
+                                        "type": "event_block_editor", "value": {
+                                            "heading": subelement_dict["heading"].decode_contents(),
+                                            "description": subelement_dict["html"].decode_contents()
+                                        }
+                                    }
+                                    message_json.append(json_obj)
+                        if field == 'timeline_editor':
+                            if "block-profile_editor" in message.string:
+                                culprit = True
+                                soup = BeautifulSoup(message.string, "html5lib")
+                                elements = soup.findAll("div", {"class": "block-profile_editor"})
+                                for element in elements:
+                                    subelements = element.findAll("dd")
+                                    subelement_keys = element.findAll("dt")
+                                    subelement_dict = {}
+                                    for i in range(0, len(subelement_keys)):
+                                        subelement = subelements[i]
+                                        subelement_key = subelement_keys[i].decode_contents()
+                                        subelement_dict[subelement_key] = subelement
+                                    json_obj = {
+                                        "type": "profile_editor", "value": {
+                                            "name": subelement_dict["name"].decode_contents(),
+                                            "profile_picture": find_image_pk("profile_picture", subelement_dict, field_id),
+                                            "organisation_logo": find_image_pk("organisation_logo", subelement_dict, field_id),
+                                            "organisation_name": subelement_dict["organisation_name"].decode_contents(),
+                                            "IATI_role": subelement_dict["IATI_role"].decode_contents(),
+                                            "external_role": subelement_dict["external_role"].decode_contents(),
+                                            "description": subelement_dict["description"].decode_contents(),
+                                            "IATI_constituency": subelement_dict["IATI_constituency"].decode_contents()
+                                        }
+                                    }
+                                    message_json.append(json_obj)
+                        if culprit:
+                            message.string = json.dumps(message_json, ensure_ascii=False)
                 po_file = open(join(lang_path, "LC_MESSAGES", po_filename), "wb")
                 write_po(po_file, catalog, width=None)
                 po_file.close()
