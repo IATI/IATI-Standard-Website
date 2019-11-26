@@ -96,7 +96,7 @@ class Command(LoadCommand):
                                     if img_check:
                                         image_pk = img_check.first().pk
                                         json_obj = {
-                                            "type": "pullquote", "value": {
+                                            "type": "image_figure", "value": {
                                                 "alignment": image_alignment,
                                                 "caption": caption,
                                                 "image": image_pk
@@ -187,7 +187,8 @@ class Command(LoadCommand):
                                     message_json.append(json_obj)
                                 if "block-pullquote" == child_elem.attrs["class"][0]:
                                     culprit = True
-                                    json_obj = {"type": "pullquote", "value": child_elem.decode_contents()}
+                                    richText = child_elem.find("dd")
+                                    json_obj = {"type": "pullquote", "value": {"quote": richText.decode_contents()}}
                                     message_json.append(json_obj)
                                 if "block-profile_editor" == child_elem.attrs["class"][0]:
                                     culprit = True
