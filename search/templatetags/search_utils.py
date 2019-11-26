@@ -16,6 +16,16 @@ register = template.Library()
 
 
 @register.filter()
+def nice_url(url):
+    try:
+        if url.endswith('/'):
+            url = url[:-1]
+        return url.replace('/', ' › ').replace(' ›  › ', '//')
+    except Exception:
+        return ''
+
+
+@register.filter()
 def verbose_name(obj):
     try:
         return obj._meta.verbose_name

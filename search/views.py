@@ -32,9 +32,7 @@ def search(request):
     if search_query:
         search_results = [r for m in searchable_models
                           for r in m.objects.live().search(search_query)]
-
-        promoted = Query.objects.filter(editors_picks__isnull=False).distinct().order_by('query_string')
-        promoted = promoted.filter(query_string__icontains=search_query)
+        promoted = [x.page.specific for x in Query.get(search_query).editors_picks.all() if x.page.live]
 
         query = Query.get(search_query)
 
