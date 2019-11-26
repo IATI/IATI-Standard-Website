@@ -1,5 +1,5 @@
 # pylint: disable=too-many-locals, duplicate-code
-"""Management command that loads locale .po files into database."""
+"""Management command that fixes locale .po files."""
 
 from __future__ import unicode_literals
 from os.path import join, isdir
@@ -20,6 +20,7 @@ from .save_trans import load_translation_settings
 
 
 def find_image_pk(image_key, subelement_dict, field_id):
+    """Small function to find an image PK, given a dictionary and key."""
     if image_key in subelement_dict.keys():
         image_name = html.unescape(subelement_dict[image_key].decode_contents())
         img_check = Image.objects.filter(title=image_name)
@@ -30,7 +31,7 @@ def find_image_pk(image_key, subelement_dict, field_id):
 
 
 class Command(LoadCommand):
-    """Management command that loads locale .po files into database."""
+    """Management command that fixes locale .po files."""
 
     def handle(self, *args, **options):
         """Handle the load_trans command."""
