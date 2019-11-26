@@ -18,6 +18,7 @@ before_script:
   - python manage.py runserver &
 script:
   - make test
+cache: pip
 
 stages:
   - strict lint
@@ -29,13 +30,19 @@ jobs:
       script: make test
     - stage: strict lint
       env:
+        - LINTER=pylint
+        - DJANGO_SETTINGS_MODULE=iati.settings.test
+      script: make pylint
+      if: branch IN (master, develop)
+    - stage: strict lint
+      env:
         - LINTER=flake8
         - DJANGO_SETTINGS_MODULE=iati.settings.test
       script: make flake8
-      if: branch IN (master, dev)
+      if: branch IN (master, develop)
     - stage: strict lint
       env:
         - LINTER=pydocstyle
         - DJANGO_SETTINGS_MODULE=iati.settings.test
       script: make pydocstyle
-      if: branch IN (master, dev)
+      if: branch IN (master, develop)
