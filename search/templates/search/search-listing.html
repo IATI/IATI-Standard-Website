@@ -2,11 +2,9 @@
 
 <div class="listing-search__item">
     <h3 class="listing-search__title"><a href="{{ item.url }}"><span>{% highlight item.title with search_query css_class 'listing-search__highlight' max_length 200 %}</span></a></h3>
-    <p class="para">
-        <a class="listing-search__highlight" href="{{ item.url }}">{{ item.full_url|nice_url }}</a>
-    </p>
+    <a class="listing-search__url" href="{{ item.url }}">{{ item.full_url|nice_url }}</a>
     {% if item.search_display_date %}
-        <br><span class="listing-search__tag"><span class="listing-search__date">{{ item.search_display_date }}</span></span>
+        <span class="listing-search__tag"><span class="listing-search__date">{{ item.search_display_date }}</span></span>
     {% endif %}
     {% with item|search_content as content %}
         {% if content %}

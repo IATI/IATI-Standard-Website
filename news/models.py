@@ -75,7 +75,7 @@ class NewsPage(AbstractContentPage):
     def search_display_date(self):
         """Return a date for search display."""
         DATE_FORMAT = '%-d %b %Y'
-        return self.date.strftime(DATE_FORMAT)
+        return 'Published: %s' % self.date.strftime(DATE_FORMAT)
 
 
 @register_snippet

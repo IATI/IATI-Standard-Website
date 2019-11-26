@@ -128,9 +128,9 @@ class EventPage(AbstractContentPage):
         end_date = self.date_end.date()
         dates = start_date.strftime(DATE_FORMAT)
         if start_date != end_date:
-            dates = '%s — %s' % (start_date.strftime(DATE_FORMAT), end_date.strftime(DATE_FORMAT))
+            dates = '%s - %s' % (start_date.strftime(DATE_FORMAT), end_date.strftime(DATE_FORMAT))
 
-        return dates
+        return 'Date: %s' % dates
 
 
 @register_snippet
