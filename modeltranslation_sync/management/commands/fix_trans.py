@@ -177,6 +177,18 @@ class Command(LoadCommand):
                         if field == 'profile_content_editor':
                             soup = BeautifulSoup(message.string, "html.parser")
                             for child_elem in soup.findAll("div", recursive=False):
+                                if "block-section_heading" == child_elem.attrs["class"][0]:
+                                    culprit = True
+                                    json_obj = {"type": "section_heading", "value": child_elem.decode_contents()}
+                                    message_json.append(json_obj)
+                                if "block-paragraph" == child_elem.attrs["class"][0]:
+                                    culprit = True
+                                    json_obj = {"type": "paragraph", "value": child_elem.decode_contents()}
+                                    message_json.append(json_obj)
+                                if "block-pullquote" == child_elem.attrs["class"][0]:
+                                    culprit = True
+                                    json_obj = {"type": "pullquote", "value": child_elem.decode_contents()}
+                                    message_json.append(json_obj)
                                 if "block-profile_editor" == child_elem.attrs["class"][0]:
                                     culprit = True
                                     subelements = child_elem.findAll("dd")
