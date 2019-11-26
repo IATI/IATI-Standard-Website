@@ -175,6 +175,7 @@ class Command(LoadCommand):
                                             json_obj["value"].append({"type": "document", "value": doc_pk})
                                         else:
                                             print("ERR: Unable to serialize document {} from {}".format(doc_name, field_id))
+                                    message_json.append(json_obj)
                             if "block-anchor_point" in message.string:
                                 culprit = True
                                 soup = BeautifulSoup(message.string, "html5lib")
