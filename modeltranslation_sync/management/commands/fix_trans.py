@@ -4,6 +4,7 @@
 from __future__ import unicode_literals
 from os.path import join, isdir
 import json
+import html
 
 from bs4 import BeautifulSoup
 
@@ -94,7 +95,7 @@ class Command(LoadCommand):
                                         subelement = subelements[i]
                                         subelement_key = subelement_keys[i].decode_contents()
                                         subelement_dict[subelement_key] = subelement
-                                    image_name = subelement_dict["image"].decode_contents()
+                                    image_name = html.unescape(subelement_dict["image"].decode_contents())
                                     image_alignment = subelement_dict["alignment"].decode_contents()
                                     caption = subelement_dict["caption"].find("div", {"class": "rich-text"}).decode_contents()
                                     img_check = Image.objects.filter(title=image_name)
@@ -155,7 +156,7 @@ class Command(LoadCommand):
                                     for document in documents:
                                         doc_anchor = document.find("a")
                                         try:
-                                            doc_name = doc_anchor.decode_contents()
+                                            doc_name = html.unescape(doc_anchor.decode_contents())
                                         except AttributeError:
                                             doc_name = None
                                         doc_check = Document.objects.filter(title=doc_name)
