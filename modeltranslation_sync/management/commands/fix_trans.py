@@ -202,7 +202,7 @@ class Command(LoadCommand):
                                         }
                                     }
                                     message_json.append(json_obj)
-                        if field == 'timeline_editor':
+                        if field == 'profile_content_editor':
                             if "block-profile_editor" in message.string:
                                 culprit = True
                                 soup = BeautifulSoup(message.string, "html5lib")
