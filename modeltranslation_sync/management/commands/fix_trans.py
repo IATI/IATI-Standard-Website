@@ -198,7 +198,7 @@ class Command(LoadCommand):
                                     json_obj = {
                                         "type": "event_block_editor", "value": {
                                             "heading": subelement_dict["heading"].decode_contents(),
-                                            "description": subelement_dict["html"].decode_contents()
+                                            "description": subelement_dict["description"].decode_contents()
                                         }
                                     }
                                     message_json.append(json_obj)
