@@ -57,7 +57,7 @@ def search_content(obj):
                 text = return_all_content(block.render())
                 if text:
                     indexable_text.append(' %s' % text)
-        if text:
+        if indexable_text:
             return re.sub(r' +', ' ', ' '.join(indexable_text)).strip()
 
     return ''

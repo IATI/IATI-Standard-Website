@@ -31,11 +31,12 @@ def search(request):
     # Search
     if search_query:
         search_results = [r for m in searchable_models
-                          for r in m.objects.live().search(search_query)]
+                          for r in m.objects.live().search(search_query).annotate_score('_score')]
+        search_results = sorted(search_results, key=lambda x: x._score, reverse=True)
+
         promoted = [x.page.specific for x in Query.get(search_query).editors_picks.all() if x.page.live]
 
         query = Query.get(search_query)
-
         search_results = list(chain(promoted, search_results))
 
         # Record hit
