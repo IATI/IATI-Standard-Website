@@ -37,7 +37,8 @@ def verbose_name(obj):
 def search_content(obj):
     indexable_text = []
     if hasattr(obj, 'excerpt'):
-        indexable_text.append(obj.excerpt)
+        if obj.excerpt:
+            indexable_text.append(obj.excerpt)
 
     if not hasattr(obj, 'content_editor'):
         return ' '.join(indexable_text)
