@@ -6,6 +6,8 @@ import json
 from os import mkdir
 from os.path import join, isdir, exists
 
+from wagtail.core.blocks.stream_block import StreamValue
+
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
 from modeltranslation.translator import translator
@@ -72,14 +74,17 @@ class Command(BaseCommand):
                         msgstr = "%s" % getattr(item, tr_field)
                         enval = getattr(item, en_field)
                         if enval is not None and field not in ["slug", "url_path"]:
-                            enstr = json.dumps(enval.stream_data) if hasattr(enval, "stream_data") else "%s" % enval
+                            if isinstance(enval, StreamValue):
+                                enstr = json.dumps(enval.stream_data)
+                            else:
+                                enstr = "%s" % enval
                             # We already have a translation, just add the new comment to pick it up
                             if enstr in existing_ids:
                                 catalog.add(id=enstr, string=msgstr, auto_comments=[msgid, ])
                             # We don't have an exact translation, but we've translated the page before
                             elif msgid in existing_trans.keys():
                                 # If it's JSON, the dumped strings might not match, but the objs can
-                                if hasattr(enval, "stream_data"):
+                                if isinstance(enval, StreamValue):
                                     new_json = json.loads(enstr)
                                     old_json = json.loads(existing_trans[msgid])
                                     # If it doesn't match, delete the old and readd. If it does match, do nothing
