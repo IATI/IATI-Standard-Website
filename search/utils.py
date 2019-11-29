@@ -1,7 +1,7 @@
 import html
-from unidecode import unidecode
 from haystack.utils.highlighting import Highlighter
 from django.utils.html import strip_tags
+from search.punctuation import normalise
 
 
 class CustomHighlighter(Highlighter):
@@ -9,7 +9,7 @@ class CustomHighlighter(Highlighter):
     original_text_block = ""
 
     def __init__(self, query, **kwargs):
-        super().__init__(unidecode(query), **kwargs)
+        super().__init__(normalise(query), **kwargs)
 
     def find_window(self, highlight_locations):
         if len(self.text_block) <= self.max_length:
@@ -26,11 +26,7 @@ class CustomHighlighter(Highlighter):
 
     def highlight(self, text_block):
         self.original_text_block = html.unescape(strip_tags(text_block))
-        self.text_block = unidecode(self.original_text_block)
-
-        highlight_locations = self.find_highlightable_words()
-        start_offset, end_offset = self.find_window(highlight_locations)
-        return self.render_html(highlight_locations, start_offset, end_offset)
+        return super().highlight(normalise(self.original_text_block))
 
     def render_html(self, highlight_locations=None, start_offset=None, end_offset=None):
         # Start by chopping the block down to the proper window.
