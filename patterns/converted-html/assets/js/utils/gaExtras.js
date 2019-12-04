@@ -10,7 +10,7 @@ export default function gaExtras (selector = 'a[href]') {
 
         if (ga && ga.create && isValidAction(e)) {
             const link = $(this).attr('href');
-            const label = $(this).data('event-label');
+            const label = window.location.href;
             const category = DOWNLOAD;
             const is_file = link.match(regex);
 
