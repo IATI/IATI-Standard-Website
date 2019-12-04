@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en-GB" class="no-js">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>fffixture</title>
+    
+    	<link href='https://fonts.googleapis.com/css?family=Roboto:400,500,700|Fira+Mono' rel='stylesheet' type='text/css'>
+		<link href="/assets/css/ui.css" rel="stylesheet">
+    	<link href="/assets/css/screen.css" rel="stylesheet">
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.2"></script>
+<script>/*! grunt-grunticon Stylesheet Loader - v2.1.6 | https://github.com/filamentgroup/grunticon | (c) 2015 Scott Jehl, Filament Group, Inc. | MIT license. */
+!function(){function e(e,n,t){"use strict";var o=window.document.createElement("link"),r=n||window.document.getElementsByTagName("script")[0],a=window.document.styleSheets;return o.rel="stylesheet",o.href=e,o.media="only x",r.parentNode.insertBefore(o,r),o.onloadcssdefined=function(e){for(var n,t=0;t<a.length;t++)a[t].href&&a[t].href===o.href&&(n=!0);n?e():setTimeout(function(){o.onloadcssdefined(e)})},o.onloadcssdefined(function(){o.media=t||"all"}),o}function n(e,n){e.onload=function(){e.onload=null,n&&n.call(e)},"isApplicationInstalled"in navigator&&"onloadcssdefined"in e&&e.onloadcssdefined(n)}!function(t){var o=function(r,a){"use strict";if(r&&3===r.length){var i=t.navigator,c=t.document,s=t.Image,d=!(!c.createElementNS||!c.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect||!c.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image","1.1")||t.opera&&-1===i.userAgent.indexOf("Chrome")||-1!==i.userAgent.indexOf("Series40")),l=new s;l.onerror=function(){o.method="png",o.href=r[2],e(r[2])},l.onload=function(){var t=1===l.width&&1===l.height,i=r[t&&d?0:t?1:2];t&&d?o.method="svg":t?o.method="datapng":o.method="png",o.href=i,n(e(i),a)},l.src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==",c.documentElement.className+=" grunticon"}};o.loadCSS=e,o.onloadCSS=n,t.grunticon=o}(this),function(e,n){"use strict";var t=n.document,o="grunticon:",r=function(e){if(t.attachEvent?"complete"===t.readyState:"loading"!==t.readyState)e();else{var n=!1;t.addEventListener("readystatechange",function(){n||(n=!0,e())},!1)}},a=function(e){return n.document.querySelector('link[href$="'+e+'"]')},i=function(e){var n,t,r,a,i,c,s={};if(n=e.sheet,!n)return s;t=n.cssRules?n.cssRules:n.rules;for(var d=0;d<t.length;d++)r=t[d].cssText,a=o+t[d].selectorText,i=r.split(");")[0].match(/US\-ASCII\,([^"']+)/),i&&i[1]&&(c=decodeURIComponent(i[1]),s[a]=c);return s},c=function(e){var n,r,a,i;a="data-grunticon-embed";for(var c in e){i=c.slice(o.length);try{n=t.querySelectorAll(i)}catch(s){continue}r=[];for(var d=0;d<n.length;d++)null!==n[d].getAttribute(a)&&r.push(n[d]);if(r.length)for(d=0;d<r.length;d++)r[d].innerHTML=e[c],r[d].style.backgroundImage="none",r[d].removeAttribute(a)}return r},s=function(n){"svg"===e.method&&r(function(){c(i(a(e.href))),"function"==typeof n&&n()})};e.embedIcons=c,e.getCSS=a,e.getIcons=i,e.ready=r,e.svgLoadedCallback=s,e.embedSVG=s}(grunticon,this)}();
+	grunticon(["/assets/icons/ico.data.svg.css", "/assets/icons/ico.data.png.css", "/assets/icons/ico.fallback.css"]);
+</script>
+<noscript><link href="/assets/icons/ico.fallback.css" rel="stylesheet"></noscript>
+<script src="/assets/js/libs/modernizr.js"></script>
+<link rel="icon" type="image/png" href="/assets/assets/favicons/favicon-16x16.png" sizes="16x16">
+
+		<script src="https://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+    
+</head>
+<body class="body">
+	<div class="ui-canvas">
+		<a href="#pagecontent" class="skiplink" data-js="skiplink">Skip to main content</a>
+		<div class="ui-wrapper">
+			
+			<header role="banner" class="ui-header">
+				<div class="ui-row">
+					<h1 class="ui-header__title"><a href="/">IATI Pattern Library </a></h1>
+					<nav role="navigation" class="ui-navigation" id="ui-navigation-primary">
+						<ul>
+							<li class="ui-navigation__item "><a href="/page-templates/">Page templates</a></li>
+							
+							<li class="ui-navigation__item "><a href="/style-guide/">Style guide</a></li>
+							
+							
+							<li class="ui-navigation__item "><a href="/modules/">Modules</a></li>
+							
+							
+							<li class="ui-navigation__item "><a href="/developer-guide/">Developer guide</a></li>
+							
+						</ul>
+					</nav>
+				</div>
+			</header>
+			
+			
+			
+		
+			
+			
+			<!-- ID and -nofocus required for proper skiplink operation -->
+			<main id="pagecontent" class="pagecontent -nofocus" role="main" tabindex="-1">
+				<div class="ui-hero">
+					<div class="ui-row">
+						<h2 class="ui-hero__heading">Global</h2>
+						<div class="ui-hero__caption">
+							
+	<p>This contains global elements that appear on every template</p>
+
+						</div>
+					</div>
+				</div>
+				<div class="ui-alert">
+					During design and development phases, this guide is best viewed in <a href="https://www.google.co.uk/intl/en_uk/chrome/browser/" title="Google chrome">Google chrome</a> as it is still a working document.
+				</div>
+
+				
+<div class="ui-row">
+
+	<!-- Duplicate this as a loop for each module within a section -->
+	<div class="ui-section">
+		<div class="ui-section__header">
+			<!-- Module name. Can be generated from file name perhaps? -->
+			<h2>Header</h2>
+		</div>
+		<div class="ui-section__component">
+			
+			<header role="banner" class="header">
+	<a href="/" class="branding"><span>IATI - International Aid Transparency Initiative</span></a>
+	
+
+<ul class="navigation-utility">
+    
+        
+            <li id="section-news" class='navigation-utility__item'><a href="http://iatistandard.org/news/">News</a></li>
+        
+    
+        
+            <li id="section-events" class='navigation-utility__item'><a href="http://iatistandard.org/events/">Events</a></li>
+        
+    
+        
+            <li id="section-contact" class='navigation-utility__item'><a href="http://iatistandard.org/contact/">Contact</a></li>
+        
+    
+</ul>
+
+	
+
+
+<button role="button" class="navigation-primary-toggle" id="navigation-primary-toggle"><span>Menu</span></button>
+
+<nav class="navigation-primary" role="navigation" id="navigation-primary">
+	<ul class="navigation-primary__items">
+		
+			
+				
+					<li id="section-about" class='navigation-primary__item'><a href="http://iatistandard.org/about/">About</a></li>
+				
+			
+		
+			
+				
+					<li id="section-standard" class='navigation-primary__item'><a href="http://iatistandard.org/iati-standard/">IATI Standard</a></li>
+				
+			
+		
+			
+				
+					<li id="section-data" class='navigation-primary__item'><a href="http://iatistandard.org/using-data/">Using Data</a></li>
+				
+			
+		
+			
+				
+					<li id="section-support" class='navigation-primary__item'><a href="http://iatistandard.org/guidance/">Guidance & Support</a></li>
+				
+			
+		
+			
+				
+					<li id="section-community" class='navigation-primary__item'><a href="https://discuss.iatistandard.org/">Community</a></li>
+				
+			
+		
+		
+			
+				<li id="section-news" class='navigation-primary__item navigation-primary__item--ss-only'><a href="http://iatistandard.org/news/">News</a></li>
+			
+		
+			
+				<li id="section-events" class='navigation-primary__item navigation-primary__item--ss-only'><a href="http://iatistandard.org/events/">Events</a></li>
+			
+		
+			
+				<li id="section-contact" class='navigation-primary__item navigation-primary__item--ss-only'><a href="http://iatistandard.org/contact/">Contact</a></li>
+			
+		
+	</ul>
+</nav>
+
+</header>
+
+			
+		</div>
+		<div class="ui-section__body">
+			<div class="ui-section__main">
+				<div class="ui-section__code">
+					<pre><code>&lt;header role=&quot;banner&quot; class=&quot;header&quot;&gt;
+	&lt;a href=&quot;/&quot; class=&quot;branding&quot;&gt;&lt;span&gt;IATI - International Aid Transparency Initiative&lt;/span&gt;&lt;/a&gt;
+	
+
+&lt;ul class=&quot;navigation-utility&quot;&gt;
+    
+        
+            &lt;li id=&quot;section-news&quot; class=&#39;navigation-utility__item&#39;&gt;&lt;a href=&quot;http://iatistandard.org/news/&quot;&gt;News&lt;/a&gt;&lt;/li&gt;
+        
+    
+        
+            &lt;li id=&quot;section-events&quot; class=&#39;navigation-utility__item&#39;&gt;&lt;a href=&quot;http://iatistandard.org/events/&quot;&gt;Events&lt;/a&gt;&lt;/li&gt;
+        
+    
+        
+            &lt;li id=&quot;section-contact&quot; class=&#39;navigation-utility__item&#39;&gt;&lt;a href=&quot;http://iatistandard.org/contact/&quot;&gt;Contact&lt;/a&gt;&lt;/li&gt;
+        
+    
+&lt;/ul&gt;
+
+	
+
+
+&lt;button role=&quot;button&quot; class=&quot;navigation-primary-toggle&quot; id=&quot;navigation-primary-toggle&quot;&gt;&lt;span&gt;Menu&lt;/span&gt;&lt;/button&gt;
+
+&lt;nav class=&quot;navigation-primary&quot; role=&quot;navigation&quot; id=&quot;navigation-primary&quot;&gt;
+	&lt;ul class=&quot;navigation-primary__items&quot;&gt;
+		
+			
+				
+					&lt;li id=&quot;section-about&quot; class=&#39;navigation-primary__item&#39;&gt;&lt;a href=&quot;http://iatistandard.org/about/&quot;&gt;About&lt;/a&gt;&lt;/li&gt;
+				
+			
+		
+			
+				
+					&lt;li id=&quot;section-standard&quot; class=&#39;navigation-primary__item&#39;&gt;&lt;a href=&quot;http://iatistandard.org/iati-standard/&quot;&gt;IATI Standard&lt;/a&gt;&lt;/li&gt;
+				
+			
+		
+			
+				
+					&lt;li id=&quot;section-data&quot; class=&#39;navigation-primary__item&#39;&gt;&lt;a href=&quot;http://iatistandard.org/using-data/&quot;&gt;Using Data&lt;/a&gt;&lt;/li&gt;
+				
+			
+		
+			
+				
+					&lt;li id=&quot;section-support&quot; class=&#39;navigation-primary__item&#39;&gt;&lt;a href=&quot;http://iatistandard.org/guidance/&quot;&gt;Guidance &amp; Support&lt;/a&gt;&lt;/li&gt;
+				
+			
+		
+			
+				
+					&lt;li id=&quot;section-community&quot; class=&#39;navigation-primary__item&#39;&gt;&lt;a href=&quot;https://discuss.iatistandard.org/&quot;&gt;Community&lt;/a&gt;&lt;/li&gt;
+				
+			
+		
+		
+			
+				&lt;li id=&quot;section-news&quot; class=&#39;navigation-primary__item navigation-primary__item--ss-only&#39;&gt;&lt;a href=&quot;http://iatistandard.org/news/&quot;&gt;News&lt;/a&gt;&lt;/li&gt;
+			
+		
+			
+				&lt;li id=&quot;section-events&quot; class=&#39;navigation-primary__item navigation-primary__item--ss-only&#39;&gt;&lt;a href=&quot;http://iatistandard.org/events/&quot;&gt;Events&lt;/a&gt;&lt;/li&gt;
+			
+		
+			
+				&lt;li id=&quot;section-contact&quot; class=&#39;navigation-primary__item navigation-primary__item--ss-only&#39;&gt;&lt;a href=&quot;http://iatistandard.org/contact/&quot;&gt;Contact&lt;/a&gt;&lt;/li&gt;
+			
+		
+	&lt;/ul&gt;
+&lt;/nav&gt;
+
+&lt;/header&gt;</code></pre>
+				</div>
+			</div>
+			<div class="ui-section__aside">
+				<div class="ui-section__notes">
+					<h4>Notes</h4>
+					<p>This is the header which appears on all templates</p>
+					<p>It would normally sit on top of a hero module.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end Duplicate -->
+
+	<!-- Duplicate this as a loop for each module within a section -->
+	<div class="ui-section">
+		<div class="ui-section__header">
+			<!-- Module name. Can be generated from file name perhaps? -->
+			<h2>Footer</h2>
+		</div>
+		<div class="ui-section__component">
+			
+			<footer role="contentinfo" class="footer">
+	<div class="footer__content">
+		<div class="row">
+			<div class="l-3up">
+				<div class="l-3up__col">
+					<span class="branding-footer"></span>
+					<!-- <h4 class="footer__heading">Contact details</h4>
+					<p class="footer__copy">Members of the Secretariat can be contacted about various aspects of IATI.</p>
+					<ul class="footer__list">
+						<li><a href="#">info@iatistandard.org</a></li>
+						<li><a href="#">media@iatistandard.org</a></li>
+						<li><a href="#">support@iatistandard.org</a></li>
+						<li><a href="#">code@iatistandard.org</a></li>
+					</ul> -->
+				</div>
+				<div class="l-3up__col">
+					<h4 class="footer__heading">Useful links</h4>
+					<ul class="footer__list">
+						<li><a href="#">Contact</a></li>
+						<li><a href="#">Terms and conditions</a></li>
+						<li><a href="#">Privacy policy</a></li>
+					</ul>
+				</div>
+				<div class="l-3up__col">
+					<h4 class="footer__heading">Newsletter</h4>
+					<form>
+						<div class="form-field">
+							<label for="newsletter" id="newsletter" class="form-label">Sign up to our newsletter</label>
+							<input id="newsletter" class="form-item" name="newsletter" type="text" placeholder="Enter email address">
+							<button type="submit" class="button" name="button">Sign up</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer__meta">
+		<div class="row">
+			<p class="footer__legal">Copyright IATI 2018. All rights reserved</p>
+
+			<ul class="social-list">
+				<li class="social-list__item social-list__item--twitter"><a href="#">Twitter</a></li>
+				<li class="social-list__item social-list__item--facebook"><a href="#">Facebook</a></li>
+				<li class="social-list__item social-list__item--linkedin"><a href="#">Linkedin</a></li>
+				<li class="social-list__item social-list__item--youtube"><a href="#">Youtube</a></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+
+			
+		</div>
+		<div class="ui-section__body">
+			<div class="ui-section__main">
+				<div class="ui-section__code">
+					<pre><code>&lt;footer role=&quot;contentinfo&quot; class=&quot;footer&quot;&gt;
+	&lt;div class=&quot;footer__content&quot;&gt;
+		&lt;div class=&quot;row&quot;&gt;
+			&lt;div class=&quot;l-3up&quot;&gt;
+				&lt;div class=&quot;l-3up__col&quot;&gt;
+					&lt;span class=&quot;branding-footer&quot;&gt;&lt;/span&gt;
+					&lt;!-- &lt;h4 class=&quot;footer__heading&quot;&gt;Contact details&lt;/h4&gt;
+					&lt;p class=&quot;footer__copy&quot;&gt;Members of the Secretariat can be contacted about various aspects of IATI.&lt;/p&gt;
+					&lt;ul class=&quot;footer__list&quot;&gt;
+						&lt;li&gt;&lt;a href=&quot;#&quot;&gt;info@iatistandard.org&lt;/a&gt;&lt;/li&gt;
+						&lt;li&gt;&lt;a href=&quot;#&quot;&gt;media@iatistandard.org&lt;/a&gt;&lt;/li&gt;
+						&lt;li&gt;&lt;a href=&quot;#&quot;&gt;support@iatistandard.org&lt;/a&gt;&lt;/li&gt;
+						&lt;li&gt;&lt;a href=&quot;#&quot;&gt;code@iatistandard.org&lt;/a&gt;&lt;/li&gt;
+					&lt;/ul&gt; --&gt;
+				&lt;/div&gt;
+				&lt;div class=&quot;l-3up__col&quot;&gt;
+					&lt;h4 class=&quot;footer__heading&quot;&gt;Useful links&lt;/h4&gt;
+					&lt;ul class=&quot;footer__list&quot;&gt;
+						&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Contact&lt;/a&gt;&lt;/li&gt;
+						&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Terms and conditions&lt;/a&gt;&lt;/li&gt;
+						&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Privacy policy&lt;/a&gt;&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/div&gt;
+				&lt;div class=&quot;l-3up__col&quot;&gt;
+					&lt;h4 class=&quot;footer__heading&quot;&gt;Newsletter&lt;/h4&gt;
+					&lt;form&gt;
+						&lt;div class=&quot;form-field&quot;&gt;
+							&lt;label for=&quot;newsletter&quot; id=&quot;newsletter&quot; class=&quot;form-label&quot;&gt;Sign up to our newsletter&lt;/label&gt;
+							&lt;input id=&quot;newsletter&quot; class=&quot;form-item&quot; name=&quot;newsletter&quot; type=&quot;text&quot; placeholder=&quot;Enter email address&quot;&gt;
+							&lt;button type=&quot;submit&quot; class=&quot;button&quot; name=&quot;button&quot;&gt;Sign up&lt;/button&gt;
+						&lt;/div&gt;
+					&lt;/form&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;footer__meta&quot;&gt;
+		&lt;div class=&quot;row&quot;&gt;
+			&lt;p class=&quot;footer__legal&quot;&gt;Copyright IATI 2018. All rights reserved&lt;/p&gt;
+
+			&lt;ul class=&quot;social-list&quot;&gt;
+				&lt;li class=&quot;social-list__item social-list__item--twitter&quot;&gt;&lt;a href=&quot;#&quot;&gt;Twitter&lt;/a&gt;&lt;/li&gt;
+				&lt;li class=&quot;social-list__item social-list__item--facebook&quot;&gt;&lt;a href=&quot;#&quot;&gt;Facebook&lt;/a&gt;&lt;/li&gt;
+				&lt;li class=&quot;social-list__item social-list__item--linkedin&quot;&gt;&lt;a href=&quot;#&quot;&gt;Linkedin&lt;/a&gt;&lt;/li&gt;
+				&lt;li class=&quot;social-list__item social-list__item--youtube&quot;&gt;&lt;a href=&quot;#&quot;&gt;Youtube&lt;/a&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/footer&gt;</code></pre>
+				</div>
+			</div>
+			<div class="ui-section__aside">
+				<div class="ui-section__notes">
+					<h4>Notes</h4>
+					<p>This is the footer which appears on all templates</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end Duplicate -->
+
+</div>
+
+			</main>
+			
+			
+			<footer role="contentinfo" class="ui-footer">
+				<div class="ui-row">
+					<p><p>This pattern library has been designed to showcase digital design in it's natural environment, the browser. Made with Love, Tea and Biscuits by <a href="http://fffunction.co">fffunction</a>.</p>
+				</div>
+			</footer>		
+			
+		</div>
+	</div>
+	
+		<script src="/assets/js/libs/basicScroll.min.js"></script>
+<script>
+    const instance = basicScroll.create({
+       elem: document.querySelector('.listing__body'),
+       from: 'top-top',
+       to: 'bottom-bottom',
+       direct: true,
+       props: {
+          '--translateY': {
+             from: '-20px',
+             to: '20px'
+          }
+       }
+    })
+    instance.start()
+</script>
+<script src="/assets/js/app.bundle.js"></script>
+	
+</body>
+</html>
