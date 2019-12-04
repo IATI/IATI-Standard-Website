@@ -4,7 +4,7 @@ export default function gaExtras (selector = 'a[href]') {
 
     $(document).on('click keypress', selector, function (e) {
 
-        const ga = window.__gaTracker;
+        const ga = window.ga;
         const DOWNLOAD = 'Download';
         const regex = /\.[a-zA-Z]{3,4}$/g;
 

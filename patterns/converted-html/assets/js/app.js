@@ -65,8 +65,8 @@ function globals () {
         $('#' + target).scrollView();
     });
 
-    // TODO: check configuration of analytics, and uncomment line below to start tracking downloads 
-    // gaExtras();
+    // Download tracker for GA
+    gaExtras();
 }
 
 $(function run () {
