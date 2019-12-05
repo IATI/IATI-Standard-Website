@@ -246,7 +246,7 @@ TWITTER_HANDLE = 'IATI_aid'
 YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/channel/UCAVH1gcgJXElsj8ENC-bDQQ'
 
 # Relative URL for the default social media sharing image
-DEFAULT_SHARE_IMAGE_URL = os.path.join(STATIC_URL, 'img/iati-share-social.png')
+DEFAULT_SHARE_IMAGE_URL = os.path.join(BASE_DIR, 'patterns/converted-html/assets/img/iati-share-social.png')
 
 
 # Search settings
