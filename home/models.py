@@ -157,7 +157,7 @@ class AbstractBasePage(Page):
         if hasattr(self, 'feed_image'):
             if self.feed_image:
                 return self.feed_image.get_rendition('min-300x300|jpegquality-60').url
-        return static('img/iati-share-social.png')
+        return static(settings.DEFAULT_SHARE_IMAGE_URL)
 
     @property
     def search_display_name(self):

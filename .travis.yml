@@ -15,6 +15,7 @@ install:
   - python manage.py makemigrations_translation
   - python manage.py migrate_translation --no-input
 before_script:
+  - python manage.py collect_static
   - python manage.py runserver &
 script:
   - make test
