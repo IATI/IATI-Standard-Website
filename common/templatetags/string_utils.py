@@ -20,5 +20,5 @@ def strip_tags(text):
 
 
 def return_all_content(content):
-    """Helper function to return untruncated stripped content."""
+    """Help function to return untruncated stripped content."""
     return mark_safe(str(content).replace('><', '> <')) if content else None
