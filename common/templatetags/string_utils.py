@@ -7,6 +7,7 @@ register = template.Library()
 
 @register.filter(name='strip_tags')
 def strip_tags(text):
+	"""Strip tags."""
     return mark_safe(bleach.clean(
         text,
         tags=[],
@@ -17,6 +18,7 @@ def strip_tags(text):
     ))
 
 
-# Helper function to return untruncated stripped content
+
 def return_all_content(content):
+	"""Helper function to return untruncated stripped content."""
     return mark_safe(str(content).replace('><', '> <')) if content else None

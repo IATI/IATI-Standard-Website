@@ -1,3 +1,4 @@
+"""Functions to support the presentation of search results."""
 import re
 from django import template
 from wagtail.core.blocks.stream_block import StreamValue
@@ -17,6 +18,7 @@ register = template.Library()
 
 @register.filter()
 def nice_url(url):
+    """Output a more presentable url."""
     try:
         if url.endswith('/'):
             url = url[:-1]
@@ -27,6 +29,7 @@ def nice_url(url):
 
 @register.filter()
 def verbose_name(obj):
+    """Return the object's verbose name."""
     try:
         return obj._meta.verbose_name
     except Exception:
@@ -35,6 +38,7 @@ def verbose_name(obj):
 
 @register.filter()
 def search_content(obj):
+    """Get the excerpt in which the searched term matches the content."""
     indexable_text = []
     if hasattr(obj, 'excerpt'):
         if obj.excerpt:

@@ -89,8 +89,8 @@ class IATIStreamBlock(StreamBlock):
     document_box = DocumentBoxBlock(icon="doc-full-inverse")
     anchor_point = CharBlock(icon="order-down", help_text="Custom anchor points are expected to precede other content.")
 
-    """Overidden method to fix None type errors on indexing."""
     def get_searchable_content(self, value):
+        """Overidden method to fix None type errors on indexing."""
         content = []
 
         if value:

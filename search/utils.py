@@ -1,3 +1,4 @@
+"""Functions to support the search highlighting."""
 import html
 from haystack.utils.highlighting import Highlighter
 from django.utils.html import strip_tags
@@ -5,13 +6,16 @@ from search.punctuation import normalise
 
 
 class CustomHighlighter(Highlighter):
+    """Class to highlight search result matches."""
 
     original_text_block = ""
 
     def __init__(self, query, **kwargs):
+        """Initialise the class."""
         super().__init__(normalise(query), **kwargs)
 
     def find_window(self, highlight_locations):
+        """Obtain position of text to highlight."""
         if len(self.text_block) <= self.max_length:
             return (0, self.max_length)
         else:
@@ -25,10 +29,12 @@ class CustomHighlighter(Highlighter):
             return window
 
     def highlight(self, text_block):
+        """Return escaped and normalised characters."""
         self.original_text_block = html.unescape(strip_tags(text_block))
         return super().highlight(normalise(self.original_text_block))
 
     def render_html(self, highlight_locations=None, start_offset=None, end_offset=None):
+        """Highlight the search matches in the content snipped shown."""
         # Start by chopping the block down to the proper window.
         text = self.text_block[start_offset:end_offset]
         orig_text = self.original_text_block[start_offset:end_offset]
