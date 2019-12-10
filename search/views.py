@@ -1,6 +1,6 @@
 """View defintions for the search app."""
 
-# from itertools import chain  # TODO: uncomment this line after the first deploy has triggered the migration fix
+from itertools import chain
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import render
 from wagtail.search.models import Query
@@ -36,9 +36,8 @@ def search(request):
 
         query = Query.get(search_query)
 
-        # TODO: uncomment these lines after the first deploy has triggered the migration fix
-        # promoted = [x.page.specific for x in Query.get(search_query).editors_picks.all() if x.page.live]
-        # search_results = list(chain(promoted, search_results))
+        promoted = [x.page.specific for x in Query.get(search_query).editors_picks.all() if x.page.live]
+        search_results = list(chain(promoted, search_results))
 
         # Record hit
         query.add_hit()

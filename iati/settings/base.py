@@ -68,7 +68,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.sitemaps',
-    # 'wagtail.contrib.search_promotions',  # TODO: uncomment this line after the first deploy has triggered the migration fix
+    'wagtail.contrib.search_promotions',
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
 
