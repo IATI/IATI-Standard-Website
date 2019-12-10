@@ -89,6 +89,16 @@ class IATIStreamBlock(StreamBlock):
     document_box = DocumentBoxBlock(icon="doc-full-inverse")
     anchor_point = CharBlock(icon="order-down", help_text="Custom anchor points are expected to precede other content.")
 
+    def get_searchable_content(self, value):
+        """Overidden method to fix None type errors on indexing."""
+        content = []
+
+        if value:
+            for child in value:
+                content.extend(child.block.get_searchable_content(child.value))
+
+        return content
+
 
 class AbstractBasePage(Page):
     """A base for all page types."""
@@ -148,6 +158,16 @@ class AbstractBasePage(Page):
             if self.feed_image:
                 return self.feed_image.get_rendition('min-300x300|jpegquality-60').url
         return static(settings.DEFAULT_SHARE_IMAGE_URL)
+
+    @property
+    def search_display_name(self):
+        """Return the verbose name for search display."""
+        return self._meta.verbose_name.replace(' page', '')
+
+    @property
+    def search_display_date(self):
+        """Return a date for search display."""
+        return ''
 
 
 class AbstractContentPage(AbstractBasePage):

@@ -19,6 +19,10 @@ from django.utils.translation import gettext_lazy as _
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
+ADMINS = (
+    ('Russell Kirkland', 'russell@mashandgravy.co.uk'),
+)
+
 SECRET_KEY = 'enter-a-long-unguessable-string-here'
 
 
@@ -56,6 +60,7 @@ INSTALLED_APPS = [
 
     'modelcluster',
     'taggit',
+    'haystack',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -63,6 +68,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.sitemaps',
+    'wagtail.contrib.search_promotions',
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
 
@@ -102,7 +108,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'iati.context_processors.assets_library_url',
             ],
         },
     },
@@ -173,11 +178,12 @@ STATICFILES_FINDERS = [
 ]
 
 STATICFILES_DIRS = [
-    os.path.join(PROJECT_DIR, 'static'),
+    os.path.join(BASE_DIR, 'home/static'),
+    os.path.join(BASE_DIR, 'patterns/converted-html/assets'),
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
+STATIC_URL = '/assets/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
@@ -188,8 +194,7 @@ DOCUMENTS_URL = '/{}/'.format(DOCUMENTS_SLUG)
 ADMIN_SLUG = 'cms'
 ADMIN_URL = '/{}/'.format(ADMIN_SLUG)
 
-# URL for pattern library, including trailing slash
-PATTERN_LIBRARY_URL = 'https://iati-styles-staging.netlify.com/'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Wagtail settings
 
@@ -241,4 +246,20 @@ TWITTER_HANDLE = 'IATI_aid'
 YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/channel/UCAVH1gcgJXElsj8ENC-bDQQ'
 
 # Relative URL for the default social media sharing image
-DEFAULT_SHARE_IMAGE_URL = 'assets/img/iati-share-social.png'
+DEFAULT_SHARE_IMAGE_URL = 'img/iati-share-social.png'
+
+
+# Search settings
+WAGTAILSEARCH_BACKENDS = {
+    'default': {
+        'BACKEND': 'wagtail.search.backends.elasticsearch2',
+        'URLS': [os.getenv('ELASTICSEARCH_URL', 'http://localhost:9200')],
+        'INDEX': 'iati',
+    },
+}
+
+HAYSTACK_CONNECTIONS = {
+    'default': {},
+}
+
+HAYSTACK_CUSTOM_HIGHLIGHTER = 'search.utils.CustomHighlighter'

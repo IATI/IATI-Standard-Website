@@ -1,5 +1,6 @@
 """View defintions for the search app."""
 
+from itertools import chain
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import render
 from wagtail.search.models import Query
@@ -30,8 +31,13 @@ def search(request):
     # Search
     if search_query:
         search_results = [r for m in searchable_models
-                          for r in m.objects.live().search(search_query)]
+                          for r in m.objects.live().search(search_query).annotate_score('_score')]
+        search_results = sorted(search_results, key=lambda x: x._score, reverse=True)
+
         query = Query.get(search_query)
+
+        promoted = [x.page.specific for x in Query.get(search_query).editors_picks.all() if x.page.live]
+        search_results = list(chain(promoted, search_results))
 
         # Record hit
         query.add_hit()

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags wagtailimages_tags wagtail_modeltranslation %}
+{% load wagtailcore_tags wagtailimages_tags wagtail_modeltranslation static %}
 
 {% block body_class %}body body--support{% endblock %}
 {% block body_id %}body-support{% endblock %}
@@ -25,7 +25,7 @@
              {% image guidance_group.section_image width-300 as img %}
              <img src="{{ img.url }}" alt="{{ img.title }}">
             {% else %}
-      			<img src="{{ PATTERN_LIBRARY_URL }}assets/img/image-placeholder.svg" alt="placeholder image">
+      			<img src="{% static 'img/image-placeholder.svg' %}" alt="placeholder image">
             {% endif %}
       		</div>
       	</aside>

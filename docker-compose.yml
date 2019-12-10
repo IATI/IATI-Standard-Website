@@ -1,16 +1,30 @@
-web:
-  build: .
-  dockerfile: .dockerfile
-  volumes:
-    - ./:/usr/src/app
-  links:
-   - postgres
-  ports:
-   - 80:80
-  environment:
-    - DATABASE_URL=postgres://postgres:@postgres:5432/postgres
-    - SECRET_KEY=enter-a-long-unguessable-string-here
-postgres:
-  image: postgres:9.6
-  ports:
-   - 5432
+
+version: '3.3'
+services:
+  elk:
+    image: sebp/elk:es235_l234_k454
+    ports:
+      - "5601:5601"
+      - "5044:5044"
+      - "9200:9200"
+  web:
+    build:
+      context: .
+      dockerfile: .dockerfile
+    command: python manage.py runserver 0.0.0.0:80
+    volumes:
+      - ./:/usr/src/app
+    links:
+     - postgres
+     - elk
+    ports:
+     - 80:80
+    environment:
+      - DATABASE_URL=postgres://postgres:@postgres:5432/postgres
+      - SECRET_KEY=enter-a-long-unguessable-string-here
+      - ELASTICSEARCH_URL=http://elk:9200
+      - DJANGO_SETTINGS_MODULE=iati.settings.dev
+  postgres:
+    image: postgres:9.6
+    ports:
+     - 5432:5432

@@ -11,8 +11,6 @@ DEBUG = False
 # Overwrite this variable in local.py with another unguessable string.
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
-PATTERN_LIBRARY_URL = 'https://styles.iatistandard.org/'
-
 MEDIA_ROOT = os.path.join('/', 'storage')
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
