@@ -17,21 +17,24 @@
         <div class="l-sidebar">
             <div class="l-sidebar__body">
                 {% if search_results %}
-                <h2 class="type-l type-l--trailer heading">Showing {{ search_results.start_index }}–{{ search_results.end_index }} of {{ paginator.count }} results</h2>
+                    <div class="listing-search-header">
+                        <h2 class="type-l type-l--trailer heading">Showing {{ search_results.start_index }}–{{ search_results.end_index }} of {{ paginator.count }} results</h2>
+                        <p class="listing-search-header__copy">Results are ordered by relevance.</p>
+                    </div>
 
-                <div class="l-cards-block">
-                    {% for result in search_results %}
-                        {% include 'search/search-listing.html' with item=result %}
-                    {% endfor %}
-                </div>
+                    <div class="l-cards-block">
+                        {% for result in search_results %}
+                            {% include 'search/search-listing.html' with item=result %}
+                        {% endfor %}
+                    </div>
 
-                {% include 'home/includes/pagination_links.html' with children=search_results %}
+                    {% include 'home/includes/pagination_links.html' with children=search_results %}
 
                 {% elif search_query %}
-                <div class="alert alert--notice">
-                    <h3 class="type-s type-s--trailer">No results found</h3>
-                    <p>Your search did not return any results, please try again</p>
-                </div>
+                    <div class="alert alert--notice">
+                        <h3 class="type-s type-s--trailer">No results found</h3>
+                        <p>Your search did not return any results, please try again</p>
+                    </div>
                 {% endif %}
 
             </div>
