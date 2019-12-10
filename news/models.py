@@ -71,6 +71,12 @@ class NewsPage(AbstractContentPage):
 
     ]
 
+    @property
+    def search_display_date(self):
+        """Return a date for search display."""
+        DATE_FORMAT = '%-d %b %Y'
+        return 'Published: %s' % self.date.strftime(DATE_FORMAT)
+
 
 @register_snippet
 class NewsCategory(models.Model):

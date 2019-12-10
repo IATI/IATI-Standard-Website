@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags wagtailimages_tags iati_tags %}
+{% load wagtailcore_tags wagtailimages_tags iati_tags static %}
 
 {% block body_class %}body body--about{% endblock %}
 {% block body_id %}body-about{% endblock %}
@@ -49,7 +49,7 @@
                         {% image child.value.profile_picture max-600x600 as profilepicture %}
                         <img src="{{ profilepicture.url }}" alt="{{ profilepicture.alt }}">
                       {% else %}
-                        <img src="{{ PATTERN_LIBRARY_URL }}assets/img/portrait.png" alt="placeholder portrait">
+                        <img src="{% static 'img/portrait.png' %}" alt="placeholder portrait">
                       {% endif %}
                     </div>
                   </aside>

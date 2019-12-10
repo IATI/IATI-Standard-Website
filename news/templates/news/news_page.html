@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailimages_tags wagtail_modeltranslation i18n %}
+{% load wagtailimages_tags wagtail_modeltranslation i18n static %}
 {% block body_class %}body body--news-single{% endblock %}
 {% block body_id %}body-news-single{% endblock %}
 {% block content %}
@@ -57,7 +57,7 @@
                 {% image news_post.feed_image width-600 as img %}
                 <img src="{{ img.url }}" alt="{{ img.title }}" />
                {% else %}
-                <img src="{{ PATTERN_LIBRARY_URL }}assets/svg/source/logo-square.svg" alt="iati logo"/>
+                <img src="{% static 'svg/source/logo-square.svg' %}" alt="iati logo"/>
                {% endif %}
             </div>
           </aside>

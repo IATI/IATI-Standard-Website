@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags wagtailimages_tags wagtail_modeltranslation iati_tags i18n %}
+{% load wagtailcore_tags wagtailimages_tags wagtail_modeltranslation iati_tags i18n static %}
 
 {% block body_class %}body body--events{% endblock %}
 {% block body_id %}body-events{% endblock %}
@@ -46,7 +46,7 @@
 		  {% image event.feed_image width-200 as img %}
 		  <img src="{{ img.url }}" alt="{{ img.title }}" />
 		  {% else %}
-		  <img src="{{ PATTERN_LIBRARY_URL }}assets/svg/source/logo-square.svg" alt="iati logo"/>
+		  <img src="{% static 'svg/source/logo-square.svg' %}" alt="iati logo"/>
 		  {% endif %}
 		</div>
         {% if event.location %}
