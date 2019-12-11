@@ -53,7 +53,8 @@ class Command(BaseCommand):
             existing_ids = []
             existing_trans = {}
             if exists(po_filepath):
-                po_file = open(po_filepath, "r")
+                print(po_filepath)
+                po_file = open(po_filepath, "r", encoding="utf-8")
                 catalog = read_po(po_file)
                 po_file.close()
                 for message in catalog:
