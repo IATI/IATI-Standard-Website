@@ -3,22 +3,22 @@
 from modeltranslation.translator import TranslationOptions
 from modeltranslation.decorators import register
 from home.translation_helper import add_language_content_panels
-from .models import ToolsIndexPage, ToolPage
+from .models import ToolsListingPage, ToolPage
 
 
-@register(ToolsIndexPage)
-class ToolsIndexPageTR(TranslationOptions):
-    """A class to allow for the news index page translation fields to be autopopulated in the database."""
+@register(ToolsListingPage)
+class ToolsListingPageTR(TranslationOptions):
+    """A class to allow for the tools index page translation fields to be autopopulated in the database."""
 
-    fields = ToolsIndexPage.translation_fields
+    fields = ToolsListingPage.translation_fields
 
 
-add_language_content_panels(ToolsIndexPage)
+add_language_content_panels(ToolsListingPage)
 
 
 @register(ToolPage)
 class ToolPageTR(TranslationOptions):
-    """A class to allow for the news page translation fields to be autopopulated in the database."""
+    """A class to allow for the tool page translation fields to be autopopulated in the database."""
 
     fields = ToolPage.translation_fields
 
