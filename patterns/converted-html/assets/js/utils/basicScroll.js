@@ -1,6 +1,6 @@
 // import basicScroll from 'basicscroll'
 // // const basicScroll = require('basicscroll')
-//
+
 // const instance = basicScroll.create({
 //    elem: document.querySelector('.listing__body'),
 //    from: 'top-top',
@@ -13,7 +13,7 @@
 //       }
 //    }
 // })
-//
+
 // export default function () {
 //     return instance();
 //     instance.start()
