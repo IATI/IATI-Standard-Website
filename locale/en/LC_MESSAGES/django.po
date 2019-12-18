@@ -591,3 +591,7 @@ msgstr ""
 #: using_data/templates/using_data/using_data_page.html:50
 msgid "View tools and resources"
 msgstr ""
+
+#: tools/templates/tools/tool_listing.html:20
+msgid "Visit the tool at"
+msgstr ""

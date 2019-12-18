@@ -6,6 +6,7 @@ from modelcluster.fields import ParentalKey
 from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel, InlinePanel, MultiFieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.core.models import Orderable
+from wagtail.core.fields import RichTextField
 from home.models import AbstractContentPage, DefaultPageHeaderImageMixin
 
 
@@ -20,10 +21,10 @@ class ToolsListingPage(DefaultPageHeaderImageMixin, AbstractContentPage):
         blank=True,
         help_text='Optional: title for the highlight panel displayed after featured tools',
     )
-    highlight_content = models.CharField(
-        max_length=255,
+    highlight_content = RichTextField(
+        features=['link'],
         blank=True,
-        help_text='Optional: title for the highlight panel displayed after featured tools',
+        help_text='Optional: content for the highlight panel displayed after featured tools',
     )
 
     translation_fields = AbstractContentPage.translation_fields + [
@@ -31,7 +32,7 @@ class ToolsListingPage(DefaultPageHeaderImageMixin, AbstractContentPage):
         'highlight_content',
     ]
 
-    multilingual_field_panels = [
+    multilingual_field_panels = DefaultPageHeaderImageMixin.multilingual_field_panels + [
         MultiFieldPanel(
             [
                 InlinePanel('featured_tools', label='Featured tool', help_text='Select and order the tools to be featured on the page.'),

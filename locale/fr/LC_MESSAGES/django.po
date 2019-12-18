@@ -686,3 +686,7 @@ msgstr "Accéder aux outils et aux ressources"
 
 #~ msgid "Government of Liberia"
 #~ msgstr "Gouvernement du Libéria"
+
+#: tools/templates/tools/tool_listing.html:20
+msgid "Visit the tool at"
+msgstr "Visitez l'outil à"

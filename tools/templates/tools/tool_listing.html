@@ -1,0 +1,23 @@
+{% load wagtail_modeltranslation wagtailimages_tags i18n tool_utils %}
+
+<div class="card card--tool">
+    <div class="card__header">
+        {% if item.logo %}
+            <div class="card__logo card__logo--background">
+                <a href="{{ item.url }}">
+                    {% image item.logo max-150x90 alt=item.logo.title width='auto' height='auto' %}
+                </a>
+            </div>
+        {% endif %}
+        <h3 class="card__heading {% if not item.logo %}card__heading--full{% endif %}"><a href="{{ item.url }}">{{ item.heading }}</a></h3>
+    </div>
+    <div class="with-leader is-typeset">
+        {% if item.listing_description %}
+            <p class="card__excerpt">{{ item.listing_description }}</p>
+        {% endif %}
+        <p><a href="{{ item.url }}">{% trans 'Find out more' %}</a></p>
+        {% if item.external_url %}
+            <p><a href="{{ item.external_url }}">{% trans 'Visit the tool at' %} {{ item.external_url|nice_url }}</a></p>
+        {% endif %}
+    </div>
+</div>
