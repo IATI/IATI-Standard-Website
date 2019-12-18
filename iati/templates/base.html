@@ -81,156 +81,144 @@
         height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <!-- End Google Tag Manager (noscript) -->
         {% wagtailuserbar %}
-        	<div class="ui-base">
-		<a href="#pagecontent" class="skiplink" data-js="skiplink">{% trans "Skip to main content" %}</a>
-
+        <div class="ui-base">
+		    <a href="#pagecontent" class="skiplink" data-js="skiplink">{% trans "Skip to main content" %}</a>
 			<header role="banner" class="header">
-	<a href="{% default_page_url %}" class="branding"><span>{% trans "IATI - International Aid Transparency Initiative" %}</span></a>
+	           <a href="{% default_page_url %}" class="branding"><span>{% trans "IATI - International Aid Transparency Initiative" %}</span></a>
+                <ul class="navigation-utility">
+                    <li id="section-news" class='navigation-utility__item {% check_active "news" %}'>
+                        <a href="{% default_page_url 'news' %}">{% trans "News" %}</a>
+                    </li>
+                    <li id="section-events" class='navigation-utility__item {% check_active "events" %}'>
+                        <a href="{% default_page_url 'events' %}">{% trans "Events" %}</a>
+                    </li>
+                    <li id="section-contact" class='navigation-utility__item {% check_active "contact" %}'>
+                        <a href="{% default_page_url 'contact' %}">{% trans "Contact" %}</a>
+                    </li>
+                    <li id="section-search" class='navigation-utility__item {% check_active "search" %}'>
+                        <a href="{% url 'search' %}">{% trans "Search" %}</a>
+                    </li>
+                    {% if has_multilanguage_support %}
+                        <li class="navigation-utility__item">|</li>
+                        <li class="navigation-utility__item">
+                            {% translation_links calling_page=self %}
+                        </li>
+                    {% endif %}
+                </ul>
+                <button role="button" class="navigation-primary-toggle" id="navigation-primary-toggle"><span>{% trans "Menu" %}</span></button>
+                <nav class="navigation-primary" role="navigation" id="navigation-primary">
+                	<ul class="navigation-primary__items">
+                        <li id="section-about" class='navigation-primary__item {% check_active "about" "primary"%}'>
+                            <a href="{% default_page_url 'about' %}">{% trans "About" %}</a>
+                        </li>
+                        <li id="section-standard" class='navigation-primary__item {% check_active "iati-standard" "primary"%}'>
+                            <a href="{% default_page_url 'iati_standard' %}">{% trans "IATI Standard" %}</a>
+                        </li>
+                        <li id="section-data" class='navigation-primary__item {% check_active "using-data" "primary"%}'>
+                            <a href="{% default_page_url 'using_data' %}">{% trans "Using Data" %}</a>
+                        </li>
+                        <li id="section-support" class='navigation-primary__item {% check_active "guidance" "primary"%}'>
+                            <a href="{% default_page_url 'guidance_and_support' %}">{% trans "Guidance & Support" %}</a>
+                        </li>
+                        <li id="section-community" class='navigation-primary__item {% check_active "community" "primary"%}'>
+                            <a href="{% default_page_url 'community' %}">{% trans "Community" %}</a>
+                        </li>
+                        <li id="section-news" class='navigation-primary__item navigation-primary__item--ss-only {% check_active "news" %}'>
+                            <a href="{% default_page_url 'news' %}">{% trans "News" %}</a>
+                        </li>
+                        <li id="section-events" class='navigation-primary__item navigation-primary__item--ss-only {% check_active "events" %}'>
+                            <a href="{% default_page_url 'events' %}">{% trans "Events" %}</a>
+                        </li>
+                        <li id="section-contact" class='navigation-primary__item navigation-primary__item--ss-only {% check_active "contact" %}'>
+                            <a href="{% default_page_url 'contact' %}">{% trans "Contact" %}</a>
+                        </li>
+                        <li id="section-search" class='navigation-primary__item navigation-primary__item--ss-only {% check_active "search" %}'>
+                            <a href="{% url 'search' %}">{% trans "Search" %}</a>
+                        </li>
+                        {% if has_multilanguage_support %}
+                            <li class="navigation-primary__item navigation-primary__item--ss-only langs-ss">
+                                {% translation_links calling_page=self %}
+                            </li>
+                        {% endif %}
+                	</ul>
+                </nav>
+            </header>
 
+    		<!-- ID and -nofocus required for proper skiplink operation -->
+    		<main id="pagecontent" class="pagecontent -nofocus" role="main" tabindex="-1">
+                {% block hero %}{% endblock %}
+                {% block content %}{% endblock %}
+                {% block after_content %}{% endblock %}
+            </main>
 
-<ul class="navigation-utility">
+            {% block extra_js %}
+                {# Override this in templates to add extra javascript #}
+            {% endblock %}
 
-            <li id="section-news" class='navigation-utility__item {% check_active "news" %}'>
-                <a href="{% default_page_url 'news' %}">{% trans "News" %}</a></li>
-
-            <li id="section-events" class='navigation-utility__item {% check_active "events" %}'>
-                <a href="{% default_page_url 'events' %}">{% trans "Events" %}</a></li>
-
-            <li id="section-contact" class='navigation-utility__item {% check_active "contact" %}'>
-                <a href="{% default_page_url 'contact' %}">{% trans "Contact" %}</a></li>
-
-            <li id="section-search" class='navigation-utility__item {% check_active "search" %}'>
-                <a href="{% url 'search' %}">{% trans "Search" %}</a></li>
-
-            {% if has_multilanguage_support %}
-                <li class="navigation-utility__item">|</li>
-                <li class="navigation-utility__item">
-                    {% translation_links calling_page=self %}
-                </li>
-            {% endif %}
-
-</ul>
-
-
-<button role="button" class="navigation-primary-toggle" id="navigation-primary-toggle"><span>{% trans "Menu" %}</span></button>
-
-<nav class="navigation-primary" role="navigation" id="navigation-primary">
-	<ul class="navigation-primary__items">
-
-        <li id="section-about" class='navigation-primary__item {% check_active "about" "primary"%}'>
-            <a href="{% default_page_url 'about' %}">{% trans "About" %}</a></li>
-
-        <li id="section-standard" class='navigation-primary__item {% check_active "iati-standard" "primary"%}'>
-            <a href="{% default_page_url 'iati_standard' %}">{% trans "IATI Standard" %}</a></li>
-
-        <li id="section-data" class='navigation-primary__item {% check_active "using-data" "primary"%}'>
-            <a href="{% default_page_url 'using_data' %}">{% trans "Using Data" %}</a></li>
-
-        <li id="section-support" class='navigation-primary__item {% check_active "guidance" "primary"%}'>
-            <a href="{% default_page_url 'guidance_and_support' %}">{% trans "Guidance & Support" %}</a></li>
-
-        <li id="section-community" class='navigation-primary__item {% check_active "community" "primary"%}'>
-            <a href="{% default_page_url 'community' %}">{% trans "Community" %}</a></li>
-
-        <li id="section-news" class='navigation-primary__item navigation-primary__item--ss-only {% check_active "news" %}'>
-            <a href="{% default_page_url 'news' %}">{% trans "News" %}</a></li>
-
-        <li id="section-events" class='navigation-primary__item navigation-primary__item--ss-only {% check_active "events" %}'>
-            <a href="{% default_page_url 'events' %}">{% trans "Events" %}</a></li>
-
-        <li id="section-contact" class='navigation-primary__item navigation-primary__item--ss-only {% check_active "contact" %}'>
-            <a href="{% default_page_url 'contact' %}">{% trans "Contact" %}</a></li>
-
-        <li id="section-search" class='navigation-primary__item navigation-primary__item--ss-only {% check_active "search" %}'>
-            <a href="{% url 'search' %}">{% trans "Search" %}</a></li>
-
-        {% if has_multilanguage_support %}
-            <li class="navigation-primary__item navigation-primary__item--ss-only langs-ss">
-                {% translation_links calling_page=self %}
-            </li>
-        {% endif %}
-	</ul>
-</nav>
-
-</header>
-
-
-		<!-- ID and -nofocus required for proper skiplink operation -->
-		<main id="pagecontent" class="pagecontent -nofocus" role="main" tabindex="-1">
-        {% block content %}{% endblock %}
-
-        </main>
-
-        {% block extra_js %}
-            {# Override this in templates to add extra javascript #}
-        {% endblock %}
-        <footer role="contentinfo" class="footer">
-	<div class="footer__content">
-		<div class="row">
-			<div class="l-3up">
-				<div class="l-3up__col">
-					<span class="branding-footer"></span>
-				</div>
-				<div class="l-3up__col">
-					<h4 class="footer__heading">{% trans "Useful links" %}</h4>
-					<ul class="footer__list">
-						<li><a href="{% default_page_url 'contact' %}">{% trans "Contact" %}</a></li>
-						<li><a href="{% standard_page_url 'terms' %}">{% trans "Terms and conditions" %}</a></li>
-						<li><a href="{% standard_page_url 'privacy' %}">{% trans "Privacy policy" %}</a></li>
-                        <li><a href="{% standard_page_url 'trans' %}">{% trans "Translation FAQs" %}</a></li>
-					</ul>
-				</div>
-				<div class="l-3up__col">
-					<h4 class="footer__heading">{% trans "Newsletter" %}</h4>
-					<form action="https://aidtransparency.us3.list-manage.com/subscribe/post?u=0e73fb60cf70bda74851aed09&amp;id=c189d66816" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
-						<div class="form-field">
-							<div class="form-flex">
-                <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_0e73fb60cf70bda74851aed09_c189d66816" tabindex="-1" value="" autocomplete="off"></div>
-                <label for="newsletter" id="newsletter" class="form-label">{% trans "Sign up to our newsletter" %}</label>
-								<input style="width:100%; margin-bottom:5px;" id="newsletter" class="form-item" type="email" value="" name="EMAIL" placeholder="{% trans "Email address" %}" aria-label="Email address" required>
-	              <input style="width:100%; margin-bottom:5px;" class="form-item" type="text" value="" name="FNAME" id="mce-FNAME" placeholder="{% trans "First name" %}" aria-label="First name" required>
-	              <input style="width:100%; margin-bottom:5px;" class="form-item" type="text" value="" name="LNAME" id="mce-LNAME" placeholder="{% trans "Surname" %}" aria-label="Surname" required>
-								<input type="submit" value="{% trans "Subscribe" %}" name="subscribe" id="mc-embedded-subscribe" class="button">
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="footer__meta">
-		<div class="row">
-			<p class="footer__legal">{% trans "Copyright IATI 2018. All rights reserved" %}</p>
-
-			<ul class="social-list">
-				<li class="social-list__item social-list__item--twitter"><a href="https://twitter.com/{{ social_twitter_handle }}" rel="noopener noreferrer" target="_blank">{% trans "Twitter" %}</a></li>
-                <li class="social-list__item social-list__item--youtube"><a href="{{ social_youtube_url }}" rel="noopener noreferrer" target="_blank">{% trans "YouTube" %}</a></li>
-			</ul>
-		</div>
-	</div>
-</footer>
-
-
-	</div>
-	<script src="{% static 'js/libs/basicScroll.min.js' %}"></script>
-<script>
-    var elem = document.querySelector && document.querySelector('.listing__body');
-    if (elem) {
-        var instance = basicScroll.create({
-           elem: elem,
-           from: 'top-top',
-           to: 'bottom-bottom',
-           direct: true,
-           props: {
-              '--translateY': {
-                 from: '-20px',
-                 to: '20px'
-              }
-           }
-        });
-        instance.start();
-    }
-</script>
-<script type="text/javascript" src="{% static 'js/app.bundle.js' %}"></script>
+            <footer role="contentinfo" class="footer">
+            	<div class="footer__content">
+            		<div class="row">
+            			<div class="l-3up">
+            				<div class="l-3up__col">
+            					<span class="branding-footer"></span>
+            				</div>
+            				<div class="l-3up__col">
+            					<h4 class="footer__heading">{% trans "Useful links" %}</h4>
+            					<ul class="footer__list">
+            						<li><a href="{% default_page_url 'contact' %}">{% trans "Contact" %}</a></li>
+            						<li><a href="{% standard_page_url 'terms' %}">{% trans "Terms and conditions" %}</a></li>
+            						<li><a href="{% standard_page_url 'privacy' %}">{% trans "Privacy policy" %}</a></li>
+                                    <li><a href="{% standard_page_url 'trans' %}">{% trans "Translation FAQs" %}</a></li>
+            					</ul>
+            				</div>
+            				<div class="l-3up__col">
+            					<h4 class="footer__heading">{% trans "Newsletter" %}</h4>
+            					<form action="https://aidtransparency.us3.list-manage.com/subscribe/post?u=0e73fb60cf70bda74851aed09&amp;id=c189d66816" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
+            						<div class="form-field">
+            							<div class="form-flex">
+                                            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_0e73fb60cf70bda74851aed09_c189d66816" tabindex="-1" value="" autocomplete="off"></div>
+                                            <label for="newsletter" id="newsletter" class="form-label">{% trans "Sign up to our newsletter" %}</label>
+            								<input style="width:100%; margin-bottom:5px;" id="newsletter" class="form-item" type="email" value="" name="EMAIL" placeholder="{% trans "Email address" %}" aria-label="Email address" required>
+            	                            <input style="width:100%; margin-bottom:5px;" class="form-item" type="text" value="" name="FNAME" id="mce-FNAME" placeholder="{% trans "First name" %}" aria-label="First name" required>
+            	                            <input style="width:100%; margin-bottom:5px;" class="form-item" type="text" value="" name="LNAME" id="mce-LNAME" placeholder="{% trans "Surname" %}" aria-label="Surname" required>
+            								<input type="submit" value="{% trans "Subscribe" %}" name="subscribe" id="mc-embedded-subscribe" class="button">
+            							</div>
+            						</div>
+            					</form>
+            				</div>
+            			</div>
+            		</div>
+            	</div>
+            	<div class="footer__meta">
+            		<div class="row">
+            			<p class="footer__legal">{% trans "Copyright IATI 2018. All rights reserved" %}</p>
+            			<ul class="social-list">
+            				<li class="social-list__item social-list__item--twitter"><a href="https://twitter.com/{{ social_twitter_handle }}" rel="noopener noreferrer" target="_blank">{% trans "Twitter" %}</a></li>
+                            <li class="social-list__item social-list__item--youtube"><a href="{{ social_youtube_url }}" rel="noopener noreferrer" target="_blank">{% trans "YouTube" %}</a></li>
+            			</ul>
+            		</div>
+            	</div>
+            </footer>
+	    </div>
+	    <script src="{% static 'js/libs/basicScroll.min.js' %}"></script>
+        <script>
+            var elem = document.querySelector && document.querySelector('.listing__body');
+            if (elem) {
+                var instance = basicScroll.create({
+                   elem: elem,
+                   from: 'top-top',
+                   to: 'bottom-bottom',
+                   direct: true,
+                   props: {
+                      '--translateY': {
+                         from: '-20px',
+                         to: '20px'
+                      }
+                   }
+                });
+                instance.start();
+            }
+        </script>
+        <script type="text/javascript" src="{% static 'js/app.bundle.js' %}"></script>
     </body>
 </html>
