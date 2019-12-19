@@ -165,6 +165,7 @@ def discover_tree_recursive(current_page, calling_page):
         if page_dict['is_active']:
             child_menu = discover_tree_recursive(child, calling_page)
             parent_menu = parent_menu + child_menu
+    print(parent_menu)
     return parent_menu
 
 
@@ -176,6 +177,9 @@ def side_panel(calling_page):
     else:
         home_page = HomePage.objects.live().first()
         main_section = home_page.get_children().ancestor_of(calling_page).live().first().specific
+
+    print(main_section.id)
+    print(calling_page.id)
 
     menu_to_display = discover_tree_recursive(main_section, calling_page)
     return {"menu_to_display": menu_to_display, "calling_page": calling_page}
