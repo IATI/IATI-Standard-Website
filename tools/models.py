@@ -43,7 +43,10 @@ class ToolsListingPage(DefaultPageHeaderImageMixin, AbstractContentPage):
 
     @cached_property
     def tools(self):
-        return self.featured_tools.all()
+        tools = self.featured_tools.all()
+        if self.live:
+            tools = [x for x in tools if x.tool.live]
+        return tools
 
     @cached_property
     def highlight(self):
