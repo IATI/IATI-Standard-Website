@@ -13,7 +13,7 @@ class ToolsListingPageFactory(BasePageFactory):
 
     @factory.post_generation
     def featured_tool(self, create, tools, **kwargs):
-        """Generate M2M for related news."""
+        """Generate M2M for featured_tools."""
         if not create:
             return
 
@@ -23,7 +23,7 @@ class ToolsListingPageFactory(BasePageFactory):
 
 
 class ToolPageFactory(BasePageFactory):
-    """Factory generating data for EventPage."""
+    """Factory generating data for ToolPage."""
 
     class Meta:
         model = ToolPage
