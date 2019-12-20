@@ -117,6 +117,11 @@
                         <li id="section-data" class='navigation-primary__item {% check_active "using-data" "primary"%}'>
                             <a href="{% default_page_url 'using_data' %}">{% trans "Using Data" %}</a>
                         </li>
+                        {% if global.has_new_tools_page %}
+                            <li id="section-data" class='navigation-primary__item {% check_active "iati-tools-and-resources" "primary"%}'>
+                                <a href="{% default_page_url 'tools_and_resources' %}">{% trans "Tools & Resources" %}</a>
+                            </li>
+                        {% endif %}
                         <li id="section-support" class='navigation-primary__item {% check_active "guidance" "primary"%}'>
                             <a href="{% default_page_url 'guidance_and_support' %}">{% trans "Guidance & Support" %}</a>
                         </li>

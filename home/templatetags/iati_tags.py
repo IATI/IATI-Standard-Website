@@ -17,6 +17,7 @@ from guidance_and_support.models import GuidanceAndSupportPage, CommunityPage
 from news.models import NewsIndexPage, NewsCategory
 from iati_standard.models import IATIStandardPage
 from using_data.models import UsingDataPage
+from tools.models import ToolsListingPage
 
 
 register = template.Library()  # pylint: disable=invalid-name
@@ -44,6 +45,7 @@ def default_page_url(context, default_page_name="home"):
         'iati_standard': IATIStandardPage,
         'using_data': UsingDataPage,
         'community': CommunityPage,
+        'tools_and_resources': ToolsListingPage,
     }
 
     default_page_fallbacks = {
