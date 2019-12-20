@@ -154,7 +154,10 @@ def discover_tree_recursive(current_page, calling_page):
 
     """
     parent_menu = []
-    for child in current_page.get_children().live().specific():
+    children = current_page.get_children().specific()
+    if calling_page.live:
+        children = children.live()
+    for child in children:
         page_dict = {
             'page_title': child.heading if child.heading else child.title,
             'page_slug': child.slug,
@@ -165,7 +168,6 @@ def discover_tree_recursive(current_page, calling_page):
         if page_dict['is_active']:
             child_menu = discover_tree_recursive(child, calling_page)
             parent_menu = parent_menu + child_menu
-    print(parent_menu)
     return parent_menu
 
 
@@ -176,10 +178,13 @@ def side_panel(calling_page):
         main_section = calling_page
     else:
         home_page = HomePage.objects.live().first()
-        main_section = home_page.get_children().ancestor_of(calling_page).live().first().specific
-
-    print(main_section.id)
-    print(calling_page.id)
+        main_section = home_page.get_children().ancestor_of(calling_page)
+        if calling_page.live:
+            main_section = main_section.live()
+        try:
+            main_section = main_section.first().specific
+        except AttributeError:
+            return {"menu_to_display": None, "calling_page": calling_page}
 
     menu_to_display = discover_tree_recursive(main_section, calling_page)
     return {"menu_to_display": menu_to_display, "calling_page": calling_page}

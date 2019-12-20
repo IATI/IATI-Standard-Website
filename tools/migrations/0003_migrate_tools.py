@@ -64,7 +64,7 @@ class Migration(migrations.Migration):
 
         parent = HomePage.objects.all().first()
 
-        page = old_index = ToolsIndexPage.objects.all().first()
+        page = ToolsIndexPage.objects.all().first()
         new_page = ToolsListingPage()
 
         page_data = json.loads(page.to_json())
@@ -76,7 +76,8 @@ class Migration(migrations.Migration):
             setattr(new_page, field, stream_value)
 
         parent.add_child(instance=new_page)
-        new_page.save_revision().publish()
+        new_page.save_revision()
+        new_page.unpublish()
 
         parent = new_page
 
@@ -91,9 +92,8 @@ class Migration(migrations.Migration):
                 setattr(new_page, field, stream_value)
 
             parent.add_child(instance=new_page)
-            new_page.save_revision().publish()
-
-        old_index.delete()
+            new_page.save_revision()
+            new_page.unpublish()
 
     dependencies = [
         ('tools', '0002_auto_20191218_1535'),
