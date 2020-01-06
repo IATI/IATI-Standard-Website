@@ -62,50 +62,42 @@ class Migration(migrations.Migration):
         except Exception:
             return
 
-        parent = HomePage.objects.all().first()
+        try:
+            parent = HomePage.objects.all().first()
 
-        page = ToolsIndexPage.objects.all().first()
-        new_page = ToolsListingPage()
+            page = ToolsIndexPage.objects.all().first()
+            new_page = ToolsListingPage()
 
-        page_data = json.loads(page.to_json())
-        for field in FIELDS:
-            try:
+            page_data = json.loads(page.to_json())
+            for field in FIELDS:
                 setattr(new_page, field, getattr(page, field))
-            except Exception:
-                pass
-        for field in STREAMFIELDS:
-            try:
+            for field in STREAMFIELDS:
                 raw_text = json.dumps(content_to_content_streamfield_data(page_data[field]), cls=DjangoJSONEncoder)
                 stream_value = StreamValue(getattr(new_page, field), [], is_lazy=True, raw_text=raw_text)
                 setattr(new_page, field, stream_value)
-            except Exception:
-                pass
-
-        parent.add_child(instance=new_page)
-        new_page.save_revision()
-        new_page.unpublish()
-
-        parent = new_page
-
-        for page in ToolsPage.objects.all():
-            new_page = ToolPage()
-            page_data = json.loads(page.to_json())
-            for field in FIELDS:
-                try:
-                    setattr(new_page, field, getattr(page, field))
-                except Exception:
-                    pass
-            for field in STREAMFIELDS:
-                try:
-                    raw_text = json.dumps(content_to_content_streamfield_data(page_data[field]), cls=DjangoJSONEncoder)
-                    stream_value = StreamValue(getattr(new_page, field), [], is_lazy=True, raw_text=raw_text)
-                    setattr(new_page, field, stream_value)
-                except Exception:
-                    pass
 
             parent.add_child(instance=new_page)
             new_page.save_revision()
             new_page.unpublish()
+
+            parent = new_page
+
+            for page in ToolsPage.objects.all():
+                new_page = ToolPage()
+                page_data = json.loads(page.to_json())
+                for field in FIELDS:
+                    setattr(new_page, field, getattr(page, field))
+                for field in STREAMFIELDS:
+                    raw_text = json.dumps(content_to_content_streamfield_data(page_data[field]), cls=DjangoJSONEncoder)
+                    stream_value = StreamValue(getattr(new_page, field), [], is_lazy=True, raw_text=raw_text)
+                    setattr(new_page, field, stream_value)
+
+                parent.add_child(instance=new_page)
+                new_page.save_revision()
+                new_page.unpublish()
+
+        except Exception:
+            pass
 
     dependencies = [
         ('tools', '0002_auto_20191218_1535'),
