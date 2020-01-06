@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-11 12:20+0000\n"
+"POT-Creation-Date: 2020-01-06 15:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -90,28 +90,28 @@ msgid "%(pagecount)s pages"
 msgstr ""
 
 #: guidance_and_support/templates/guidance_and_support/guidance_page.html:34
-#: guidance_and_support/templates/guidance_and_support/guidance_page.html:86
-#: search/templates/search/search.html:47
+#: guidance_and_support/templates/guidance_and_support/guidance_page.html:88
+#: search/templates/search/search.html:45
 msgid "Contact support"
 msgstr ""
 
 #: guidance_and_support/templates/guidance_and_support/guidance_page.html:37
-#: search/templates/search/search.html:50
+#: search/templates/search/search.html:48
 msgid "Our technical team are ready to help you."
 msgstr ""
 
 #: guidance_and_support/templates/guidance_and_support/guidance_page.html:38
-#: search/templates/search/search.html:51
+#: search/templates/search/search.html:49
 #: using_data/templates/using_data/tools_index_page.html:28
 msgid "Get help"
 msgstr ""
 
 #: guidance_and_support/templates/guidance_and_support/guidance_page.html:49
-#: guidance_and_support/templates/guidance_and_support/guidance_page.html:65
+#: guidance_and_support/templates/guidance_and_support/guidance_page.html:66
 msgid "Related guidance"
 msgstr ""
 
-#: guidance_and_support/templates/guidance_and_support/guidance_page.html:89
+#: guidance_and_support/templates/guidance_and_support/guidance_page.html:91
 msgid ""
 "\n"
 "        Query successfully submitted. Our technical team will be in contact "
@@ -119,7 +119,7 @@ msgid ""
 "        "
 msgstr ""
 
-#: guidance_and_support/templates/guidance_and_support/guidance_page.html:95
+#: guidance_and_support/templates/guidance_and_support/guidance_page.html:97
 msgid ""
 "\n"
 "        Sorry, something went wrong submitting your query. Please try again "
@@ -127,7 +127,7 @@ msgid ""
 "        "
 msgstr ""
 
-#: guidance_and_support/templates/guidance_and_support/guidance_page.html:101
+#: guidance_and_support/templates/guidance_and_support/guidance_page.html:103
 msgid ""
 "\n"
 "        Please complete the form below and our team will be able to help "
@@ -135,31 +135,31 @@ msgid ""
 "        "
 msgstr ""
 
-#: guidance_and_support/templates/guidance_and_support/guidance_page.html:113
+#: guidance_and_support/templates/guidance_and_support/guidance_page.html:115
 msgid "Name"
 msgstr ""
 
-#: guidance_and_support/templates/guidance_and_support/guidance_page.html:114
+#: guidance_and_support/templates/guidance_and_support/guidance_page.html:116
 msgid "Your name"
 msgstr ""
 
-#: guidance_and_support/templates/guidance_and_support/guidance_page.html:122
+#: guidance_and_support/templates/guidance_and_support/guidance_page.html:124
 msgid "Email"
 msgstr ""
 
-#: guidance_and_support/templates/guidance_and_support/guidance_page.html:123
+#: guidance_and_support/templates/guidance_and_support/guidance_page.html:125
 msgid "your.email@address.com"
 msgstr ""
 
-#: guidance_and_support/templates/guidance_and_support/guidance_page.html:140
+#: guidance_and_support/templates/guidance_and_support/guidance_page.html:142
 msgid "Query"
 msgstr ""
 
-#: guidance_and_support/templates/guidance_and_support/guidance_page.html:141
+#: guidance_and_support/templates/guidance_and_support/guidance_page.html:143
 msgid "Your query"
 msgstr ""
 
-#: guidance_and_support/templates/guidance_and_support/guidance_page.html:149
+#: guidance_and_support/templates/guidance_and_support/guidance_page.html:151
 msgid "Submit request"
 msgstr ""
 
@@ -175,7 +175,8 @@ msgstr ""
 msgid "Achim Steiner, UNDP Administrator"
 msgstr ""
 
-#: home/templates/home/home_page.html:20 home/templates/home/home_page.html:176
+#: home/templates/home/home_page.html:20
+#: home/templates/home/home_page.html:176
 #: home/templates/home/home_page.html:193
 msgid "IATI member"
 msgstr ""
@@ -232,7 +233,8 @@ msgid ""
 msgstr ""
 
 #: home/templates/home/home_page.html:79
-#: using_data/templates/using_data/using_data_page.html:32
+#: tools/templates/tools/tool_listing.html:18
+#: using_data/templates/using_data/using_data_page.html:33
 msgid "Find out more"
 msgstr ""
 
@@ -292,7 +294,7 @@ msgstr ""
 
 #: home/templates/home/home_page.html:147
 #: news/templates/news/news_index_page.html:45
-#: news/templates/news/news_page.html:70
+#: news/templates/news/news_page.html:72
 msgid "Read more"
 msgstr ""
 
@@ -338,11 +340,11 @@ msgstr ""
 msgid "View event"
 msgstr ""
 
-#: home/templates/home/includes/pagination_links.html:5
+#: home/templates/home/includes/pagination_links.html:6
 msgid "Prev"
 msgstr ""
 
-#: home/templates/home/includes/pagination_links.html:20
+#: home/templates/home/includes/pagination_links.html:18
 #: home/templates/home/includes/sibling_links.html:10
 msgid "Next"
 msgstr ""
@@ -359,31 +361,31 @@ msgstr ""
 msgid "Language"
 msgstr ""
 
-#: home/translation_helper.py:39
+#: home/translation_helper.py:51
 msgid "Promote"
 msgstr ""
 
-#: home/translation_helper.py:39
+#: home/translation_helper.py:51
 msgid "Settings"
 msgstr ""
 
-#: home/translation_helper.py:41
+#: home/translation_helper.py:53
 msgid "Multilingual"
 msgstr ""
 
-#: iati/settings/base.py:142 iati/settings/base.py:149
+#: iati/settings/base.py:154 iati/settings/base.py:161
 msgid "English"
 msgstr ""
 
-#: iati/settings/base.py:143 iati/settings/base.py:150
+#: iati/settings/base.py:155 iati/settings/base.py:162
 msgid "French"
 msgstr ""
 
-#: iati/settings/base.py:144
+#: iati/settings/base.py:156
 msgid "Spanish"
 msgstr ""
 
-#: iati/settings/base.py:145
+#: iati/settings/base.py:157
 msgid "Portuguese"
 msgstr ""
 
@@ -395,112 +397,120 @@ msgstr ""
 msgid "What you were looking for cannot be found."
 msgstr ""
 
-#: iati/templates/500.html:4
+#: iati/templates/500-non-static.html:4
 msgid "500 error"
 msgstr ""
 
-#: iati/templates/500.html:5
+#: iati/templates/500-non-static.html:5
 msgid ""
 "Something technical has gone wrong. It's not your fault. We've been notified "
 "and this page will be back soon."
 msgstr ""
 
-#: iati/templates/base.html:56
+#: iati/templates/base.html:85
 msgid "Skip to main content"
 msgstr ""
 
-#: iati/templates/base.html:59
+#: iati/templates/base.html:87
 msgid "IATI - International Aid Transparency Initiative"
 msgstr ""
 
-#: iati/templates/base.html:65 iati/templates/base.html:107
+#: iati/templates/base.html:90 iati/templates/base.html:132
 msgid "News"
 msgstr ""
 
-#: iati/templates/base.html:68 iati/templates/base.html:110
+#: iati/templates/base.html:93 iati/templates/base.html:135
 msgid "Events"
 msgstr ""
 
-#: iati/templates/base.html:71 iati/templates/base.html:113
-#: iati/templates/base.html:148
+#: iati/templates/base.html:96 iati/templates/base.html:138
+#: iati/templates/base.html:173
 msgid "Contact"
 msgstr ""
 
-#: iati/templates/base.html:74 iati/templates/base.html:116
+#: iati/templates/base.html:99 iati/templates/base.html:141
 #: search/templates/search/search.html:4
 msgid "Search"
 msgstr ""
 
-#: iati/templates/base.html:86
+#: iati/templates/base.html:108
 msgid "Menu"
 msgstr ""
 
-#: iati/templates/base.html:92
+#: iati/templates/base.html:112
 msgid "About"
 msgstr ""
 
-#: iati/templates/base.html:95
+#: iati/templates/base.html:115
 msgid "IATI Standard"
 msgstr ""
 
-#: iati/templates/base.html:98
+#: iati/templates/base.html:118
 msgid "Using Data"
 msgstr ""
 
-#: iati/templates/base.html:101
+#: iati/templates/base.html:122
+msgid "Tools & Resources"
+msgstr ""
+
+#: iati/templates/base.html:126
 msgid "Guidance & Support"
 msgstr ""
 
-#: iati/templates/base.html:104
+#: iati/templates/base.html:129
 msgid "Community"
 msgstr ""
 
-#: iati/templates/base.html:146
+#: iati/templates/base.html:171
 msgid "Useful links"
 msgstr ""
 
-#: iati/templates/base.html:149
+#: iati/templates/base.html:174
 msgid "Terms and conditions"
 msgstr ""
 
-#: iati/templates/base.html:150
+#: iati/templates/base.html:175
 msgid "Privacy policy"
 msgstr ""
 
-#: iati/templates/base.html:151
+#: iati/templates/base.html:176
 msgid "Translation FAQs"
 msgstr ""
 
-#: iati/templates/base.html:155
+#: iati/templates/base.html:180
 msgid "Newsletter"
 msgstr ""
 
-#: iati/templates/base.html:160
+#: iati/templates/base.html:185
 msgid "Sign up to our newsletter"
 msgstr ""
 
-#: iati/templates/base.html:161
+#: iati/templates/base.html:186
 msgid "Email address"
 msgstr ""
 
-#: iati/templates/base.html:162
+#: iati/templates/base.html:187
 msgid "First name"
 msgstr ""
 
-#: iati/templates/base.html:163
+#: iati/templates/base.html:188
 msgid "Surname"
 msgstr ""
 
-#: iati/templates/base.html:164
+#: iati/templates/base.html:189
 msgid "Subscribe"
 msgstr ""
 
-#: iati/templates/base.html:174
+#: iati/templates/base.html:199
 msgid "Copyright IATI 2018. All rights reserved"
 msgstr ""
 
-#: iati/templates/base.html:177
+#: iati/templates/base.html:201
 msgid "Twitter"
+msgstr ""
+
+#: iati/templates/base.html:202
+msgid "YouTube"
 msgstr ""
 
 #: iati_standard/templates/iati_standard/iati_standard_page.html:23
@@ -572,12 +582,16 @@ msgstr ""
 msgid "Categories"
 msgstr ""
 
-#: news/templates/news/news_page.html:42
+#: news/templates/news/news_page.html:44
 msgid "Related news"
 msgstr ""
 
 #: search/templates/search/search.html:9
 msgid "Search iatistandard.org"
+msgstr ""
+
+#: tools/templates/tools/tool_listing.html:20
+msgid "Visit the tool at"
 msgstr ""
 
 #: using_data/templates/using_data/tools_index_page.html:24
@@ -588,6 +602,6 @@ msgstr ""
 msgid "Find out what support is available for you using IATI data."
 msgstr ""
 
-#: using_data/templates/using_data/using_data_page.html:50
+#: using_data/templates/using_data/using_data_page.html:51
 msgid "View tools and resources"
 msgstr ""

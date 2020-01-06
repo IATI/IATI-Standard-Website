@@ -10,3 +10,7 @@ WORKDIR /usr/src/app
 COPY requirements.txt /usr/src/app/
 COPY requirements_dev.txt /usr/src/app/
 RUN pip3 install -r requirements_dev.txt
+
+RUN apt-get update && apt-get install -y \
+        gettext \
+    --no-install-recommends
