@@ -69,11 +69,17 @@ class Migration(migrations.Migration):
 
         page_data = json.loads(page.to_json())
         for field in FIELDS:
-            setattr(new_page, field, getattr(page, field))
+            try:
+                setattr(new_page, field, getattr(page, field))
+            except Exception:
+                pass
         for field in STREAMFIELDS:
-            raw_text = json.dumps(content_to_content_streamfield_data(page_data[field]), cls=DjangoJSONEncoder)
-            stream_value = StreamValue(getattr(new_page, field), [], is_lazy=True, raw_text=raw_text)
-            setattr(new_page, field, stream_value)
+            try:
+                raw_text = json.dumps(content_to_content_streamfield_data(page_data[field]), cls=DjangoJSONEncoder)
+                stream_value = StreamValue(getattr(new_page, field), [], is_lazy=True, raw_text=raw_text)
+                setattr(new_page, field, stream_value)
+            except Exception:
+                pass
 
         parent.add_child(instance=new_page)
         new_page.save_revision()
@@ -85,11 +91,17 @@ class Migration(migrations.Migration):
             new_page = ToolPage()
             page_data = json.loads(page.to_json())
             for field in FIELDS:
-                setattr(new_page, field, getattr(page, field))
+                try:
+                    setattr(new_page, field, getattr(page, field))
+                except Exception:
+                    pass
             for field in STREAMFIELDS:
-                raw_text = json.dumps(content_to_content_streamfield_data(page_data[field]), cls=DjangoJSONEncoder)
-                stream_value = StreamValue(getattr(new_page, field), [], is_lazy=True, raw_text=raw_text)
-                setattr(new_page, field, stream_value)
+                try:
+                    raw_text = json.dumps(content_to_content_streamfield_data(page_data[field]), cls=DjangoJSONEncoder)
+                    stream_value = StreamValue(getattr(new_page, field), [], is_lazy=True, raw_text=raw_text)
+                    setattr(new_page, field, stream_value)
+                except Exception:
+                    pass
 
             parent.add_child(instance=new_page)
             new_page.save_revision()
