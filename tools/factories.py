@@ -32,9 +32,9 @@ class ToolPageFactory(BasePageFactory):
     external_url = factory.Faker(
         provider='uri',
     )
-    listing_description = factory.Faker('listing_description')
+    listing_description = factory.Faker('text', max_nb_chars=255)
     logo = factory.SubFactory(ImageFactory)
-    button_label = factory.Faker('button_label')
+    button_label = factory.Faker('text', max_nb_chars=255)
 
 
 class FeaturedToolsFactory(factory.django.DjangoModelFactory):

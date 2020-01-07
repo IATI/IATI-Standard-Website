@@ -29,9 +29,9 @@ class TestTools():
     def test_listing(self, client):
         """Test that listing page is created."""
 
-        assert listing().listing is not None
+        assert listing() is not None
 
     def test_tools(self, client):
-        """Test that listing page is created."""
+        """Test that listing page has children ."""
 
-        assert listing.children().count() == 10
+        assert listing().get_children().count() == 10
