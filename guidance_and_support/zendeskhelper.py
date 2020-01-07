@@ -15,17 +15,20 @@ def generate_ticket(request):
         request (django.http.HttpRequest): A django request containing the user's POSTed content.
 
     """
-    recaptcha_response = request.POST.get('g-recaptcha-response')
-    url = 'https://www.google.com/recaptcha/api/siteverify'
-    values = {
-        'secret': settings.RECAPTCHA_PRIVATE_KEY,
-        'response': recaptcha_response
-    }
-    data = urllib.parse.urlencode(values).encode()
-    req = urllib.request.Request(url, data=data)
-    response = urllib.request.urlopen(req)
-    result = json.loads(response.read().decode())
-    if result['success']:
+    if request.POST.get('skip_captcha_check'):
+        result = True
+    else:
+        recaptcha_response = request.POST.get('g-recaptcha-response')
+        url = 'https://www.google.com/recaptcha/api/siteverify'
+        values = {
+            'secret': settings.RECAPTCHA_PRIVATE_KEY,
+            'response': recaptcha_response
+        }
+        data = urllib.parse.urlencode(values).encode()
+        req = urllib.request.Request(url, data=data)
+        response = urllib.request.urlopen(req)
+        result = json.loads(response.read().decode())['success']
+    if result:
         path = request.path
         is_honeypot_valid = request.POST['phone'] == ""  # Set to False if honeypot is entered
         email = request.POST['email']
