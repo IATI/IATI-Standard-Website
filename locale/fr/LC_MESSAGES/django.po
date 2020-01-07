@@ -518,10 +518,8 @@ msgid "Using Data"
 msgstr "Utilisation des données"
 
 #: iati/templates/base.html:122
-#, fuzzy
-#| msgid "View tools and resources"
 msgid "Tools & Resources"
-msgstr "Accéder aux outils et aux ressources"
+msgstr "Outils et ressources"
 
 #: iati/templates/base.html:126
 msgid "Guidance & Support"
