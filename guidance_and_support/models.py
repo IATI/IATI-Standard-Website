@@ -68,6 +68,8 @@ class GuidancePage(AbstractContentPage):
 
     subpage_types = []
 
+    captchakey = models.CharField(max_length=255, null=True, blank=True, default=settings.RECAPTCHA_PUBLIC_KEY)
+
     def get_context(self, request, *args, **kwargs):
         """Overwrite context to intercept POST requests to pages on this template and pass them to Zendesk API.
 
