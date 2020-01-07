@@ -1,5 +1,5 @@
 import pytest
-from tools.factories import ToolsListingPageFactory, ToolPageFactory, FeaturedToolsFactory
+from tools.factories import ToolsListingPageFactory, ToolPageFactory
 from home.models import HomePage
 
 
@@ -14,6 +14,7 @@ def listing():
         10,
         parent=listing,
     )
+    # listing.featured_tool(True, tools=tools[:5])
     return listing
 
 
@@ -35,3 +36,8 @@ class TestTools():
         """Test that listing page has children ."""
 
         assert listing().get_children().count() == 10
+
+    # def test_featured_tools(self, client):
+    #     """Test that listing page has featured tools."""
+
+    #     assert listing().tools().count() == 5
