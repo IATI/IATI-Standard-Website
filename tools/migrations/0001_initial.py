@@ -15,7 +15,8 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('wagtailsearchpromotions', '0002_capitalizeverbose'),
+        ('wagtailcore', '0040_page_draft_title'),
+        ('wagtailimages', '0019_delete_filter'),
     ]
 
     operations = [
