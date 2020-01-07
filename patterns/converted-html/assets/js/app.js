@@ -43,7 +43,7 @@ function globals () {
     );
 
     // accessible megamenu
-    megaMenu();
+    // megaMenu();
 
     // nested nav
     nestedNav();

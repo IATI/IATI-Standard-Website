@@ -7,6 +7,7 @@ from django.contrib.humanize.templatetags.humanize import intcomma
 from django.template.defaultfilters import date as _date
 from django.urls import reverse, NoReverseMatch
 from django.utils import timezone
+from django.utils.translation import get_language_info
 from wagtail_modeltranslation.contextlib import use_language
 from wagtail.core.templatetags.wagtailcore_tags import pageurl
 from home.models import HomePage, StandardPage
@@ -91,11 +92,24 @@ def translation_links(context, calling_page):
         for language_code, language_name in settings.ACTIVE_LANGUAGES:
             with use_language(language_code):
                 language_url = pageurl(context, calling_page)
-                language_results.append({"code": language_code, "name": language_name, "url": language_url})
+                language_name_local = get_language_info(language_code)['name_local']
+                language_results.append({
+                    "code": language_code,
+                    "name": language_name,
+                    "url": language_url,
+                    "name_local": language_name_local
+                })
 
     return {
         'languages': language_results,
     }
+
+
+@register.inclusion_tag("home/includes/translation_links_ss.html", takes_context=True)
+def translation_links_ss(context, calling_page):
+    """Reuse translation_links tag for a small screen template."""
+
+    return translation_links(context, calling_page)
 
 
 @register.filter

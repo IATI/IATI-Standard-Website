@@ -1,0 +1,7 @@
+{% load i18n %}
+
+{% for language in languages %}
+    <li class="navigation-primary__item navigation-primary__item--ss-only langs-ss">
+        <a href="{{ language.url }}">{{ language.name_local|capfirst }}</a>
+    </li>
+{% endfor %}
