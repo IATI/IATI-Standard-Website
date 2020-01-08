@@ -92,12 +92,13 @@
 </div>
 <header role="banner" class="header">
 	<a href="/" class="branding"><span>IATI - International Aid Transparency Initiative</span></a>
-	<ul class="navigation-language">
-		<li class="navigation-language__item">Lang:</li>
-		<li class="navigation-language__item navigation-language__item--active"><a href="#">EN</a></li>
-		<li class="navigation-language__item"><a href="#">FR</a></li>
-	</ul>
-	
+	<div class="header__utility">
+		<ul class="navigation-language">
+			<li class="navigation-language__item">Lang:</li>
+			<li class="navigation-language__item navigation-language__item--active"><a href="#">EN</a></li>
+			<li class="navigation-language__item"><a href="#">FR</a></li>
+		</ul>
+		
 
 <ul class="navigation-utility">
     
@@ -115,7 +116,8 @@
     
 </ul>
 
-	<button type="button" class="header-search__trigger"><i role="presentation" aria-hidden="true" class="ico ico--16 ico-search-ocean"></i> Search</button>
+		<button type="button" class="header-search__trigger"><i role="presentation" aria-hidden="true" class="ico ico--16 ico-search-ocean"></i> Search</button>
+	</div>
 	
 
 
@@ -129,12 +131,17 @@
     		<button class="button" type="submit">Search</button>
         </form>
     </div>
+    <ul class="navigation-language navigation-language--mobile">
+        <li class="navigation-language__item">Lang:</li>
+        <li class="navigation-language__item navigation-language__item--active"><a href="#">EN</a></li>
+        <li class="navigation-language__item"><a href="#">FR</a></li>
+    </ul>
     <ul class="navigation-primary__items">
     	
     		
     	
     		
-       			<li class="navigation-primary__item navigation-primary__item--has-children">
+       			<li class="navigation-primary__item  navigation-primary__item--has-children">
        				<a class="navigation-primary__item--link" href="http://iatistandard.org/about/">About</a>
             		<div class="navigation-megamenu">
             			
@@ -274,7 +281,7 @@
     		
     	
     		
-       			<li class="navigation-primary__item navigation-primary__item--has-children">
+       			<li class="navigation-primary__item  navigation-primary__item--has-children">
        				<a class="navigation-primary__item--link" href="http://iatistandard.org/iati-standard/">IATI Standard</a>
             		<div class="navigation-megamenu">
             			
@@ -455,7 +462,7 @@
     		
     	
     		
-       			<li class="navigation-primary__item navigation-primary__item--has-children">
+       			<li class="navigation-primary__item  navigation-primary__item--has-children">
        				<a class="navigation-primary__item--link" href="http://iatistandard.org/using-data/">Using Data</a>
             		<div class="navigation-megamenu">
             			
@@ -533,7 +540,7 @@
     		
     	
     		
-       			<li class="navigation-primary__item navigation-primary__item--has-children">
+       			<li class="navigation-primary__item  navigation-primary__item--has-children">
        				<a class="navigation-primary__item--link" href="http://iatistandard.org/tools/">Tools &amp; Resources</a>
             		<div class="navigation-megamenu">
             			
@@ -709,7 +716,7 @@
     		
     	
     		
-       			<li class="navigation-primary__item navigation-primary__item--has-children">
+       			<li class="navigation-primary__item  navigation-primary__item--has-children">
        				<a class="navigation-primary__item--link" href="http://iatistandard.org/guidance/">Guidance &amp; Support</a>
             		<div class="navigation-megamenu">
             			
@@ -836,7 +843,7 @@
     		
     	
     		
-       			<li class="navigation-primary__item navigation-primary__item--has-children">
+       			<li class="navigation-primary__item  navigation-primary__item--has-children">
        				<a class="navigation-primary__item--link" href="http://iatistandard.org/community/">Community</a>
             		<div class="navigation-megamenu">
             			
@@ -881,7 +888,7 @@
     		
     	
     		
-       			<li class="navigation-primary__item navigation-primary__item--has-children">
+       			<li class="navigation-primary__item  navigation-primary__item--has-children">
        				<a class="navigation-primary__item--link" href="https://discuss.iatistandard.org/">Governance</a>
             		<div class="navigation-megamenu">
             			
@@ -1016,9 +1023,6 @@
                 <li id="section-contact" class='navigation-primary__item navigation-primary__item--ss-only'><a href="http://iatistandard.org/contact/">Contact</a></li>
             
         
-
-        <li class='navigation-primary__item navigation-primary__item--ss-only'><a href="#">English</a></li>
-        <li class='navigation-primary__item navigation-primary__item--ss-only'><a href="#">French</a></li>
     </ul>
 </nav>
 
@@ -1041,12 +1045,13 @@
 &lt;/div&gt;
 &lt;header role=&quot;banner&quot; class=&quot;header&quot;&gt;
 	&lt;a href=&quot;/&quot; class=&quot;branding&quot;&gt;&lt;span&gt;IATI - International Aid Transparency Initiative&lt;/span&gt;&lt;/a&gt;
-	&lt;ul class=&quot;navigation-language&quot;&gt;
-		&lt;li class=&quot;navigation-language__item&quot;&gt;Lang:&lt;/li&gt;
-		&lt;li class=&quot;navigation-language__item navigation-language__item--active&quot;&gt;&lt;a href=&quot;#&quot;&gt;EN&lt;/a&gt;&lt;/li&gt;
-		&lt;li class=&quot;navigation-language__item&quot;&gt;&lt;a href=&quot;#&quot;&gt;FR&lt;/a&gt;&lt;/li&gt;
-	&lt;/ul&gt;
-	
+	&lt;div class=&quot;header__utility&quot;&gt;
+		&lt;ul class=&quot;navigation-language&quot;&gt;
+			&lt;li class=&quot;navigation-language__item&quot;&gt;Lang:&lt;/li&gt;
+			&lt;li class=&quot;navigation-language__item navigation-language__item--active&quot;&gt;&lt;a href=&quot;#&quot;&gt;EN&lt;/a&gt;&lt;/li&gt;
+			&lt;li class=&quot;navigation-language__item&quot;&gt;&lt;a href=&quot;#&quot;&gt;FR&lt;/a&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+		
 
 &lt;ul class=&quot;navigation-utility&quot;&gt;
     
@@ -1064,7 +1069,8 @@
     
 &lt;/ul&gt;
 
-	&lt;button type=&quot;button&quot; class=&quot;header-search__trigger&quot;&gt;&lt;i role=&quot;presentation&quot; aria-hidden=&quot;true&quot; class=&quot;ico ico--16 ico-search-ocean&quot;&gt;&lt;/i&gt; Search&lt;/button&gt;
+		&lt;button type=&quot;button&quot; class=&quot;header-search__trigger&quot;&gt;&lt;i role=&quot;presentation&quot; aria-hidden=&quot;true&quot; class=&quot;ico ico--16 ico-search-ocean&quot;&gt;&lt;/i&gt; Search&lt;/button&gt;
+	&lt;/div&gt;
 	
 
 
@@ -1078,12 +1084,17 @@
     		&lt;button class=&quot;button&quot; type=&quot;submit&quot;&gt;Search&lt;/button&gt;
         &lt;/form&gt;
     &lt;/div&gt;
+    &lt;ul class=&quot;navigation-language navigation-language--mobile&quot;&gt;
+        &lt;li class=&quot;navigation-language__item&quot;&gt;Lang:&lt;/li&gt;
+        &lt;li class=&quot;navigation-language__item navigation-language__item--active&quot;&gt;&lt;a href=&quot;#&quot;&gt;EN&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;navigation-language__item&quot;&gt;&lt;a href=&quot;#&quot;&gt;FR&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
     &lt;ul class=&quot;navigation-primary__items&quot;&gt;
     	
     		
     	
     		
-       			&lt;li class=&quot;navigation-primary__item navigation-primary__item--has-children&quot;&gt;
+       			&lt;li class=&quot;navigation-primary__item  navigation-primary__item--has-children&quot;&gt;
        				&lt;a class=&quot;navigation-primary__item--link&quot; href=&quot;http://iatistandard.org/about/&quot;&gt;About&lt;/a&gt;
             		&lt;div class=&quot;navigation-megamenu&quot;&gt;
             			
@@ -1223,7 +1234,7 @@
     		
     	
     		
-       			&lt;li class=&quot;navigation-primary__item navigation-primary__item--has-children&quot;&gt;
+       			&lt;li class=&quot;navigation-primary__item  navigation-primary__item--has-children&quot;&gt;
        				&lt;a class=&quot;navigation-primary__item--link&quot; href=&quot;http://iatistandard.org/iati-standard/&quot;&gt;IATI Standard&lt;/a&gt;
             		&lt;div class=&quot;navigation-megamenu&quot;&gt;
             			
@@ -1404,7 +1415,7 @@
     		
     	
     		
-       			&lt;li class=&quot;navigation-primary__item navigation-primary__item--has-children&quot;&gt;
+       			&lt;li class=&quot;navigation-primary__item  navigation-primary__item--has-children&quot;&gt;
        				&lt;a class=&quot;navigation-primary__item--link&quot; href=&quot;http://iatistandard.org/using-data/&quot;&gt;Using Data&lt;/a&gt;
             		&lt;div class=&quot;navigation-megamenu&quot;&gt;
             			
@@ -1482,7 +1493,7 @@
     		
     	
     		
-       			&lt;li class=&quot;navigation-primary__item navigation-primary__item--has-children&quot;&gt;
+       			&lt;li class=&quot;navigation-primary__item  navigation-primary__item--has-children&quot;&gt;
        				&lt;a class=&quot;navigation-primary__item--link&quot; href=&quot;http://iatistandard.org/tools/&quot;&gt;Tools &amp;amp; Resources&lt;/a&gt;
             		&lt;div class=&quot;navigation-megamenu&quot;&gt;
             			
@@ -1658,7 +1669,7 @@
     		
     	
     		
-       			&lt;li class=&quot;navigation-primary__item navigation-primary__item--has-children&quot;&gt;
+       			&lt;li class=&quot;navigation-primary__item  navigation-primary__item--has-children&quot;&gt;
        				&lt;a class=&quot;navigation-primary__item--link&quot; href=&quot;http://iatistandard.org/guidance/&quot;&gt;Guidance &amp;amp; Support&lt;/a&gt;
             		&lt;div class=&quot;navigation-megamenu&quot;&gt;
             			
@@ -1785,7 +1796,7 @@
     		
     	
     		
-       			&lt;li class=&quot;navigation-primary__item navigation-primary__item--has-children&quot;&gt;
+       			&lt;li class=&quot;navigation-primary__item  navigation-primary__item--has-children&quot;&gt;
        				&lt;a class=&quot;navigation-primary__item--link&quot; href=&quot;http://iatistandard.org/community/&quot;&gt;Community&lt;/a&gt;
             		&lt;div class=&quot;navigation-megamenu&quot;&gt;
             			
@@ -1830,7 +1841,7 @@
     		
     	
     		
-       			&lt;li class=&quot;navigation-primary__item navigation-primary__item--has-children&quot;&gt;
+       			&lt;li class=&quot;navigation-primary__item  navigation-primary__item--has-children&quot;&gt;
        				&lt;a class=&quot;navigation-primary__item--link&quot; href=&quot;https://discuss.iatistandard.org/&quot;&gt;Governance&lt;/a&gt;
             		&lt;div class=&quot;navigation-megamenu&quot;&gt;
             			
@@ -1965,9 +1976,6 @@
                 &lt;li id=&quot;section-contact&quot; class=&#39;navigation-primary__item navigation-primary__item--ss-only&#39;&gt;&lt;a href=&quot;http://iatistandard.org/contact/&quot;&gt;Contact&lt;/a&gt;&lt;/li&gt;
             
         
-
-        &lt;li class=&#39;navigation-primary__item navigation-primary__item--ss-only&#39;&gt;&lt;a href=&quot;#&quot;&gt;English&lt;/a&gt;&lt;/li&gt;
-        &lt;li class=&#39;navigation-primary__item navigation-primary__item--ss-only&#39;&gt;&lt;a href=&quot;#&quot;&gt;French&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
 &lt;/nav&gt;
 
