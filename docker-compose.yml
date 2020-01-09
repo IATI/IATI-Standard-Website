@@ -17,6 +17,7 @@ services:
     links:
      - postgres
      - elk
+     - rabbitmq
     ports:
      - 80:80
     environment:
@@ -28,3 +29,11 @@ services:
     image: postgres:9.6
     ports:
      - 5432:5432
+  rabbitmq:
+    image: rabbitmq:latest
+    ports:
+      - 4369:4369
+      - 5671:5671
+      - 5672:5672
+      - 15672:15672
+    restart: always

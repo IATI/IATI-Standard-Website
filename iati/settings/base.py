@@ -62,6 +62,8 @@ INSTALLED_APPS = [
     'taggit',
     'haystack',
 
+    'django_celery_results',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
