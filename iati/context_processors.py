@@ -8,7 +8,6 @@ def has_new_tools_page():
 
 def globals(request):
     """Return a global context dictionary for use by templates."""
-
     return {
         'global': {
             'has_new_tools_page': has_new_tools_page(),
