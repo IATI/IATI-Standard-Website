@@ -43,6 +43,7 @@ class ToolsListingPage(DefaultPageHeaderImageMixin, AbstractContentPage):
 
     @cached_property
     def tools(self):
+        """Returns a list of selected featured tools, if tool is live."""
         tools = self.featured_tools.all()
         if self.live:
             tools = [x for x in tools if x.tool.live]
@@ -50,6 +51,7 @@ class ToolsListingPage(DefaultPageHeaderImageMixin, AbstractContentPage):
 
     @cached_property
     def highlight(self):
+        """Returns True if both highlight title and content are present."""
         return self.highlight_title and self.highlight_content
 
 

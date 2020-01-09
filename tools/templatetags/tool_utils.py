@@ -6,6 +6,7 @@ register = template.Library()
 
 @register.filter
 def nice_url(value):
+    """Returns the domain value only of a URL for nicer labels."""
     try:
         return urlsplit(value).netloc
     except Exception:
