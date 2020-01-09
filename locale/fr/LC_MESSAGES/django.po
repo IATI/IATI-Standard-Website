@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-07 17:33+0000\n"
+"POT-Creation-Date: 2020-01-09 10:49+0000\n"
 "PO-Revision-Date: 2018-11-02 17:54+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -423,10 +423,6 @@ msgstr "Précédent"
 msgid "pages in this section"
 msgstr "pages dans cette partie"
 
-#: home/templates/home/includes/translation_links.html:4
-msgid "Language"
-msgstr "Langue"
-
 #: home/translation_helper.py:51
 msgid "Promote"
 msgstr "Promouvoir l’IITA"
@@ -485,8 +481,9 @@ msgstr "Menu"
 
 #: iati/templates/navigation/primary.html:8
 #: iati/templates/navigation/primary.html:9
-msgid "Search this site"
-msgstr ""
+#: iati/templates/scaffold/header.html:7
+msgid "Search the IATI website"
+msgstr "Rechercher sur le site Web de l'IITA"
 
 #: iati/templates/navigation/primary.html:10
 #: iati/templates/scaffold/header.html:9
@@ -495,41 +492,41 @@ msgstr ""
 msgid "Search"
 msgstr "Recherche"
 
-#: iati/templates/navigation/primary.html:15
+#: iati/templates/navigation/primary.html:20
 msgid "About"
 msgstr "À propos"
 
-#: iati/templates/navigation/primary.html:18
+#: iati/templates/navigation/primary.html:23
 msgid "IATI Standard"
 msgstr "Norme de l’IITA"
 
-#: iati/templates/navigation/primary.html:21
+#: iati/templates/navigation/primary.html:26
 msgid "Using Data"
 msgstr "Utilisation des données"
 
-#: iati/templates/navigation/primary.html:25
+#: iati/templates/navigation/primary.html:30
 msgid "Tools & Resources"
 msgstr "Outils et ressources"
 
-#: iati/templates/navigation/primary.html:29
+#: iati/templates/navigation/primary.html:34
 msgid "Guidance & Support"
 msgstr "Conseils et assistance"
 
-#: iati/templates/navigation/primary.html:32
+#: iati/templates/navigation/primary.html:37
 msgid "Community"
 msgstr "Communauté"
 
-#: iati/templates/navigation/primary.html:35
+#: iati/templates/navigation/primary.html:40
 #: iati/templates/navigation/utility.html:5
 msgid "News"
 msgstr "Actualités"
 
-#: iati/templates/navigation/primary.html:38
+#: iati/templates/navigation/primary.html:43
 #: iati/templates/navigation/utility.html:8
 msgid "Events"
 msgstr "Événements"
 
-#: iati/templates/navigation/primary.html:41
+#: iati/templates/navigation/primary.html:46
 #: iati/templates/navigation/utility.html:11
 #: iati/templates/scaffold/footer.html:13
 msgid "Contact"
@@ -587,11 +584,7 @@ msgstr "Twitter"
 msgid "YouTube"
 msgstr ""
 
-#: iati/templates/scaffold/header.html:7
-msgid "Search the IATI website"
-msgstr "Rechercher sur le site Web de l'IITA"
-
-#: iati/templates/scaffold/header.html:15
+#: iati/templates/scaffold/header.html:14
 msgid "IATI - International Aid Transparency Initiative"
 msgstr "IITA – Initiative internationale pour la transparence de l’aide"
 
@@ -690,6 +683,9 @@ msgstr ""
 #: using_data/templates/using_data/using_data_page.html:51
 msgid "View tools and resources"
 msgstr "Accéder aux outils et aux ressources"
+
+#~ msgid "Language"
+#~ msgstr "Langue"
 
 #~ msgid ""
 #~ "Showing %(search_results.start_index)s–%(search_results.end_index)s of "
