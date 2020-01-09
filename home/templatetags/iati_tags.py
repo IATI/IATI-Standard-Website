@@ -105,13 +105,6 @@ def translation_links(context, calling_page):
     }
 
 
-@register.inclusion_tag("home/includes/translation_links_ss.html", takes_context=True)
-def translation_links_ss(context, calling_page):
-    """Reuse translation_links tag for a small screen template."""
-
-    return translation_links(context, calling_page)
-
-
 @register.filter
 def haspassed(value):
     """Return True if the given date is in the past; False otherwise."""

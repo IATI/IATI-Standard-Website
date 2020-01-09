@@ -10,6 +10,11 @@
             <button class="button" type="submit">{% trans "Search" %}</button>
         </form>
     </div>
+    {% if has_multilanguage_support %}
+        <ul class="navigation-language navigation-language--mobile">
+            {% translation_links calling_page=self %}
+        </ul>
+    {% endif %}
     <ul class="navigation-primary__items">
         <li id="section-about" class='navigation-primary__item {% check_active "about" "primary"%}'>
             <a class="navigation-primary__item--link" href="{% default_page_url 'about' %}">{% trans "About" %}</a>
@@ -31,17 +36,14 @@
         <li id="section-community" class='navigation-primary__item {% check_active "community" "primary"%}'>
             <a class="navigation-primary__item--link" href="{% default_page_url 'community' %}">{% trans "Community" %}</a>
         </li>
-        <li id="section-news" class='navigation-primary__item navigation-primary__item--ss-only {% check_active "news" %}'>
+        <li id="section-news" class='navigation-primary__item navigation-primary__item--ss-only {% check_active "news" "primary" %}'>
             <a class="navigation-primary__item--link" href="{% default_page_url 'news' %}">{% trans "News" %}</a>
         </li>
-        <li id="section-events" class='navigation-primary__item navigation-primary__item--ss-only {% check_active "events" %}'>
+        <li id="section-events" class='navigation-primary__item navigation-primary__item--ss-only {% check_active "events" "primary" %}'>
             <a class="navigation-primary__item--link" href="{% default_page_url 'events' %}">{% trans "Events" %}</a>
         </li>
-        <li id="section-contact" class='navigation-primary__item navigation-primary__item--ss-only {% check_active "contact" %}'>
+        <li id="section-contact" class='navigation-primary__item navigation-primary__item--ss-only {% check_active "contact" "primary" %}'>
             <a class="navigation-primary__item--link" href="{% default_page_url 'contact' %}">{% trans "Contact" %}</a>
         </li>
-        {% if has_multilanguage_support %}
-            {% translation_links_ss calling_page=self %}
-        {% endif %}
     </ul>
 </nav>
