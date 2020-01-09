@@ -1,0 +1,78 @@
+{% extends 'patterns.html' %}
+
+{# --------------------------------------- #}
+{# Settings, models, library variables #}
+{# --------------------------------------- #}
+
+{% set ui_title = "Global" %}
+
+{% block ui_description %}
+	<p>This contains global elements that appear on every template</p>
+{% endblock %}
+
+{# --------------------------------------- #}
+{# Main body content #}
+{# --------------------------------------- #}
+
+{% block body %}
+<div class="ui-row">
+
+	<!-- Duplicate this as a loop for each module within a section -->
+	<div class="ui-section">
+		<div class="ui-section__header">
+			<!-- Module name. Can be generated from file name perhaps? -->
+			<h2>Header</h2>
+		</div>
+		<div class="ui-section__component">
+			{% capture as="html" -%}
+			{% include 'scaffold/header.html' %}
+			{% endcapture %}
+			{{ html }}
+		</div>
+		<div class="ui-section__body">
+			<div class="ui-section__main">
+				<div class="ui-section__code">
+					<pre><code>{{ html | e | trim }}</code></pre>
+				</div>
+			</div>
+			<div class="ui-section__aside">
+				<div class="ui-section__notes">
+					<h4>Notes</h4>
+					<p>This is the header which appears on all templates</p>
+					<p>It would normally sit on top of a hero module.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end Duplicate -->
+
+	<!-- Duplicate this as a loop for each module within a section -->
+	<div class="ui-section">
+		<div class="ui-section__header">
+			<!-- Module name. Can be generated from file name perhaps? -->
+			<h2>Footer</h2>
+		</div>
+		<div class="ui-section__component">
+			{% capture as="html" -%}
+			{% include 'scaffold/footer.html' %}
+			{% endcapture %}
+			{{ html }}
+		</div>
+		<div class="ui-section__body">
+			<div class="ui-section__main">
+				<div class="ui-section__code">
+					<pre><code>{{ html | e | trim }}</code></pre>
+				</div>
+			</div>
+			<div class="ui-section__aside">
+				<div class="ui-section__notes">
+					<h4>Notes</h4>
+					<p>This is the footer which appears on all templates</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end Duplicate -->
+
+</div>
+{% endblock %}

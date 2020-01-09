@@ -1,0 +1,87 @@
+{# 1. Extend the relevant layout #}
+{# --------------------------------------- #}
+
+{% extends 'sidebar.html' %}
+
+
+{# --------------------------------------- #}
+{# 2. Assign Settings and variables #}
+{# --------------------------------------- #}
+
+{% set id = "" %}
+{% set section = "" %}
+{% set title = "Search" %}
+{% set hero_copy = "" %}
+{% set hero_image = "" %}
+{% set searchtitle = 'Search' %}
+
+{# --------------------------------------- #}
+{# 3. Add models and macros #}
+{# --------------------------------------- #}
+
+{% model 'guidance', as="guidance" %}
+{% model 'form-support', as="form" %}
+
+{% import 'macros/button.html' as buttons %}
+{% import 'macros/icon.html' as icons %}
+
+
+{# --------------------------------------- #}
+{#
+   4. Add page content into relevant areas
+      Add/Delete blocks as necessary
+#}
+{# --------------------------------------- #}
+
+{% block hero %}
+    {% include 'heroes/hero-minor.html' %}
+    {% include 'partials/search.html' %}
+{% endblock %}
+
+{% block aside %}
+    {% include 'asides/cta-search.html' %}
+{% endblock %}
+
+{% block main %}
+    <div class="listing-search-header">
+        <h2 class="type-l type-l--trailer heading">Showing 10 of 56 results</h2>
+        <p class="listing-search-header__copy">Results are ordered by relevance.</p>
+    </div>
+    <div class="listing-search">
+        <div class="listing-search__item">
+            <h3 class="listing-search__title"><a href="#"><span>Title of returned event</span></a></h3>
+            <a href="#" class="listing-search__url">https://iatistandard.org/en/about/governance/</a>
+            <span class="listing-search__tag">Date:</span> <span class="listing-search__date">28 Oct 2017</span>
+            <p class="listing-search__copy">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor <span class="listing-search__highlight">incididunt ut labore</span> et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        </div>
+        <div class="listing-search__item">
+            <h3 class="listing-search__title"><a href="#"><span><span class="listing-search__highlight">Lorem ipsum dolor</span></span></a></h3>
+            <a href="#" class="listing-search__url">https://iatistandard.org/en/about/governance/</a>
+            <p class="listing-search__copy">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        </div>
+        <div class="listing-search__item">
+            <h3 class="listing-search__title"><a href="#"><span>Title of returned result</span></a></h3>
+            <a href="#" class="listing-search__url">https://iatistandard.org/en/about/governance/</a>
+            <span class="listing-search__tag">Published:</span> <span class="listing-search__date">28 Oct 2017</span>
+            <p class="listing-search__copy">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco <span class="listing-search__highlight">laboris nisi ut aliquip ex</span> ea commodo consequat.</p>
+        </div>
+        <div class="listing-search__item">
+            <h3 class="listing-search__title"><a href="#"><span><span class="listing-search__highlight">Lorem ipsum dolor</span></span></a></h3>
+            <a href="#" class="listing-search__url">https://iatistandard.org/en/about/governance/</a>
+            <p class="listing-search__copy">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        </div>
+        <div class="listing-search__item">
+            <h3 class="listing-search__title"><a href="#"><span>Title of returned result</span></a></h3>
+            <a href="#" class="listing-search__url">https://iatistandard.org/en/about/governance/</a>
+            <span class="listing-search__tag">Published:</span> <span class="listing-search__date">28 Oct 2017</span>
+            <p class="listing-search__copy">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco <span class="listing-search__highlight">laboris nisi ut aliquip ex</span> ea commodo consequat.</p>
+        </div>
+        <div class="listing-search__item">
+            <h3 class="listing-search__title"><a href="#"><span><span class="listing-search__highlight">Lorem ipsum dolor</span></span></a></h3>
+            <a href="#" class="listing-search__url">https://iatistandard.org/en/about/governance/</a>
+            <p class="listing-search__copy">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        </div>
+    </div>
+
+    {% include 'partials/pagination.html' %}
+{% endblock %}

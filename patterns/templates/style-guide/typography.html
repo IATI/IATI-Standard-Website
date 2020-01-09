@@ -1,0 +1,239 @@
+{% extends 'patterns.html' %}
+
+{# --------------------------------------- #}
+{# Settings, models, library variables #}
+{# --------------------------------------- #}
+
+{% set ui_title = "Typography" %}
+
+{% block ui_description %}
+	<p>A reference to type styles used across the website</p>
+{% endblock %}
+
+
+{# --------------------------------------- #}
+{# Main body content #}
+{# --------------------------------------- #}
+
+{% block body %}
+<div class="ui-row">
+	<!-- Duplicate -->
+	<div class="ui-section">
+		<div class="ui-section__header">
+			<h2>Available type sizes</h2>
+		</div>
+		<div class="ui-section__component">
+{% capture as="html" -%}
+<h1 class="type-xl">Extra large</h1>
+<h1 class="type-l">Large</h1>
+<h1 class="type-m">Median</h1>
+<h1 class="type-s">Small</h1>
+<h1 class="type-xs">Extra small*</h1>
+{%- endcapture %}
+			{{ html }}
+		</div>
+		<div class="ui-section__body">
+			<div class="ui-section__main">
+				<div class="ui-section__code">
+					<pre><code>{{ html | e | trim }}</code></pre>
+				</div>
+			</div>
+			<div class="ui-section__aside">
+				<div class="ui-section__notes">
+					<h4>Notes</h4>
+					<p>This is our default type scale. Generally, every type size on the website should adhere to one of these sizes.</p>
+					<p>*Extra small, in the default style is only to be used for small-print, as it is outside a suggested min size for copy.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end Duplicate -->
+	
+	<!-- Duplicate -->
+	<div class="ui-section">
+		<div class="ui-section__header">
+			<h2>Headings</h2>
+		</div>
+		<div class="ui-section__component">
+{% capture as="html" -%}
+<h1 class="type-xl heading">Extra large</h1>
+<h1 class="type-l heading">Large</h1>
+<h1 class="type-m heading">Median</h1>
+<h1 class="type-s heading">Small</h1>
+<h1 class="type-xs heading">Extra small</h1>
+{%- endcapture %}
+{{ html }}
+		</div>
+
+		<div class="ui-section__body">
+			<div class="ui-section__main">
+				<div class="ui-section__code">
+					<pre><code>{{ html | e | trim }}</code></pre>
+				</div>
+			</div>
+			<div class="ui-section__aside">
+				<div class="ui-section__notes">
+					<h4>Notes</h4>
+					<p>These are the default heading styles. Modules may contain their own sizing and spacing as needed.</p>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<!-- end Duplicate -->
+	
+	<!-- Duplicate -->
+	<div class="ui-section">
+		<div class="ui-section__header">
+			<h2>Heading top spacing</h2>
+		</div>
+		<div class="ui-section__component">
+{% capture as="html" -%}
+<h1 class="type-xl type-xl--leader heading">Extra large</h1>
+<h1 class="type-l type-l--leader heading">Large</h1>
+<h1 class="type-m type-m--leader heading">Median</h1>
+<h1 class="type-s type-s--leader heading">Small</h1>
+<h1 class="type-xs type-xs--leader heading">Extra small</h1>
+{%- endcapture %}
+{{ html }}
+		</div>
+		<div class="ui-section__body">
+			<div class="ui-section__main">
+				<div class="ui-section__code">
+					<pre><code>{{ html | e | trim }}</code></pre>
+				</div>
+			</div>
+			<div class="ui-section__aside">
+				<div class="ui-section__notes">
+					<h4>Notes</h4>
+					<p>These are the default global heading bottom margin spacing. Modules may contain their own sizing and spacing as needed.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end Duplicate -->
+	
+	<!-- Duplicate -->
+	<div class="ui-section">
+		<div class="ui-section__header">
+			<h2>Heading bottom spacing</h2>
+		</div>
+		<div class="ui-section__component">
+{% capture as="html" -%}
+<h1 class="type-xl type-xl--trailer heading">Extra large</h1>
+<h1 class="type-l type-l--trailer heading">Large</h1>
+<h1 class="type-m type-m--trailer heading">Median</h1>
+<h1 class="type-s type-s--trailer heading">Small</h1>
+<h1 class="type-xs type-xs--trailer heading">Extra small</h1>
+{%- endcapture %}
+{{ html }}
+		</div>
+		<div class="ui-section__body">
+			<div class="ui-section__main">
+				<div class="ui-section__code">
+					<pre><code>{{ html | e | trim }}</code></pre>
+				</div>
+			</div>
+			<div class="ui-section__aside">
+				<div class="ui-section__notes">
+					<h4>Notes</h4>
+					<p>These are the default global heading bottom margin spacing. Modules may contain their own sizing and spacing as needed.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end Duplicate -->
+	
+	<!-- Duplicate -->
+	<div class="ui-section">
+		<div class="ui-section__header">
+			<h2>Ordered lists</h2>
+		</div>
+		<div class="ui-section__component">
+{% capture as="html" -%}
+<ol class="ordered-list">
+    <li>A list item</li>
+    <li>A longer list item</li>
+    <li>A quite long indeed list item</li>
+</ol>
+{%- endcapture %}
+{{ html }}
+		</div>
+		<div class="ui-section__body">
+			<div class="ui-section__main">
+				<div class="ui-section__code">
+					<pre><code>{{ html | e | trim }}</code></pre>
+				</div>
+			</div>
+			<div class="ui-section__aside">
+				<div class="ui-section__notes">
+					<h4>Notes</h4>
+					<p>Ordered list items should be used where items are sequential. Default styles can be overridden or not-applied at module level</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end Duplicate -->
+	
+	<!-- Duplicate -->
+	<div class="ui-section">
+		<div class="ui-section__header">
+			<h2>Unordered lists</h2>
+		</div>
+		<div class="ui-section__component">
+{% capture as="html" -%}
+<ul class="unordered-list">
+    <li>A list item</li>
+    <li>A longer list item</li>
+    <li>A quite long indeed list item</li>
+</ul>
+{%- endcapture %}
+{{ html }}
+		</div>
+		<div class="ui-section__body">
+			<div class="ui-section__main">
+				<div class="ui-section__code">
+					<pre><code>{{ html | e | trim }}</code></pre>
+				</div>
+			</div>
+			<div class="ui-section__aside">
+				<div class="ui-section__notes">
+					<h4>Notes</h4>
+					<p>Unordered list items should be used where items are non-sequential. Default styles can be overridden or not-applied at module level</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end Duplicate -->
+	
+	<!-- Duplicate -->
+	<div class="ui-section">
+		<div class="ui-section__header">
+			<h2>Typesetting blocks</h2>
+		</div>
+		<div class="ui-section__component"  style="max-width: 700px;">
+{% capture as="html" -%}
+<div class="is-typeset">
+    {% include 'content/longform.html' %}
+</div>
+{%- endcapture %}
+{{ html }}
+		</div>
+		<div class="ui-section__body">
+			<div class="ui-section__main">
+				<div class="ui-section__code">
+					<pre><code>{{ html | e | trim }}</code></pre>
+				</div>
+			</div>
+			<div class="ui-section__aside">
+				<div class="ui-section__notes">
+					<h4>Notes</h4>
+					<p>Adding paragraphs, headings, list items etc.. within 'is-typeset' parent, allows for correctly spaced and sizes type.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end Duplicate -->
+	
+</div>
+{% endblock %}

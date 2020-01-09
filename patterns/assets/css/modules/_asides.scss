@@ -1,0 +1,128 @@
+// ------------------------------------------------------------
+// Asides
+// ------------------------------------------------------------
+
+.aside-m {
+    box-shadow: 0 0 50px 0 rgba(#000, 0.15);
+    +.aside-m {
+        margin-top: 2em;
+    }
+    @include respond-to($d-vp) {
+        max-width: 375px;
+    }
+    &--clipping {
+        padding: 2em;
+        margin-bottom: 2em;
+        box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.25);
+        display: block;
+        @include respond-to($menu-respond) {
+            float: right;
+            margin-top: -10em;
+            margin-right: -8em;
+            max-width: 25em;
+        }
+    }
+    &--clipping-event {
+        @include respond-to($menu-respond) {
+            margin-top: -10em;
+        }
+    }
+}
+
+.aside-m__header {
+    padding: 1.5em;
+    padding-top: 6em;
+    .button {
+        margin-top: 0.75em;
+    }
+}
+
+.aside-m__heading {
+    @extend .heading;
+    @include font-size($epsilon);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    .fill-sunrise &,
+    .fill-sunset & {
+        color: #fff;
+    }
+}
+
+.aside-m__list {
+    margin-bottom: 1em;
+    @include font-size($para);
+    li {
+        a {
+            text-decoration: underline;
+        }
+    }
+}
+
+.aside-m__list-item {
+    margin-top: 1px;
+    display: block;
+    @include font-size($epsilon);
+    a {
+        display: block;
+        background-color: $iati-land-light;
+        padding: 1em;
+        color: $heading-color;
+        transition: all, ease-in-out, 0.3s;
+        font-size: inherit;
+        @include link-active-styles {
+            border-left: 3px solid $iati-land;
+            background-color: darken($iati-land-light, 7%);
+        }
+    }
+    .button {
+        background: $iati-ocean;
+        color: #fff;
+        @include link-active-styles {
+            border-left: none;
+            background: darken($iati-ocean, 7%);
+            color: #fff;
+        }
+    }
+}
+
+.aside-m__body {
+    background-color: #fff;
+    padding: 1.6em;
+}
+
+.aside-m__list-item-block {
+    background-color: #fff;
+    padding: 1em;
+    .ico {
+        margin-right: 2px;
+        top: -2px;
+    }
+}
+
+.aside-m__copy {
+    @include font-size($para);
+    margin-bottom: 0.75em;
+}
+
+.aside-m__meta {
+    @include font-size($zeta);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    li {
+        margin-bottom: 0.75em;
+        &:last-child {
+            margin-bottom: 0;
+        }
+        a {
+            color: $heading-color;
+            border-bottom: 1px solid $heading-color;
+            &:hover {
+                border-color: $iati-air;
+            }
+        }
+        .ico {
+            top: -2px;
+            margin-right: 2px;
+        }
+    }
+}

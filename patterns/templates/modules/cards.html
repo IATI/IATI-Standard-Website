@@ -1,0 +1,122 @@
+{% extends 'patterns.html' %}
+
+{# --------------------------------------- #}
+{# Settings, models, library variables #}
+{# --------------------------------------- #}
+
+{% set ui_title = "Cards" %}
+
+{% block ui_description %}
+	<p></p>
+{% endblock %}
+
+{% model 'guidance', as="guidance" %}
+
+{# --------------------------------------- #}
+{# Main body content #}
+{# --------------------------------------- #}
+
+{% block body %}
+<div class="ui-row">
+
+	<!-- Duplicate this as a loop for each module within a section -->
+	<div class="ui-section">
+		<div class="ui-section__header">
+			<!-- Module name. Can be generated from file name perhaps? -->
+			<h2>Guidance card</h2>
+		</div>
+		<div class="ui-section__component">
+			{% capture as="html" -%}
+			{% for item in guidance.guidance_pl %}
+				{% include 'partials/card-guidance.html' %}
+			{% endfor %}
+			{% endcapture %}
+
+			<div class="l-cards">
+			{{ html }}
+			</div>
+		</div>
+		<div class="ui-section__body">
+			<div class="ui-section__main">
+				<div class="ui-section__code">
+					<pre><code>{{ html | e | trim }}</code></pre>
+				</div>
+			</div>
+			<div class="ui-section__aside">
+				<div class="ui-section__notes">
+					<h4>Notes</h4>
+					<p>Used to display the guidance and support sections.</p>
+					<p>Wrap this in a class of .l-cards to display them in a grid.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end Duplicate -->
+
+	<!-- Duplicate this as a loop for each module within a section -->
+	<div class="ui-section">
+		<div class="ui-section__header">
+			<!-- Module name. Can be generated from file name perhaps? -->
+			<h2>Guidance card stacked</h2>
+		</div>
+		<div class="ui-section__component">
+			{% capture as="html" -%}
+			{% for item in guidance.guidance_stacked_pl %}
+				{% include 'partials/card-guidance.html' %}
+			{% endfor %}
+			{% endcapture %}
+
+			<div class="l-cards">
+			{{ html }}
+			</div>
+		</div>
+		<div class="ui-section__body">
+			<div class="ui-section__main">
+				<div class="ui-section__code">
+					<pre><code>{{ html | e | trim }}</code></pre>
+				</div>
+			</div>
+			<div class="ui-section__aside">
+				<div class="ui-section__notes">
+					<h4>Notes</h4>
+					<p>Used to display the guidance and support sections that have child pages.</p>
+					<p>Wrap this in a class of .l-cards to display them in a grid.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end Duplicate -->
+
+	<!-- Duplicate this as a loop for each module within a section -->
+	<div class="ui-section">
+		<div class="ui-section__header">
+			<!-- Module name. Can be generated from file name perhaps? -->
+			<h2>Knowledge card</h2>
+		</div>
+		<div class="ui-section__component">
+			{% capture as="html" -%}
+			{% for item in guidance.knowledgebase_pl %}
+	            {% include 'partials/card-knowledgebase.html' %}
+	        {% endfor %}
+			{% endcapture %}
+
+			{{ html }}
+		</div>
+		<div class="ui-section__body">
+			<div class="ui-section__main">
+				<div class="ui-section__code">
+					<pre><code>{{ html | e | trim }}</code></pre>
+				</div>
+			</div>
+			<div class="ui-section__aside">
+				<div class="ui-section__notes">
+					<h4>Notes</h4>
+					<p>Used to display the knowledgebases results</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end Duplicate -->
+
+</div>
+{% endblock %}

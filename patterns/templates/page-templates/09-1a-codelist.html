@@ -1,0 +1,124 @@
+ƒ{# 1. Extend the relevant layout #}
+{# --------------------------------------- #}
+
+{% extends 'sidebar-standard.html' %}
+
+
+{# --------------------------------------- #}
+{# 2. Assign Settings and variables #}
+{# --------------------------------------- #}
+
+{% set id = "standard" %}
+{% set section = "standard" %}
+{% set title = "" %}
+{% set hero_copy = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." %}
+
+
+{# --------------------------------------- #}
+{# 3. Add models and macros #}
+{# --------------------------------------- #}
+
+{% import 'macros/button.html' as buttons %}
+{% import 'macros/icon.html' as icons %}
+{% import 'macros/alert.html' as alerts %}
+
+{% model 'codelists', as="codelists" %}
+
+
+{# --------------------------------------- #}
+{#
+   4. Add page content into relevant areas
+      Add/Delete blocks as necessary
+#}
+{# --------------------------------------- #}
+
+{% block hero %}
+    {% include 'heroes/hero-standard.html' %}
+{% endblock %}
+
+{% block aside %}
+	<div class="aside-m">
+        <div class="aside-m__header fill-sunrise">
+            <h3 class="aside-m__heading">Reference</h3>
+        </div>
+        {% include 'navigation/reference.html' %}
+    </div>
+{% endblock %}
+
+{% block main %}
+    <section>
+        <div class="is-typeset">
+            <h1>Aid Type<a class="m-header-link" href="#header-id" title="Permalink to this headline">¶</a></h1>
+            <p>External URL: <a href="#">http://www.oecd.org/dac/stats/dacandcrscodelists.htm</a></p>
+            <p>This is a <a href="#">Replicated codelist</a>.</p>
+            <h2>Use this codelist for<a class="m-header-link" href="#header-id" title="Permalink to this headline">¶</a></h2>
+            <ul>
+                <li><a href="#">iati-activities/iati-activity/default-aid-type/@code</a></li>
+                <li><a href="#">iati-activities/iati-activity/transaction/aid-type/@code</a></li>
+            </ul>
+            <h2>Download this codelist<a class="m-header-link" href="#header-id" title="Permalink to this headline">¶</a></h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>CLv1:</th>
+                        <th>CLv2:</th>
+                        <th>CLv3:</th>
+                        <th>CLv3 (French):</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="#">CSV</a></td>
+                        <td><a href="#">CSV</a></td>
+                        <td><a href="#">CSV</a></td>
+                        <td><a href="#">CSV</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="#">JSON</a></td>
+                        <td><a href="#">JSON</a></td>
+                        <td><a href="#">JSON</a></td>
+                        <td><a href="#">JSON</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="#">XML</a></td>
+                        <td><a href="#">XML</a></td>
+                        <td><a href="#">XML</a></td>
+                        <td><a href="#">XML</a></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><a href="#">GitHub source</a></p>
+            <p>The codelists were translated in French in April 2018 with the support of the Government of Canada. Please note that if any codelists have been added since then, they may not be available in French.</p>
+            <h2>Codes<a class="m-header-link" href="#header-id" title="Permalink to this headline">¶</a></h2>
+        </div>
+        {% for item in codelists.codelists %}
+            <div class="m-codelist">
+                <aside class="m-codelist__aside">
+                    <span class="m-codelist__flag">Code</span>
+                    <h3 class="m-codelist__code">{{ item.code }}</h3>
+                </aside>
+                <div class="m-codelist__main">
+                    <div class="m-codelist__header">
+                        <div class="m-codelist__heading">
+                            <span class="m-codelist__flag">Name</span>
+                            <h2 class="m-codelist__title">{{ item.title }}</h2>
+                        </div>
+                        <div class="m-codelist__category">
+                            <span class="m-codelist__flag">Category</span>
+                            <p class="m-codelist__copy"><a href="#">{{ item.category }}</a></p>
+                        </div>
+                    </div>
+                    <div class="m-codelist__content">
+                        <span class="m-codelist__flag">Description</span>
+                        <p class="m-codelist__copy m-codelist__copy show-hide-target show-hide-target--hidden">{{ item.content }}</p>
+                        <a href="#" class="m-codelist__link show-hide-trigger">Expand &plus;</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </section>
+
+    <section class="space-section-top">
+        {% include 'asides/cta-contact.html' %}
+    </section>
+{% endblock %}

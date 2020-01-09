@@ -1,0 +1,7 @@
+<ul class="navigation-secondary__child-list {{ item.open_class }}" data-nested-nav-child-list>
+    {% set item_class = 'navigation-secondary__child__item' %}
+    {% set item_num = item_num + 1 %}
+    {% for item in list %}
+        {% include 'navigation/reference-item.html' %}
+    {% endfor %}
+</ul>
