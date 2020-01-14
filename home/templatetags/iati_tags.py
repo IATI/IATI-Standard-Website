@@ -7,6 +7,7 @@ from django.contrib.humanize.templatetags.humanize import intcomma
 from django.template.defaultfilters import date as _date
 from django.urls import reverse, NoReverseMatch
 from django.utils import timezone
+from django.utils.translation import get_language_info
 from wagtail_modeltranslation.contextlib import use_language
 from wagtail.core.templatetags.wagtailcore_tags import pageurl
 from home.models import HomePage, StandardPage
@@ -17,6 +18,7 @@ from guidance_and_support.models import GuidanceAndSupportPage, CommunityPage
 from news.models import NewsIndexPage, NewsCategory
 from iati_standard.models import IATIStandardPage
 from using_data.models import UsingDataPage
+from tools.models import ToolsListingPage
 
 
 register = template.Library()  # pylint: disable=invalid-name
@@ -44,6 +46,7 @@ def default_page_url(context, default_page_name="home"):
         'iati_standard': IATIStandardPage,
         'using_data': UsingDataPage,
         'community': CommunityPage,
+        'tools_and_resources': ToolsListingPage,
     }
 
     default_page_fallbacks = {
@@ -89,7 +92,13 @@ def translation_links(context, calling_page):
         for language_code, language_name in settings.ACTIVE_LANGUAGES:
             with use_language(language_code):
                 language_url = pageurl(context, calling_page)
-                language_results.append({"code": language_code, "name": language_name, "url": language_url})
+                language_name_local = get_language_info(language_code)['name_local']
+                language_results.append({
+                    "code": language_code,
+                    "name": language_name,
+                    "url": language_url,
+                    "name_local": language_name_local
+                })
 
     return {
         'languages': language_results,
@@ -154,7 +163,10 @@ def discover_tree_recursive(current_page, calling_page):
 
     """
     parent_menu = []
-    for child in current_page.get_children().live().specific():
+    children = current_page.get_children().specific()
+    if calling_page.live:
+        children = children.live()
+    for child in children:
         page_dict = {
             'page_title': child.heading if child.heading else child.title,
             'page_slug': child.slug,
@@ -175,7 +187,13 @@ def side_panel(calling_page):
         main_section = calling_page
     else:
         home_page = HomePage.objects.live().first()
-        main_section = home_page.get_children().ancestor_of(calling_page).live().first().specific
+        main_section = home_page.get_children().ancestor_of(calling_page)
+        if calling_page.live:
+            main_section = main_section.live()
+        try:
+            main_section = main_section.first().specific
+        except AttributeError:
+            return {"menu_to_display": None, "calling_page": calling_page}
 
     menu_to_display = discover_tree_recursive(main_section, calling_page)
     return {"menu_to_display": menu_to_display, "calling_page": calling_page}

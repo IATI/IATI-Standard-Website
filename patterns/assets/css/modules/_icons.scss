@@ -1,0 +1,52 @@
+// ------------------------------------------------------------
+// General icon control
+// ------------------------------------------------------------
+
+.ico {
+	display: inline-block;
+	vertical-align: middle;
+	overflow: hidden;
+	position: relative;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center center;
+	line-height: 0; // Bit dirty but works fine for keeping things inline
+	em {
+		position: absolute !important;
+	    clip: rect(1px, 1px, 1px, 1px);
+	    padding: 0px;
+	    border: 0 !important;
+	    height: 1px !important;
+	    width: 1px !important;
+	    overflow: hidden;
+	}
+}
+
+
+// ------------------------------------------------------------
+// Specific sizes
+// ------------------------------------------------------------
+
+$icon-sizes: 12, 14, 16, 18, 24, 32;
+
+@each $icon-size in $icon-sizes {
+    .ico--#{$icon-size} {
+    	width: ($icon-size) + px;
+    	height: ($icon-size) + px;
+    	background-size: ($icon-size) + px ($icon-size) + px;
+    	svg {
+	    	width: ($icon-size) + px;
+			height: ($icon-size) + px;
+    	}
+    }
+}
+
+.ico-location-ocean {
+	background-image: url('../svg/icons/location.colors-ash-ocean-black-white.svg');
+	background-repeat: no-repeat;
+}
+
+.ico-time-ocean {
+	background-image: url('../svg/icons/time.colors-ash-ocean-black-white.svg');
+	background-repeat: no-repeat;
+}

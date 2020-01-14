@@ -1,0 +1,93 @@
+{
+    "gov_team": [
+	    {
+			"title": "Stephen Potter",
+			"position": "IATI Chair",
+			"role": "Director, Development Policy Planning, Global Affairs Canada",
+            "logo": true,
+            "logo_text": true,
+            "image_name": "logo.png",
+            "excerpt": "<p>Since August 2015, Stephen Potter has been responsible for aid transparency, Agenda 2030, and the creation of a new policy framework for Canadian international assistance. He has worked for over 20 years with Canada's development assistance programme, serving in a variety of positions, including overseas postings in Ukraine (2012-2015), Tanzania (2005-2008), Honduras (2002-2004), and Peru (1999-2002). He began his development career working in the International Development Research Centre's evaluation unit.</p><p>Yohanna Loucheur, Senior Policy Analyst at Global Affairs Canada, is alternate in the role of Chair.</p>",
+			"constituency": "Providers of Development Cooperation"
+		},
+        {
+			"title": "Kazi Shofiqul Azam",
+			"position": "IATI Vice Chair",
+			"role": "Secretary, Economic Relations Division in the Ministry of Finance, Bangladesh",
+            "logo": false,
+            "logo_text": true,
+            "image_name": "logo.png",
+            "excerpt": "<p>As Secretary of the Economic Relations Division, Mr. Azam represents the government in different local, regional and global platforms to steer the development effectiveness agenda. He is an Alternate Governor of World Bank Group and Asian Development Bank. Mr. Azam also acts as the National Designated Authority (NDA) to the Green Climate Fund.</p><p>Monowar Ahmed, Chief of Development Effectiveness Wing, Economic Relations Division of the Ministry of Finance, is alternate in the role of Vice Chair.</p>",
+			"constituency": "Partner Countries (developing country governments)"
+		},
+        {
+			"title": "Joe Bloggs",
+			"position": "COO of IATI",
+			"role": "Chairman at IATI",
+            "logo": true,
+            "logo_text": false,
+            "image_name": "logo.png",
+			"excerpt": "São Tomé and Príncipe has become the first Portuguese-speaking country to join IATI. They join 86 members of the initiative"
+		},
+        {
+			"title": "Cloe Hill",
+			"position": "MD of IATI",
+			"role": "Chairman at Oxfam",
+            "logo": true,
+            "logo_text": true,
+            "image_name": "logo.png",
+			"excerpt": "São Tomé and Príncipe has become the first Portuguese-speaking country to join IATI. They join 86 members of the initiative"
+		}
+	],
+	"tech_team": [
+	    {
+			"title": "John Smith",
+			"position": "CEO of IATI",
+			"role": "Chairman at Oxfam",
+            "logo": true,
+            "logo_text": false,
+            "image_name": "logo.png",
+			"excerpt": "São Tomé and Príncipe has become the first Portuguese-speaking country to join IATI. They join 86 members of the initiative"
+		},
+        {
+			"title": "Elena Croft",
+			"position": "CTO",
+			"role": "Chairman at Oxfam",
+            "logo": true,
+            "logo_text": true,
+            "image_name": "logo.png",
+		    "author": "Rohini Simbodyal",
+			"excerpt": "São Tomé and Príncipe has become the first Portuguese-speaking country to join IATI. They join 86 members of the initiative"
+		},
+        {
+			"title": "Joe Bloggs",
+			"position": "COO",
+			"role": "Oxfam",
+            "logo": false,
+            "logo_text": true,
+            "image_name": "logo.png",
+			"excerpt": "São Tomé and Príncipe has become the first Portuguese-speaking country to join IATI. They join 86 members of the initiative"
+		},
+        {
+			"title": "Cloe Hill",
+			"position": "MD",
+            "logo": true,
+            "logo_text": true,
+			"role": "Oxfam",
+            "image_name": "logo.png",
+			"excerpt": "São Tomé and Príncipe has become the first Portuguese-speaking country to join IATI. They join 86 members of the initiative"
+		}
+    ],
+    "team_pl": [
+        {
+            "title": "Stephen Potter",
+            "position": "IATI Chair",
+            "role": "Director, Development Policy Planning, Global Affairs Canada",
+            "logo": true,
+            "logo_text": true,
+            "image_name": "logo.png",
+            "excerpt": "<p>Since August 2015, Stephen Potter has been responsible for aid transparency, Agenda 2030, and the creation of a new policy framework for Canadian international assistance. He has worked for over 20 years with Canada's development assistance programme, serving in a variety of positions, including overseas postings in Ukraine (2012-2015), Tanzania (2005-2008), Honduras (2002-2004), and Peru (1999-2002). He began his development career working in the International Development Research Centre's evaluation unit.</p><p>Yohanna Loucheur, Senior Policy Analyst at Global Affairs Canada, is alternate in the role of Chair.</p>",
+            "constituency": "Providers of Development Cooperation"
+        }
+    ]
+}

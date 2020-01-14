@@ -1,0 +1,103 @@
+{# 1. Extend the relevant layout #}
+{# --------------------------------------- #}
+
+{% extends 'default.html' %}
+
+
+{# --------------------------------------- #}
+{# 2. Assign Settings and variables #}
+{# --------------------------------------- #}
+
+{% set id = "community" %}
+{% set section = "community" %}
+{% set title = "Get involved" %}
+{% set hero_copy = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." %}
+{% set hero_image = "hero1.jpg" %}
+
+
+{# --------------------------------------- #}
+{# 3. Add models and macros #}
+{# --------------------------------------- #}
+
+{% model 'guidance', as="guidance" %}
+
+{% import 'macros/button.html' as buttons %}
+{% import 'macros/icon.html' as icons %}
+
+
+{# --------------------------------------- #}
+{#
+   4. Add page content into relevant areas
+      Add/Delete blocks as necessary
+#}
+{# --------------------------------------- #}
+
+{% block hero %}
+    {% include 'heroes/hero.html' %}
+{% endblock %}
+
+{% block body %}
+<div class="space-section-top">
+    <div class="row">
+        <div class="l-2up l-2up--offset">
+            <div class="l-2up__col">
+                <div class="is-typeset max-meter">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                    <p>We regularly run events for our community and membership to join, which you can find out more about these events on the <a href="#">Events page</a>.</p>
+                </div>
+            </div>
+            <div class="l-2up__col">
+                {% include 'asides/cta-conduct.html' %}
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="space-section-top">
+        <div class="row">
+            <div class="l-3up">
+                <div class="l-3up__col">
+                    <div class="help">
+                        <div class="help__header background-cover" style="background-image: url({{ global.assets_root }}/img/content-image3.jpg)">
+                            <div class="help__panel fill-wind">
+                                <h3 class="help__heading">Membership</h3>
+                            </div>
+                        </div>
+                        <div class="help__body">
+                            <p class="help__body-copy">Find out about the benefits of being an IATI member, and how IATI is enabled by its strong and diverse membership. You can also view our list of current member assembly.</p>
+                            <a class="button">Find out more</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="l-3up__col">
+                    <div class="help">
+                        <div class="help__header background-cover" style="background-image: url({{ global.assets_root }}/img/content-image.jpg)">
+                            <div class="help__panel fill-wind">
+                                <h3 class="help__heading">TIC - The IATI Community</h3>
+                            </div>
+                        </div>
+                        <div class="help__body">
+                            <p class="help__body-copy">We use the community's combined expertise to help push IATI forward. We also hold regular events around the globe to give the community a change to engage with IATI and eachother.</p>
+                            <a class="button">Find out more</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="l-3up__col">
+                    <div class="help">
+                        <div class="help__header background-cover" style="background-image: url({{ global.assets_root }}/img/content-image2.jpg)">
+                            <div class="help__panel fill-wind">
+                                <h3 class="help__heading">Discuss</h3>
+                            </div>
+                        </div>
+                        <div class="help__body">
+                            <p class="help__body-copy">We host an online forum to enable communications between the Community, the Governing Board, the Secretarist and other stakeholders.</p>
+                            <a class="button">Find out more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

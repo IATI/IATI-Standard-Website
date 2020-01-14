@@ -1,0 +1,7 @@
+<div class="card card--guidance {% if item.flag == true %}card--stacked{% endif %}">
+    {% if item.flag == true %}
+        <span class="card__flag">5 pages</span>
+    {% endif %}
+    <h2 class="card__heading"><a href="#"><span>{{ item.title }}</span></a></h2>
+    <p class="card__excerpt">{{ item.excerpt }}</p>
+</div>

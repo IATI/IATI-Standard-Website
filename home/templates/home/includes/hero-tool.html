@@ -1,0 +1,26 @@
+{% load wagtail_modeltranslation wagtailimages_tags tool_utils %}
+
+<div class="hero hero--tool">
+    <div class="row">
+        {% if page.logo %}
+            <div class="hero__logo">
+                {% image page.logo max-150x90 alt=item.logo.title width='auto' height='auto' %}
+            </div>
+        {% endif %}
+        <div class="hero__caption">
+            <h1 class="hero__heading">{{ page.heading }}</h1>
+            {% if page.excerpt %}
+                <p class="hero__excerpt">{{ page.excerpt }}</p>
+            {% endif %}
+            {% if page.external_url %}
+                <a href="{{ page.external_url }}" class="button">
+                    {% if page.button_label %}
+                        {{ page.button_label }}
+                    {% else %}
+                        {{ page.external_url|nice_url }}
+                    {% endif %}
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,78 @@
+{% extends 'patterns.html' %}
+
+{# --------------------------------------- #}
+{# Settings, models, library variables #}
+{# --------------------------------------- #}
+
+{% model 'ptn-colour', as="color" %}
+
+{% set ui_title = "Colour" %}
+
+{% block ui_description %}
+	<p>Colour palette and role referencing for {{ global.client_name }}</p>
+{% endblock %}
+
+
+{# --------------------------------------- #}
+{# Main body content #}
+{# --------------------------------------- #}
+
+{% block body %}
+<div class="ui-row">
+	<div class="ui-section">
+		<div class="ui-section__header">
+			<h2>Web palette</h2>
+		</div>
+		<div class="ui-section__body">
+			<ul class="ui-swatches">
+				{% for item in color %}
+				<li class="swatch-{{ item.name }}">
+					<span class="swatch"></span>
+					<span class="swatch-name">{{ item.name }}</span>
+					<span class="swatch-color"></span>
+					<span class="swatch-usage">$iati-{{ item.name | lower }}</span>
+					<span class="swatch-usage">.color-{{ item.name | lower }}</span>
+					<span class="swatch-usage">.fill-{{ item.name | lower }}</span>
+				</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="ui-row">
+	<div class="ui-section">
+		<div class="ui-section__header">
+			<h2>Uses</h2>
+		</div>
+		<div class="ui-section__body">
+			<ul class="ui-swatches">
+				<li class="swatch-heading">
+					<span class="swatch"></span>
+					<span class="swatch-name">Headings</span>
+					<span class="swatch-color"></span>
+					<span class="swatch-usage">$heading-color</span>
+				</li>
+				<li class="swatch-base">
+					<span class="swatch"></span>
+					<span class="swatch-name">Text</span>
+					<span class="swatch-color"></span>
+					<span class="swatch-usage">$base-color</span>
+				</li>
+				<li class="swatch-ash">
+					<span class="swatch"></span>
+					<span class="swatch-name">Borders</span>
+					<span class="swatch-color"></span>
+					<span class="swatch-usage">$default-border-color</span>
+				</li>
+				<li class="swatch-ocean">
+					<span class="swatch"></span>
+					<span class="swatch-name">Links</span>
+					<span class="swatch-color"></span>
+					<span class="swatch-usage">$action</span>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+{% endblock %}

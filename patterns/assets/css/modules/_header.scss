@@ -1,0 +1,87 @@
+// ------------------------------------------------------------
+// Header
+// ------------------------------------------------------------
+
+.header {
+	//overflow: hidden;
+	@extend %pie-clearfix;
+	position: relative;
+	z-index: 5;
+	max-width: $max-grid;
+	margin-left: $internal-spacing;
+	margin-right: $internal-spacing;
+	//margin-top: 1em;
+	margin-bottom: 5em;
+	background-color: #fff;
+	padding: 2em;
+	padding-bottom: 1.5em;
+	box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.15);
+	@include respond-to($menu-respond) {
+		//margin-top: 4em;
+		padding: 2em 3em 0 3em;
+		margin-bottom: 0;
+	}
+	@include respond-to($max-vp) {
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+.header__utility {
+	@extend %pie-clearfix;
+	display: none;
+	@include respond-to($menu-respond) {
+		display: block;
+		position: absolute;
+		top: 3em;
+		right: 3em;
+	}
+}
+
+.header-search {
+	overflow: hidden;
+    position: absolute;
+	top: -100%;
+	transition: all, ease-in-out, 0.3s;
+	z-index: 10;
+	width: 100%;
+    display: block;
+    background-color: darken($iati-ocean, 5%);
+    padding: 3.5em 0;
+	&--active {
+		top: 0;
+	}
+	form {
+		position: relative;
+		button {
+			position: absolute;
+			top: 29px;
+			right: 0;
+		}
+	}
+}
+
+.header-search__close {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.header-search__trigger {
+    display: none;
+    @include respond-to($menu-respond) {
+        @include font-size($zeta);
+        position: relative;
+        top: 11px;
+        // right: 20px;
+		display: inline-block;
+		float: left;
+        .ico {
+            top: -1px;
+            margin-right: 2px;
+        }
+        @include link-active-styles {
+            color: $action;
+        }
+    }
+}

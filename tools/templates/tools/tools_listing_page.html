@@ -1,0 +1,35 @@
+{% extends "sidebar-reverse.html" %}
+{% load wagtail_modeltranslation iati_tags wagtailcore_tags i18n %}
+
+{% block body_class %}body body--tools{% endblock %}
+{% block body_id %}body-tools{% endblock %}
+
+{% block hero %}
+    <div class="hero">
+        {% include "home/includes/hero_heading.html" %}
+    </div>
+{% endblock %}
+
+{% block aside %}
+    {% side_panel calling_page=self %}
+{% endblock %}
+
+{% block main %}
+    {% if page.content_editor %}
+        {% include "home/includes/streamfield.html" with content=page.content_editor extra_class='is-typeset--additionals' notarticle=True %}
+    {% endif %}
+
+    <div class="l-2up">
+        {% for featured in page.tools %}
+            {% include 'tools/tool_listing.html' with item=featured.tool %}
+        {% endfor %}
+        {% if page.highlight %}
+            <div class="card card--tool card--tool--alt">
+                <h3 class="card__heading">{{ page.highlight_title }}</h3>
+                <div class="is-typeset space-module-top">
+                    {{ page.highlight_content|richtext }}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

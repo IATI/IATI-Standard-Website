@@ -1,0 +1,78 @@
+// ------------------------------------------------------------
+// Wordpress WYSIWYG control
+// Wrapped in an 'wysiwyg' control class to avoid conflicts
+// ------------------------------------------------------------
+
+.wysiwyg {
+	
+	.wp-smiley {
+		display: none!important; // They're darn ugly
+	}
+	
+	.wp-caption {
+		clear: both; 
+		@extend .media-figure;
+		p.wp-caption-text {
+			@extend .media-figure__caption;
+		}
+		img {
+			display: block;
+			margin-bottom: 0.5em;
+		}
+	}
+	
+	
+	%wp-image-align {
+		max-width: 500px;
+		width: 100%;
+		display: block;
+		vertical-align: top;
+		position: relative;
+	}
+
+	.alignleft, blockquote.left {
+		@extend %wp-image-align;
+		@include respond-to($menu-respond) {
+			margin-right: 40px;
+			float: left;
+		}
+	}
+
+	.alignright, blockquote.right {
+		@extend %wp-image-align;
+		@include respond-to($menu-respond) {
+			margin-left: 40px;
+			float: right;
+		}
+	}
+
+	.aligncenter {
+		margin-right: auto;
+		margin-left: auto;
+		display: inline-block;
+		vertical-align: top;
+		clear: both;
+	}
+	
+	.alignnone { 
+		clear: both; 
+	}
+	
+
+	// Image size control
+	.size-full {
+
+	}
+
+	.size-large {
+
+	}
+
+	.size-medium {
+
+	}
+
+	.size-thumbnail {
+
+	}
+}

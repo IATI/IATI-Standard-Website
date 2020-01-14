@@ -1,0 +1,3 @@
+{% macro alert(variation, message, ico_name) %}
+<span class="alert {{ variation }}"><i role="presentation" aria-hidden="true" class="ico ico-{{ ico_name }}"></i>{{ message }}</span>
+{% endmacro %}

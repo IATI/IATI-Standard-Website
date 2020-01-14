@@ -1,0 +1,330 @@
+// ------------------------------------------------------------
+// Modules
+// prefix with m-
+// ------------------------------------------------------------
+
+
+.m-additional {
+    background-color: #fff;
+    box-shadow: 0 0 50px 0 rgba(#000, 0.15);
+    margin-top: 4em;
+    padding: 4em;
+}
+
+.m-additional--no-trailing {
+    margin-top: 0;
+}
+
+.m-additional__heading {
+    @include font-size($delta);
+    margin-top: 0;
+    margin-bottom: 1em;
+}
+
+.m-additional__copy {
+    margin-bottom: 1em;
+}
+
+.m-additional__list {
+    margin-bottom: 0;
+}
+
+.m-header-link {
+    margin-left: 10px;
+    padding: 10px;
+    display: inline-block;
+    transform: translateY(-3px);
+    visibility: hidden;
+    border-bottom: none !important;
+}
+
+.m-text-link {
+    @include font-size($para);
+    border-bottom: 2px solid $iati-air;
+}
+
+.m-blocks {
+    @include respond-to($menu-respond) {
+        @supports (display: grid) {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, 47.5%);
+			grid-gap: 5%;
+		}
+        margin-top: 4em;
+        margin-bottom: 5em;
+    }
+}
+
+.m-block {
+    background-color: #fff;
+    border-left: 2px solid $iati-air;
+    box-shadow: 0 0 50px 0 rgba(#000, 0.1);
+    padding: 2em;
+    margin-bottom: 2em;
+    display: block;
+    .button {
+        align-self: flex-end;
+        margin-top: auto;
+        margin-right: auto;
+    }
+    @include respond-to($menu-respond) {
+        width: 47.5%;
+        float: left;
+        margin-left: 5%;
+        &:nth-child(2n+1) {
+            margin-left: 0;
+            clear: left;
+        }
+        @supports (display: grid) {
+			width: 100%;
+            margin-left: auto;
+            clear: none;
+            float: none;
+		}
+    }
+}
+
+.m-block__heading {
+    @extend .heading;
+    @include font-size($delta);
+    margin-bottom: 0.5em;
+}
+
+.m-block__copy {
+    @include font-size($para);
+    margin-bottom: 1em;
+}
+
+.m-placeholder {
+    background-color: $default-border-color;
+    height: 400px;
+}
+
+.m-placeholder--landscape {
+    height: 200px;
+}
+
+.m-placeholder--logo {
+    height: 400px;
+}
+
+.m-quote {
+    margin-bottom: 1em;
+    @include respond-to($menu-respond) {
+        display: flex;
+        margin-bottom: 4em;
+    }
+    p {
+        margin-bottom: 0.75em;
+    }
+}
+
+.m-quote__img {
+    background-color: $iati-ash;
+    @include respond-to($menu-respond) {
+        height: 130px;
+        margin-right: 5%;
+        width: 20%;
+    }
+}
+
+.m-quote__quote {
+    align-self: flex-start;
+    @include respond-to($menu-respond) {
+        margin-left: auto;
+    }
+}
+
+// ------------------------------------------------------------
+// Search
+// ------------------------------------------------------------
+
+.m-search {
+    background-color: $iati-ash;
+    padding: $internal-spacing 0;
+    margin-top: -5em;
+    margin-bottom: 5em;
+    //box-shadow: 0 0 50px 0 rgba(#000, 0.15);
+    .form-field {
+        width: 75%;
+        display: inline-block;
+        float: left;
+        input {
+            border: none;
+        }
+        +.form-field {
+            width: 24%;
+            float: right;
+            margin-top: 29px;
+        }
+    }
+}
+
+// ------------------------------------------------------------
+// Styled block list
+// ------------------------------------------------------------
+
+.m-block-list {
+    @extend %pie-clearfix;
+    @include font-size($para);
+    li {
+        padding: 1em;
+        text-align: center;
+        border-bottom: 3px solid $default-border-color;
+        margin-bottom: 1em;
+        @include respond-to($c-vp) {
+            display: inline-block;
+            float: left;
+            width: 32%;
+            margin-left: 2%;
+            margin-bottom: 0;
+            &:nth-child(3n+1) {
+                margin-left: 0;
+                clear: left;
+            }
+        }
+    }
+}
+
+// ------------------------------------------------------------
+// Highlight
+// ------------------------------------------------------------
+
+.m-highlight {
+    background-color: $iati-ash;
+    padding: 1em;
+    .button {
+        width: auto;
+    }
+    &--alt {
+        background-color: #fff;
+        padding: 1em;
+    }
+    a:not(.button) {
+        color: $action !important;
+        text-decoration: underline;
+        &:hover {
+            text-decoration: none;
+            &:after {
+                content: none !important;
+            }
+        }
+    }
+}
+
+.m-highlight__heading {
+    @extend .type-xs;
+    @extend .type-xs--trailer;
+    @extend .heading;
+    line-height: 1.3;
+    a {
+        color: $action !important;
+        text-decoration: underline;
+        min-height: auto !important;
+        &:hover {
+            text-decoration: none;
+            &:after {
+                content: none !important;
+            }
+        }
+    }
+}
+
+.m-highlight__copy {
+    @include font-size($zeta);
+}
+
+// ------------------------------------------------------------
+// Codelist
+// ------------------------------------------------------------
+
+.m-codelist {
+    @extend %pie-clearfix;
+    border-bottom: 1px solid $default-border-color;
+    padding-bottom: 2em;
+    margin-bottom: 2em;
+    &__aside {
+        float: left;
+        width: 10%;
+    }
+    &__main {
+        float: right;
+        width: 85%;
+
+    }
+}
+
+.m-codelist__flag {
+    color: darken($iati-ash, 25%);
+    @include font-size($eta - 1);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.25em;
+    display: block;
+}
+
+.m-codelist__code {
+    @include font-size($beta);
+}
+
+.m-codelist__header {
+    @extend %pie-clearfix;
+    position: relative;
+}
+
+.m-codelist__heading {
+    @include respond-to($d-vp) {
+        float: left;
+        width: 70%;
+    }
+}
+
+.m-codelist__title {
+    @include font-size($delta);
+    line-height: 1.3;
+    margin-bottom: 0.75em;
+}
+
+.m-codelist__category {
+    margin-bottom: 2em;
+    @include respond-to($d-vp) {
+        float: right;
+        width: 25%;
+        .m-codelist__copy {
+            @include font-size($para - 2);
+        }
+    }
+}
+
+.m-codelist__content {
+    display: none;
+    @include respond-to($c-vp) {
+        display: block;
+    }
+}
+
+.m-codelist__copy {
+    @include font-size($para);
+    margin-bottom: 0.5em;
+    a {
+        color: $action;
+        border-bottom: 2px solid $iati-air;
+        &:hover {
+            color: $iati-air;
+        }
+    }
+}
+
+.m-codelist__link {
+    @include font-size($para);
+    color: $action;
+    display: inline-block;
+    border-bottom: 2px solid $iati-air;
+    &:hover {
+        color: $iati-air;
+        cursor: pointer;
+    }
+    .ico {
+        margin-top: -4px;
+    }
+}

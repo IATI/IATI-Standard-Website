@@ -1,0 +1,1245 @@
+[
+  {
+    "name": "Organisation Identifiers"
+  },
+  {
+    "name": "Activity Standard",
+    "open_class": "open",
+    "children": [
+      {
+        "name": "Elements",
+        "active_class": "active",
+        "open_class": "open",
+        "children": [
+          {
+            "name": "iati-activities",
+            "children": [
+              {
+                "name": "iati-activity",
+                "children": [
+                  {
+                    "name": "iati-identifier"
+                  },
+                  {
+                    "name": "reporting-org",
+                    "children": [
+                      {
+                        "name": "narrative"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "title",
+                    "children": [
+                      {
+                        "name": "narrative"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "description",
+                    "children": [
+                      {
+                        "name": "narrative"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "participating-org",
+                    "children": [
+                      {
+                        "name": "narrative"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "other-identifier",
+                    "children": [
+                      {
+                        "name": "owner-org",
+                        "children": [
+                          {
+                            "name": "narrative"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "activity-status"
+                  },
+                  {
+                    "name": "activity-date",
+                    "children": [
+                      {
+                        "name": "narrative"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "contact-info",
+                    "children": [
+                      {
+                        "name": "organisation",
+                        "children": [
+                          {
+                            "name": "narrative"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "department",
+                        "children": [
+                          {
+                            "name": "narrative"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "person-name",
+                        "children": [
+                          {
+                            "name": "narrative"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "job-title",
+                        "children": [
+                          {
+                            "name": "narrative"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "telephone"
+                      },
+                      {
+                        "name": "email"
+                      },
+                      {
+                        "name": "website"
+                      },
+                      {
+                        "name": "mailing-address",
+                        "children": [
+                          {
+                            "name": "narrative"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "activity-scope"
+                  },
+                  {
+                    "name": "recipient-country",
+                    "children": [
+                      {
+                        "name": "narrative"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "recipient-region",
+                    "children": [
+                      {
+                        "name": "narrative"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "location",
+                    "children": [
+                      {
+                        "name": "location-reach"
+                      },
+                      {
+                        "name": "location-id"
+                      },
+                      {
+                        "name": "name",
+                        "children": [
+                          {
+                            "name": "narrative"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "description",
+                        "children": [
+                          {
+                            "name": "narrative"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "activity-description",
+                        "children": [
+                          {
+                            "name": "narrative"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "administrative"
+                      },
+                      {
+                        "name": "point",
+                        "children": [
+                          {
+                            "name": "pos"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "exactness"
+                      },
+                      {
+                        "name": "location-class"
+                      },
+                      {
+                        "name": "feature-designation"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "sector",
+                    "children": [
+                      {
+                        "name": "narrative"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "tag",
+                    "children": [
+                      {
+                        "name": "narrative"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "country-budget-items",
+                    "children": [
+                      {
+                        "name": "budget-item",
+                        "children": [
+                          {
+                            "name": "",
+                            "children": [
+                              {
+                                "name": "narrative"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "humanitarian-scope",
+                    "children": [
+                      {
+                        "name": "narrative"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "policy-marker",
+                    "children": [
+                      {
+                        "name": "narrative"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "collaboration-type"
+                  },
+                  {
+                    "name": "default-flow-type"
+                  },
+                  {
+                    "name": "default-finance-type"
+                  },
+                  {
+                    "name": "default-aid-type"
+                  },
+                  {
+                    "name": "default-tied-status"
+                  },
+                  {
+                    "name": "budget",
+                    "children": [
+                      {
+                        "name": "period-start"
+                      },
+                      {
+                        "name": "period-end"
+                      },
+                      {
+                        "name": "value"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "planned-disbursement",
+                    "children": [
+                      {
+                        "name": "period-start"
+                      },
+                      {
+                        "name": "period-end"
+                      },
+                      {
+                        "name": "value"
+                      },
+                      {
+                        "name": "provider-org",
+                        "children": [
+                          {
+                            "name": "narrative"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "receiver-org",
+                        "children": [
+                          {
+                            "name": "narrative"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "capital-spend"
+                  },
+                  {
+                    "name": "transaction",
+                    "children": [
+                      {
+                        "name": "transaction-type"
+                      },
+                      {
+                        "name": "transaction-date"
+                      },
+                      {
+                        "name": "value"
+                      },
+                      {
+                        "name": "description",
+                        "children": [
+                          {
+                            "name": "narrative"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "provider-org",
+                        "children": [
+                          {
+                            "name": "narrative"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "receiver-org",
+                        "children": [
+                          {
+                            "name": "narrative"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "disbursement-channel"
+                      },
+                      {
+                        "name": "sector",
+                        "children": [
+                          {
+                            "name": "narrative"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "recipient-country",
+                        "children": [
+                          {
+                            "name": "narrative"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "recipient-region",
+                        "children": [
+                          {
+                            "name": "narrative"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "flow-type"
+                      },
+                      {
+                        "name": "finance-type"
+                      },
+                      {
+                        "name": "aid-type"
+                      },
+                      {
+                        "name": "tied-status"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "document-link",
+                    "children": [
+                      {
+                        "name": "title",
+                        "children": [
+                          {
+                            "name": "narrative"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "description",
+                        "children": [
+                          {
+                            "name": "narrative"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "category"
+                      },
+                      {
+                        "name": "language"
+                      },
+                      {
+                        "name": "document-date"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "related-activity"
+                  },
+                  {
+                    "name": "legacy-data"
+                  },
+                  {
+                    "name": "conditions",
+                    "children": [
+                      {
+                        "name": "condition",
+                        "children": [
+                          {
+                            "name": "narrative"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "result",
+                    "children": [
+                      {
+                        "name": "title",
+                        "children": [
+                          {
+                            "name": "narrative"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "description",
+                        "children": [
+                          {
+                            "name": "narrative"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "document-link",
+                        "children": [
+                          {
+                            "name": "",
+                            "children": [
+                              {
+                                "name": "narrative"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "",
+                            "children": [
+                              {
+                                "name": "narrative"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "category"
+                          },
+                          {
+                            "name": "language"
+                          },
+                          {
+                            "name": "document-date"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "reference"
+                      },
+                      {
+                        "name": "indicator",
+                        "children": [
+                          {
+                            "name": "",
+                            "children": [
+                              {
+                                "name": "narrative"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "",
+                            "children": [
+                              {
+                                "name": "narrative"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "",
+                            "children": [
+                              {
+                                "name": "",
+                                "children": [
+                                  {
+                                    "name": "narrative"
+                                  }
+                                ]
+                              },
+                              {
+                                "name": "",
+                                "children": [
+                                  {
+                                    "name": "narrative"
+                                  }
+                                ]
+                              },
+                              {
+                                "name": "category"
+                              },
+                              {
+                                "name": "language"
+                              },
+                              {
+                                "name": "document-date"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "reference"
+                          },
+                          {
+                            "name": "",
+                            "children": [
+                              {
+                                "name": "location"
+                              },
+                              {
+                                "name": "dimension"
+                              },
+                              {
+                                "name": "",
+                                "children": [
+                                  {
+                                    "name": "",
+                                    "children": [
+                                      {
+                                        "name": "narrative"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "",
+                                    "children": [
+                                      {
+                                        "name": "narrative"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "category"
+                                  },
+                                  {
+                                    "name": "language"
+                                  },
+                                  {
+                                    "name": "document-date"
+                                  }
+                                ]
+                              },
+                              {
+                                "name": "",
+                                "children": [
+                                  {
+                                    "name": "narrative"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "name": "",
+                            "children": [
+                              {
+                                "name": "period-start"
+                              },
+                              {
+                                "name": "period-end"
+                              },
+                              {
+                                "name": "",
+                                "children": [
+                                  {
+                                    "name": "location"
+                                  },
+                                  {
+                                    "name": "dimension"
+                                  },
+                                  {
+                                    "name": "",
+                                    "children": [
+                                      {
+                                        "name": "narrative"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "",
+                                    "children": [
+                                      {
+                                        "name": "",
+                                        "children": [
+                                          {
+                                            "name": "narrative"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "name": "",
+                                        "children": [
+                                          {
+                                            "name": "narrative"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "name": "category"
+                                      },
+                                      {
+                                        "name": "language"
+                                      },
+                                      {
+                                        "name": "document-date"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "name": "",
+                                "children": [
+                                  {
+                                    "name": "location"
+                                  },
+                                  {
+                                    "name": "dimension"
+                                  },
+                                  {
+                                    "name": "",
+                                    "children": [
+                                      {
+                                        "name": "narrative"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "name": "",
+                                    "children": [
+                                      {
+                                        "name": "",
+                                        "children": [
+                                          {
+                                            "name": "narrative"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "name": "",
+                                        "children": [
+                                          {
+                                            "name": "narrative"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "name": "category"
+                                      },
+                                      {
+                                        "name": "language"
+                                      },
+                                      {
+                                        "name": "document-date"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "crs-add",
+                    "children": [
+                      {
+                        "name": "other-flags"
+                      },
+                      {
+                        "name": "loan-terms",
+                        "children": [
+                          {
+                            "name": "repayment-type"
+                          },
+                          {
+                            "name": "repayment-plan"
+                          },
+                          {
+                            "name": "commitment-date"
+                          },
+                          {
+                            "name": "repayment-first-date"
+                          },
+                          {
+                            "name": "repayment-final-date"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "loan-status",
+                        "children": [
+                          {
+                            "name": "interest-received"
+                          },
+                          {
+                            "name": "principal-outstanding"
+                          },
+                          {
+                            "name": "principal-arrears"
+                          },
+                          {
+                            "name": "interest-arrears"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "channel-code"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "fss",
+                    "children": [
+                      {
+                        "name": "forecast"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Organisation Standard",
+    "children": [
+      {
+        "name": "Elements",
+        "children": [
+          {
+            "name": "iati-organisations",
+            "children": [
+              {
+                "name": "iati-organisation",
+                "children": [
+                  {
+                    "name": "organisation-identifier"
+                  },
+                  {
+                    "name": "name",
+                    "children": [
+                      {
+                        "name": "narrative"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "reporting-org",
+                    "children": [
+                      {
+                        "name": "narrative"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "total-budget",
+                    "children": [
+                      {
+                        "name": "period-start"
+                      },
+                      {
+                        "name": "period-end"
+                      },
+                      {
+                        "name": "value"
+                      },
+                      {
+                        "name": "budget-line",
+                        "children": [
+                          {
+                            "name": "value"
+                          },
+                          {
+                            "name": "narrative"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "recipient-org-budget",
+                    "children": [
+                      {
+                        "name": "recipient-org",
+                        "children": [
+                          {
+                            "name": "narrative"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "period-start"
+                      },
+                      {
+                        "name": "period-end"
+                      },
+                      {
+                        "name": "value"
+                      },
+                      {
+                        "name": "budget-line",
+                        "children": [
+                          {
+                            "name": "value"
+                          },
+                          {
+                            "name": "narrative"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "recipient-region-budget",
+                    "children": [
+                      {
+                        "name": "recipient-region",
+                        "children": [
+                          {
+                            "name": "narrative"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "period-start"
+                      },
+                      {
+                        "name": "period-end"
+                      },
+                      {
+                        "name": "value"
+                      },
+                      {
+                        "name": "budget-line",
+                        "children": [
+                          {
+                            "name": "value"
+                          },
+                          {
+                            "name": "narrative"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "recipient-country-budget",
+                    "children": [
+                      {
+                        "name": "recipient-country",
+                        "children": [
+                          {
+                            "name": "narrative"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "period-start"
+                      },
+                      {
+                        "name": "period-end"
+                      },
+                      {
+                        "name": "value"
+                      },
+                      {
+                        "name": "budget-line",
+                        "children": [
+                          {
+                            "name": "value"
+                          },
+                          {
+                            "name": "narrative"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "total-expenditure",
+                    "children": [
+                      {
+                        "name": "period-start"
+                      },
+                      {
+                        "name": "period-end"
+                      },
+                      {
+                        "name": "value"
+                      },
+                      {
+                        "name": "expense-line",
+                        "children": [
+                          {
+                            "name": "value"
+                          },
+                          {
+                            "name": "narrative"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "document-link",
+                    "children": [
+                      {
+                        "name": "recipient-country",
+                        "children": [
+                          {
+                            "name": "narrative"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "title",
+                        "children": [
+                          {
+                            "name": "narrative"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "description",
+                        "children": [
+                          {
+                            "name": "narrative"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "category"
+                      },
+                      {
+                        "name": "language"
+                      },
+                      {
+                        "name": "document-date"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Namespaces & Extensions"
+  },
+  {
+    "name": "Codelists",
+    "children": [
+      {
+        "name": "IATI Codelist Management"
+      },
+      {
+        "name": "Codelist API"
+      },
+      {
+        "name": "Activity Date Type"
+      },
+      {
+        "name": "Activity Scope"
+      },
+      {
+        "name": "Activity Status"
+      },
+      {
+        "name": "Aid Type"
+      },
+      {
+        "name": "Aid Type (category)"
+      },
+      {
+        "name": "Aid Type Vocabulary"
+      },
+      {
+        "name": "Budget Identifier"
+      },
+      {
+        "name": "Budget Identifier Sector"
+      },
+      {
+        "name": "Budget Identifier Sector (category)"
+      },
+      {
+        "name": "Budget Identifier Vocabulary"
+      },
+      {
+        "name": "Budget Not Provided"
+      },
+      {
+        "name": "Budget Status"
+      },
+      {
+        "name": "Budget Type"
+      },
+      {
+        "name": "CRS Additional Other Flags"
+      },
+      {
+        "name": "CRS Channel Code"
+      },
+      {
+        "name": "Cash and Voucher Modalities"
+      },
+      {
+        "name": "Collaboration Type"
+      },
+      {
+        "name": "Condition Type"
+      },
+      {
+        "name": "Contact Type"
+      },
+      {
+        "name": "Country"
+      },
+      {
+        "name": "Currency"
+      },
+      {
+        "name": "Description Type"
+      },
+      {
+        "name": "Disbursement Channel"
+      },
+      {
+        "name": "Document Category"
+      },
+      {
+        "name": "Document Category (category)"
+      },
+      {
+        "name": "EarmarkingCategory"
+      },
+      {
+        "name": "File Format"
+      },
+      {
+        "name": "Finance Type"
+      },
+      {
+        "name": "Finance Type (category)"
+      },
+      {
+        "name": "Flow Type"
+      },
+      {
+        "name": "Gazetteer Agency"
+      },
+      {
+        "name": "Geographic Exactness"
+      },
+      {
+        "name": "Geographic Location Class"
+      },
+      {
+        "name": "Geographic Location Reach"
+      },
+      {
+        "name": "Geographic Vocabulary"
+      },
+      {
+        "name": "Geographical Precision"
+      },
+      {
+        "name": "Humanitarian Scope Type"
+      },
+      {
+        "name": "Humanitarian Scope Vocabulary"
+      },
+      {
+        "name": "IATI Organisation Identifier"
+      },
+      {
+        "name": "Indicator Measure"
+      },
+      {
+        "name": "Indicator Vocabulary"
+      },
+      {
+        "name": "Language"
+      },
+      {
+        "name": "Loan Repayment Period"
+      },
+      {
+        "name": "Loan Repayment Type"
+      },
+      {
+        "name": "Location Type"
+      },
+      {
+        "name": "Location Type (category)"
+      },
+      {
+        "name": "Organisation Identifier"
+      },
+      {
+        "name": "Organisation Registration Agency"
+      },
+      {
+        "name": "Organisation Role"
+      },
+      {
+        "name": "Organisation Type"
+      },
+      {
+        "name": "Other Identifier Type"
+      },
+      {
+        "name": "Policy Marker"
+      },
+      {
+        "name": "Policy Marker Vocabulary"
+      },
+      {
+        "name": "Policy Significance"
+      },
+      {
+        "name": "Publisher Type"
+      },
+      {
+        "name": "Region"
+      },
+      {
+        "name": "Region Vocabulary"
+      },
+      {
+        "name": "Related Activity Type"
+      },
+      {
+        "name": "Result Type"
+      },
+      {
+        "name": "Result Vocabulary"
+      },
+      {
+        "name": "DAC 5 Digit Sector"
+      },
+      {
+        "name": "DAC 3 Digit Sector"
+      },
+      {
+        "name": "Sector Vocabulary"
+      },
+      {
+        "name": "Tag Vocabulary"
+      },
+      {
+        "name": "Tied Status"
+      },
+      {
+        "name": "Transaction Type"
+      },
+      {
+        "name": "UN Sustainable Development Goals (SDG)"
+      },
+      {
+        "name": "UN Sustainable Development Goals (SDG) Targets"
+      },
+      {
+        "name": "Verification Status"
+      },
+      {
+        "name": "Version"
+      },
+      {
+        "name": "Vocabulary"
+      }
+    ]
+  },
+  {
+    "name": "Schema"
+  },
+  {
+    "name": "Rulesets",
+    "children": [
+      {
+        "name": "Standard Ruleset"
+      },
+      {
+        "name": "IATI Ruleset Spec"
+      },
+      {
+        "name": "Ruleset development"
+      }
+    ]
+  }
+]
