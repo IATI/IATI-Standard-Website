@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'news',
     'iati_standard',
     'using_data',
+    'tools',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
@@ -110,6 +111,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'iati.context_processors.globals',
             ],
         },
     },
@@ -180,7 +182,6 @@ STATICFILES_FINDERS = [
 ]
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'home/static'),
     os.path.join(BASE_DIR, 'patterns/converted-html/assets'),
 ]
 

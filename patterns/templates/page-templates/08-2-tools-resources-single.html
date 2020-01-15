@@ -1,0 +1,46 @@
+{# 1. Extend the relevant layout #}
+{# --------------------------------------- #}
+
+{% extends 'default.html' %}
+
+
+{# --------------------------------------- #}
+{# 2. Assign Settings and variables #}
+{# --------------------------------------- #}
+
+{% set id = "support" %}
+{% set section = "support" %}
+{% set title = "What data should I publish?" %}
+{% set hero_copy = "" %}
+{% set hero_image = "" %}
+
+
+{# --------------------------------------- #}
+{# 3. Add models and macros #}
+{# --------------------------------------- #}
+
+{% import 'macros/button.html' as buttons %}
+{% import 'macros/icon.html' as icons %}
+
+
+{# --------------------------------------- #}
+{#
+   4. Add page content into relevant areas
+      Add/Delete blocks as necessary
+#}
+{# --------------------------------------- #}
+
+{% block hero %}
+    {% include 'heroes/hero-news.html' %}
+{% endblock %}
+
+{% block body %}
+    <div class="row space-section-bottom">
+        <div class="max-meter max-meter--center">
+            {% include 'partials/breadcrumb.html' %}
+            <div class="is-typeset is-typeset--article">
+                {% include 'content/longform.html' %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

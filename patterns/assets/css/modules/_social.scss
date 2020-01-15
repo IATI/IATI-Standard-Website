@@ -1,0 +1,47 @@
+// ------------------------------------------------------------
+// Social icons
+// ------------------------------------------------------------
+
+.social-list {
+    @extend %clearfix;
+    .footer & {
+        display: block;
+        margin-top: 1em;
+        @include respond-to($b-vp) {
+            float: right;
+            margin-top: 0;
+        }
+    }
+}
+
+.social-list---inline {
+    padding-bottom: 15px;
+}
+
+.social-list__item {
+    display: inline-block;
+    vertical-align: top;
+    &:not(:last-child) {
+        margin-right: 1em;
+    }
+    a {
+        display: block;
+        width: 35px;
+        height: 35px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        text-indent: -9999px;
+    }
+    &--twitter a {
+        background-image: url(../svg/source/twitter-icon.svg);
+    }
+    &--facebook a {
+        background-image: url(../svg/source/facebook-icon.svg);
+    }
+    &--linkedin a {
+        background-image: url(../svg/source/linkedin-icon.svg);
+    }
+    &--youtube a {
+        background-image: url(../svg/source/youtube-icon.svg);
+    }
+}

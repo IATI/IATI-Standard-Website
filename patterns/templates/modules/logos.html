@@ -1,0 +1,135 @@
+{% extends 'patterns.html' %}
+
+{# --------------------------------------- #}
+{# Settings, models, library variables #}
+{# --------------------------------------- #}
+
+{% set ui_title = "Logos" %}
+
+{% block ui_description %}
+	<p>This contains the different logo elements</p>
+{% endblock %}
+
+{% set title = "About IATI" %}
+{% set hero_copy = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. " %}
+{% set hero_image = "hero3.jpg" %}
+
+{# --------------------------------------- #}
+{# Main body content #}
+{# --------------------------------------- #}
+
+{% block body %}
+<div class="ui-row">
+
+	<!-- Duplicate this as a loop for each module within a section -->
+	<div class="ui-section">
+		<div class="ui-section__header">
+			<!-- Module name. Can be generated from file name perhaps? -->
+			<h2>Main logo</h2>
+		</div>
+		<div class="ui-section__component">
+			<img src="http://styles.iatistandard.org/assets/svg/source/logo-colour.svg" />
+		</div>
+		<div class="ui-section__body">
+			<div class="ui-section__main">
+				<div class="ui-section__code">
+					<pre>
+						<code>&lt;img src=&quot;http://styles.iatistandard.org/assets/svg/source/logo-colour.svg&quot; /&gt;</code>
+					</pre>
+				</div>
+			</div>
+		</div>
+
+		<div class="ui-section__component">
+			<img src="http://styles.iatistandard.org/assets/svg/source/logo-white.svg" />
+		</div>
+		<div class="ui-section__body">
+			<div class="ui-section__main">
+				<div class="ui-section__code">
+					<pre>
+						<code>&lt;img src=&quot;http://styles.iatistandard.org/assets/svg/source/logo-white.svg&quot; /&gt;</code>
+					</pre>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end Duplicate -->
+
+	<!-- Duplicate this as a loop for each module within a section -->
+	<div class="ui-section">
+		<div class="ui-section__header">
+			<!-- Module name. Can be generated from file name perhaps? -->
+			<h2>Marquee logos</h2>
+		</div>
+		<div class="ui-section__component">
+			<img src="http://styles.iatistandard.org/assets/svg/source/marque-white-animated.svg" />
+		</div>
+		<div class="ui-section__body">
+			<div class="ui-section__main">
+				<div class="ui-section__code">
+					<pre>
+						<code>&lt;img src=&quot;http://styles.iatistandard.org/assets/svg/source/marque-white-animated.svg&quot; /&gt;</code>
+					</pre>
+				</div>
+			</div>
+		</div>
+
+		<div class="ui-section__component">
+			<img src="http://styles.iatistandard.org/assets/svg/source/marque-white.svg" />
+		</div>
+		<div class="ui-section__body">
+			<div class="ui-section__main">
+				<div class="ui-section__code">
+					<pre>
+						<code>&lt;img src=&quot;http://styles.iatistandard.org/assets/svg/source/marque-white.svg&quot; /&gt;</code>
+					</pre>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end Duplicate -->
+
+	<!-- Duplicate this as a loop for each module within a section -->
+	<div class="ui-section">
+		<div class="ui-section__header">
+			<!-- Module name. Can be generated from file name perhaps? -->
+			<h2>Favicon 16x16</h2>
+		</div>
+		<div class="ui-section__component">
+			<img src="http://styles.iatistandard.org/assets/favicons/favicon-16x16.png" />
+		</div>
+		<div class="ui-section__body">
+			<div class="ui-section__main">
+				<div class="ui-section__code">
+					<pre>
+						<code>&lt;img src=&quot;http://styles.iatistandard.org/assets/favicons/favicon-16x16.png&quot; /&gt;</code>
+					</pre>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end Duplicate -->
+
+	<!-- Duplicate this as a loop for each module within a section -->
+	<div class="ui-section">
+		<div class="ui-section__header">
+			<!-- Module name. Can be generated from file name perhaps? -->
+			<h2>Favicon 32x32</h2>
+		</div>
+		<div class="ui-section__component">
+			<img src="http://styles.iatistandard.org/assets/favicons/favicon-32x32.png" />
+		</div>
+		<div class="ui-section__body">
+			<div class="ui-section__main">
+				<div class="ui-section__code">
+					<pre>
+						<code>&lt;img src=&quot;http://styles.iatistandard.org/assets/favicons/favicon-32x32.png&quot; /&gt;</code>
+					</pre>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end Duplicate -->
+
+</div>
+{% endblock %}

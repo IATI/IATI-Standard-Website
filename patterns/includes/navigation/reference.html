@@ -1,0 +1,12 @@
+<button class="navigation-secondary-toggle" type="button" id="navigation-secondary-toggle">pages in this section {{ icons.icon('ico-plus-sunrise', '16') }}</button>
+<nav class="navigation-secondary navigation-secondary--reference" id="navigation-secondary" data-nested-list>
+    <form>
+        <ul class="navigation-secondary__list">
+            {% set item_class = 'navigation-secondary__item' %}
+            {% set item_num = 0 %}
+            {% for item in reference %}
+                {% include 'navigation/reference-item.html' %}
+            {% endfor %}
+        </ul>
+    </form>
+</nav>

@@ -1,0 +1,124 @@
+{# 1. Extend the relevant layout #}
+{# --------------------------------------- #}
+
+{% extends 'sidebar-reverse.html' %}
+
+
+{# --------------------------------------- #}
+{# 2. Assign Settings and variables #}
+{# --------------------------------------- #}
+
+{% set id = "about" %}
+{% set section = "about" %}
+{% set title = "History of IATI" %}
+{% set hero_copy = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." %}
+
+
+{# --------------------------------------- #}
+{# 3. Add models and macros #}
+{# --------------------------------------- #}
+
+{% import 'macros/button.html' as buttons %}
+{% import 'macros/icon.html' as icons %}
+
+
+{# --------------------------------------- #}
+{#
+   4. Add page content into relevant areas
+      Add/Delete blocks as necessary
+#}
+{# --------------------------------------- #}
+
+{% block hero %}
+    {% include 'heroes/hero-minor.html' %}
+{% endblock %}
+
+{% block aside %}
+	<div class="aside-m">
+        <div class="aside-m__header fill-sunrise">
+            <h3 class="aside-m__heading">In this section</h3>
+        </div>
+        {% include 'navigation/secondary-child.html' %}
+    </div>
+{% endblock %}
+
+{% block main %}
+    <div class="is-typeset is-typeset--additionals">
+        <p>A small paragraph to <em>emphasis</em> and show <strong>important</strong> bits. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+    </div>
+
+    <div class="timeline">
+        <div class="timeline-row">
+            <div class="timeline__date timeline__date--left">
+                <div class="timeline__date-panel">
+                    <h2 class="timeline__date-heading heading">October 2015</h2>
+                    <p class="timeline__date-copy">Nulla in tincidunt felis. Morbi quis scelerisque mi. Pellentesque sit amet arcu massa. Etiam ut vulputate magna, quis maximus velit. Vivamus iaculis nulla vel ipsum fringilla mollis.</p>
+                </div>
+            </div>
+
+            <div class="timeline__date timeline__date--right">
+                <div class="timeline__date-panel">
+                    <h2 class="timeline__date-heading heading">September 2008</h2>
+                    <p class="timeline__date-copy">Nulla in tincidunt felis. Morbi quis scelerisque mi. Pellentesque sit amet arcu massa. Etiam ut vulputate magna, quis maximus velit. Vivamus iaculis nulla vel ipsum fringilla mollis.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-row">
+            <div class="timeline__date timeline__date--left">
+                <div class="timeline__date-panel">
+                    <h2 class="timeline__date-heading heading">October 2015</h2>
+                    <p class="timeline__date-copy">Nulla in tincidunt felis. Morbi quis scelerisque mi. Pellentesque sit amet arcu massa. Etiam ut vulputate magna, quis maximus velit. Vivamus iaculis nulla vel ipsum fringilla mollis.</p>
+                </div>
+            </div>
+
+            <div class="timeline__date timeline__date--right">
+                <div class="timeline__date-panel">
+                    <h2 class="timeline__date-heading heading">September 2008</h2>
+                    <p class="timeline__date-copy">Nulla in tincidunt felis. Morbi quis scelerisque mi. Pellentesque sit amet arcu massa. Etiam ut vulputate magna, quis maximus velit. Vivamus iaculis nulla vel ipsum fringilla mollis.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-row">
+            <div class="timeline__date timeline__date--left">
+                <div class="timeline__date-panel">
+                    <h2 class="timeline__date-heading heading">October 2015</h2>
+                    <p class="timeline__date-copy">Nulla in tincidunt felis. Morbi quis scelerisque mi. Pellentesque sit amet arcu massa. Etiam ut vulputate magna, quis maximus velit. Vivamus iaculis nulla vel ipsum fringilla mollis.</p>
+                </div>
+            </div>
+
+            <div class="timeline__date timeline__date--right">
+                <div class="timeline__date-panel">
+                    <h2 class="timeline__date-heading heading">September 2008</h2>
+                    <p class="timeline__date-copy">Nulla in tincidunt felis. Morbi quis scelerisque mi. Pellentesque sit amet arcu massa. Etiam ut vulputate magna, quis maximus velit. Vivamus iaculis nulla vel ipsum fringilla mollis.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-row">
+            <div class="timeline__date timeline__date--left">
+                <div class="timeline__date-panel">
+                    <h2 class="timeline__date-heading heading">Aug 2008</h2>
+                    <p class="timeline__date-copy">Nulla in tincidunt felis. Morbi quis scelerisque mi. Pellentesque sit amet arcu massa. Etiam ut vulputate magna, quis maximus velit. Vivamus iaculis nulla vel ipsum fringilla mollis.</p>
+                </div>
+            </div>
+
+            <div class="timeline__date timeline__date--right">
+                <div class="timeline__date-panel">
+                    <h2 class="timeline__date-heading heading">July 2008</h2>
+                    <p class="timeline__date-copy">Nulla in tincidunt felis. Morbi quis scelerisque mi. Pellentesque sit amet arcu massa. Etiam ut vulputate magna, quis maximus velit. Vivamus iaculis nulla vel ipsum fringilla mollis.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-row">
+            <div class="timeline__date timeline__date--left">
+                <div class="timeline__date-panel">
+                    <h2 class="timeline__date-heading heading">October 2004</h2>
+                    <p class="timeline__date-copy">Nulla in tincidunt felis. Morbi quis scelerisque mi. Pellentesque sit amet arcu massa. Etiam ut vulputate magna, quis maximus velit. Vivamus iaculis nulla vel ipsum fringilla mollis.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

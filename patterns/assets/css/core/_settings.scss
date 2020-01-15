@@ -1,0 +1,86 @@
+// ------------------------------------------------------------
+// Settings
+// ------------------------------------------------------------
+
+@import "color";
+
+// ------------------------------------------------------------
+// :: Spacing units
+// ------------------------------------------------------------
+
+$internal-spacing-percent 			: 3%;		// Space internally with flexible measure.
+$internal-spacing					: 3em; 		// Space internally with fixed measure. Renders in EM
+$internal-spacing-pixel				: 30px; 	// Space internally with fixed measure. Renders in pixels
+
+
+// ------------------------------------------------------------
+// :: Breakpoints
+// ------------------------------------------------------------
+
+// Screens (as needed)
+// --------------------------
+$a-vp								: 300px;
+$b-vp 								: 500px;
+$c-vp 								: 780px;
+$d-vp 								: 1000px;
+$e-vp 								: 1200px;
+
+
+// Grid assignments
+// --------------------------
+$max-grid							: $e-vp;								// Max grid
+$max-vp								: $e-vp + $internal-spacing-pixel*2;	// Max viewport
+
+
+// Set assignments
+// --------------------------
+$table-respond						: $c-vp;								// Responsive tables
+$menu-respond						: 950px;								// If using ss/non ss navigation
+$sidebar-respond					: $c-vp;								// Sidebar switch point
+$sidebar-aside-width				: 30%;								    // Sidebar column default
+$sidebar-body-width					: 70%;								// Sidebar body default
+
+
+// FFS assignments
+// --------------------------
+$ie-fixed-vp						: $d-vp;    							// Viewport for Old, Old Wooden Ships
+$device-safezone-vp					: 800px;								// IOS (maybe other places) have some peculiar issues
+
+
+
+// ------------------------------------------------------------
+// :: Set variables
+// ------------------------------------------------------------
+
+$default-border-width 				: 1px; 		// Border width
+$border-radius						: 10px;		// Default radius
+$form-item-height					: 44px;		// Form item height
+$form-padding						: 20px;		// Padd forms with fixed measure
+
+
+// ------------------------------------------------------------
+// :: Type (Renders in REM using @include font-size($#);
+// ------------------------------------------------------------
+
+$alpha   	: 48;
+$beta		: 30;
+$gamma		: 24;
+$delta		: 20;
+$epsilon	: 16;
+$zeta		: 14;
+$eta		: 12;
+
+// Set units
+// --------------------------------
+
+$base-font-size		: $epsilon;     // Page default size
+$para				: $epsilon;  	// Paragraph size
+$quote				: $gamma;		// Quote size
+$form-label-size    : $epsilon;		// Form label size
+$form-legend-size	: $delta;		// Form legend size
+
+
+// Calc units
+// --------------------------------
+$rembase 			: 10;			// What do we want our units to calculate from. 10 is nice and easy
+$base-rhythm		: 25;			// Vertical rhythm

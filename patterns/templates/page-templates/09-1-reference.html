@@ -1,0 +1,106 @@
+{# 1. Extend the relevant layout #}
+{# --------------------------------------- #}
+
+{% extends 'sidebar-standard.html' %}
+
+
+{# --------------------------------------- #}
+{# 2. Assign Settings and variables #}
+{# --------------------------------------- #}
+
+{% set id = "standard" %}
+{% set section = "standard" %}
+{% set title = "" %}
+{% set hero_copy = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." %}
+
+
+{# --------------------------------------- #}
+{# 3. Add models and macros #}
+{# --------------------------------------- #}
+
+{% model 'reference', as="reference" %}
+
+{% import 'macros/button.html' as buttons %}
+{% import 'macros/icon.html' as icons %}
+{% import 'macros/alert.html' as alerts %}
+
+
+{# --------------------------------------- #}
+{#
+   4. Add page content into relevant areas
+      Add/Delete blocks as necessary
+#}
+{# --------------------------------------- #}
+
+{% block hero %}
+    {% include 'heroes/hero-standard.html' %}
+{% endblock %}
+
+{% block aside %}
+	<div class="aside-m">
+        <div class="aside-m__header fill-sunrise">
+            <h3 class="aside-m__heading">Reference</h3>
+        </div>
+        {% include 'navigation/reference.html' %}
+    </div>
+{% endblock %}
+
+{% block main %}
+    <section>
+        <div class="is-typeset">
+            <h1>iati-activities<a class="m-header-link" href="#header-id" title="Permalink to this headline">¶</a></h1>
+            <code class="html">
+                iati-activities
+            </code>
+            <p>This is the reference page for the XML element iati-activities.</p>
+            <h2>Definition<a class="m-header-link" href="#header-id" title="Permalink to this headline">¶</a></h2>
+            <p>Top-level list of one or more IATI activity records.</p>
+            <h2>Rules<a class="m-header-link" href="#header-id" title="Permalink to this headline">¶</a></h2>
+            <p>This element must occur once and only once (within each parent element)</p>
+            <h2>Attributes<a class="m-header-link" href="#header-id" title="Permalink to this headline">¶</a></h2>
+            <dl>
+                <dt>@version</dt>
+                <dd>
+                    <p>A number indicating the IATI specification version in use. This is mandatory and must be a valid version.</p>
+                    <p>This attribute is required.</p>
+                    <p>This value must be of type xsd:string.</p>
+                    <p>This value must be on the <a href="#">Version codelist</a>.</p>
+                </dd>
+                <dt>@generated-datetime</dt>
+                <dd>
+                    <p>A date/time stamp for when this file was generated. This is not necessarily the last-updated date for the individual activity records in it. Use of this attribute is highly recommended, to allow recipients to know when a file has been updated.</p>
+                    <p>This value must be of type xsd:dateTime.</p>
+                </dd>
+                <dt>@linked-data-default</dt>
+                <dd>
+                    <p>If a publisher chooses to publish linked data about their IATI activities then allowing them to declare where this data is published would support discovery of it, and any additional information they may choose to publish as Linked Data alongside it.</p>
+                    <p>This attribute is a URI path upon which an activity identifier can be appended to get a differentiable URI for any activity contained within a file.</p>
+                    <p>Where a publisher declares using one of these properties that authoritative linked data is accessible for an activity then consuming applications that are generating Linked Data from an IATI XML file should assert an owl:sameAs relationship to the relevant URI.</p>
+                    <p>This value must be of type xsd:anyURI.</p>
+                </dd>
+            </dl>
+            <h2>Example Usage<a class="m-header-link" href="#header-id" title="Permalink to this headline">¶</a></h2>
+            <p>Example usage of <code class="html">iati-activities</code></p>
+            <p>This element is a parent for other all other elements of the IATI Activity Standard. This example provides a dateTime of 2014-09-10T07:15:37Z for the @generated-datetime attribute. A dateTime in UTC time is indicated by adding a Z behind the time This example date time format conforms to the xsd:dateTime standard. The @version attribute declares a valid code (2.x) from the Version codelist. The optional @linked-data-default attribute is also included.</p>
+            <pre><code class="html">{{ '<iati-activities generated-datetime="2014-09-10T07:15:37Z" version="2.03" linked-data-default="http://data.example.org/"></iati-activities>' | escape }}</code></pre>
+            <p>The iati-activities element acts as a container for other sub-elements. It is closed as follows:</p>
+            <p><code class="html">{{ '</iati-activities>' | escape }}</code></p>
+            <h2>Changelog<a class="m-header-link" href="#header-id" title="Permalink to this headline">¶</a></h2>
+            <p>Introduced the @linked-data-default attribute on iati-activities element</p>
+            <h2>Developer tools<a class="m-header-link" href="#header-id" title="Permalink to this headline">¶</a></h2>
+            <p>Find the source of this documentation on github:</p>
+            <ul>
+                <li><a href="#">Schema</a></li>
+                <li><a href="#">Extra Documentation</a></li>
+            </ul>
+            <h2>Subelements<a class="m-header-link" href="#header-id" title="Permalink to this headline">¶</a></h2>
+            <ul>
+                <li><a href="#">iati-activity</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="space-section-top">
+        {% include 'asides/cta-contact.html' %}
+    </section>
+{% endblock %}

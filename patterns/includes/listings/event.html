@@ -1,0 +1,22 @@
+<article class="listing listing--event {% if item.archive == true %} listing--archived{% else %}{% endif %}">
+	<header class="listing__header">
+		<h2 class="listing__heading"><a href="">{{ item.title }}</a></h2>
+		<ul class="listing__metadata">
+			<li class="listing__metadata__item"><span class="listing__metadata__date">{{ item.date_start }}</span>
+			{% if item.date_end =="" %}{% else %}
+			&ndash;<span class="listing__metadata__date">{{ item.date_end }}</span>
+			{% endif %}</li>
+			<li class="listing__metadata__item"><span class="listing__metadata__time">{{ item.time_start }}</span>
+			{% if item.time_end =="" %}{% else %}
+			&ndash;<span class="listing__metadata__date">{{ item.time_end }}</span>
+			{% endif %}</li>
+			{% if item.location =="" %}{% else %}
+			<li class="listing__metadata__item"><span class="listing__metadata__location">{{ item.location }}</span></li>
+			{% endif %}
+			{% if item.price =="" %}{% else %}
+			<li class="listing__metadata__item"><span class="listing__metadata__location">{{ item.price }}</span></li>
+			{% endif %}
+		</ul>
+	</header>
+	<div class="listing__excerpt"><p>{{ item.excerpt }}</p></div>
+</article>

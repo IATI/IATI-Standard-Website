@@ -1,6 +1,9 @@
-{% load wagtailcore_tags wagtail_modeltranslation i18n iati_tags %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 
-{% trans "Language" %}:
+<li class="navigation-language__item">Lang:</li>
 {% for language in languages %}
-    <a href="{{ language.url }}">{{ language.code }}</a> {% if not forloop.last %}-{% endif %}
+    <li class="navigation-language__item {% if LANGUAGE_CODE == language.code %} navigation-language__item--active {% endif %}">
+        <a href="{{ language.url }}">{{ language.code|upper }}</a>
+    </li>
 {% endfor %}

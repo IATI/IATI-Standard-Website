@@ -1,4 +1,4 @@
-{% load static wagtailuserbar wagtailcore_tags iati_tags wagtailimages_tags i18n %}
+{% load wagtailuserbar i18n %}
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -6,15 +6,6 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
-        <!-- Google Tag Manager -->
-        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-K6488R2');</script>
-        <!-- End Google Tag Manager -->
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <title>
             {% block title %}
                 {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}
@@ -25,51 +16,18 @@
                 {% endwith %}
             {% endblock %}
         </title>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        {# Google Analytics gtag.js with IP Anonymization #}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-6109435-11"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
 
-          gtag('config', 'UA-6109435-11', { 'anonymize_ip': true });
-        </script>
+        {% include 'partials/analytics.html' %}
+        {% include 'partials/social-graph.html' %}
 
-        {# Social Media Meta #}
-        {% if page %}
-            <!-- Twitter https://dev.twitter.com/cards/types/summary -->
-            <meta name="twitter:card" content="summary" />
-            <meta name="twitter:site" content="@{{ social_twitter_handle }}" />
-            <meta name="twitter:title" content="{{ page.title }}" />
-            <meta name="twitter:description" content="{{ page.search_description|default:page.excerpt|default:'' }}">
-            <meta name="twitter:image" content="{{ request.scheme }}://{{ request.site.hostname }}{{ page.social_share_image_url }}">
+        {% block html_header %}
+            {% include 'scaffold/header-assets.html' %}
+        {% endblock %}
 
-            <!--Facebook -->
-            <meta property="og:type" content="website" />
-            <meta property="og:url" content="{{ request.scheme }}://{{ request.site.hostname }}{{ page.url }}" />
-            <meta property="og:title" content="{{ page.title }}" />
-            <meta property="og:description" content="{{ page.search_description|default:page.excerpt|default:'' }}" />
-            <meta property="og:site_name" content="IATI Standard" />
-            <meta property="og:image" content="{{ request.scheme }}://{{ request.site.hostname }}{{ page.social_share_image_url }}">
-        {% endif %}
-
-        {# Global stylesheets #}
-        <link rel="stylesheet" type="text/css" href="{% static 'home/css/responsive.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/screen.min.css' %}">
-        <!-- overrides -->
-        <link rel="stylesheet" type="text/css" href="{% static 'home/css/custom.css' %}">
-
-        <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700" rel="stylesheet">
-        <script>/*! grunt-grunticon Stylesheet Loader - v2.1.6 | https://github.com/filamentgroup/grunticon | (c) 2015 Scott Jehl, Filament Group, Inc. | MIT license. */
-        !function(){function e(e,n,t){"use strict";var o=window.document.createElement("link"),r=n||window.document.getElementsByTagName("script")[0],a=window.document.styleSheets;return o.rel="stylesheet",o.href=e,o.media="only x",r.parentNode.insertBefore(o,r),o.onloadcssdefined=function(e){for(var n,t=0;t<a.length;t++)a[t].href&&a[t].href===o.href&&(n=!0);n?e():setTimeout(function(){o.onloadcssdefined(e)})},o.onloadcssdefined(function(){o.media=t||"all"}),o}function n(e,n){e.onload=function(){e.onload=null,n&&n.call(e)},"isApplicationInstalled"in navigator&&"onloadcssdefined"in e&&e.onloadcssdefined(n)}!function(t){var o=function(r,a){"use strict";if(r&&3===r.length){var i=t.navigator,c=t.document,s=t.Image,d=!(!c.createElementNS||!c.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect||!c.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image","1.1")||t.opera&&-1===i.userAgent.indexOf("Chrome")||-1!==i.userAgent.indexOf("Series40")),l=new s;l.onerror=function(){o.method="png",o.href=r[2],e(r[2])},l.onload=function(){var t=1===l.width&&1===l.height,i=r[t&&d?0:t?1:2];t&&d?o.method="svg":t?o.method="datapng":o.method="png",o.href=i,n(e(i),a)},l.src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==",c.documentElement.className+=" grunticon"}};o.loadCSS=e,o.onloadCSS=n,t.grunticon=o}(this),function(e,n){"use strict";var t=n.document,o="grunticon:",r=function(e){if(t.attachEvent?"complete"===t.readyState:"loading"!==t.readyState)e();else{var n=!1;t.addEventListener("readystatechange",function(){n||(n=!0,e())},!1)}},a=function(e){return n.document.querySelector('link[href$="'+e+'"]')},i=function(e){var n,t,r,a,i,c,s={};if(n=e.sheet,!n)return s;t=n.cssRules?n.cssRules:n.rules;for(var d=0;d<t.length;d++)r=t[d].cssText,a=o+t[d].selectorText,i=r.split(");")[0].match(/US\-ASCII\,([^"']+)/),i&&i[1]&&(c=decodeURIComponent(i[1]),s[a]=c);return s},c=function(e){var n,r,a,i;a="data-grunticon-embed";for(var c in e){i=c.slice(o.length);try{n=t.querySelectorAll(i)}catch(s){continue}r=[];for(var d=0;d<n.length;d++)null!==n[d].getAttribute(a)&&r.push(n[d]);if(r.length)for(d=0;d<r.length;d++)r[d].innerHTML=e[c],r[d].style.backgroundImage="none",r[d].removeAttribute(a)}return r},s=function(n){"svg"===e.method&&r(function(){c(i(a(e.href))),"function"==typeof n&&n()})};e.embedIcons=c,e.getCSS=a,e.getIcons=i,e.ready=r,e.svgLoadedCallback=s,e.embedSVG=s}(grunticon,this)}();
-            grunticon(["{% static 'icons/ico.data.svg.css' %}", "{% static 'icons/ico.data.png.css' %}", "{% static 'icons/ico.fallback.css' %}"]);
-        </script>
-        <noscript><link href="{% static 'icons/ico.fallback.css' %}" rel="stylesheet"></noscript>
-        <script src="{% static 'js/libs/modernizr.js' %}"></script>
-		<link rel="icon" type="image/png" href="{% static 'favicons/favicon-32x32.png' %}" sizes="32x32" />
-        <link rel="icon" type="image/png" href="{% static 'favicons/favicon-16x16.png' %}" sizes="16x16">
         {% block extra_css %}
             {# Override this in templates to add extra stylesheets #}
         {% endblock %}
@@ -81,156 +39,28 @@
         height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <!-- End Google Tag Manager (noscript) -->
         {% wagtailuserbar %}
-        	<div class="ui-base">
-		<a href="#pagecontent" class="skiplink" data-js="skiplink">{% trans "Skip to main content" %}</a>
+        <div class="ui-base">
+		    <a href="#pagecontent" class="skiplink" data-js="skiplink">{% trans "Skip to main content" %}</a>
+            {% block header %}
+                {% include 'scaffold/header.html' %}
+            {% endblock %}
 
-			<header role="banner" class="header">
-	<a href="{% default_page_url %}" class="branding"><span>{% trans "IATI - International Aid Transparency Initiative" %}</span></a>
+    		<!-- ID and -nofocus required for proper skiplink operation -->
+    		<main id="pagecontent" class="pagecontent -nofocus" role="main" tabindex="-1">
+                {% block hero %}{% endblock %}
+                {% block content %}{% endblock %}
+                {% block after_content %}{% endblock %}
+            </main>
 
+            {% block extra_js %}
+                {# Override this in templates to add extra javascript #}
+            {% endblock %}
 
-<ul class="navigation-utility">
-
-            <li id="section-news" class='navigation-utility__item {% check_active "news" %}'>
-                <a href="{% default_page_url 'news' %}">{% trans "News" %}</a></li>
-
-            <li id="section-events" class='navigation-utility__item {% check_active "events" %}'>
-                <a href="{% default_page_url 'events' %}">{% trans "Events" %}</a></li>
-
-            <li id="section-contact" class='navigation-utility__item {% check_active "contact" %}'>
-                <a href="{% default_page_url 'contact' %}">{% trans "Contact" %}</a></li>
-
-            <li id="section-search" class='navigation-utility__item {% check_active "search" %}'>
-                <a href="{% url 'search' %}">{% trans "Search" %}</a></li>
-
-            {% if has_multilanguage_support %}
-                <li class="navigation-utility__item">|</li>
-                <li class="navigation-utility__item">
-                    {% translation_links calling_page=self %}
-                </li>
-            {% endif %}
-
-</ul>
-
-
-<button role="button" class="navigation-primary-toggle" id="navigation-primary-toggle"><span>{% trans "Menu" %}</span></button>
-
-<nav class="navigation-primary" role="navigation" id="navigation-primary">
-	<ul class="navigation-primary__items">
-
-        <li id="section-about" class='navigation-primary__item {% check_active "about" "primary"%}'>
-            <a href="{% default_page_url 'about' %}">{% trans "About" %}</a></li>
-
-        <li id="section-standard" class='navigation-primary__item {% check_active "iati-standard" "primary"%}'>
-            <a href="{% default_page_url 'iati_standard' %}">{% trans "IATI Standard" %}</a></li>
-
-        <li id="section-data" class='navigation-primary__item {% check_active "using-data" "primary"%}'>
-            <a href="{% default_page_url 'using_data' %}">{% trans "Using Data" %}</a></li>
-
-        <li id="section-support" class='navigation-primary__item {% check_active "guidance" "primary"%}'>
-            <a href="{% default_page_url 'guidance_and_support' %}">{% trans "Guidance & Support" %}</a></li>
-
-        <li id="section-community" class='navigation-primary__item {% check_active "community" "primary"%}'>
-            <a href="{% default_page_url 'community' %}">{% trans "Community" %}</a></li>
-
-        <li id="section-news" class='navigation-primary__item navigation-primary__item--ss-only {% check_active "news" %}'>
-            <a href="{% default_page_url 'news' %}">{% trans "News" %}</a></li>
-
-        <li id="section-events" class='navigation-primary__item navigation-primary__item--ss-only {% check_active "events" %}'>
-            <a href="{% default_page_url 'events' %}">{% trans "Events" %}</a></li>
-
-        <li id="section-contact" class='navigation-primary__item navigation-primary__item--ss-only {% check_active "contact" %}'>
-            <a href="{% default_page_url 'contact' %}">{% trans "Contact" %}</a></li>
-
-        <li id="section-search" class='navigation-primary__item navigation-primary__item--ss-only {% check_active "search" %}'>
-            <a href="{% url 'search' %}">{% trans "Search" %}</a></li>
-
-        {% if has_multilanguage_support %}
-            <li class="navigation-primary__item navigation-primary__item--ss-only langs-ss">
-                {% translation_links calling_page=self %}
-            </li>
-        {% endif %}
-	</ul>
-</nav>
-
-</header>
-
-
-		<!-- ID and -nofocus required for proper skiplink operation -->
-		<main id="pagecontent" class="pagecontent -nofocus" role="main" tabindex="-1">
-        {% block content %}{% endblock %}
-
-        </main>
-
-        {% block extra_js %}
-            {# Override this in templates to add extra javascript #}
-        {% endblock %}
-        <footer role="contentinfo" class="footer">
-	<div class="footer__content">
-		<div class="row">
-			<div class="l-3up">
-				<div class="l-3up__col">
-					<span class="branding-footer"></span>
-				</div>
-				<div class="l-3up__col">
-					<h4 class="footer__heading">{% trans "Useful links" %}</h4>
-					<ul class="footer__list">
-						<li><a href="{% default_page_url 'contact' %}">{% trans "Contact" %}</a></li>
-						<li><a href="{% standard_page_url 'terms' %}">{% trans "Terms and conditions" %}</a></li>
-						<li><a href="{% standard_page_url 'privacy' %}">{% trans "Privacy policy" %}</a></li>
-                        <li><a href="{% standard_page_url 'trans' %}">{% trans "Translation FAQs" %}</a></li>
-					</ul>
-				</div>
-				<div class="l-3up__col">
-					<h4 class="footer__heading">{% trans "Newsletter" %}</h4>
-					<form action="https://aidtransparency.us3.list-manage.com/subscribe/post?u=0e73fb60cf70bda74851aed09&amp;id=c189d66816" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
-						<div class="form-field">
-							<div class="form-flex">
-                <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_0e73fb60cf70bda74851aed09_c189d66816" tabindex="-1" value="" autocomplete="off"></div>
-                <label for="newsletter" id="newsletter" class="form-label">{% trans "Sign up to our newsletter" %}</label>
-								<input style="width:100%; margin-bottom:5px;" id="newsletter" class="form-item" type="email" value="" name="EMAIL" placeholder="{% trans "Email address" %}" aria-label="Email address" required>
-	              <input style="width:100%; margin-bottom:5px;" class="form-item" type="text" value="" name="FNAME" id="mce-FNAME" placeholder="{% trans "First name" %}" aria-label="First name" required>
-	              <input style="width:100%; margin-bottom:5px;" class="form-item" type="text" value="" name="LNAME" id="mce-LNAME" placeholder="{% trans "Surname" %}" aria-label="Surname" required>
-								<input type="submit" value="{% trans "Subscribe" %}" name="subscribe" id="mc-embedded-subscribe" class="button">
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="footer__meta">
-		<div class="row">
-			<p class="footer__legal">{% trans "Copyright IATI 2018. All rights reserved" %}</p>
-
-			<ul class="social-list">
-				<li class="social-list__item social-list__item--twitter"><a href="https://twitter.com/{{ social_twitter_handle }}" rel="noopener noreferrer" target="_blank">{% trans "Twitter" %}</a></li>
-                <li class="social-list__item social-list__item--youtube"><a href="{{ social_youtube_url }}" rel="noopener noreferrer" target="_blank">{% trans "YouTube" %}</a></li>
-			</ul>
-		</div>
-	</div>
-</footer>
-
-
-	</div>
-	<script src="{% static 'js/libs/basicScroll.min.js' %}"></script>
-<script>
-    var elem = document.querySelector && document.querySelector('.listing__body');
-    if (elem) {
-        var instance = basicScroll.create({
-           elem: elem,
-           from: 'top-top',
-           to: 'bottom-bottom',
-           direct: true,
-           props: {
-              '--translateY': {
-                 from: '-20px',
-                 to: '20px'
-              }
-           }
-        });
-        instance.start();
-    }
-</script>
-<script type="text/javascript" src="{% static 'js/app.bundle.js' %}"></script>
+            {% block footer %}
+                {% include 'scaffold/footer.html' %}
+            {% endblock %}
+	    </div>
+        {% include 'scaffold/footer-assets.html' %}
+        {% block html_footer %}{% endblock %}
     </body>
 </html>

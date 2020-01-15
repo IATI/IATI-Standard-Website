@@ -1,0 +1,19 @@
+<article class="listing listing--guidance">
+	<aside class="listing__aside">
+		<div class="listing__media">
+			<img src="{{ global.assets_root }}/img/{{ item.image_name }}" alt="alt tag">
+		</div>
+	</aside>
+	<div class="listing__body">
+		<h2 class="listing__heading"><a href=""><span>{{ item.title }}</span></a></h2>
+		<div class="listing__excerpt">{{ item.excerpt }}</div>
+		{% if item.excerpt_list == true %}
+			<ul class="listing__list">
+				<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit</li>
+				<li>Officia deserunt mollit anim id est laborum.</li>
+				<li>Duis aute irure dolor in reprehenderit in voluptate</li>
+			</ul>
+		{% endif %}
+		<a href="#" class="button">{{ item.button_text }}</a>
+	</div>
+</article>

@@ -1,0 +1,90 @@
+{# 1. Extend the relevant layout #}
+{# --------------------------------------- #}
+
+{% extends 'sidebar-after.html' %}
+
+
+{# --------------------------------------- #}
+{# 2. Assign Settings and variables #}
+{# --------------------------------------- #}
+
+{% set id = "standard" %}
+{% set section = "standard" %}
+{% set title = "Iati Standard" %}
+{% set hero_copy = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. " %}
+{% set hero_image = "hero1.jpg" %}
+
+
+{# --------------------------------------- #}
+{# 3. Add models and macros #}
+{# --------------------------------------- #}
+
+{% model 'guidance', as="guidance" %}
+{% model 'form-support', as="form" %}
+
+{% import 'macros/button.html' as buttons %}
+{% import 'macros/icon.html' as icons %}
+
+
+{# --------------------------------------- #}
+{#
+   4. Add page content into relevant areas
+      Add/Delete blocks as necessary
+#}
+{# --------------------------------------- #}
+
+{% block hero %}
+    {% include 'heroes/hero.html' %}
+{% endblock %}
+
+{% block aside %}
+    {% include 'asides/cta-reference.html' %}
+{% endblock %}
+
+{% block main %}
+    <div class="is-typeset">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+{% endblock %}
+
+{% block after %}
+    <div class="space-section-bottom">
+        <div class="row">
+            <div class="l-cards">
+                <div class="card card--alt">
+                    <h2 class="card__heading">Detailed information about the IATI Standard</h2>
+                    <ul class="card__list">
+                        <li><a href="#">The Organisation Standard</a></li>
+                        <li><a href="#">The Activity Standard</a></li>
+                        <li><a href="#">Codelists</a></li>
+                        <li><a href="#">Schema</a></li>
+                        <li><a href="#">Organisation Identifiers</a></li>
+                    </ul>
+                </div>
+                <div class="card card--alt">
+                    <h2 class="card__heading">Information about changes to the IATI Standard</h2>
+                    <ul class="card__list">
+                        <li><a href="#">How the Standard is upgraded</a></li>
+                        <li>Previous versions of Iati
+                            <ul class="card__list-child">
+                                <li><a href="#">1.04</a></li>
+                                <li><a href="#">1.03</a></li>
+                                <li><a href="#">1.02</a></li>
+                                <li><a href="#">1.01</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card card--alt">
+                    <h2 class="card__heading">IATI Developer documentation</h2>
+                    <ul class="card__list">
+                        <li><a href="#">Information for developers</a></li>
+                        <li><a href="#">The IATI Datastore</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
