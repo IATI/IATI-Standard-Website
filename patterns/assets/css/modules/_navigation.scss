@@ -521,7 +521,7 @@
 	overflow: hidden;
 	position: absolute;
 	left: 0;
-	top: 142px;
+	top: 139px;
 	display: none;
 	width: 100%;
 	background-color: $body-color;
@@ -537,6 +537,9 @@
 		&--active, &.open {
 			display: block;
 		}
+	}
+	@include respond-to($d-vp) {
+		top: 142px;
 	}
 	@include respond-to($e-vp) {
 		top: 150px;
