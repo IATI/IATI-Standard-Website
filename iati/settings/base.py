@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'iati_standard',
     'using_data',
     'tools',
+    'dashboard',
+    'navigation',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
@@ -72,6 +74,7 @@ INSTALLED_APPS = [
     'wagtail.contrib.search_promotions',
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
+    'wagtail.contrib.settings',
 
     'modeltranslation_sync',
     'django_extensions',
