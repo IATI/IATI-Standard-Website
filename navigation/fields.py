@@ -17,17 +17,20 @@ class Highlight(StructBlock):
         help_text = 'Highlight module.'
         icon = 'pick'
         label = 'Highlight'
+        form_template = 'navigation/block_forms/custom_struct.html'
 
     page = PageChooserBlock(
         help_text='Highlighted page'
     )
-    description = TextBlock(
-        help_text='Description for the highlight module'
+    description_en = TextBlock(
+        help_text='Description for the highlight module',
+        label='Description [en]',
     )
-
-    translation_fields = [
-        'description',
-    ]
+    description_fr = TextBlock(
+        help_text='Description for the highlight module',
+        label='Description [fr]',
+        required=False,
+    )
 
 
 class PageList(StructBlock):
@@ -36,6 +39,7 @@ class PageList(StructBlock):
         help_text = 'Simple page list.'
         icon = 'list-ul'
         label = 'Page list'
+        form_template = 'navigation/block_forms/custom_struct.html'
 
     pages = ListBlock(
         PageChooserBlock(label='Page')
@@ -48,6 +52,8 @@ class TypeA(StructBlock):
         help_text = 'Primary navigation module type A.'
         icon = 'form'
         label = 'Type A'
+        form_template = 'navigation/block_forms/custom_struct.html'
+        form_classname = 'navigation__meganav'
         template = 'navigation/blocks/type_a.html'
 
     highlight = Highlight(
