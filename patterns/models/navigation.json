@@ -167,6 +167,11 @@
                     {
                         "class": "l-3up",
                         "column_class": "l-3up__col",
+                        "column_title_class": [
+                            "",
+                            "navigation-megamenu__list-title",
+                            "navigation-megamenu__list-title"
+                        ],
                         "columns": [
                             [
                                 "How IATI works",
