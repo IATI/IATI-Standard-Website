@@ -13,23 +13,33 @@ class AbstractLink(models.Model):
     class Meta:
         abstract = True
 
-    label = models.CharField(
+    label_en = models.CharField(
         max_length=255,
+        verbose_name='Label [en]'
+    )
+    label_fr = models.CharField(
+        max_length=255,
+        verbose_name='Label [fr]',
+        blank=True,
     )
     page = ForeignKeyField(
         model='wagtailcore.Page',
         required=True,
     )
     panels = [
-        FieldPanel('label'),
+        FieldPanel('label_en'),
+        FieldPanel('label_fr'),
         PageChooserPanel('page'),
-        StreamFieldPanel('meganav'),
     ]
 
 
 class PrimaryMenuLinks(Orderable, AbstractLink):
     item = ParentalKey('PrimaryMenu', related_name='primary_menu_links')
     meganav = navigation()
+
+    panels = AbstractLink.panels + [
+        StreamFieldPanel('meganav'),
+    ]
 
 
 class UtilityMenuLinks(Orderable, AbstractLink):
