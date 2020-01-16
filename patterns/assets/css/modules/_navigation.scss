@@ -616,6 +616,10 @@
 	}
 }
 
+.navigation-megamenu__list-title {
+	@extend .m-highlight__heading;
+}
+
 .navigation-megamenu__block {
 	margin-bottom: 1em;
 	&__heading {
