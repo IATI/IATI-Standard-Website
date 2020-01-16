@@ -59,9 +59,13 @@ INSTALLED_APPS = [
     'wagtail.admin',
     'wagtail.core',
 
+    'wagtaillinkchecker',
+
     'modelcluster',
     'taggit',
     'haystack',
+
+    'django_celery_results',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -264,3 +268,11 @@ HAYSTACK_CONNECTIONS = {
 }
 
 HAYSTACK_CUSTOM_HIGHLIGHTER = 'search.utils.CustomHighlighter'
+
+# Celery settings
+
+CELERY_BROKER_URL = os.getenv('RABBITMQ_URL', 'amqp://rabbitmq:5672')
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'

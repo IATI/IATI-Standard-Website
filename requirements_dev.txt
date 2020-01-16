@@ -9,6 +9,6 @@ flake8==3.7.5
 pydocstyle==3.0.0
 pylint==1.9.4
 pylint-django==2.0.5
-git+https://github.com/sargentfrancesca/wagtail-factories.git@35e1bbe135acec42c47f9e0ddb73faf20f2cce32#egg=wagtail-factories
+git+https://github.com/IATI/wagtail-factories.git@35e1bbe135acec42c47f9e0ddb73faf20f2cce32#egg=wagtail-factories
 factory-boy==2.11.1
 sqlparse==0.3.0
