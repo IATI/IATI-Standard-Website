@@ -61,7 +61,8 @@
 	                   	 						{% else %}
 	                   	 							<ul class="navigation-megamenu__list">
 	                                					{% for label in sub_col %}
-	                                						<li>
+                                                            <!-- Ideally we need something like this class adding to the li when we want the first list item to be a heading as well -->
+	                                						<li class="{% if label.link-title == true %}navigation-megamenu__list-title{% endif %}">
 	                                							{% if label.subcolumn %}
 	                                								{{ label.heading }}
 								                                    <ul>
