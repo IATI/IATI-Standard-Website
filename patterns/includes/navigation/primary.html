@@ -60,9 +60,9 @@
 						                            </div>
 	                   	 						{% else %}
 	                   	 							<ul class="navigation-megamenu__list">
+                                                        {% set loopindex = loop.index0 %}
 	                                					{% for label in sub_col %}
-                                                            <!-- Ideally we need something like this class adding to the li when we want the first list item to be a heading as well -->
-	                                						<li class="{% if label.link-title == true %}navigation-megamenu__list-title{% endif %}">
+	                                						<li class="{% if loop.first %}{{ col.column_title_class[loopindex] }}{% endif %}">
 	                                							{% if label.subcolumn %}
 	                                								{{ label.heading }}
 								                                    <ul>
