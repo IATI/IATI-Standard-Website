@@ -1,0 +1,37 @@
+{# 1. Extend the relevant layout #}
+{# --------------------------------------- #}
+
+{% extends 'sidebar.html' %}
+
+
+{# --------------------------------------- #}
+{# 2. Assign Settings and variables #}
+{# --------------------------------------- #}
+
+{% set id = "" %}
+{% set section = "" %}
+{% set title = "Sidebar template" %}
+
+
+{# --------------------------------------- #}
+{# 3. Add models and macros #}
+{# --------------------------------------- #}
+
+{% import 'macros/button.html' as buttons %}
+{% import 'macros/icon.html' as icons %}
+
+
+{# --------------------------------------- #}
+{# 
+   4. Add page content into relevant areas
+      Add/Delete blocks as necessary 
+#}
+{# --------------------------------------- #}
+
+{% block aside %}
+	<h2 class="type-l heading">Aside items here</h2>
+{% endblock %}
+
+{% block main %}
+	<h1 class="type-xl heading">{{ title }}</h1>
+{% endblock %}

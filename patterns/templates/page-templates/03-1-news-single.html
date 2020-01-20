@@ -1,0 +1,90 @@
+{# 1. Extend the relevant layout #}
+{# --------------------------------------- #}
+
+{% extends 'default.html' %}
+
+
+{# --------------------------------------- #}
+{# 2. Assign Settings and variables #}
+{# --------------------------------------- #}
+
+{% set id = "news-single" %}
+{% set section = "news" %}
+{% set title = "São Tomé and Príncipe is IATI’s first Portuguese-speaking Member" %}
+{% set hero_image = "hero-news-article.jpg" %}
+
+
+{# --------------------------------------- #}
+{# 3. Add models and macros #}
+{# --------------------------------------- #}
+
+{% model 'articles', as="articles" %}
+
+{% import 'macros/button.html' as buttons %}
+{% import 'macros/icon.html' as icons %}
+
+
+{# --------------------------------------- #}
+{#
+   4. Add page content into relevant areas
+      Add/Delete blocks as necessary
+#}
+{# --------------------------------------- #}
+
+{% block hero %}
+    {% include 'heroes/hero-news.html' %}
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="max-meter max-meter--center">
+            <div class="aside-m aside-m--clipping fill-land">
+                <ul class="aside-m__meta">
+                    <li>{{ icons.icon('ico-calendar-black', '14') }} 28 Feb 2018</li>
+                    <li>{{ icons.icon('ico-bookmark-black', '14') }} <a href="#">Category name</a>, <a href="#">Category name</a></li>
+                </ul>
+            </div>
+            {% include 'partials/social-share.html' %}
+            <div class="is-typeset is-typeset--article">
+                {% include 'content/news.html' %}
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="row">
+            <h2 class="section__heading">Related news</h2>
+            <div class="l-2up">
+                <div class="l-2up__col">
+                    <article class="listing listing--article">
+                        <aside class="listing__aside">
+                            <div class="listing__media">
+                                <img src="/assets/img/content-image3.jpg" alt="alt tag">
+                            </div>
+                        </aside>
+                        <div class="listing__body" style="--translateY: 11.55px;">
+                            <h2 class="listing__heading"><a href=""><span>São Tomé and Príncipe is IATI’s first Portuguese-speaking Member</span></a></h2>
+                            <ul class="listing__metadata">
+                                <li class="listing__metadata__item">
+                                    <i role="presentation" aria-hidden="true" class="ico ico--14 ico-calendar-ocean"></i> <span class="listing__metadata__date">27 Feb 2018</span>
+                                </li>
+                            </ul>
+                            <div class="listing__excerpt">São Tomé and Príncipe has become the first Portuguese-speaking country to join IATI. They join 86 members of the initiative</div>
+                            <a href="#" class="button">Read more</a>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="l-2up__col">
+                    <article class="listing listing--article listing--article-alt">
+                        <div class="listing__body" style="--translateY: 11.55px; width: 100%;">
+                            <h2 class="listing__heading"><a href=""><span>São Tomé and Príncipe is IATI’s first Portuguese-speaking Member</span></a></h2>
+                            <div class="listing__excerpt">São Tomé and Príncipe has become the first Portuguese-speaking country to join IATI. They join 86 members of the initiative</div>
+                            <a href="#" class="button">Read more</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

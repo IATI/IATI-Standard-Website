@@ -1,0 +1,118 @@
+{# 1. Extend the relevant layout #}
+{# --------------------------------------- #}
+
+{% extends 'default.html' %}
+
+
+{# --------------------------------------- #}
+{# 2. Assign Settings and variables #}
+{# --------------------------------------- #}
+
+{% set id = "data" %}
+{% set section = "data" %}
+{% set title = "Using IATI data" %}
+{% set hero_copy = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." %}
+{% set hero_image = "hero1.jpg" %}
+
+
+{# --------------------------------------- #}
+{# 3. Add models and macros #}
+{# --------------------------------------- #}
+
+{% model 'guidance', as="guidance" %}
+
+{% import 'macros/button.html' as buttons %}
+{% import 'macros/icon.html' as icons %}
+
+
+{# --------------------------------------- #}
+{#
+   4. Add page content into relevant areas
+      Add/Delete blocks as necessary
+#}
+{# --------------------------------------- #}
+
+{% block hero %}
+    {% include 'heroes/hero.html' %}
+{% endblock %}
+
+{% block body %}
+    <div class="space-section-top">
+        <div class="row">
+            <div class="l-2up l-2up--offset">
+                <div class="l-2up__col">
+                    <h2 class="type-m type-m--trailer heading">What data can I find?</h2>
+                    <div class="is-typeset max-meter">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </div>
+                </div>
+                <div class="l-2up__col">
+                    <div class="stat-quote fill-sunset">
+                        <div class="stat-quote__media">
+                            <img class="stat-quote__img" src="{{ global.assets_root }}/img/portrait.png" alt="alt tag">
+                        </div>
+                        <blockquote>
+                            <p class="stat-quote__copy">&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit&rdquo;</p>
+                            <cite>Persons name</cite>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="space-section-top">
+        <div class="row">
+            <div class="l-cards">
+                <div class="card card--alt">
+                    <h2 class="card__heading">Why you should use the data</h2>
+                    <p class="card__excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <p class="card__excerpt--truncated">Lorem ipsum dolor sit amet, consectetur adipisicing elit ...</p>
+                    <a href="#" class="button">Learn more</a>
+                </div>
+                <div class="card card--alt">
+                    <h2 class="card__heading">Types of data available</h2>
+                    <p class="card__excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <p class="card__excerpt--truncated">Lorem ipsum dolor sit amet, consectetur adipisicing elit ...</p>
+                    <a href="#" class="button">Find out more</a>
+                </div>
+                <div class="card card--alt">
+                    <h2 class="card__heading">How to use IATI data</h2>
+                    <p class="card__excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <p class="card__excerpt--truncated">Lorem ipsum dolor sit amet, consectetur adipisicing elit ...</p>
+                    <a href="#" class="button">Find out more</a>
+                </div>
+                <div class="card card--alt">
+                    <h2 class="card__heading">Help and support</h2>
+                    <p class="card__excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <p class="card__excerpt--truncated">Lorem ipsum dolor sit amet, consectetur adipisicing elit ...</p>
+                    <a href="#" class="button">Get help</a>
+                </div>
+                <div class="card card--alt">
+                    <h2 class="card__heading">Improving data use</h2>
+                    <p class="card__excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <p class="card__excerpt--truncated">Lorem ipsum dolor sit amet, consectetur adipisicing elit ...</p>
+                    <a href="#" class="button">Learn more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="row">
+            <div class="l-2up">
+                <div class="l-2up__col">
+                    <h2 class="section__heading">Tools and resources for data use</h2>
+                    <div class="is-typeset">
+                        <p>Duis sit amet aliquam enim. Donec tempus nisi est, vel finibus dolor finibus sit amet. Pellentesque maximus sollicitudin urna.</p>
+                        <p>Nulla in nunc at ipsum tincidunt convallis. Duis sit amet aliquam enim. Donec tempus nisi est, vel finibus dolor finibus sit amet. Pellentesque maximus sollicitudin urna.</p>
+                        <a class="button" href="#none">View tools an resources</a>
+                    </div>
+                </div>
+                <div class="l-2up__col">
+                    <img src="{{ global.assets_root }}/img/content-image3.jpg" alt="alt tag">
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,84 @@
+// ------------------------------------------------------------
+// Filter
+// ------------------------------------------------------------
+
+.filter-group {
+    @extend %pie-clearfix;
+    background-color: #fff;
+    padding: 2em;
+    border-bottom: 2px solid $body-color;
+    .filter {
+        margin-bottom: 20px;
+        display: block;
+        &:last-child {
+            margin-bottom: 0;
+        }
+        @include respond-to($b-vp) {
+            width: 70%;
+            float: left;
+            margin-bottom: 0;
+            + .filter {
+                width: 29%;
+                margin-left: 1%;
+                float: right;
+            }
+        }
+    }
+    &--reverse {
+        background-color: $iati-ash;
+        .filter {
+            margin-bottom: 20px;
+            display: block;
+            @include respond-to($b-vp) {
+                width: 100%;
+                display: block;
+                + .filter {
+                    width: 100%;
+                    margin-left: 0;
+                }
+            }
+            @include respond-to($c-vp) {
+                width: 30%;
+                float: left;
+                margin-bottom: 0;
+                border-right: 1px solid darken($default-border-color, 5%);
+                + .filter {
+                    padding-left: 1em;
+                    border-right: none;
+                    width: 70%;
+                    float: right;
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+}
+
+.filter {
+    @include font-size($para);
+    @include respond-to($d-vp) {
+        .form-field__checkboxes {
+            columns: 2;
+        }
+    }
+    input[type="submit"] {
+        line-height: 1;
+    }
+}
+
+.filter__heading {
+    @extend .heading;
+    margin-bottom: 0.5em;
+}
+
+.filter__list {
+    li {
+        a {
+            text-decoration: underline;
+        }
+    }
+}
+
+.filter__list-active a {
+    color: $action-respond;
+}

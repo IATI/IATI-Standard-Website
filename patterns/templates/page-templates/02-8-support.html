@@ -1,0 +1,84 @@
+{# 1. Extend the relevant layout #}
+{# --------------------------------------- #}
+
+{% extends 'default.html' %}
+
+
+{# --------------------------------------- #}
+{# 2. Assign Settings and variables #}
+{# --------------------------------------- #}
+
+{% set id = "support" %}
+{% set section = "support" %}
+{% set title = "Support" %}
+{% set hero_copy = "Some large intoductory text that can provide an overview of what this page is about" %}
+{% set hero_image = "hero1.jpg" %}
+
+
+{# --------------------------------------- #}
+{# 3. Add models and macros #}
+{# --------------------------------------- #}
+
+{% import 'macros/button.html' as buttons %}
+{% import 'macros/icon.html' as icons %}
+
+{% model 'form-support', as="form" %}
+
+
+{# --------------------------------------- #}
+{#
+   4. Add page content into relevant areas
+      Add/Delete blocks as necessary
+#}
+{# --------------------------------------- #}
+
+{% block hero %}
+    {% include 'heroes/hero.html' %}
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="max-meter is-typeset">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+        <div class="l-sidebar l-sidebar--wide space-section-top">
+            <div class="l-sidebar__body">
+                <div class="alert alert--success"><i role="presentation" aria-hidden="true" class="ico ico-success-success"></i>
+                    <p><strong>Thank you - your message has been sent.</strong></p>
+                    <p>Name: [name]</p>
+                    <p>Email: [email]</p>
+                    <p>Message</p>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.</p>
+                </div>
+                <div class="alert alert--error"><i role="presentation" aria-hidden="true" class="ico ico-error-error"></i>
+                    <p><strong>Sorry, there appears to be an issue.</strong></p>
+                    <p>Please check you have entered a valid email address.</p>
+                </div>
+                <form class="form">
+                    <fieldset class="form-section">
+                        <div class="is-typeset">
+                            <p><a href="#">Contact support</a></p>
+                            <p>Please complete the form below and our team will be able to help you</p>
+                        </div>
+                        {% for item in form.input %}
+                            {% include 'forms/partials/input-types.html' %}
+                        {% endfor %}
+                        {% for item in form.textarea %}
+                            {% include 'forms/partials/textarea-type.html' %}
+                        {% endfor %}
+                        <div class="form-field form-field--spaced">
+                            <button type="submit" class="button">Submit request</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <aside class="l-sidebar__aside">
+                <div class="is-typeset">
+                    <h3>Alternative ways of receiving support:</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                </div>
+            </aside>
+        </div>
+    </div>
+{% endblock %}

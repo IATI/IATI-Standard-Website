@@ -1,0 +1,73 @@
+{# 1. Extend the relevant layout #}
+{# --------------------------------------- #}
+
+{% extends 'sidebar-after.html' %}
+
+
+{# --------------------------------------- #}
+{# 2. Assign Settings and variables #}
+{# --------------------------------------- #}
+
+{% set id = "support" %}
+{% set section = "support" %}
+{% set title = "What data should I publish?" %}
+{% set hero_copy = "" %}
+{% set hero_image = "" %}
+
+
+{# --------------------------------------- #}
+{# 3. Add models and macros #}
+{# --------------------------------------- #}
+
+{% model 'guidance', as="guidance" %}
+{% model 'form-support', as="form" %}
+
+{% import 'macros/button.html' as buttons %}
+{% import 'macros/icon.html' as icons %}
+
+
+{# --------------------------------------- #}
+{#
+   4. Add page content into relevant areas
+      Add/Delete blocks as necessary
+#}
+{# --------------------------------------- #}
+
+{% block hero %}
+    {% include 'heroes/hero-minor.html' %}
+{% endblock %}
+
+{% block aside %}
+    {% include 'asides/cta-contact.html' %}
+{% endblock %}
+
+{% block main %}
+    {% include 'partials/breadcrumb.html' %}
+    <div class="is-typeset is-typeset--article">
+        {% include 'content/longform.html' %}
+    </div>
+    <div class="l-cards-offset space-section-top">
+        <div class="card card--step">
+            <div class="card__step">
+                <span class="card__step__text">Next Step</span>
+                {{ icons.icon('ico-play-white', '32') }}
+            </div>
+        </div>
+        {% for item in guidance.guidance_next %}
+            {% include 'partials/card-guidance.html' %}
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block after %}
+    <div class="row">
+        <h2 class="section__heading">Related guidance</h2>
+        <div class="l-cards">
+            {% for item in guidance.related_guidance %}
+                {% include 'partials/card-guidance.html' %}
+            {% endfor %}
+        </div>
+    </div>
+
+    {% include 'forms/form-support.html' %}
+{% endblock %}

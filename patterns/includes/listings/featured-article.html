@@ -1,0 +1,22 @@
+<article class="listing listing--featured">
+	<aside class="listing__aside">
+		<div class="listing__media">
+			<img src="{{ global.assets_root }}/img/{{ item.image_name }}" alt="alt tag">
+		</div>
+	</aside>
+	<div class="listing__body">
+		<h2 class="listing__heading"><a href=""><span>{{ item.title }}</span></a></h2>
+		<ul class="listing__metadata">
+			<li class="listing__metadata__item">
+				{{ icons.icon('ico-calendar-ocean', '14') }} <span class="listing__metadata__date">{{ item.date }}</span>
+			</li>
+			{% if item.author %}
+				<li class="listing__metadata__item">
+					{{ icons.icon('ico-user-ocean', '14') }} <span class="listing__metadata__author">{{ item.author }}</span>
+				</li>
+			{% endif %}
+		</ul>
+		<div class="listing__excerpt">{{ item.excerpt }}</div>
+		<a href="#" class="button">Read more</a>
+	</div>
+</article>

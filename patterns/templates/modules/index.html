@@ -1,0 +1,29 @@
+{% extends 'patterns.html' %}
+
+{# --------------------------------------- #}
+{# Titles and descriptions #}
+{# --------------------------------------- #}
+
+{% set ui_title = "Modules" %}
+
+{% block ui_description %}
+	<p>Modules describe pieces of content that make up pages. Modules usually appear in more than one place on a project, and often in multiple variations.</p>
+{% endblock %}
+
+
+{# --------------------------------------- #}
+{# Main body content #}
+{# --------------------------------------- #}
+
+{% block body %}
+<div class="ui-row">
+	<div class="ui-section">
+		<ul class="ui-page-visuals">
+		{% set cls = cycler("ui-fill-coleface", "ui-fill-petronas", "ui-fill-yolk", "ui-fill-jaffa", "ui-fill-flamingo", "ui-fill-jaffa", "ui-fill-elephant", "ui-fill-firetruck", "ui-fill-lemongrass", "ui-fill-felt", "ui-fill-petrol") %}
+		{% for item in global.pages_modules %}
+			<li class="ui-page-visuals__item"><a href="{{ item.url }}" class="{{ cls.next() }}"><span>{{ item.name }}</span></a></li>
+		{% endfor %}
+		</ul>
+	</div>
+</div>
+{% endblock %}

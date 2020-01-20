@@ -1,0 +1,159 @@
+{# 1. Extend the relevant layout #}
+{# --------------------------------------- #}
+
+{% extends 'sidebar.html' %}
+
+
+{# --------------------------------------- #}
+{# 2. Assign Settings and variables #}
+{# --------------------------------------- #}
+
+{% set id = "events-single" %}
+{% set section = "events" %}
+{% set title = "Members’ Assembly meeting, 3-5 October 2017, Rome" %}
+{% set hero_image = "hero-news-article.jpg" %}
+
+
+{# --------------------------------------- #}
+{# 3. Add models and macros #}
+{# --------------------------------------- #}
+
+{% model 'events', as="events" %}
+
+{% import 'macros/button.html' as buttons %}
+{% import 'macros/icon.html' as icons %}
+
+
+{# --------------------------------------- #}
+{#
+   4. Add page content into relevant areas
+      Add/Delete blocks as necessary
+#}
+{# --------------------------------------- #}
+
+{% block hero %}
+    {% include 'heroes/hero-past-event.html' %}
+{% endblock %}
+
+{% block aside %}
+    <div class="aside-m">
+        <div class="aside-m__header fill-sunset">
+            <h3 class="aside-m__heading">Where &amp; when</h3>
+        </div>
+        <ul class="aside-m__list">
+            <li class="aside-m__list-item">
+                <div class="aside-m__list-item-block">
+                    <i role="presentation" aria-hidden="true" class="ico ico--24 ico-location-ocean"></i>
+                    Jisc, Brettenham House, 5 Lancaster Place, London, WC2E 7EN
+                </div>
+            </li>
+            <li class="aside-m__list-item">
+                <div class="aside-m__list-item-block">{{ icons.icon('ico-calendar-ocean', '24') }} <span class="listing__metadata__date">25 Aug&ndash;28 Oct 2017</span></div>
+            </li>
+            <li class="aside-m__list-item">
+                <div class="aside-m__list-item-block">
+                    <i role="presentation" aria-hidden="true" class="ico ico--24 ico-time-ocean"></i>
+                    <span class="listing__metadata__date">09:00–18:00</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+{% endblock %}
+
+{% block main %}
+    <div class="is-typeset is-typeset--article">
+        <p>The Members’ Assembly 2017 will be held on 3-5 October in Rome and we are grateful to the International Fund for Agricultural Development (IFAD) who have kindly offered their headquarters for IATI’s first meeting in Italy.</p>
+
+        <p>Members of IATI meet once a year at IATI’s Members’ Assembly meeting. IATI’s Members’ Assembly has final approval on strategic decisions, including recommendations relating to the budget and work plan received from the Governing Board. The Members’ Assembly is chaired by the Chair of IATI, who is elected by representatives of the Governing Board.</p>
+
+        <p>Many thanks to the European Commission’s Directorate-General for International Cooperation and Development (DG DEVCO) for providing funding for the event.</p>
+
+        <h2>Agenda and Papers</h2>
+
+        <p><strong>Minutes</strong></p>
+        <ul>
+            <li><a href="#">Minutes (EN)</a></li>
+        </ul>
+        <p><strong>Paper 1</strong></p>
+        <ul>
+            <li><a href="#">Agenda</a></li>
+            <li><a href="#">Agenda_FR</a></li>
+        </ul>
+        <p><strong>Paper 2A</strong></p>
+        <ul>
+            <li><a href="#">Report on financial situation from Year 1-Year 4 (2013-17)</a></li>
+            <li><a href="#">Report on financial situation of IATI_FR</a></li>
+        </ul>
+        <p><strong>Paper 2B</strong></p>
+        <ul>
+            <li><a href="#">Report on implementation of the Year 4 workplan (Sept 2016-Aug 2017)</a></li>
+            <li><a href="#">Report on implementation of IATI Year 4 workplan (Sept 2016-Aug 2017)_FR</a></li>
+        </ul>
+        <p><strong>Paper 2C</strong></p>
+        <ul>
+            <li><a href="#">Payments by members Y4</a></li>
+        </ul>
+        <p><strong>Paper 2D</strong></p>
+        <ul>
+            <li><a href="#">Costs and expenditures by output</a></li>
+        </ul>
+        <p><strong>Paper 2E</strong></p>
+        <ul>
+            <li><a href="#">Interim Financial Statement 31 Dec 2016</a></li>
+        </ul>
+        <p><strong>Paper 2F</strong></p>
+        <ul>
+            <li><a href="#">Certified Financial Statement 30 June 2017</a></li>
+        </ul>
+        <p><strong>Paper 4</strong></p>
+        <ul>
+            <li><a href="#">2017-18 Workplan &amp; budget - Data use</a></li>
+            <li><a href="#">IATI Data Use Workplan Y5-FR</a></li>
+            <li><a href="#">IATI Data Use Budget_FR</a></li>
+        </ul>
+        <p><strong>Paper 5</strong></p>
+        <ul>
+            <li><a href="#">Outreach and Communications Update</a></li>
+            <li><a href="#">Outreach and Communications update_FR</a></li>
+        </ul>
+        <p><strong>Paper 7</strong></p>
+        <ul>
+            <li><a href="#">Recommendations for the Long-Term Institutional arrangements for IATI: Powered by Data (External paper)</a></li>
+            <li><a href="#">Powered by Data Recommandations relatives aux arrangements institutionnels à long terme pour LInitiative internationale pour la transparence de l'aide</a></li>
+        </ul>
+        <p><strong>Paper 8</strong></p>
+        <ul>
+            <li><a href="#">IATI Governing Board Paper on Long-term Institutional Arrangements</a></li>
+            <li><a href="#">Document du Conseil d’administration de l’IITA sur les arrangements institutionnels à long terme</a></li>
+        </ul>
+        <p><strong>Paper 10</strong></p>
+        <ul>
+            <li><a href="#">Proposed revisions to the IATI Standard upgrade process</a></li>
+            <li><a href="#">Proposed revisions to the IATI Standard upgrade process_FR</a></li>
+        </ul>
+        <h2>Presentations</h2>
+        <p><strong>Welcome breakfast:</strong><br> <a href="#">IATI Introduction MA 2017 presentation</a></p>
+        <p><strong>Workplan implementation 2016-17:</strong><br> <a href="#">IATI Workplan update MA 2017 presentation</a></p>
+        <p><strong>Data Use strategy:</strong><br> <a href="#">IATI Data Use MA 2017 presentation</a></p>
+        <p><strong>Update on Grand Bargain:</strong><br> <a href="#">IATI Grand Bargain update MA 2017 presentation</a></p>
+        <p><strong>Institutional Review:</strong><br> <a href="#">IATI hosting MA 2017 presentation</a></p>
+        <p><strong>Standard updates:</strong><br> <a href="#">IATI Standard update MA 2017 presentation</a></p>
+        <p><strong>Communications:</strong><br> <a href="#">IATI Communications MA 2017 presentation</a></p>
+        <p><strong>Community showcases:</strong><br> <a href="#">AICS: OPENAID 2.0 – Improving transparency and access of public aid information</a></p>
+        <p><strong>Community showcases:</strong><br> <a href="#">FAO Proposal - Addressing Gaps in OECD-DAC CRS Classification System</a></p>
+        <p><strong>Community showcases:</strong><br> <a href="#">IFAD Progress in the transparency agenda and steps ahead</a></p>
+        <p><strong>Community showcases:</strong><br> <a href="#">Initiatives to strengthen country-level use of IATI data</a></p>
+        <p><strong>Community showcases:</strong><br> <a href="#">Open Ag Presents “Cashew Nuts: A Data Use Story”</a></p>
+    </div>
+
+    <div class="m-additional fill-white">
+        <h2 class="m-additional__heading heading">Logistics and accommodation</h2>
+        <p class="para m-additional__copy">You are required to make your own accommodation arrangements and we have provided a list of hotel recommendations for the time of your stay.For directions to the Members’ Assembly and parking arrangements, please see:</p>
+        <ul class="unordered-list m-additional__list">
+            <li><a href="#">IFAD – Find your way</a></li>
+            <li><a href="#">Parking area for external guests</a></li>
+        </ul>
+        <p class="para m-additional__copy">For queries related to travel and logistics email: <a href="mailto:info@iatistandard.org">info@iatistandard.org</a> or for other matters on the agenda, email <a href="mailto:annelise.parr@undp.org">annelise.parr@undp.org</a>.</p>
+    </div>
+
+{% endblock %}

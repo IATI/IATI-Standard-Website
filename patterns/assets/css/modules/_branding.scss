@@ -1,0 +1,40 @@
+// -----------------------------------------------------------
+// Add brand items such as logos here
+// -----------------------------------------------------------
+
+.branding {
+    position: relative;
+    background-image: url(../svg/source/logo-colour.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 171px;
+    height: 40px;
+    display: block;
+    margin-bottom: 1em;
+    span {
+        visibility: hidden;
+    }
+    @include respond-to($menu-respond) {
+        height: 52px;
+        width: 220px;
+        //float: left;
+    }
+    @include respond-to($e-vp) {
+        height: 60px;
+        width: 260px;
+    }
+}
+
+.branding-footer {
+    position: relative;
+    background-image: url(../svg/source/logo-white.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 171px * 1.25;
+    height: 40px * 1.25;
+    display: block;
+    @include respond-to($menu-respond + 50px) {
+        width: 171px * 1.75;
+        height: 40px * 1.75;
+    }
+}

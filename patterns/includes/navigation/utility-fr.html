@@ -1,0 +1,11 @@
+{% model 'navigation', as="navigation" %}
+
+<ul class="navigation-utility">
+    {% for item in navigation.utility_fr %}
+        {% if section == item.in_section %}
+            <li id="section-{{ item.in_section }}" class='navigation-utility__item navigation-utility__item--active'><a href="{{ item.url }}">{{ item.label }}</a></li>
+        {% else %}
+            <li id="section-{{ item.in_section }}" class='navigation-utility__item'><a href="{{ item.url }}">{{ item.label }}</a></li>
+        {% endif %}
+    {% endfor %}
+</ul>

@@ -1,0 +1,94 @@
+{# 1. Extend the relevant layout #}
+{# --------------------------------------- #}
+
+{% extends 'sidebar-standard.html' %}
+
+
+{# --------------------------------------- #}
+{# 2. Assign Settings and variables #}
+{# --------------------------------------- #}
+
+{% set id = "standard" %}
+{% set section = "standard" %}
+{% set title = "" %}
+{% set hero_copy = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." %}
+
+
+{# --------------------------------------- #}
+{# 3. Add models and macros #}
+{# --------------------------------------- #}
+
+{% import 'macros/button.html' as buttons %}
+{% import 'macros/icon.html' as icons %}
+{% import 'macros/alert.html' as alerts %}
+
+
+{# --------------------------------------- #}
+{#
+   4. Add page content into relevant areas
+      Add/Delete blocks as necessary
+#}
+{# --------------------------------------- #}
+
+{% block hero %}
+    {% include 'heroes/hero-standard.html' %}
+{% endblock %}
+
+{% block aside %}
+	<div class="aside-m">
+        <div class="aside-m__header fill-sunrise">
+            <h3 class="aside-m__heading">Reference</h3>
+        </div>
+        {% include 'navigation/reference.html' %}
+    </div>
+{% endblock %}
+
+{% block main %}
+    <section>
+        <div class="is-typeset">
+            <h1>Organisation Identifiers<a class="m-header-link" href="#header-id" title="Permalink to this headline">¶</a></h1>
+            <p>The IATI standard allows for the recording of information on all organisations that participate in any part of the lifecycle of an aid activity: inter alia donors, beneficiaries, extending and implementing agencies.</p>
+            <p>Crucial to this, is a common process through which to identify and declare identifiers for these organisations.</p>
+            <h2>Introduction<a class="m-header-link" href="#header-id" title="Permalink to this headline">¶</a></h2>
+            <p><i>Organisational identifiers have two uses in IATI.</i></p>
+            <p>In the IATI organisation standard:</p>
+            <ul>
+                <li>They are used to identify organisations as reporting organisations (reporting-org), as receiving budgets (recipient-org), and of course as an <code class="html">iati-organisation</code>.</li>
+                <li>They form the <code class="html">iati-identifier</code> - used to declare a globally unique identifier for the specific <code class="html">iati-organisation</code></li>
+            </ul>
+            <p>In the IATI activity standard:</p>
+            <ul>
+                <li>They are usedThe base identifier – re-use of an existing identifier from that namespace/registry to identify organisations as reporting organisations (reporting-org), receiving funds (receiver-org), providing funds (provider-org), or otherwise involved in <code class="html">iati-activities</code> (using participating-org)</li>
+                <li>They form the basis of the iati-identifier - used to declare a globally unique activity identifier for the specific <code class="html">iati-activity</code> - composed of the reporting organisation Organisation ID, and an Activity ID.</li>
+            </ul>
+            <h2>Two components of IATI Organisation Identifiers<a class="m-header-link" href="#header-id" title="Permalink to this headline">¶</a></h2>
+            <img src="{{ global.assets_root }}/img/Organisational-ID-Diagrams.png" alt="alt tag">
+            <p>The two components of IATI Organisation Identifiers</p>
+            <p>The IATI Organisational Identifier scheme is based on re-using existing known identifiers for an organisation.</p>
+            <p>Identifier strings consist of two components:</p>
+            <ol>
+                <li>The namespace code - a code that creates and maintains a given organisational identifier registry</li>
+                <li>The base identifier – re-use of an existing identifier from that namespace/registry</li>
+            </ol>
+            <p>1 and 2 are separated by a dash -.</p>
+            <p>The namespace code (1) may contain a dash -.</p>
+            <h2>Worked example<a class="m-header-link" href="#header-id" title="Permalink to this headline">¶</a></h2>
+            <p>GB-COH is the namespace code to the UK Companies Registrar which issues numerical company identifiers to legally constituted limited companies in the United Kingdom of Great Britain and Northern Ireland:</p>
+            <ul>
+                <li><a href="#">Companies House.</a></li>
+            </ul>
+            <p>6368740 is the company number (base identifier) issued to Development Initiatives Poverty Research Limited.</p>
+            <ul>
+                <li><a href="#">Development Initiatives Poverty Research Limited record on Companies House.</a></li>
+            </ul>
+            <p>Combining these we get an IATI Organisational Identifier of: GB-COH-06368740</p>
+            <h2>Organisation Registration Agencies<a class="m-header-link" href="#header-id" title="Permalink to this headline">¶</a></h2>
+            <p>To assist with creating and de-referencing IATI Organisation Identifiers, the codelist <a href="#">Organisation Registration Agency</a> is available.</p>
+            <p>This codelist provides the namespace codes for a number of Registration Agencies. This list is non-embedded in the IATI Standard, which means changes and additions may be made at short notice, outside of published decimal and integer upgrade schedules. If a Registation Agency that you wish to use is not on this list, please contact <a href="#">support@iatistandard.org</a>.</p>
+        </div>
+    </section>
+
+    <section class="space-section-top">
+        {% include 'asides/cta-contact.html' %}
+    </section>
+{% endblock %}

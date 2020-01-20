@@ -1,0 +1,561 @@
+{
+    "primary": [
+	    {
+		    "label": "About",
+		    "in_section": "about",
+            "url": "http://iatistandard.org/about/",
+		    "hidden": false
+		},
+		{
+		    "label": "IATI Standard",
+		    "in_section": "standard",
+            "url": "http://iatistandard.org/iati-standard/",
+		    "hidden": false
+		},
+        {
+		    "label": "Using Data",
+		    "in_section": "data",
+            "url": "http://iatistandard.org/using-data/",
+		    "hidden": false
+		},
+		{
+		    "label": "Guidance & Support",
+		    "in_section": "support",
+            "url": "http://iatistandard.org/guidance/",
+		    "hidden": false
+		},
+        {
+		    "label": "Get involved",
+		    "in_section": "community",
+            "url": "https://discuss.iatistandard.org/",
+		    "hidden": false
+		},
+		{
+		    "label": "Governance",
+		    "in_section": "governance",
+            "url": "https://discuss.iatistandard.org/",
+		    "hidden": false
+		}
+    ],
+    "primary_fr": [
+	    {
+		    "label": "À propos",
+		    "in_section": "about",
+            "url": "http://iatistandard.org/about/",
+		    "hidden": false
+		},
+		{
+		    "label": "Norme de l’IITA",
+		    "in_section": "standard",
+            "url": "http://iatistandard.org/iati-standard/",
+		    "hidden": false
+		},
+        {
+		    "label": "Utilisation des données",
+		    "in_section": "data",
+            "url": "http://iatistandard.org/using-data/",
+		    "hidden": false
+		},
+		{
+		    "label": "Outils et ressources",
+		    "in_section": "support",
+            "url": "http://iatistandard.org/guidance/",
+		    "hidden": false
+		},
+        {
+		    "label": "Conseils et assistance",
+		    "in_section": "community",
+            "url": "https://discuss.iatistandard.org/",
+		    "hidden": false
+		},
+		{
+		    "label": "Communauté",
+		    "in_section": "governance",
+            "url": "https://discuss.iatistandard.org/",
+		    "hidden": false
+		}
+    ],
+    "utility": [
+	    {
+		    "label": "News",
+		    "in_section": "news",
+            "url": "http://iatistandard.org/news/",
+		    "hidden": false
+		},
+		{
+		    "label": "Events",
+		    "in_section": "events",
+            "url": "http://iatistandard.org/events/",
+		    "hidden": false
+		},
+		{
+		    "label": "Contact",
+		    "in_section": "contact",
+            "url": "http://iatistandard.org/contact/",
+		    "hidden": false
+		}
+    ],
+    "utility_fr": [
+	    {
+		    "label": "Actualités",
+		    "in_section": "news",
+            "url": "http://iatistandard.org/news/",
+		    "hidden": false
+		},
+		{
+		    "label": "Événements",
+		    "in_section": "events",
+            "url": "http://iatistandard.org/events/",
+		    "hidden": false
+		},
+		{
+		    "label": "Contact",
+		    "in_section": "contact",
+            "url": "http://iatistandard.org/contact/",
+		    "hidden": false
+		}
+    ],
+    "primary_extended": [
+        {
+            "inactive": true,
+            "label": "About",
+            "in_section": "about",
+            "url": "http://iatistandard.org/about/",
+            "hidden": false,
+            "highlight": {
+                "heading": "About",
+                "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+            },
+            "columns": {
+                "class": "navigation-megamenu__col",
+                "columns": [
+                    {
+                        "class": "l-offset",
+                        "column_class": "l-offset__col",
+                        "columns": [
+                            [
+                                "How IATI works",
+                                "Who is IATI for?",
+                                "Why use IATI?",
+                                "About the Standard",
+                                "The IATI story so far",
+                                "Case studies"
+                            ],
+                            {
+                                "case_study": true,
+                                "image": "content-image.jpg",
+                                "heading": "AfDB's IATI portal improves development investments",
+                                "excerpt": "IATI has undertaken research to gain insights into how different countries use data."
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "label": "About",
+            "in_section": "about",
+            "url": "http://iatistandard.org/about/",
+            "hidden": false,
+            "highlight": {
+                "heading": "About",
+                "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+            },
+            "columns": {
+                "class": "navigation-megamenu__col navigation-megamenu__col--border",
+                "columns": [
+                    {
+                        "class": "l-3up",
+                        "column_class": "l-3up__col",
+                        "columns": [
+                            [
+                                "How IATI works",
+                                "Who is IATI for?",
+                                "Why use IATI?",
+                                "About the Standard",
+                                "The IATI story so far"
+                            ],
+                            [
+                                "Case studies",
+                                "Madagascar case study",
+                                "Oxfam Novib case study",
+                                "AfDB's IATI portal improves development investments"
+                            ],
+                            [
+                                "Governance",
+                                "Annual reports",
+                                "Who runs IATI",
+                                "Finances",
+                                "IATI work plan",
+                                "Archive"
+                            ]
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "label": "IATI Standard",
+            "in_section": "standard",
+            "url": "http://iatistandard.org/iati-standard/",
+            "hidden": false,
+            "highlight": {
+                "class": "navigation-megamenu__col--thin",
+                "heading": "IATI Standard",
+                "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+            },
+            "columns": {
+                "class": "navigation-megamenu__col navigation-megamenu__col--border",
+                "columns": [
+                    {
+                        "class": "l-4up",
+                        "column_class": "l-4up__col",
+                        "columns": [
+                            [
+                                "IATI Reference Pages v2.03",
+                                "The Organisation Standard",
+                                "The Activity Standard",
+                                "Codelists",
+                                "Schema",
+                                "Rulesets"
+                            ],
+                            [
+                                "IATI Standard Guidance",
+                                "Understanding the Standard",
+                                "Publishing Guidance",
+                                "Accessing and Using Data",
+                                "Developer Documentation",
+                                "Help and Support"
+                            ],
+                            [
+                                "Changelog",
+                                {
+                                    "subcolumn": true,
+                                    "heading": "Previous versions of IATI",
+                                    "column": [
+                                        "V2.02",
+                                        "V2.01"
+                                    ]
+                                },
+                                {
+                                    "subcolumn": true,
+                                    "heading": "Upgrade Information",
+                                    "column": [
+                                        "Upgrade process",
+                                        "Deprecation of V1"
+                                    ]
+                                }
+                            ],
+                            [
+                                "How we manage the Standard",
+                                {
+                                    "subcolumn": true,
+                                    "column": [
+                                        "Versions",
+                                        "Codelist management"
+                                    ]
+                                }
+                            ]
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "label": "Using Data",
+            "in_section": "data",
+            "url": "http://iatistandard.org/using-data/",
+            "hidden": false,
+            "highlight": {
+                "heading": "Using IATI Data",
+                "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+            },
+            "columns": {
+                "class": "navigation-megamenu__col",
+                "columns": [
+                    {
+                        "class": "l-offset",
+                        "column_class": "l-offset__col",
+                        "columns": [
+                            [
+                                "Types of data available",
+                                "How do I use IATI data?",
+                                "How to get help with using IATI data",
+                                "Progress on improving the use of IATI data",
+                                "IATI Data Use Fund"
+                            ],
+                            {
+                                "case_study": true,
+                                "image": "content-image.jpg",
+                                "heading": "IATI data use research",
+                                "excerpt": "IATI has undertaken research to gain insights into how different countries use data."
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "label": "Tools &amp; Resources",
+            "in_section": "tools",
+            "url": "http://iatistandard.org/tools/",
+            "hidden": false,
+            "highlight": {
+                "class": "navigation-megamenu__col--small",
+                "heading": "Tools &amp; Resources",
+                "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+            },
+            "columns": {
+                "class": "navigation-megamenu__col",
+                "columns": [
+                    {
+                        "class": "l-4up",
+                        "column_class": "l-4up__col",
+                        "columns": [
+                            {
+                                "highlight": true,
+                                "heading": "IATI Registry",
+                                "content": "Bullet points about the tool and what it enables you to do",
+                                "label": "Link to the tool website"
+                            },
+                            {
+                                "highlight": true,
+                                "heading": "Data Validator",
+                                "content": "Bullet points about the tool and what it enables you to do",
+                                "label": "Link to the tool website"
+                            },
+                            {
+                                "highlight": true,
+                                "heading": "IATI Datastore",
+                                "content": "Bullet points about the tool and what it enables you to do",
+                                "label": "Link to the tool website"
+                            },
+                            [
+                                "Promote IATI",
+                                "Publishing statistics",
+                                "Third party tools and services for data use",
+                                "IATI tool guide"
+                            ]
+                        ]
+                    },
+                    {
+                        "class": "l-4up l-4up--double-right",
+                        "column_class": "l-4up__col",
+                        "columns": [
+                            {
+                                "highlight": true,
+                                "heading": "IATI Dashboard",
+                                "content": "Bullet points about the tool and what it enables you to do",
+                                "label": "Link to the tool website"
+                            },
+                            {
+                                "highlight": true,
+                                "heading": "d-portal",
+                                "content": "Bullet points about the tool and what it enables you to do",
+                                "label": "Link to the tool website"
+                            },
+                            {
+                                "class": "l-4up__col--double",
+                                "not_alt": true,
+                                "highlight": true,
+                                "heading": "Integrating IATI data into your AIMS",
+                                "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.",
+                                "label": "Find out more about integrating IATI",
+                                "label_class": "button button--small"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "label": "Guidance &amp; Support",
+            "in_section": "support",
+            "url": "http://iatistandard.org/guidance/",
+            "hidden": false,
+            "highlight": {
+                "class": "navigation-megamenu__col--small",
+                "heading": "Guidance &amp; Support",
+                "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+            },
+            "columns": {
+                "class": "navigation-megamenu__col",
+                "columns": [
+                    {
+                        "class": "l-3up",
+                        "column_class": "l-3up__col",
+                        "columns": [
+                            {
+                                "highlight": true,
+                                "heading": "Standard Overview",
+                                "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
+                                "label": "View standard overview",
+                                "label_class": "navigation-megamenu__block__link"
+                            },
+                            {
+                                "highlight": true,
+                                "heading": "Standard Guidance v2.0",
+                                "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
+                                "label": "View standard guidance",
+                                "label_class": "navigation-megamenu__block__link"
+                            },
+                            {
+                                "highlight": true,
+                                "heading": "Help &amp; Support",
+                                "content": "Submit a support request to our team and we'll do our best to help you",
+                                "label": "Submit a query",
+                                "label_class": "button button--small"
+                            }
+                        ]
+                    },
+                    {
+                        "class": "l-3up",
+                        "column_class": "l-3up__col",
+                        "columns": [
+                            {
+                                "highlight": true,
+                                "heading": "Developer Guidance",
+                                "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
+                                "label": "View developer guidance",
+                                "label_class": "navigation-megamenu__block__link"
+                            },
+                            {
+                                "highlight": true,
+                                "heading": "Publishing Guidance",
+                                "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
+                                "label": "View publishing guidance",
+                                "label_class": "navigation-megamenu__block__link"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "inactive": true,
+            "label": "Get involved",
+            "in_section": "community",
+            "url": "https://discuss.iatistandard.org/",
+            "hidden": false,
+            "highlight": {
+                "heading": "The IATI Community",
+                "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+            },
+            "columns": {
+                "class": "navigation-megamenu__col",
+                "columns": [
+                    {
+                        "class": "l-3up",
+                        "column_class": "l-3up__col",
+                        "columns": [
+                            {
+                                "highlight": true,
+                                "heading": "Membership",
+                                "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                            },
+                            {
+                                "highlight": true,
+                                "heading": "The IATI Community (TIC)",
+                                "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                                "label": "Code of conduct",
+                                "label_class": "navigation-megamenu__block__link"
+                            },
+                            {
+                                "highlight": true,
+                                "heading": "Discuss",
+                                "content": "Bullet points about the tool and what it enables you to do",
+                                "label": "Link to discuss"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "label": "Community",
+            "in_section": "community",
+            "url": "http://iatistandard.org/community/",
+            "hidden": false,
+            "highlight": {
+                "heading": "The IATI Community",
+                "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+            },
+            "columns": {
+                "class": "navigation-megamenu__col",
+                "columns": [
+                    {
+                        "class": "l-3up",
+                        "column_class": "l-3up__col",
+                        "columns": [
+                            {
+                                "highlight": true,
+                                "heading": "Discuss",
+                                "content": "Bullet points about the tool and what it enables you to do",
+                                "label": "Link to discuss"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "label": "Governance",
+            "in_section": "governance",
+            "url": "https://discuss.iatistandard.org/",
+            "hidden": false,
+            "highlight": {
+                "class": "navigation-megamenu__col--small",
+                "heading": "Governance",
+                "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            },
+            "columns": {
+                "class": "navigation-megamenu__col",
+                "columns": [
+                    {
+                        "class": "l-4up",
+                        "column_class": "l-4up__col",
+                        "columns": [
+                            {
+                                "highlight": true,
+                                "heading": "Who runs IATI",
+                                "content": "Find out about out Governing Board and Secretariat",
+                                "label": "Find out more"
+                            },
+                            {
+                                "highlight": true,
+                                "heading": "Members Assembly",
+                                "no_link_heading": true,
+                                "content": "The members assembly is a list of all IATI members",
+                                "list": [
+                                    "View our membership",
+                                    "Member's assembly documents"
+                                ]
+                            },
+                            {
+                                "highlight": true,
+                                "no_link_heading": true,
+                                "heading": "Finances, reports and minutes",
+                                "list": [
+                                    "IATI finances",
+                                    "Annual reports",
+                                    "Governing board minutes",
+                                    "Governance documents",
+                                    "Technical Advisory Group (TAG) documents"
+                                ]
+                            },
+                            {
+                                "highlight": true,
+                                "no_link_heading": true,
+                                "heading": "IATI plans",
+                                "list": [
+                                    "IATI Strategic Plan 2020-2025",
+                                    "IATI work plan"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}

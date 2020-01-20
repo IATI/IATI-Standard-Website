@@ -1,0 +1,46 @@
+{% load iati_tags i18n %}
+
+<footer role="contentinfo" class="footer">
+    <div class="footer__content">
+        <div class="row">
+            <div class="l-3up">
+                <div class="l-3up__col">
+                    <span class="branding-footer"></span>
+                </div>
+                <div class="l-3up__col">
+                    <h4 class="footer__heading">{% trans "Useful links" %}</h4>
+                    <ul class="footer__list">
+                        <li><a href="{% default_page_url 'contact' %}">{% trans "Contact" %}</a></li>
+                        <li><a href="{% standard_page_url 'terms' %}">{% trans "Terms and conditions" %}</a></li>
+                        <li><a href="{% standard_page_url 'privacy' %}">{% trans "Privacy policy" %}</a></li>
+                        <li><a href="{% standard_page_url 'trans' %}">{% trans "Translation FAQs" %}</a></li>
+                    </ul>
+                </div>
+                <div class="l-3up__col">
+                    <h4 class="footer__heading">{% trans "Newsletter" %}</h4>
+                    <form action="https://aidtransparency.us3.list-manage.com/subscribe/post?u=0e73fb60cf70bda74851aed09&amp;id=c189d66816" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
+                        <div class="form-field">
+                            <div class="form-flex">
+                                <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_0e73fb60cf70bda74851aed09_c189d66816" tabindex="-1" value="" autocomplete="off"></div>
+                                <label for="newsletter" id="newsletter" class="form-label">{% trans "Sign up to our newsletter" %}</label>
+                                <input style="width:100%; margin-bottom:5px;" id="newsletter" class="form-item" type="email" value="" name="EMAIL" placeholder="{% trans "Email address" %}" aria-label="Email address" required>
+                                <input style="width:100%; margin-bottom:5px;" class="form-item" type="text" value="" name="FNAME" id="mce-FNAME" placeholder="{% trans "First name" %}" aria-label="First name" required>
+                                <input style="width:100%; margin-bottom:5px;" class="form-item" type="text" value="" name="LNAME" id="mce-LNAME" placeholder="{% trans "Surname" %}" aria-label="Surname" required>
+                                <input type="submit" value="{% trans "Subscribe" %}" name="subscribe" id="mc-embedded-subscribe" class="button">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer__meta">
+        <div class="row">
+            <p class="footer__legal">{% trans "Copyright IATI 2018. All rights reserved" %}</p>
+            <ul class="social-list">
+                <li class="social-list__item social-list__item--twitter"><a href="https://twitter.com/{{ social_twitter_handle }}" rel="noopener noreferrer" target="_blank">{% trans "Twitter" %}</a></li>
+                <li class="social-list__item social-list__item--youtube"><a href="{{ social_youtube_url }}" rel="noopener noreferrer" target="_blank">{% trans "YouTube" %}</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>

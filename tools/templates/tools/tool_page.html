@@ -1,0 +1,27 @@
+{% extends "sidebar-reverse.html" %}
+{% load wagtail_modeltranslation iati_tags wagtailcore_tags tool_utils %}
+
+{% block hero %}
+    {% include 'home/includes/hero-tool.html' %}
+{% endblock %}
+
+{% block aside %}
+    {% side_panel calling_page=self %}
+{% endblock %}
+
+{% block main %}
+    {% if page.content_editor %}
+        {% include "home/includes/streamfield.html" with content=page.content_editor extra_class='is-typeset--additionals' notarticle=True %}
+    {% endif %}
+    {% if page.external_url %}
+        <p>
+            <a href="{{ page.external_url }}" class="button">
+                {% if page.button_label %}
+                    {{ page.button_label }}
+                {% else %}
+                    {{ page.external_url|nice_url }}
+                {% endif %}
+            </a>
+        </p>
+    {% endif %}
+{% endblock %}
