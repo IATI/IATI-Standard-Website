@@ -1,0 +1,9 @@
+[
+	{ "name": "ocean" },
+	{ "name": "air" },
+	{ "name": "wind" },
+	{ "name": "sunrise" },
+	{ "name": "land" },
+	{ "name": "sunset" },
+	{ "name": "ash" }
+]

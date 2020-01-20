@@ -1,0 +1,40 @@
+{% extends 'patterns.html' %}
+
+{# --------------------------------------- #}
+{# Settings, models, library variables #}
+{# --------------------------------------- #}
+
+{% model 'ptn-status', as="items" %}
+{% set ui_title = "Templates" %}
+
+{% block ui_description %}
+	<p>This section outlines all the templates we have agreed to design, and where they are in the process. These templates form the majority of what we will review and agree together, and are numbered to correspond with IA documentation.</p>
+{% endblock %}
+
+{# --------------------------------------- #}
+{# Main body content #}
+{# --------------------------------------- #}
+
+{% block body %}
+
+<div class="ui-row">
+	<div class="ui-section">
+		<h2 class="ui-section__header">Project templates</h2>
+		<div class="ui-roadmap">
+			{% for item in items %}
+			<div class="ui-roadmap__row ui-roadmap__row--{{ item.stage }}">
+				<div class="ui-roadmap__cell ui-roadmap__cell--type1"><a href="{{ page.url }}/page-templates/{{ item.name }}">{{ item.name }}</a></div>
+				<div class="ui-roadmap__cell ui-roadmap__cell--type2">{{ item.stage }}</div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{# --------------------------------------- #}
+{# UI Sub–nav options #}
+{# --------------------------------------- #}
+
+{% block ui_nav %}{% endblock %}
+{% block ui_nav_options %}{% endblock %}

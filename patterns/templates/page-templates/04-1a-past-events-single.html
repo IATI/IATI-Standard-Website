@@ -1,0 +1,101 @@
+{# 1. Extend the relevant layout #}
+{# --------------------------------------- #}
+
+{% extends 'sidebar.html' %}
+
+
+{# --------------------------------------- #}
+{# 2. Assign Settings and variables #}
+{# --------------------------------------- #}
+
+{% set id = "events-single" %}
+{% set section = "events" %}
+{% set title = "miniTAG™ on Friday 29th, Washington DC" %}
+{% set hero_image = "hero-news-article.jpg" %}
+
+
+{# --------------------------------------- #}
+{# 3. Add models and macros #}
+{# --------------------------------------- #}
+
+{% model 'events', as="events" %}
+
+{% import 'macros/button.html' as buttons %}
+{% import 'macros/icon.html' as icons %}
+
+
+{# --------------------------------------- #}
+{#
+   4. Add page content into relevant areas
+      Add/Delete blocks as necessary
+#}
+{# --------------------------------------- #}
+
+{% block hero %}
+    {% include 'heroes/hero-past-event.html' %}
+{% endblock %}
+
+{% block aside %}
+    <div class="aside-m">
+        <div class="aside-m__header fill-sunset">
+            <h3 class="aside-m__heading">Where &amp; when</h3>
+        </div>
+        <ul class="aside-m__list">
+            <li class="aside-m__list-item">
+                <div class="aside-m__list-item-block">
+                    <i role="presentation" aria-hidden="true" class="ico ico--24 ico-location-ocean"></i>
+                    Jisc, Brettenham House, 5 Lancaster Place, London, WC2E 7EN
+                </div>
+            </li>
+            <li class="aside-m__list-item">
+                <div class="aside-m__list-item-block">{{ icons.icon('ico-calendar-ocean', '24') }} <span class="listing__metadata__date">25 Aug&ndash;28 Oct 2017</span></div>
+            </li>
+            <li class="aside-m__list-item">
+                <div class="aside-m__list-item-block">
+                    <i role="presentation" aria-hidden="true" class="ico ico--24 ico-time-ocean"></i>
+                    <span class="listing__metadata__date">09:00–18:00</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+{% endblock %}
+
+{% block main %}
+
+    <div class="is-typeset is-typeset--article">
+        <p>To take advantage of being in DC to meet with donors, I’m joining up with colleagues working on the Open Ag project to hold a miniTAG in the Open Gov Hub2.</p>
+
+        <p>Increasingly, advance data analysis and machine learning is being used in the processing, publication and, use of foreign assistance data and open data in general.</p>
+
+        <h2>Heading</h2>
+
+        <p>This event will gather donors, civil society, and private organisations to share knowledge on existing projects, future plans, and open questions within the use of machine learning in the context of IATI and broader data communities.</p>
+
+        <p>All welcome! 😀</p>
+
+        <h2>Heading</h2>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac metus nulla. Fusce lacinia, lectus id posuere vestibulum, felis leo dapibus turpis</p>
+
+        <h3>A sub heading which is not as important as the first, but is quite imporant overall</h3>
+
+        <p>Donec ex magna, lobortis quis rhoncus eu, consectetur eu odio. Etiam imperdiet elit sit amet ligula consequat consequat. Proin eget felis non libero commodo eleifend vel a lectus. Maecenas at metus dignissim, malesuada lacus id, tempus lectus.</p>
+
+        <h3>A sub heading which is not as important as the first, but is quite imporant overall</h3>
+
+        <p>Curabitur cursus arcu sit amet eros vestibulum gravida. Integer egestas eget lectus id fringilla. Vivamus euismod, velit vitae malesuada viverra.</p>
+    </div>
+
+    <div class="m-additional fill-white">
+        <h2 class="m-additional__heading heading">Additional information</h2>
+        <p class="para m-additional__copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel felis metus. Curabitur laoreet sollicitudin semper. Cras mattis tempus</p>
+        <ul class="unordered-list m-additional__list">
+            <li>Dictum et est. Integer viverra est vel quam cursus</li>
+            <li>Lorem ipsum <a href="#none">here is a link</a></li>
+            <li>In tellus sem, ullamcorper vel ultricies vel, dictum et est. Integer viverra est vel quam cursus</li>
+        </ul>
+    </div>
+
+    {% include 'content/downloads.html' %}
+
+{% endblock %}

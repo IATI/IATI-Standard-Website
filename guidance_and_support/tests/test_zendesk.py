@@ -11,7 +11,8 @@ LEGITIMATE_USER.POST = {
     'phone': '',
     'email': 'test@user.com',
     'textarea': 'A very serious matter.',
-    'name': 'A legitimate user'
+    'name': 'A legitimate user',
+    'skip_captcha_check': True
 }
 LEGITIMATE_USER.expected_output = {
     'request': {
@@ -33,7 +34,8 @@ SPAM_BOT.POST = {
     'phone': '555-555-5555',
     'email': 'test@user.com',
     'textarea': 'A very serious matter.',
-    'name': 'A legitimate user'
+    'name': 'A legitimate user',
+    'skip_captcha_check': False
 }
 SPAM_BOT.expected_output = False
 

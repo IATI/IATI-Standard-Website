@@ -1,0 +1,55 @@
+// ------------------------------------------------------------
+// Alerts
+// ------------------------------------------------------------
+
+.alert {
+	padding: 15px;
+	padding-left: 40px;
+	overflow: hidden;
+	display: inline-block;
+	position: relative;
+	z-index: 2;
+	@include font-size($para);
+	background-color: #fff;
+	//box-shadow: 0 0 50px 0 rgba(#000, 0.15);
+	a {
+		text-decoration: underline;
+	}
+	.form & {
+		margin-top: $internal-spacing;
+	}
+	.ico {
+		width: 18px;
+		height: 18px;
+		background-size: 18px 18px;
+		display: inline-block;
+		position: absolute;
+		top: 16px;
+		left: 15px;
+	}
+	.hero & {
+		display: block;
+		@include font-size($para + 1);
+	}
+}
+
+.alert--notice {
+	color: darken($warning, 15%);
+	border-left: 5px solid $warning;
+	background-color: lighten($warning, 50%);
+	font-weight: 700;
+}
+
+.alert--error {
+	@extend .alert--notice;
+	border-left: 5px solid $error;
+	color: $error;
+	background-color: lighten($error, 50%);
+}
+
+.alert--success {
+	@extend .alert--notice;
+	border-left: 5px solid $success;
+	color: $success;
+	background-color: lighten($success, 50%);
+}

@@ -1,0 +1,73 @@
+{# 1. Extend the relevant layout #}
+{# --------------------------------------- #}
+
+{% extends 'sidebar-reverse.html' %}
+
+
+{# --------------------------------------- #}
+{# 2. Assign Settings and variables #}
+{# --------------------------------------- #}
+
+{% set id = "about" %}
+{% set section = "about" %}
+{% set title = "Who runs IATI" %}
+{% set hero_copy = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." %}
+
+
+{# --------------------------------------- #}
+{# 3. Add models and macros #}
+{# --------------------------------------- #}
+
+{% model 'people', as="people" %}
+
+{% import 'macros/button.html' as buttons %}
+{% import 'macros/icon.html' as icons %}
+
+
+{# --------------------------------------- #}
+{#
+   4. Add page content into relevant areas
+      Add/Delete blocks as necessary
+#}
+{# --------------------------------------- #}
+
+{% block hero %}
+    {% include 'heroes/hero-minor.html' %}
+{% endblock %}
+
+{% block aside %}
+    <div class="aside-m">
+        <div class="aside-m__header fill-sunrise">
+            <h3 class="aside-m__heading">In this section</h3>
+        </div>
+        {% include 'navigation/secondary-child.html' %}
+    </div>
+{% endblock %}
+
+{% block main %}
+    <div class="is-typeset is-typeset--additionals">
+        <p>A small paragraph to <em>emphasis</em> and show <strong>important</strong> bits. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+    </div>
+    <div class="l-listing l-listing--people l-listing--no-pagination">
+        <div class="section-border">
+            <h2 class="section__heading">Gov Team</h2>
+            <p class="type-s">Nunc a tincidunt sapien. Praesent quis velit vel purus sollicitudin suscipit vitae a elit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer maximus metus vel leo porta porttitor.</p>
+            <blockquote class="as-blockquote listing-quote">
+                <p>&ldquo;This is a quote, quisque convallis gravida risus, viverra sollicitudin ante interdum sed.&rdquo;</p>
+            </blockquote>
+            {% for item in people.gov_team %}
+                {% include 'listings/people.html' %}
+            {% endfor %}
+        </div>
+        <div class="section-border">
+            <h2 class="section__heading">Tech Team</h2>
+            <p class="type-s">Nunc a tincidunt sapien. Praesent quis velit vel purus sollicitudin suscipit vitae a elit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer maximus metus vel leo porta porttitor.</p>
+            <blockquote class="as-blockquote listing-quote">
+                <p>&ldquo;This is a quote, quisque convallis gravida risus, viverra sollicitudin ante interdum sed.&rdquo;</p>
+            </blockquote>
+            {% for item in people.gov_team %}
+                {% include 'listings/people.html' %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

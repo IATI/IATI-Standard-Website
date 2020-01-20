@@ -1,6 +1,6 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
-<div class="is-typeset {% if not notarticle %}is-typeset--article{% endif %}">
+<div class="is-typeset {% if not notarticle %}is-typeset--article{% endif %} {{ extra_class }}">
     {% for child in content %}
         {% if child.block_type == 'h2' %}
             <h2>{{ child }}</h2>

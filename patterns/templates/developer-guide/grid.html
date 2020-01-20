@@ -1,0 +1,160 @@
+{% extends 'patterns.html' %}
+
+{# --------------------------------------- #}
+{# Settings, models, library variables #}
+{# --------------------------------------- #}
+
+{% set ui_title = "Grid" %}
+
+{% block ui_description %}
+	<p>The grid is built on <a href="http://sass.fffunction.co/grid">the Sassafras grid</a> that comes with <a href="http://sass.fffunction.co">Sassaparilla</a>. It aims to be be as flexible and as quick to implement as possible. As grid systems are fairly unique to each project, this page simply seeks to give you an overview of how the system is built.</p>
+{% endblock %}
+
+{# --------------------------------------- #}
+{# Main body content #}
+{# --------------------------------------- #}
+
+{% block body %}
+<div class="ui-row">
+	
+	<div class="ui-section">
+		<div class="ui-section__header">
+			<h2>Tutorial</h2>
+		</div>
+		<div class="ui-section__body">
+			<div class="ui-section__main">
+				<div class="media-video-wrapper">
+					<iframe src="//player.vimeo.com/video/98318068?title=0&amp;byline=0&amp;portrait=0&amp;color=ff9933" width="900" height="563" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+				</div>
+			</div>
+			<div class="ui-section__aside">
+				<div class="ui-section__notes">
+					<p>If you're new to using the grid, then watching this tutorial is the best way to get started.</p>
+					<p>Use password <strong>showmethevideo</strong>.
+				</p></div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div class="ui-section">
+		<div class="ui-section__header">
+			<h2>Structure</h2>
+		</div>
+
+		<div class="ui-section__body">
+			<div class="ui-section__main">
+				<div class="ui-section__code">
+					<pre><code class=" hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"row"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></code></pre>
+				</div>
+			</div>
+			<div class="ui-section__aside">
+				<div class="ui-section__notes">
+					<h4>Basic frame</h4>
+					<p>The grid <strong>must be</strong> contained within a class of row.</p>
+				</div>
+			</div>
+		</div>
+		<div class="ui-section__body">
+			<div class="ui-section__main">
+				<div class="ui-section__code">
+					<pre><code class=" hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"row"</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"colspan#-#"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></code></pre>
+				</div>
+			</div>
+			<div class="ui-section__aside">
+				<div class="ui-section__notes">
+					<h4>Adding column widths</h4>
+					<p>To assign a width we need to use the 'colspan' synatax.</p>
+					<p>The first number represents the amount of grid columns available.</p>
+					<p>The second number represents the amount of columns you which to occupy.</p>
+				</div>
+			</div>
+		</div>
+		<div class="ui-section__body">
+			<div class="ui-section__main">
+				<div class="ui-section__code">
+					<pre><code class=" hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"row"</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"colspan#-# as-grid"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></code></pre>
+				</div>
+			</div>
+			<div class="ui-section__aside">
+				<div class="ui-section__notes">
+					<h4>Floating columns</h4>
+					<p>Adding the additional class of 'as-grid' floats the column to the left.</p>
+				</div>
+			</div>
+		</div>
+		<div class="ui-section__body">
+			<div class="ui-section__main">
+				<div class="ui-section__code">
+					<pre><code class=" hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"row"</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"row__colspaced"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></code></pre>
+				</div>
+			</div>
+			<div class="ui-section__aside">
+				<div class="ui-section__notes">
+					<h4>Setting up gutters</h4>
+					<p>If you need to have defined gutters between 'colspan#-#' you need to nest an additional wrapper with the class of 'row__colspaced'.</p>
+				</div>
+			</div>
+		</div>
+		<div class="ui-section__body">
+			<div class="ui-section__main">
+				<div class="ui-section__code">
+					<pre><code class=" hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"row"</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"row__colspaced"</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"colspan#-# as-grid with-gutter"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></code></pre>
+				</div>
+			</div>
+			<div class="ui-section__aside">
+				<div class="ui-section__notes">
+					<h4>Combining gutters and floats</h4>
+					<p>To apply gutters, you need to add an additional class of 'with-gutter' to the existing 'colspan#-# as-grid'.</p>
+				</div>
+			</div>
+		</div>
+			<div class="ui-section__body">
+			<div class="ui-section__main">
+				<div class="ui-section__code">
+					<pre><code class=" hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"row"</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"colspan#-# as-grid with-leader leader-disable#"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></code></pre>
+				</div>
+			</div>
+			<div class="ui-section__aside">
+				<div class="ui-section__notes">
+					<h4>Adding and removing top vertical spacing</h4>
+					<p>To apply top vertical spacing from the smallest breakpoint 'with-leader' to the existing 'colspan#-#'.</p>
+					<p>You can also apply vertical top spacing at any breakpoint by adding 'with-leader#'.</p>
+					<p>You can disable this spacing further up breakpoints by adding 'disable-leader#'.</p>
+				</div>
+			</div>
+		</div>
+		<div class="ui-section__body">
+			<div class="ui-section__main">
+				<div class="ui-section__code">
+					<pre><code class=" hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"row"</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"colspan#-# as-grid with-trailer trailer-disable#"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></code></pre>
+				</div>
+			</div>
+			<div class="ui-section__aside">
+				<div class="ui-section__notes">
+					<h4>Adding and removing bottom vertical spacing</h4>
+					<p>To apply top vertical spacing from the smallest breakpoint 'with-trailer' to the existing 'colspan#-#'.</p>
+					<p>You can also apply vertical top spacing at any breakpoint by adding 'with-trailer#'.</p>
+					<p>You can disable this spacing further up breakpoints by adding 'disable-trailer#'.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>
+{% endblock %}

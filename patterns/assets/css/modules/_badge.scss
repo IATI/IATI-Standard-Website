@@ -1,0 +1,15 @@
+.badge {
+    @extend .heading;
+	@include font-size($eta);
+	background-color: $iati-sunrise;
+	color: #fff;
+	display: inline-block;
+	margin-top: 1em;
+	letter-spacing: 1px;
+	padding: 0.75em 1em;
+    text-transform: uppercase;
+    .l-listing--events & {
+        display: none;
+        outline: 1px solid red;
+    }
+}

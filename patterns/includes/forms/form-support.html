@@ -1,0 +1,30 @@
+<a id="support"></a>
+<div class="section">
+    <div class="row">
+        <h2 class="section__heading">Contact support</h2>
+        <p class="para para--typeset">Please complete the form below and our team will be able to help you</p>
+        <form class="form form--support">
+            <div class="l-2up">
+                <div class="l-2up__col">
+                    {% for item in form.input %}
+                        {% include 'forms/partials/input-types.html' %}
+                    {% endfor %}
+                    <div class="form-field form-field--spaced">
+                        <label class="form-label" for=file>Attachment</label>
+                        <div class="form-item-inline">
+                            <input class="form-file" type="file" name="file">
+                        </div>
+                    </div>
+                </div>
+                <div class="l-2up__col">
+                    {% for item in form.textarea %}
+                        {% include 'forms/partials/textarea-type.html' %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="form-field form-field--spaced">
+                <button type="submit" class="button">Submit request</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+{% load wagtailcore_tags iati_tags i18n %}
+
+<div class="header-search">
+    <div class="row">
+        <button class="header-search__close" type="button">{% include 'macros/icon.html' with file='ico-cross-white' size=24 %}</button>
+        <form action="{% url 'search' %}" class="max-meter max-meter--center">
+            <label for="search" class="form-label">{% trans "Search the IATI website" %}</label>
+            <input type="text" name="query" class="form-item">
+            <button class="button" type="submit">{% trans "Search" %}</button>
+        </form>
+    </div>
+</div>
+<header role="banner" class="header">
+    <a href="{% default_page_url %}" class="branding"><span>{% trans "IATI - International Aid Transparency Initiative" %}</span></a>
+    <div class="header__utility">
+        {% if has_multilanguage_support %}
+            <ul class="navigation-language">
+                {% translation_links calling_page=self %}
+            </ul>
+        {% endif %}
+        {% include 'navigation/utility.html' %}
+        <button type="button" class="header-search__trigger">{% include 'macros/icon.html' with file='ico-search-ocean' size=16 %} {% trans "Search" %}</button>
+    </div>
+    {% include 'navigation/primary.html' %}
+</header>

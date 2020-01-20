@@ -1,0 +1,135 @@
+{# 1. Extend the relevant layout #}
+{# --------------------------------------- #}
+
+{% extends 'sidebar-reverse.html' %}
+
+
+{# --------------------------------------- #}
+{# 2. Assign Settings and variables #}
+{# --------------------------------------- #}
+
+{% set id = "" %}
+{% set section = "" %}
+{% set title = "Tools and Resources" %}
+{% set hero_copy = "Some large intoductory text that can provide an overview of what this page is about" %}
+{% set hero_image = "hero2.jpg" %}
+
+
+{# --------------------------------------- #}
+{# 3. Add models and macros #}
+{# --------------------------------------- #}
+
+{% import 'macros/button.html' as buttons %}
+{% import 'macros/icon.html' as icons %}
+
+
+{# --------------------------------------- #}
+{#
+   4. Add page content into relevant areas
+      Add/Delete blocks as necessary
+#}
+{# --------------------------------------- #}
+
+{% block hero %}
+    {% include 'heroes/hero.html' %}
+{% endblock %}
+
+{% block aside %}
+	<div class="aside-m">
+        <div class="aside-m__header fill-sunrise">
+            <h3 class="aside-m__heading">In this section</h3>
+        </div>
+        {% include 'navigation/secondary-child-tools.html' %}
+    </div>
+{% endblock %}
+
+{% block main %}
+    <div class="is-typeset is-typeset--additionals">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+
+    <div class="l-2up">
+        <div class="card card--tool">
+            <div class="card__header">
+                <div class="card__logo card__logo--background">
+                    <a href="#">
+                        <img src="https://via.placeholder.com/200x120?text=logo" alt="">
+                    </a>
+                </div>
+                <h3 class="card__heading"><a href="#">IATI Registry</a></h3>
+            </div>
+            <div class="with-leader is-typeset">
+                <p class="card__excerpt">Register your IATI data here and find details of all other IATI publishers.</p>
+                <p><a href="#">Find out more</a></p>
+                <p><a href="#" class="">Visit the tool at www.iatiregistry.org</a></p>
+            </div>
+        </div>
+        <div class="card card--tool">
+            <div class="card__header">
+                <div class="card__logo card__logo--background">
+                    <a href="#">
+                        <img src="https://via.placeholder.com/200x120?text=logo" alt="">
+                    </a>
+                </div>
+                <h3 class="card__heading"><a href="#">Data validation tool</a></h3>
+            </div>
+            <div class="with-leader is-typeset">
+                <p class="card__excerpt">Check your IATI data against the rules and guidance in the IATI Standard.</p>
+                <p><a href="#">Find out more</a></p>
+                <p><a href="#" class="">Visit the tool at [web address]</a></p>
+            </div>
+        </div>
+        <div class="card card--tool">
+            <div class="card__header">
+                <div class="card__logo card__logo--background">
+                    <a href="#">
+                        <img src="https://via.placeholder.com/200x120?text=logo" alt="">
+                    </a>
+                </div>
+                <h3 class="card__heading"><a href="#">IATI Dashboard</a></h3>
+            </div>
+            <div class="with-leader is-typeset">
+                <p class="card__excerpt">See an overview of all data published to IATI. Check what data you can find in a publisher's files.</p>
+                <p><a href="#">Find out more</a></p>
+                <p><a href="#" class="">Visit the tool at [web address]</a></p>
+            </div>
+        </div>
+        <div class="card card--tool">
+            <div class="card__header">
+                <div class="card__logo card__logo--background">
+                    <a href="#">
+                        <img src="https://via.placeholder.com/200x120?text=logo" alt="">
+                    </a>
+                </div>
+                <h3 class="card__heading"><a href="#">IATI Datastore</a></h3>
+            </div>
+            <div class="with-leader is-typeset">
+                <p class="card__excerpt">Query all organisation and activity data published to IATI. Data is returned as csv, xls, json or xml.</p>
+                <p><a href="#">Find out more</a></p>
+                <p><a href="#" class="">Visit the tool at [web address]</a></p>
+            </div>
+        </div>
+        <div class="card card--tool">
+            <div class="card__header">
+                <div class="card__logo card__logo--background">
+                    <img src="{{ global.assets_root }}/img/tool-logo.png" alt="">
+                </div>
+                <h3 class="card__heading">d-portal</h3>
+            </div>
+            <div class="with-leader is-typeset">
+                <p class="card__excerpt">Search and visualise IATI activity data. Great for users who are new to IATI.</p>
+                <p><a href="#">Find out more</a></p>
+                <p><a href="#" class="">Visit the tool at [web address]</a></p>
+            </div>
+        </div>
+        <div class="card card--tool card--tool--alt">
+            <h3 class="card__heading">Integrating IATI data into your AIMS</h3>
+            <div class="is-typeset space-module-top">
+                <p>If you have an existing AIMS like xxxx or AMP you can import IATI data into this system to improve your data.</p>
+                <p><a href="#">Find out more about integrating IATI data</a></p>
+                <p>Recently the Somalian government have integrated IATI into their AIMS and benefited from it being able to fill the gaps in their own data. <a href="#">Read our case study</a></p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

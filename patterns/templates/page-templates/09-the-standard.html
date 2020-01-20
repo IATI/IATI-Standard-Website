@@ -1,0 +1,106 @@
+{# 1. Extend the relevant layout #}
+{# --------------------------------------- #}
+
+{% extends 'sidebar-after.html' %}
+
+
+{# --------------------------------------- #}
+{# 2. Assign Settings and variables #}
+{# --------------------------------------- #}
+
+{% set id = "standard" %}
+{% set section = "standard" %}
+{% set title = "Iati Standard" %}
+{% set hero_copy = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. " %}
+{% set hero_image = "hero1.jpg" %}
+
+
+{# --------------------------------------- #}
+{# 3. Add models and macros #}
+{# --------------------------------------- #}
+
+{% model 'guidance', as="guidance" %}
+{% model 'form-support', as="form" %}
+
+{% import 'macros/button.html' as buttons %}
+{% import 'macros/icon.html' as icons %}
+
+
+{# --------------------------------------- #}
+{#
+   4. Add page content into relevant areas
+      Add/Delete blocks as necessary
+#}
+{# --------------------------------------- #}
+
+{% block hero %}
+    {% include 'heroes/hero.html' %}
+{% endblock %}
+
+{% block aside %}
+    {% include 'asides/cta-reference.html' %}
+{% endblock %}
+
+{% block main %}
+    <div class="is-typeset">
+        <p>The IATI Standard is a set of rules and guidance about what data organisations should publish and what format it should be presented in. Find out more information on About the <a href="#">IATI Standard</a>.</p>
+        <h3>Access the IATI Standard</h3>
+        <p>The IATI Standard is currently held on the older version of the IATI website and can be accessed using the links below. On these pages you can find all the rules and guidance which make up the IATI Standard. Organisations have to follow these rules when publishing their data.</p>
+        <p>You can also use these pages to help interpret IATI data. Please see the guide on How to use <a href="#">IATI Reference</a>.</p>
+        <p>Over time the IATI Standard has been updated. Each version of the Standard has its own page on the website. If you do not actively choose a version, the links below will take you to the latest version of the Standard on the older website.</p>
+        <h3>Deprecation notice</h3>
+        <p><a href="#">Version 1 was deprecated on 30th June 2019. Understand how the deprecation affects you.</a></p>
+        <h3>Which languages is the IATI Standard available in?</h3>
+        <p>The rules and guidance which make up the IATI Standard, and other reference pages on the older IATI website are only available in English. However, French translations of the <a href="#">IATI codelists</a> can now be accessed. For more information see <a href="#">Translations FAQs</a></p>
+    </div>
+{% endblock %}
+
+{% block after %}
+    <div class="space-section-bottom">
+        <div class="row">
+            <div class="l-4up">
+                <div class="card card--alt">
+                    <h2 class="card__heading">IATI Reference pages v2.03</h2>
+                    <ul class="card__list">
+                        <li><a href="#">The Organisation Standard</a></li>
+                        <li><a href="#">The Activity Standard</a></li>
+                        <li><a href="#">Codelists</a></li>
+                        <li><a href="#">Schema</a></li>
+                        <li><a href="#">Organisation Identifiers</a></li>
+                    </ul>
+                </div>
+                <div class="card card--alt">
+                    <h2 class="card__heading">IATI Standard guidance</h2>
+                    <ul class="card__list">
+                        <li><a href="#">Understanding the Standard</a></li>
+                        <li><a href="#">Publishing guidance</a></li>
+                        <li><a href="#">Accessing and Using Data</a></li>
+                        <li><a href="#">Developer Documenation</a></li>
+                        <li><a href="#">Help and Support</a></li>
+                    </ul>
+                </div>
+                <div class="card card--alt">
+                    <h2 class="card__heading">Upgrade Changelog</h2>
+                    <h3 class="card__sub-heading">Previous versions of IATI</h3>
+                    <ul class="card__list">
+                        <li><a href="#">v2.02</a></li>
+                        <li><a href="#">v2.01</a></li>
+                    </ul>
+                    <h3 class="card__sub-heading">Upgrade information</h3>
+                    <ul class="card__list">
+                        <li><a href="#">Upgrade Process</a></li>
+                        <li><a href="#">Deprecation of v1</a></li>
+                    </ul>
+                </div>
+                <div class="card card--alt">
+                    <h2 class="card__heading">How we mangage the Standard</h2>
+                    <p class="card__excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor</p>
+                    <ul class="card__list">
+                        <li><a href="#">Versions</a></li>
+                        <li><a href="#">Codelist management</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

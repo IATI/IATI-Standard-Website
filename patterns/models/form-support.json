@@ -1,0 +1,33 @@
+{
+    "input": [
+	    {
+		    "field_spacing": false,
+		    "field_error": false,
+		    "item_id": "name",
+		    "item_label": "Name",
+		    "item_label_type": "",
+		    "item_type": "text",
+		    "item_placeholder": "Text placeholder",
+		    "item_extras": ""
+		},
+		{
+		    "field_spacing": true,
+		    "field_error": false,
+		    "item_id": "email",
+		    "item_label": "Email",
+		    "item_label_type": "",
+		    "item_type": "email",
+		    "item_placeholder": "Email placeholder",
+		    "item_extras": ""
+		}
+    ],
+    "textarea": [
+	    {
+		    "field_spacing": true,
+		    "field_error": false,
+		    "item_id": "textarea",
+		    "item_label": "How can we help you?",
+		    "item_label_type": ""
+		}
+	]
+}

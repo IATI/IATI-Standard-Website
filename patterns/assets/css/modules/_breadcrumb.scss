@@ -1,0 +1,35 @@
+// -----------------------------------------------------------
+// Breadcrumb
+// -----------------------------------------------------------
+
+.breadcrumb {
+    overflow: hidden;
+    margin-bottom: 4em;
+    display: block;
+    border-left: 2px solid $iati-sunset;
+    padding-left: 1em;
+    li {
+        @include font-size($zeta);
+        display: inline-block;
+        float: left;
+        margin-left: 0.6em;
+        margin-bottom: 0.4em;
+        padding-left: 0.9em;
+        background-image: url(../img/separator-2x.png);
+        background-size: 6px 11px;
+        background-repeat: no-repeat;
+        background-position: 0 5px;
+        a {
+            text-decoration: underline;
+
+        }
+        &:first-child {
+            margin-left: 0;
+            background-image: none;
+            padding-left: 0;
+        }
+        @include respond-to($c-vp) {
+            margin-bottom: 0;
+        }
+    }
+}

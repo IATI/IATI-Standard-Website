@@ -1,0 +1,77 @@
+{# 1. Extend the relevant layout #}
+{# --------------------------------------- #}
+
+{% extends 'default.html' %}
+
+
+{# --------------------------------------- #}
+{# 2. Assign Settings and variables #}
+{# --------------------------------------- #}
+
+{% set id = "support" %}
+{% set section = "support" %}
+{% set title = "Standard Guidance" %}
+{% set hero_copy = "Specific topics that concern multiple elements of the standard" %}
+{% set hero_image = "" %}
+
+
+{# --------------------------------------- #}
+{# 3. Add models and macros #}
+{# --------------------------------------- #}
+
+{% model 'guidance', as="guidance" %}
+{% model 'form-support', as="form" %}
+
+{% import 'macros/button.html' as buttons %}
+{% import 'macros/icon.html' as icons %}
+
+
+{# --------------------------------------- #}
+{#
+   4. Add page content into relevant areas
+      Add/Delete blocks as necessary
+#}
+{# --------------------------------------- #}
+
+{% block hero %}
+    {% include 'heroes/hero-minor.html' %}
+{% endblock %}
+
+
+{% block body %}
+    <div class="row">
+        <form class="filter-group filter-group--reverse">
+            <div class="filter">
+                <h3 class="filter__heading">Filter by Topic:</h3>
+        		<div class="form-field__checkboxes">
+    				<div class="form-checkbox-group">
+    					<input class="form-checkbox" type="checkbox" name="organisation" id="organisation" value="" />
+    					<label class="form-label" for="organisation">Organisation</label>
+                    </div>
+                    <div class="form-checkbox-group">
+                        <input class="form-checkbox" type="checkbox" name="activity" id="activity" value="" />
+    					<label class="form-label" for="activity">Activity</label>
+                    </div>
+                    <input class="button" type="submit" value="Filter">
+        		</div>
+
+            </div>
+            <div class="filter">
+                <label for="search" class="filter__heading">Search</label>
+                <input class="form-item" id="search" type="text" name="search" value="Search term...">
+            </div>
+        </form>
+    </div>
+
+    <div class="row space-section-both">
+        <div class="l-2up">
+            {% for item in guidance.guidance_standard %}
+                <div class="card card--simple">
+                    <span class="card__flag">June 17 2019</span>
+                    <h2 class="card__heading"><a href="#"><span>{{ item.title }}</span></a></h2>
+                    <p class="card__excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
