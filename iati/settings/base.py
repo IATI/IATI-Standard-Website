@@ -114,6 +114,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'iati.context_processors.globals',
+                'iati.context_processors.captchakey',
             ],
         },
     },
@@ -268,6 +269,12 @@ HAYSTACK_CONNECTIONS = {
 }
 
 HAYSTACK_CUSTOM_HIGHLIGHTER = 'search.utils.CustomHighlighter'
+
+# Recaptcha settings
+
+RECAPTCHA_PUBLIC_KEY = os.getenv('RECAPTCHA_PUBLIC_KEY')
+RECAPTCHA_PRIVATE_KEY = os.getenv('RECAPTCHA_PRIVATE_KEY')
+NOCAPTCHA = True
 
 # Celery settings
 
