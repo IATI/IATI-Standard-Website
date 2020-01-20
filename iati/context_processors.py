@@ -6,6 +6,7 @@ def has_new_tools_page():
     """Return the first new tools page if it exists."""
     return ToolsListingPage.objects.live().first()
 
+
 def captchakey(request):
     """Return the public captcha key."""
     return {'RECAPTCHA_KEY': settings.RECAPTCHA_PUBLIC_KEY}

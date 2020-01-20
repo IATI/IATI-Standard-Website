@@ -68,7 +68,6 @@ class GuidancePage(AbstractContentPage):
 
     subpage_types = []
 
-
     def get_context(self, request, *args, **kwargs):
         """Overwrite context to intercept POST requests to pages on this template and pass them to Zendesk API.
 
