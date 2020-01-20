@@ -52,7 +52,7 @@ class TypeA(StructBlock):
         help_text = 'Primary navigation module type A.'
         icon = 'form'
         label = 'Type A'
-        form_template = 'navigation/block_forms/custom_struct.html'
+        form_template = 'navigation/block_forms/custom_struct_container.html'
         form_classname = 'navigation__meganav'
         template = 'navigation/blocks/type_a.html'
 
