@@ -1,0 +1,89 @@
+{# 1. Extend the relevant layout #}
+{# --------------------------------------- #}
+
+{% extends 'sidebar-standard.html' %}
+
+
+{# --------------------------------------- #}
+{# 2. Assign Settings and variables #}
+{# --------------------------------------- #}
+
+{% set id = "standard" %}
+{% set section = "standard" %}
+{% set title = "" %}
+{% set hero_copy = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." %}
+
+
+{# --------------------------------------- #}
+{# 3. Add models and macros #}
+{# --------------------------------------- #}
+
+{% import 'macros/button.html' as buttons %}
+{% import 'macros/icon.html' as icons %}
+{% import 'macros/alert.html' as alerts %}
+
+
+{# --------------------------------------- #}
+{#
+   4. Add page content into relevant areas
+      Add/Delete blocks as necessary
+#}
+{# --------------------------------------- #}
+
+{% block hero %}
+    {% include 'heroes/hero-standard.html' %}
+{% endblock %}
+
+{% block aside %}
+	<div class="aside-m">
+        <div class="aside-m__header fill-sunrise">
+            <h3 class="aside-m__heading">Reference</h3>
+        </div>
+        {% include 'navigation/reference.html' %}
+    </div>
+{% endblock %}
+
+{% block main %}
+    <section>
+        <div class="is-typeset">
+            <h1>Schema<a class="m-header-link" href="#header-id" title="Permalink to this headline">¶</a></h1>
+            <p>The IATI standard consists of a number of schema, the main ones being Organisation and Activity.</p>
+            <p>Summary tables of the <a href="#">Activity Schema</a> and of the <a href="#">Organisation Schema</a> are also available.</p>
+            <h2>Core Schema<a class="m-header-link" href="#header-id" title="Permalink to this headline">¶</a></h2>
+            <p>The current suite IATI XML schemas consists of the following components:</p>
+            <ul>
+                <li><a href="#">iati-organisations-schema.xsd</a> - XML schema for describing an organisation involved in any stage development cooperation (funding, implementing etc.).</li>
+                <li><a href="#">iati-activities-schema.xsd</a> - XML Schema for describing the details of individual development cooperation activities/projects.</li>
+            </ul>
+            <h2>Supplementary Schema<a class="m-header-link" href="#header-id" title="Permalink to this headline">¶</a></h2>
+            <p>In addition to the Organisation and Activity. core terms are described in the following:</p>
+            <ul>
+                <li><a href="#">iati-common.xsd</a> A supplementary schema with common IATI markup.  Must be in the same directory as the Organisation and Activity schema.</li>
+                <li><a href="#">xml.xsd</a> - A supplementary schema that must be in the same directory as the Organisation and Activity schema.</li>
+            </ul>
+            <h2>Metadata Schema<a class="m-header-link" href="#header-id" title="Permalink to this headline">¶</a></h2>
+            <p>The Registry Record provides a common format for the reporting of metadata to the IATI Registry.</p>
+            <p>Please note: Usage of this schema is not mandatory.</p>
+            <ul>
+                <li><a href="#">iati-registry-record-schema.xsd</a> - An application-specific extension schema for importing documents into the IATI registry</li>
+            </ul>
+            <h2>Updates to IATI Schema<a class="m-header-link" href="#header-id" title="Permalink to this headline">¶</a></h2>
+            <p>The IATI standard is a living entity that requires improvement over time. <a href="#">A CHANGES.txt</a> -  provides a comprehensive change log.</p>
+            <h2>Previous schemas<a class="m-header-link" href="#header-id" title="Permalink to this headline">¶</a></h2>
+            <p>Previous versions of the IATI Schema are available:</p>
+            <ul>
+                <li><a href="#">Version 2.02 of IATI Standard</a></li>
+                <li><a href="#">Version 2.01 of IATI Standard</a></li>
+                <li><a href="#">Version 1.05 of IATI Standard</a></li>
+                <li><a href="#">Version 1.04 of IATI Standard</a></li>
+                <li><a href="#">Version 1.03 of IATI Standard</a></li>
+                <li><a href="#">Version 1.02 of IATI Standard</a></li>
+                <li><a href="#">Version 1.01 of IATI Standard</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="space-section-top">
+        {% include 'asides/cta-contact.html' %}
+    </section>
+{% endblock %}

@@ -1,0 +1,118 @@
+{
+	"member_list": [
+	    {
+			"title": "Accountable Now",
+			"meta": "CSOs and others",
+			"date": "2013",
+            "logo": "accountable-now.png"
+        },
+        {
+			"title": "African Development Bank (AfDB)",
+			"meta": "Providers of development cooperation",
+			"date": "2011",
+            "logo": "adb.jpg"
+        },
+        {
+			"title": "Akvo",
+			"meta": "CSOs and others",
+			"date": "2016",
+            "logo": "akvo.png"
+        },
+        {
+			"title": "Association of Freelance Journalists",
+			"meta": "CSOs and others",
+			"date": "2018",
+            "logo": "association_of_freelance_journalists.png"
+        },
+        {
+			"title": "Australia - Department of Foreign Affairs and Trade",
+			"meta": "Providers of development cooperation",
+			"date": "2008",
+            "logo": "adfat.png"
+        },
+        {
+			"title": "Bangladesh (Vice Chair)",
+			"meta": "Partner countries",
+			"date": "2012",
+            "logo": "bangladesh.png"
+        },
+        {
+			"title": "Belgium - Belgian Development Agency (BTC)",
+			"meta": "Providers of development cooperation",
+			"date": "2012",
+            "logo": "btc.jpg"
+        },
+        {
+			"title": "Benin",
+			"meta": "Partner countries",
+			"date": "2015",
+            "logo": "benin.png"
+        },
+        {
+			"title": "Bill and Melinda Gates Foundation",
+			"meta": "Providers of development cooperation",
+			"date": "2013",
+            "logo": "bill-melinda-gates-foundation.png"
+        },
+        {
+			"title": "Bond",
+			"meta": "CSOs and others",
+			"date": "2013",
+            "logo": "bond.png"
+        },
+        {
+			"title": "Burkina Faso",
+			"meta": "Partner countries",
+			"date": "2012",
+            "logo": "burkina-faso.png"
+        },
+        {
+			"title": "Burundi",
+			"meta": "Partner countries",
+			"date": "2015",
+            "logo": "burundi.jpg"
+        },
+        {
+			"title": "Canada - Global Affairs Canada / Affaires mondiales Canada",
+			"meta": "Providers of development cooperation",
+			"date": "2011",
+            "logo": "gac.jpg"
+        },
+        {
+			"title": "Catalpa",
+			"meta": "CSOs and others",
+			"date": "2015",
+            "logo": "catalpa.png"
+        },
+        {
+			"title": "Children's Investment Fund Foundation (CIFF)",
+			"meta": "Providers of development cooperation",
+			"date": "2016",
+            "logo": "ciff.png"
+        },
+        {
+			"title": "Colombia",
+			"meta": "Partner countries",
+			"date": "2012",
+            "logo": "columbia.png"
+        },
+        {
+			"title": "Congo, Republic of the",
+			"meta": "Partner countries",
+			"date": "2012",
+            "logo": "drc.png"
+        },
+        {
+			"title": "Cordaid",
+			"meta": "CSOs and others",
+			"date": "2015",
+            "logo": "cordaid.png"
+        },
+        {
+			"title": "CSO Partnership for Development Effectiveness (CPDE)",
+			"meta": "CSOs and others",
+			"date": "2015",
+            "logo": "cso-partnership.png"
+        }
+    ]
+}

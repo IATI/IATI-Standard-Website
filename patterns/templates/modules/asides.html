@@ -1,0 +1,107 @@
+{% extends 'patterns.html' %}
+
+{# --------------------------------------- #}
+{# Settings, models, library variables #}
+{# --------------------------------------- #}
+
+{% set ui_title = "Asides" %}
+
+{% block ui_description %}
+	<p>This contains modules that appear in the sidebar</p>
+{% endblock %}
+
+{% import 'macros/icon.html' as icons %}
+
+{# --------------------------------------- #}
+{# Main body content #}
+{# --------------------------------------- #}
+
+{% block body %}
+<div class="ui-row">
+
+	<!-- Duplicate this as a loop for each module within a section -->
+	<div class="ui-section">
+		<div class="ui-section__header">
+			<!-- Module name. Can be generated from file name perhaps? -->
+			<h2>CTA - members area</h2>
+		</div>
+		<div class="ui-section__component">
+			{% capture as="html" -%}
+			{% include 'asides/cta-members.html' %}
+			{% endcapture %}
+			{{ html }}
+		</div>
+		<div class="ui-section__body">
+			<div class="ui-section__main">
+				<div class="ui-section__code">
+					<pre><code>{{ html | e | trim }}</code></pre>
+				</div>
+			</div>
+			<div class="ui-section__aside">
+				<div class="ui-section__notes">
+					<h4>Notes</h4>
+					<p>Used to highlight the members area of the site.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end Duplicate -->
+
+	<!-- Duplicate this as a loop for each module within a section -->
+	<div class="ui-section">
+		<div class="ui-section__header">
+			<!-- Module name. Can be generated from file name perhaps? -->
+			<h2>CTA - contact</h2>
+		</div>
+		<div class="ui-section__component">
+			{% capture as="html" -%}
+			{% include 'asides/cta-contact.html' %}
+			{% endcapture %}
+			{{ html }}
+		</div>
+		<div class="ui-section__body">
+			<div class="ui-section__main">
+				<div class="ui-section__code">
+					<pre><code>{{ html | e | trim }}</code></pre>
+				</div>
+			</div>
+			<div class="ui-section__aside">
+				<div class="ui-section__notes">
+					<h4>Notes</h4>
+					<p>Used to highlight contacting support, this will jump you down to the form.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end Duplicate -->
+
+	<!-- Duplicate this as a loop for each module within a section -->
+	<div class="ui-section">
+		<div class="ui-section__header">
+			<!-- Module name. Can be generated from file name perhaps? -->
+			<h2>Navigation</h2>
+		</div>
+		<div class="ui-section__component">
+			{% capture as="html" -%}
+			{% include 'navigation/secondary-child.html' %}
+			{% endcapture %}
+			{{ html }}
+		</div>
+		<div class="ui-section__body">
+			<div class="ui-section__main">
+				<div class="ui-section__code">
+					<pre><code>{{ html | e | trim }}</code></pre>
+				</div>
+			</div>
+			<div class="ui-section__aside">
+				<div class="ui-section__notes">
+					<h4>Notes</h4>
+					<p>Used for in page navigation.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end Duplicate -->
+
+</div>
+{% endblock %}

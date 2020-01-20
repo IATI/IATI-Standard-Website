@@ -1,0 +1,82 @@
+{% extends 'patterns.html' %}
+
+{# --------------------------------------- #}
+{# Settings, models, library variables #}
+{# --------------------------------------- #}
+
+{% import 'macros/button.html' as buttons %}
+{% set ui_title = "Buttons" %}
+
+{% block ui_description %}
+	<p>Used as either traditional buttons (submit stuff) or broad call to actions. Can be applied to either links or HTML5 buttons, or pseudo elements. If using an anchor tag as a button (not in terms of visual look, but in terms of interaction), ensure to add an ARIA role of 'button'.</p>
+{% endblock %}
+
+{# --------------------------------------- #}
+{# Main body content #}
+{# --------------------------------------- #}
+
+{% block body %}
+<div class="ui-row">
+	
+	<!-- Duplicate -->
+	<div class="ui-section">
+		<div class="ui-section__header">
+			<h2>Constructing an accessible (A11y) button</h2>
+		</div>
+		<div class="ui-section__component">
+{% capture as="html" -%}
+{{ buttons.button('button-example', '', 'Button Label', 'Fully A11y Label') }}
+{%- endcapture %}
+{{ html }}
+		</div>
+		<div class="ui-section__body">
+			<div class="ui-section__main">
+				<div class="ui-section__code">
+					<pre><code>{{ html | e | trim }}</code></pre>
+				</div>
+			</div>
+			<div class="ui-section__aside">
+				<div class="ui-section__notes">
+					<h4>Notes</h4>
+					<ul>
+						<li>By combining a wrapped <b>span</b> element and a CSS :after class, we can visually hide the button's text, and replace with the shorted text from within the <b>title</b></li>
+						<li>Ensure to add a descriptive <b>title</b> and full text within the <b>span</b>, and shorter text only within the <b>title</b>.</li>
+						<li>When combining with a CMS, we advice that the button text is generated, and the label text is controlled.</li>
+						<li>Use this style of button as default, unless prevented from doing so by CMS or plugins</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end Duplicate -->
+	
+	<!-- Duplicate -->
+	<div class="ui-section">
+		<div class="ui-section__header">
+			<h2>Secondary buttons</h2>
+		</div>
+		<div class="ui-section__component">
+{% capture as="html" -%}
+{{ buttons.button('button-example2', 'button--secondary', 'Button Label', 'Fully A11y Label') }}
+{%- endcapture %}
+{{ html }}
+		</div>
+		<div class="ui-section__body">
+			<div class="ui-section__main">
+				<div class="ui-section__code">
+					<pre><code>{{ html | e | trim }}</code></pre>
+				</div>
+			</div>
+			<div class="ui-section__aside">
+				<div class="ui-section__notes">
+					<h4>Notes</h4>
+					<p>You can extend buttons as you would any other element using BEMS</p>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end Duplicate -->
+
+</div>
+{% endblock %}

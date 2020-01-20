@@ -1,0 +1,60 @@
+{# 1. Extend the relevant layout #}
+{# --------------------------------------- #}
+
+{% extends 'sidebar-after.html' %}
+
+
+{# --------------------------------------- #}
+{# 2. Assign Settings and variables #}
+{# --------------------------------------- #}
+
+{% set id = "guidance" %}
+{% set section = "guidance" %}
+{% set title = "Guidance" %}
+{% set hero_copy = "" %}
+{% set hero_image = "" %}
+
+
+{# --------------------------------------- #}
+{# 3. Add models and macros #}
+{# --------------------------------------- #}
+
+{% model 'guidance', as="guidance" %}
+{% model 'form-support', as="form" %}
+
+{% import 'macros/button.html' as buttons %}
+{% import 'macros/icon.html' as icons %}
+
+
+{# --------------------------------------- #}
+{#
+   4. Add page content into relevant areas
+      Add/Delete blocks as necessary
+#}
+{# --------------------------------------- #}
+
+{% block hero %}
+    {% include 'heroes/hero-minor.html' %}
+{% endblock %}
+
+{% block aside %}
+    <h3 class="aside-m__heading type-xs--trailer">Related guidance</h3>
+    {% for item in guidance.guidance_standard_reduced %}
+        <div class="aside-m">
+            <div class="card card--simple">
+                <span class="card__flag">June 17 2019</span>
+                <h2 class="card__heading card__heading--minor"><a href="#"><span>{{ item.title }}</span></a></h2>
+                <!-- <p class="card__excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> -->
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+{% block main %}
+    <div class="is-typeset is-typeset--article">
+        {% include 'content/longform.html' %}
+    </div>
+{% endblock %}
+
+{% block after %}
+{% endblock %}

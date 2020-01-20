@@ -1,0 +1,51 @@
+{% extends 'patterns.html' %}
+
+{# --------------------------------------- #}
+{# Settings, models, library variables #}
+{# --------------------------------------- #}
+
+{% set ui_title = "Tables" %}
+
+{% block ui_description %}
+	<p>Simple, responsive table framework</p>
+{% endblock %}
+
+{# --------------------------------------- #}
+{# Main body content #}
+{# --------------------------------------- #}
+
+{% block body %}
+<div class="ui-row">
+	
+	<!-- Duplicate -->
+	<div class="ui-section">
+		<div class="ui-section__header">
+			<h2>Simple responsive table</h2>
+		</div>
+		<div class="ui-section__component">
+{% capture as="html" -%}
+{% include 'tables/example.html' %}
+{%- endcapture %}
+		{{ html }}
+		</div>
+		<div class="ui-section__body">
+			<div class="ui-section__main">
+				<div class="ui-section__code">
+					<pre><code>{{ html | e | trim }}</code></pre>
+				</div>
+			</div>
+			<div class="ui-section__aside">
+				<div class="ui-section__notes">
+					<h4>Notes</h4>
+					<ul>
+						<li>You must include a title on each td element that corresponds with the correct data type</li>
+						<li>For example: A td must have a title of 'date' if it exists in the 'date' column</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end Duplicate -->
+	
+</div>
+{% endblock %}
