@@ -23,7 +23,7 @@ class Command(BaseCommand):
             url = f'/cms/pages/{id}/edit/'
             try:
                 response = client.get(url)
-            except:
-                invalid_pages.append(id)
+            except Exception:
+                invalid_page_ids.append(id)
 
         print(invalid_page_ids)
