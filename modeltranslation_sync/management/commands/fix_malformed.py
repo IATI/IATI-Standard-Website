@@ -1,5 +1,5 @@
 # pylint: disable=too-many-locals, duplicate-code
-"""Management command that fixes malformed content editors in .po file"""
+"""Management command that fixes malformed content editors in .po file."""
 
 from __future__ import unicode_literals
 from os.path import join, isdir
@@ -14,7 +14,7 @@ import json
 
 
 class Command(LoadCommand):
-    """Management command that fixes malformed content editors in .po file"""
+    """Management command that fixes malformed content editors in .po file."""
 
     def add_arguments(self, parser):
         """Add custom command arguments."""
