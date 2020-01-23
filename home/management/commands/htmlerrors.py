@@ -8,8 +8,13 @@ from wagtail.admin.views.pages import edit
 
 class Command(BaseCommand):
 
+    def add_arguments(self, parser):
+        """Add custom command arguments."""
+        parser.add_argument('pks', nargs='+', type=int)
+
     def handle(self, **options):
         invalid_page_ids = []
+        invalid_page_errors = []
         pages = Page.objects.all()
         client = Client()
         # use any existing super user account
@@ -18,12 +23,15 @@ class Command(BaseCommand):
 
         for page in pages:
             id = page.id
-            # print statement to assure the script is running
-            print(id)
-            url = f'/cms/pages/{id}/edit/'
-            try:
-                response = client.get(url)
-            except Exception:
-                invalid_page_ids.append(id)
+            if int(id) in options['pks']:
+                # print statement to assure the script is running
+                print(id)
+                url = f'/cms/pages/{id}/edit/'
+                try:
+                    response = client.get(url)
+                except Exception as e:
+                    invalid_page_ids.append(id)
+                    invalid_page_errors.append({'id': id, 'error': e})
 
         print(invalid_page_ids)
+        print(invalid_page_errors)
