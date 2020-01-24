@@ -25,7 +25,7 @@ class Command(LoadCommand):
                 lang_path = join(locale_path, lang)
                 if not isdir(lang_path):
                     raise CommandError("Language directory does not exists.")
-                po_file = open(join(lang_path, "LC_MESSAGES", po_filename), "r")
+                po_file = open(join(lang_path, "LC_MESSAGES", po_filename), "r", encoding="utf-8")
                 catalog = read_po(po_file)
                 po_file.close()
                 for message in catalog:
@@ -33,7 +33,10 @@ class Command(LoadCommand):
                         for field_id in message.auto_comments:
                             [app, class_name, primary_key, field] = field_id.split('.')
                             model = apps.get_model(app, class_name)
-                            obj = model.objects.get(pk=primary_key)
+                            try:
+                                obj = model.objects.get(pk=primary_key)
+                            except model.DoesNotExist:
+                                continue
                             tr_field = "%s_%s" % (field, lang)
                             setattr(obj, tr_field, message.string)
                             obj.save()

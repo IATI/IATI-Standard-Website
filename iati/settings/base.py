@@ -61,9 +61,13 @@ INSTALLED_APPS = [
     'wagtail.admin',
     'wagtail.core',
 
+    'wagtaillinkchecker',
+
     'modelcluster',
     'taggit',
     'haystack',
+
+    'django_celery_results',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -113,6 +117,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'iati.context_processors.globals',
+                'iati.context_processors.captchakey',
             ],
         },
     },
@@ -183,7 +188,6 @@ STATICFILES_FINDERS = [
 ]
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'home/static'),
     os.path.join(BASE_DIR, 'patterns/converted-html/assets'),
 ]
 
@@ -268,3 +272,17 @@ HAYSTACK_CONNECTIONS = {
 }
 
 HAYSTACK_CUSTOM_HIGHLIGHTER = 'search.utils.CustomHighlighter'
+
+# Recaptcha settings
+
+RECAPTCHA_PUBLIC_KEY = os.getenv('RECAPTCHA_PUBLIC_KEY')
+RECAPTCHA_PRIVATE_KEY = os.getenv('RECAPTCHA_PRIVATE_KEY')
+NOCAPTCHA = True
+
+# Celery settings
+
+CELERY_BROKER_URL = os.getenv('RABBITMQ_URL', 'amqp://rabbitmq:5672')
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
