@@ -3,7 +3,7 @@ from wagtail.core.fields import StreamField
 from wagtail.core.blocks import (
     # CharBlock,
     ListBlock,
-    # StreamBlock,
+    StreamBlock,
     StructBlock,
     TextBlock,
     # URLBlock,
@@ -65,6 +65,12 @@ class TypeA(StructBlock):
 
 
 def navigation(blank=False):
-    return StreamField([
-        ('type_a', TypeA()),
-    ], blank=blank)
+    return StreamField(
+        StreamBlock(
+            [
+                ('type_a', TypeA()),
+            ],
+            max_num=1,
+        ),
+        blank=blank
+    )

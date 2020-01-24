@@ -2,10 +2,10 @@ from django.db import models
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
 from wagtail.contrib.settings.models import BaseSetting, register_setting
-from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, PageChooserPanel, StreamFieldPanel
+from wagtail.admin.edit_handlers import FieldRowPanel, FieldPanel, InlinePanel, PageChooserPanel, StreamFieldPanel
 from wagtail.core.models import Orderable
 from common.utils import ForeignKeyField
-from dashboard.edit_handlers import MultiFieldPanel
+from dashboard.edit_handlers import MultiFieldPanel, HelpPanel
 from navigation.fields import navigation
 
 
@@ -27,17 +27,26 @@ class AbstractLink(models.Model):
         required=True,
     )
     panels = [
-        FieldPanel('label_en'),
-        FieldPanel('label_fr'),
+        HelpPanel(
+            heading='Primary menu page link',
+            content='Top level page for the primary navigation item and associated link label.',
+        ),
         PageChooserPanel('page'),
+        FieldRowPanel(children=(
+            FieldPanel('label_en'),
+            FieldPanel('label_fr'),
+        )),
     ]
 
 
 class PrimaryMenuLinks(Orderable, AbstractLink):
     item = ParentalKey('PrimaryMenu', related_name='primary_menu_links')
-    meganav = navigation()
+    meganav = navigation(blank=True)
 
     panels = AbstractLink.panels + [
+        HelpPanel(
+            content='Optional: meganav module for the the primary navigation item. Select one of the available module types',
+        ),
         StreamFieldPanel('meganav'),
     ]
 
@@ -56,7 +65,7 @@ class PrimaryMenu(ClusterableModel, BaseSetting):
     panels = [
         MultiFieldPanel(
             [
-                InlinePanel('primary_menu_links', label='Primary menu link'),
+                InlinePanel('primary_menu_links', label='Primary menu item'),
             ],
             heading='Primary menu',
         ),

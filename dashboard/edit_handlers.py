@@ -1,4 +1,5 @@
 from wagtail.admin.edit_handlers import MultiFieldPanel as WagtailMultiFieldPanel
+from wagtail.admin.edit_handlers import HelpPanel as WagtailHelpPanel
 
 
 class MultiFieldPanel(WagtailMultiFieldPanel):
@@ -17,3 +18,8 @@ class MultiFieldPanel(WagtailMultiFieldPanel):
         if hasattr(self, 'description'):
             props['description'] = self.description
         return self.__class__(**props)
+
+
+def HelpPanel(content='', template='wagtailadmin/edit_handlers/help_panel.html', heading='', classname=''):
+    wrapped_content = '<p class="help-block help-info">%s</p>' % content
+    return WagtailHelpPanel(content=wrapped_content, template=template, heading=heading, classname=classname)
