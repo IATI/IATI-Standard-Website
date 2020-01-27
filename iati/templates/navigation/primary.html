@@ -1,29 +1,21 @@
-{% load wagtailcore_tags iati_tags i18n %}
+{% load wagtailcore_tags wagtail_modeltranslation iati_tags i18n %}
 
 <button role="button button--small" class="navigation-primary-toggle" id="navigation-primary-toggle"><span>{% trans "Menu" %}</span></button>
 
 <nav class="navigation-primary" role="navigation" id="navigation-primary">
     <ul class="navigation-primary__items">
-        <li id="section-about" class='navigation-primary__item {% check_active "about" "primary"%}'>
-            <a class="navigation-primary__item--link" href="{% default_page_url 'about' %}">{% trans "About" %}</a>
-        </li>
-        <li id="section-standard" class='navigation-primary__item {% check_active "iati-standard" "primary"%}'>
-            <a class="navigation-primary__item--link" href="{% default_page_url 'iati_standard' %}">{% trans "IATI Standard" %}</a>
-        </li>
-        <li id="section-data" class='navigation-primary__item {% check_active "using-data" "primary"%}'>
-            <a class="navigation-primary__item--link" href="{% default_page_url 'using_data' %}">{% trans "Using Data" %}</a>
-        </li>
-        {% if global.has_new_tools_page %}
-            <li id="section-data" class='navigation-primary__item {% check_active "iati-tools-and-resources" "primary"%}'>
-                <a class="navigation-primary__item--link" href="{% default_page_url 'tools_and_resources' %}">{% trans "Tools & Resources" %}</a>
+        {% for item in global.primary_menu %}
+            <li class="navigation-primary__item
+                {% if item.active %}
+                    navigation-primary__item--active
+                {% endif %}
+                {% if item.meganav %}
+                    navigation-primary__item--has-children
+                {% endif %}
+            ">
+                <a class="navigation-primary__item--link" href="{% slugurl_trans item.page.url %}">{{ item.label }}</a>
             </li>
-        {% endif %}
-        <li id="section-support" class='navigation-primary__item {% check_active "guidance" "primary"%}'>
-            <a class="navigation-primary__item--link" href="{% default_page_url 'guidance_and_support' %}">{% trans "Guidance & Support" %}</a>
-        </li>
-        <li id="section-community" class='navigation-primary__item {% check_active "community" "primary"%}'>
-            <a class="navigation-primary__item--link" href="{% default_page_url 'community' %}">{% trans "Community" %}</a>
-        </li>
+        {% endfor %}
         <li id="section-news" class='navigation-primary__item navigation-primary__item--ss-only {% check_active "news" "primary" %}'>
             <a class="navigation-primary__item--link" href="{% default_page_url 'news' %}">{% trans "News" %}</a>
         </li>

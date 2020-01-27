@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.functional import cached_property
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
 from wagtail.contrib.settings.models import BaseSetting, register_setting
@@ -7,6 +8,7 @@ from wagtail.core.models import Orderable
 from common.utils import ForeignKeyField
 from dashboard.edit_handlers import MultiFieldPanel, HelpPanel
 from navigation.fields import navigation
+from navigation.utils import get_localised_field_value
 
 
 class AbstractLink(models.Model):
@@ -49,6 +51,10 @@ class PrimaryMenuLinks(Orderable, AbstractLink):
         ),
         StreamFieldPanel('meganav'),
     ]
+
+    @cached_property
+    def label(self):
+        return get_localised_field_value(self, 'label')
 
 
 class UtilityMenuLinks(Orderable, AbstractLink):
