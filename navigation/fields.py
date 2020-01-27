@@ -1,20 +1,20 @@
 from wagtail.core.fields import StreamField
 # from wagtail.images.blocks import ImageChooserBlock
 from wagtail.core.blocks import (
-    # CharBlock,
+    BooleanBlock,
+    CharBlock,
     ListBlock,
+    PageChooserBlock,
     StreamBlock,
     StructBlock,
     TextBlock,
     # URLBlock,
-    PageChooserBlock,
 )
 
 
 class Highlight(StructBlock):
 
     class Meta:
-        help_text = 'Highlight module.'
         icon = 'pick'
         label = 'Highlight'
         form_template = 'navigation/block_forms/custom_struct.html'
@@ -36,13 +36,44 @@ class Highlight(StructBlock):
 class PageList(StructBlock):
 
     class Meta:
-        help_text = 'Simple page list.'
+        help_text = '''
+                    <strong>List of internal page links.</strong><br>
+                    Optional: select the first page link to use as a title, or add a plain text title.<br>
+                    Optional: short description.
+                    '''
         icon = 'list-ul'
         label = 'Page list'
         form_template = 'navigation/block_forms/custom_struct.html'
 
-    pages = ListBlock(
-        PageChooserBlock(label='Page')
+    use_first_page_as_title = BooleanBlock(
+        help_text='Optional: if checked, the first page in the list will be displayed as a title',
+        required=False,
+    )
+    title_en = CharBlock(
+        help_text='Optional: plain text title for the page list',
+        label='Title [en]',
+        required=False,
+    )
+    title_fr = CharBlock(
+        help_text='Optional: plain text title for the page list',
+        label='Title [fr]',
+        required=False,
+    )
+    description_en = CharBlock(
+        help_text='Optional: description for the page list',
+        label='Description [en]',
+        required=False,
+    )
+    description_fr = CharBlock(
+        help_text='Optional: description for the page list',
+        label='Description [fr]',
+        required=False,
+    )
+    page_list = ListBlock(
+        PageChooserBlock(
+            label='Page',
+            icon='link',
+        )
     )
 
 
@@ -53,11 +84,14 @@ class TypeA(StructBlock):
         icon = 'form'
         label = 'Type A'
         form_template = 'navigation/block_forms/custom_struct_container.html'
-        form_classname = 'navigation__meganav'
+        form_classname = 'custom-struct-container navigation__meganav'
         template = 'navigation/blocks/type_a.html'
 
     highlight = Highlight(
-        help_text='Highlight block for meganav'
+        help_text='''
+                  <strong>Highlight module.</strong><br>
+                  Internal page link and short description.
+                  '''
     )
     meganav = ListBlock(
         PageList(label='Page list')
