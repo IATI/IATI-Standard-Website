@@ -1,0 +1,9 @@
+ {% load wagtail_modeltranslation i18n %}
+
+ <div class="navigation-megamenu__col navigation-megamenu__col--teaser {{ class }}">
+    <div class="m-highlight">
+        <h2 class="m-highlight__heading">{{ value.page.heading }}</h2>
+        <p class="m-highlight__copy">{{ value.description }}</p>
+        <a href="{% slugurl_trans page.slug %}" class="button button--small">{% trans 'Read more' %}</a>
+    </div>
+ </div>

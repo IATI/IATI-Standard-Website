@@ -1,0 +1,75 @@
+{% load wagtailcore_tags %}
+
+<div class="navigation-megamenu">
+    {% include_block value.highlight %}
+
+    {% comment %}
+
+
+    {% if item.columns %}
+        <div class="{{ item.columns.class }}">
+            {% for col in item.columns.columns %}
+                <div class="{{ col.class }}">
+                    {% for sub_col in col.columns %}
+                        <div class="{{ col.column_class }} {{ sub_col.class }}">
+                            {% if sub_col.case_study %}
+                                <article class="case-study">
+                                    <div class="case-study__media background-cover" style="background-image: url({{ global.assets_root }}/img/{{ sub_col.image }}"></div>
+                                    <div class="case-study__panel">
+                                        <h2 class="case-study__heading"><a href=""><span>{{ sub_col.heading }}</span></a></h2>
+                                        <p class="case-study__excerpt">{{ sub_col.excerpt }}</p>
+                                        <a href="#" class="button button--small">Read more</a>
+                                        <a href="#" class="case-study__text-link">View all case studies</a>
+                                    </div>
+                                </article>
+                            {% elif sub_col.highlight %}
+                                <div class="m-highlight {% if not sub_col.not_alt %}m-highlight--alt{% endif %}">
+                                    <h3 class="m-highlight__heading">
+                                        {% if sub_col.no_link_heading %}
+                                            {{ sub_col.heading }}
+                                        {% else %}
+                                            <a href="http://iatistandard.org">{{ sub_col.heading }}</a>
+                                        {% endif %}
+                                    </h3>
+                                    {% if sub_col.content %}
+                                        <p class="navigation-megamenu__block__copy">{{ sub_col.content }}</p>
+                                    {% endif %}
+                                    {% if sub_col.label %}
+                                        <a href="http://iatistandard.org" class="{{ sub_col.label_class|d('text-link') }}">{{ sub_col.label }}</a>
+                                    {% endif %}
+                                    {% if sub_col.list %}
+                                        <ul class="navigation-megamenu__list">
+                                            {% for label in sub_col.list %}
+                                                <li><a href="http://iatistandard.org">{{ label }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% endif %}
+                                </div>
+                            {% else %}
+                                <ul class="navigation-megamenu__list">
+                                    {% set loopindex = loop.index0 %}
+                                    {% for label in sub_col %}
+                                        <li class="{% if loop.first %}{{ col.column_title_class[loopindex] }}{% endif %}">
+                                            {% if label.subcolumn %}
+                                                {{ label.heading }}
+                                                <ul>
+                                                    {% for sub_label in label.column %}
+                                                        <li><a href="http://iatistandard.org">{{ sub_label }}</a></li>
+                                                    {% endfor %}
+                                                </ul>
+                                            {% else %}
+                                                <a href="http://iatistandard.org">{{ label }}</a>
+                                            {% endif %}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% endcomment %}
+</div>
