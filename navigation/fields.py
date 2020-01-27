@@ -1,4 +1,3 @@
-from django.utils.functional import cached_property
 from wagtail.core.fields import StreamField
 # from wagtail.images.blocks import ImageChooserBlock
 from wagtail.core.blocks import (
@@ -11,7 +10,7 @@ from wagtail.core.blocks import (
     TextBlock,
     # URLBlock,
 )
-from navigation.utils import get_localised_field_value
+from navigation.values import TransStructValue
 
 
 class Highlight(StructBlock):
@@ -21,6 +20,7 @@ class Highlight(StructBlock):
         label = 'Highlight'
         form_template = 'navigation/block_forms/custom_struct.html'
         template = 'navigation/blocks/highlight.html'
+        value_class = TransStructValue
 
     page = PageChooserBlock(
         help_text='Highlighted page'
@@ -34,10 +34,6 @@ class Highlight(StructBlock):
         label='Description [fr]',
         required=False,
     )
-
-    @cached_property
-    def description(self):
-        return get_localised_field_value(self, 'description')
 
 
 class PageList(StructBlock):
