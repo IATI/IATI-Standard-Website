@@ -1,0 +1,15 @@
+{% load wagtailcore_tags wagtail_modeltranslation %}
+
+<li class="navigation-primary__item
+    {% if item.active %}
+        navigation-primary__item--active
+    {% endif %}
+    {% if item.meganav %}
+        navigation-primary__item--has-children
+    {% endif %}
+">
+    <a class="navigation-primary__item--link" href="{% slugurl_trans item.default_slug %}">{{ item.label }}</a>
+    {% if item.meganav %}
+        {% include_block item.meganav|first %}
+    {% endif %}
+</li>
