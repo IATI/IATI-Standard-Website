@@ -22,3 +22,14 @@ def get_localised_field_value(instance, field_name):
     except Exception as e:
         print(e)
         return ''
+
+
+def get_default_lang_slug(instance):
+    try:
+        default_language = settings.LANGUAGES[0][0]
+        slug_name = 'slug_%s' % default_language
+        return getattr(instance, slug_name, '')
+
+    except Exception as e:
+        print(e)
+        return ''
