@@ -11,7 +11,7 @@ def get_current_page(request):
         # this try is here to protect against 500 errors when there is a 404 error
         # taken from https://github.com/torchbox/wagtail/blob/master/wagtail/wagtailcore/views.py#L17
         path_components = [component for component in request.path.split('/') if component]
-        current_page, args, kwargs = request.site.root_page.specific.route(request, path_components)
+        current_page, args, kwargs = request.site.root_page.specific.route(request, path_components[1:])
         return current_page
     except Exception:
         return None

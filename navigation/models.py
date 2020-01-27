@@ -8,7 +8,7 @@ from wagtail.core.models import Orderable
 from common.utils import ForeignKeyField
 from dashboard.edit_handlers import MultiFieldPanel, HelpPanel
 from navigation.fields import navigation
-from navigation.utils import get_localised_field_value
+from navigation.utils import get_localised_field_value, get_default_lang_slug
 
 
 class AbstractLink(models.Model):
@@ -55,6 +55,10 @@ class PrimaryMenuLinks(Orderable, AbstractLink):
     @cached_property
     def label(self):
         return get_localised_field_value(self, 'label')
+
+    @cached_property
+    def default_slug(self):
+        return get_default_lang_slug(self.page)
 
 
 class UtilityMenuLinks(Orderable, AbstractLink):
