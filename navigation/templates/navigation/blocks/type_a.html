@@ -1,75 +1,41 @@
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtail_modeltranslation %}
 
 <div class="navigation-megamenu">
     {% include_block value.highlight %}
 
-    {% comment %}
-
-
-    {% if item.columns %}
-        <div class="{{ item.columns.class }}">
-            {% for col in item.columns.columns %}
-                <div class="{{ col.class }}">
-                    {% for sub_col in col.columns %}
-                        <div class="{{ col.column_class }} {{ sub_col.class }}">
-                            {% if sub_col.case_study %}
-                                <article class="case-study">
-                                    <div class="case-study__media background-cover" style="background-image: url({{ global.assets_root }}/img/{{ sub_col.image }}"></div>
-                                    <div class="case-study__panel">
-                                        <h2 class="case-study__heading"><a href=""><span>{{ sub_col.heading }}</span></a></h2>
-                                        <p class="case-study__excerpt">{{ sub_col.excerpt }}</p>
-                                        <a href="#" class="button button--small">Read more</a>
-                                        <a href="#" class="case-study__text-link">View all case studies</a>
-                                    </div>
-                                </article>
-                            {% elif sub_col.highlight %}
-                                <div class="m-highlight {% if not sub_col.not_alt %}m-highlight--alt{% endif %}">
+    {% if value.num_columns %}
+        <div class="navigation-megamenu__col navigation-megamenu__col--border">
+            {% for col in value.columns %}
+                <div class="{{ 'l-'|add:value.num_columns|add:'up' }}">
+                    {% for item in col %}
+                        {% if value.title or value.description %}
+                             <div class="m-highlight m-highlight--alt">
+                                {% if value.title %}
                                     <h3 class="m-highlight__heading">
-                                        {% if sub_col.no_link_heading %}
-                                            {{ sub_col.heading }}
-                                        {% else %}
-                                            <a href="http://iatistandard.org">{{ sub_col.heading }}</a>
-                                        {% endif %}
+                                        {{ value.title }}
                                     </h3>
-                                    {% if sub_col.content %}
-                                        <p class="navigation-megamenu__block__copy">{{ sub_col.content }}</p>
-                                    {% endif %}
-                                    {% if sub_col.label %}
-                                        <a href="http://iatistandard.org" class="{{ sub_col.label_class|d('text-link') }}">{{ sub_col.label }}</a>
-                                    {% endif %}
-                                    {% if sub_col.list %}
-                                        <ul class="navigation-megamenu__list">
-                                            {% for label in sub_col.list %}
-                                                <li><a href="http://iatistandard.org">{{ label }}</a></li>
-                                            {% endfor %}
-                                        </ul>
-                                    {% endif %}
-                                </div>
-                            {% else %}
+                                {% endif %}
+                                {% if value.description %}
+                                    <p class="navigation-megamenu__block__copy">{{ value.description }}</p>
+                                {% endif %}
                                 <ul class="navigation-megamenu__list">
-                                    {% set loopindex = loop.index0 %}
-                                    {% for label in sub_col %}
-                                        <li class="{% if loop.first %}{{ col.column_title_class[loopindex] }}{% endif %}">
-                                            {% if label.subcolumn %}
-                                                {{ label.heading }}
-                                                <ul>
-                                                    {% for sub_label in label.column %}
-                                                        <li><a href="http://iatistandard.org">{{ sub_label }}</a></li>
-                                                    {% endfor %}
-                                                </ul>
-                                            {% else %}
-                                                <a href="http://iatistandard.org">{{ label }}</a>
-                                            {% endif %}
-                                        </li>
+                                    {% for page in value.columns.page_list  %}
+                                         <a href="{% slugurl_trans value.default_slug %}">{{ page.heading }}</a>
                                     {% endfor %}
                                 </ul>
-                            {% endif %}
-                        </div>
+                            </div>
+                        {% else %}
+                            <ul class="navigation-megamenu__list">
+                                {% for page in value.columns.page_list %}
+                                    <li class="{% if forloop.first and value.use_first_page_as_title %}navigation-megamenu__list-title{% endif %}">
+                                        <a href="{% slugurl_trans value.default_slug %}">{{ page.heading }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
                     {% endfor %}
                 </div>
             {% endfor %}
         </div>
     {% endif %}
-
-    {% endcomment %}
 </div>

@@ -10,7 +10,7 @@ from wagtail.core.blocks import (
     TextBlock,
     # URLBlock,
 )
-from navigation.values import TransStructValue
+from navigation.values import ModuleStructValue, TransStructValue
 
 
 class Highlight(StructBlock):
@@ -47,6 +47,7 @@ class PageList(StructBlock):
         icon = 'list-ul'
         label = 'Page list'
         form_template = 'navigation/block_forms/custom_struct.html'
+        value_class = TransStructValue
 
     use_first_page_as_title = BooleanBlock(
         help_text='Optional: if checked, the first page in the list will be displayed as a title',
@@ -89,6 +90,7 @@ class TypeA(StructBlock):
         form_template = 'navigation/block_forms/custom_struct_container.html'
         form_classname = 'custom-struct-container navigation__meganav'
         template = 'navigation/blocks/type_a.html'
+        value_class = ModuleStructValue
 
     highlight = Highlight(
         help_text='''
@@ -96,7 +98,7 @@ class TypeA(StructBlock):
                   Internal page link and short description.
                   '''
     )
-    meganav = ListBlock(
+    columns = ListBlock(
         PageList(label='Page list')
     )
 
