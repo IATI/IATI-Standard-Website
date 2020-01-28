@@ -12,6 +12,7 @@ django-widget-tweaks==1.4.8
 Django==2.2.12
 elasticsearch==6.8.1
 gunicorn==20.0.4
+PyGithub==1.43.8
 psycopg2-binary==2.8.5
 requests==2.23.0
 sentry-sdk==0.14.3

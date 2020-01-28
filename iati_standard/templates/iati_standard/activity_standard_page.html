@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags iati_tags i18n %}
+
+{% block body_class %}body body--standard{% endblock %}
+{% block body_id %}body-standard{% endblock %}
+
+{% block content %}
+  <div class="hero hero--minor">
+    {% include "home/includes/hero_heading.html" %}
+  </div>
+
+  {% if self.version != "version-2.03" %}
+  <div class="hero-notice">
+      <div class="row">
+          <p class="hero-notice__copy"><i role="presentation" aria-hidden="true" class="ico ico--18 ico-warning-warning"></i>This version is DEPRECATED, <a href="#">v2.03</a> is the latest version</p>
+      </div>
+  </div>
+  {% endif %}
+
+  <div class="row">
+  	<div class="l-sidebar l-sidebar--reverse l-sidebar--wide">
+      <aside class="l-sidebar__aside">
+
+      	<div class="aside-m">
+          <div class="aside-m__header fill-sunrise">
+              <h3 class="aside-m__heading">Reference</h3>
+          </div>
+          <button class="navigation-secondary-toggle" type="button" id="navigation-secondary-toggle">pages in this section <i role="presentation" aria-hidden="true" class="ico ico--16 ico-plus-sunrise"></i></button>
+          <nav class="navigation-secondary navigation-secondary--reference" id="navigation-secondary" data-nested-list="">
+            <form>
+              <ul class="navigation-secondary__list">
+                {% for item in self.get_children %}
+                  {% if item.live %}
+                    <li class="navigation-secondary__child__item--0 navigation-secondary__item  " data-nested-nav-item="">
+                      <a href="{% pageurl item %}">{{ item.specific.name }}</a>
+                    </li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </form>
+          </nav>
+        </div>
+  		</aside>
+
+  		<div class="l-sidebar__body">
+        <section>
+          <div class="is-typeset">
+            <h1>{{ self.name }}</h1>
+            <p>{{ self.data }}</p>
+          </div>
+        </section>
+  		</div>
+  	</div>
+  </div>
+{% endblock %}
