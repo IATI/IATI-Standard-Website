@@ -3,7 +3,6 @@ from tools.factories import ToolsListingPageFactory, ToolPageFactory
 from home.models import HomePage
 
 
-@pytest.fixture
 def listing():
     """Fixture to generate tools pages."""
     home_page = HomePage.objects.first()
@@ -16,6 +15,11 @@ def listing():
     )
     # listing.featured_tool(True, tools=tools[:5])
     return listing
+
+
+@pytest.fixture(name="listing")
+def listing_fixture():
+    return listing()
 
 
 @pytest.mark.django_db

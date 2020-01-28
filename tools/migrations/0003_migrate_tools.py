@@ -64,6 +64,7 @@ class Migration(migrations.Migration):
 
         # test for the existance of an original tools index page
         # an empty database won't have this, but it needs wrapping in an atomic transaction so we can back out successfully
+        # https://docs.djangoproject.com/en/2.2/topics/db/transactions/#controlling-transactions-explicitly
         tools_index_page_count = 0
         try:
             with transaction.atomic():
