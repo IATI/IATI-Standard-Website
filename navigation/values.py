@@ -6,6 +6,12 @@ class ModuleStructValue(StructValue):
     def num_columns(self):
         return len(self.get('columns'))
 
+    def column_container_class(self):
+        return 'l-%sup' % str(self.num_columns())
+
+    def column_class(self):
+        return 'l-%sup__col' % str(self.num_columns())
+
 
 class TransStructValue(StructValue):
     def description(self):
@@ -24,3 +30,9 @@ class TransStructValue(StructValue):
 
     def default_slug(self):
         return get_default_lang_slug(self.get('page'))
+
+    def page_heading(self):
+        try:
+            return self.get('page').specific.heading
+        except Exception:
+            return ''

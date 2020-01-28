@@ -5,37 +5,37 @@
 
     {% if value.num_columns %}
         <div class="navigation-megamenu__col navigation-megamenu__col--border">
-            {% for col in value.columns %}
-                <div class="{{ 'l-'|add:value.num_columns|add:'up' }}">
-                    {% for item in col %}
-                        {% if value.title or value.description %}
+            <div class="{{ value.column_container_class }}">
+                {% for col in value.columns %}
+                    <div class="{{ value.column_class }}">
+                        {% if col.title or col.description %}
                              <div class="m-highlight m-highlight--alt">
-                                {% if value.title %}
+                                {% if col.title %}
                                     <h3 class="m-highlight__heading">
-                                        {{ value.title }}
+                                        {{ col.title }}
                                     </h3>
                                 {% endif %}
-                                {% if value.description %}
-                                    <p class="navigation-megamenu__block__copy">{{ value.description }}</p>
+                                {% if col.description %}
+                                    <p class="navigation-megamenu__block__copy">{{ col.description }}</p>
                                 {% endif %}
                                 <ul class="navigation-megamenu__list">
-                                    {% for page in value.columns.page_list  %}
-                                         <a href="{% slugurl_trans value.default_slug %}">{{ page.heading }}</a>
+                                    {% for page in col.page_list  %}
+                                         <a href="{% slugurl_trans page.default_slug %}">{{ page.page_heading }}</a>
                                     {% endfor %}
                                 </ul>
                             </div>
                         {% else %}
                             <ul class="navigation-megamenu__list">
-                                {% for page in value.columns.page_list %}
-                                    <li class="{% if forloop.first and value.use_first_page_as_title %}navigation-megamenu__list-title{% endif %}">
-                                        <a href="{% slugurl_trans value.default_slug %}">{{ page.heading }}</a>
+                                {% for page in col.page_list %}
+                                    <li class="{% if forloop.first and col.use_first_page_as_title %}navigation-megamenu__list-title{% endif %}">
+                                        <a href="{% slugurl_trans page.default_slug %}">{{ page.page_heading }}</a>
                                     </li>
                                 {% endfor %}
                             </ul>
                         {% endif %}
-                    {% endfor %}
-                </div>
-            {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     {% endif %}
 </div>
