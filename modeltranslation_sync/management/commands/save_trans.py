@@ -53,7 +53,8 @@ class Command(BaseCommand):
             existing_ids = []
             existing_trans = {}
             if exists(po_filepath):
-                po_file = open(po_filepath, "r")
+                print(po_filepath)
+                po_file = open(po_filepath, "r", encoding="utf-8")
                 catalog = read_po(po_file)
                 po_file.close()
                 for message in catalog:
@@ -71,8 +72,12 @@ class Command(BaseCommand):
                     en_field = "%s_%s" % (field, "en")
                     for item in model.objects.all():
                         msgid = "%s.%s.%s" % (item._meta, item.pk, field)
-                        msgstr = "%s" % getattr(item, tr_field)
+                        msgval = getattr(item, tr_field)
                         enval = getattr(item, en_field)
+                        if isinstance(msgval, StreamValue):
+                            msgstr = json.dumps(msgval.stream_data)
+                        else:
+                            msgstr = "%s" % msgval
                         if enval is not None and field not in ["slug", "url_path"]:
                             if isinstance(enval, StreamValue):
                                 enstr = json.dumps(enval.stream_data)
