@@ -37,10 +37,11 @@ class IATIStandardPage(DefaultPageHeaderImageMixin, AbstractContentPage):
 
 @register_snippet
 class ReferenceData(models.Model):
-    """A model to act as a temporary holding place for SSOT data"""
+    """A model to act as a temporary holding place for SSOT data."""
 
     class Meta:
-        """Metadata"""
+        """Metadata class."""
+
         ordering = ['json_path']
         verbose_name_plural = 'Reference data'
         unique_together = ['json_path', 'language', 'tag']
@@ -80,26 +81,26 @@ class ReferenceData(models.Model):
 
     @cached_property
     def name(self):
-        """Return the last item in the json_path as a name"""
+        """Return the last item in the json_path as a name."""
         return self.json_path.split("/")[-1]
 
     @cached_property
     def reference_type(self):
-        """Return the second item in the json_path as a type"""
+        """Return the second item in the json_path as a type."""
         return self.json_path.split("/")[1]
 
     def __str__(self):
-        """Print full path as name"""
+        """Print full path as name."""
         return self.json_path
 
     def save(self, *args, **kwargs):
-        """Overwrite save to automatically update parent_path"""
+        """Overwrite save to automatically update parent_path."""
         self.parent_path = "/".join(self.json_path.split("/")[:-1])
         super(ReferenceData, self).save(*args, **kwargs)
 
 
 class ActivityStandardPage(DefaultPageHeaderImageMixin, AbstractContentPage):
-    """A model for reference to the Activity Standard"""
+    """A model for reference to the Activity Standard."""
 
     parent_page_types = ['iati_standard.IATIStandardPage', 'iati_standard.ActivityStandardPage']
     sub_page_types = ['iati_standard.ActivityStandardPage']
@@ -123,20 +124,20 @@ class ActivityStandardPage(DefaultPageHeaderImageMixin, AbstractContentPage):
 
     @cached_property
     def parent_path(self):
-        """Return json_path of parent object"""
+        """Return json_path of parent object."""
         return "/".join(self.json_path.split("/")[:-1])
 
     @cached_property
     def name(self):
-        """Return the last item in the json_path as a name"""
+        """Return the last item in the json_path as a name."""
         return self.json_path.split("/")[-1]
 
     @cached_property
     def version(self):
-        """Return the first item in the json_path as a version"""
+        """Return the first item in the json_path as a version."""
         return self.json_path.split("/")[0]
 
     @cached_property
     def reference_type(self):
-        """Return the second item in the json_path as a type"""
+        """Return the second item in the json_path as a type."""
         return self.json_path.split("/")[1]

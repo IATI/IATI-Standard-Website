@@ -7,7 +7,7 @@ from iati_standard.data import update_or_create_tags
 
 @shared_task(bind=True)
 def start_update_task(self, repo, tag=None):
-    """Start the updating task"""
+    """Start the updating task."""
     try:
         return update_or_create_tags(self, repo, tag)
 

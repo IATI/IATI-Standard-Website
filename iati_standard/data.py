@@ -1,4 +1,4 @@
-"""Module for handling IATI standard reference data"""
+"""Module for handling IATI standard reference data."""
 import requests
 import io
 import os
@@ -21,10 +21,7 @@ def download_zip(url):
 
 
 def extract_zip(zipfile):
-    """
-    Extract zip contents in memory
-    yields (filename, file-like object) pairs
-    """
+    """Extract zip in memory and yields (filename, file-like object) pairs."""
     with zipfile as thezip:
         for zipinfo in thezip.infolist():
             with thezip.open(zipinfo) as thefile:
@@ -56,7 +53,6 @@ def update_or_create_tags(observer, repo, tag=None):
 
 def populate_data(observer, data, tag):
     """Use ZIP data to create reference data objects."""
-
     observer.update_state(
         state='PROGRESS',
         meta='Data retrieved, updating database'
@@ -88,7 +84,6 @@ def populate_data(observer, data, tag):
 
 def create_or_update_from_object(parent_page, page_model, object):
     """Create ActivityStandardPage from ReferenceData object."""
-
     try:
         child_page = page_model.objects.get(
             json_path=object.json_path
@@ -112,7 +107,6 @@ def create_or_update_from_object(parent_page, page_model, object):
 
 def recursive_create(ancestor_list, object_pool, parent_page, parent_path):
     """Recursively create ActivityStandardPage objects."""
-
     objects = object_pool.filter(parent_path=parent_path)
     for object in objects:
         if object.reference_type in ancestor_list:
@@ -127,7 +121,6 @@ def recursive_create(ancestor_list, object_pool, parent_page, parent_path):
 
 def populate_index(observer, tag, previous_tag=None):
     """Use ReferenceData objects to populate page index."""
-
     observer.update_state(
         state='PROGRESS',
         meta='Populating index'
