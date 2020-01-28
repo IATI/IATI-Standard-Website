@@ -23,9 +23,42 @@ class TranslatedPage(StructBlock):
     page = PageChooserBlock()
 
 
+class NestedPageGroup(StructBlock):
+
+    class Meta:
+        icon = 'list-ul'
+        label = 'Page group'
+        value_class = TransStructValue
+
+    page = PageChooserBlock(
+        help_text='Optional: top level page for the group',
+        required=False,
+        label='Top level page',
+    )
+    title_en = CharBlock(
+        help_text='Optional: plain text title for the page group',
+        label='Title [en]',
+        required=False,
+    )
+    title_fr = CharBlock(
+        help_text='Optional: plain text title for the page group',
+        label='Title [fr]',
+        required=False,
+    )
+    page_group = ListBlock(
+        TranslatedPage(),
+        required=False,
+        help_text='Optional: group of sub pages, displayed as an indented list',
+    )
+
+
 class Highlight(StructBlock):
 
     class Meta:
+        help_text = '''
+                    <strong>Highlight module.</strong><br>
+                    Internal page link and short description.
+                    '''
         icon = 'pick'
         label = 'Highlight'
         form_template = 'navigation/block_forms/custom_struct.html'
@@ -88,25 +121,59 @@ class PageList(StructBlock):
     )
 
 
-class TypeA(StructBlock):
+class NestedPageList(StructBlock):
+
+    class Meta:
+        help_text = '''
+                    <strong>List of internal page links, with optional page link sub-groups.</strong><br>
+                    Optional: plain text title for sub-groups<br>
+                    '''
+        icon = 'list-ul'
+        label = 'Nested page list'
+        form_template = 'navigation/block_forms/custom_struct.html'
+        value_class = TransStructValue
+
+    groups = ListBlock(
+        NestedPageGroup()
+    )
+
+
+class AbstractModuleType(StructBlock):
+
+    class Meta:
+        abstract = True
+        icon = 'form'
+        form_template = 'navigation/block_forms/custom_struct_container.html'
+        form_classname = 'custom-struct-container navigation__meganav'
+        value_class = ModuleStructValue
+
+    highlight = Highlight()
+
+
+class TypeA(AbstractModuleType):
 
     class Meta:
         help_text = 'Primary navigation module type A.'
-        icon = 'form'
         label = 'Type A'
-        form_template = 'navigation/block_forms/custom_struct_container.html'
-        form_classname = 'custom-struct-container navigation__meganav'
         template = 'navigation/blocks/type_a.html'
-        value_class = ModuleStructValue
 
-    highlight = Highlight(
-        help_text='''
-                  <strong>Highlight module.</strong><br>
-                  Internal page link and short description.
-                  '''
-    )
     columns = ListBlock(
-        PageList(label='Page list')
+        PageList()
+    )
+
+
+class TypeB(AbstractModuleType):
+
+    class Meta:
+        help_text = 'Primary navigation module type B.'
+        label = 'Type B'
+        template = 'navigation/blocks/type_b.html'
+
+    columns = StreamBlock(
+        [
+            ('page_list', PageList()),
+            ('nested_page_list', NestedPageList()),
+        ]
     )
 
 
@@ -116,6 +183,7 @@ def navigation(blank=False):
         StreamBlock(
             [
                 ('type_a', TypeA()),
+                ('type_b', TypeB()),
             ],
             max_num=1,
             required=required,
