@@ -13,6 +13,16 @@ from wagtail.core.blocks import (
 from navigation.values import ModuleStructValue, TransStructValue
 
 
+class TranslatedPage(StructBlock):
+
+    class Meta:
+        icon = 'link'
+        label = 'Page'
+        value_class = TransStructValue
+
+    page = PageChooserBlock()
+
+
 class Highlight(StructBlock):
 
     class Meta:
@@ -74,10 +84,7 @@ class PageList(StructBlock):
         required=False,
     )
     page_list = ListBlock(
-        PageChooserBlock(
-            label='Page',
-            icon='link',
-        )
+        TranslatedPage()
     )
 
 
@@ -104,12 +111,14 @@ class TypeA(StructBlock):
 
 
 def navigation(blank=False):
+    required = not blank
     return StreamField(
         StreamBlock(
             [
                 ('type_a', TypeA()),
             ],
             max_num=1,
+            required=required,
         ),
         blank=blank
     )
