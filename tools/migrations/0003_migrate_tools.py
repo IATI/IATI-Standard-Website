@@ -2,7 +2,7 @@
 
 import json
 from django.core.serializers.json import DjangoJSONEncoder
-from django.db import migrations
+from django.db import migrations, transaction
 from importlib import import_module
 
 FIELDS = [
@@ -62,9 +62,19 @@ class Migration(migrations.Migration):
         except Exception:
             return
 
+        # test for the existance of an original tools index page
+        # an empty database won't have this, but it needs wrapping in an atomic transaction so we can back out successfully
+        tools_index_page_count = 0
         try:
-            parent = HomePage.objects.all().first()
+            with transaction.atomic():
+                tools_index_page_count = ToolsIndexPage.objects.all().count()
+        except Exception:
+            return
 
+        # only proceed if we have a valid old tools page to migrate from
+        if tools_index_page_count:
+
+            parent = HomePage.objects.all().first()
             page = ToolsIndexPage.objects.all().first()
             new_page = ToolsListingPage()
 
@@ -95,9 +105,6 @@ class Migration(migrations.Migration):
                 parent.add_child(instance=new_page)
                 new_page.save_revision()
                 new_page.unpublish()
-
-        except Exception:
-            pass
 
     dependencies = [
         ('tools', '0002_auto_20191218_1535'),
