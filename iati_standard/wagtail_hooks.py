@@ -1,3 +1,4 @@
+"""Module to update wagtail hooks with bespoke JavaScript and urls"""
 from django.conf.urls import include, url
 from django.utils.html import format_html_join
 from django.templatetags.static import static

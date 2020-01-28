@@ -11,9 +11,7 @@ from iati_standard.edit_handlers import GithubAPI
 
 
 def download_zip(url):
-    """
-    Download a ZIP file
-    """
+    """Download a ZIP file."""
     headers = {
         'Authorization': 'token %s' % settings.GITHUB_TOKEN,
         'Accept': 'application/octet-stream',
@@ -35,7 +33,7 @@ def extract_zip(zipfile):
 
 
 def update_or_create_tags(observer, repo, tag=None):
-
+    """Create or update tags."""
     observer.update_state(
         state='PROGRESS',
         meta='Retrieving data and media from Github'
@@ -57,6 +55,7 @@ def update_or_create_tags(observer, repo, tag=None):
 
 
 def populate_data(observer, data, tag):
+    """Use ZIP data to create reference data objects."""
 
     observer.update_state(
         state='PROGRESS',
@@ -65,7 +64,6 @@ def populate_data(observer, data, tag):
 
     if data:
         for item in extract_zip(download_zip(data.url)):
-            # Path e.g. ['outputs', 'version-2.03', 'en', 'activity-standard', 'iati-activities', 'iati-activity']
             if os.path.splitext(item.name)[1] == ".json":
                 try:
                     raw_json_path = os.path.splitext(item.name)[0]
@@ -89,6 +87,8 @@ def populate_data(observer, data, tag):
 
 
 def create_or_update_from_object(parent_page, page_model, object):
+    """Create ActivityStandardPage from ReferenceData object."""
+
     try:
         child_page = page_model.objects.get(
             json_path=object.json_path
@@ -111,6 +111,8 @@ def create_or_update_from_object(parent_page, page_model, object):
 
 
 def recursive_create(ancestor_list, object_pool, parent_page, parent_path):
+    """Recursively create ActivityStandardPage objects."""
+
     objects = object_pool.filter(parent_path=parent_path)
     for object in objects:
         if object.reference_type in ancestor_list:
@@ -124,6 +126,7 @@ def recursive_create(ancestor_list, object_pool, parent_page, parent_path):
 
 
 def populate_index(observer, tag, previous_tag=None):
+    """Use ReferenceData objects to populate page index."""
 
     observer.update_state(
         state='PROGRESS',
@@ -132,7 +135,7 @@ def populate_index(observer, tag, previous_tag=None):
 
     versions = [vers[0] for vers in ReferenceData.objects.filter(tag=tag).order_by().values_list('version').distinct()]
     ActivityStandardPage.objects.all().update(has_been_recursed=False)
-    
+
     for version in versions:
         standard_page = IATIStandardPage.objects.live().first()
         objects = ReferenceData.objects.filter(tag=tag, json_path="{}/activity-standard".format(version))

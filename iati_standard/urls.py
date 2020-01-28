@@ -1,3 +1,4 @@
+"""Module for bespoke admin area URLs needed to trigger update"""
 from django.conf.urls import url
 from iati_standard.views import utils
 
