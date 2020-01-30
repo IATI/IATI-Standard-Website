@@ -30,8 +30,11 @@ class AbstractLink(models.Model):
     )
     panels = [
         HelpPanel(
-            heading='Primary menu page link',
-            content='Top level page for the primary navigation item and associated link label.',
+            content='Primary menu item',
+            wrapper_class='help-block help-text-section-header',
+        ),
+        HelpPanel(
+            content='<strong>Primary menu link</strong><br>Top level page for the primary menu item and associated link label.',
         ),
         PageChooserPanel('page'),
         FieldRowPanel(children=(
@@ -47,7 +50,7 @@ class PrimaryMenuLinks(Orderable, AbstractLink):
 
     panels = AbstractLink.panels + [
         HelpPanel(
-            content='Optional: meganav module for the the primary navigation item. Select one of the available module types',
+            content='<strong>Meganav</strong><br>Optional: meganav module for the the primary menu item.<br>Select one of the available module types.',
         ),
         StreamFieldPanel('meganav'),
     ]
