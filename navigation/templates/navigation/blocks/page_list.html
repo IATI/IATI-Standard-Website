@@ -13,7 +13,7 @@
             {% endif %}
             <ul class="navigation-megamenu__list">
                 {% for page in col.page_list  %}
-                     <a href="{% slugurl_trans page.default_slug %}">{{ page.page_heading }}</a>
+                     <a href="{{ page.page.url }}">{{ page.page.specific.heading }}</a>
                 {% endfor %}
             </ul>
         </div>
@@ -21,7 +21,7 @@
         <ul class="navigation-megamenu__list">
             {% for page in col.page_list %}
                 <li class="{% if forloop.first and col.use_first_page_as_title %}navigation-megamenu__list-title{% endif %}">
-                    <a href="{% slugurl_trans page.default_slug %}">{{ page.page_heading }}</a>
+                    <a href="{{ page.page.url }}">{{ page.page.specific.heading }}</a>
                 </li>
             {% endfor %}
         </ul>

@@ -66,10 +66,6 @@ class PrimaryMenuLinks(Orderable, AbstractLink):
     def label(self):
         return get_localised_field_value(self, 'label')
 
-    @cached_property
-    def default_slug(self):
-        return get_default_lang_slug(self.page)
-
 
 class UtilityMenuLinks(Orderable, AbstractLink):
     item = ParentalKey('UtilityMenu', related_name='utility_menu_links')

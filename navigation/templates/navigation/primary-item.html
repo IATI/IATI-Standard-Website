@@ -8,7 +8,7 @@
         navigation-primary__item--has-children
     {% endif %}
 ">
-    <a class="navigation-primary__item--link" href="{% slugurl_trans item.default_slug %}">{{ item.label }}</a>
+    <a class="navigation-primary__item--link" href="{{ item.page.url }}">{{ item.label }}</a>
     {% if item.meganav %}
         {% include_block item.meganav|first %}
     {% endif %}

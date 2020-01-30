@@ -27,12 +27,3 @@ class TransStructValue(StructValue):
             'title',
             use_get=True,
         )
-
-    def default_slug(self):
-        return get_default_lang_slug(self.get('page'))
-
-    def page_heading(self):
-        try:
-            return self.get('page').specific.heading
-        except Exception:
-            return ''
