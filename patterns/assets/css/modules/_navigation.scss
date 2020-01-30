@@ -561,7 +561,7 @@
 	float: left;
 	margin-right: 3%;
 	&--border {
-		.l-3up__col, .l-4up__col {
+		.l-1up__col, .l-2up__col, .l-3up__col, .l-4up__col {
 			border-left: 3px solid $iati-ocean;
 			padding-left: 1em;
 		}
