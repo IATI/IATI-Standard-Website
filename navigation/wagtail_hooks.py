@@ -31,6 +31,12 @@ def editor_css():
                 font-size: 1.2em;
             }}
 
+            .help-block .help-list {{
+                margin: 0.5em 0;
+                padding: 0 0 0 20px;
+                list-style-type: disc;
+            }}
+
         </style>
         """
     )

@@ -50,7 +50,14 @@ class PrimaryMenuLinks(Orderable, AbstractLink):
 
     panels = AbstractLink.panels + [
         HelpPanel(
-            content='<strong>Meganav</strong><br>Optional: meganav module for the the primary menu item.<br>Select one of the available module types.',
+            content='''
+                        <strong>Meganav</strong><br>
+                        Optional: meganav module for the the primary menu item.<br><br>
+                        Select one of the available module types:<br>
+                        <ul class="help-list">
+                            <li><strong>Type a</strong>: page lists, nested page lists</li>
+                        </ul>
+                    ''',
         ),
         StreamFieldPanel('meganav'),
     ]
