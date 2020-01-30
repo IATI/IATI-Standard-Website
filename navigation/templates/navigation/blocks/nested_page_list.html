@@ -2,23 +2,25 @@
 
 <div class="{{ column_class }}">
     <ul class="navigation-megamenu__list">
-        {% for group in col.value.groups %}
-            <li>
-                {% if group.page %}
-                    <a href="{% slugurl_trans group.default_slug %}">{{ group.page_heading }}</a>
-                {% elif group.title %}
-                    {{ group.title }}
-                {% endif %}
-                {% if group.page_group %}
-                    <li>
-                        <ul>
-                            {% for page in group.page_group %}
-                                <li><a href="{% slugurl_trans page.default_slug %">{{ page.page_heading }}</a></li>
-                            {% endfor %}
-                        </ul>
-                    </li>
-                {% endif %}
-            </li>
+        {% for group in col.groups %}
+            {% if group.page %}
+                <li>
+                    <a href="{% slugurl_trans group.default_slug %}">{{ group.page_heading }}</a></li>
+            {% endif %}
+            {% if group.page_group %}
+                <li>
+                    {% if group.title and not group.page %}
+                        {{ group.title }}
+                    {% endif %}
+                    <ul>
+                        {% for page in group.page_group %}
+                            <li><a href="{% slugurl_trans page.default_slug %}">{{ page.page_heading }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endif %}
         {% endfor %}
     </ul>
 </div>
+
+

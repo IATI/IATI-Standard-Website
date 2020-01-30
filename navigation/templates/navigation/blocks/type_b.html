@@ -7,7 +7,7 @@
         <div class="navigation-megamenu__col navigation-megamenu__col--border">
             <div class="{{ value.column_container_class }}">
                 {% for column in value.columns %}
-                    {% include_block column with col=column column_class=value.column_class %}
+                    {% include_block column with col=column.value column_class=value.column_class %}
                 {% endfor %}
             </div>
         </div>
