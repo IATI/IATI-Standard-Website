@@ -1,0 +1,30 @@
+{% load wagtail_modeltranslation %}
+
+<div class="{{ column_class }}">
+    <p>This is a page list</p>
+    {% if col.title or col.description %}
+         <div class="m-highlight m-highlight--alt">
+            {% if col.title %}
+                <h3 class="m-highlight__heading">
+                    {{ col.title }}
+                </h3>
+            {% endif %}
+            {% if col.description %}
+                <p class="navigation-megamenu__block__copy">{{ col.description }}</p>
+            {% endif %}
+            <ul class="navigation-megamenu__list">
+                {% for page in col.page_list  %}
+                     <a href="{% slugurl_trans page.default_slug %}">{{ page.page_heading }}</a>
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        <ul class="navigation-megamenu__list">
+            {% for page in col.page_list %}
+                <li class="{% if forloop.first and col.use_first_page_as_title %}navigation-megamenu__list-title{% endif %}">
+                    <a href="{% slugurl_trans page.default_slug %}">{{ page.page_heading }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>

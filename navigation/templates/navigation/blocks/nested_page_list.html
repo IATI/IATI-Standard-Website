@@ -1,0 +1,24 @@
+{% load wagtail_modeltranslation %}
+
+<div class="{{ column_class }}">
+    <ul class="navigation-megamenu__list">
+        {% for group in col.value.groups %}
+            <li>
+                {% if group.page %}
+                    <a href="{% slugurl_trans group.default_slug %}">{{ group.page_heading }}</a>
+                {% elif group.title %}
+                    {{ group.title }}
+                {% endif %}
+                {% if group.page_group %}
+                    <li>
+                        <ul>
+                            {% for page in group.page_group %}
+                                <li><a href="{% slugurl_trans page.default_slug %">{{ page.page_heading }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</div>

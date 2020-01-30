@@ -31,14 +31,14 @@ $(function () {
             if (modules.length > 0) {
                 var container = modules.first().closest(parent_class);
                 if (modules.first().is(':visible')) {
-                    container.find(button_class).each(function(i, elem) {
+                    container.find(button_class).not('[id*="columns"]').each(function(i, elem) {
                         if ($(this).is(':visible')) {
                             $(this).css('visibility', 'hidden');
                         }
                     });
                 }
                 else {
-                    $(this).find(button_class).each(function(i, elem) {
+                    $(this).find(button_class).not('[id*="columns"]').each(function(i, elem) {
                         $(this).css('visibility', 'visible');
                     });
                 }
