@@ -27,5 +27,5 @@ def HelpPanel(
     classname='',
     wrapper_class='help-block help-info'
 ):
-    wrapped_content = '<p class="%s">%s</p>' % (wrapper_class, content)
+    wrapped_content = '<div class="%s">%s</div>' % (wrapper_class, content)
     return WagtailHelpPanel(content=wrapped_content, template=template, heading=heading, classname=classname)

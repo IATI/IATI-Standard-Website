@@ -15,6 +15,32 @@ from wagtail.core.blocks import (
 from navigation.values import ModuleStructValue, TransStructValue
 
 
+class Highlight(StructBlock):
+
+    class Meta:
+        help_text = '''
+                    <strong>Highlight module</strong><br>
+                    Internal page link and short description.
+                    '''
+        icon = 'pick'
+        form_template = 'navigation/block_forms/custom_struct.html'
+        template = 'navigation/blocks/highlight.html'
+        value_class = TransStructValue
+
+    page = PageChooserBlock(
+        help_text='Highlighted page'
+    )
+    description_en = TextBlock(
+        help_text='Description for the highlight module',
+        label='Description [en]',
+    )
+    description_fr = TextBlock(
+        help_text='Description for the highlight module',
+        label='Description [fr]',
+        required=False,
+    )
+
+
 class TranslatedPage(StructBlock):
 
     class Meta:
@@ -51,32 +77,6 @@ class NestedPageGroup(StructBlock):
         TranslatedPage(),
         required=False,
         help_text='Optional: group of sub pages, displayed as an indented list',
-    )
-
-
-class Highlight(StructBlock):
-
-    class Meta:
-        help_text = '''
-                    <strong>Highlight module</strong><br>
-                    Internal page link and short description.
-                    '''
-        icon = 'pick'
-        form_template = 'navigation/block_forms/custom_struct.html'
-        template = 'navigation/blocks/highlight.html'
-        value_class = TransStructValue
-
-    page = PageChooserBlock(
-        help_text='Highlighted page'
-    )
-    description_en = TextBlock(
-        help_text='Description for the highlight module',
-        label='Description [en]',
-    )
-    description_fr = TextBlock(
-        help_text='Description for the highlight module',
-        label='Description [fr]',
-        required=False,
     )
 
 
@@ -159,7 +159,8 @@ class AbstractModuleType(StructBlock):
             <div class="help-block help-info">
                 <p>
                     <strong>Columns</strong><br>
-                    Column elements for the meganav module
+                    Column elements for the meganav module.<br>
+                    Maximum number of columns: 4
                 </p>
             </div>
             '''
@@ -172,17 +173,6 @@ class TypeA(AbstractModuleType):
     class Meta:
         help_text = 'Meganav module type a'
         template = 'navigation/blocks/type_a.html'
-
-    columns = ListBlock(
-        PageList(),
-    )
-
-
-class TypeB(AbstractModuleType):
-
-    class Meta:
-        help_text = 'Meganav module type b'
-        template = 'navigation/blocks/type_b.html'
 
     columns = StreamBlock(
         [
@@ -201,9 +191,9 @@ def navigation(blank=False):
         StreamBlock(
             [
                 ('type_a', TypeA()),
-                ('type_b', TypeB()),
+                # ('type_b', TypeB()),
             ],
-            max_num=2,
+            max_num=1,
             required=required,
         ),
         blank=blank
