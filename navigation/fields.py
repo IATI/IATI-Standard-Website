@@ -1,3 +1,4 @@
+from django.utils.safestring import mark_safe
 from wagtail.core.fields import StreamField
 # from wagtail.images.blocks import ImageChooserBlock
 from wagtail.core.blocks import (
@@ -5,6 +6,7 @@ from wagtail.core.blocks import (
     CharBlock,
     ListBlock,
     PageChooserBlock,
+    StaticBlock,
     StreamBlock,
     StructBlock,
     TextBlock,
@@ -56,11 +58,10 @@ class Highlight(StructBlock):
 
     class Meta:
         help_text = '''
-                    <strong>Highlight module.</strong><br>
+                    <strong>Highlight module</strong><br>
                     Internal page link and short description.
                     '''
         icon = 'pick'
-        label = 'Highlight'
         form_template = 'navigation/block_forms/custom_struct.html'
         template = 'navigation/blocks/highlight.html'
         value_class = TransStructValue
@@ -90,6 +91,7 @@ class PageList(StructBlock):
         icon = 'list-ul'
         label = 'Page list'
         form_template = 'navigation/block_forms/custom_struct.html'
+        template = 'navigation/blocks/page_list.html'
         value_class = TransStructValue
 
     use_first_page_as_title = BooleanBlock(
@@ -117,7 +119,8 @@ class PageList(StructBlock):
         required=False,
     )
     page_list = ListBlock(
-        TranslatedPage()
+        TranslatedPage(),
+        label='Pages',
     )
 
 
@@ -131,6 +134,7 @@ class NestedPageList(StructBlock):
         icon = 'list-ul'
         label = 'Nested page list'
         form_template = 'navigation/block_forms/custom_struct.html'
+        template = 'navigation/blocks/nested_page_list.html'
         value_class = TransStructValue
 
     groups = ListBlock(
@@ -149,6 +153,19 @@ class AbstractModuleType(StructBlock):
 
     highlight = Highlight()
 
+    columns_label = StaticBlock(
+        admin_text=mark_safe(
+            '''
+            <div class="help-block help-info">
+                <p>
+                    <strong>Columns</strong><br>
+                    Column elements for the meganav module
+                </p>
+            </div>
+            '''
+        )
+    )
+
 
 class TypeA(AbstractModuleType):
 
@@ -157,7 +174,7 @@ class TypeA(AbstractModuleType):
         template = 'navigation/blocks/type_a.html'
 
     columns = ListBlock(
-        PageList()
+        PageList(),
     )
 
 
@@ -171,7 +188,10 @@ class TypeB(AbstractModuleType):
         [
             ('page_list', PageList()),
             ('nested_page_list', NestedPageList()),
-        ]
+        ],
+        min_num=0,
+        max_num=4,
+        required=False,
     )
 
 
