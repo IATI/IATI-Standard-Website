@@ -144,7 +144,7 @@ class AbstractModuleType(StructBlock):
         abstract = True
         icon = 'form'
         form_template = 'navigation/block_forms/custom_struct_container.html'
-        form_classname = 'custom-struct-container navigation__meganav'
+        form_classname = 'custom-struct-container navigation__meganav struct-block'
         value_class = ModuleStructValue
 
     highlight = Highlight()
@@ -153,8 +153,7 @@ class AbstractModuleType(StructBlock):
 class TypeA(AbstractModuleType):
 
     class Meta:
-        help_text = 'Primary navigation module type A.'
-        label = 'Type A'
+        help_text = 'Meganav module type a'
         template = 'navigation/blocks/type_a.html'
 
     columns = ListBlock(
@@ -165,8 +164,7 @@ class TypeA(AbstractModuleType):
 class TypeB(AbstractModuleType):
 
     class Meta:
-        help_text = 'Primary navigation module type B.'
-        label = 'Type B'
+        help_text = 'Meganav module type b'
         template = 'navigation/blocks/type_b.html'
 
     columns = StreamBlock(
@@ -185,7 +183,7 @@ def navigation(blank=False):
                 ('type_a', TypeA()),
                 ('type_b', TypeB()),
             ],
-            max_num=1,
+            max_num=2,
             required=required,
         ),
         blank=blank

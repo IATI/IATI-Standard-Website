@@ -20,6 +20,12 @@ class MultiFieldPanel(WagtailMultiFieldPanel):
         return self.__class__(**props)
 
 
-def HelpPanel(content='', template='wagtailadmin/edit_handlers/help_panel.html', heading='', classname=''):
-    wrapped_content = '<p class="help-block help-info">%s</p>' % content
+def HelpPanel(
+    content='',
+    template='wagtailadmin/edit_handlers/help_panel.html',
+    heading='',
+    classname='',
+    wrapper_class='help-block help-info'
+):
+    wrapped_content = '<p class="%s">%s</p>' % (wrapper_class, content)
     return WagtailHelpPanel(content=wrapped_content, template=template, heading=heading, classname=classname)
