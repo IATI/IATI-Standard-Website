@@ -344,7 +344,7 @@
                         ]
                     },
                     {
-                        "class": "l-4up l-4up--double-right",
+                        "class": "l-4up",
                         "column_class": "l-4up__col",
                         "columns": [
                             {
