@@ -1,54 +1,12 @@
-from django.utils.safestring import mark_safe
-from wagtail.core.fields import StreamField
-# from wagtail.images.blocks import ImageChooserBlock
 from wagtail.core.blocks import (
     BooleanBlock,
     CharBlock,
     ListBlock,
     PageChooserBlock,
-    StaticBlock,
-    StreamBlock,
     StructBlock,
-    TextBlock,
-    # URLBlock,
 )
-from navigation.values import ModuleStructValue, TransStructValue
-
-
-class Highlight(StructBlock):
-
-    class Meta:
-        help_text = '''
-                    <strong>Highlight module</strong><br>
-                    Internal page link and short description.
-                    '''
-        icon = 'pick'
-        form_template = 'navigation/block_forms/custom_struct.html'
-        template = 'navigation/blocks/highlight.html'
-        value_class = TransStructValue
-
-    page = PageChooserBlock(
-        help_text='Highlighted page'
-    )
-    description_en = TextBlock(
-        help_text='Description for the highlight module',
-        label='Description [en]',
-    )
-    description_fr = TextBlock(
-        help_text='Description for the highlight module',
-        label='Description [fr]',
-        required=False,
-    )
-
-
-class TranslatedPage(StructBlock):
-
-    class Meta:
-        icon = 'link'
-        label = 'Page'
-        value_class = TransStructValue
-
-    page = PageChooserBlock()
+from navigation.fields import TranslatedPage
+from navigation.values import TransStructValue
 
 
 class NestedPageGroup(StructBlock):
@@ -139,62 +97,4 @@ class NestedPageList(StructBlock):
 
     groups = ListBlock(
         NestedPageGroup()
-    )
-
-
-class AbstractModuleType(StructBlock):
-
-    class Meta:
-        abstract = True
-        icon = 'form'
-        form_template = 'navigation/block_forms/custom_struct_container.html'
-        form_classname = 'custom-struct-container navigation__meganav struct-block'
-        value_class = ModuleStructValue
-
-    highlight = Highlight()
-
-    columns_label = StaticBlock(
-        admin_text=mark_safe(
-            '''
-            <div class="help-block help-info">
-                <p>
-                    <strong>Columns</strong><br>
-                    Column elements for the meganav module.<br>
-                    Maximum number of columns: 4
-                </p>
-            </div>
-            '''
-        )
-    )
-
-
-class TypeA(AbstractModuleType):
-
-    class Meta:
-        help_text = 'Meganav module type a'
-        template = 'navigation/blocks/type_a.html'
-
-    columns = StreamBlock(
-        [
-            ('page_list', PageList()),
-            ('nested_page_list', NestedPageList()),
-        ],
-        min_num=0,
-        max_num=4,
-        required=False,
-    )
-
-
-def navigation(blank=False):
-    required = not blank
-    return StreamField(
-        StreamBlock(
-            [
-                ('type_a', TypeA()),
-                # ('type_b', TypeB()),
-            ],
-            max_num=1,
-            required=required,
-        ),
-        blank=blank
     )
