@@ -52,3 +52,35 @@ def add_language_content_panels(page_model):
     if hasattr(page_model, "multilingual_field_panels"):
         edit_handler_contents = [ObjectList([field for field in page_model.multilingual_field_panels], heading=_('Multilingual'))] + edit_handler_contents
     page_model.edit_handler = TabbedInterface(edit_handler_contents + promote_and_settings_panels)
+
+
+def strip_non_english(model):
+    """Dynamically strip non-English fields from a model.
+
+    Args:
+        model (Model): The model class which needs stripped fields. Should have the array translation_fields defined in the page model.
+
+    Returns:
+        None: This doesn't return anything, it's modifying the provided model.
+
+    TODO:
+        Figure out whether using type(Creator) is sustainable. For some reason StreamBlocks are wagtail.core.fields.Creator and all other fiends are django.db.models.query_utils.DeferredAttribute
+
+    """
+    edit_handler_contents = []
+    language_code = 'en'
+    language_name = 'English'
+    multi_field_panel_contents = []
+    stream_field_panel_contents = []
+    for field_name in model.translation_fields:
+        localized_field_name = field_name + "_{}".format(language_code)
+        field_object = getattr(model, localized_field_name)
+        if not isinstance(field_object, Creator):
+            multi_field_panel_contents.append(FieldPanel(localized_field_name))
+        else:
+            stream_field_panel_contents.append(StreamFieldPanel(localized_field_name))
+
+    local_content_panel = [MultiFieldPanel(multi_field_panel_contents)] + stream_field_panel_contents
+    edit_handler_contents.append(ObjectList(local_content_panel, heading=language_name))
+
+    model.edit_handler = TabbedInterface(edit_handler_contents)
