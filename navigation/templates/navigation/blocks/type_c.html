@@ -5,30 +5,39 @@
 
     {% if value.num_columns %}
         <div class="navigation-megamenu__col">
-            <div class="{{ value.column_container_class_max }}">
-                {# control the order of module output as we can't enforce order in the streamblock editor #}
+            {# control the order of module output as we can't enforce order in the streamblock editor #}
+            <div class="{{ value.column_container_class_row_1 }}">
                 {% for column in value.columns %}
                     {% if forloop.counter <= value.num_columns_max %}
                         {% if column.block_type == 'focus_item' or column.block_type == 'page_list' %}
-                            {% include_block column with col=column.value column_class=value.column_class_max %}
+                            {% include_block column with col=column.value column_class=value.column_class_row_1 %}
                         {% endif %}
                     {% endif %}
                 {% endfor %}
-            </div>
-            <div class="{{ value.column_container_class_max }} {{ value.column_container_class_max }}--double-right">
-                {% for column in value.columns %}
-                    {% if forloop.counter > value.num_columns_max %}
-                        {% if column.block_type == 'focus_item' or column.block_type == 'page_list' %}
-                            {% include_block column with col=column.value column_class=value.column_class_max %}
+                {% if value.num_rows < 2  %}
+                    {% for column in value.columns %}
+                        {% if column.block_type == 'secondary_highlight' %}
+                            {% include_block column with col=column.value column_class=value.column_class_row_1 %}
                         {% endif %}
-                    {% endif %}
-                {% endfor %}
-                {% for column in value.columns %}
-                    {% if column.block_type == 'secondary_highlight' %}
-                        {% include_block column with col=column.value column_class='l-4up__col l-4up__col--double' %}
-                    {% endif %}
-                {% endfor %}
+                    {% endfor %}
+                {% endif %}
             </div>
+            {% if value.num_rows == 2  %}
+                <div class="{{ value.column_container_class_row_2 }}">
+                    {% for column in value.columns %}
+                        {% if forloop.counter > value.num_columns_max %}
+                            {% if column.block_type == 'focus_item' or column.block_type == 'page_list' %}
+                                {% include_block column with col=column.value column_class=value.column_class_row_2 %}
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                    {% for column in value.columns %}
+                        {% if column.block_type == 'secondary_highlight' %}
+                            {% include_block column with col=column.value column_class=value.column_class_row_2 %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
         </div>
     {% endif %}
 </div>

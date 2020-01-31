@@ -12,7 +12,7 @@ from navigation.fields import (
     PageList,
     SecondaryHighlight,
 )
-from navigation.values import ModuleStructValue
+from navigation.values import ModuleStructValue, ModuleDoubleStructValue
 
 
 class AbstractModuleType(StructBlock):
@@ -100,6 +100,7 @@ class TypeC(AbstractModuleType):
     class Meta:
         help_text = 'Meganav module type c'
         template = 'navigation/blocks/type_c.html'
+        value_class = ModuleDoubleStructValue
 
     columns_label = StaticBlock(
         admin_text=mark_safe(
