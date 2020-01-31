@@ -1,7 +1,6 @@
  {% load i18n static wagtailimages_tags %}
 
 <div class="l-offset__col">
-        {{  value.page.specific.header_image|pprint }}
     <article class="case-study">
         <div class="case-study__media background-cover" style="background-image: url(
             {% if value.image %}
@@ -14,7 +13,7 @@
                 {% image value.page.specific.feed_image fill-120x250 as image %}
                 {{ image.url }}
             {% else %}
-                {% static 'img/content-image.jpg' %}
+                {% static 'img/image-placeholder.svg' %}
             {% endif %}
         "></div>
         <div class="case-study__panel">
