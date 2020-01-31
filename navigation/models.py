@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils.functional import cached_property
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
 from wagtail.contrib.settings.models import BaseSetting, register_setting

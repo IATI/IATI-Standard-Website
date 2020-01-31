@@ -77,7 +77,10 @@ class Command(BaseCommand):
                         if isinstance(msgval, StreamValue):
                             msgstr = json.dumps(msgval.stream_data)
                         else:
-                            msgstr = "%s" % msgval
+                            if msgval is None:
+                                msgstr = ""
+                            else:
+                                msgstr = "%s" % msgval
                         if enval is not None and field not in ["slug", "url_path"]:
                             if isinstance(enval, StreamValue):
                                 enstr = json.dumps(enval.stream_data)
