@@ -17,14 +17,9 @@ class AbstractHighlight(StructBlock):
     page = PageChooserBlock(
         help_text='Page for title and link'
     )
-    description_en = TextBlock(
+    description = TextBlock(
         help_text='Description for the module',
-        label='Description [en]',
-    )
-    description_fr = TextBlock(
-        help_text='Description for the module',
-        label='Description [fr]',
-        required=False,
+        label='Description',
     )
 
 

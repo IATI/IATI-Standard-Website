@@ -31,8 +31,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('sort_order', models.IntegerField(blank=True, editable=False, null=True)),
-                ('label_en', models.CharField(max_length=255, verbose_name='Label [en]')),
-                ('label_fr', models.CharField(blank=True, max_length=255, verbose_name='Label [fr]')),
+                ('label', models.CharField(max_length=255, verbose_name='Label')),
                 ('meganav', wagtail.core.fields.StreamField((('type_a', wagtail.core.blocks.StructBlock((('highlight', wagtail.core.blocks.StructBlock((('page', wagtail.core.blocks.PageChooserBlock(help_text='Highlighted page')), ('description', wagtail.core.blocks.TextBlock(help_text='Description for the highlight module'))), help_text='Highlight block for meganav')), ('meganav', wagtail.core.blocks.ListBlock(wagtail.core.blocks.StructBlock((('pages', wagtail.core.blocks.ListBlock(wagtail.core.blocks.PageChooserBlock(label='Page'))),), label='Page list')))))),))),
                 ('item', modelcluster.fields.ParentalKey(on_delete=django.db.models.deletion.CASCADE, related_name='primary_menu_links', to='navigation.PrimaryMenu')),
                 ('page', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailcore.Page')),
@@ -57,8 +56,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('sort_order', models.IntegerField(blank=True, editable=False, null=True)),
-                ('label_en', models.CharField(max_length=255, verbose_name='Label [en]')),
-                ('label_fr', models.CharField(blank=True, max_length=255, verbose_name='Label [fr]')),
+                ('label', models.CharField(max_length=255, verbose_name='Label')),
                 ('item', modelcluster.fields.ParentalKey(on_delete=django.db.models.deletion.CASCADE, related_name='useful_links', to='navigation.UsefulLinks')),
                 ('page', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailcore.Page')),
             ],
@@ -82,8 +80,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('sort_order', models.IntegerField(blank=True, editable=False, null=True)),
-                ('label_en', models.CharField(max_length=255, verbose_name='Label [en]')),
-                ('label_fr', models.CharField(blank=True, max_length=255, verbose_name='Label [fr]')),
+                ('label', models.CharField(max_length=255, verbose_name='Label')),
                 ('item', modelcluster.fields.ParentalKey(on_delete=django.db.models.deletion.CASCADE, related_name='utility_menu_links', to='navigation.UtilityMenu')),
                 ('page', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailcore.Page')),
             ],

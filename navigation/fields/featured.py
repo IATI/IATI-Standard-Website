@@ -27,13 +27,8 @@ class Featured(AbstractHighlight):
         help_text='Optional: secondary page link',
         required=False,
     )
-    link_label_en = CharBlock(
+    link_label = CharBlock(
         help_text='Optional: label for the secondary page link',
-        label='Link label [en]',
-        required=False,
-    )
-    link_label_fr = CharBlock(
-        help_text='Optional: label for the secondary page link',
-        label='Link label [fr]',
+        label='Link label',
         required=False,
     )

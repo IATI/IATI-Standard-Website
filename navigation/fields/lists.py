@@ -21,14 +21,9 @@ class NestedPageGroup(StructBlock):
         required=False,
         label='Top level page',
     )
-    title_en = CharBlock(
+    title = CharBlock(
         help_text='Optional: plain text title for the page group',
-        label='Title [en]',
-        required=False,
-    )
-    title_fr = CharBlock(
-        help_text='Optional: plain text title for the page group',
-        label='Title [fr]',
+        label='Title',
         required=False,
     )
     page_group = ListBlock(
@@ -56,24 +51,14 @@ class PageList(StructBlock):
         help_text='Optional: if checked, the first page in the list will be displayed as a title',
         required=False,
     )
-    title_en = CharBlock(
+    title = CharBlock(
         help_text='Optional: plain text title for the page list',
-        label='Title [en]',
+        label='Title',
         required=False,
     )
-    title_fr = CharBlock(
-        help_text='Optional: plain text title for the page list',
-        label='Title [fr]',
-        required=False,
-    )
-    description_en = CharBlock(
+    description = CharBlock(
         help_text='Optional: description for the page list',
-        label='Description [en]',
-        required=False,
-    )
-    description_fr = CharBlock(
-        help_text='Optional: description for the page list',
-        label='Description [fr]',
+        label='Description',
         required=False,
     )
     page_list = ListBlock(
