@@ -6,8 +6,27 @@
     {% if value.num_columns %}
         <div class="navigation-megamenu__col">
             <div class="{{ value.column_container_class_max }}">
+                {# control the order of module output as we can't enforce order in the streamblock editor #}
                 {% for column in value.columns %}
-                    {% include_block column with col=column.value column_class=value.column_class_max %}
+                    {% if forloop.counter <= value.num_columns_max %}
+                        {% if column.block_type == 'focus_item' or column.block_type == 'page_list' %}
+                            {% include_block column with col=column.value column_class=value.column_class_max %}
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="{{ value.column_container_class_max }} {{ value.column_container_class_max }}--double-right">
+                {% for column in value.columns %}
+                    {% if forloop.counter > value.num_columns_max %}
+                        {% if column.block_type == 'focus_item' or column.block_type == 'page_list' %}
+                            {% include_block column with col=column.value column_class=value.column_class_max %}
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+                {% for column in value.columns %}
+                    {% if column.block_type == 'secondary_highlight' %}
+                        {% include_block column with col=column.value column_class='l-4up__col l-4up__col--double' %}
+                    {% endif %}
                 {% endfor %}
             </div>
         </div>

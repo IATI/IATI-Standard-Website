@@ -1,4 +1,5 @@
 from wagtail.core.blocks import (
+    CharBlock,
     PageChooserBlock,
     StructBlock,
     TextBlock,
@@ -37,3 +38,24 @@ class Highlight(AbstractHighlight):
                     '''
         icon = 'pick'
         template = 'navigation/blocks/highlight.html'
+
+
+class SecondaryHighlight(AbstractHighlight):
+
+    class Meta:
+        help_text = '''
+                    <strong>Secondary highlight module</strong><br>
+                    Internal page link, short description, and link label.
+                    '''
+        icon = 'pick'
+        template = 'navigation/blocks/secondary_highlight.html'
+
+    link_label_en = CharBlock(
+        help_text='Label for the page link button',
+        label='Link label [en]',
+    )
+    link_label_fr = CharBlock(
+        help_text='Label for the page link button',
+        label='Link label [fr]',
+        required=False,
+    )

@@ -1,4 +1,5 @@
 from wagtail.core.blocks import (
+    BooleanBlock,
     CharBlock,
     URLBlock,
 )
@@ -29,5 +30,9 @@ class FocusItem(AbstractHighlight):
     link_label_fr = CharBlock(
         help_text='Label for the secondary page link',
         label='Link label [fr]',
+        required=False,
+    )
+    use_button_style = BooleanBlock(
+        help_text='Optional: if checked, the secondary link will display as a button',
         required=False,
     )

@@ -10,6 +10,7 @@ from navigation.fields import (
     Highlight,
     NestedPageList,
     PageList,
+    SecondaryHighlight,
 )
 from navigation.values import ModuleStructValue
 
@@ -117,8 +118,50 @@ class TypeC(AbstractModuleType):
         [
             ('focus_item', FocusItem()),
             ('page_list', PageList()),
+            ('secondary_highlight', SecondaryHighlight()),
         ],
         min_num=0,
-        max_num=2,
+        max_num=7,
         required=False,
+        block_counts={
+            'focus_item': {
+                'max_num': 5
+            },
+            'page_list': {
+                'max_num': 1
+            },
+            'secondary_highlight': {
+                'max_num': 1
+            }
+        },
+    )
+
+
+class TypeD(AbstractModuleType):
+
+    class Meta:
+        help_text = 'Meganav module type d'
+        template = 'navigation/blocks/type_d.html'
+
+    columns_label = StaticBlock(
+        admin_text=mark_safe(
+            '''
+            <div class="help-block help-info">
+                <p>
+                    <strong>Columns</strong><br>
+                    Column elements for the meganav module.<br>
+                    Maximum number of items: 4
+                </p>
+            </div>
+            '''
+        )
+    )
+    columns = StreamBlock(
+        [
+            ('focus_item', FocusItem()),
+            ('page_list', PageList()),
+        ],
+        min_num=0,
+        max_num=4,
+        required=False
     )

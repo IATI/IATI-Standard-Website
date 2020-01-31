@@ -9,5 +9,11 @@
         {% else %}
             {{ value.page.url }}
         {% endif %}
-    " class="text-link">{{ value.link_label }}</a>
+    " class="
+        {% if value.use_button_style %}
+            button button--small
+        {% else %}
+            text-link
+        {% endif %}
+    ">{{ value.link_label }}</a>
 </div>

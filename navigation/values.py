@@ -5,7 +5,7 @@ from navigation.utils import get_localised_field_value
 
 class ModuleStructValue(StructValue):
     def num_columns(self):
-        return len(self.get('columns'))
+        return max(3, len(self.get('columns')))
 
     def num_columns_max(self):
         max_num = 4
