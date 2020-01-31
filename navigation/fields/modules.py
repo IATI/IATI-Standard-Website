@@ -6,6 +6,7 @@ from wagtail.core.blocks import (
 )
 from navigation.fields import (
     Featured,
+    FocusItem,
     Highlight,
     NestedPageList,
     PageList,
@@ -38,7 +39,7 @@ class TypeA(AbstractModuleType):
                 <p>
                     <strong>Columns</strong><br>
                     Column elements for the meganav module.<br>
-                    Maximum number of columns: 4
+                    Maximum number of items: 4
                 </p>
             </div>
             '''
@@ -68,7 +69,7 @@ class TypeB(AbstractModuleType):
                 <p>
                     <strong>Columns</strong><br>
                     Column elements for the meganav module.<br>
-                    Maximum number of columns: 2
+                    Maximum number of items: 2
                 </p>
             </div>
             '''
@@ -78,6 +79,44 @@ class TypeB(AbstractModuleType):
         [
             ('page_list', PageList()),
             ('featured', Featured()),
+        ],
+        min_num=0,
+        max_num=2,
+        required=False,
+        block_counts={
+            'page_list': {
+                'max_num': 1
+            },
+            'featured': {
+                'max_num': 1
+            }
+        },
+    )
+
+
+class TypeC(AbstractModuleType):
+
+    class Meta:
+        help_text = 'Meganav module type c'
+        template = 'navigation/blocks/type_c.html'
+
+    columns_label = StaticBlock(
+        admin_text=mark_safe(
+            '''
+            <div class="help-block help-info">
+                <p>
+                    <strong>Columns</strong><br>
+                    Column elements for the meganav module.<br>
+                    Maximum number of items: 7
+                </p>
+            </div>
+            '''
+        )
+    )
+    columns = StreamBlock(
+        [
+            ('focus_item', FocusItem()),
+            ('page_list', PageList()),
         ],
         min_num=0,
         max_num=2,
