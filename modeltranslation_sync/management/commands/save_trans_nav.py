@@ -2,7 +2,6 @@
 """Management command that saves locale .po files from database."""
 
 from __future__ import unicode_literals
-import json
 from os import mkdir
 from os.path import join, isdir, exists
 
@@ -117,7 +116,7 @@ class Command(BaseCommand):
                                     en_field = "%s_en" % tr_field[:-3]
                                     enstr = fetch_json_by_path(msg_data, en_field)
                                     if enstr is not None:
-                                        msgstr = fetch_json_by_path(msg_data, en_field)
+                                        msgstr = fetch_json_by_path(msg_data, tr_field)
                                         if msgstr is None:
                                             msgstr = ""
                                         to_translate.append(
