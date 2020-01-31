@@ -5,8 +5,6 @@ from wagtail.core.blocks import (
     PageChooserBlock,
     StructBlock,
 )
-from navigation.fields import TranslatedPage
-from navigation.values import TransStructValue
 
 
 class NestedPageGroup(StructBlock):
@@ -14,7 +12,6 @@ class NestedPageGroup(StructBlock):
     class Meta:
         icon = 'list-ul'
         label = 'Page group'
-        value_class = TransStructValue
 
     page = PageChooserBlock(
         help_text='Optional: top level page for the group',
@@ -27,7 +24,7 @@ class NestedPageGroup(StructBlock):
         required=False,
     )
     page_group = ListBlock(
-        TranslatedPage(),
+        PageChooserBlock(),
         required=False,
         help_text='Optional: group of sub pages, displayed as an indented list',
     )
@@ -45,7 +42,6 @@ class PageList(StructBlock):
         label = 'Page list'
         form_template = 'navigation/block_forms/custom_struct.html'
         template = 'navigation/blocks/page_list.html'
-        value_class = TransStructValue
 
     use_first_page_as_title = BooleanBlock(
         help_text='Optional: if checked, the first page in the list will be displayed as a title',
@@ -62,7 +58,7 @@ class PageList(StructBlock):
         required=False,
     )
     page_list = ListBlock(
-        TranslatedPage(),
+        PageChooserBlock(),
         label='Pages',
     )
 
@@ -78,7 +74,6 @@ class NestedPageList(StructBlock):
         label = 'Nested page list'
         form_template = 'navigation/block_forms/custom_struct.html'
         template = 'navigation/blocks/nested_page_list.html'
-        value_class = TransStructValue
 
     groups = ListBlock(
         NestedPageGroup()

@@ -8,7 +8,6 @@ from wagtail.core.models import Orderable
 from common.utils import ForeignKeyField
 from dashboard.edit_handlers import MultiFieldPanel, HelpPanel
 from navigation.fields import navigation
-from navigation.utils import get_localised_field_value
 
 
 class AbstractLink(models.Model):
@@ -37,6 +36,8 @@ class AbstractLink(models.Model):
         )),
     ]
 
+    translation_fields = ['label']
+
 
 class PrimaryMenuLinks(Orderable, AbstractLink):
     item = ParentalKey('PrimaryMenu', related_name='primary_menu_links')
@@ -58,9 +59,7 @@ class PrimaryMenuLinks(Orderable, AbstractLink):
         StreamFieldPanel('meganav'),
     ]
 
-    @cached_property
-    def label(self):
-        return get_localised_field_value(self, 'label')
+    translation_fields = AbstractLink.translation_fields + ['meganav']
 
 
 class UtilityMenuLinks(Orderable, AbstractLink):

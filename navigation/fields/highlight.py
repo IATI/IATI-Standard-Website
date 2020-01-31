@@ -3,7 +3,6 @@ from wagtail.core.blocks import (
     StructBlock,
     TextBlock,
 )
-from navigation.values import TransStructValue
 
 
 class AbstractHighlight(StructBlock):
@@ -12,7 +11,6 @@ class AbstractHighlight(StructBlock):
         abstract = True
         icon = 'pick'
         form_template = 'navigation/block_forms/custom_struct.html'
-        value_class = TransStructValue
 
     page = PageChooserBlock(
         help_text='Page for title and link'
