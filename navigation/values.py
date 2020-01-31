@@ -1,5 +1,5 @@
 from wagtail.core.blocks import StructValue
-from navigation.utils import get_localised_field_value, get_default_lang_slug
+from navigation.utils import get_localised_field_value
 
 
 class ModuleStructValue(StructValue):
@@ -25,5 +25,12 @@ class TransStructValue(StructValue):
         return get_localised_field_value(
             self,
             'title',
+            use_get=True,
+        )
+
+    def link_label(self):
+        return get_localised_field_value(
+            self,
+            'link_label',
             use_get=True,
         )

@@ -8,7 +8,7 @@ from wagtail.core.models import Orderable
 from common.utils import ForeignKeyField
 from dashboard.edit_handlers import MultiFieldPanel, HelpPanel
 from navigation.fields import navigation
-from navigation.utils import get_localised_field_value, get_default_lang_slug
+from navigation.utils import get_localised_field_value
 
 
 class AbstractLink(models.Model):
