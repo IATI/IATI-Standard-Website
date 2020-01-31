@@ -1,4 +1,3 @@
-from .page import * # noqa
 from .highlight import * # noqa
 from .featured import * # noqa
 from .focus import * # noqa
