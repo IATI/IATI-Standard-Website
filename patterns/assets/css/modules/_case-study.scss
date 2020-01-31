@@ -1,6 +1,9 @@
 .case-study {
     position: relative;
     margin-bottom: 4em;
+    .navigation-megamenu & {
+        margin-bottom: 0;
+    }
 }
 
 .case-study__media {
@@ -9,6 +12,14 @@
         margin-left: auto;
         width: 90%;
         background-color: $iati-ocean;
+    }
+    .navigation-megamenu & {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 25%;
+        height: 100%;
+        padding-bottom: 0;
     }
 }
 
@@ -30,6 +41,8 @@
             padding: 1em;
             top: 0;
             height: 100%;
+            position: relative;
+            //min-height: 205px;
         }
     }
 }
