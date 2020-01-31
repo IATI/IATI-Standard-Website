@@ -5,6 +5,7 @@ from wagtail.core.blocks import (
 from navigation.fields import (
     TypeA,
     TypeB,
+    TypeC,
 )
 
 
@@ -15,6 +16,7 @@ def navigation(blank=False):
             [
                 ('type_a', TypeA()),
                 ('type_b', TypeB()),
+                ('type_c', TypeC()),
             ],
             max_num=1,
             required=required,

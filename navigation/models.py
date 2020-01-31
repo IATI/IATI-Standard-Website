@@ -55,7 +55,9 @@ class PrimaryMenuLinks(Orderable, AbstractLink):
                         Optional: meganav module for the the primary menu item.<br><br>
                         Select one of the available module types:<br>
                         <ul class="help-list">
-                            <li><strong>Type a</strong>: page lists, nested page lists</li>
+                            <li><strong>Type a</strong>: page lists, nested page lists (max 4 items)</li>
+                            <li><strong>Type b</strong>: page list, featured (max 2 items)</li>
+                            <li><strong>Type c</strong>: focus items, page lists, secondary highlight (max 7 items)</li>
                         </ul>
                     ''',
         ),
