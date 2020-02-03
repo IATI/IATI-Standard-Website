@@ -14,6 +14,10 @@ from .save_trans import load_translation_settings
 class Command(LoadCommand):
     """Management command that loads locale .po files into database."""
 
+    def add_arguments(self, parser):
+        """Add custom command arguments."""
+        parser.add_argument('pks', nargs='*', type=int)
+
     def handle(self, *args, **options):
         """Handle the load_trans command."""
         po_filename = load_translation_settings(settings)
@@ -32,11 +36,22 @@ class Command(LoadCommand):
                     if message.string not in [None, "None", ""] and message.auto_comments:
                         for field_id in message.auto_comments:
                             [app, class_name, primary_key, field] = field_id.split('.')
-                            model = apps.get_model(app, class_name)
-                            try:
-                                obj = model.objects.get(pk=primary_key)
-                            except model.DoesNotExist:
-                                continue
-                            tr_field = "%s_%s" % (field, lang)
-                            setattr(obj, tr_field, message.string)
-                            obj.save()
+                            if options['pks']:
+                                if int(primary_key) in options['pks']:
+                                    model = apps.get_model(app, class_name)
+                                    try:
+                                        obj = model.objects.get(pk=primary_key)
+                                    except model.DoesNotExist:
+                                        continue
+                                    tr_field = "%s_%s" % (field, lang)
+                                    setattr(obj, tr_field, message.string)
+                                    obj.save()
+                            else:
+                                model = apps.get_model(app, class_name)
+                                try:
+                                    obj = model.objects.get(pk=primary_key)
+                                except model.DoesNotExist:
+                                    continue
+                                tr_field = "%s_%s" % (field, lang)
+                                setattr(obj, tr_field, message.string)
+                                obj.save()
