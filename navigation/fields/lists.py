@@ -1,3 +1,5 @@
+"""Module of lists available as part of the navigation menu."""
+
 from wagtail.core.blocks import (
     BooleanBlock,
     CharBlock,
@@ -10,6 +12,7 @@ from navigation.values import TransStructValue
 
 
 class NestedPageGroup(StructBlock):
+    """Class for a nested page group."""
 
     class Meta:
         icon = 'list-ul'
@@ -39,6 +42,7 @@ class NestedPageGroup(StructBlock):
 
 
 class PageList(StructBlock):
+    """Class for a page list."""
 
     class Meta:
         help_text = '''
@@ -83,6 +87,7 @@ class PageList(StructBlock):
 
 
 class NestedPageList(StructBlock):
+    """Class for a nested page list."""
 
     class Meta:
         help_text = '''

@@ -1,3 +1,5 @@
+"""Module to inject new editor JavaScript and CSS."""
+
 from django.templatetags.static import static
 from django.utils.html import format_html, format_html_join
 from wagtail.core import hooks
@@ -5,6 +7,7 @@ from wagtail.core import hooks
 
 @hooks.register('insert_editor_js')
 def editor_js():
+    """Inject new editor JavaScript."""
     js_files = [
         'navigation/js/navigation-helpers.js',
         'navigation/js/navigation-info.js',
@@ -15,6 +18,7 @@ def editor_js():
 
 @hooks.register('insert_editor_css')
 def editor_css():
+    """Inject new editor CSS."""
     return format_html(
         """
         <style>

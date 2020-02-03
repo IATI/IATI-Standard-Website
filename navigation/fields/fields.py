@@ -1,3 +1,5 @@
+"""Module to define navigation fields."""
+
 from wagtail.core.fields import StreamField
 from wagtail.core.blocks import (
     StreamBlock,
@@ -10,6 +12,7 @@ from navigation.fields import (
 
 
 def navigation(blank=False):
+    """Function that returns a stream of different module types."""
     required = not blank
     return StreamField(
         StreamBlock(

@@ -12,6 +12,8 @@ from navigation.utils import get_localised_field_value
 
 
 class AbstractLink(models.Model):
+    """Abstract class for a navigation link."""
+
     class Meta:
         abstract = True
 
@@ -45,6 +47,8 @@ class AbstractLink(models.Model):
 
 
 class PrimaryMenuLinks(Orderable, AbstractLink):
+    """Class for primary menu links."""
+
     item = ParentalKey('PrimaryMenu', related_name='primary_menu_links')
     meganav = navigation(blank=True)
 
@@ -66,19 +70,25 @@ class PrimaryMenuLinks(Orderable, AbstractLink):
 
     @cached_property
     def label(self):
+        """Function to define localised menu label."""
         return get_localised_field_value(self, 'label')
 
 
 class UtilityMenuLinks(Orderable, AbstractLink):
+    """Class for utility menu links."""
+
     item = ParentalKey('UtilityMenu', related_name='utility_menu_links')
 
 
 class UsefulLinksMenu(Orderable, AbstractLink):
+    """Class for useful links menu."""
+
     item = ParentalKey('UsefulLinks', related_name='useful_links')
 
 
 @register_setting
 class PrimaryMenu(ClusterableModel, BaseSetting):
+    """Class for primary menu settings panel definition."""
 
     panels = [
         MultiFieldPanel(
@@ -92,6 +102,7 @@ class PrimaryMenu(ClusterableModel, BaseSetting):
 
 @register_setting
 class UtilityMenu(ClusterableModel, BaseSetting):
+    """Class for utility menu settings panel definition."""
 
     panels = [
         MultiFieldPanel(
@@ -105,6 +116,7 @@ class UtilityMenu(ClusterableModel, BaseSetting):
 
 @register_setting
 class UsefulLinks(ClusterableModel, BaseSetting):
+    """Class for useful links menu settings panel definition."""
 
     panels = [
         MultiFieldPanel(

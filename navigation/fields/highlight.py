@@ -1,3 +1,5 @@
+"""Module to define highlight field classes."""
+
 from wagtail.core.blocks import (
     CharBlock,
     PageChooserBlock,
@@ -8,6 +10,7 @@ from navigation.values import TransStructValue
 
 
 class AbstractHighlight(StructBlock):
+    """Class for the abstract highlight module."""
 
     class Meta:
         abstract = True
@@ -30,6 +33,7 @@ class AbstractHighlight(StructBlock):
 
 
 class Highlight(AbstractHighlight):
+    """Class for the highlight module."""
 
     class Meta:
         help_text = '''
@@ -41,6 +45,7 @@ class Highlight(AbstractHighlight):
 
 
 class SecondaryHighlight(AbstractHighlight):
+    """Class for the secondary highlight module."""
 
     class Meta:
         help_text = '''

@@ -1,3 +1,5 @@
+"""Module to initialise navigation fields."""
+
 from .page import * # noqa
 from .highlight import * # noqa
 from .featured import * # noqa

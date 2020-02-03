@@ -1,3 +1,5 @@
+"""Module for the Focus Item class."""
+
 from wagtail.core.blocks import (
     BooleanBlock,
     CharBlock,
@@ -9,6 +11,7 @@ from navigation.fields import (
 
 
 class FocusItem(AbstractHighlight):
+    """Class to define the focus item in a navigation menu."""
 
     class Meta:
         help_text = '''

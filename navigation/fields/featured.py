@@ -1,3 +1,5 @@
+"""Module to define featured items from the navigation menu."""
+
 from wagtail.core.blocks import (
     CharBlock,
     PageChooserBlock,
@@ -9,6 +11,7 @@ from navigation.fields import (
 
 
 class Featured(AbstractHighlight):
+    """Class for a featured item."""
 
     class Meta:
         help_text = '''

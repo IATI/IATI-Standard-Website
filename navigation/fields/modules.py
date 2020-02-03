@@ -1,3 +1,5 @@
+"""Module of navigation menu modules."""
+
 from django.utils.safestring import mark_safe
 from wagtail.core.blocks import (
     StaticBlock,
@@ -16,6 +18,7 @@ from navigation.values import ModuleStructValue, ModuleDoubleStructValue
 
 
 class AbstractModuleType(StructBlock):
+    """Abstract class to define a module type."""
 
     class Meta:
         abstract = True
@@ -28,6 +31,7 @@ class AbstractModuleType(StructBlock):
 
 
 class TypeA(AbstractModuleType):
+    """Class for the first type of module."""
 
     class Meta:
         help_text = 'Meganav module type a'
@@ -58,6 +62,7 @@ class TypeA(AbstractModuleType):
 
 
 class TypeB(AbstractModuleType):
+    """Class for the second type of module."""
 
     class Meta:
         help_text = 'Meganav module type b'
@@ -96,6 +101,7 @@ class TypeB(AbstractModuleType):
 
 
 class TypeC(AbstractModuleType):
+    """Class for the third type of module."""
 
     class Meta:
         help_text = 'Meganav module type c'

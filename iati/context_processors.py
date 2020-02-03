@@ -1,3 +1,5 @@
+"""Module of context processors for the IATI Standard Website."""
+
 import itertools
 from django.conf import settings
 from wagtail.core.models import Page
@@ -7,6 +9,7 @@ from navigation.models import (
 
 
 def get_current_page(request):
+    """Try and get a page safely."""
     try:
         # this try is here to protect against 500 errors when there is a 404 error
         # taken from https://github.com/torchbox/wagtail/blob/master/wagtail/wagtailcore/views.py#L17
@@ -24,7 +27,6 @@ def captchakey(request):
 
 def globals(request):
     """Return a global context dictionary for use by templates."""
-
     current_page = get_current_page(request)
 
     return {
@@ -35,6 +37,7 @@ def globals(request):
 
 
 def construct_primary_nav(qs, current_page):
+    """Function to construct the primary navigation menu."""
     nav = list(qs)
     for item in nav:
         item.active = False

@@ -12,6 +12,7 @@ from babel.messages.pofile import read_po
 
 
 def setattr_by_json_path(json_object, path, value):
+    """Recursive function that sets a string value given a JSON xpath."""
     first_id = path.find("#")
     second_id = path.find("#", first_id + 1)
     first_key = path.find("/")

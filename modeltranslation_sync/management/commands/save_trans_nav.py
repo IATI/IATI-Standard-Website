@@ -15,6 +15,7 @@ from navigation.models import PrimaryMenuLinks, UtilityMenuLinks, UsefulLinksMen
 
 
 def generate_json_paths(json_object, path, path_object):
+    """Recursive function that generates a JSON xpath given a JSON object."""
     if isinstance(json_object, list):
         for sub_object in json_object:
             try:
@@ -33,6 +34,7 @@ def generate_json_paths(json_object, path, path_object):
 
 
 def fetch_json_by_path(json_object, path):
+    """Recursively fetch a string value from a JSON object given an xpath."""
     first_id = path.find("#")
     second_id = path.find("#", first_id + 1)
     first_key = path.find("/")
