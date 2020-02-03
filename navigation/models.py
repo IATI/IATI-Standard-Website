@@ -70,7 +70,7 @@ class PrimaryMenuLinks(Orderable, AbstractLink):
 
     @cached_property
     def label(self):
-        """Function to define localised menu label."""
+        """Define localised menu label."""
         return get_localised_field_value(self, 'label')
 
 
