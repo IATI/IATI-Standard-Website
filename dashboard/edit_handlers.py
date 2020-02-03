@@ -14,7 +14,7 @@ class MultiFieldPanel(WagtailMultiFieldPanel):
         super().__init__(children, *args, **kwargs)
 
     def clone(self):
-        """Function to clone the field panel."""
+        """Clone the field panel."""
         props = {
             'children': self.children,
             'heading': self.heading,
@@ -33,6 +33,6 @@ def HelpPanel(
     classname='',
     wrapper_class='help-block help-info'
 ):
-    """Function for a help text panel."""
+    """Define a help text panel."""
     wrapped_content = '<div class="%s">%s</div>' % (wrapper_class, content)
     return WagtailHelpPanel(content=wrapped_content, template=template, heading=heading, classname=classname)

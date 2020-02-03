@@ -12,7 +12,7 @@ from navigation.fields import (
 
 
 def navigation(blank=False):
-    """Function that returns a stream of different module types."""
+    """Return a stream of different module types."""
     required = not blank
     return StreamField(
         StreamBlock(

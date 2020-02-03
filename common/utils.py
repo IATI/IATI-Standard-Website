@@ -3,7 +3,7 @@ from django.db import models
 
 
 def ForeignKeyField(model=None, required=False, on_delete=models.SET_NULL, related_name='+', **kwargs) -> models.ForeignKey:
-    """Custom field for a non-required foreign key field."""
+    """Define custom field for a non-required foreign key field."""
     if not model:
         raise ValueError('ForeignKeyField requires a valid model string reference')
     required = not required
@@ -18,7 +18,7 @@ def ForeignKeyField(model=None, required=False, on_delete=models.SET_NULL, relat
 
 
 def WagtailImageField(required=False, **kwargs) -> models.ForeignKey:
-    """Custom field for a Wagtail-style image."""
+    """Define custom field for a Wagtail-style image."""
     return ForeignKeyField(
         model='wagtailimages.Image',
         required=required,

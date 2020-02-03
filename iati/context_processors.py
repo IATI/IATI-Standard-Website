@@ -37,7 +37,7 @@ def globals(request):
 
 
 def construct_primary_nav(qs, current_page):
-    """Function to construct the primary navigation menu."""
+    """Construct the primary navigation menu."""
     nav = list(qs)
     for item in nav:
         item.active = False
