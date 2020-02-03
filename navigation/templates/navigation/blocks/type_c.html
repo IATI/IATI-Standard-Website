@@ -1,39 +1,39 @@
 {% load wagtailcore_tags %}
 
 <div class="navigation-megamenu">
-    {% include_block value.highlight with class='navigation-megamenu__col--small' %}
+    {% include_block value.highlight with class=value.highlight_class %}
 
     {% if value.num_columns %}
         <div class="navigation-megamenu__col">
             {# control the order of module output as we can't enforce order in the streamblock editor #}
-            <div class="{{ value.column_container_class_row_1 }}">
+            <div class="{{ value.column_container_class }}">
                 {% for column in value.columns %}
-                    {% if forloop.counter <= value.num_columns_max %}
+                    {% if forloop.counter <= value.num_columns_row %}
                         {% if column.block_type == 'focus_item' or column.block_type == 'page_list' %}
-                            {% include_block column with col=column.value column_class=value.column_class_row_1 %}
+                            {% include_block column with col=column.value column_class=value.column_class %}
                         {% endif %}
                     {% endif %}
                 {% endfor %}
                 {% if value.num_rows < 2  %}
                     {% for column in value.columns %}
                         {% if column.block_type == 'secondary_highlight' %}
-                            {% include_block column with col=column.value column_class=value.column_class_row_1 %}
+                            {% include_block column with col=column.value column_class=value.column_class %}
                         {% endif %}
                     {% endfor %}
                 {% endif %}
             </div>
             {% if value.num_rows == 2  %}
-                <div class="{{ value.column_container_class_row_2 }}">
+                <div class="{{ value.column_container_class }}">
                     {% for column in value.columns %}
-                        {% if forloop.counter > value.num_columns_max %}
+                        {% if forloop.counter > value.num_columns_row %}
                             {% if column.block_type == 'focus_item' or column.block_type == 'page_list' %}
-                                {% include_block column with col=column.value column_class=value.column_class_row_2 %}
+                                {% include_block column with col=column.value column_class=value.column_class %}
                             {% endif %}
                         {% endif %}
                     {% endfor %}
                     {% for column in value.columns %}
                         {% if column.block_type == 'secondary_highlight' %}
-                            {% include_block column with col=column.value column_class=value.column_class_row_2 %}
+                            {% include_block column with col=column.value column_class=value.column_class %}
                         {% endif %}
                     {% endfor %}
                 </div>
