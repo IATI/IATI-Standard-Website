@@ -61,11 +61,9 @@ class ModuleDoubleStructValue(StructValue):
         return num_cols
 
     def column_container_class(self):
-        print('l-%sup' % str(self.num_columns_row()))
         return 'l-%sup' % str(self.num_columns_row())
 
     def column_class(self):
-        print('l-%sup__col' % str(self.num_columns_row()))
         return 'l-%sup__col' % str(self.num_columns_row())
 
 

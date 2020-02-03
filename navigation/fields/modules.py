@@ -136,33 +136,3 @@ class TypeC(AbstractModuleType):
             }
         },
     )
-
-
-class TypeD(AbstractModuleType):
-
-    class Meta:
-        help_text = 'Meganav module type d'
-        template = 'navigation/blocks/type_d.html'
-
-    columns_label = StaticBlock(
-        admin_text=mark_safe(
-            '''
-            <div class="help-block help-info">
-                <p>
-                    <strong>Columns</strong><br>
-                    Column elements for the meganav module.<br>
-                    Maximum number of items: 4
-                </p>
-            </div>
-            '''
-        )
-    )
-    columns = StreamBlock(
-        [
-            ('focus_item', FocusItem()),
-            ('page_list', PageList()),
-        ],
-        min_num=0,
-        max_num=4,
-        required=False
-    )
