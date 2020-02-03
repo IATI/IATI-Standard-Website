@@ -169,7 +169,7 @@
 				width: 60%;
 				@supports (display: grid) {
 					width: auto;
-					grid-column: 2 / span 2;
+					grid-column: span 2;
 				}
 				@supports (display: -ms-grid) {
 					width: 60%;
@@ -250,7 +250,7 @@
 			width: 100%;
 			@supports (display: grid) {
 				width: auto;
-				grid-column: 1 / span 2;
+				grid-column: span 2;
 			}
 			@supports (display: -ms-grid) {
 				width: 100%;
@@ -318,7 +318,7 @@
 				width: 47.5%;
 				@supports (display: grid) {
 					width: auto;
-					grid-column: 3 / span 2;
+					grid-column: span 2;
 				}
 				@supports (display: -ms-grid) {
 					width: 47.5%;
