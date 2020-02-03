@@ -58,7 +58,6 @@ class PrimaryMenuLinks(Orderable, AbstractLink):
                             <li><strong>Type a</strong>: page lists, nested page lists (max 4 items)</li>
                             <li><strong>Type b</strong>: page list, featured (max 2 items)</li>
                             <li><strong>Type c</strong>: focus items, page lists, secondary highlight (max 7 items)</li>
-                            <li><strong>Type d</strong>: focus items, page lists (max 4 items)</li>
                         </ul>
                     ''',
         ),
