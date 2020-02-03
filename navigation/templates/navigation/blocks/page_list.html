@@ -12,7 +12,9 @@
             <ul class="navigation-megamenu__list">
                 {% for item in col.page_list  %}
                     {% if item.page and item.page.live %}
-                        <a href="{{ item.page.url }}">{{ item.page.specific.heading }}</a>
+                        <li>
+                            <a href="{{ item.page.url }}">{{ item.page.specific.heading }}</a>
+                        </li>
                     {% endif %}
                 {% endfor %}
             </ul>
