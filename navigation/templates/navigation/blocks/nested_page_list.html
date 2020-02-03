@@ -2,8 +2,7 @@
     <ul class="navigation-megamenu__list">
         {% for group in col.groups %}
             {% if group.page %}
-                <li>
-                    <a href="{{ group.page.url }}">{{ group.page.specific.heading }}</a></li>
+                <li><a href="{{ group.page.url }}">{{ group.page.specific.heading }}</a></li>
             {% endif %}
             {% if group.page_group %}
                 <li>
@@ -11,8 +10,10 @@
                         {{ group.title }}
                     {% endif %}
                     <ul>
-                        {% for page in group.page_group %}
-                            <li><a href="{{ page.page.url }}">{{ page.page.specific.heading }}</a></li>
+                        {% for item in group.page_group %}
+                            {% if item.page and item.page.live %}
+                                <li><a href="{{ item.page.url }}">{{ item.page.specific.heading }}</a></li>
+                            {% endif %}
                         {% endfor %}
                     </ul>
                 </li>

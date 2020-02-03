@@ -10,17 +10,21 @@
                 <p class="navigation-megamenu__block__copy">{{ col.description }}</p>
             {% endif %}
             <ul class="navigation-megamenu__list">
-                {% for page in col.page_list  %}
-                     <a href="{{ page.page.url }}">{{ page.page.specific.heading }}</a>
+                {% for item in col.page_list  %}
+                    {% if item.page and item.page.live %}
+                        <a href="{{ item.page.url }}">{{ item.page.specific.heading }}</a>
+                    {% endif %}
                 {% endfor %}
             </ul>
         </div>
     {% else %}
         <ul class="navigation-megamenu__list">
-            {% for page in col.page_list %}
-                <li class="{% if forloop.first and col.use_first_page_as_title %}navigation-megamenu__list-title{% endif %}">
-                    <a href="{{ page.page.url }}">{{ page.page.specific.heading }}</a>
-                </li>
+            {% for item in col.page_list %}
+                {% if item.page and item.page.live %}
+                    <li class="{% if forloop.first and col.use_first_page_as_title %}navigation-megamenu__list-title{% endif %}">
+                        <a href="{{ item.page.url }}">{{ item.page.specific.heading }}</a>
+                    </li>
+                {% endif %}
             {% endfor %}
         </ul>
     {% endif %}
