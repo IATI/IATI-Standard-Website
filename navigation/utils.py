@@ -22,11 +22,13 @@ def get_localised_field_value(instance, field_name, use_get=False):
         current_field_name = '%s_%s' % (field_name, current_language)
         default_field_name = '%s_%s' % (field_name, default_language)
 
-        if (field_value := get_field_value(instance, current_field_name, use_get)):  # noqa
+        field_value = get_field_value(instance, current_field_name, use_get)
+        if (field_value):  # noqa
             return field_value
 
         if current_field_name != default_field_name:
-            if (field_value := get_field_value(instance, default_field_name, use_get)):  # noqa
+            field_value = get_field_value(instance, default_field_name, use_get)
+            if (field_value):  # noqa
                 return field_value
 
         return ''
