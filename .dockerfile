@@ -1,4 +1,4 @@
-FROM python:3.8.1
+FROM python:3.7.6
 
 ENV LANG en_US.UTF-8
 ENV PYTHONUNBUFFERED 1
