@@ -46,6 +46,12 @@
     .help--standout & {
         padding: 1.5em 2em;
     }
+    .help--simple & {
+        margin-top: 0;
+        margin-right: 0;
+        margin-bottom: 1.5em;
+        margin-left: -3em;
+    }
 }
 
 .help__heading {
@@ -74,6 +80,13 @@
     position: relative;
     // left: 2em;
     z-index: 100;
+    .help--simple & {
+        margin-left: 0;
+        margin-top: 0;
+        @include respond-to($c-vp) {
+            margin-left: 1.5em;
+        }
+    }
 }
 
 .help__body-copy {
