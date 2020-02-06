@@ -7,15 +7,9 @@
         {% for item in global.primary_menu %}
             {% include 'navigation/primary-item.html' %}
         {% endfor %}
-        <li id="section-news" class='navigation-primary__item navigation-primary__item--ss-only {% check_active "news" "primary" %}'>
-            <a class="navigation-primary__item--link" href="{% default_page_url 'news' %}">{% trans "News" %}</a>
-        </li>
-        <li id="section-events" class='navigation-primary__item navigation-primary__item--ss-only {% check_active "events" "primary" %}'>
-            <a class="navigation-primary__item--link" href="{% default_page_url 'events' %}">{% trans "Events" %}</a>
-        </li>
-        <li id="section-contact" class='navigation-primary__item navigation-primary__item--ss-only {% check_active "contact" "primary" %}'>
-            <a class="navigation-primary__item--link" href="{% default_page_url 'contact' %}">{% trans "Contact" %}</a>
-        </li>
+        {% for item in global.utility_menu %}
+            {% include 'navigation/utility-item.html' with class='navigation-primary__item navigation-primary__item--ss-only' active_class='navigation-primary__item--active' link_class='navigation-primary__item--link' %}
+        {% endfor %}
     </ul>
     <div class="search-mobile">
         <form action="{% url 'search' %}">

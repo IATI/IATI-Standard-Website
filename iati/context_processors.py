@@ -6,6 +6,7 @@ from wagtail.core.models import Page
 from navigation.models import (
     PrimaryMenu,
     UtilityMenu,
+    UsefulLinks,
 )
 
 
@@ -34,6 +35,7 @@ def globals(request):
         'global': {
             'primary_menu': construct_nav(PrimaryMenu.for_site(request.site).primary_menu_links.all(), current_page),
             'utility_menu': construct_nav(UtilityMenu.for_site(request.site).utility_menu_links.all(), current_page),
+            'useful_links': UsefulLinks.for_site(request.site).useful_links.all(),
         },
     }
 

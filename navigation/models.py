@@ -38,6 +38,11 @@ class AbstractLink(models.Model):
         )),
     ]
 
+    @cached_property
+    def label(self):
+        """Define localised menu label."""
+        return get_localised_field_value(self, 'label')
+
 
 class PrimaryMenuLinks(Orderable, AbstractLink):
     """Class for primary menu links."""
@@ -71,11 +76,6 @@ class PrimaryMenuLinks(Orderable, AbstractLink):
         StreamFieldPanel('meganav'),
     ]
 
-    @cached_property
-    def label(self):
-        """Define localised menu label."""
-        return get_localised_field_value(self, 'label')
-
 
 class UtilityMenuLinks(Orderable, AbstractLink):
     """Class for utility menu links."""
@@ -95,6 +95,14 @@ class UsefulLinksMenu(Orderable, AbstractLink):
     """Class for useful links menu."""
 
     item = ParentalKey('UsefulLinks', related_name='useful_links')
+
+    pre_panels = [
+        HelpPanel(
+            content='<strong>Useful link</strong><br>Page for the useful link item and associated link label.',
+        ),
+    ]
+
+    panels = pre_panels + AbstractLink.panels
 
 
 @register_setting
