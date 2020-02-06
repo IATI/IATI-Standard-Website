@@ -7,7 +7,7 @@ django-extensions==2.2.6
 django-haystack==2.8.1
 django-modeltranslation==0.14.2
 django==2.2.9
-elasticsearch==2.3.0
+elasticsearch==6.4.0
 gunicorn==20.0.4
 psycopg2-binary==2.8.4
 requests==2.22.0
