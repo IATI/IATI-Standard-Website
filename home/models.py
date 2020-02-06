@@ -115,7 +115,7 @@ class AbstractBasePage(Page):
         "heading",
         "excerpt"
     ]
-    search_fields = [
+    search_fields = Page.search_fields +[
         FilterField('live'),
         SearchField('heading'),
         SearchField('excerpt'),
