@@ -43,7 +43,7 @@ def editor_css():
             }}
 
             .help-block.navigation-save-advice {{
-                padding: 0.7em 1em 0.7em 3.5em;
+                padding: 0.7em 1.2em 0.7em 3.5em;
                 margin: 0;
                 clear: none;
             }}

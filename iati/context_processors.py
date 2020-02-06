@@ -5,6 +5,7 @@ from django.conf import settings
 from wagtail.core.models import Page
 from navigation.models import (
     PrimaryMenu,
+    UtilityMenu,
 )
 
 
@@ -31,13 +32,14 @@ def globals(request):
 
     return {
         'global': {
-            'primary_menu': construct_primary_nav(PrimaryMenu.for_site(request.site).primary_menu_links.all(), current_page),
+            'primary_menu': construct_nav(PrimaryMenu.for_site(request.site).primary_menu_links.all(), current_page),
+            'utility_menu': construct_nav(UtilityMenu.for_site(request.site).utility_menu_links.all(), current_page),
         },
     }
 
 
-def construct_primary_nav(qs, current_page):
-    """Construct the primary navigation menu."""
+def construct_nav(qs, current_page):
+    """Construct a navigation menu."""
     nav = list(qs)
     for item in nav:
         item.active = False

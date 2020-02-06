@@ -31,13 +31,6 @@ class AbstractLink(models.Model):
         required=True,
     )
     panels = [
-        HelpPanel(
-            content='Primary menu item',
-            wrapper_class='help-block help-text-section-header',
-        ),
-        HelpPanel(
-            content='<strong>Primary menu link</strong><br>Top level page for the primary menu item and associated link label.',
-        ),
         PageChooserPanel('page'),
         FieldRowPanel(children=(
             FieldPanel('label_en'),
@@ -52,7 +45,17 @@ class PrimaryMenuLinks(Orderable, AbstractLink):
     item = ParentalKey('PrimaryMenu', related_name='primary_menu_links')
     meganav = navigation(blank=True)
 
-    panels = AbstractLink.panels + [
+    pre_panels = [
+        HelpPanel(
+            content='Primary menu item',
+            wrapper_class='help-block help-text-section-header',
+        ),
+        HelpPanel(
+            content='<strong>Primary menu link</strong><br>Top level page for the primary menu item and associated link label.',
+        ),
+    ]
+
+    panels = pre_panels + AbstractLink.panels + [
         HelpPanel(
             content='''
                         <strong>Meganav</strong><br>
@@ -78,6 +81,14 @@ class UtilityMenuLinks(Orderable, AbstractLink):
     """Class for utility menu links."""
 
     item = ParentalKey('UtilityMenu', related_name='utility_menu_links')
+
+    pre_panels = [
+        HelpPanel(
+            content='<strong>Utility menu link</strong><br>Page for the utility menu item and associated link label.',
+        ),
+    ]
+
+    panels = pre_panels + AbstractLink.panels
 
 
 class UsefulLinksMenu(Orderable, AbstractLink):
