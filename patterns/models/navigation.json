@@ -167,6 +167,11 @@
                     {
                         "class": "l-3up",
                         "column_class": "l-3up__col",
+                        "column_title_class": [
+                            "",
+                            "navigation-megamenu__list-title",
+                            "navigation-megamenu__list-title"
+                        ],
                         "columns": [
                             [
                                 "How IATI works",
@@ -286,7 +291,7 @@
                             ],
                             {
                                 "case_study": true,
-                                "image": "content-image.jpg",
+                                "image": "image-placeholder.svg",
                                 "heading": "IATI data use research",
                                 "excerpt": "IATI has undertaken research to gain insights into how different countries use data."
                             }
@@ -339,7 +344,7 @@
                         ]
                     },
                     {
-                        "class": "l-4up l-4up--double-right",
+                        "class": "l-4up",
                         "column_class": "l-4up__col",
                         "columns": [
                             {

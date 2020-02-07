@@ -1,0 +1,26 @@
+{% load iati_tags i18n %}
+
+<button role="button button--small" class="navigation-primary-toggle" id="navigation-primary-toggle"><span>{% trans "Menu" %}</span></button>
+
+<nav class="navigation-primary" role="navigation" id="navigation-primary">
+    <ul class="navigation-primary__items">
+        {% for item in global.primary_menu %}
+            {% include 'navigation/primary-item.html' %}
+        {% endfor %}
+        {% for item in global.utility_menu %}
+            {% include 'navigation/utility-item.html' with class='navigation-primary__item navigation-primary__item--ss-only' active_class='navigation-primary__item--active' link_class='navigation-primary__item--link' %}
+        {% endfor %}
+    </ul>
+    <div class="search-mobile">
+        <form action="{% url 'search' %}">
+            <label for="search-mobile" class="form-label form-label--hidden">{% trans "Search the IATI website" %}</label>
+            <input class="form-item" type="text" name="query" placeholder="{% trans "Search the IATI website" %}">
+            <button class="button" type="submit">{% trans "Search" %}</button>
+        </form>
+    </div>
+    {% if has_multilanguage_support %}
+        <ul class="navigation-language navigation-language--mobile">
+            {% translation_links calling_page=self %}
+        </ul>
+    {% endif %}
+</nav>

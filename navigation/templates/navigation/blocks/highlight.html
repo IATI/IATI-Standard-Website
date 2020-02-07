@@ -1,0 +1,11 @@
+{% load i18n %}
+
+{% if value.page and value.page.live %}
+    <div class="navigation-megamenu__col navigation-megamenu__col--teaser {{ class }}">
+        <div class="m-highlight">
+            <h2 class="m-highlight__heading">{{ value.page.specific.heading }}</h2>
+            <p class="m-highlight__copy">{{ value.description }}</p>
+            <a href="{{ value.page.url }}" class="button button--small">{% trans 'Read more' %}</a>
+        </div>
+    </div>
+{% endif %}

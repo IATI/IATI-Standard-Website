@@ -1,0 +1,23 @@
+{% load wagtailcore_tags %}
+
+<div class="navigation-megamenu">
+    {% include_block value.highlight %}
+
+    {% if value.num_columns %}
+        <div class="navigation-megamenu__col">
+            <div class="l-offset">
+                {# control the order of module output as we can't enforce order in the streamblock editor #}
+                {% for column in value.columns %}
+                    {% if column.block_type == 'page_list' %}
+                        {% include_block column with col=column.value column_class='l-offset__col' %}
+                    {% endif %}
+                {% endfor %}
+                {% for column in value.columns %}
+                    {% if column.block_type == 'featured' %}
+                        {% include_block column with col=column.value column_class='l-offset__col' %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+</div>
