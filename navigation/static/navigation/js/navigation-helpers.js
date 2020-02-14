@@ -9,7 +9,7 @@ $(function () {
     var button_class = '.c-sf-add-button[id*="prependmenu-openclose"], .c-sf-add-button[id*="appendmenu-openclose"]';
 
     // return if we're not in the right place
-    if (!$(admin_class).find('form[action*="' + form_action + '"]')) {
+    if (!$(admin_class).find('form[action*="' + form_action + '"]').length) {
         return;
     }
 

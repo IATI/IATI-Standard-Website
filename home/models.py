@@ -15,7 +15,9 @@ from wagtail.core.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.documents.blocks import DocumentChooserBlock
+from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.search.index import FilterField, SearchField
+from home.fields import HomeFieldsMixin
 
 
 class DocumentBoxBlock(StreamBlock):
@@ -244,7 +246,7 @@ class DefaultPageHeaderImageMixin(Page):
         abstract = True
 
 
-class HomePage(DefaultPageHeaderImageMixin, AbstractBasePage):  # pylint: disable=too-many-ancestors
+class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage):  # pylint: disable=too-many-ancestors
     """Proof-of-concept model definition for the homepage."""
 
     activities = models.PositiveIntegerField(default=1000000)
@@ -259,8 +261,10 @@ class HomePage(DefaultPageHeaderImageMixin, AbstractBasePage):  # pylint: disabl
         return context
 
     multilingual_field_panels = DefaultPageHeaderImageMixin.multilingual_field_panels + [
+        FieldPanel("header_video"),
+        SnippetChooserPanel("testimonial"),
         FieldPanel("activities"),
-        FieldPanel("organisations")
+        FieldPanel("organisations"),
     ]
 
 
