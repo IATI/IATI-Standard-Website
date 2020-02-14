@@ -9,7 +9,7 @@ from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template.defaultfilters import slugify
 from wagtail.core.models import Page
-from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.admin.edit_handlers import FieldPanel, InlinePanel
 from wagtail.core.blocks import TextBlock, StructBlock, StreamBlock, FieldBlock, CharBlock, RichTextBlock, RawHTMLBlock
 from wagtail.core.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
@@ -18,6 +18,7 @@ from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.search.index import FilterField, SearchField
 from home.fields import HomeFieldsMixin
+from home.inlines import GettingStartedItems  # noqa
 
 
 class DocumentBoxBlock(StreamBlock):
@@ -252,6 +253,19 @@ class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage): 
     activities = models.PositiveIntegerField(default=1000000)
     organisations = models.PositiveIntegerField(default=700)
 
+    translation_fields = AbstractBasePage.translation_fields + [
+        'activities_description',
+        'organisations_description',
+        'getting_started_title',
+    ]
+    required_languages = {
+        'en': (
+            'activities_description',
+            'organisations_description',
+            'getting_started_title',
+        ),
+    }
+
     def get_context(self, request, *args, **kwargs):
         """Overwrite the default get_context page to serve descendant case study pages."""
         case_study_page = apps.get_model(app_label='about', model_name='CaseStudyPage')
@@ -265,6 +279,7 @@ class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage): 
         SnippetChooserPanel("testimonial"),
         FieldPanel("activities"),
         FieldPanel("organisations"),
+        InlinePanel('getting_started_items', label='Getting started item', max_num=3),
     ]
 
 

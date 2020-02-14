@@ -13,7 +13,8 @@ class Testimonial(index.Indexed, models.Model):
         verbose_name = 'Testimonial'
         ordering = ['quotee']
 
-    quote = models.TextField(
+    quote = models.CharField(
+        max_length=255,
         help_text='The quote for the testimonial',
     )
     quotee = models.CharField(
