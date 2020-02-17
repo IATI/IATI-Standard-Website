@@ -254,6 +254,7 @@ class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage): 
     organisations = models.PositiveIntegerField(default=700)
 
     local_translation_fields = [
+        'header_video',
         'activities_description',
         'organisations_description',
         'getting_started_title',
@@ -261,9 +262,21 @@ class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage): 
         'about_iati_description',
         'about_iati_video',
         'about_iati_link_label',
+        'iati_in_action_title',
+        'iati_in_action_description',
+        'iati_tools_title',
+        'iati_tools_title_description',
+        'latest_news_title',
+        'latest_news_link_label',
+        'latest_news_tweets_title',
+    ]
+    optional_local_translation_fields = [
+        'header_video',
+        'iati_in_action_description',
+        'iati_tools_title_description',
     ]
     translation_fields = AbstractBasePage.translation_fields + local_translation_fields
-    required_languages = {'en': local_translation_fields}
+    required_languages = {'en': list(set(local_translation_fields) - set(optional_local_translation_fields))}
 
     def get_context(self, request, *args, **kwargs):
         """Overwrite the default get_context page to serve descendant case study pages."""
@@ -274,7 +287,6 @@ class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage): 
         return context
 
     multilingual_field_panels = DefaultPageHeaderImageMixin.multilingual_field_panels + [
-        FieldPanel('header_video'),
         SnippetChooserPanel('testimonial'),
         FieldPanel('activities'),
         FieldPanel('organisations'),
@@ -295,6 +307,12 @@ class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage): 
             'iati_in_action_items',
             heading='IATI in action items',
             label='IATI in action item',
+            max_num=2,
+        ),
+        InlinePanel(
+            'iati_tools_items',
+            heading='IATI tools items',
+            label='IATI tools item',
             max_num=2,
         ),
     ]

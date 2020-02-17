@@ -4,7 +4,7 @@ from modeltranslation.translator import TranslationOptions
 from modeltranslation.decorators import register
 from home.translation_helper import add_language_content_panels
 from .models import HomePage, StandardPage
-from .inlines import GettingStartedItems, IATIInActionFeaturedItems
+from .inlines import GettingStartedItems, IATIInActionFeaturedItems, IATIInActionItems
 
 
 @register(HomePage)
@@ -40,3 +40,10 @@ class IATIInActionFeaturedItemsTR(TranslationOptions):
     """Class declaring which fields of the IATIInActionFeaturedItems model to translate."""
 
     fields = IATIInActionFeaturedItems.translation_fields
+
+
+@register(IATIInActionItems)
+class IATIInActionItemsTR(TranslationOptions):
+    """Class declaring which fields of the IATIInActionItems model to translate."""
+
+    fields = IATIInActionItems.translation_fields

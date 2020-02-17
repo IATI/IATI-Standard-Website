@@ -46,3 +46,31 @@ class HomeFieldsMixin(models.Model):
         max_length=255,
         help_text='Link label for the about IATI section',
     )
+    iati_in_action_title = models.CharField(
+        max_length=255,
+        help_text='Title for the IATI in action section',
+    )
+    iati_in_action_description = models.TextField(
+        blank=True,
+        help_text='Optional: description for the IATI in action section',
+    )
+    iati_tools_title = models.CharField(
+        max_length=255,
+        help_text='Title for the IATI tools section',
+    )
+    iati_tools_title_description = models.TextField(
+        blank=True,
+        help_text='Optional: description for the IATI tools section',
+    )
+    latest_news_title = models.CharField(
+        max_length=255,
+        help_text='Title for the latest new section',
+    )
+    latest_news_link_label = models.CharField(
+        max_length=255,
+        help_text='Label for the view all news button',
+    )
+    latest_news_tweets_title = models.CharField(
+        max_length=255,
+        help_text='Title for the latest news Twitter section',
+    )

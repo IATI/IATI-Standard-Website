@@ -135,3 +135,11 @@ class IATIInActionItems(Orderable, BaseRelatedOptionalItem):
         FieldPanel('title'),
         FieldPanel('description'),
     ]
+
+
+class IATIToolsItems(Orderable, BaseRelatedPageItem):
+    item = ParentalKey('HomePage', related_name='iati_tools_items')
+
+    panels = [
+        PageChooserPanel('page'),
+    ]
