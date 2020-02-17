@@ -6,34 +6,6 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from common.utils import ForeignKeyField, WagtailImageField
 
 
-class DynamicOptionalFieldPanel(FieldPanel):
-    '''
-    By default, this field will be required.
-    If the concrete class field should be optional, then add the following to the class definition:
-    [field]_required = False
-    '''
-
-    def on_form_bound(self):
-        name = self.field_name
-        required = getattr(self.model, '%s_required' % name, True)
-        self.form.fields[name].required = required
-        super().on_form_bound()
-
-
-class DynamicOptionalImageChooserPanel(ImageChooserPanel):
-    '''
-    By default, this field will be required.
-    If the concrete class field should be optional, then add the following to the class definition:
-    [field]_required = False
-    '''
-
-    def on_form_bound(self):
-        name = self.field_name
-        required = getattr(self.model, '%s_required' % name, True)
-        self.form.fields[name].required = required
-        super().on_form_bound()
-
-
 class BaseRelatedPageItem(models.Model):
     class Meta:
         abstract = True
@@ -58,19 +30,13 @@ class BaseRelatedItem(BaseRelatedPageItem):
         max_length=255,
         help_text='Description for the item',
     )
-
-
-class BaseRelatedImageItem(BaseRelatedItem):
-    class Meta:
-        abstract = True
-
     image = WagtailImageField(
         required=True,
         help_text='Image for the item'
     )
 
 
-class GettingStartedItem(BaseRelatedImageItem):
+class GettingStartedItem(BaseRelatedItem):
     class Meta:
         abstract = True
 
@@ -94,16 +60,36 @@ class GettingStartedItems(Orderable, GettingStartedItem):
     panels = [
         PageChooserPanel('page'),
         ImageChooserPanel('image'),
-        DynamicOptionalFieldPanel('title'),
+        FieldPanel('title'),
         FieldPanel('description'),
         FieldPanel('link_label'),
     ]
 
 
-class IATIInActionFeaturedItem(BaseRelatedImageItem):
+class BaseRelatedOptionalItem(BaseRelatedPageItem):
     class Meta:
         abstract = True
 
+    title = models.CharField(
+        max_length=255,
+        blank=True,
+        help_text='Optional: title for the item. Defaults to the selected page title if left blank',
+    )
+    description = models.CharField(
+        max_length=255,
+        blank=True,
+        help_text='Optional: description for the item. Defaults to the selected page excerpt if left blank',
+    )
+
+
+class IATIInActionFeaturedItem(BaseRelatedOptionalItem):
+    class Meta:
+        abstract = True
+
+    image = WagtailImageField(
+        required=False,
+        help_text='Optional: image for the item. Defaults to the selected page image if left blank'
+    )
     quote = models.CharField(
         max_length=255,
         blank=True,
@@ -119,10 +105,6 @@ class IATIInActionFeaturedItem(BaseRelatedImageItem):
 class IATIInActionFeaturedItems(Orderable, IATIInActionFeaturedItem):
     item = ParentalKey('HomePage', related_name='iati_in_action_featured_item')
 
-    title_required = False
-    description_required = False
-    image_required = False
-
     translation_fields = [
         'title',
         'description',
@@ -133,8 +115,23 @@ class IATIInActionFeaturedItems(Orderable, IATIInActionFeaturedItem):
     panels = [
         PageChooserPanel('page'),
         ImageChooserPanel('image'),
-        DynamicOptionalFieldPanel('title'),
+        FieldPanel('title'),
         FieldPanel('description'),
         FieldPanel('quote'),
         FieldPanel('quotee'),
+    ]
+
+
+class IATIInActionItems(Orderable, BaseRelatedOptionalItem):
+    item = ParentalKey('HomePage', related_name='iati_in_action_items')
+
+    translation_fields = [
+        'title',
+        'description',
+    ]
+
+    panels = [
+        PageChooserPanel('page'),
+        FieldPanel('title'),
+        FieldPanel('description'),
     ]

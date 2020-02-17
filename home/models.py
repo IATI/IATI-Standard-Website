@@ -282,14 +282,20 @@ class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage): 
             'getting_started_items',
             heading='Getting started items',
             label='Getting started item',
-            max_num=3
+            max_num=3,
         ),
         PageChooserPanel('about_iati_page'),
         InlinePanel(
             'iati_in_action_featured_item',
             heading='IATI in action featured item',
             label='IATI in action featured item',
-            max_num=1
+            max_num=1,
+        ),
+        InlinePanel(
+            'iati_in_action_items',
+            heading='IATI in action items',
+            label='IATI in action item',
+            max_num=2,
         ),
     ]
 
