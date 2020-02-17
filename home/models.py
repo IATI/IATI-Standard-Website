@@ -9,7 +9,7 @@ from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template.defaultfilters import slugify
 from wagtail.core.models import Page
-from wagtail.admin.edit_handlers import FieldPanel, InlinePanel
+from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, PageChooserPanel
 from wagtail.core.blocks import TextBlock, StructBlock, StreamBlock, FieldBlock, CharBlock, RichTextBlock, RawHTMLBlock
 from wagtail.core.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
@@ -253,18 +253,17 @@ class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage): 
     activities = models.PositiveIntegerField(default=1000000)
     organisations = models.PositiveIntegerField(default=700)
 
-    translation_fields = AbstractBasePage.translation_fields + [
+    local_translation_fields = [
         'activities_description',
         'organisations_description',
         'getting_started_title',
+        'about_iati_title',
+        'about_iati_description',
+        'about_iati_video',
+        'about_iati_link_label',
     ]
-    required_languages = {
-        'en': (
-            'activities_description',
-            'organisations_description',
-            'getting_started_title',
-        ),
-    }
+    translation_fields = AbstractBasePage.translation_fields + local_translation_fields
+    required_languages = {'en': local_translation_fields}
 
     def get_context(self, request, *args, **kwargs):
         """Overwrite the default get_context page to serve descendant case study pages."""
@@ -275,11 +274,23 @@ class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage): 
         return context
 
     multilingual_field_panels = DefaultPageHeaderImageMixin.multilingual_field_panels + [
-        FieldPanel("header_video"),
-        SnippetChooserPanel("testimonial"),
-        FieldPanel("activities"),
-        FieldPanel("organisations"),
-        InlinePanel('getting_started_items', label='Getting started item', max_num=3),
+        FieldPanel('header_video'),
+        SnippetChooserPanel('testimonial'),
+        FieldPanel('activities'),
+        FieldPanel('organisations'),
+        InlinePanel(
+            'getting_started_items',
+            heading='Getting started items',
+            label='Getting started item',
+            max_num=3
+        ),
+        PageChooserPanel('about_iati_page'),
+        InlinePanel(
+            'iati_in_action_featured_item',
+            heading='IATI in action featured item',
+            label='IATI in action featured item',
+            max_num=1
+        ),
     ]
 
 

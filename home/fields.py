@@ -27,3 +27,22 @@ class HomeFieldsMixin(models.Model):
         max_length=255,
         help_text='Title for the getting started section',
     )
+    about_iati_title = models.CharField(
+        max_length=255,
+        help_text='Title for the about IATI section',
+    )
+    about_iati_description = models.TextField(
+        help_text='Description for the about IATI section',
+    )
+    about_iati_video = models.URLField(
+        max_length=255,
+        help_text='Video embed URL for the about IATI section',
+    )
+    about_iati_page = ForeignKeyField(
+        model='wagtailcore.Page',
+        required=True,
+    )
+    about_iati_link_label = models.CharField(
+        max_length=255,
+        help_text='Link label for the about IATI section',
+    )
