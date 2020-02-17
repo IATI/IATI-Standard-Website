@@ -28,6 +28,10 @@ def editor_css():
                 }}
             }}
 
+            body#wagtail.page-editor div.locale-picker {{
+                # display: none;
+            }}
+
         </style>
         """
     )
