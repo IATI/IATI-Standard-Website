@@ -4,7 +4,7 @@ $(function () {
     var selector = 'footer .actions';
 
     // return if we're not in the right place
-    if (!$(admin_class).find('form[action*="' + form_action + '"]')) {
+    if (!$(admin_class).find('form[action*="' + form_action + '"]').length) {
         return;
     }
 
