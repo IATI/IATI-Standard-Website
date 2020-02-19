@@ -1,0 +1,9 @@
+{% if item.page and item.page.live %}
+    <li class="{{ class }}
+        {% if item.active %}
+            {{ active_class }}
+        {% endif %}
+    ">
+        <a class="{{ link_class }}" href="{{ item.page.url }}">{{ item.label }}</a>
+    </li>
+{% endif %}

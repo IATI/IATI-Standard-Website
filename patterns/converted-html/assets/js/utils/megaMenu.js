@@ -11,15 +11,38 @@ export default function megaMenu (
     hoverClass = 'hover',
     focusClass = 'focus',
     openClass = 'open',
-    minWidth = 1000
+    minWidth = 950
     ) {
 
-    const isMinWidth = window.matchMedia(`(min-width: ${minWidth}px)`).matches;
+    // clone the original nav for mobile and enhanced versions
+    const original_nav = $(selector).clone(true, true);
+    const enhanced_nav = $(selector).clone(true, true);
 
-    if (isMinWidth) {
+    // add a window event handler
+    $(window).on('resize', e => { onResize()});
+
+    // initialise with a resize call
+    onResize();
+
+    // on resize, check width and call appropriate function
+    function onResize(e) {
+        const is_min_width = window.matchMedia(`(min-width: ${minWidth}px)`).matches;
+
+        if (is_min_width) {
+            replaceMenuWithEnhanced();
+        }
+        else {
+            replaceMenuWithOriginal();
+        }
+    }
+
+    // replace nav with enhanced version
+    function replaceMenuWithEnhanced() {
+        console.log('replaceMenuWithEnhanced');
+        $(selector).first().off().unbind().replaceWith(enhanced_nav);
 
         // accessible megamenu
-        $(selector).accessibleMegaMenu({
+        $(selector).first().accessibleMegaMenu({
             // prefix for generated unique id attributes, which are required
             // to indicate aria-owns, aria-controls and aria-labelledby
             uuidPrefix: uuidPrefix,
@@ -45,6 +68,10 @@ export default function megaMenu (
             // CSS class for the open state
             openClass: openClass
         });
+    }
 
+    function replaceMenuWithOriginal() {
+        // replace with original
+        $(selector).first().replaceWith(original_nav);
     }
 }

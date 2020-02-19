@@ -1,0 +1,23 @@
+{% if value.page and value.page.live %}
+    <div class="{{ column_class }}">
+        <div class="m-highlight m-highlight--alt">
+            <h3 class="m-highlight__heading">
+                <a href="{{ value.page.url }}">{{ value.page.specific.heading }}</a>
+            </h3>
+            <p class="navigation-megamenu__block__copy">{{ value.description }}</p>
+            <a href="
+                {% if value.external_url %}
+                    {{ value.external_url }}
+                {% else %}
+                    {{ value.page.url }}
+                {% endif %}
+            " class="
+                {% if value.use_button_style %}
+                    button button--small
+                {% else %}
+                    text-link
+                {% endif %}
+            ">{{ value.link_label }}</a>
+        </div>
+    </div>
+{% endif %}

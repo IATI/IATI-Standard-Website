@@ -60,8 +60,9 @@
 						                            </div>
 	                   	 						{% else %}
 	                   	 							<ul class="navigation-megamenu__list">
+                                                        {% set loopindex = loop.index0 %}
 	                                					{% for label in sub_col %}
-	                                						<li>
+	                                						<li class="{% if loop.first %}{{ col.column_title_class[loopindex] }}{% endif %}">
 	                                							{% if label.subcolumn %}
 	                                								{{ label.heading }}
 								                                    <ul>
