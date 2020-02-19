@@ -1,0 +1,65 @@
+{% load static wagtailimages_tags %}
+
+<div class="row">
+    <div class="stats stats--standout">
+        <div class="stat-quote fill-sunset">
+            {% if page.testimonial %}
+                <div class="stat-quote__media">
+                    {% if page.testimonial.image %}
+                        {% image page.testimonial.image max-80x80 class='stat-quote__img' alt=page.testimonial.image width='auto' height='auto' %}
+                    {% else %}
+                        <img class="stat-quote__img" src="{% static 'img/portrait.png' %}" alt="">
+                    {% endif %}
+                </div>
+                <blockquote>
+                    <p class="stat-quote__copy">&ldquo;{{ page.testimonial.quote }}&rdquo;</p>
+                    <cite>{{ page.testimonial.quotee }}</cite>
+                </blockquote>
+            {% endif %}
+        </div>
+        {% comment %}
+        <div class="stat stat--flex">
+            <div class="stat__body stat__body--center">
+                <a class="stat__heading__cta" href="http://d-portal.org/ctrack.html?search&year_min=1960&year=1960#view=main">
+                    <h2 class="stat__heading stat__heading--large" id="IATI-Website-Tests_num_iati_activities">{{ page.activities|intcomma }}</h2>
+                    <p class="stat__copy">{% trans "Development and humanitarian activities published to the IATI Standard" %}</p>
+                </a>
+            </div>
+
+            <div class="stat__body stat__body--center">
+                <a class="stat__heading__cta" href="https://www.iatiregistry.org/publisher">
+                    <h2 class="stat__heading stat__heading--large" id="IATI-Website-Tests_num_iati_organisations">{{ page.organisations|intcomma }}</h2>
+                    <p class="stat__copy">{% trans "IATI publishers that contribute data for decision-making and accountability" %}</p>
+                </a>
+            </div>
+        </div>
+        {% endcomment %}
+    </div>
+</div>
+
+
+        {% comment %}
+<div class="row">
+    <div class="stats stats--standout">
+        <div class="stat-quote fill-sunset">
+            <div class="stat-quote__media">
+                <img class="stat-quote__img" src="{{ global.assets_root }}/img/portrait.png" alt="alt tag">
+            </div>
+            <blockquote>
+                <p class="stat-quote__copy">&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit&rdquo;</p>
+                <cite>Persons name</cite>
+            </blockquote>
+        </div>
+        <div class="stat stat--flex">
+            <div class="stat__body stat__body--center">
+                <h2 id="stat-activities" class="stat__heading stat__heading--large" data-inc-duration="1000" data-inc-delay="0" data-inc-value="1260899">1,260,899</h2>
+                <p class="stat__copy">Humanitarian and developlemnt activies published to the IATI Standard</p>
+            </div>
+            <div class="stat__body stat__body--center">
+                <h2 id="stat-publishers" class="stat__heading stat__heading--large" data-inc-duration="1000" data-inc-delay="0" data-inc-value="1033">1,033</h2>
+                <p class="stat__copy">Publishers and counting that contribute data to make the world a better place</p>
+            </div>
+        </div>
+    </div>
+</div>
+        {% endcomment %}

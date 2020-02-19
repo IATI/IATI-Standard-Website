@@ -1,4 +1,5 @@
 from django.db import models
+# from django.utils.functional import cached_property
 from common.utils import ForeignKeyField
 
 
@@ -79,3 +80,7 @@ class HomeFieldsMixin(models.Model):
         max_length=255,
         help_text='Title for the latest news Twitter section',
     )
+
+    # @cached_property
+    # def get_testimonal(self):
+    #     return self.testimonial
