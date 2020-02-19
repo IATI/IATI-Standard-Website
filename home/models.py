@@ -287,6 +287,7 @@ class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage): 
         return context
 
     multilingual_field_panels = DefaultPageHeaderImageMixin.multilingual_field_panels + [
+        FieldPanel('use_legacy_template'),
         SnippetChooserPanel('testimonial'),
         FieldPanel('activities'),
         FieldPanel('organisations'),
