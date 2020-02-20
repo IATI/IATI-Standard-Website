@@ -1,0 +1,25 @@
+{% load wagtailimages_tags %}
+
+<div class="section">
+    <div class="row">
+        <h2 class="section__heading">{{ page.getting_started_title }}</h2>
+        <div class="l-3up">
+            {% for item in page.getting_started %}
+                <div class="l-3up__col">
+                    <div class="help">
+                        {% image item.image max-800x500 as image %}
+                        <div class="help__header background-cover" style="background-image: url({{ image.url }})">
+                            <div class="help__panel fill-wind">
+                                <h3 class="help__heading">{{ item.title }}</h3>
+                            </div>
+                        </div>
+                        <div class="help__body">
+                            <p class="help__body-copy">{{ item.description }}</p>
+                            <a class="button" href="{{ item.page.url }}">{{ item.link_label }}</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
