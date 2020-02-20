@@ -1,7 +1,5 @@
 {% extends "base.html" %}
-{% load wagtail_modeltranslation wagtailimages_tags i18n static %}
 
-{% load iati_tags %}
 {% block body_class %}body body--home{% endblock %}
 {% block body_id %}body-home{% endblock %}
 
@@ -13,7 +11,6 @@
 
     {% include 'home/modules/statistics.html' %}
     {% include 'home/modules/getting-started.html' %}
-
-
+    {% include 'home/modules/about-iati.html' %}
 
 {% endblock %}
