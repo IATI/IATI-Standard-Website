@@ -17,8 +17,7 @@ class Testimonial(index.Indexed, models.Model):
         max_length=255,
         help_text='The quote for the testimonial',
     )
-    quotee = models.CharField(
-        max_length=255,
+    quotee = models.TextField(
         help_text='The source of the quote',
     )
     image = WagtailImageField(
