@@ -88,3 +88,11 @@ class HomeFieldsMixin(models.Model):
     @cached_property
     def getting_started(self):
         return self.getting_started_items.all()
+
+    @cached_property
+    def iati_in_action_featured(self):
+        return self.iati_in_action_featured_item.all().first()
+
+    @cached_property
+    def iati_in_action(self):
+        return self.iati_in_action_items.all()

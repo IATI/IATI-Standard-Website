@@ -310,18 +310,21 @@ class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage): 
             'iati_in_action_featured_item',
             heading='IATI in action featured item',
             label='IATI in action featured item',
+            min_num=1,
             max_num=1,
         ),
         InlinePanel(
             'iati_in_action_items',
             heading='IATI in action items',
             label='IATI in action item',
+            min_num=2,
             max_num=2,
         ),
         InlinePanel(
             'iati_tools_items',
             heading='IATI tools items',
             label='IATI tools item',
+            min_num=2,
             max_num=2,
         ),
     ]

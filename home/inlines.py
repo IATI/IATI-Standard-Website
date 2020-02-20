@@ -1,5 +1,6 @@
 from modelcluster.fields import ParentalKey
 from django.db import models
+from django.utils.functional import cached_property
 from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel
 from wagtail.core.models import Orderable
 from wagtail.images.edit_handlers import ImageChooserPanel
@@ -81,6 +82,22 @@ class BaseRelatedOptionalItem(BaseRelatedPageItem):
         help_text='Optional: description for the item. Defaults to the selected page excerpt if left blank',
     )
 
+    @cached_property
+    def get_title(self):
+        title = self.title
+        if not title:
+            title = self.page.title
+
+        return title
+
+    @cached_property
+    def get_description(self):
+        description = self.description
+        if not description:
+            description = getattr(self.page.specific, 'excerpt', None)
+
+        return description
+
 
 class IATIInActionFeaturedItem(BaseRelatedOptionalItem):
     class Meta:
@@ -100,6 +117,16 @@ class IATIInActionFeaturedItem(BaseRelatedOptionalItem):
         blank=True,
         help_text='Optional: the source of the quote',
     )
+
+    @cached_property
+    def get_image(self):
+        image = self.image
+        if not image:
+            image = getattr(self.page.specific, 'feed_image', None)
+        if not image:
+            image = getattr(self.page.specific, 'header_image', None)
+
+        return image
 
 
 class IATIInActionFeaturedItems(Orderable, IATIInActionFeaturedItem):
