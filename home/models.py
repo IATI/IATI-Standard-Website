@@ -302,6 +302,7 @@ class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage): 
             'getting_started_items',
             heading='Getting started items',
             label='Getting started item',
+            min_num=3,
             max_num=3,
         ),
         PageChooserPanel('about_iati_page'),

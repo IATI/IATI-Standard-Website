@@ -1,5 +1,5 @@
 from django.db import models
-# from django.utils.functional import cached_property
+from django.utils.functional import cached_property
 from common.utils import ForeignKeyField
 
 
@@ -84,3 +84,7 @@ class HomeFieldsMixin(models.Model):
     # @cached_property
     # def get_testimonal(self):
     #     return self.testimonial
+
+    @cached_property
+    def getting_started(self):
+        return self.getting_started_items.all()
