@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailimages_tags wagtail_modeltranslation i18n static %}
+{% load wagtailcore_tags wagtailimages_tags wagtail_modeltranslation i18n static %}
 {% block body_class %}body body--news-single{% endblock %}
 {% block body_id %}body-news-single{% endblock %}
 {% block content %}
@@ -25,7 +25,7 @@
         <li>
           <i role="presentation" aria-hidden="true" class="ico ico--14 ico-bookmark-black"></i>
           {% for news_category in news_categories %}
-            <a href="{% slugurl_trans parent.slug %}?type={{ news_category.slug }}">{{ news_category.name }}</a>{% if not forloop.last %},{% endif %}
+            <a href="{% pageurl parent %}?type={{ news_category.slug }}">{{ news_category.name }}</a>{% if not forloop.last %},{% endif %}
           {% endfor %}
         </li>
         {% endif %}
@@ -62,14 +62,14 @@
             </div>
           </aside>
           <div class="listing__body">
-            <h2 class="listing__heading"><a href="{% slugurl_trans news_post.slug %}"><span>{{ news_post.heading }}</span></a></h2>
+            <h2 class="listing__heading"><a href="{% pageurl news_post %}"><span>{{ news_post.heading }}</span></a></h2>
             <ul class="listing__metadata">
               <li class="listing__metadata__item">
                 <i role="presentation" aria-hidden="true" class="ico ico--14 ico-calendar-ocean"></i> <span class="listing__metadata__date">{{ news_post.date }}</span>
               </li>
             </ul>
             <div class="listing__excerpt">{{ news_post.excerpt|default:"" }}</div>
-            <a href="{% slugurl_trans news_post.slug %}" class="button">{% trans "Read more" %}</a>
+            <a href="{% pageurl news_post %}" class="button">{% trans "Read more" %}</a>
           </div>
         </article>
       </div>

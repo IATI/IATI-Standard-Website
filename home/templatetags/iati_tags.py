@@ -171,6 +171,7 @@ def discover_tree_recursive(current_page, calling_page):
             'page_title': child.heading if child.heading else child.title,
             'page_slug': child.slug,
             'page_depth': child.depth,
+            'page': child,
             'is_active': (child in calling_page.get_ancestors().specific()) or (child == calling_page)
         }
         parent_menu.append(page_dict)
