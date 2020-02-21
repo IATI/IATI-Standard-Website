@@ -17,10 +17,6 @@ class HomeFieldsMixin(models.Model):
         blank=True,
         help_text='Optional: video embed URL for page header',
     )
-    testimonial = ForeignKeyField(
-        model='testimonials.Testimonial',
-        required=True,
-    )
     activities_description = models.CharField(
         max_length=255,
         help_text='Description for the activities statistics section',
@@ -81,9 +77,12 @@ class HomeFieldsMixin(models.Model):
         help_text='Title for the latest news Twitter section',
     )
 
-    # @cached_property
-    # def get_testimonal(self):
-    #     return self.testimonial
+    @cached_property
+    def testimonial(self):
+        try:
+            return self.testimonial_items.all().order_by('?').first().testimonial
+        except AttributeError:
+            return None
 
     @cached_property
     def getting_started(self):

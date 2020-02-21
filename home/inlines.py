@@ -4,7 +4,27 @@ from django.utils.functional import cached_property
 from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel
 from wagtail.core.models import Orderable
 from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from common.utils import ForeignKeyField, WagtailImageField
+
+
+class TestimonialItem(models.Model):
+    class Meta:
+        abstract = True
+
+    testimonial = ForeignKeyField(
+        model='testimonials.Testimonial',
+        required=True,
+        on_delete=models.CASCADE,
+    )
+
+
+class TestimonialItems(Orderable, TestimonialItem):
+    item = ParentalKey('HomePage', related_name='testimonial_items')
+
+    panels = [
+        SnippetChooserPanel('testimonial'),
+    ]
 
 
 class BaseRelatedPageItem(models.Model):
@@ -49,8 +69,6 @@ class GettingStartedItem(BaseRelatedItem):
 
 class GettingStartedItems(Orderable, GettingStartedItem):
     item = ParentalKey('HomePage', related_name='getting_started_items')
-
-    title_required = True
 
     translation_fields = [
         'title',

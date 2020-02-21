@@ -15,7 +15,6 @@ from wagtail.core.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.documents.blocks import DocumentChooserBlock
-from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.search.index import FilterField, SearchField
 from home.fields import HomeFieldsMixin
 from home.inlines import GettingStartedItems  # noqa
@@ -295,7 +294,12 @@ class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage): 
 
     multilingual_field_panels = DefaultPageHeaderImageMixin.multilingual_field_panels + [
         FieldPanel('use_legacy_template'),
-        SnippetChooserPanel('testimonial'),
+        InlinePanel(
+            'testimonial_items',
+            heading='Testimonial items',
+            label='Testimonial item',
+            min_num=1,
+        ),
         FieldPanel('activities'),
         FieldPanel('organisations'),
         InlinePanel(
