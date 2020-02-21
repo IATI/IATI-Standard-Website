@@ -4,7 +4,8 @@ from common.utils import ForeignKeyField
 
 
 class HomeFieldsMixin(models.Model):
-    """Abstract mixin class for the home page db fields"""
+    """Abstract mixin class for the home page db fields."""
+
     class Meta:
         abstract = True
 
@@ -80,7 +81,8 @@ class HomeFieldsMixin(models.Model):
 
     @cached_property
     def testimonial(self):
-        """Get and return a random testomional or none if there is an error"""
+        """Get and return a random testomional or none if there is an error."""
+
         try:
             return self.testimonial_items.all().order_by('?').first().testimonial
         except AttributeError:
@@ -88,33 +90,39 @@ class HomeFieldsMixin(models.Model):
 
     @cached_property
     def getting_started(self):
-        """Create and return a list of getting started items, added to list if the page is live"""
+        """Create and return a list of getting started items, added to list if the page is live."""
+
         return [x for x in self.getting_started_items.all() if x.page.live]
 
     @cached_property
     def iati_in_action_featured(self):
-        """Get and return the first IATI in action featured item, if the page is live"""
+        """Get and return the first IATI in action featured item, if the page is live."""
+
         featured = self.iati_in_action_featured_item.all().first()
         return featured if featured.page.live else None
 
     @cached_property
     def iati_in_action(self):
-        """Create and return a list of IATI in action items, added to list if the page is live"""
+        """Create and return a list of IATI in action items, added to list if the page is live."""
+
         return [x for x in self.iati_in_action_items.all() if x.page.live]
 
     @cached_property
     def tools(self):
-        """Create and return a list of IATI tools items, added to list if the page is live"""
+        """Create and return a list of IATI tools items, added to list if the page is live."""
+
         return [x.page.specific for x in self.iati_tools_items.all() if x.page.live]
 
     @cached_property
     def news_index(self):
-        """Create and return the first live news index page"""
+        """Create and return the first live news index page."""
+
         from news.models import NewsIndexPage
         return NewsIndexPage.objects.live().first()
 
     @cached_property
     def news(self):
-        """Create and return the first three live news pages"""
+        """Create and return the first three live news pages."""
+
         from news.models import NewsPage
         return NewsPage.objects.live().specific().order_by('-date')[:3]

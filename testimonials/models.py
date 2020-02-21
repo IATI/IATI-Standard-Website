@@ -9,6 +9,8 @@ from dashboard.edit_handlers import HelpPanel
 
 @register_snippet
 class Testimonial(index.Indexed, models.Model):
+    """A snippet class for reusable testimonal items, with an optional image."""
+
     class Meta:
         verbose_name = 'Testimonial'
         ordering = ['quotee']
@@ -46,4 +48,6 @@ class Testimonial(index.Indexed, models.Model):
     ]
 
     def __str__(self):
+        """The string representation of the snippet, the quotee."""
+
         return self.quotee
