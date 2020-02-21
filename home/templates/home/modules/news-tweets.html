@@ -1,0 +1,41 @@
+{% load static wagtailimages_tags i18n %}
+
+<div class="section">
+    <div class="row">
+        <h2 class="section__heading">{{ page.latest_news_title }}</h2>
+        <div class="l-2up">
+            <div class="l-2up__col">
+                {% for item in page.news %}
+                    <article class="listing listing--article listing--article--minor">
+                        <aside class="listing__aside">
+                            <div class="listing__media">
+                                {% if item.feed_image %}
+                                    {% image item.feed_image max-700x470 alt=item.feed_image.title width='auto' height='auto' %}
+                                 {% else %}
+                                    <img src="{% static 'svg/source/logo-square.svg' %}" alt=""/>
+                                 {% endif %}
+                            </div>
+                        </aside>
+                        <div class="listing__body">
+                            <h3 class="listing__heading">{{ item.heading }}</h3>
+                            <ul class="listing__metadata">
+                                <li class="listing__metadata__item">
+                                    {% include 'macros/icon.html' with file='ico-calendar-ocean' size=14 %} <span class="listing__metadata__date">{{ item.date }}</span>
+                                </li>
+                            </ul>
+                            {% if item.excerpt %}
+                                <div class="listing__excerpt">{{ item.excerpt }}</div>
+                            {% endif %}
+                            <a href="{{ item.url }}" class="m-text-link">{% trans "Read more" %}</a>
+                        </div>
+                    </article>
+                {% endfor %}
+                <a href="{{ page.news_index.url }}" class="button">{{ page.latest_news_link_label }}</a>
+            </div>
+            <div class="l-2up__col">
+                <a class="twitter-timeline" data-height="700" data-tweet-limit="3" href="https://twitter.com/{{ global.twitter_handle }}?ref_src=twsrc%5Etfw">{{ page.latest_news_tweets_title }} {% trans "by" %} {{ global.twitter_handle }}</a>
+                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </div>
+        </div>
+    </div>
+</div>

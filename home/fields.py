@@ -101,3 +101,13 @@ class HomeFieldsMixin(models.Model):
     @cached_property
     def tools(self):
         return [x.page.specific for x in self.iati_tools_items.all() if x.page.live]
+
+    @cached_property
+    def news_index(self):
+        from news.models import NewsIndexPage
+        return NewsIndexPage.objects.live().first()
+
+    @cached_property
+    def news(self):
+        from news.models import NewsPage
+        return NewsPage.objects.live().specific().order_by('-date')[:3]
