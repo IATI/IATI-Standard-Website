@@ -48,5 +48,5 @@ class Testimonial(index.Indexed, models.Model):
     ]
 
     def __str__(self):
-        """String representation of the snippet, the quotee."""
+        """Get a string representation of the snippet, the quotee."""
         return self.quotee
