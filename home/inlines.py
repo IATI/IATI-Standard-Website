@@ -116,6 +116,8 @@ class BaseRelatedOptionalItem(BaseRelatedPageItem):
 
     @cached_property
     def get_title(self):
+        """Get the title from the instance, or fall back to the selected page heading."""
+
         title = self.title
         if not title:
             title = self.page.specific.heading
@@ -124,6 +126,8 @@ class BaseRelatedOptionalItem(BaseRelatedPageItem):
 
     @cached_property
     def get_description(self):
+        """Get the description from the instance, or fall back to the selected page excerpt."""
+
         description = self.description
         if not description:
             description = getattr(self.page.specific, 'excerpt', None)
@@ -154,6 +158,8 @@ class IATIInActionFeaturedItem(BaseRelatedOptionalItem):
 
     @cached_property
     def get_image(self):
+        """Get the image from the instance, or fall back to the selected page feed or header image."""
+
         image = self.image
         if not image:
             image = getattr(self.page.specific, 'feed_image', None)
