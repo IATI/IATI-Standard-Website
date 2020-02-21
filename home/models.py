@@ -265,7 +265,7 @@ class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage): 
         'iati_in_action_title',
         'iati_in_action_description',
         'iati_tools_title',
-        'iati_tools_title_description',
+        'iati_tools_description',
         'latest_news_title',
         'latest_news_link_label',
         'latest_news_tweets_title',
@@ -273,7 +273,7 @@ class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage): 
     optional_local_translation_fields = [
         'header_video',
         'iati_in_action_description',
-        'iati_tools_title_description',
+        'iati_tools_description',
     ]
     translation_fields = AbstractBasePage.translation_fields + local_translation_fields
     required_languages = {'en': list(set(local_translation_fields) - set(optional_local_translation_fields))}

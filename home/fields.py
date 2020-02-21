@@ -64,7 +64,7 @@ class HomeFieldsMixin(models.Model):
         max_length=255,
         help_text='Title for the IATI tools section',
     )
-    iati_tools_title_description = models.TextField(
+    iati_tools_description = models.TextField(
         blank=True,
         help_text='Optional: description for the IATI tools section',
     )
@@ -87,12 +87,17 @@ class HomeFieldsMixin(models.Model):
 
     @cached_property
     def getting_started(self):
-        return self.getting_started_items.all()
+        return [x for x in self.getting_started_items.all() if x.page.live]
 
     @cached_property
     def iati_in_action_featured(self):
-        return self.iati_in_action_featured_item.all().first()
+        featured = self.iati_in_action_featured_item.all().first()
+        return featured if featured.page.live else None
 
     @cached_property
     def iati_in_action(self):
-        return self.iati_in_action_items.all()
+        return [x for x in self.iati_in_action_items.all() if x.page.live]
+
+    @cached_property
+    def tools(self):
+        return [x.page.specific for x in self.iati_tools_items.all() if x.page.live]

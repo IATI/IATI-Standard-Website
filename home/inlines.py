@@ -86,7 +86,7 @@ class BaseRelatedOptionalItem(BaseRelatedPageItem):
     def get_title(self):
         title = self.title
         if not title:
-            title = self.page.title
+            title = self.page.specific.heading
 
         return title
 
