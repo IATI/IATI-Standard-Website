@@ -9,6 +9,7 @@ from common.utils import ForeignKeyField, WagtailImageField
 
 
 class TestimonialItem(models.Model):
+    """Abstract class for testimonial item"""
     class Meta:
         abstract = True
 
@@ -20,6 +21,7 @@ class TestimonialItem(models.Model):
 
 
 class TestimonialItems(Orderable, TestimonialItem):
+    """Concrete clustrable model class for testimonial items"""
     item = ParentalKey('HomePage', related_name='testimonial_items')
 
     panels = [
@@ -28,6 +30,7 @@ class TestimonialItems(Orderable, TestimonialItem):
 
 
 class BaseRelatedPageItem(models.Model):
+    """Abstract class for related page"""
     class Meta:
         abstract = True
 
@@ -40,6 +43,7 @@ class BaseRelatedPageItem(models.Model):
 
 
 class BaseRelatedItem(BaseRelatedPageItem):
+    """Abstract class inheriting from BaseRelatedPageItem with extra info"""
     class Meta:
         abstract = True
 
@@ -58,6 +62,7 @@ class BaseRelatedItem(BaseRelatedPageItem):
 
 
 class GettingStartedItem(BaseRelatedItem):
+    """Abstract class inheriting from BaseRelatedItem with extra link label"""
     class Meta:
         abstract = True
 
@@ -68,6 +73,7 @@ class GettingStartedItem(BaseRelatedItem):
 
 
 class GettingStartedItems(Orderable, GettingStartedItem):
+    """Concrete clustrable model class for getting started items"""
     item = ParentalKey('HomePage', related_name='getting_started_items')
 
     translation_fields = [
@@ -86,6 +92,7 @@ class GettingStartedItems(Orderable, GettingStartedItem):
 
 
 class BaseRelatedOptionalItem(BaseRelatedPageItem):
+    """Abstract class inheriting from BaseRelatedPageItem with optional extra info"""
     class Meta:
         abstract = True
 
@@ -118,6 +125,7 @@ class BaseRelatedOptionalItem(BaseRelatedPageItem):
 
 
 class IATIInActionFeaturedItem(BaseRelatedOptionalItem):
+    """Abstract class inheriting from BaseRelatedOptionalItem with optional image and testimonial fields"""
     class Meta:
         abstract = True
 
@@ -148,6 +156,7 @@ class IATIInActionFeaturedItem(BaseRelatedOptionalItem):
 
 
 class IATIInActionFeaturedItems(Orderable, IATIInActionFeaturedItem):
+    """Concrete clustrable model class for IATI in action featured items"""
     item = ParentalKey('HomePage', related_name='iati_in_action_featured_item')
 
     translation_fields = [
@@ -168,6 +177,7 @@ class IATIInActionFeaturedItems(Orderable, IATIInActionFeaturedItem):
 
 
 class IATIInActionItems(Orderable, BaseRelatedOptionalItem):
+    """Concrete clustrable model class for IATI in action items"""
     item = ParentalKey('HomePage', related_name='iati_in_action_items')
 
     translation_fields = [
@@ -183,6 +193,7 @@ class IATIInActionItems(Orderable, BaseRelatedOptionalItem):
 
 
 class IATIToolsItems(Orderable, BaseRelatedPageItem):
+    """Concrete clustrable model class for IATI tools items"""
     item = ParentalKey('HomePage', related_name='iati_tools_items')
 
     panels = [
