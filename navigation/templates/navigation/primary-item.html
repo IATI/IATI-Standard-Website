@@ -1,0 +1,17 @@
+{% load wagtailcore_tags %}
+
+{% if item.page and item.page.live %}
+    <li class="navigation-primary__item
+        {% if item.active %}
+            navigation-primary__item--active
+        {% endif %}
+        {% if item.meganav %}
+            navigation-primary__item--has-children
+        {% endif %}
+    ">
+        <a class="navigation-primary__item--link" href="{{ item.page.url }}">{{ item.label }}</a>
+        {% if item.meganav %}
+            {% include_block item.meganav|first %}
+        {% endif %}
+    </li>
+{% endif %}

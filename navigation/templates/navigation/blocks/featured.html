@@ -1,0 +1,38 @@
+{% load i18n static wagtailimages_tags %}
+
+{% if value.page and value.page.live %}
+    <div class="l-offset__col">
+        <article class="case-study">
+            <div class="case-study__media background-cover" style="background-image: url(
+                {% if value.image %}
+                    {% image value.image fill-120x250 as image %}
+                    {{ image.url }}
+                {% elif value.page.specific.header_image %}
+                    {% image value.page.specific.header_image fill-120x250 as image %}
+                    {{ image.url }}
+                {% elif value.page.specific.feed_image %}
+                    {% image value.page.specific.feed_image fill-120x250 as image %}
+                    {{ image.url }}
+                {% else %}
+                    {% static 'img/image-placeholder.svg' %}
+                {% endif %}
+            "></div>
+            <div class="case-study__panel">
+                <h2 class="case-study__heading">
+                    <a href="{{ value.page.url }}"><span>{{ value.page.specific.heading }}</span></a>
+                </h2>
+                <p class="case-study__excerpt">{{ value.description }}</p>
+                <a href="{ value.page.url }}" class="button button--small">{% trans 'Read more' %}</a>
+                {% if value.secondary_page %}
+                    <a href="{{ value.secondary_page.url }}" class="case-study__text-link">
+                        {% if value.link_label %}
+                            {{ value.link_label }}
+                        {% else %}
+                            {{ value.secondary_page.specific.heading }}
+                        {% endif %}
+                    </a>
+                {% endif %}
+            </div>
+        </article>
+    </div>
+{% endif %}
