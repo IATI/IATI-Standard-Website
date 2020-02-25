@@ -1,4 +1,5 @@
 """Model definitions for the get involved app."""
+from django.utils.functional import cached_property
 from wagtail.admin.edit_handlers import InlinePanel
 from home.models import AbstractContentPage, DefaultPageHeaderImageMixin, highlight_streamfield
 from get_involved.inlines import *  # noqa
@@ -23,3 +24,8 @@ class GetInvolvedPage(DefaultPageHeaderImageMixin, AbstractContentPage):
             label='Get involved item',
         ),
     ]
+
+    @cached_property
+    def get_involved(self):
+        """Create and return a list of get_involved items, added to list if no page or the page is live."""
+        return [x for x in self.get_involved_items.all() if not x.page or x.page.live]
