@@ -4,6 +4,7 @@ from modeltranslation.translator import TranslationOptions
 from modeltranslation.decorators import register
 from home.translation_helper import add_language_content_panels
 from .models import GetInvolvedPage
+from .inlines import GetInvolvedItems
 
 
 @register(GetInvolvedPage)
@@ -14,3 +15,10 @@ class GetInvolvedPageTR(TranslationOptions):
 
 
 add_language_content_panels(GetInvolvedPage)
+
+
+@register(GetInvolvedItems)
+class GetInvolvedItemsTR(TranslationOptions):
+    """Class declaring which fields of the GetInvolvedItems model to translate."""
+
+    fields = GetInvolvedItems.translation_fields

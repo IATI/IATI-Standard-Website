@@ -1,6 +1,7 @@
 """Model definitions for the get involved app."""
-from wagtail.admin.edit_handlers import InlinePanel, MultiFieldPanel
+from wagtail.admin.edit_handlers import InlinePanel
 from home.models import AbstractContentPage, DefaultPageHeaderImageMixin, highlight_streamfield
+from get_involved.inlines import *  # noqa
 
 
 class GetInvolvedPage(DefaultPageHeaderImageMixin, AbstractContentPage):
@@ -16,10 +17,9 @@ class GetInvolvedPage(DefaultPageHeaderImageMixin, AbstractContentPage):
     ]
 
     multilingual_field_panels = DefaultPageHeaderImageMixin.multilingual_field_panels + [
-        MultiFieldPanel(
-            [
-                InlinePanel('get_involved_items', label='Get involved item', help_text='Add get involved items with optional images and page links.'),
-            ],
+        InlinePanel(
+            'get_involved_items',
             heading='Get involved items',
-        )
+            label='Get involved item',
+        ),
     ]

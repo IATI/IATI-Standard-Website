@@ -13,22 +13,23 @@ class GetInvolvedItem(models.Model):
     class Meta:
         abstract = True
 
+    title = models.CharField(
+        max_length=255,
+        help_text='Title for the item',
+    )
+    image = WagtailImageField(
+        required=False,
+        help_text='Optional: image for the item'
+    )
+    description = RichTextField(
+        help_text='Description for the item',
+        features=['link', 'ul'],
+    )
     page = ForeignKeyField(
         model='wagtailcore.Page',
         required=False,
         on_delete=models.CASCADE,
         help_text='Optional: page link for the item'
-    )
-    title = models.CharField(
-        max_length=255,
-        help_text='Title for the item',
-    )
-    description = RichTextField(
-        help_text='Description for the item',
-    )
-    image = WagtailImageField(
-        required=False,
-        help_text='Optional: image for the item'
     )
     link_label = models.CharField(
         blank=True,
@@ -49,9 +50,9 @@ class GetInvolvedItems(Orderable, GetInvolvedItem):
     ]
 
     panels = [
-        PageChooserPanel('page'),
-        ImageChooserPanel('image'),
         FieldPanel('title'),
+        ImageChooserPanel('image'),
         FieldPanel('description'),
+        PageChooserPanel('page'),
         FieldPanel('link_label'),
     ]

@@ -78,6 +78,11 @@ class ImageBlock(StructBlock):
 class HighlightBlock(StructBlock):
     """A block for a highlight module."""
 
+    class Meta:
+        """Meta data for the class."""
+
+        icon = 'pick'
+
     title = CharBlock(icon="title")
     description = CharBlock(icon="pilcrow")
     page = PageChooserBlock(icon="link")
@@ -87,12 +92,14 @@ class HighlightBlock(StructBlock):
 def highlight_streamfield():
     """A reusable function to return a streamfield which only allows one highlight block."""
     return StreamField(
-        'highlight', StreamBlock(
+        StreamBlock(
             [
                 ('highlight', HighlightBlock()),
             ],
             max_num=1,
+            required=False,
         ),
+        blank=True,
     )
 
 
