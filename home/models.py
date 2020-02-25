@@ -84,6 +84,18 @@ class HighlightBlock(StructBlock):
     link_label = CharBlock(icon="link")
 
 
+def highlight_streamfield():
+    """A reusable function to return a streamfield which only allows one highlight block."""
+    return StreamField(
+        'highlight', StreamBlock(
+            [
+                ('highlight', HighlightBlock()),
+            ],
+            max_num=1,
+        ),
+    )
+
+
 class IATIStreamBlock(StreamBlock):
     """The main stream block used as the content editor sitewide."""
 
