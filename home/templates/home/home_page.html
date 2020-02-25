@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtail_modeltranslation wagtailimages_tags i18n static %}
+{% load wagtailcore_tags wagtail_modeltranslation wagtailimages_tags i18n static %}
 
 {% load iati_tags %}
 {% block body_class %}body body--home{% endblock %}
@@ -144,7 +144,7 @@
                               <div class="help__panel fill-sunset">
                                   <h3 class="help__heading">{{ case_study.heading }}</h3>
                                   <p>{{ case_study.excerpt|default:"" }}</p>
-                                  <a href="{% slugurl_trans case_study.slug %}">{% trans "Read more" %}</a>
+                                  <a href="{% pageurl case_study %}">{% trans "Read more" %}</a>
                               </div>
                           </div>
                       </div>

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailimages_tags wagtail_modeltranslation iati_tags i18n %}
+{% load wagtailcore_tags wagtailimages_tags wagtail_modeltranslation iati_tags i18n %}
 {% block body_class %}body body--data{% endblock %}
 {% block body_id %}body-data{% endblock %}
 
@@ -13,7 +13,7 @@
     <aside class="l-sidebar__aside">
       {% side_panel calling_page=self %}
     </aside>
-    
+
     <div class="l-sidebar__body">
         {% if page.content_editor %}
           {% include "home/includes/streamfield.html" with content=page.content_editor %}
@@ -30,7 +30,7 @@
                       <h2 class="card__heading">{{ subpage.heading }}</h2>
                       <p class="card__excerpt">{{ subpage.excerpt|default:"" }}</p>
                       <p class="card__excerpt--truncated">{{ subpage.excerpt|default:""|truncatechars:35 }}</p>
-                      <a href="{% slugurl_trans subpage.slug %}" class="button">{% trans "Find out more" %}</a>
+                      <a href="{% pageurl subpage %}" class="button">{% trans "Find out more" %}</a>
                   </div>
                   {% endwith %}
                 {% endfor %}
@@ -48,7 +48,7 @@
                       <h2 class="section__heading">{{ toolsindex.heading }}</h2>
                       <div class="is-typeset">
                           <p>{{ toolsindex.excerpt|default:"" }}</p>
-                          <a class="button" href="{% slugurl_trans toolsindex.slug %}">{% trans "View tools and resources" %}</a>
+                          <a class="button" href="{% pageurl toolsindex %}">{% trans "View tools and resources" %}</a>
                       </div>
                   </div>
                   <div class="l-2up__col">
