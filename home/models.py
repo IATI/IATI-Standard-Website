@@ -331,6 +331,12 @@ class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage): 
             min_num=2,
             max_num=2,
         ),
+        InlinePanel(
+            'latest_news_items',
+            heading='Latest news items',
+            label='Latest news item',
+            max_num=3,
+        ),
     ]
 
 

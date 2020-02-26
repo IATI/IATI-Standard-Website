@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.functional import cached_property
-from common.utils import ForeignKeyField
+from common.utils import ForeignKeyField, get_selected_or_fallback
 
 
 class HomeFieldsMixin(models.Model):
@@ -115,7 +115,17 @@ class HomeFieldsMixin(models.Model):
         return NewsIndexPage.objects.live().first()
 
     @cached_property
+    def selected_news(self):
+        """Create and return a list of selected latest news items, added to list if the page is live."""
+        return [x for x in self.latest_news_items.all() if x.page.live]
+
+    @cached_property
     def news(self):
-        """Create and return the first three live news pages."""
+        """Return a list of news items using get selected or fallback."""
         from news.models import NewsPage
-        return NewsPage.objects.live().specific().order_by('-date')[:3]
+        return get_selected_or_fallback(
+            selected=self.selected_news,
+            fallback=NewsPage,
+            max_length=3,
+            order='-date',
+        )

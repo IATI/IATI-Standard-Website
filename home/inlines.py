@@ -213,3 +213,13 @@ class IATIToolsItems(Orderable, BaseRelatedPageItem):
     panels = [
         PageChooserPanel('page'),
     ]
+
+
+class LatestNewsItems(Orderable, BaseRelatedPageItem):
+    """Concrete clustrable model class for latest news items."""
+
+    item = ParentalKey('HomePage', related_name='latest_news_items')
+
+    panels = [
+        PageChooserPanel('page'),
+    ]
