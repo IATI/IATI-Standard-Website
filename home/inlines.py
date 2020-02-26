@@ -221,5 +221,5 @@ class LatestNewsItems(Orderable, BaseRelatedPageItem):
     item = ParentalKey('HomePage', related_name='latest_news_items')
 
     panels = [
-        PageChooserPanel('page'),
+        PageChooserPanel('page', 'news.NewsPage'),
     ]

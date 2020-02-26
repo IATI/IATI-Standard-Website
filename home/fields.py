@@ -125,7 +125,7 @@ class HomeFieldsMixin(models.Model):
         from news.models import NewsPage
         return get_selected_or_fallback(
             selected=self.selected_news,
-            fallback=NewsPage,
+            fallback=NewsPage.objects,
             max_length=3,
             order='-date',
         )
