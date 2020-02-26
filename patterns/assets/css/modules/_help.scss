@@ -90,6 +90,16 @@
 }
 
 .help__body-copy {
-    @include font-size($para);
+    p {
+		@extend .para;
+		@extend .para--typeset;
+	}
+    ul, ol {
+        @include nobullet;
+    	li {
+    		@extend .list-item;
+    		@extend .list-item--typeset;
+    	}
+    }
     margin-bottom: 1em;
 }
