@@ -117,7 +117,7 @@ class HomeFieldsMixin(models.Model):
     @cached_property
     def selected_news(self):
         """Create and return a list of selected latest news items, added to list if the page is live."""
-        return [x for x in self.latest_news_items.all() if x.page.live]
+        return [x.page.specific for x in self.latest_news_items.all() if x.page.live]
 
     @cached_property
     def news(self):
