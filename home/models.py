@@ -90,7 +90,7 @@ class HighlightBlock(StructBlock):
 
 
 def highlight_streamfield():
-    """A reusable function to return a streamfield which only allows one highlight block."""
+    """Return a streamfield which only allows one highlight block."""
     return StreamField(
         StreamBlock(
             [
