@@ -1,0 +1,17 @@
+<div class="filter-group">
+    <div class="filter">
+        <h3 class="filter__heading">Filter by Constituency:</h3>
+        <ul class="filter__list">
+            {% for item in page.constituencies %}
+                <li><a href="{{ item.slug }}/">{{ item.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="filter">
+        <h3 class="filter__heading">Sort by:</h3>
+        <ul class="filter__list">
+            <li class="filter__list-active"><a href="?order=title">Alphabetical</a></li>
+            <li><a href="?order=date_joined">Year joined</a></li>
+        </ul>
+    </div>
+</div>

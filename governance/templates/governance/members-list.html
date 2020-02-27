@@ -1,0 +1,36 @@
+{% load static wagtailimages_tags %}
+
+<article class="listing listing--article listing--member">
+    <aside class="listing__aside">
+        <div class="listing__media">
+            {% if item.url %}
+                <a href="{{ item.url }}">
+            {% endif %}
+            {% if item.image %}
+                {% image item.image width-170 alt=item.image.title width='auto' height='auto' %}
+            {% else %}
+                <img src="{% static 'img/member-logos/image-placeholder.svg' %}" alt="">
+            {% endif %}
+            {% if item.url %}
+                </a>
+            {% endif %}
+        </div>
+    </aside>
+    <div class="listing__body">
+        <header class="listing__header">
+            <h2 class="listing__heading">
+                {% if item.url %}
+                    <a href="{{ item.url }}"><span>
+                {% endif %}
+                {{ item.name }}
+                {% if item.url %}
+                    </span></a>
+                {% endif %}
+            </h2>
+            <ul class="listing__metadata">
+                <li class="listing__metadata__item">{{ item.constituency }}</li>
+                <li class="listing__metadata__item">{{ item.date_joined|date:'Y' }}</li>
+            </ul>
+        </header>
+    </div>
+</article>
