@@ -3,7 +3,7 @@
 from modeltranslation.translator import TranslationOptions
 from modeltranslation.decorators import register
 from home.translation_helper import add_language_content_panels
-from .models import MembersAssemblyPage
+from .models import MembersAssemblyPage, Member
 from .inlines import ChairItems, ViceChairItems
 
 
@@ -30,3 +30,10 @@ class ViceChairItemsTR(TranslationOptions):
     """Class declaring which fields of the ViceChairItems model to translate."""
 
     fields = ViceChairItems.translation_fields
+
+
+@register(Member)
+class MemberTR(TranslationOptions):
+    """Class declaring which fields of the Member model to translate."""
+
+    fields = Member.translation_fields
