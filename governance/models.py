@@ -2,7 +2,9 @@
 
 from django import forms
 from django.db import models
+from django.shortcuts import render
 from wagtail.admin.edit_handlers import InlinePanel, FieldPanel
+from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
@@ -62,7 +64,7 @@ class Member(index.Indexed, models.Model):
         return self.name
 
 
-class MembersAssemblyPage(MembersAssemblyFieldsMixin, AbstractContentPage):
+class MembersAssemblyPage(MembersAssemblyFieldsMixin, RoutablePageMixin, AbstractContentPage):
     """A model for the members assembly page."""
 
     parent_page_types = ['about.AboutSubPage']
@@ -90,3 +92,26 @@ class MembersAssemblyPage(MembersAssemblyFieldsMixin, AbstractContentPage):
             label='Vice chair item',
         ),
     ]
+
+    def members(self, order='name'):
+        """Return the member items, ordered by order argument."""
+        return Member.objects.all().order_by(order)
+
+    @route(r'^$')
+    @route(r'^([-\w]+)/$')
+    def index(self, request, constituency=None):
+        context = self.get_context(request)
+
+        # get the query string
+        query = request.GET
+
+        # pass back to context if not empty
+        context['query'] = '?%s' % query.urlencode() if query else ''
+
+        # get the order from the query
+        context['order'] = order_query = request.GET.get('order', 'name')
+
+        # get the members listing
+        context['listing'] = self.members(order=order_query)
+
+        return render(request, self.template, context)

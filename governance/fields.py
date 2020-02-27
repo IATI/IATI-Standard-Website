@@ -28,9 +28,3 @@ class MembersAssemblyFieldsMixin(models.Model):
     def constituencies(self):
         """Return the constituency items."""
         return Constituency.objects.all().order_by('title')
-
-    @cached_property
-    def members(self):
-        """Return the member items."""
-        from governance.models import Member
-        return Member.objects.all().order_by('name')

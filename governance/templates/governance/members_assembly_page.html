@@ -29,12 +29,12 @@
         {% include 'governance/chair-list.html' with chairs=page.vice_chairs title=title %}
     {% endif %}
 
-    <div class="l-listing l-listing--people l-listing--no-pagination space-module-top">
+    <div class="l-listing l-listing--people l-listing--no-pagination space-module-top" id="members">
         <div class="section-border">
             <h2 class="section__heading">{{ page.members_title }}</h2>
             {% include 'governance/members-filter.html' %}
             <div class="listing-box">
-                {% for item in page.members %}
+                {% for item in listing %}
                     {% include 'governance/members-list.html' %}
                 {% endfor %}
             </div>

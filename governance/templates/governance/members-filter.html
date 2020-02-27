@@ -1,17 +1,19 @@
+{% load i18n %}
+
 <div class="filter-group">
     <div class="filter">
-        <h3 class="filter__heading">Filter by Constituency:</h3>
+        <h3 class="filter__heading">{% trans 'Filter by Constituency:' %}</h3>
         <ul class="filter__list">
             {% for item in page.constituencies %}
-                <li><a href="{{ item.slug }}/">{{ item.title }}</a></li>
+                <li><a href="{{ page.url }}{{ item.slug }}/">{{ item.title }}</a></li>
             {% endfor %}
         </ul>
     </div>
     <div class="filter">
-        <h3 class="filter__heading">Sort by:</h3>
+        <h3 class="filter__heading">{% trans 'Sort by:' %}</h3>
         <ul class="filter__list">
-            <li class="filter__list-active"><a href="?order=title">Alphabetical</a></li>
-            <li><a href="?order=date_joined">Year joined</a></li>
+            <li {% if order == 'name' %}class="filter__list-active"{% endif %}><a href="?order=name#members">{% trans 'Alphabetical' %}</a></li>
+            <li {% if order == 'date_joined' %}class="filter__list-active"{% endif %}><a href="?order=date_joined#members">{% trans 'Year joined' %}</a></li>
         </ul>
     </div>
 </div>
