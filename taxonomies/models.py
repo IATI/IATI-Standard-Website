@@ -1,7 +1,6 @@
 from django.db import models
 from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.snippets.models import register_snippet
-from dashboard.edit_handlers import MultiFieldPanel
 
 
 class SimpleTaxonomy(models.Model):
@@ -17,7 +16,7 @@ class SimpleTaxonomy(models.Model):
     slug = models.SlugField(
         max_length=100,
         unique=True,
-        help_text='The slug must be unqiue for this category'
+        help_text='The slug must be unique for this category'
     )
 
     translation_fields = [
@@ -26,14 +25,8 @@ class SimpleTaxonomy(models.Model):
     ]
 
     panels = [
-        MultiFieldPanel(
-            [
-                FieldPanel('title'),
-                FieldPanel('slug'),
-            ],
-            heading='Title and slug',
-            description='The title and slug of the category.'
-        ),
+        FieldPanel('title'),
+        FieldPanel('slug'),
     ]
 
     def __str__(self):
@@ -44,3 +37,4 @@ class SimpleTaxonomy(models.Model):
 class Constituency(SimpleTaxonomy):
     class Meta:
         verbose_name = 'Constituency'
+        verbose_name_plural = 'Constituencies'

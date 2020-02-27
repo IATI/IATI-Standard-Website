@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     'modelcluster',
     'taggit',
     'haystack',
+    'import_export',
 
     'django_celery_results',
 

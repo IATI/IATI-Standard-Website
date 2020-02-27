@@ -7,6 +7,7 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
 from common.utils import ForeignKeyField, WagtailImageField
+from dashboard.edit_handlers import NoEmptyLabelFieldPanel
 from home.models import AbstractContentPage
 from governance.fields import MembersAssemblyFieldsMixin
 from governance.inlines import *  # noqa
@@ -31,6 +32,11 @@ class Member(index.Indexed, models.Model):
         required=True,
         help_text='The constituency of the member',
     )
+    url = models.URLField(
+        max_length=255,
+        blank=True,
+        help_text='Optional: URL for the member',
+    )
     date_joined = models.DateField(
         help_text='Year that the member joined'
     )
@@ -42,7 +48,12 @@ class Member(index.Indexed, models.Model):
     panels = [
         FieldPanel('name'),
         ImageChooserPanel('image'),
-        FieldPanel('constituency', widget=forms.RadioSelect),
+        NoEmptyLabelFieldPanel(
+            'constituency',
+            widget=forms.RadioSelect,
+            classname='non-floated-options',
+        ),
+        FieldPanel('name'),
         FieldPanel('date_joined'),
     ]
 
