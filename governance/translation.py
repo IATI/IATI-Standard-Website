@@ -12,6 +12,7 @@ class MembersAssemblyPageTR(TranslationOptions):
     """A class to allow for the members assembly page translation fields to be autopopulated in the database."""
 
     fields = MembersAssemblyPage.translation_fields
+    required_languages = MembersAssemblyPage.required_languages
 
 
 add_language_content_panels(MembersAssemblyPage)

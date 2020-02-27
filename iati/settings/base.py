@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'tools',
     'dashboard',
     'navigation',
+    'governance',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
