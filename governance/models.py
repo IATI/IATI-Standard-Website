@@ -53,7 +53,7 @@ class Member(index.Indexed, models.Model):
             widget=forms.RadioSelect,
             classname='non-floated-options',
         ),
-        FieldPanel('name'),
+        FieldPanel('url'),
         FieldPanel('date_joined'),
     ]
 
