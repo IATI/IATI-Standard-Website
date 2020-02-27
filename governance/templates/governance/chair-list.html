@@ -1,0 +1,28 @@
+{% load static wagtailimages_tags %}
+
+<div class="l-2up">
+    {% for item in chairs %}
+        <div class="l-2up__col">
+            <article class="listing listing--people listing--minor">
+                <aside class="listing__aside">
+                    <div class="listing__media">
+                        {% if item.image %}
+                            {% image item.image max-175x175 alt=item.image.title width='auto' height='auto' %}
+                        {% else %}
+                            <img src="{% static 'img/portrait.png' %}" alt="">
+                        {% endif %}
+                    </div>
+                </aside>
+                <div class="listing__body">
+                    <header class="listing__header">
+                        <h2 class="listing__heading"><span>{{ item.name }}</span></h2>
+                        <ul class="listing__metadata">
+                            <li class="listing__metadata__item">{{ title }}</li>
+                            <li class="listing__metadata__item">{{ item.bio }}</li>
+                        </ul>
+                    </header>
+                </div>
+            </article>
+        </div>
+    {% endfor %}
+</div>

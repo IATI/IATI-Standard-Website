@@ -1,0 +1,32 @@
+{% extends "sidebar-reverse.html" %}
+{% load iati_tags i18n %}
+
+{% block body_class %}body body--members-assembly{% endblock %}
+{% block body_id %}body-members-assembly{% endblock %}
+
+{% block hero %}
+    <div class="hero hero--minor">
+        {% include 'home/includes/hero_heading.html'  %}
+    </div>
+{% endblock %}
+
+{% block aside %}
+    {% side_panel calling_page=self %}
+{% endblock %}
+
+{% block main %}
+    {% if page.content_editor %}
+        {% include 'home/includes/streamfield.html' with content=page.content_editor notarticle=True extra_class='is-typeset--additionals' %}
+    {% endif %}
+
+    {% if page.chairs %}
+        {% trans 'Chair' as title %}
+        {% include 'governance/chair-list.html' with chairs=page.chairs title=title %}
+    {% endif %}
+
+    {% if page.vice_chairs %}
+        {% trans 'Vice chair' as title %}
+        {% include 'governance/chair-list.html' with chairs=page.vice_chairs title=title %}
+    {% endif %}
+
+{% endblock %}

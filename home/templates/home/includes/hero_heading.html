@@ -6,9 +6,9 @@
         <p class="hero__subheading">{{ page.excerpt|default:"" }}</p>
     </div>
     <div class="hero__emblem">
-      {% if page.header_image %}
-        {% image page.header_image width-1400 as img %}
-        <img class="hero__emblem__mask" src="{{ img.url }}" alt="{{ img.alt }}">
-      {% endif %}
+        {% if page.header_image %}
+            {% image page.header_image width-1400 as img %}
+            <img class="hero__emblem__mask" src="{{ img.url }}" alt="{{ img.alt }}">
+        {% endif %}
     </div>
 </div>

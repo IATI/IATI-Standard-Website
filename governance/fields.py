@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.functional import cached_property
 
 
 class MembersAssemblyFieldsMixin(models.Model):
@@ -11,3 +12,13 @@ class MembersAssemblyFieldsMixin(models.Model):
         max_length=255,
         help_text='Title for the members section',
     )
+
+    @cached_property
+    def chairs(self):
+        """Return the chair items."""
+        return self.chair_items.all()
+
+    @cached_property
+    def vice_chairs(self):
+        """Return the vice chair items."""
+        return self.vice_chair_items.all()
