@@ -3,6 +3,7 @@
 from django import forms
 from django.db import models
 from django.shortcuts import render
+from django.utils.functional import cached_property
 from wagtail.admin.edit_handlers import InlinePanel, FieldPanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.images.edit_handlers import ImageChooserPanel
@@ -13,6 +14,8 @@ from dashboard.edit_handlers import NoEmptyLabelFieldPanel
 from home.models import AbstractContentPage
 from governance.fields import MembersAssemblyFieldsMixin
 from governance.inlines import *  # noqa
+from taxonomies.models import Constituency
+from taxonomies.utils import get_active_taxonomy_list
 
 
 @register_snippet
@@ -31,6 +34,7 @@ class Member(index.Indexed, models.Model):
     )
     constituency = ForeignKeyField(
         model='taxonomies.Constituency',
+        related_name='member',
         required=True,
         help_text='The constituency of the member',
     )
@@ -97,6 +101,11 @@ class MembersAssemblyPage(MembersAssemblyFieldsMixin, RoutablePageMixin, Abstrac
             label='Vice chair item',
         ),
     ]
+
+    @cached_property
+    def constituencies(self):
+        """Return the constituency items."""
+        return get_active_taxonomy_list(Constituency, {'member__isnull': False})
 
     def members(self, order):
         """Return the member items, ordered by order argument."""

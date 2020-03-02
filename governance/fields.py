@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils.functional import cached_property
-from taxonomies.models import Constituency
 
 
 class MembersAssemblyFieldsMixin(models.Model):
@@ -23,8 +22,3 @@ class MembersAssemblyFieldsMixin(models.Model):
     def vice_chairs(self):
         """Return the vice chair items."""
         return self.vice_chair_items.all()
-
-    @cached_property
-    def constituencies(self):
-        """Return the constituency items."""
-        return Constituency.objects.all().order_by('title')
