@@ -67,6 +67,11 @@ class Member(index.Indexed, models.Model):
 class MembersAssemblyPage(MembersAssemblyFieldsMixin, RoutablePageMixin, AbstractContentPage):
     """A model for the members assembly page."""
 
+    ORDERING = {
+        'name': 'name',
+        'date_joined': '-date_joined'
+    }
+
     parent_page_types = ['about.AboutSubPage']
     subpage_types = []
 
@@ -93,9 +98,22 @@ class MembersAssemblyPage(MembersAssemblyFieldsMixin, RoutablePageMixin, Abstrac
         ),
     ]
 
-    def members(self, order='name'):
+    def members(self, order):
         """Return the member items, ordered by order argument."""
         return Member.objects.all().order_by(order)
+
+    def filtered_collection(self, constituency, order):
+        filters = {
+            'constituency__slug': constituency
+        }
+
+        try:
+            return (self
+                    .members(order)
+                    .filter(**filters)
+                    .distinct())
+        except Exception:
+            return self.members(order)
 
     @route(r'^$')
     @route(r'^([-\w]+)/$')
@@ -108,10 +126,17 @@ class MembersAssemblyPage(MembersAssemblyFieldsMixin, RoutablePageMixin, Abstrac
         # pass back to context if not empty
         context['query'] = '?%s' % query.urlencode() if query else ''
 
-        # get the order from the query
-        context['order'] = order_query = request.GET.get('order', 'name')
+        # get the order from the query, add ordering vars to context
+        context['order'] = order_query = request.GET.get('order', self.ORDERING['name'])
+        context['ordering'] = self.ORDERING
+
+        # get the constituency from the path variable
+        context['constituency'] = constituency if constituency else ''
+
+        # add fragment id for filtered requests
+        context['fragment'] = '#members'
 
         # get the members listing
-        context['listing'] = self.members(order=order_query)
+        context['listing'] = self.filtered_collection(constituency, order_query) if constituency else self.members(order=order_query)
 
         return render(request, self.template, context)

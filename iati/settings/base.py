@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'navigation',
     'governance',
     'taxonomies',
+    'common',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
