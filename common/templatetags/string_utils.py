@@ -28,6 +28,7 @@ def return_all_content(content):
 
 @register.simple_tag
 def active_class(var, prop, active):
+    """Tag to return an active class if the var and prop test matches."""
     try:
         return active if var == prop else ''
     except Exception:
@@ -36,6 +37,7 @@ def active_class(var, prop, active):
 
 @register.simple_tag
 def query_filter(filters, key, value=None):
+    """Filter to return a formatted query string for appending to urls."""
     query = filters.copy() if isinstance(filters, QueryDict) else QueryDict().copy()
     try:
         if not value:
@@ -49,4 +51,5 @@ def query_filter(filters, key, value=None):
 
 @register.filter
 def lookup(d, key):
+    """Filter to enable dictionary lookups by key in templates."""
     return d[key]

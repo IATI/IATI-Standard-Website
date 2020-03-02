@@ -1,7 +1,9 @@
 """Model definitions for the governance app."""
 
+from django.conf import settings
 from django import forms
 from django.db import models
+from django.db.models import Q
 from django.shortcuts import render
 from django.utils.functional import cached_property
 from wagtail.admin.edit_handlers import InlinePanel, FieldPanel
@@ -104,22 +106,28 @@ class MembersAssemblyPage(MembersAssemblyFieldsMixin, RoutablePageMixin, Abstrac
 
     @cached_property
     def constituencies(self):
-        """Return the constituency items."""
+        """Return active constituency items."""
         return get_active_taxonomy_list(Constituency, {'member__isnull': False})
 
     def members(self, order):
-        """Return the member items, ordered by order argument."""
+        """Return all the member items, ordered by order argument."""
         return Member.objects.all().order_by(order)
 
     def filtered_collection(self, constituency, order):
-        filters = {
-            'constituency__slug': constituency
-        }
+        """Return a filtered collection based on constituency, with some extra legwork for translation."""
+        filters = {}
+        filter_obj = Q()
+
+        for item in settings.ACTIVE_LANGUAGES:
+            filters['constituency__slug_%s' % item[0]] = constituency
+
+        for item in filters:
+            filter_obj |= Q(**{item: filters[item]})
 
         try:
             return (self
                     .members(order)
-                    .filter(**filters)
+                    .filter(filter_obj)
                     .distinct())
         except Exception:
             return self.members(order)
@@ -127,6 +135,7 @@ class MembersAssemblyPage(MembersAssemblyFieldsMixin, RoutablePageMixin, Abstrac
     @route(r'^$')
     @route(r'^([-\w]+)/$')
     def index(self, request, constituency=None):
+        """Return listing, filtering and ordering data based on the route variables."""
         context = self.get_context(request)
 
         # get the query string

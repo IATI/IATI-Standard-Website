@@ -1,12 +1,9 @@
-import collections
 from django.db.models import Q, Count
 from django.utils.text import capfirst, slugify
 
 
-SimpleFilter = collections.namedtuple('SimpleFilter', ['slug', 'title', 'num_items'], defaults=[None])
-
-
 def get_active_taxonomy_list(taxonomy, filters, **kwargs):
+    """Return active taxonomy items, with an optional item count."""
     filter_obj = Q()
     order_by = kwargs.get('order_by', 'title')
 
@@ -28,7 +25,7 @@ def get_active_taxonomy_list(taxonomy, filters, **kwargs):
 
 
 def get_or_create_term(taxonomy, title):
-
+    """Get or create a taxonomy term based on a slugified title."""
     slug = slugify(title, allow_unicode=True)
 
     term = (taxonomy.objects
