@@ -13,14 +13,20 @@ from taxonomies.utils import get_or_create_term
 
 
 class TextWidget(CharWidget):
+    """An overriden widget for text import."""
+
     def clean(self, value, row=None):
+        """Override the clean method."""
         value = '' if not value else value
 
         return super(CharWidget, self).clean(value)
 
 
 class SingleTermWidget(ForeignKeyWidget):
+    """An overriden widget for foreign key import."""
+
     def clean(self, value, row=None):
+        """Override the clean method."""
         stripped_value = value.replace('\n', '')
         if stripped_value:
             term = get_or_create_term(self.model, stripped_value)
@@ -30,7 +36,10 @@ class SingleTermWidget(ForeignKeyWidget):
 
 
 class SingleTermWidgetFR(ForeignKeyWidget):
+    """An overriden widget for French foreign key import."""
+
     def clean(self, value, row=None):
+        """Override the clean method."""
         stripped_value = value.replace('\n', '')
         stripped_value_en = row[self.field].replace('\n', '')
         if stripped_value and stripped_value_en:
@@ -43,6 +52,7 @@ class SingleTermWidgetFR(ForeignKeyWidget):
 
 
 class MemberResource(resources.ModelResource):
+    """A resource class for importing data to the Member class."""
 
     class Meta:
         import_id_fields = ['id']
@@ -86,6 +96,8 @@ class MemberResource(resources.ModelResource):
 
 
 class MemberResourceResourceDjangoAdmin(ImportExportModelAdmin):
+    """A Django admin class to represent the resource class."""
+
     resource_class = MemberResource
 
 

@@ -23,6 +23,7 @@ from taxonomies.utils import get_active_taxonomy_list
 @register_snippet
 class Member(index.Indexed, models.Model):
     """A snippet model for members."""
+
     class Meta:
         ordering = ['name']
 

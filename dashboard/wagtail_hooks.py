@@ -4,6 +4,7 @@ from wagtail.core import hooks
 
 @hooks.register('insert_editor_css')
 def editor_css():
+    """Add custom editor CSS to the admin area."""
     return format_html(
         """
         <style>

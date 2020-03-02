@@ -4,6 +4,7 @@ from wagtail.snippets.models import register_snippet
 
 
 class SimpleTaxonomy(models.Model):
+    """An abstract model for simple taxonomy terms."""
 
     class Meta:
         abstract = True
@@ -30,11 +31,14 @@ class SimpleTaxonomy(models.Model):
     ]
 
     def __str__(self):
+        """Override magic method to return term title."""
         return self.title
 
 
 @register_snippet
 class Constituency(SimpleTaxonomy):
+    """A concrete model for constituency taxonomy terms."""
+
     class Meta:
         verbose_name = 'Constituency'
         verbose_name_plural = 'Constituencies'
