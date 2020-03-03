@@ -40,7 +40,8 @@ class HomeFieldsMixin(models.Model):
     )
     about_iati_video = models.URLField(
         max_length=255,
-        help_text='Video embed URL for the about IATI section',
+        blank=True,
+        help_text='Optional: video embed URL for the about IATI section',
     )
     about_iati_page = ForeignKeyField(
         model='wagtailcore.Page',

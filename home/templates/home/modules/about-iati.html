@@ -3,18 +3,25 @@
 <div class="row">
     <div class="section-alt-top section-alt-bottom">
         <h2 class="section__heading">{{ page.about_iati_title }}</h2>
-        <div class="l-2up">
-            <div class="l-2up__col">
-                <div class="is-typeset is-typeset--article">
-                    {{ page.about_iati_description|linebreaks }}
-                    <a class="button" href="{{ page.about_iati_page.url }}">{{ page.about_iati_link_label }}</a>
+        {% if page.about_iati_video %}
+            <div class="l-2up">
+                <div class="l-2up__col">
+                    <div class="is-typeset is-typeset--article">
+                        {{ page.about_iati_description|linebreaks }}
+                        <a class="button" href="{{ page.about_iati_page.url }}">{{ page.about_iati_link_label }}</a>
+                    </div>
+                </div>
+                <div class="l-2up__col">
+                    <div class="media-video-wrapper">
+                        {% embed page.about_iati_video %}
+                    </div>
                 </div>
             </div>
-            <div class="l-2up__col">
-                <div class="media-video-wrapper">
-                    {% embed page.about_iati_video %}
-                </div>
+        {% else %}
+            <div class="is-typeset is-typeset--article is-typeset--columns">
+                {{ page.about_iati_description|linebreaks }}
             </div>
-        </div>
+            <a class="button" href="{{ page.about_iati_page.url }}">{{ page.about_iati_link_label }}</a>
+        {% endif %}
     </div>
 </div>

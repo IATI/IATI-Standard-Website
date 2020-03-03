@@ -271,6 +271,7 @@ class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage): 
     ]
     optional_local_translation_fields = [
         'header_video',
+        'about_iati_video',
         'iati_in_action_description',
         'iati_tools_description',
     ]
