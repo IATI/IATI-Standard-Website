@@ -49,6 +49,11 @@ class Member(index.Indexed, models.Model):
     date_joined = models.DateField(
         help_text='Year that the member joined'
     )
+    active = models.BooleanField(
+        blank=True,
+        default=True,
+        help_text='Only active members will be displayed on the site',
+    )
 
     translation_fields = [
         'name',
@@ -64,6 +69,7 @@ class Member(index.Indexed, models.Model):
         ),
         FieldPanel('url'),
         FieldPanel('date_joined'),
+        FieldPanel('active'),
     ]
 
     def __str__(self):
@@ -111,8 +117,8 @@ class MembersAssemblyPage(MembersAssemblyFieldsMixin, RoutablePageMixin, Abstrac
         return get_active_taxonomy_list(Constituency, {'member__isnull': False})
 
     def members(self, order):
-        """Return all the member items, ordered by order argument."""
-        return Member.objects.all().order_by(order)
+        """Return all active member items, ordered by order argument."""
+        return Member.objects.filter(active=True).order_by(order)
 
     def filtered_collection(self, constituency, order):
         """Return a filtered collection based on constituency, with some extra legwork for translation."""
