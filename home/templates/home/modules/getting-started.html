@@ -14,7 +14,9 @@
                             </div>
                         </div>
                         <div class="help__body">
-                            <p class="help__body-copy">{{ item.description }}</p>
+                            <div class="help__body-copy">
+                                {{ item.description|linebreaks }}
+                            </div>
                             <a class="button" href="{{ item.page.url }}">{{ item.link_label }}</a>
                         </div>
                     </div>
