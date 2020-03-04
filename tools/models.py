@@ -59,7 +59,7 @@ class ToolPage(AbstractContentPage):
     """A model for tool single pages."""
 
     parent_page_types = ['tools.ToolsListingPage']
-    subpage_types = []
+    subpage_types = ['tools.ToolSubPage']
 
     logo = models.ForeignKey(
         'wagtailimages.Image', null=True, blank=True,
@@ -83,6 +83,39 @@ class ToolPage(AbstractContentPage):
 
     translation_fields = AbstractContentPage.translation_fields + [
         'listing_description',
+        'button_label',
+    ]
+
+    multilingual_field_panels = [
+        ImageChooserPanel('logo'),
+        FieldPanel('external_url')
+    ]
+
+
+class ToolSubPage(AbstractContentPage):
+    """A model for tool sub-pages."""
+
+    template = 'tools/tool_page.html'
+
+    parent_page_types = ['tools.ToolPage']
+    subpage_types = []
+
+    logo = models.ForeignKey(
+        'wagtailimages.Image', null=True, blank=True,
+        on_delete=models.SET_NULL, related_name='+'
+    )
+    external_url = models.URLField(
+        max_length=255,
+        blank=True,
+        help_text='Optional: external URL of the tool',
+    )
+    button_label = models.CharField(
+        max_length=255,
+        blank=True,
+        help_text='Optional: label for the external URL button',
+    )
+
+    translation_fields = AbstractContentPage.translation_fields + [
         'button_label',
     ]
 
