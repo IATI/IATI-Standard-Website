@@ -6,6 +6,7 @@ django-celery-results==1.1.2
 django-extensions==2.2.6
 django-haystack==2.8.1
 django-modeltranslation==0.14.2
+django-widget-tweaks==1.4.3
 django==2.2.9
 elasticsearch==2.3.0
 gunicorn==20.0.4

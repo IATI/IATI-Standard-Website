@@ -1,0 +1,37 @@
+{% load i18n %}
+
+{% if form_success %}
+    <p class="para para--typeset alert--success">
+        {% blocktrans %}
+        Query successfully submitted. Our technical team will be in contact with you as soon as possible.
+        {% endblocktrans %}
+    </p>
+{% elif form_submitted %}
+    <p class="para para--typeset alert--error">
+        {% blocktrans %}
+        Sorry, something went wrong submitting your query. Please try again later.
+        {% endblocktrans %}
+    </p>
+{% else %}
+    <p class="para para--typeset">
+        {% blocktrans %}
+        Please complete the form below and our team will be able to help you
+        {% endblocktrans %}
+    </p>
+    <form class="form form--support" method="post" action="{{ page.url }}{{ fragment_id }}" novalidate>
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="l-2up">
+            <div class="l-2up__col">
+                {% include 'contact/includes/form-item.html' with field=form.name %}
+                {% include 'contact/includes/form-item.html' with field=form.email spaced=True %}
+            </div>
+            <div class="l-2up__col">
+                {% include 'contact/includes/form-item.html' with field=form.query %}
+            </div>
+        </div>
+        <div class="form-field form-field--spaced">
+            <button class="button">{% trans "Submit request" %}</button>
+        </div>
+    </form>
+{% endif %}

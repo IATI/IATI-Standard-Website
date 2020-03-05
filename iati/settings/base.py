@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     'modelcluster',
     'taggit',
     'haystack',
+    'widget_tweaks',
 
     'django_celery_results',
 

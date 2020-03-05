@@ -1,8 +1,5 @@
 """Model definitions for the guidance_and_support app."""
 
-import requests
-
-from django.conf import settings
 from django.db import models
 
 from wagtail.admin.edit_handlers import FieldPanel
@@ -11,7 +8,7 @@ from wagtail.core.models import Page
 from wagtail.images.edit_handlers import ImageChooserPanel
 
 from home.models import AbstractContentPage, AbstractIndexPage, DefaultPageHeaderImageMixin, IATIStreamBlock
-from .zendeskhelper import generate_ticket
+from contact.mixins import ContactFormMixin
 
 
 class GuidanceAndSupportPage(DefaultPageHeaderImageMixin, AbstractContentPage):
@@ -63,30 +60,10 @@ class GuidanceGroupPage(AbstractContentPage):
     ]
 
 
-class GuidancePage(AbstractContentPage):
+class GuidancePage(ContactFormMixin, AbstractContentPage):
     """A base for a single guidance page."""
 
     subpage_types = []
-
-    def get_context(self, request, *args, **kwargs):
-        """Overwrite context to intercept POST requests to pages on this template and pass them to Zendesk API.
-
-        Validate with some sort of captcha.
-        """
-        context = super(GuidancePage, self).get_context(request)
-        form_submitted = False
-        form_success = False
-
-        if request.method == 'POST':
-            form_submitted = True
-            ticket = generate_ticket(request)
-            if ticket:
-                response = requests.post(settings.ZENDESK_REQUEST_URL, json=ticket)
-                if response.status_code == 201:
-                    form_success = True
-            context['form_submitted'] = form_submitted
-            context['form_success'] = form_success
-        return context
 
 
 class KnowledgebaseIndexPage(AbstractIndexPage):
