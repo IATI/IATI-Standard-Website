@@ -8,7 +8,15 @@
     <head>
         <title>
             {% block title %}
-                {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.heading|default:self.title }}{% endif %}
+                {% if self.seo_title %}
+                    {{ self.seo_title }}
+                {% else %}
+                    {% if self.heading %}
+                        {{ self.heading }}
+                    {% else %}
+                        {{ self.title }}
+                    {% endif %}
+                {% endif %}
             {% endblock %}
             {% block title_suffix %}
                 {% with self.get_site.site_name as site_name %}
