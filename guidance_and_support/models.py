@@ -15,7 +15,11 @@ class GuidanceAndSupportPage(DefaultPageHeaderImageMixin, AbstractContentPage):
     """A base for the Guidance and Support page."""
 
     parent_page_types = ['home.HomePage']
-    subpage_types = ['guidance_and_support.GuidanceGroupPage', 'guidance_and_support.KnowledgebaseIndexPage']
+    subpage_types = [
+        'guidance_and_support.GuidanceGroupPage',
+        'guidance_and_support.KnowledgebaseIndexPage',
+        'guidance_and_support.SupportPage',
+    ]
 
     @property
     def guidance_groups(self):
@@ -110,16 +114,21 @@ class SupportPage(DefaultPageHeaderImageMixin, AbstractContentPage):
         features=['h3', 'link', 'ul'],
         help_text='Content to describe alternative ways of receiving support',
     )
-    contact_support_label = models.CharField(
-        max_length=255,
-        blank=True,
-        help_text='Optional: label for a contact email address link',
-    )
-    contact_support_email = models.EmailField(
+    contact_email = models.EmailField(
         blank=True,
         help_text='Optional: contact email address',
     )
+    contact_link_label = models.CharField(
+        max_length=255,
+        blank=True,
+        help_text='Optional: link label for the contact email address',
+    )
+
     translation_fields = AbstractContentPage.translation_fields + [
         'alternative_content',
-        'contact_support_label',
+        'contact_link_label',
+    ]
+
+    multilingual_field_panels = DefaultPageHeaderImageMixin.multilingual_field_panels + [
+        FieldPanel('contact_email'),
     ]

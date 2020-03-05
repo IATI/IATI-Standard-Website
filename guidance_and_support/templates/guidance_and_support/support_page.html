@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block body_class %}body body--support{% endblock %}
+{% block body_id %}body-support{% endblock %}
+
+{% block hero %}
+    <div class="hero">
+        {% include "home/includes/hero_heading.html" %}
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        {% if page.content_editor %}
+            {% include "home/includes/streamfield.html" with content=page.content_editor extra_class='max-meter' notarticle=True %}
+        {% endif %}
+        <div class="l-sidebar l-sidebar--wide space-section-top">
+            <div class="l-sidebar__body" id="support">
+                <h2 class="section__heading">{% trans "Contact support" %}</h2>
+                {% include 'guidance_and_support/includes/contact_form.html' with fragment_id='#support' %}
+            </div>
+            <aside class="l-sidebar__aside">
+                {% include "home/includes/streamfield.html" with content=page.alternative_content notarticle=True %}
+            </aside>
+        </div>
+    </div>
+{% endblock %}

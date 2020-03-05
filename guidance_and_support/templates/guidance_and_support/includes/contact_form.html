@@ -16,6 +16,9 @@
         </div>
     {% else %}
         <div class="para para--typeset">
+            {% if page.contact_email and page.contact_link_label %}
+                <p><a href="mailto:{{ page.contact_email  }}">{{ page.contact_link_label }}</a></p>
+            {% endif %}
             <p>{% blocktrans %}
                 Please complete the form below and our team will be able to help you.
             {% endblocktrans %}</p>
