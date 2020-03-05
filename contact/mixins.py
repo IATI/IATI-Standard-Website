@@ -15,7 +15,7 @@ class ContactFormMixin(models.Model):
         """Overwrite context to intercept POST requests to pages on this template and pass them to Zendesk API.
         """
         context = super().get_context(request, *args, **kwargs)
-        context['form'] =  ContactForm()
+        context['form'] = ContactForm()
         form_submitted = False
         form_success = False
 
@@ -23,11 +23,12 @@ class ContactFormMixin(models.Model):
             context['form'] = form = ContactForm(request.POST)
             if form.is_valid():
                 form_submitted = True
-                # ticket = generate_ticket(request)
-                # if ticket:
-                #     response = requests.post(settings.ZENDESK_REQUEST_URL, json=ticket)
-                #     if response.status_code == 201:
-                #         form_success = True
+                ticket = generate_ticket(request, form)
+                if ticket:
+                    form_success = True  # TODO: remove
+                    # response = requests.post(settings.ZENDESK_REQUEST_URL, json=ticket)
+                    # if response.status_code == 201:
+                    #     form_success = True
                 context['form_submitted'] = form_submitted
                 context['form_success'] = form_success
         return context

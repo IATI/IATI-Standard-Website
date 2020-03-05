@@ -5,19 +5,18 @@ import json
 from django.conf import settings
 
 
-def generate_ticket(request):
+def generate_ticket(request, form):
     """Generate a JSON formatted support ticket for Zendesk given a request object.
 
-    Phone field is hidden to users, and hopefully captures spam content.
-    If the phone field is filled at all, treat the request as spam.
-
     Args:
-        request (django.http.HttpRequest): A django request containing the user's POSTed content.
+        request (django.http.HttpRequest): A django request.
+        form (django.forms.Form): A django form containing the user's content.
 
     """
-    if request.POST.get('skip_captcha_check'):
+    if form.cleaned_data.get('skip_captcha_check'):
         result = True
     else:
+        return False
         recaptcha_response = request.POST.get('g-recaptcha-response')
         url = 'https://www.google.com/recaptcha/api/siteverify'
         values = {
@@ -30,11 +29,11 @@ def generate_ticket(request):
         result = json.loads(response.read().decode())['success']
     if result:
         path = request.path
-        is_honeypot_valid = request.POST['phone'] == ""  # Set to False if honeypot is entered
-        email = request.POST['email']
-        query = request.POST['textarea']
-        name = request.POST.get('name', 'Anonymous requester')
-        if is_honeypot_valid and email and query:
+        # is_honeypot_valid = form.cleaned_data.get('phone') == ""  # Set to False if honeypot is entered
+        email = form.cleaned_data.get('email')
+        query = form.cleaned_data.get('query')
+        name = form.cleaned_data.get('name', 'Anonymous requester')
+        if email and query:
             request_obj = {
                 "request": {
                     "requester": {"name": name, "email": email},
