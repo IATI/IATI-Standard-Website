@@ -3,6 +3,8 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class ContactForm(forms.Form):
+    """A form class for a simple contact form."""
+
     name = forms.CharField(
         label=_('Name'),
         required=False,
@@ -19,6 +21,10 @@ class ContactForm(forms.Form):
                 'placeholder': _('your.email@address.com'),
             }
         ),
+        error_messages={
+            'required': _('This field is required.'),
+            'invalid': _('Enter a valid email address.'),
+        }
     )
     query = forms.CharField(
         label=_('Query'),
@@ -27,4 +33,7 @@ class ContactForm(forms.Form):
                 'placeholder': _('Your query'),
             }
         ),
+        error_messages={
+            'required': _('This field is required.'),
+        }
     )

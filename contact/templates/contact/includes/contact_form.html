@@ -1,23 +1,25 @@
 {% load i18n %}
 
 {% if form_success %}
-    <p class="para para--typeset alert--success">
-        {% blocktrans %}
-        Query successfully submitted. Our technical team will be in contact with you as soon as possible.
-        {% endblocktrans %}
-    </p>
+    <div class="para para--typeset alert alert--success">
+        <i role="presentation" aria-hidden="true" class="ico ico-success-success"></i>
+        <p>{% blocktrans %}
+            Query successfully submitted. Our technical team will be in contact with you as soon as possible.
+        {% endblocktrans %}</p>
+    </div>
 {% elif form_submitted %}
-    <p class="para para--typeset alert--error">
-        {% blocktrans %}
+    <div class="para para--typeset alert alert--error">
+        <i role="presentation" aria-hidden="true" class="ico ico-error-error"></i>
+        <p>{% blocktrans %}
         Sorry, something went wrong submitting your query. Please try again later.
-        {% endblocktrans %}
-    </p>
+        {% endblocktrans %}</p>
+    </div>
 {% else %}
-    <p class="para para--typeset">
-        {% blocktrans %}
+    <div class="para para--typeset">
+        <p>{% blocktrans %}
         Please complete the form below and our team will be able to help you
-        {% endblocktrans %}
-    </p>
+        {% endblocktrans %}</p>
+    </div>
     <form class="form form--support" method="post" action="{{ page.url }}{{ fragment_id }}" novalidate>
         {% csrf_token %}
         {{ form.non_field_errors }}

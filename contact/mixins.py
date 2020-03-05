@@ -29,5 +29,5 @@ class ContactFormMixin(models.Model):
                 #     if response.status_code == 201:
                 #         form_success = True
                 context['form_submitted'] = form_submitted
-                # context['form_success'] = form_success
+                context['form_success'] = form_success
         return context
