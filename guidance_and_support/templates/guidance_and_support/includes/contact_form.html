@@ -1,0 +1,48 @@
+{% load i18n %}
+
+{% if not form_success %}
+    {% if form.errors %}
+        <div class="para para--typeset alert alert--error">
+            <i role="presentation" aria-hidden="true" class="ico ico-error-error"></i>
+            {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            {% else %}
+                <p>{% blocktrans %}
+                    Sorry, there appears to be an issue.
+                {% endblocktrans %}</p>
+            {% endif %}
+        </div>
+    {% else %}
+        <div class="para para--typeset">
+            <p>{% blocktrans %}
+                Please complete the form below and our team will be able to help you.
+            {% endblocktrans %}</p>
+        </div>
+    {% endif %}
+    <form class="form form--support" method="post" action="{{ page.url }}{{ fragment_id }}">
+        {% csrf_token %}
+        <div class="l-2up">
+            <div class="l-2up__col">
+                {% include 'guidance_and_support/includes/form-item.html' with field=form.name %}
+                {% include 'guidance_and_support/includes/form-item.html' with field=form.email spaced=True %}
+            </div>
+            <div class="l-2up__col">
+                {% include 'guidance_and_support/includes/form-item.html' with field=form.query %}
+            </div>
+        </div>
+        <div class="form-field form-field--spaced">
+            <button class="button">{% trans "Submit request" %}</button>
+        </div>
+    </form>
+{% endif %}
+
+{% if form_success %}
+    <div class="para para--typeset alert alert--success">
+        <i role="presentation" aria-hidden="true" class="ico ico-success-success"></i>
+        <p>{% blocktrans %}
+            Query successfully submitted. Our technical team will be in contact with you as soon as possible.
+        {% endblocktrans %}</p>
+    </div>
+{% endif %}

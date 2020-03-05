@@ -16,7 +16,7 @@ def generate_ticket(request, form):
     if form.cleaned_data.get('skip_captcha_check'):
         result = True
     else:
-        return False
+        return True
         recaptcha_response = request.POST.get('g-recaptcha-response')
         url = 'https://www.google.com/recaptcha/api/siteverify'
         values = {

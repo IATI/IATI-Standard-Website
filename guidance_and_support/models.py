@@ -3,12 +3,12 @@
 from django.db import models
 
 from wagtail.admin.edit_handlers import FieldPanel
-from wagtail.core.fields import StreamField
+from wagtail.core.fields import StreamField, RichTextField
 from wagtail.core.models import Page
 from wagtail.images.edit_handlers import ImageChooserPanel
 
 from home.models import AbstractContentPage, AbstractIndexPage, DefaultPageHeaderImageMixin, IATIStreamBlock
-from contact.mixins import ContactFormMixin
+from .mixins import ContactFormMixin
 
 
 class GuidanceAndSupportPage(DefaultPageHeaderImageMixin, AbstractContentPage):
@@ -97,4 +97,29 @@ class CommunityPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
         FieldPanel('button_link_text'),
         FieldPanel('button_url'),
         FieldPanel('text_box')
+    ]
+
+
+class SupportPage(DefaultPageHeaderImageMixin, AbstractContentPage):
+    """Model to define the overall fields for the support page."""
+
+    parent_page_types = ['guidance_and_support.GuidanceAndSupportPage']
+    subpage_types = []
+
+    alternative_content = RichTextField(
+        features=['h3', 'link', 'ul'],
+        help_text='Content to describe alternative ways of receiving support',
+    )
+    contact_support_label = models.CharField(
+        max_length=255,
+        blank=True,
+        help_text='Optional: label for a contact email address link',
+    )
+    contact_support_email = models.EmailField(
+        blank=True,
+        help_text='Optional: contact email address',
+    )
+    translation_fields = AbstractContentPage.translation_fields + [
+        'alternative_content',
+        'contact_support_label',
     ]

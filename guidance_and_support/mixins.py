@@ -1,8 +1,9 @@
 import requests
 from django.conf import settings
 from django.db import models
-from contact.forms import ContactForm
-from contact.zendeskhelper import generate_ticket
+from django.utils.translation import ugettext_lazy as _
+from .forms import ContactForm
+from .zendeskhelper import generate_ticket
 
 
 class ContactFormMixin(models.Model):
@@ -16,19 +17,18 @@ class ContactFormMixin(models.Model):
         """
         context = super().get_context(request, *args, **kwargs)
         context['form'] = ContactForm()
-        form_submitted = False
         form_success = False
 
         if request.method == 'POST':
             context['form'] = form = ContactForm(request.POST)
             if form.is_valid():
-                form_submitted = True
                 ticket = generate_ticket(request, form)
                 if ticket:
                     form_success = True  # TODO: remove
                     # response = requests.post(settings.ZENDESK_REQUEST_URL, json=ticket)
                     # if response.status_code == 201:
                     #     form_success = True
-                context['form_submitted'] = form_submitted
+                else:
+                    form.add_error(None, _('Sorry, something went wrong submitting your query. Please try again later.'))
                 context['form_success'] = form_success
         return context

@@ -1,9 +1,9 @@
-"""A module of unit tests for contact."""
+"""A module of unit tests for guidance and support."""
 import pytest
 from django.http import HttpRequest
 from django import forms
 
-from contact.zendeskhelper import generate_ticket
+from .zendeskhelper import generate_ticket
 
 LEGITIMATE_USER = {}
 LEGITIMATE_USER['request'] = HttpRequest()
