@@ -44,5 +44,11 @@
         <p>{% blocktrans %}
             Query successfully submitted. Our technical team will be in contact with you as soon as possible.
         {% endblocktrans %}</p>
+        {% if form.cleaned_data.name %}
+            <p>{% trans 'Name:' %} {{ form.cleaned_data.name }}</p>
+        {% endif %}
+        <p>{% trans 'Email:' %} {{ form.cleaned_data.email }}</p>
+        <p>{% trans 'Query' %}</p>
+        <p>{{ form.cleaned_data.query }}</p>
     </div>
 {% endif %}
