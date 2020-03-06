@@ -55,11 +55,11 @@ class ToolsListingPage(DefaultPageHeaderImageMixin, AbstractContentPage):
         return self.highlight_title and self.highlight_content
 
 
-class ToolPage(AbstractContentPage):
-    """A model for tool single pages."""
+class AbstractToolPage(AbstractContentPage):
+    """An abstract model for tool single pages."""
 
-    parent_page_types = ['tools.ToolsListingPage']
-    subpage_types = []
+    class Meta:
+        abstract = True
 
     logo = models.ForeignKey(
         'wagtailimages.Image', null=True, blank=True,
@@ -90,6 +90,22 @@ class ToolPage(AbstractContentPage):
         ImageChooserPanel('logo'),
         FieldPanel('external_url')
     ]
+
+
+class ToolPage(AbstractToolPage):
+    """A model for tool single pages."""
+
+    parent_page_types = ['tools.ToolsListingPage']
+    subpage_types = ['tools.ToolSubPage']
+
+
+class ToolSubPage(AbstractToolPage):
+    """A model for tool sub-pages."""
+
+    template = 'tools/tool_page.html'
+
+    parent_page_types = ['tools.ToolPage']
+    subpage_types = []
 
 
 class FeaturedTool(Orderable):
