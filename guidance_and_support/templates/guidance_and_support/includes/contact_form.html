@@ -44,12 +44,15 @@
 
     {% endif %}
 
-    <div class="form-group">
-        {% include 'guidance_and_support/includes/form-item.html' with field=form.name %}
-        {% include 'guidance_and_support/includes/form-item.html' with field=form.email spaced=True %}
-        {% include 'guidance_and_support/includes/form-item.html' with field=form.query spaced=True %}
-    </div>
-    <div class="form-field form-field--spaced">
-        <button class="button">{% trans 'Submit request' %}</button>
-    </div>
+    {% if not form_success %}
+        <div class="form-group">
+            {% include 'guidance_and_support/includes/form-item.html' with field=form.name %}
+            {% include 'guidance_and_support/includes/form-item.html' with field=form.email spaced=True %}
+            {% include 'guidance_and_support/includes/form-item.html' with field=form.query spaced=True %}
+        </div>
+        <div class="form-field form-field--spaced">
+            <button class="button">{% trans 'Submit request' %}</button>
+        </div>
+
+    {% endif %}
 </form>
