@@ -5,8 +5,13 @@
 .form {
 	position: relative;
 	&--support {
-		border-left: 3px solid $default-border-color;
-		padding-left: 2em;
+		padding: $internal-spacing;
+		background: #fff;
+		border: $default-border-width solid $default-border-color;
+	}
+	&--2up {
+		padding: 0;
+		border: none;
 	}
 }
 
@@ -14,10 +19,95 @@
 // Sections / fieldsets
 // ------------------------------------------------------------
 
-.form-section {
-	padding: $internal-spacing;
-	background: #fff;
-	border: $default-border-width solid $default-border-color;
+.form-group {
+	.form--2up & {
+		@extend %pie-clearfix;
+		@include respond-to($c-vp) {
+			@supports (display: grid) {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				grid-column-gap: 50px;
+				grid-auto-rows: minmax(min-content, max-content);
+			}
+			@supports (display: -ms-grid) {
+				display: block;
+			}
+		}
+		.form-field {
+			@include respond-to($c-vp) {
+				float: left;
+				display: block;
+				width: 47.5%;
+				margin-left: 5%;
+				&:first-child {
+					margin-left: 0;
+				}
+				&:nth-child(2n) {
+					margin-left: 0;
+					clear: left;
+					@supports (display: grid) {
+						margin-left: 0;
+					}
+				}
+				&:nth-child(3n) {
+					margin-left: 5%;
+					clear: none;
+					margin-top: -95px;
+					@supports (display: grid) {
+						margin-left: 0;
+						margin-top: 0;
+					}
+				}
+				@supports (display: grid) {
+					margin-left: 0;
+					width: auto;
+					align-items: start;
+					&:nth-child(2n) {
+						grid-area: 2 / 1 / 3 / 2;
+					}
+					&:nth-child(3n) {
+						grid-area: 1 / 2 / 3 / 3;
+						padding-top: 0;
+					}
+				}
+				@supports (display: -ms-grid) {
+					float: left;
+					display: block;
+					width: 47.5%;
+					margin-left: 5%;
+					&:first-child {
+						margin-left: 0;
+					}
+					&:nth-child(2n) {
+						margin-left: 0;
+						clear: left;
+					}
+					&:nth-child(3n) {
+						margin-left: 5%;
+						clear: none;
+						margin-top: -95px;
+					}
+				}
+			}
+		}
+	}
+}
+
+.form-heading {
+	@extend .type-l;
+    @extend .heading;
+    line-height: 1.3;
+    margin-bottom: 0.75em;
+    position: relative;
+    &:after {
+        content: "";
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        width: 2em;
+        height: 3px;
+        background-color: $iati-air;
+    }
 }
 
 // ------------------------------------------------------------
@@ -105,7 +195,7 @@
 
 // Min height to text area
 textarea.form-item {
-	min-height: 200px;
+	min-height: 150px;
 	padding: $form-padding/2;
 }
 
