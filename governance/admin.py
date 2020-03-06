@@ -7,9 +7,11 @@ from import_export.widgets import (
     DateWidget
 )
 from django.contrib import admin
+from wagtail.images import get_image_model
 from governance.models import Member
 from taxonomies.models import Constituency
 from taxonomies.utils import get_or_create_term
+from common.helpers import get_or_create_image
 
 
 class TextWidget(CharWidget):
@@ -47,6 +49,23 @@ class SingleTermWidgetFR(ForeignKeyWidget):
             term.title_fr = stripped_value
             term.save()
             return super(ForeignKeyWidget, self).clean(term)
+
+        return None
+
+
+class ImageWidget(ForeignKeyWidget):
+    """An overriden widget for foreign key import."""
+
+    def clean(self, value, row=None):
+        """Override the clean method."""
+        stripped_value = value.replace('\n', '')
+        image_type = 'flag' if 'country' in row['constituency'].lower() else 'logo'
+        title = '%s %s' % (row['name'], image_type)
+        if stripped_value:
+            base_url = 'https://s5.gifyu.com/images/'
+            url = '%s%s' % (base_url, stripped_value)
+            image = get_or_create_image(url, title)
+            return super(ForeignKeyWidget, self).clean(image)
 
         return None
 
@@ -91,6 +110,13 @@ class MemberResource(resources.ModelResource):
         widget=SingleTermWidgetFR(
             Constituency,
             'constituency'
+        ),
+    )
+    image = Field(
+        attribute='image',
+        column_name='image',
+        widget=ImageWidget(
+            get_image_model()
         ),
     )
 
