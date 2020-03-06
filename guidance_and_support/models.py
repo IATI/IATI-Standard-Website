@@ -104,7 +104,7 @@ class CommunityPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
     ]
 
 
-class SupportPage(DefaultPageHeaderImageMixin, AbstractContentPage):
+class SupportPage(DefaultPageHeaderImageMixin, ContactFormMixin, AbstractContentPage):
     """Model to define the overall fields for the support page."""
 
     parent_page_types = ['guidance_and_support.GuidanceAndSupportPage']

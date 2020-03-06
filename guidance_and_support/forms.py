@@ -27,10 +27,11 @@ class ContactForm(forms.Form):
         }
     )
     query = forms.CharField(
-        label=_('Query'),
+        label=_('How can we help you?'),
         widget=forms.Textarea(
             attrs={
-                'placeholder': _('Your query'),
+                'rows': 'auto',
+                'cols': 'auto',
             }
         ),
         error_messages={

@@ -1,8 +1,35 @@
 {% load i18n %}
 
-{% if not form_success %}
+<form class="form form--support {{ form_class }}" method="post" action="{{ page.url }}{{ fragment_id }}">
+    {% csrf_token %}
+
+    <h2 class="form-heading">{% trans 'Contact support' %}</h2>
+
+    {% if not form_success %}
+        <div class="is-typeset">
+            <p>{% blocktrans %}
+                Please complete the form below and our team will be able to help you. Alternatively, you can email support at <a href="mailto:support@iatistandard.org">support@iatistandard.org</a>.
+            {% endblocktrans %}</p>
+        </div>
+
+    {% else %}
+        <div class="alert alert--success">
+            <i role="presentation" aria-hidden="true" class="ico ico-success-success"></i>
+            <p>{% blocktrans %}
+                Thank you - your message has been sent.
+            {% endblocktrans %}</p>
+            {% if form.cleaned_data.name %}
+                <p>{% trans 'Name:' %} {{ form.cleaned_data.name }}</p>
+            {% endif %}
+            <p>{% trans 'Email:' %} {{ form.cleaned_data.email }}</p>
+            <p>{% trans 'Message' %}</p>
+            <p>{{ form.cleaned_data.query }}</p>
+        </div>
+
+    {% endif %}
+
     {% if form.errors %}
-        <div class="para para--typeset alert alert--error">
+        <div class="alert alert--error">
             <i role="presentation" aria-hidden="true" class="ico ico-error-error"></i>
             {% if form.non_field_errors %}
                 {% for error in form.non_field_errors %}
@@ -14,44 +41,15 @@
                 {% endblocktrans %}</p>
             {% endif %}
         </div>
-    {% else %}
-        <div class="para para--typeset">
-            {% if page.contact_email and page.contact_link_label %}
-                <p><a href="mailto:{{ page.contact_email  }}">{{ page.contact_link_label }}</a></p>
-            {% endif %}
-            <p>{% blocktrans %}
-                Please complete the form below and our team will be able to help you.
-            {% endblocktrans %}</p>
-        </div>
-    {% endif %}
-    <form class="form form--support" method="post" action="{{ page.url }}{{ fragment_id }}">
-        {% csrf_token %}
-        <div class="l-2up">
-            <div class="l-2up__col">
-                {% include 'guidance_and_support/includes/form-item.html' with field=form.name %}
-                {% include 'guidance_and_support/includes/form-item.html' with field=form.email spaced=True %}
-            </div>
-            <div class="l-2up__col">
-                {% include 'guidance_and_support/includes/form-item.html' with field=form.query %}
-            </div>
-        </div>
-        <div class="form-field form-field--spaced">
-            <button class="button">{% trans "Submit request" %}</button>
-        </div>
-    </form>
-{% endif %}
 
-{% if form_success %}
-    <div class="para para--typeset alert alert--success">
-        <i role="presentation" aria-hidden="true" class="ico ico-success-success"></i>
-        <p>{% blocktrans %}
-            Query successfully submitted. Our technical team will be in contact with you as soon as possible.
-        {% endblocktrans %}</p>
-        {% if form.cleaned_data.name %}
-            <p>{% trans 'Name:' %} {{ form.cleaned_data.name }}</p>
-        {% endif %}
-        <p>{% trans 'Email:' %} {{ form.cleaned_data.email }}</p>
-        <p>{% trans 'Query' %}</p>
-        <p>{{ form.cleaned_data.query }}</p>
+    {% endif %}
+
+    <div class="form-group">
+        {% include 'guidance_and_support/includes/form-item.html' with field=form.name %}
+        {% include 'guidance_and_support/includes/form-item.html' with field=form.email spaced=True %}
+        {% include 'guidance_and_support/includes/form-item.html' with field=form.query spaced=True %}
     </div>
-{% endif %}
+    <div class="form-field form-field--spaced">
+        <button class="button">{% trans 'Submit request' %}</button>
+    </div>
+</form>
