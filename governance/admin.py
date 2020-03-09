@@ -62,7 +62,7 @@ class ImageWidget(ForeignKeyWidget):
         image_type = 'flag' if 'country' in row['constituency'].lower() else 'logo'
         title = '%s %s' % (row['name'], image_type)
         if stripped_value:
-            base_url = 'https://s5.gifyu.com/images/'
+            base_url = 'https://dev.iatistandard.org/media/member-logos/'
             url = '%s%s' % (base_url, stripped_value)
             image = get_or_create_image(url, title)
             return super(ForeignKeyWidget, self).clean(image)
