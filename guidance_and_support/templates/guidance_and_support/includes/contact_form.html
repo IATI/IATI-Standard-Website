@@ -23,7 +23,9 @@
             {% endif %}
             <p>{% trans 'Email:' %} {{ form.cleaned_data.email }}</p>
             <p>{% trans 'Message' %}</p>
-            <p>{{ form.cleaned_data.query }}</p>
+            <div class="is-typeset">
+                <p>{{ form.cleaned_data.query|linebreaks }}</p>
+            </div>
         </div>
 
     {% endif %}
