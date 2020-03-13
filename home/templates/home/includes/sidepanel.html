@@ -1,4 +1,4 @@
-{% load wagtail_modeltranslation iati_tags i18n %}
+{% load wagtailcore_tags wagtail_modeltranslation iati_tags i18n %}
 
 <div class="aside-m">
     <div class="aside-m__header fill-sunrise">
@@ -22,7 +22,7 @@
                 navigation-secondary__third-child__item {% if item.is_active %}navigation-secondary__third-child__item--active{% endif %}
               {% endif %}
             "
-            ><a href="{% slugurl_trans item.page_slug %}">{{ item.page_title }}</a></li>
+            ><a href="{% pageurl item.page %}">{{ item.page_title }}</a></li>
           {% endfor %}
         </ul>
     </nav>

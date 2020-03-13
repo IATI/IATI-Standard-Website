@@ -51,7 +51,7 @@
         {% for sibling in siblings %}
           {% if sibling != self %}
           <div class="card card--guidance ">
-            <h2 class="card__heading"><a href="{% slugurl_trans sibling.slug %}"><span>{{ sibling.heading }}</span></a></h2>
+            <h2 class="card__heading"><a href="{% pageurl sibling %}"><span>{{ sibling.heading }}</span></a></h2>
             <p class="card__excerpt">{{ sibling.excerpt|default:"" }}</p>
             <p class="card__excerpt--truncated">{{ sibling.excerpt|default:""|truncatechars:35 }}</p>
           </div>
@@ -68,7 +68,7 @@
             {% for aunt in aunts %}
               {% if aunt != self.get_parent.specific %}
               <div class="card card--guidance ">
-                <h2 class="card__heading"><a href="{% slugurl_trans aunt.slug %}"><span>{{ aunt.heading }}</span></a></h2>
+                <h2 class="card__heading"><a href="{% pageurl aunt %}"><span>{{ aunt.heading }}</span></a></h2>
                 <p class="card__excerpt">{{ aunt.excerpt|default:"" }}</p>
                 <p class="card__excerpt--truncated">{{ aunt.excerpt|default:""|truncatechars:35 }}</p>
               </div>

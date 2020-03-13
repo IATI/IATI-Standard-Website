@@ -30,13 +30,13 @@
       		</div>
       	</aside>
       	<div class="listing__body">
-      		<h2 class="listing__heading"><a href="{% slugurl_trans guidance_group.slug %}"><span>{{ guidance_group.heading }}</span></a></h2>
+      		<h2 class="listing__heading"><a href="{% pageurl guidance_group %}"><span>{{ guidance_group.heading }}</span></a></h2>
       		<div class="listing__excerpt">
             {% if guidance_group.section_summary %}
               {% include "home/includes/streamfield.html" with content=guidance_group.section_summary %}
             {% endif %}
           </div>
-      		<a href="{% slugurl_trans guidance_group.slug %}" class="button">{{ guidance_group.button_link_text|default:"Read more" }}</a>
+      		<a href="{% pageurl guidance_group %}" class="button">{{ guidance_group.button_link_text|default:"Read more" }}</a>
       	</div>
       </article>
     {% endfor %}
