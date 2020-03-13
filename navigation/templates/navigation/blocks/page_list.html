@@ -1,9 +1,17 @@
 <div class="{{ column_class }}">
     {% if col.title or col.description %}
          <div class="m-highlight m-highlight--alt">
-            {% if col.title %}
+            {% if col.use_first_page_as_title or col.title %}
                 <h3 class="m-highlight__heading">
-                    {{ col.title }}
+                    {% if col.use_first_page_as_title %}
+                        {% with first_page=col.page_list|first %}
+                            {% if first_page.page and first_page.page.live and first_page.page.specific.heading %}
+                                <a href="{{ first_page.page.url }}">{{ first_page.page.specific.heading }}</a>
+                            {% endif %}
+                        {% endwith %}
+                    {% else %}
+                        {{ col.title }}
+                    {% endif %}
                 </h3>
             {% endif %}
             {% if col.description %}
@@ -11,10 +19,14 @@
             {% endif %}
             <ul class="navigation-megamenu__list">
                 {% for item in col.page_list  %}
-                    {% if item.page and item.page.live %}
-                        <li>
-                            <a href="{{ item.page.url }}">{{ item.page.specific.heading }}</a>
-                        </li>
+                    {% if forloop.first and col.use_first_page_as_title %}
+                        {# Do nothing #}
+                    {% else %}
+                        {% if item.page and item.page.live and item.page.specific.heading %}
+                            <li>
+                                <a href="{{ item.page.url }}">{{ item.page.specific.heading }}</a>
+                            </li>
+                        {% endif %}
                     {% endif %}
                 {% endfor %}
             </ul>
@@ -22,7 +34,7 @@
     {% else %}
         <ul class="navigation-megamenu__list">
             {% for item in col.page_list %}
-                {% if item.page and item.page.live %}
+                {% if item.page and item.page.live and item.page.specific.heading %}
                     <li class="{% if forloop.first and col.use_first_page_as_title %}navigation-megamenu__list-title{% endif %}">
                         <a href="{{ item.page.url }}">{{ item.page.specific.heading }}</a>
                     </li>
