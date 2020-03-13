@@ -67,6 +67,7 @@ INSTALLED_APPS = [
     'taggit',
     'haystack',
     'widget_tweaks',
+    'snowpenguin.django.recaptcha3',
 
     'django_celery_results',
 
@@ -278,7 +279,8 @@ HAYSTACK_CUSTOM_HIGHLIGHTER = 'search.utils.CustomHighlighter'
 
 RECAPTCHA_PUBLIC_KEY = os.getenv('RECAPTCHA_PUBLIC_KEY')
 RECAPTCHA_PRIVATE_KEY = os.getenv('RECAPTCHA_PRIVATE_KEY')
-NOCAPTCHA = True
+RECAPTCHA_DEFAULT_ACTION = 'contact'
+RECAPTCHA_SCORE_THRESHOLD = float(os.getenv('RECAPTCHA_SCORE_THRESHOLD', 0.5))
 
 # Celery settings
 

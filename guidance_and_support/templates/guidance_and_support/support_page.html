@@ -1,5 +1,11 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags i18n %}
+{% load wagtailcore_tags i18n recaptcha3 %}
+
+{% block html_header %}
+    {% include 'scaffold/header-assets.html' %}
+    {% recaptcha_init %}
+    {% recaptcha_ready action_name='contact' %}
+{% endblock %}
 
 {% block body_class %}body body--support{% endblock %}
 {% block body_id %}body-support{% endblock %}

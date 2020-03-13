@@ -1,3 +1,5 @@
+from snowpenguin.django.recaptcha3.fields import ReCaptchaField
+from snowpenguin.django.recaptcha3.widgets import ReCaptchaHiddenInput
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
@@ -38,3 +40,4 @@ class ContactForm(forms.Form):
             'required': _('This field is required.'),
         }
     )
+    captcha = ReCaptchaField(widget=ReCaptchaHiddenInput(attrs={'is_hidden': True}))
