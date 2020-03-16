@@ -14,7 +14,7 @@ gunicorn==20.0.4
 psycopg2-binary==2.8.4
 requests==2.22.0
 sentry-sdk==0.14.0
-git+git://github.com/Hopiu/wagtail-modeltranslation.git@765ac7a19dcfebfe6f4ac07c932c71287edef81a#egg=wagtail-modeltranslation
+wagtail-modeltranslation==0.10.7
 wagtail==2.7.1
 Wand==0.5.8
 wagtail-linkchecker==0.4.0
