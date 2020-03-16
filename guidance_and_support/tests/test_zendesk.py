@@ -13,8 +13,7 @@ LEGITIMATE_USER['form'].cleaned_data = {
     'phone': '',
     'email': 'test@user.com',
     'textarea': 'A very serious matter.',
-    'name': 'A legitimate user',
-    'skip_captcha_check': True
+    'name': 'A legitimate user'
 }
 LEGITIMATE_USER.expected_output = {
     'request': {
@@ -30,21 +29,7 @@ LEGITIMATE_USER.expected_output = {
 }
 
 
-SPAM_BOT = {}
-SPAM_BOT['request'] = HttpRequest()
-SPAM_BOT['request'].path = "/en/a-test-path"
-SPAM_BOT['form'] = forms.Form()
-SPAM_BOT['form'].cleaned_data = {
-    'phone': '555-555-5555',
-    'email': 'test@user.com',
-    'textarea': 'A very serious matter.',
-    'name': 'A legitimate user',
-    'skip_captcha_check': False
-}
-SPAM_BOT.expected_output = False
-
-
-@pytest.mark.parametrize("user", [LEGITIMATE_USER, SPAM_BOT])
+@pytest.mark.parametrize("user", [LEGITIMATE_USER])
 def test_generate_ticket(user):
     """Test a ticket from a valid user and a spam bot."""
     ticket = generate_ticket(user['request'], user['form'])

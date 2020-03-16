@@ -1,6 +1,6 @@
 {% load i18n %}
 
-<form class="form form--support {{ form_class }}" method="post" action="{{ page.url }}{{ fragment_id }}">
+<form class="form form--support {{ form_class }}" method="post" action="{{ page.url }}{{ fragment_id }}" novalidate="">
     {% csrf_token %}
 
     <h2 class="form-heading">{% trans 'Contact support' %}</h2>
@@ -51,10 +51,19 @@
             {% include 'guidance_and_support/includes/form-item.html' with field=form.name %}
             {% include 'guidance_and_support/includes/form-item.html' with field=form.email spaced=True %}
             {% include 'guidance_and_support/includes/form-item.html' with field=form.query spaced=True %}
+            {% if form.captcha %}
+                {{ form.captcha }}
+            {% endif %}
         </div>
         <div class="form-field form-field--spaced">
             <button class="button">{% trans 'Submit request' %}</button>
         </div>
 
     {% endif %}
+
+    <div class="form-field form-field--spaced">
+        {% trans 'This site is protected by reCAPTCHA and the Google' %}
+        <a href="https://policies.google.com/privacy">{% trans 'Privacy Policy' %}</a> {% trans 'and' %}
+        <a href="https://policies.google.com/terms">{% trans 'Terms of Service' %}</a> {% trans 'apply' %}.
+    </div>
 </form>
