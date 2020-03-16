@@ -8,8 +8,8 @@ from .models import (
     GuidanceAndSupportPage,
     GuidanceGroupPage,
     GuidancePage,
-    KnowledgebaseIndexPage,
-    KnowledgebasePage,
+    # KnowledgebaseIndexPage,
+    # KnowledgebasePage,
     CommunityPage,
     SupportPage
 )
@@ -45,24 +45,24 @@ class GuidancePageTR(TranslationOptions):
 add_language_content_panels(GuidancePage)
 
 
-@register(KnowledgebaseIndexPage)
-class KnowledgebaseIndexPageTR(TranslationOptions):
-    """Class declaring which fields of the KnowledgebaseIndexPage model to translate."""
+# @register(KnowledgebaseIndexPage)
+# class KnowledgebaseIndexPageTR(TranslationOptions):
+#     """Class declaring which fields of the KnowledgebaseIndexPage model to translate."""
 
-    fields = KnowledgebaseIndexPage.translation_fields
-
-
-add_language_content_panels(KnowledgebaseIndexPage)
+#     fields = KnowledgebaseIndexPage.translation_fields
 
 
-@register(KnowledgebasePage)
-class KnowledgebasePageTR(TranslationOptions):
-    """Class declaring which fields of the KnowledgebasePage model to translate."""
-
-    fields = KnowledgebasePage.translation_fields
+# add_language_content_panels(KnowledgebaseIndexPage)
 
 
-add_language_content_panels(KnowledgebasePage)
+# @register(KnowledgebasePage)
+# class KnowledgebasePageTR(TranslationOptions):
+#     """Class declaring which fields of the KnowledgebasePage model to translate."""
+
+#     fields = KnowledgebasePage.translation_fields
+
+
+# add_language_content_panels(KnowledgebasePage)
 
 
 @register(CommunityPage)

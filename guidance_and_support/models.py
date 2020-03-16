@@ -17,7 +17,7 @@ class GuidanceAndSupportPage(DefaultPageHeaderImageMixin, AbstractContentPage):
     parent_page_types = ['home.HomePage']
     subpage_types = [
         'guidance_and_support.GuidanceGroupPage',
-        'guidance_and_support.KnowledgebaseIndexPage',
+        # 'guidance_and_support.KnowledgebaseIndexPage',
         'guidance_and_support.SupportPage',
     ]
 
@@ -70,16 +70,16 @@ class GuidancePage(ContactFormMixin, AbstractContentPage):
     subpage_types = []
 
 
-class KnowledgebaseIndexPage(AbstractIndexPage):
-    """A base for a Knowledgebase index page."""
+# class KnowledgebaseIndexPage(AbstractIndexPage):
+#     """A base for a Knowledgebase index page."""
 
-    subpage_types = ['guidance_and_support.KnowledgebasePage']
+#     subpage_types = ['guidance_and_support.KnowledgebasePage']
 
 
-class KnowledgebasePage(AbstractContentPage):
-    """A base for a single Knowledgebase page."""
+# class KnowledgebasePage(AbstractContentPage):
+#     """A base for a single Knowledgebase page."""
 
-    subpage_types = []
+#     subpage_types = []
 
 
 class CommunityPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
