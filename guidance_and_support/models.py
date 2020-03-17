@@ -114,21 +114,7 @@ class SupportPage(DefaultPageHeaderImageMixin, ContactFormMixin, AbstractContent
         features=['h3', 'link', 'ul'],
         help_text='Content to describe alternative ways of receiving support',
     )
-    contact_email = models.EmailField(
-        blank=True,
-        help_text='Optional: contact email address',
-    )
-    contact_link_label = models.CharField(
-        max_length=255,
-        blank=True,
-        help_text='Optional: link label for the contact email address',
-    )
 
     translation_fields = AbstractContentPage.translation_fields + [
         'alternative_content',
-        'contact_link_label',
-    ]
-
-    multilingual_field_panels = DefaultPageHeaderImageMixin.multilingual_field_panels + [
-        FieldPanel('contact_email'),
     ]
