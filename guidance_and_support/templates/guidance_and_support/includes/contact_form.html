@@ -1,6 +1,6 @@
 {% load i18n %}
 
-<form class="form form--support {{ form_class }}" method="post" action="{{ page.url }}{{ fragment_id }}" novalidate="">
+<form class="form form--support {{ form_class }}" method="post" action="{{ page.url }}{{ fragment_id }}">
     {% csrf_token %}
 
     <h2 class="form-heading">{% trans 'Contact support' %}</h2>
