@@ -15,7 +15,7 @@ LEGITIMATE_USER['form'].cleaned_data = {
     'textarea': 'A very serious matter.',
     'name': 'A legitimate user'
 }
-LEGITIMATE_USER.expected_output = {
+LEGITIMATE_USER['expected_output'] = {
     'request': {
         'requester': {
             'name': 'A legitimate user',
@@ -33,4 +33,4 @@ LEGITIMATE_USER.expected_output = {
 def test_generate_ticket(user):
     """Test a ticket from a valid user and a spam bot."""
     ticket = generate_ticket(user['request'], user['form'])
-    assert ticket == user.expected_output
+    assert ticket == user['expected_output']
