@@ -12,7 +12,7 @@ LEGITIMATE_USER['form'] = forms.Form()
 LEGITIMATE_USER['form'].cleaned_data = {
     'phone': '',
     'email': 'test@user.com',
-    'textarea': 'A very serious matter.',
+    'query': 'A very serious matter.',
     'name': 'A legitimate user'
 }
 LEGITIMATE_USER['expected_output'] = {
