@@ -13,7 +13,7 @@ install:
   - pip install -r requirements_dev.txt
   - psql -c "CREATE DATABASE travisci;" -U postgres  # Must match DB name in iati.settings.test
   - python manage.py makemigrations_translation
-  - python manage.py migrate --no-input
+  - python manage.py migrate_translation --no-input
 before_script:
   - python manage.py collectstatic
   - python manage.py runserver &
