@@ -3,7 +3,7 @@ import pytest
 from django.http import HttpRequest
 from django import forms
 
-from .zendeskhelper import generate_ticket
+from guidance_and_support.zendeskhelper import generate_ticket
 
 LEGITIMATE_USER = {}
 LEGITIMATE_USER['request'] = HttpRequest()
