@@ -1,4 +1,5 @@
 """A module to contain helper function to format data for ZenDesk."""
+from django.conf import settings
 
 
 def generate_ticket(request, form, score=None, suspicious=False):
@@ -31,11 +32,11 @@ def generate_ticket(request, form, score=None, suspicious=False):
         if suspicious:
             request_obj['request']['custom_fields'] = [
                 {
-                    "id": 360005962277,
+                    "id": settings.ZENDESK_CAPTCHA_FIELD_ID,
                     "value": score
                 },
                 {
-                    "id": 360005946038,
+                    "id": settings.ZENDESK_SUSPICIOUS_FIELD_ID,
                     "value": "true"
                 }
             ]
