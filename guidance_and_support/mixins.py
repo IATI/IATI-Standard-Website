@@ -17,6 +17,7 @@ class ContactFormMixin(models.Model):
         abstract = True
 
     def post_submission(self, request, context, score=None, suspicious=False):
+        """Try generating a ticket and posting a request to Zendesk, update and return the context object."""
         form = context['form']
         ticket = generate_ticket(request, form, score, suspicious)
         if ticket:
@@ -32,8 +33,7 @@ class ContactFormMixin(models.Model):
         return context
 
     def get_context(self, request, *args, **kwargs):
-        """Overwrite context to intercept POST requests to pages on this template and pass them to Zendesk API.
-        """
+        """Overwrite context to intercept POST requests to pages on this template and pass them to Zendesk API."""
         context = super().get_context(request, *args, **kwargs)
         context['form'] = ContactForm()
         context['form_success'] = False
