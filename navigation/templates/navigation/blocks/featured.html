@@ -22,7 +22,7 @@
                     <a href="{{ value.page.url }}"><span>{{ value.page.specific.heading }}</span></a>
                 </h2>
                 <p class="case-study__excerpt">{{ value.description }}</p>
-                <a href="{ value.page.url }}" class="button button--small">{% trans 'Read more' %}</a>
+                <a href="{{ value.page.url }}" class="button button--small">{% trans 'Read more' %}</a>
                 {% if value.secondary_page %}
                     <a href="{{ value.secondary_page.url }}" class="case-study__text-link">
                         {% if value.link_label %}

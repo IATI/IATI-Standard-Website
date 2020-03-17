@@ -57,7 +57,7 @@ class PageList(StructBlock):
         value_class = TransStructValue
 
     use_first_page_as_title = BooleanBlock(
-        help_text='Optional: if checked, the first page in the list will be displayed as a title',
+        help_text='Optional: if checked, the first page in the list will be displayed as a title, overriding any plain text title below',
         required=False,
     )
     title_en = CharBlock(

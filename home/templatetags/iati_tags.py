@@ -167,8 +167,12 @@ def discover_tree_recursive(current_page, calling_page):
     if calling_page.live:
         children = children.live()
     for child in children:
+        try:
+            page_title = child.heading if child.heading else child.title
+        except AttributeError:
+            page_title = child.title
         page_dict = {
-            'page_title': child.heading if child.heading else child.title,
+            'page_title': page_title,
             'page_slug': child.slug,
             'page_depth': child.depth,
             'page': child,

@@ -538,8 +538,8 @@
                             },
                             {
                                 "highlight": true,
-                                "no_link_heading": true,
                                 "heading": "Finances, reports and minutes",
+                                "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit",
                                 "list": [
                                     "IATI finances",
                                     "Annual reports",
