@@ -60,23 +60,13 @@ def populate_data(observer, data, tag):
 
     if data:
         for item in extract_zip(download_zip(data.url)):
-            if os.path.splitext(item.name)[1] == ".json":
-                try:
-                    raw_json_path = os.path.splitext(item.name)[0]
-                    version = raw_json_path.split("/")[1]
-                    language = raw_json_path.split("/")[2]
-                    if language in [lang[0] for lang in settings.ACTIVE_LANGUAGES]:
-                        path_remainder = "/".join(raw_json_path.split("/")[3:])
-                        json_path = "/".join([version, path_remainder])
-                        ReferenceData.objects.update_or_create(
-                            json_path=json_path,
-                            version=version,
-                            language=language,
-                            tag=tag,
-                            defaults={'data': json.loads(item.read())},
-                        )
-                except json.decoder.JSONDecodeError:
-                    pass
+            if os.path.splitext(item.name)[1] == ".html":
+                ssot_path = "/".join(item.name.split("/")[1:])
+                ReferenceData.objects.update_or_create(
+                    ssot_path=ssot_path,
+                    tag=tag,
+                    defaults={'data': item.read()},
+                )
 
     else:
         raise ValueError('No data available for tag: %s' % tag)
@@ -86,14 +76,14 @@ def create_or_update_from_object(parent_page, page_model, object):
     """Create ActivityStandardPage from ReferenceData object."""
     try:
         child_page = page_model.objects.get(
-            json_path=object.json_path
+            ssot_path=object.ssot_path
         )
         setattr(child_page, "data_{}".format(object.language), object.data)
         child_page.tag = object.tag
         child_page.save_revision().publish()
     except page_model.DoesNotExist:
         child_page = page_model(
-            json_path=object.json_path,
+            ssot_path=object.ssot_path,
             title=object.name,
             heading=object.name,
             slug=slugify(object.name),
@@ -105,17 +95,16 @@ def create_or_update_from_object(parent_page, page_model, object):
     return child_page
 
 
-def recursive_create(ancestor_list, object_pool, parent_page, parent_path):
+def recursive_create(object_pool, parent_page, parent_path):
     """Recursively create ActivityStandardPage objects."""
     objects = object_pool.filter(parent_path=parent_path)
     for object in objects:
-        if object.reference_type in ancestor_list:
-            page_model = ActivityStandardPage
-            child_page = create_or_update_from_object(parent_page, page_model, object)
-            if not child_page.has_been_recursed:
-                child_page.has_been_recursed = True
-                child_page.save_revision().publish()
-                recursive_create(ancestor_list, object_pool, child_page, child_page.json_path)
+        page_model = ActivityStandardPage
+        child_page = create_or_update_from_object(parent_page, page_model, object)
+        if not child_page.has_been_recursed:
+            child_page.has_been_recursed = True
+            child_page.save_revision().publish()
+            recursive_create(object_pool, child_page, child_page.ssot_path)
     return True
 
 
@@ -126,25 +115,22 @@ def populate_index(observer, tag, previous_tag=None):
         meta='Populating index'
     )
 
-    versions = [vers[0] for vers in ReferenceData.objects.filter(tag=tag).order_by().values_list('version').distinct()]
+    ssot_roots = [roots[0] for roots in ReferenceData.objects.filter(tag=tag).order_by().values_list('ssot_root_slug').distinct()]
     ActivityStandardPage.objects.all().update(has_been_recursed=False)
 
-    for version in versions:
+    for ssot_root in ssot_roots:
         standard_page = IATIStandardPage.objects.live().first()
-        objects = ReferenceData.objects.filter(tag=tag, json_path="{}/activity-standard".format(version))
+        objects = ReferenceData.objects.filter(tag=tag, ssot_path=ssot_root)
         for object in objects:
-            version_page = create_or_update_from_object(standard_page, ActivityStandardPage, object)
-        version_page.title = version
-        version_page.slug = slugify(version)
-        version_page.save_revision().publish()
-        ancestor_list = [
-            "activity-standard"
-        ]
-        recursive_create(ancestor_list, ReferenceData.objects.filter(tag=tag), version_page, version_page.json_path)
+            ssot_root_page = create_or_update_from_object(standard_page, ActivityStandardPage, object)
+        ssot_root_page.title = ssot_root
+        ssot_root_page.slug = slugify(ssot_root)
+        ssot_root_page.save_revision().publish()
+        recursive_create(ReferenceData.objects.filter(tag=tag), ssot_root_page, ssot_root_page.ssot_path)
 
     if previous_tag:
-        new_object_paths = set(ReferenceData.objects.filter(tag=tag).order_by().values_list('json_path'))
-        old_object_paths = set(ReferenceData.objects.filter(tag=previous_tag).order_by().values_list('json_path'))
+        new_object_paths = set(ReferenceData.objects.filter(tag=tag).order_by().values_list('ssot_path'))
+        old_object_paths = set(ReferenceData.objects.filter(tag=previous_tag).order_by().values_list('ssot_path'))
 
         to_delete = (old_object_paths - new_object_paths)
-        ActivityStandardPage.objects.filter(json_path__in=list(to_delete)).delete()
+        ActivityStandardPage.objects.filter(ssot_path__in=list(to_delete)).delete()

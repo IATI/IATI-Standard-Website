@@ -42,14 +42,14 @@ class ReferenceData(models.Model):
     class Meta:
         """Metadata class."""
 
-        ordering = ['json_path']
+        ordering = ['ssot_path']
         verbose_name_plural = 'Reference data'
-        unique_together = ['json_path', 'language', 'tag']
+        unique_together = ['ssot_path', 'tag']
 
-    json_path = models.TextField(
+    ssot_path = models.TextField(
         null=True,
         blank=True,
-        help_text='Folder path of JSON object'
+        help_text='Folder path of SSOT object'
     )
 
     tag = models.CharField(
@@ -57,18 +57,15 @@ class ReferenceData(models.Model):
         help_text='Associated git release tag',
     )
 
-    version = models.CharField(
-        max_length=255,
-        help_text='IATI version',
-        null=True,
-        blank=True
-    )
-
     language = models.CharField(
         max_length=255,
         help_text='Language',
-        null=True,
-        blank=True
+        default="en"
+    )
+
+    ssot_root_slug = models.CharField(
+        max_length=255,
+        help_text='Slug of the highest parent folder.'
     )
 
     parent_path = models.TextField(
@@ -77,25 +74,25 @@ class ReferenceData(models.Model):
         help_text='Parent path of object'
     )
 
-    data = JSONField(blank=True, null=True)
+    data = models.TextField(
+        null=True,
+        blank=True,
+        help_text='HTML data for the page'
+    )
 
     @cached_property
     def name(self):
-        """Return the last item in the json_path as a name."""
-        return self.json_path.split("/")[-1]
-
-    @cached_property
-    def reference_type(self):
-        """Return the second item in the json_path as a type."""
-        return self.json_path.split("/")[1]
+        """Return the last item in the ssot_path as a name."""
+        return self.ssot_path.split("/")[-1]
 
     def __str__(self):
         """Print full path as name."""
-        return self.json_path
+        return self.ssot_path
 
     def save(self, *args, **kwargs):
         """Overwrite save to automatically update parent_path."""
-        self.parent_path = "/".join(self.json_path.split("/")[:-1])
+        self.parent_path = "/".join(self.ssot_path.split("/")[:-1])
+        self.ssot_root_slug = self.ssot_path.split("/")[0]
         super(ReferenceData, self).save(*args, **kwargs)
 
 
@@ -105,10 +102,10 @@ class ActivityStandardPage(DefaultPageHeaderImageMixin, AbstractContentPage):
     parent_page_types = ['iati_standard.IATIStandardPage', 'iati_standard.ActivityStandardPage']
     sub_page_types = ['iati_standard.ActivityStandardPage']
 
-    json_path = models.TextField(
+    ssot_path = models.TextField(
         null=True,
         blank=True,
-        help_text='Folder path of JSON object'
+        help_text='Folder path of SSOT object'
     )
 
     tag = models.CharField(
@@ -116,7 +113,11 @@ class ActivityStandardPage(DefaultPageHeaderImageMixin, AbstractContentPage):
         help_text='Associated git release tag',
     )
 
-    data = JSONField(blank=True, null=True)
+    data = models.TextField(
+        null=True,
+        blank=True,
+        help_text='HTML data for the page'
+    )
 
     has_been_recursed = models.BooleanField(default=False)
 
@@ -124,20 +125,15 @@ class ActivityStandardPage(DefaultPageHeaderImageMixin, AbstractContentPage):
 
     @cached_property
     def parent_path(self):
-        """Return json_path of parent object."""
-        return "/".join(self.json_path.split("/")[:-1])
+        """Return ssot_path of parent object."""
+        return "/".join(self.ssot_path.split("/")[:-1])
 
     @cached_property
     def name(self):
-        """Return the last item in the json_path as a name."""
-        return self.json_path.split("/")[-1]
+        """Return the last item in the ssot_path as a name."""
+        return self.ssot_path.split("/")[-1]
 
     @cached_property
     def version(self):
-        """Return the first item in the json_path as a version."""
-        return self.json_path.split("/")[0]
-
-    @cached_property
-    def reference_type(self):
-        """Return the second item in the json_path as a type."""
-        return self.json_path.split("/")[1]
+        """Return the first item in the ssot_path as a version."""
+        return self.ssot_path.split("/")[0]
