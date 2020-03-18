@@ -1,6 +1,7 @@
 """Module for edit handlers involved in IATI Standards."""
 
 from github import Github
+from github.GithubException import UnknownObjectException
 from django.conf import settings
 from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.admin.edit_handlers import MultiFieldPanel as WagtailMultiFieldPanel
@@ -71,7 +72,10 @@ class GithubAPI:
 
     def _get_repo(self):
         """Fetch repository object."""
-        return self.git.get_organization(self.org).get_repo(self.repo)
+        try:
+            return self.git.get_organization(self.org).get_repo(self.repo)
+        except UnknownObjectException:
+            return self.git.get_user(self.org).get_repo(self.repo)
 
     def _get_release(self, tag):
         """Fetch specific release."""
