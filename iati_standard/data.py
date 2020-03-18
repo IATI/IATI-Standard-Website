@@ -109,10 +109,11 @@ def recursive_create(object_pool, parent_page, parent_path):
 
 
 def recursive_create_menu(parent_page):
+    """Recursively create reference menu."""
     page_obj = {
         "depth": parent_page.depth,
         "title": parent_page.title,
-        "page": parent_page.page,
+        "pk": parent_page.pk,
         "children": list()
     }
     page_children = parent_page.get_children()
@@ -147,7 +148,7 @@ def populate_index(observer, tag, previous_tag=None):
         recursive_create(ReferenceData.objects.filter(tag=tag), ssot_root_page, ssot_root_page.ssot_path)
         menu_json.append(recursive_create_menu(ssot_root_page))
 
-    ReferenceMenu.update_or_create(
+    ReferenceMenu.objects.update_or_create(
         tag=tag,
         defaults={'menu_json': menu_json},
     )
