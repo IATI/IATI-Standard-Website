@@ -246,7 +246,7 @@ def reference_menu(calling_page):
     calling_page_tag = calling_page.specific.tag
     calling_page_pk = calling_page.pk
     standard_page = IATIStandardPage.objects.live().first()
-    if calling_page.depth > 5:
+    if calling_page.depth > 4:
         main_section_pk = standard_page.get_children().ancestor_of(calling_page).first().pk
     else:
         main_section_pk = calling_page.pk
