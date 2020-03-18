@@ -19,28 +19,7 @@
 
   <div class="row">
   	<div class="l-sidebar l-sidebar--reverse l-sidebar--wide">
-      <aside class="l-sidebar__aside">
-
-      	<div class="aside-m">
-          <div class="aside-m__header fill-sunrise">
-              <h3 class="aside-m__heading">Reference</h3>
-          </div>
-          <button class="navigation-secondary-toggle" type="button" id="navigation-secondary-toggle">pages in this section <i role="presentation" aria-hidden="true" class="ico ico--16 ico-plus-sunrise"></i></button>
-          <nav class="navigation-secondary navigation-secondary--reference" id="navigation-secondary" data-nested-list="">
-            <form>
-              <ul class="navigation-secondary__list">
-                {% for item in self.get_children %}
-                  {% if item.live %}
-                    <li class="navigation-secondary__child__item--0 navigation-secondary__item  " data-nested-nav-item="">
-                      <a href="{% pageurl item %}">{{ item.specific.name }}</a>
-                    </li>
-                  {% endif %}
-                {% endfor %}
-              </ul>
-            </form>
-          </nav>
-        </div>
-  		</aside>
+      {% reference_menu calling_page=self %}
 
   		<div class="l-sidebar__body">
         <section>
