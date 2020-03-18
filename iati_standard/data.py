@@ -6,7 +6,7 @@ import json
 from zipfile import ZipFile
 from django.conf import settings
 from django.utils.text import slugify
-from iati_standard.models import ReferenceData, ActivityStandardPage, IATIStandardPage
+from iati_standard.models import ReferenceData, ActivityStandardPage, IATIStandardPage, ReferenceMenu
 from iati_standard.edit_handlers import GithubAPI
 
 
@@ -61,11 +61,11 @@ def populate_data(observer, data, tag):
     if data:
         for item in extract_zip(download_zip(data.url)):
             if os.path.splitext(item.name)[1] == ".html":
-                ssot_path = "/".join(item.name.split("/")[1:])
+                ssot_path = os.path.dirname(item.name)
                 ReferenceData.objects.update_or_create(
                     ssot_path=ssot_path,
                     tag=tag,
-                    defaults={'data': item.read()},
+                    defaults={'data': item.read().decode('utf-8').replace("\n", "")},
                 )
 
     else:
@@ -108,6 +108,23 @@ def recursive_create(object_pool, parent_page, parent_path):
     return True
 
 
+def recursive_create_menu(parent_page):
+    page_obj = {
+        "depth": parent_page.depth,
+        "title": parent_page.title,
+        "page": parent_page.page,
+        "children": list()
+    }
+    page_children = parent_page.get_children()
+    if len(page_children) == 0:
+        return page_obj
+    for page_child in page_children:
+        page_obj["children"].append(
+            recursive_create_menu(page_child)
+        )
+    return page_obj
+
+
 def populate_index(observer, tag, previous_tag=None):
     """Use ReferenceData objects to populate page index."""
     observer.update_state(
@@ -117,6 +134,7 @@ def populate_index(observer, tag, previous_tag=None):
 
     ssot_roots = [roots[0] for roots in ReferenceData.objects.filter(tag=tag).order_by().values_list('ssot_root_slug').distinct()]
     ActivityStandardPage.objects.all().update(has_been_recursed=False)
+    menu_json = []
 
     for ssot_root in ssot_roots:
         standard_page = IATIStandardPage.objects.live().first()
@@ -127,6 +145,12 @@ def populate_index(observer, tag, previous_tag=None):
         ssot_root_page.slug = slugify(ssot_root)
         ssot_root_page.save_revision().publish()
         recursive_create(ReferenceData.objects.filter(tag=tag), ssot_root_page, ssot_root_page.ssot_path)
+        menu_json.append(recursive_create_menu(ssot_root_page))
+
+    ReferenceMenu.update_or_create(
+        tag=tag,
+        defaults={'menu_json': menu_json},
+    )
 
     if previous_tag:
         new_object_paths = set(ReferenceData.objects.filter(tag=tag).order_by().values_list('ssot_path'))

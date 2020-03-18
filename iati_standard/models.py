@@ -1,5 +1,7 @@
 """Model definitions for the iati_standard app."""
 
+from bs4 import BeautifulSoup
+
 from django.contrib.postgres.fields import JSONField
 from django.db import models
 from django.utils.functional import cached_property
@@ -137,3 +139,22 @@ class ActivityStandardPage(DefaultPageHeaderImageMixin, AbstractContentPage):
     def version(self):
         """Return the first item in the ssot_path as a version."""
         return self.ssot_path.split("/")[0]
+
+    def save(self, *args, **kwargs):
+        """Overwrite save to automatically update title."""
+        soup = BeautifulSoup(self.data, 'html.parser')
+        title = soup.find("h1")
+        if title:
+            self.title = title.text.replace("¶", "")
+            self.heading = title.text.replace("¶", "")
+        super(ActivityStandardPage, self).save(*args, **kwargs)
+
+
+class ReferenceMenu(models.Model):
+
+    tag = models.CharField(
+        max_length=255,
+        help_text='Associated git release tag',
+    )
+
+    menu_json = JSONField()

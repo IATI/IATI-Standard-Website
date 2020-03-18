@@ -9,7 +9,7 @@
     {% include "home/includes/hero_heading.html" %}
   </div>
 
-  {% if self.version != "version-2.03" %}
+  {% if self.version != "203" and self.version != "guidance" and self.version != "developer-documentation" %}
   <div class="hero-notice">
       <div class="row">
           <p class="hero-notice__copy"><i role="presentation" aria-hidden="true" class="ico ico--18 ico-warning-warning"></i>This version is DEPRECATED, <a href="#">v2.03</a> is the latest version</p>
@@ -45,8 +45,7 @@
   		<div class="l-sidebar__body">
         <section>
           <div class="is-typeset">
-            <h1>{{ self.name }}</h1>
-            <p>{{ self.data|safe }}</p>
+            {{ self.data|safe }}
           </div>
         </section>
   		</div>
