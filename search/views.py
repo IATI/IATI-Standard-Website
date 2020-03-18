@@ -9,8 +9,8 @@ from wagtail.core.models import Page
 from about.models import AboutPage, AboutSubPage, CaseStudyPage, HistoryPage, PeoplePage
 from contact.models import ContactPage
 from events.models import EventPage
-from guidance_and_support.models import GuidanceAndSupportPage, GuidanceGroupPage, \
-    GuidancePage, KnowledgebasePage
+from guidance_and_support.models import GuidanceAndSupportPage, GuidanceGroupPage, GuidancePage
+# from guidance_and_support.models import KnowledgebasePage
 from news.models import NewsPage
 from home.models import StandardPage
 from iati_standard.models import IATIStandardPage
@@ -22,9 +22,10 @@ def search(request):
     searchable_models = [
         AboutPage, AboutSubPage, CaseStudyPage, HistoryPage,
         PeoplePage, ContactPage, EventPage, GuidanceAndSupportPage,
-        GuidanceGroupPage, GuidancePage, KnowledgebasePage, NewsPage,
+        GuidanceGroupPage, GuidancePage, NewsPage,
         StandardPage, IATIStandardPage,
     ]
+    # TODO: add KnowledgebasePage back if activated
     search_query = request.GET.get('query', None)
     page = request.GET.get('page', 1)
 
