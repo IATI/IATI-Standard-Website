@@ -1,30 +1,28 @@
-<a id="support"></a>
-<div class="section">
-    <div class="row">
-        <h2 class="section__heading">Contact support</h2>
-        <p class="para para--typeset">Please complete the form below and our team will be able to help you</p>
-        <form class="form form--support">
-            <div class="l-2up">
-                <div class="l-2up__col">
-                    {% for item in form.input %}
-                        {% include 'forms/partials/input-types.html' %}
-                    {% endfor %}
-                    <div class="form-field form-field--spaced">
-                        <label class="form-label" for=file>Attachment</label>
-                        <div class="form-item-inline">
-                            <input class="form-file" type="file" name="file">
-                        </div>
-                    </div>
-                </div>
-                <div class="l-2up__col">
-                    {% for item in form.textarea %}
-                        {% include 'forms/partials/textarea-type.html' %}
-                    {% endfor %}
-                </div>
-            </div>
-            <div class="form-field form-field--spaced">
-                <button type="submit" class="button">Submit request</button>
-            </div>
-        </form>
+<form class="form form--support {% if id == 'guidance' %}form--2up{% endif %}">
+    <h2 class="form-heading">Contact support</h2>
+    <div class="is-typeset">
+        <p>Please complete the form below and our team will be able to help you. Alternatively, you can email support at <a href="#">support@iatistandard.org</a>.</p>
     </div>
-</div>
+    <div class="alert alert--success"><i role="presentation" aria-hidden="true" class="ico ico-success-success"></i>
+        <p><strong>Thank you - your message has been sent.</strong></p>
+        <p>Name: [name]</p>
+        <p>Email: [email]</p>
+        <p>Message</p>
+        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.</p>
+    </div>
+    <div class="alert alert--error"><i role="presentation" aria-hidden="true" class="ico ico-error-error"></i>
+        <p><strong>Sorry, there appears to be an issue.</strong></p>
+        <p>Please check you have entered a valid email address.</p>
+    </div>
+    <div class="form-group">
+        {% for item in form.input %}
+            {% include 'forms/partials/input-types.html' %}
+        {% endfor %}
+        {% for item in form.textarea %}
+            {% include 'forms/partials/textarea-type.html' %}
+        {% endfor %}
+    </div>
+    <div class="form-field form-field--spaced">
+        <button type="submit" class="button">Submit request</button>
+    </div>
+</form>
