@@ -2,7 +2,6 @@
 import requests
 import io
 import os
-import json
 from zipfile import ZipFile
 from django.conf import settings
 from django.utils.text import slugify

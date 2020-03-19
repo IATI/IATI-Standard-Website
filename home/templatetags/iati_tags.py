@@ -228,14 +228,14 @@ def news_category_verbose(news_category_slug):
 
 @register.filter
 def pagepk(pk):
-    """Returns a page given a page pk."""
+    """Return a page given a page pk."""
     page = Page.objects.get(pk=pk)
     return page
 
 
 @register.filter
 def isancestor(pk, calling_page):
-    """Returns a page given a page pk."""
+    """Return a page given a page pk."""
     potential_ancestor_page = Page.objects.filter(pk=pk).ancestor_of(calling_page)
     return potential_ancestor_page
 

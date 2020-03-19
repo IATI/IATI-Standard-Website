@@ -151,6 +151,7 @@ class ActivityStandardPage(DefaultPageHeaderImageMixin, AbstractContentPage):
 
 
 class ReferenceMenu(models.Model):
+    """A model for to store the Standard Reference menu."""
 
     tag = models.CharField(
         max_length=255,
