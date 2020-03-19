@@ -19,8 +19,8 @@
               {% if self.version == "102" %}VERSION 1.02{% endif %}
               {% if self.version == "101" %}VERSION 1.01{% endif %}
                of IATI Standard Reference</strong>
-              {% if standard_page %}
-                <a href="{% pageurl standard_page %}">View another version</a>
+              {% if global.standard_page %}
+                <a href="{% pageurl global.standard_page %}">View another version</a>
               {% endif %}
             </p>
         </div>
@@ -32,8 +32,8 @@
   <div class="hero-notice">
       <div class="row">
           <p class="hero-notice__copy"><i role="presentation" aria-hidden="true" class="ico ico--18 ico-warning-warning"></i>This version is DEPRECATED,
-            {% if latest_version_page %}
-              <a href="{% pageurl latest_version_page %}">v2.03</a>
+            {% if global.standard_page.latest_version_page %}
+              <a href="{% pageurl global.standard_page.latest_version_page %}">v2.03</a>
             {% else %}
               v2.03
             {% endif %}
@@ -52,7 +52,7 @@
             {{ self.data|safe }}
           </div>
         </section>
-        {% if reference_support_page %}
+        {% if global.standard_page.reference_support_page %}
         <section class="space-section-top">
           <div class="aside-m">
             <div class="aside-m__header fill-sunset">
@@ -60,7 +60,7 @@
             </div>
             <div class="aside-m__body">
                 <p class="aside-m__copy">Our technical team are ready to help you.</p>
-                <a class="button" href="{% pageurl reference_support_page %}">Get help</a>
+                <a class="button" href="{% pageurl global.standard_page.reference_support_page %}">Get help</a>
             </div>
           </div>
         </section>

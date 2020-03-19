@@ -146,15 +146,6 @@ class ActivityStandardPage(DefaultPageHeaderImageMixin, AbstractContentPage):
 
     translation_fields = AbstractContentPage.translation_fields + ["data"]
 
-    def get_context(self, request, *args, **kwargs):
-        """Overwrite context to serve some common variables."""
-        context = super(ActivityStandardPage, self).get_context(request)
-        standard_page = IATIStandardPage.objects.live().first()
-        context['standard_page'] = standard_page
-        context['latest_version_page'] = standard_page.latest_version_page
-        context['reference_support_page'] = standard_page.reference_support_page
-        return context
-
     @cached_property
     def parent_path(self):
         """Return ssot_path of parent object."""
