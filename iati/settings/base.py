@@ -251,7 +251,6 @@ BASE_URL = 'http://iatistandard.org'
 
 # Modeltranslation sync Settings
 MODELTRANSLATION_LOCALE_PATH = os.path.join(BASE_DIR, 'locale')
-MODELTRANSLATION_CUSTOM_FIELDS = ('JSONField',)
 LOCALE_PATHS = (MODELTRANSLATION_LOCALE_PATH,)
 MODELTRANSLATION_PO_FILE = "iati.po"
 
