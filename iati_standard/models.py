@@ -7,6 +7,8 @@ from django.db import models
 from django.utils.functional import cached_property
 
 from wagtail.snippets.models import register_snippet
+from wagtail.admin.edit_handlers import PageChooserPanel
+from wagtail.core.models import Page
 
 from home.models import AbstractContentPage, DefaultPageHeaderImageMixin
 
@@ -34,7 +36,26 @@ class IATIStandardPage(DefaultPageHeaderImageMixin, AbstractContentPage):
         null=True
     )
 
-    multilingual_field_panels = DefaultPageHeaderImageMixin.multilingual_field_panels + [ReferenceDataPanel()]
+    latest_version_page = models.ForeignKey(
+        'iati_standard.ActivityStandardPage',
+        on_delete=models.SET_NULL,
+        related_name="+",
+        blank=True,
+        null=True
+    )
+    reference_support_page = models.ForeignKey(
+        Page,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        blank=True,
+        null=True
+    )
+
+    multilingual_field_panels = DefaultPageHeaderImageMixin.multilingual_field_panels + [
+        PageChooserPanel('latest_version_page', 'iati_standard.ActivityStandardPage'),
+        PageChooserPanel('reference_support_page'),
+        ReferenceDataPanel()
+    ]
 
 
 @register_snippet
@@ -124,6 +145,15 @@ class ActivityStandardPage(DefaultPageHeaderImageMixin, AbstractContentPage):
     has_been_recursed = models.BooleanField(default=False)
 
     translation_fields = AbstractContentPage.translation_fields + ["data"]
+
+    def get_context(self, request, *args, **kwargs):
+        """Overwrite context to serve some common variables."""
+        context = super(ActivityStandardPage, self).get_context(request)
+        standard_page = IATIStandardPage.objects.live().first()
+        context['standard_page'] = standard_page
+        context['latest_version_page'] = standard_page.latest_version_page
+        context['reference_support_page'] = standard_page.reference_support_page
+        return context
 
     @cached_property
     def parent_path(self):
