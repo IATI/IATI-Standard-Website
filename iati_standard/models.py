@@ -142,6 +142,12 @@ class ActivityStandardPage(DefaultPageHeaderImageMixin, AbstractContentPage):
         help_text='HTML data for the page'
     )
 
+    menu = models.TextField(
+        null=True,
+        blank=True,
+        help_text='HTML data for the page menu'
+    )
+
     has_been_recursed = models.BooleanField(default=False)
 
     translation_fields = AbstractContentPage.translation_fields + ["data"]
@@ -160,6 +166,12 @@ class ActivityStandardPage(DefaultPageHeaderImageMixin, AbstractContentPage):
     def version(self):
         """Return the first item in the ssot_path as a version."""
         return self.ssot_path.split("/")[0]
+
+    def prerender_menu(self):
+        template_backup = self.template
+        self.template = "iati_standard/dummy_menu.html"
+        self.menu = self.serve(self.dummy_request()).rendered_content
+        self.template = template_backup
 
     def save(self, *args, **kwargs):
         """Overwrite save to automatically update title."""

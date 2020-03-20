@@ -44,7 +44,7 @@
 
   <div class="row">
   	<div class="l-sidebar l-sidebar--reverse l-sidebar--wide">
-      {% reference_menu calling_page=self %}
+      {{ self.menu|safe }}
 
   		<div class="l-sidebar__body">
         <section>

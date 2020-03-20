@@ -152,6 +152,11 @@ def populate_index(observer, tag, previous_tag=None):
         defaults={'menu_json': menu_json},
     )
 
+    all_reference_pages = ActivityStandardPage.objects.filter(tag=tag)
+    for reference_page in all_reference_pages:
+        reference_page.prerender_menu()
+        reference_page.save_revision().publish()
+
     if previous_tag:
         new_object_paths = set(ReferenceData.objects.filter(tag=tag).order_by().values_list('ssot_path'))
         old_object_paths = set(ReferenceData.objects.filter(tag=previous_tag).order_by().values_list('ssot_path'))
