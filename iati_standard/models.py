@@ -5,10 +5,13 @@ from bs4 import BeautifulSoup
 from django.contrib.postgres.fields import JSONField
 from django.db import models
 from django.utils.functional import cached_property
+from django.conf import settings
 
 from wagtail.snippets.models import register_snippet
 from wagtail.admin.edit_handlers import PageChooserPanel
 from wagtail.core.models import Page
+
+from wagtail_modeltranslation.contextlib import use_language
 
 from home.models import AbstractContentPage, DefaultPageHeaderImageMixin
 
@@ -150,7 +153,7 @@ class ActivityStandardPage(DefaultPageHeaderImageMixin, AbstractContentPage):
 
     has_been_recursed = models.BooleanField(default=False)
 
-    translation_fields = AbstractContentPage.translation_fields + ["data"]
+    translation_fields = AbstractContentPage.translation_fields + ["data", "menu"]
 
     @cached_property
     def parent_path(self):
@@ -170,7 +173,12 @@ class ActivityStandardPage(DefaultPageHeaderImageMixin, AbstractContentPage):
     def prerender_menu(self):
         template_backup = self.template
         self.template = "iati_standard/dummy_menu.html"
-        self.menu = self.serve(self.dummy_request()).rendered_content
+        for language_code, language_name in settings.ACTIVE_LANGUAGES:
+            with use_language(language_code):
+                self.__setattr__(
+                    "menu_{}".format(language_code),
+                    self.serve(self.dummy_request()).rendered_content
+                )
         self.template = template_backup
 
     def save(self, *args, **kwargs):
