@@ -171,11 +171,13 @@ class ActivityStandardPage(DefaultPageHeaderImageMixin, AbstractContentPage):
         return self.ssot_path.split("/")[0]
 
     def prerender_menu(self):
+        """Prerender the side-panel menu to improve client-side performance."""
         template_backup = self.template
         self.template = "iati_standard/dummy_menu.html"
         for language_code, language_name in settings.ACTIVE_LANGUAGES:
             with use_language(language_code):
-                self.__setattr__(
+                setattr(
+                    self,
                     "menu_{}".format(language_code),
                     self.serve(self.dummy_request()).rendered_content
                 )
