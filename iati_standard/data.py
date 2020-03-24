@@ -155,6 +155,8 @@ def populate_index(observer, tag, previous_tag=None):
     all_reference_pages = ActivityStandardPage.objects.filter(tag=tag)
     for reference_page in all_reference_pages:
         reference_page.prerender_menu()
+        reference_page.locked = True
+        reference_page.locked_by = None
         reference_page.save_revision().publish()
 
     if previous_tag:
