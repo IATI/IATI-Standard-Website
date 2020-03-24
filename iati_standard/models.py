@@ -10,6 +10,7 @@ from django.conf import settings
 from wagtail.snippets.models import register_snippet
 from wagtail.admin.edit_handlers import PageChooserPanel, TabbedInterface
 from wagtail.core.models import Page
+from wagtail.search.index import SearchField
 
 from wagtail_modeltranslation.contextlib import use_language
 
@@ -157,6 +158,9 @@ class ActivityStandardPage(DefaultPageHeaderImageMixin, AbstractContentPage):
     has_been_recursed = models.BooleanField(default=False)
 
     translation_fields = AbstractContentPage.translation_fields + ["data", "menu"]
+    search_fields = AbstractContentPage.search_fields + [
+        SearchField('data'),
+    ]
 
     @cached_property
     def parent_path(self):
