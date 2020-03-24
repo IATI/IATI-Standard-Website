@@ -21,4 +21,3 @@ class ActivityStandardPageTR(TranslationOptions):
 
 
 add_language_content_panels(IATIStandardPage)
-add_language_content_panels(ActivityStandardPage)

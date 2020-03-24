@@ -8,7 +8,7 @@ from django.utils.functional import cached_property
 from django.conf import settings
 
 from wagtail.snippets.models import register_snippet
-from wagtail.admin.edit_handlers import PageChooserPanel
+from wagtail.admin.edit_handlers import PageChooserPanel, TabbedInterface
 from wagtail.core.models import Page
 
 from wagtail_modeltranslation.contextlib import use_language
@@ -125,8 +125,11 @@ class ReferenceData(models.Model):
 class ActivityStandardPage(DefaultPageHeaderImageMixin, AbstractContentPage):
     """A model for reference to the Activity Standard."""
 
-    parent_page_types = ['iati_standard.IATIStandardPage', 'iati_standard.ActivityStandardPage']
-    sub_page_types = ['iati_standard.ActivityStandardPage']
+    is_creatable = False
+    edit_handler = TabbedInterface([])
+
+    parent_page_types = []
+    subpage_types = []
 
     ssot_path = models.TextField(
         null=True,
