@@ -7,7 +7,7 @@
             "line": "https://iati-html.surge.sh/activity-standard",                             // div.line-block.html
             "toctree-wrapper|compound": "https://iati-html.surge.sh/activity-standard",         // div.toctree-wrapper.compound.html
             "highlight-xml": "https://iati-html.surge.sh/activity-standard/overview/self-defined-vocabularies",  // div.highlight-xml.html
-            "highlight": "https://iati-html.surge.sh/activity-standard/overview/self-defined-vocabularies",
+            "highlight": "https://iati-html.surge.sh/activity-standard/overview/self-defined-vocabularies",      // div.highlight-xml.html
             "highlight-default": "https://iati-html.surge.sh/activity-standard/summary-table",
             "code|highlight-default": "https://iati-html.surge.sh/codelists-guides/codelist-api"
         },
