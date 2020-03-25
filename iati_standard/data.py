@@ -79,6 +79,8 @@ def create_or_update_from_object(parent_page, page_model, object):
         )
         setattr(child_page, "data_{}".format(object.language), object.data)
         child_page.tag = object.tag
+        child_page.locked = True
+        child_page.locked_by = None
         child_page.save_revision().publish()
     except page_model.DoesNotExist:
         child_page = page_model(
@@ -89,6 +91,8 @@ def create_or_update_from_object(parent_page, page_model, object):
             tag=object.tag
         )
         setattr(child_page, "data_{}".format(object.language), object.data)
+        child_page.locked = True
+        child_page.locked_by = None
         parent_page.add_child(instance=child_page)
         child_page.save_revision().publish()
     return child_page
@@ -151,13 +155,6 @@ def populate_index(observer, tag, previous_tag=None):
         tag=tag,
         defaults={'menu_json': menu_json},
     )
-
-    all_reference_pages = ActivityStandardPage.objects.filter(tag=tag)
-    for reference_page in all_reference_pages:
-        reference_page.prerender_menu()
-        reference_page.locked = True
-        reference_page.locked_by = None
-        reference_page.save_revision().publish()
 
     if previous_tag:
         new_object_paths = set(ReferenceData.objects.filter(tag=tag).order_by().values_list('ssot_path'))
