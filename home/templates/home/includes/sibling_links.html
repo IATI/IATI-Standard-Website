@@ -1,13 +1,13 @@
- {% load wagtail_modeltranslation i18n %}
+ {% load wagtailcore_tags wagtail_modeltranslation i18n %}
 
 <div class="row">
   {% with prev=self.get_prev_siblings.live.first next=self.get_next_siblings.live.first %}
     <ul class="pagination">
       {% if prev %}
-        <li class="pagination__item pagination__item--big pagination__item--prev"><a href="{% slugurl_trans prev.slug %}">{% trans "Previous" %}</a><li>
+        <li class="pagination__item pagination__item--big pagination__item--prev"><a href="{% pageurl prev %}">{% trans "Previous" %}</a><li>
       {% endif %}
       {% if next %}
-        <li class="pagination__item pagination__item--big pagination__item--next"><a href="{% slugurl_trans next.slug %}">{% trans "Next" %}</a></li>
+        <li class="pagination__item pagination__item--big pagination__item--next"><a href="{% pageurl next %}">{% trans "Next" %}</a></li>
       {% endif %}
     </ul>
   {% endwith %}

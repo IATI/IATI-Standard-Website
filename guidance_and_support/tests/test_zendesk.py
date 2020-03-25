@@ -1,20 +1,21 @@
 """A module of unit tests for guidance and support."""
 import pytest
 from django.http import HttpRequest
+from django import forms
 
 from guidance_and_support.zendeskhelper import generate_ticket
 
-
-LEGITIMATE_USER = HttpRequest()
-LEGITIMATE_USER.path = "/en/a-test-path"
-LEGITIMATE_USER.POST = {
+LEGITIMATE_USER = {}
+LEGITIMATE_USER['request'] = HttpRequest()
+LEGITIMATE_USER['request'].path = "/en/a-test-path"
+LEGITIMATE_USER['form'] = forms.Form()
+LEGITIMATE_USER['form'].cleaned_data = {
     'phone': '',
     'email': 'test@user.com',
-    'textarea': 'A very serious matter.',
-    'name': 'A legitimate user',
-    'skip_captcha_check': True
+    'query': 'A very serious matter.',
+    'name': 'A legitimate user'
 }
-LEGITIMATE_USER.expected_output = {
+LEGITIMATE_USER['expected_output'] = {
     'request': {
         'requester': {
             'name': 'A legitimate user',
@@ -28,20 +29,8 @@ LEGITIMATE_USER.expected_output = {
 }
 
 
-SPAM_BOT = HttpRequest()
-SPAM_BOT.path = "/en/a-test-path"
-SPAM_BOT.POST = {
-    'phone': '555-555-5555',
-    'email': 'test@user.com',
-    'textarea': 'A very serious matter.',
-    'name': 'A legitimate user',
-    'skip_captcha_check': False
-}
-SPAM_BOT.expected_output = False
-
-
-@pytest.mark.parametrize("user", [LEGITIMATE_USER, SPAM_BOT])
+@pytest.mark.parametrize("user", [LEGITIMATE_USER])
 def test_generate_ticket(user):
     """Test a ticket from a valid user and a spam bot."""
-    ticket = generate_ticket(user)
-    assert ticket == user.expected_output
+    ticket = generate_ticket(user['request'], user['form'])
+    assert ticket == user['expected_output']

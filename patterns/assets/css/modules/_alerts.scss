@@ -16,7 +16,8 @@
 		text-decoration: underline;
 	}
 	.form & {
-		margin-top: $internal-spacing;
+		//margin-top: $internal-spacing;
+		margin-bottom: 1em;
 	}
 	.ico {
 		width: 18px;
@@ -44,7 +45,7 @@
 	@extend .alert--notice;
 	border-left: 5px solid $error;
 	color: $error;
-	background-color: lighten($error, 50%);
+	background-color: lighten($error, 45%);
 }
 
 .alert--success {

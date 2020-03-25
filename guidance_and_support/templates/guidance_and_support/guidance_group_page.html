@@ -41,7 +41,7 @@
         {% else %}
         ">
         {% endif %}
-          <h2 class="card__heading"><a href="{% slugurl_trans group.page.slug %}"><span>{{ group.page.heading }}</span></a></h2>
+          <h2 class="card__heading"><a href="{% pageurl group.page %}"><span>{{ group.page.heading }}</span></a></h2>
           <p class="card__excerpt">{{ group.page.excerpt|default:"" }}</p>
           <p class="card__excerpt--truncated">{{ group.page.excerpt|default:""|truncatechars:35 }}</p>
         </div>

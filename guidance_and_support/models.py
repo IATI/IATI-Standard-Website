@@ -1,24 +1,25 @@
 """Model definitions for the guidance_and_support app."""
 
-import requests
-
-from django.conf import settings
 from django.db import models
 
 from wagtail.admin.edit_handlers import FieldPanel
-from wagtail.core.fields import StreamField
+from wagtail.core.fields import StreamField, RichTextField
 from wagtail.core.models import Page
 from wagtail.images.edit_handlers import ImageChooserPanel
 
 from home.models import AbstractContentPage, AbstractIndexPage, DefaultPageHeaderImageMixin, IATIStreamBlock
-from .zendeskhelper import generate_ticket
+from .mixins import ContactFormMixin
 
 
 class GuidanceAndSupportPage(DefaultPageHeaderImageMixin, AbstractContentPage):
     """A base for the Guidance and Support page."""
 
     parent_page_types = ['home.HomePage']
-    subpage_types = ['guidance_and_support.GuidanceGroupPage', 'guidance_and_support.KnowledgebaseIndexPage']
+    subpage_types = [
+        'guidance_and_support.GuidanceGroupPage',
+        # 'guidance_and_support.KnowledgebaseIndexPage',
+        'guidance_and_support.SupportPage',
+    ]
 
     @property
     def guidance_groups(self):
@@ -63,42 +64,22 @@ class GuidanceGroupPage(AbstractContentPage):
     ]
 
 
-class GuidancePage(AbstractContentPage):
+class GuidancePage(ContactFormMixin, AbstractContentPage):
     """A base for a single guidance page."""
 
     subpage_types = []
 
-    def get_context(self, request, *args, **kwargs):
-        """Overwrite context to intercept POST requests to pages on this template and pass them to Zendesk API.
 
-        Validate with some sort of captcha.
-        """
-        context = super(GuidancePage, self).get_context(request)
-        form_submitted = False
-        form_success = False
+# class KnowledgebaseIndexPage(AbstractIndexPage):
+#     """A base for a Knowledgebase index page."""
 
-        if request.method == 'POST':
-            form_submitted = True
-            ticket = generate_ticket(request)
-            if ticket:
-                response = requests.post(settings.ZENDESK_REQUEST_URL, json=ticket)
-                if response.status_code == 201:
-                    form_success = True
-            context['form_submitted'] = form_submitted
-            context['form_success'] = form_success
-        return context
+#     subpage_types = ['guidance_and_support.KnowledgebasePage']
 
 
-class KnowledgebaseIndexPage(AbstractIndexPage):
-    """A base for a Knowledgebase index page."""
+# class KnowledgebasePage(AbstractContentPage):
+#     """A base for a single Knowledgebase page."""
 
-    subpage_types = ['guidance_and_support.KnowledgebasePage']
-
-
-class KnowledgebasePage(AbstractContentPage):
-    """A base for a single Knowledgebase page."""
-
-    subpage_types = []
+#     subpage_types = []
 
 
 class CommunityPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
@@ -120,4 +101,20 @@ class CommunityPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
         FieldPanel('button_link_text'),
         FieldPanel('button_url'),
         FieldPanel('text_box')
+    ]
+
+
+class SupportPage(DefaultPageHeaderImageMixin, ContactFormMixin, AbstractContentPage):
+    """Model to define the overall fields for the support page."""
+
+    parent_page_types = ['guidance_and_support.GuidanceAndSupportPage']
+    subpage_types = []
+
+    alternative_content = RichTextField(
+        features=['h3', 'link', 'ul'],
+        help_text='Content to describe alternative ways of receiving support',
+    )
+
+    translation_fields = AbstractContentPage.translation_fields + [
+        'alternative_content',
     ]
