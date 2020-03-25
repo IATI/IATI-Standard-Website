@@ -43,27 +43,19 @@ function Inc(obj) {
 	}.bind(this);
 } // Inc
 
-// export default function counter (){
-function counter (){
-	var elems = [
-		document.querySelector('#stat-activities'),
-		document.querySelector('#stat-publishers')
-	];
-	var objs = [];
+export default function counter (elems) {
 
 	for (var i = 0, l = elems.length; i < l; i++) {
-		objs.push(
-			new Inc({
-				elem: elems[i],
+		var elem = document.querySelector(elems[i]);
+		if (elem) {
+			elem.counter_obj = new Inc({
+				elem: elem,
 				speed: 30,
 				decimal: 0,
-			})
-		);
+			});
+			elem.addEventListener('click', function() {
+				this.counter_obj.reset();
+			});
+		}
 	}
-	elems[0].addEventListener('click', function() {
-		objs[0].reset();
-	});
-	elems[1].addEventListener('click', function() {
-		objs[1].reset();
-	});
 }
