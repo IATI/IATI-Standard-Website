@@ -27,6 +27,7 @@ def WagtailImageField(required=False, **kwargs) -> models.ForeignKey:
 
 
 def get_selected_or_fallback(selected=None, fallback=None, max_length=None, order=None) -> list:
+    """Get selected pages from a list, and try to populate with fallbacks if the max length isn't met."""
     if not selected:
         selected = []
 
