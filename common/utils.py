@@ -24,3 +24,29 @@ def WagtailImageField(required=False, **kwargs) -> models.ForeignKey:
         required=required,
         **kwargs
     )
+
+
+def get_selected_or_fallback(selected=None, fallback=None, max_length=None, order=None) -> list:
+    """Get selected pages from a list, and try to populate with fallbacks if the max length isn't met."""
+    if not selected:
+        selected = []
+
+    fallbacks = []
+    if fallback:
+        try:
+            fallbacks = fallback
+            if selected:
+                fallbacks = fallbacks.exclude(
+                    id__in=[x.id for x in list(selected)]
+                ).live().specific()
+            if order:
+                fallbacks = fallbacks.order_by(order)
+        except AssertionError as e:
+            if 'Cannot filter a query once a slice has been taken' in str(e):
+                raise Exception('Cannot filter a query once a slice has been taken. \
+                             Use the max_length argument if you want to limit the amount returned')
+
+    if not max_length:
+        return list(selected) + list(fallbacks)
+    else:
+        return list(list(selected) + list(fallbacks))[:max_length]
