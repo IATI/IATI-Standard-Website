@@ -27,7 +27,7 @@ class AboutPage(DefaultPageHeaderImageMixin, AbstractContentPage):
 class AboutSubPage(AbstractContentPage):
     """A model for generic About subpages."""
 
-    subpage_types = ['about.AboutSubPage', 'about.PeoplePage']
+    subpage_types = ['about.AboutSubPage', 'about.PeoplePage', 'governance.MembersAssemblyPage']
 
     show_featured_events = models.BooleanField(default=False)
 

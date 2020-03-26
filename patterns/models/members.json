@@ -2,117 +2,136 @@
 	"member_list": [
 	    {
 			"title": "Accountable Now",
-			"meta": "CSOs and others",
+			"meta": "Civil Society Organisation (CSO)",
 			"date": "2013",
-            "logo": "accountable-now.png"
+            "logo": "accountable-now.png",
+			"link": true
         },
         {
 			"title": "African Development Bank (AfDB)",
 			"meta": "Providers of development cooperation",
 			"date": "2011",
-            "logo": "adb.jpg"
+            "logo": "adb.jpg",
+			"link": false
         },
         {
 			"title": "Akvo",
-			"meta": "CSOs and others",
+			"meta": "Civil Society Organisation (CSO)",
 			"date": "2016",
-            "logo": "akvo.png"
+            "logo": "akvo.png",
+			"link": true
         },
         {
 			"title": "Association of Freelance Journalists",
-			"meta": "CSOs and others",
+			"meta": "Civil Society Organisation (CSO)",
 			"date": "2018",
-            "logo": "association_of_freelance_journalists.png"
+            "logo": "association_of_freelance_journalists.png",
+			"link": false
         },
         {
 			"title": "Australia - Department of Foreign Affairs and Trade",
 			"meta": "Providers of development cooperation",
 			"date": "2008",
-            "logo": "adfat.png"
+            "logo": "adfat.png",
+			"link": true
         },
         {
 			"title": "Bangladesh (Vice Chair)",
 			"meta": "Partner countries",
 			"date": "2012",
-            "logo": "bangladesh.png"
+            "logo": "bangladesh.png",
+			"link": true
         },
         {
 			"title": "Belgium - Belgian Development Agency (BTC)",
 			"meta": "Providers of development cooperation",
 			"date": "2012",
-            "logo": "btc.jpg"
+            "logo": "btc.jpg",
+			"link": false
         },
         {
 			"title": "Benin",
 			"meta": "Partner countries",
 			"date": "2015",
-            "logo": "benin.png"
+            "logo": "image-placeholder.svg",
+			"link": false
         },
         {
 			"title": "Bill and Melinda Gates Foundation",
 			"meta": "Providers of development cooperation",
 			"date": "2013",
-            "logo": "bill-melinda-gates-foundation.png"
+            "logo": "bill-melinda-gates-foundation.png",
+			"link": true
         },
         {
 			"title": "Bond",
-			"meta": "CSOs and others",
+			"meta": "Civil Society Organisation (CSO)",
 			"date": "2013",
-            "logo": "bond.png"
+            "logo": "bond.png",
+			"link": false
         },
         {
 			"title": "Burkina Faso",
 			"meta": "Partner countries",
 			"date": "2012",
-            "logo": "burkina-faso.png"
+            "logo": "burkina-faso.png",
+			"link": true
         },
         {
 			"title": "Burundi",
 			"meta": "Partner countries",
 			"date": "2015",
-            "logo": "burundi.jpg"
+            "logo": "burundi.jpg",
+			"link": true
         },
         {
 			"title": "Canada - Global Affairs Canada / Affaires mondiales Canada",
 			"meta": "Providers of development cooperation",
 			"date": "2011",
-            "logo": "gac.jpg"
+            "logo": "gac.jpg",
+			"link": false
         },
         {
 			"title": "Catalpa",
-			"meta": "CSOs and others",
+			"meta": "Civil Society Organisation (CSO)",
 			"date": "2015",
-            "logo": "catalpa.png"
+            "logo": "catalpa.png",
+			"link": true
         },
         {
 			"title": "Children's Investment Fund Foundation (CIFF)",
 			"meta": "Providers of development cooperation",
 			"date": "2016",
-            "logo": "ciff.png"
+            "logo": "ciff.png",
+			"link": false
         },
         {
 			"title": "Colombia",
 			"meta": "Partner countries",
 			"date": "2012",
-            "logo": "columbia.png"
+            "logo": "columbia.png",
+			"link": false
         },
         {
 			"title": "Congo, Republic of the",
 			"meta": "Partner countries",
 			"date": "2012",
-            "logo": "drc.png"
+            "logo": "image-placeholder.svg",
+			"link": true
         },
         {
 			"title": "Cordaid",
-			"meta": "CSOs and others",
+			"meta": "Civil Society Organisation (CSO)",
 			"date": "2015",
-            "logo": "cordaid.png"
+            "logo": "cordaid.png",
+			"link": true
         },
         {
 			"title": "CSO Partnership for Development Effectiveness (CPDE)",
-			"meta": "CSOs and others",
+			"meta": "Civil Society Organisation (CSO)",
 			"date": "2015",
-            "logo": "cso-partnership.png"
+            "logo": "cso-partnership.png",
+			"link": false
         }
     ]
 }
