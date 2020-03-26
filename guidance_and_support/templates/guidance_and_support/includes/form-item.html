@@ -1,0 +1,16 @@
+{% load widget_tweaks %}
+
+<div class="form-field
+    {% if spaced %}
+        form-field--spaced
+    {% endif %}
+    {% if field.errors %}
+        form-field--error
+    {% endif %}
+">
+    {{ field|add_label_class:'form-label' }}
+    {{ field|add_class:'form-item' }}
+    {% for error in field.errors %}
+        <span class="form-message">{{ error }}</span>
+    {% endfor %}
+</div>

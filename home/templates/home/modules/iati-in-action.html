@@ -1,0 +1,52 @@
+{% load wagtailimages_tags %}
+
+<div class="section section-alt-bottom">
+    <div class="row">
+        <h2 class="section__heading">{{ page.iati_in_action_title }}</h2>
+        {% if page.iati_in_action_description %}
+            <div class="max-meter is-typeset is-typeset--article">
+                <p class="section__copy">{{ page.iati_in_action_description|linebreaksbr }}</p>
+            </div>
+        {% endif %}
+        <div class="l-offset l-offset--reverse">
+            <div class="l-offset__col">
+                {% if page.iati_in_action_featured %}
+                    <article class="case-study">
+                        {% if page.iati_in_action_featured.get_image %}
+                            {% image page.iati_in_action_featured.get_image max-700x310 as image %}
+                        {% endif  %}
+                        <div class="case-study__media background-cover" style="background-image: url({{ image.url }})"></div>
+                        <div class="case-study__panel">
+                            <h2 class="case-study__heading">
+                                <a href="{{ page.iati_in_action_featured.page.url }}">
+                                    <span>{{ page.iati_in_action_featured.get_title }}</span>
+                                </a>
+                            </h2>
+                            {% if page.iati_in_action_featured.get_description %}
+                                <p class="case-study__excerpt">{{ page.iati_in_action_featured.get_description }}</p>
+                            {% endif %}
+                            {% if page.iati_in_action_featured.quote %}
+                                <blockquote class="m-quote__quote as-blockquote">
+                                    <p>&ldquo;{{ page.iati_in_action_featured.quote }}&rdquo;</p>
+                                    {% if page.iati_in_action_featured.quotee %}
+                                        <cite>{{ page.iati_in_action_featured.quotee }}</cite>
+                                    {% endif %}
+                                </blockquote>
+                            {% endif %}
+                        </div>
+                    </article>
+                {% endif %}
+            </div>
+            <div class="l-offset__col">
+                {% for item in page.iati_in_action %}
+                    <div class="{% cycle '' 'space-module-top' %}">
+                        <h3 class="case-study__heading"><a href="{{ item.page.url }}">{{ item.get_title }}</a></h3>
+                        {% if item.get_description %}
+                            <p class="case-study__excerpt">{{ item.get_description }}</p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>

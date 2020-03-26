@@ -4,6 +4,7 @@ from modeltranslation.translator import TranslationOptions
 from modeltranslation.decorators import register
 from home.translation_helper import add_language_content_panels
 from .models import HomePage, StandardPage
+from .inlines import GettingStartedItems, IATIInActionFeaturedItems, IATIInActionItems
 
 
 @register(HomePage)
@@ -11,6 +12,7 @@ class HomePageTR(TranslationOptions):
     """Class declaring which fields of the HomePage model to translate."""
 
     fields = HomePage.translation_fields
+    required_languages = HomePage.required_languages
 
 
 add_language_content_panels(HomePage)
@@ -24,3 +26,24 @@ class StandardPageTR(TranslationOptions):
 
 
 add_language_content_panels(StandardPage)
+
+
+@register(GettingStartedItems)
+class GettingStartedItemsTR(TranslationOptions):
+    """Class declaring which fields of the GettingStartedItems model to translate."""
+
+    fields = GettingStartedItems.translation_fields
+
+
+@register(IATIInActionFeaturedItems)
+class IATIInActionFeaturedItemsTR(TranslationOptions):
+    """Class declaring which fields of the IATIInActionFeaturedItems model to translate."""
+
+    fields = IATIInActionFeaturedItems.translation_fields
+
+
+@register(IATIInActionItems)
+class IATIInActionItemsTR(TranslationOptions):
+    """Class declaring which fields of the IATIInActionItems model to translate."""
+
+    fields = IATIInActionItems.translation_fields

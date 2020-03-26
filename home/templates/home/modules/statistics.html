@@ -1,0 +1,32 @@
+{% load static wagtailimages_tags iati_tags %}
+
+<div class="row">
+    <div class="stats stats--standout">
+        {% if page.testimonial %}
+            <div class="stat-quote fill-sunset">
+                    <div class="stat-quote__media">
+                        {% if page.testimonial.image %}
+                            {% image page.testimonial.image max-80x80 class='stat-quote__img' alt=page.testimonial.image width='auto' height='auto' %}
+                        {% else %}
+                            <img class="stat-quote__img" src="{% static 'img/portrait.png' %}" alt="">
+                        {% endif %}
+                    </div>
+                    <blockquote>
+                        <p class="stat-quote__copy">&ldquo;{{ page.testimonial.quote }}&rdquo;</p>
+                        <cite>{{ page.testimonial.quotee|linebreaksbr }}</cite>
+                    </blockquote>
+            </div>
+        {% endif %}
+        <div class="stat stat--flex">
+            <div class="stat__body stat__body--center">
+                <h2 class="stat__heading stat__heading--large" id="stat-activities" data-inc-duration="1000" data-inc-delay="0" data-inc-value="{{ page.activities }}">{{ page.activities|intcomma }}</h2>
+                <p class="stat__copy">{{ page.activities_description }}</p>
+            </div>
+            <div class="stat__body stat__body--center">
+                    <h2 class="stat__heading stat__heading--large" id="stat-publishers" data-inc-duration="1000" data-inc-delay="0" data-inc-value="{{ page.organisations }}">{{ page.organisations|intcomma }}</h2>
+                    <p class="stat__copy">{{ page.organisations_description }}</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

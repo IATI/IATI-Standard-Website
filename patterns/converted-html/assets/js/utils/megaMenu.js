@@ -38,7 +38,6 @@ export default function megaMenu (
 
     // replace nav with enhanced version
     function replaceMenuWithEnhanced() {
-        console.log('replaceMenuWithEnhanced');
         $(selector).first().off().unbind().replaceWith(enhanced_nav);
 
         // accessible megamenu

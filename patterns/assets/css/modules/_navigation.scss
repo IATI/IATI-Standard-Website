@@ -284,7 +284,8 @@
 				border-left-width: 4px;
 			}
 		}
-		&.active a {
+		&.active a,
+		&--active a {
 			background-color: $iati-sunrise;
 			border-left-width: 4px;
 			color: #fff;
@@ -358,11 +359,11 @@
 @mixin nested-item($i) {
 	$indent: (15 * $i);
 	.navigation-secondary__child__item--#{$i} {
-		a {
+		> a {
 			margin-left: #{$indent}px;
 			width: calc(100% - #{$indent}px);
 		}
-		button {
+		> button {
 			left: #{$indent}px;
 		}
 	}
@@ -370,19 +371,19 @@
 
 .navigation-secondary__child {
 	&__item {
-		> a {
-			background-color: #fff;
-			border-left-width: 6px;
+		a {
+			background-color: lighten($iati-sunrise, 24%);
+			border-left-width: 4px;
 			color: $heading-color;
-			padding-left: 2em;
+			padding-left: 1.5em;
 			&:hover {
-				border-left-width: 8px;
+				border-left-width: 6px;
 			}
 		}
-		&.active > a {
-			border-left-width: 8px;
-			color: #fff;
+		&--active a {
 			background-color: lighten($iati-sunrise, 6%);
+			border-left-color: lighten($iati-sunrise, 6%);
+			color: #fff;
 		}
 		.navigation-secondary--reference & {
 			position: relative;
@@ -393,8 +394,13 @@
 			}
 			> a {
 				background-color: #efefef;
+				border-left-width: 6px;
+				&:hover {
+					border-left-width: 8px;
+				}
 			}
 			&.active > a {
+				border-left-width: 8px;
 				background-color: lighten($iati-sunrise, 6%);
 				border-left-color: lighten($iati-sunrise, 6%);
 				color: #fff;
@@ -411,6 +417,28 @@
 		}
 		@for $i from 1 through 20 {
 			@include nested-item($i);
+		}
+	}
+}
+
+.navigation-secondary__third-child {
+	&__item {
+		a {
+			border-left-width: 6px;
+			padding-left: 2em;
+			color: $heading-color;
+			&:hover {
+				border-left-width: 8px;
+			}
+		}
+		&--active a {
+			border-left-width: 8px;
+		}
+		&.navigation-secondary__child__item--active {
+			a {
+				color: #fff;
+				background-color: lighten($iati-sunrise, 6%);
+			}
 		}
 	}
 }
