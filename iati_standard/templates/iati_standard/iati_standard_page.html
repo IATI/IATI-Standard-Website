@@ -37,7 +37,9 @@
   <div class="space-section-bottom">
       <div class="row">
           <div class="l-4up">
-              {{ self.reference_cards }}
+              {% for reference_card in self.reference_cards %}
+                {{ reference_card }}
+              {% endfor %}
           </div>
       </div>
   </div>
