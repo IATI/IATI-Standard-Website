@@ -5,18 +5,38 @@ from bs4 import BeautifulSoup
 from django.contrib.postgres.fields import JSONField
 from django.db import models
 from django.utils.functional import cached_property
-from django.conf import settings
 
 from wagtail.snippets.models import register_snippet
-from wagtail.admin.edit_handlers import PageChooserPanel, TabbedInterface
+from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, PageChooserPanel, TabbedInterface
 from wagtail.core.models import Page
+from wagtail.core.fields import StreamField
 from wagtail.search.index import SearchField
-
-from wagtail_modeltranslation.contextlib import use_language
+from wagtail.core.blocks import (
+    CharBlock,
+    PageChooserBlock,
+    StreamBlock,
+    StructBlock
+)
 
 from home.models import AbstractContentPage, DefaultPageHeaderImageMixin
 
 from iati_standard.panels import ReferenceDataPanel
+
+
+class CardBlock(StructBlock):
+    major_header = CharBlock(
+        required=False,
+        help_text='Text for the header element of the card'
+    )
+    card_content = StreamBlock([
+        ('minor_header', CharBlock(template='iati_standard/blocks/minor_header.html', required=False, icon='title')),
+        ('page_links', StreamBlock([
+            ('page', PageChooserBlock(template='iati_standard/blocks/page_link.html', required=False))
+        ], template='iati_standard/blocks/page_links.html')),
+    ])
+
+    class Meta():
+        template = 'iati_standard/blocks/card_block.html'
 
 
 class IATIStandardPage(DefaultPageHeaderImageMixin, AbstractContentPage):
@@ -55,9 +75,29 @@ class IATIStandardPage(DefaultPageHeaderImageMixin, AbstractContentPage):
         null=True
     )
 
+    static = models.BooleanField(
+        default=True,
+        help_text="If true, retain static links. Otherwise use dynamic links."
+    )
+
+    how_to_use_page = models.ForeignKey(
+        Page,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        blank=True,
+        null=True
+    )
+
+    reference_cards = StreamField([
+        ('card', CardBlock())
+    ], null=True, blank=True)
+
     multilingual_field_panels = DefaultPageHeaderImageMixin.multilingual_field_panels + [
+        FieldPanel('static'),
         PageChooserPanel('latest_version_page', 'iati_standard.ActivityStandardPage'),
         PageChooserPanel('reference_support_page'),
+        PageChooserPanel('how_to_use_page'),
+        StreamFieldPanel('reference_cards'),
         ReferenceDataPanel()
     ]
 

@@ -10,23 +10,38 @@
 {% endblock %}
 
 {% block content %}
-    <div class="row">
-        <div class="l-sidebar">
-            <div class="l-sidebar__body">
-                {% if page.content_editor %}
-                    {% include "home/includes/streamfield.html" with content=page.content_editor %}
-                {% endif %}
-            </div>
-            <aside class="l-sidebar__aside">
-                <div class="aside-m">
-                    <div class="aside-m__header fill-sunset">
-                        <h3 class="aside-m__heading">{% trans "How to use the IATI Reference" %}</h3>
-                        <a class="button" href="/guidance/preparing-data/iati-reference/">{% trans "Visit our guidance" %}</a>
-                    </div>
-                </div>
-            </aside>
+
+{% if self.static %}
+ {% include "iati_standard/includes/iati_standard_page_static.html" %}
+{% else %}
+  <div class="row">
+    <div class="l-sidebar">
+      <div class="l-sidebar__body">
+        {% if page.content_editor %}
+          {% include "home/includes/streamfield.html" with content=page.content_editor %}
+        {% endif %}
+      </div>
+      <aside class="l-sidebar__aside">
+      {% if self.how_to_use_page %}
+      <div class="aside-m">
+        <div class="aside-m__header fill-sunset">
+            <h3 class="aside-m__heading">{% trans "How to use the IATI Reference" %}</h3>
+            <a class="button" href="{% pageurl self.how_to_use_page %}">{% trans "Visit our guidance" %}</a>
         </div>
+      </div>
+      {% endif %}
+    </aside>
     </div>
+  </div>
+
+  <div class="space-section-bottom">
+      <div class="row">
+          <div class="l-4up">
+              {{ self.reference_cards }}
+          </div>
+      </div>
+  </div>
+{% endif %}
 
     <div class="space-section-bottom">
         <div class="row">
