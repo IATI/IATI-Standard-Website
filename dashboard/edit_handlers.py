@@ -2,6 +2,7 @@
 
 from wagtail.admin.edit_handlers import MultiFieldPanel as WagtailMultiFieldPanel
 from wagtail.admin.edit_handlers import HelpPanel as WagtailHelpPanel
+from wagtail.admin.edit_handlers import FieldPanel
 
 
 class MultiFieldPanel(WagtailMultiFieldPanel):
@@ -36,3 +37,12 @@ def HelpPanel(
     """Define a help text panel."""
     wrapped_content = '<div class="%s">%s</div>' % (wrapper_class, content)
     return WagtailHelpPanel(content=wrapped_content, template=template, heading=heading, classname=classname)
+
+
+class NoEmptyLabelFieldPanel(FieldPanel):
+    """Class for a custom field panel that sets empty label to none for required fields."""
+
+    def on_form_bound(self):
+        """Override the on_form_bound method."""
+        self.form.fields[self.field_name].empty_label = None
+        super().on_form_bound()

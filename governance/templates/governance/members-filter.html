@@ -1,0 +1,28 @@
+{% load i18n string_utils %}
+
+<div class="filter-group">
+    <div class="filter">
+        <h3 class="filter__heading">{% trans 'Filter by Constituency:' %}</h3>
+        <ul class="filter__list">
+            <li class="{% active_class constituency '' 'filter__list-active' %}">
+                <a href="{{ page.url }}{{ query }}{{ fragment }}">{% trans 'All Constituencies' %}</a>
+            </li>
+            {% for item in page.constituencies %}
+                <li class="{% active_class constituency item.slug 'filter__list-active' %}">
+                    <a href="{{ page.url }}{{ item.slug }}/{{ query }}{{ fragment }}">{{ item.title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="filter">
+        <h3 class="filter__heading">{% trans 'Sort by:' %}</h3>
+        <ul class="filter__list">
+            <li class="{% active_class order ordering|lookup:'name' 'filter__list-active' %}">
+                <a href="{% query_filter querydict 'order' ordering|lookup:'name' %}{{ fragment }}">{% trans 'Alphabetical' %}</a>
+            </li>
+            <li class="{% active_class order ordering|lookup:'date_joined' 'filter__list-active' %}">
+                <a href="{% query_filter querydict 'order' ordering|lookup:'date_joined' %}{{ fragment }}">{% trans 'Year joined' %}</a>
+            </li>
+        </ul>
+    </div>
+</div>

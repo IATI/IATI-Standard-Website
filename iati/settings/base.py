@@ -48,6 +48,9 @@ INSTALLED_APPS = [
     'tools',
     'dashboard',
     'navigation',
+    'governance',
+    'taxonomies',
+    'common',
     'testimonials',
 
     'wagtail.contrib.forms',
@@ -67,6 +70,7 @@ INSTALLED_APPS = [
     'modelcluster',
     'taggit',
     'haystack',
+    'import_export',
     'widget_tweaks',
     'snowpenguin.django.recaptcha3',
 
