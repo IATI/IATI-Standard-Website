@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'tools',
     'dashboard',
     'navigation',
+    'get_involved',
     'governance',
     'taxonomies',
     'common',
