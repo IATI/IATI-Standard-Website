@@ -66,6 +66,14 @@
 	}
 }
 
+.is-typeset.is-typeset--columns {
+	@include respond-to($c-vp) {
+		columns: 2;
+		column-gap: 50px;
+		margin-bottom: 1em;
+	}
+}
+
 // ------------------------------------------------------------
 // Blockquotes
 // ------------------------------------------------------------

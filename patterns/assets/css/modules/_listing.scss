@@ -215,6 +215,18 @@
 			}
 		}
 	}
+	.listing--member & {
+		a {
+			margin-bottom: 2px;
+			color: $action;
+			span {
+				border-color: $action-respond;
+			}
+			&:hover {
+				color: $action-respond;
+			}
+		}
+	}
 }
 
 .listing__subheading,

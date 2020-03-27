@@ -1,14 +1,21 @@
-{% load wagtail_modeltranslation wagtailimages_tags %}
+{% load wagtailimages_tags wagtailembeds_tags %}
 
 <div class="row">
     <div class="hero__caption">
         <h1 class="hero__heading">{{ page.heading }}</h1>
         <p class="hero__subheading">{{ page.excerpt|default:"" }}</p>
     </div>
-    <div class="hero__emblem">
-      {% if page.header_image %}
-        {% image page.header_image width-1400 as img %}
-        <img class="hero__emblem__mask" src="{{ img.url }}" alt="{{ img.alt }}">
-      {% endif %}
-    </div>
+    {% if page.header_video %}
+        <div class="hero__media">
+            <div class="media-video-wrapper">
+                {% embed page.header_video %}
+            </div>
+        </div>
+    {% else %}
+        <div class="hero__emblem">
+            {% if page.header_image %}
+                {% image page.header_image width-1400 class='hero__emblem__mask' alt=img.alt width='auto' height='auto' %}
+            {% endif %}
+        </div>
+    {% endif %}
 </div>

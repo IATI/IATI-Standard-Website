@@ -9,13 +9,15 @@ from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template.defaultfilters import slugify
 from wagtail.core.models import Page
-from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, PageChooserPanel
 from wagtail.core.blocks import TextBlock, StructBlock, StreamBlock, FieldBlock, CharBlock, RichTextBlock, RawHTMLBlock, PageChooserBlock
 from wagtail.core.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.search.index import FilterField, SearchField
+from home.fields import HomeFieldsMixin
+from home.inlines import GettingStartedItems  # noqa
 
 
 class DocumentBoxBlock(StreamBlock):
@@ -272,11 +274,37 @@ class DefaultPageHeaderImageMixin(Page):
         abstract = True
 
 
-class HomePage(DefaultPageHeaderImageMixin, AbstractBasePage):  # pylint: disable=too-many-ancestors
+class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage):  # pylint: disable=too-many-ancestors
     """Proof-of-concept model definition for the homepage."""
 
     activities = models.PositiveIntegerField(default=1000000)
     organisations = models.PositiveIntegerField(default=700)
+
+    local_translation_fields = [
+        'header_video',
+        'activities_description',
+        'organisations_description',
+        'getting_started_title',
+        'about_iati_title',
+        'about_iati_description',
+        'about_iati_video',
+        'about_iati_link_label',
+        'iati_in_action_title',
+        'iati_in_action_description',
+        'iati_tools_title',
+        'iati_tools_description',
+        'latest_news_title',
+        'latest_news_link_label',
+        'latest_news_tweets_title',
+    ]
+    optional_local_translation_fields = [
+        'header_video',
+        'about_iati_video',
+        'iati_in_action_description',
+        'iati_tools_description',
+    ]
+    translation_fields = AbstractBasePage.translation_fields + local_translation_fields
+    required_languages = {'en': list(set(local_translation_fields) - set(optional_local_translation_fields))}
 
     def get_context(self, request, *args, **kwargs):
         """Overwrite the default get_context page to serve descendant case study pages."""
@@ -286,9 +314,58 @@ class HomePage(DefaultPageHeaderImageMixin, AbstractBasePage):  # pylint: disabl
         context['case_studies'] = case_studies
         return context
 
+    def get_template(self, request, *args, **kwargs):
+        """Return template based on flag."""
+        template = 'home/home_page.html'
+        if self.use_legacy_template:
+            template = 'home/home_page_legacy.html'
+        return template
+
     multilingual_field_panels = DefaultPageHeaderImageMixin.multilingual_field_panels + [
-        FieldPanel("activities"),
-        FieldPanel("organisations")
+        FieldPanel('use_legacy_template'),
+        InlinePanel(
+            'testimonial_items',
+            heading='Testimonial items',
+            label='Testimonial item',
+            min_num=1,
+        ),
+        FieldPanel('activities'),
+        FieldPanel('organisations'),
+        InlinePanel(
+            'getting_started_items',
+            heading='Getting started items',
+            label='Getting started item',
+            min_num=3,
+            max_num=3,
+        ),
+        PageChooserPanel('about_iati_page'),
+        InlinePanel(
+            'iati_in_action_featured_item',
+            heading='IATI in action featured item',
+            label='IATI in action featured item',
+            min_num=1,
+            max_num=1,
+        ),
+        InlinePanel(
+            'iati_in_action_items',
+            heading='IATI in action items',
+            label='IATI in action item',
+            min_num=2,
+            max_num=2,
+        ),
+        InlinePanel(
+            'iati_tools_items',
+            heading='IATI tools items',
+            label='IATI tools item',
+            min_num=2,
+            max_num=2,
+        ),
+        InlinePanel(
+            'latest_news_items',
+            heading='Latest news items',
+            label='Latest news item',
+            max_num=3,
+        ),
     ]
 
 

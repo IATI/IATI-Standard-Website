@@ -16,7 +16,7 @@
           <h2 class="section__heading">
               {% blocktrans with news_category_name=request.GET.type|news_category_verbose %} Showing "{{ news_category_name }}" news posts{% endblocktrans %}
           </h2>
-          <a class="section-header-link__action" href="{% slugurl_trans self.slug %}">{% trans "Show all posts" %}</a>
+          <a class="section-header-link__action" href="{% pageurl self %}">{% trans "Show all posts" %}</a>
        </div>
        {% endif %}
       <div class="l-listing">
@@ -34,7 +34,7 @@
                 </div>
               </aside>
               <div class="listing__body">
-                <h2 class="listing__heading"><a href="{% slugurl_trans news_post.slug %}"><span>{{ news_post.heading }}</span></a></h2>
+                <h2 class="listing__heading"><a href="{% pageurl news_post %}"><span>{{ news_post.heading }}</span></a></h2>
                 <ul class="listing__metadata">
                   <li class="listing__metadata__item">
                     <i role="presentation" aria-hidden="true" class="ico ico--14 ico-calendar-ocean"></i> <span class="listing__metadata__date">{{ news_post.date }}</span>
@@ -42,7 +42,7 @@
 
                 </ul>
                 <div class="listing__excerpt">{{ news_post.excerpt|default:"" }}</div>
-                <a href="{% slugurl_trans news_post.slug %}" class="button">{% trans "Read more" %}</a>
+                <a href="{% pageurl news_post %}" class="button">{% trans "Read more" %}</a>
               </div>
             </article>
           {% endwith %}

@@ -12,7 +12,7 @@ class ContactTypeStreamBlock(StreamBlock):
         ('heading', TextBlock()),
         ('description', RichTextBlock(required=False)),
         ('email', TextBlock())
-    ], icon="title", classname="title")
+    ], icon='title', classname='title')
 
 
 class ContactPage(DefaultPageHeaderImageMixin, AbstractContentPage):
@@ -21,4 +21,4 @@ class ContactPage(DefaultPageHeaderImageMixin, AbstractContentPage):
     parent_page_types = ['home.HomePage']
     subpage_types = []
     contact_type = StreamField(ContactTypeStreamBlock, blank=True, null=True)
-    translation_fields = AbstractContentPage.translation_fields + ["contact_type"]
+    translation_fields = AbstractContentPage.translation_fields + ['contact_type']

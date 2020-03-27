@@ -1,0 +1,42 @@
+{% load wagtailimages_tags i18n tool_utils %}
+
+<div class="row">
+    <div class="section-alt">
+        <h2 class="section__heading">{{ page.iati_tools_title }}</h2>
+        {% if page.iati_tools_description %}
+            <div class="max-meter is-typeset is-typeset--article">
+                <p class="section__copy">{{ page.iati_tools_description|linebreaksbr }}</p>
+            </div>
+        {% endif %}
+        <div class="l-2up">
+            {% for item in page.tools %}
+                <div class="card card--tool-feature">
+                    <div class="card__logo card__logo--background">
+                        <a href="{{ item.url }}">
+                            {% image item.logo max-150x90 alt=item.logo.title width='auto' height='auto' %}
+                        </a>
+                    </div>
+                    <div class="card__content">
+                        <h3 class="card__heading"><a href="{{ item.url }}">{{ item.heading }}</a></h3>
+                        <div class="is-typeset">
+                            {% if item.listing_description %}
+                                <p class="card__excerpt">{{ item.listing_description }}</p>
+                            {% endif %}
+                            {% if item.external_url %}
+                                <p>
+                                    <a href="{{ item.external_url }}" class="button">
+                                    {% if item.button_label %}
+                                        {{ item.button_label }}
+                                    {% else %}
+                                        {% trans 'Visit the tool at' %} {{ item.external_url|nice_url }}
+                                    {% endif %}
+                                    </a>
+                                </p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

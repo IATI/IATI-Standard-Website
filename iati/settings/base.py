@@ -49,6 +49,10 @@ INSTALLED_APPS = [
     'dashboard',
     'navigation',
     'get_involved',
+    'governance',
+    'taxonomies',
+    'common',
+    'testimonials',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
@@ -67,6 +71,9 @@ INSTALLED_APPS = [
     'modelcluster',
     'taggit',
     'haystack',
+    'import_export',
+    'widget_tweaks',
+    'snowpenguin.django.recaptcha3',
 
     'django_celery_results',
 
@@ -207,9 +214,7 @@ ADMIN_URL = '/{}/'.format(ADMIN_SLUG)
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Wagtail settings
-
 WAGTAIL_SITE_NAME = "iati"
-
 
 # Reference namespaces for URL redirection
 REFERENCE_NAMESPACES = [
@@ -246,8 +251,6 @@ MODELTRANSLATION_LOCALE_PATH = os.path.join(BASE_DIR, 'locale')
 LOCALE_PATHS = (MODELTRANSLATION_LOCALE_PATH,)
 MODELTRANSLATION_PO_FILE = "iati.po"
 
-ZENDESK_REQUEST_URL = 'https://iati.zendesk.com/api/v2/requests.json'
-
 # Community URL
 COMMUNITY_URL = 'https://discuss.iatistandard.org/'
 
@@ -267,21 +270,21 @@ WAGTAILSEARCH_BACKENDS = {
         'INDEX': 'iati',
     },
 }
-
 HAYSTACK_CONNECTIONS = {
     'default': {},
 }
-
 HAYSTACK_CUSTOM_HIGHLIGHTER = 'search.utils.CustomHighlighter'
 
-# Recaptcha settings
-
+# Zendesk and recaptcha settings
+ZENDESK_REQUEST_URL = 'https://iati.zendesk.com/api/v2/requests.json'
+ZENDESK_CAPTCHA_FIELD_ID = os.getenv('ZENDESK_CAPTCHA_FIELD_ID')
+ZENDESK_SUSPICIOUS_FIELD_ID = os.getenv('ZENDESK_SUSPICIOUS_FIELD_ID')
 RECAPTCHA_PUBLIC_KEY = os.getenv('RECAPTCHA_PUBLIC_KEY')
 RECAPTCHA_PRIVATE_KEY = os.getenv('RECAPTCHA_PRIVATE_KEY')
-NOCAPTCHA = True
+RECAPTCHA_DEFAULT_ACTION = 'contact'
+RECAPTCHA_SCORE_THRESHOLD = float(os.getenv('RECAPTCHA_SCORE_THRESHOLD', 0.5))
 
 # Celery settings
-
 CELERY_BROKER_URL = os.getenv('RABBITMQ_URL', 'amqp://rabbitmq:5672')
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_ACCEPT_CONTENT = ['json']

@@ -1,0 +1,69 @@
+{% load i18n %}
+
+<form class="form form--support {{ form_class }}" method="post" action="{{ page.url }}{{ fragment_id }}">
+    {% csrf_token %}
+
+    <h2 class="form-heading">{% trans 'Contact support' %}</h2>
+
+    {% if not form_success %}
+        <div class="is-typeset">
+            <p>{% blocktrans %}
+                Please complete the form below and our team will be able to help you. Alternatively, you can email support at <a href="mailto:support@iatistandard.org">support@iatistandard.org</a>.
+            {% endblocktrans %}</p>
+        </div>
+
+    {% else %}
+        <div class="alert alert--success">
+            <i role="presentation" aria-hidden="true" class="ico ico-success-success"></i>
+            <p>{% blocktrans %}
+                Thank you - your message has been sent.
+            {% endblocktrans %}</p>
+            {% if form.cleaned_data.name %}
+                <p>{% trans 'Name:' %} {{ form.cleaned_data.name }}</p>
+            {% endif %}
+            <p>{% trans 'Email:' %} {{ form.cleaned_data.email }}</p>
+            <p>{% trans 'Message' %}</p>
+            <div class="is-typeset">
+                <p>{{ form.cleaned_data.query|linebreaks }}</p>
+            </div>
+        </div>
+
+    {% endif %}
+
+    {% if form.errors %}
+        <div class="alert alert--error">
+            <i role="presentation" aria-hidden="true" class="ico ico-error-error"></i>
+            {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            {% else %}
+                <p>{% blocktrans %}
+                    Sorry, there appears to be an issue.
+                {% endblocktrans %}</p>
+            {% endif %}
+        </div>
+
+    {% endif %}
+
+    {% if not form_success %}
+        <div class="form-group">
+            {% include 'guidance_and_support/includes/form-item.html' with field=form.name %}
+            {% include 'guidance_and_support/includes/form-item.html' with field=form.email spaced=True %}
+            {% include 'guidance_and_support/includes/form-item.html' with field=form.query spaced=True %}
+            {% if form.captcha %}
+                {{ form.captcha }}
+            {% endif %}
+        </div>
+        <div class="form-field form-field--spaced">
+            <button class="button">{% trans 'Submit request' %}</button>
+        </div>
+
+    {% endif %}
+
+    <div class="form-field form-field--spaced">
+        {% trans 'This site is protected by reCAPTCHA and the Google' %}
+        <a href="https://policies.google.com/privacy">{% trans 'Privacy Policy' %}</a> {% trans 'and' %}
+        <a href="https://policies.google.com/terms">{% trans 'Terms of Service' %}</a> {% trans 'apply' %}.
+    </div>
+</form>
