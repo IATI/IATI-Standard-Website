@@ -10,7 +10,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template.defaultfilters import slugify
 from wagtail.core.models import Page
 from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, PageChooserPanel
-from wagtail.core.blocks import TextBlock, StructBlock, StreamBlock, FieldBlock, CharBlock, RichTextBlock, RawHTMLBlock
+from wagtail.core.blocks import TextBlock, StructBlock, StreamBlock, FieldBlock, CharBlock, RichTextBlock, RawHTMLBlock, PageChooserBlock
 from wagtail.core.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.images.edit_handlers import ImageChooserPanel
@@ -75,6 +75,34 @@ class ImageBlock(StructBlock):
     image = ImageChooserBlock()
     alignment = ImageAlignmentChoiceBlock()
     caption = RichTextBlock(required=False)
+
+
+class HighlightBlock(StructBlock):
+    """A block for a highlight module."""
+
+    class Meta:
+        """Meta data for the class."""
+
+        icon = 'pick'
+
+    title = CharBlock(icon="title")
+    description = CharBlock(icon="pilcrow")
+    page = PageChooserBlock(icon="link")
+    link_label = CharBlock(icon="link")
+
+
+def highlight_streamfield():
+    """Return a streamfield which only allows one highlight block."""
+    return StreamField(
+        StreamBlock(
+            [
+                ('highlight', HighlightBlock()),
+            ],
+            max_num=1,
+            required=False,
+        ),
+        blank=True,
+    )
 
 
 class IATIStreamBlock(StreamBlock):

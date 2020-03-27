@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+
+{% block body_class %}body body--community{% endblock %}
+{% block body_id %}body-community{% endblock %}
+
+{% block hero %}
+    <div class="hero">
+        {% include "home/includes/hero_heading.html" %}
+    </div>
+{% endblock %}
+
+{% block content %}
+    {% if page.content_editor or page.highlight %}
+        <div class="space-section-top">
+            <div class="row">
+                <div class="l-2up l-2up--offset">
+                    <div class="l-2up__col">
+                        <div class="is-typeset max-meter">
+                            {% if page.content_editor %}
+                                {% include "home/includes/streamfield.html" with content=page.content_editor extra_class='max-meter' notarticle=True %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="l-2up__col">
+                        {% include 'home/includes/highlight.html' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if page.get_involved %}
+        <div class="space-section-top">
+            <div class="row">
+                <div class="l-3up">
+                    {% for item in page.get_involved %}
+                        <div class="l-3up__col">
+                            <div class="help {% if not item.image %}help--simple{% endif %}">
+                                {% if item.image %}
+                                    {% image item.image max-700x200 as img %}
+                                    <div class="help__header background-cover" style="background-image: url({{ img.url }})">
+                                        <div class="help__panel fill-wind">
+                                            <h3 class="help__heading">{{ item.title }}</h3>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                <div class="help__body">
+                                    {% if not item.image %}
+                                        <div class="help__panel fill-wind">
+                                            <h3 class="help__heading">{{ item.title }}</h3>
+                                        </div>
+                                    {% endif %}
+                                    <div class="help__body-copy">{{ item.description|richtext }}</div>
+                                    {% if item.page and item.link_label %}
+                                        <a href="{{ item.page.url }}" class="button">{{ item.link_label }}</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

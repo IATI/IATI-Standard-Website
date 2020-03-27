@@ -1,0 +1,13 @@
+{% if page.highlight %}
+    {% for item in page.highlight %}
+        <div class="aside-m">
+            <div class="aside-m__header fill-sunset">
+                <h3 class="aside-m__heading">{{ item.value.title }}</h3>
+            </div>
+            <div class="aside-m__body">
+                <p class="aside-m__copy">{{ item.value.description }}</p>
+                <a class="button" href="{{ item.value.page.url }}">{{ item.value.link_label }}</a>
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}
