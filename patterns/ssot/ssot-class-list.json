@@ -8,8 +8,8 @@
             "toctree-wrapper|compound": "https://iati-html.surge.sh/activity-standard",         // div.toctree-wrapper.compound.html
             "highlight-xml": "https://iati-html.surge.sh/activity-standard/overview/self-defined-vocabularies",  // div.highlight-xml.html
             "highlight": "https://iati-html.surge.sh/activity-standard/overview/self-defined-vocabularies",      // div.highlight-xml.html
-            "highlight-default": "https://iati-html.surge.sh/activity-standard/summary-table",
-            "code|highlight-default": "https://iati-html.surge.sh/codelists-guides/codelist-api"
+            "highlight-default": "https://iati-html.surge.sh/activity-standard/summary-table",                   // ignored, no style
+            "code|highlight-default": "https://iati-html.surge.sh/codelists-guides/codelist-api"                 // div.code.highlight-default.html
         },
         "h1": {},
         "a": {
@@ -18,15 +18,15 @@
             "reference|internal": "https://iati-html.surge.sh/organisation-identifiers"         // div.line-block.html
         },
         "p": {
-            "first": "https://iati-html.surge.sh/activity-standard/iati-activities",
-            "last": "https://iati-html.surge.sh/activity-standard/iati-activities"
+            "first": "https://iati-html.surge.sh/activity-standard/iati-activities",            // p.first.html
+            "last": "https://iati-html.surge.sh/activity-standard/iati-activities"              // p.first.html
         },
         "strong": {},
         "em": {},
         "h2": {},
         "ul": {
-            "simple": "https://iati-html.surge.sh/organisation-identifiers",
-            "first|last": "https://iati-html.surge.sh/activity-standard/overview/transactions",
+            "simple": "https://iati-html.surge.sh/organisation-identifiers",                    // ul.simple.html
+            "first|last": "https://iati-html.surge.sh/activity-standard/overview/transactions", // ul.first.last.html
             "first|last|simple": "https://iati-html.surge.sh/codelists-guides/codelist-api"
         },
         "li": {
@@ -47,7 +47,7 @@
         },
         "span": {
             "pre": "https://iati-html.surge.sh/organisation-identifiers",                       // div.highlight-xml.html, converted to <pre>
-            "doc": "https://iati-html.surge.sh/organisation-identifiers",
+            "doc": "https://iati-html.surge.sh/organisation-identifiers",                       // p.first.html
             "underline": "https://iati-html.surge.sh/activity-standard/overview/budgets",
             "xref|std|std-doc": "https://iati-html.surge.sh/activity-standard/overview/activity-file",
             "nt": "https://iati-html.surge.sh/activity-standard/overview/self-defined-vocabularies",        // div.highlight-xml.html
@@ -56,12 +56,12 @@
             "s": "https://iati-html.surge.sh/activity-standard/overview/self-defined-vocabularies",         // div.highlight-xml.html
             "caption-text": "https://iati-html.surge.sh/activity-standard/overview/all-elements-in-IATI",
             "xref|std|std-ref": "https://iati-html.surge.sh/activity-standard/iati-activities/iati-activity/location",
-            "n": "https://iati-html.surge.sh/activity-standard/summary-table",
-            "p": "https://iati-html.surge.sh/activity-standard/summary-table",
-            "o": "https://iati-html.surge.sh/activity-standard/summary-table",
+            "n": "https://iati-html.surge.sh/activity-standard/summary-table",                              // div.code.highlight-default.html
+            "p": "https://iati-html.surge.sh/activity-standard/summary-table",                              // div.code.highlight-default.html
+            "o": "https://iati-html.surge.sh/activity-standard/summary-table",                              // div.code.highlight-default.html
             "mf": "https://iati-html.surge.sh/activity-standard/summary-table",
             "mi": "https://iati-html.surge.sh/activity-standard/summary-table",
-            "ow": "https://iati-html.surge.sh/activity-standard/summary-table",
+            "ow": "https://iati-html.surge.sh/activity-standard/summary-table",                             // div.code.highlight-default.html
             "k": "https://iati-html.surge.sh/activity-standard/summary-table",
             "nb": "https://iati-html.surge.sh/activity-standard/summary-table",
             "s2": "https://iati-html.surge.sh/rulesets/ruleset-spec",
@@ -75,8 +75,8 @@
         "cite": {},
         "h3": {},
         "dl": {
-            "first|docutils": "https://iati-html.surge.sh/activity-standard/overview/transactions",
-            "docutils": "https://iati-html.surge.sh/activity-standard/iati-activities"
+            "first|docutils": "https://iati-html.surge.sh/activity-standard/overview/transactions",         // ul.first.last.html
+            "docutils": "https://iati-html.surge.sh/activity-standard/iati-activities"                      // p.first.html
         },
         "dt": {},
         "dd": {},
