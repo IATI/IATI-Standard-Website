@@ -2,104 +2,104 @@
 {
     "203": {
         "div": {
-            "section": "https://iati-html.surge.sh/",                                           // ignored, no style
-            "line-block": "https://iati-html.surge.sh/activity-standard",                       // div.line-block.html
-            "line": "https://iati-html.surge.sh/activity-standard",                             // div.line-block.html
-            "toctree-wrapper|compound": "https://iati-html.surge.sh/activity-standard",         // div.toctree-wrapper.compound.html
-            "highlight-xml": "https://iati-html.surge.sh/activity-standard/overview/self-defined-vocabularies",  // div.highlight-xml.html
-            "highlight": "https://iati-html.surge.sh/activity-standard/overview/self-defined-vocabularies",      // div.highlight-xml.html
-            "highlight-default": "https://iati-html.surge.sh/activity-standard/summary-table",                   // ignored, no style
-            "code|highlight-default": "https://iati-html.surge.sh/codelists-guides/codelist-api"                 // div.code.highlight-default.html
+            "section": "http://reference.iatistandard.org/203/",                                            // ignored, no style
+            "line-block": "http://reference.iatistandard.org/203/activity-standard",                        // div.line-block.html
+            "line": "http://reference.iatistandard.org/203/activity-standard",                              // div.line-block.html
+            "toctree-wrapper|compound": "http://reference.iatistandard.org/203/activity-standard",          // div.toctree-wrapper.compound.html
+            "highlight-xml": "http://reference.iatistandard.org/203/activity-standard/overview/self-defined-vocabularies",  // div.highlight-xml.html
+            "highlight": "http://reference.iatistandard.org/203/activity-standard/overview/self-defined-vocabularies",      // div.highlight-xml.html
+            "highlight-default": "http://reference.iatistandard.org/203/activity-standard/summary-table",                   // ignored, no style
+            "code|highlight-default": "http://reference.iatistandard.org/203/codelists-guides/codelist-api"                 // div.code.highlight-default.html
         },
         "h1": {},
         "a": {
-            "headerlink": "https://iati-html.surge.sh/",                                        // div.line-block.html
-            "reference|external": "https://iati-html.surge.sh/organisation-identifiers",        // div.highlight-xml.html
-            "reference|internal": "https://iati-html.surge.sh/organisation-identifiers"         // div.line-block.html
+            "headerlink": "http://reference.iatistandard.org/203/",                                         // div.line-block.html
+            "reference|external": "http://reference.iatistandard.org/203/organisation-identifiers",         // div.highlight-xml.html
+            "reference|internal": "http://reference.iatistandard.org/203/organisation-identifiers"          // div.line-block.html
         },
         "p": {
-            "first": "https://iati-html.surge.sh/activity-standard/iati-activities",            // p.first.html
-            "last": "https://iati-html.surge.sh/activity-standard/iati-activities"              // p.first.html
+            "first": "http://reference.iatistandard.org/203/activity-standard/iati-activities",             // p.first.html
+            "last": "http://reference.iatistandard.org/203/activity-standard/iati-activities"               // p.first.html
         },
         "strong": {},
         "em": {},
         "h2": {},
         "ul": {
-            "simple": "https://iati-html.surge.sh/organisation-identifiers",                    // ul.simple.html
-            "first|last": "https://iati-html.surge.sh/activity-standard/overview/transactions", // ul.first.last.html
-            "first|last|simple": "https://iati-html.surge.sh/codelists-guides/codelist-api"
+            "simple": "http://reference.iatistandard.org/203/organisation-identifiers",                     // ul.simple.html
+            "first|last": "http://reference.iatistandard.org/203/activity-standard/overview/transactions",  // ul.first.last.html
+            "first|last|simple": "http://reference.iatistandard.org/203/codelists-guides/codelist-api"      // ul.first.last.html
         },
         "li": {
-            "toctree-l1": "https://iati-html.surge.sh/activity-standard",
-            "toctree-l2": "https://iati-html.surge.sh/activity-standard/elements",
-            "toctree-l3": "https://iati-html.surge.sh/activity-standard/elements",
-            "toctree-l4": "https://iati-html.surge.sh/activity-standard/elements",
-            "toctree-l5": "https://iati-html.surge.sh/activity-standard/elements",
-            "toctree-l6": "https://iati-html.surge.sh/activity-standard/elements",
-            "toctree-l7": "https://iati-html.surge.sh/activity-standard/elements",
-            "toctree-l8": "https://iati-html.surge.sh/activity-standard/elements",
-            "toctree-l9": "https://iati-html.surge.sh/activity-standard/elements",
-            "toctree-l10": "https://iati-html.surge.sh/reference",
-            "toctree-l11": "https://iati-html.surge.sh/reference"
+            "toctree-l1": "http://reference.iatistandard.org/203/activity-standard",                        // ignored, LH navigation covered by PL style
+            "toctree-l2": "http://reference.iatistandard.org/203/activity-standard/elements",               // ignored, LH navigation covered by PL style
+            "toctree-l3": "http://reference.iatistandard.org/203/activity-standard/elements",               // ignored, LH navigation covered by PL style
+            "toctree-l4": "http://reference.iatistandard.org/203/activity-standard/elements",               // ignored, LH navigation covered by PL style
+            "toctree-l5": "http://reference.iatistandard.org/203/activity-standard/elements",               // ignored, LH navigation covered by PL style
+            "toctree-l6": "http://reference.iatistandard.org/203/activity-standard/elements",               // ignored, LH navigation covered by PL style
+            "toctree-l7": "http://reference.iatistandard.org/203/activity-standard/elements",               // ignored, LH navigation covered by PL style
+            "toctree-l8": "http://reference.iatistandard.org/203/activity-standard/elements",               // ignored, LH navigation covered by PL style
+            "toctree-l9": "http://reference.iatistandard.org/203/activity-standard/elements",               // ignored, LH navigation covered by PL style
+            "toctree-l10": "http://reference.iatistandard.org/203/reference",                               // ignored, LH navigation covered by PL style
+            "toctree-l11": "http://reference.iatistandard.org/203/reference"                                // ignored, LH navigation covered by PL style
         },
         "code": {
-            "docutils|literal": "https://iati-html.surge.sh/organisation-identifiers"           // div.highlight-xml.html
+            "docutils|literal": "http://reference.iatistandard.org/203/organisation-identifiers"            // div.highlight-xml.html
         },
         "span": {
-            "pre": "https://iati-html.surge.sh/organisation-identifiers",                       // div.highlight-xml.html, converted to <pre>
-            "doc": "https://iati-html.surge.sh/organisation-identifiers",                       // p.first.html
-            "underline": "https://iati-html.surge.sh/activity-standard/overview/budgets",
-            "xref|std|std-doc": "https://iati-html.surge.sh/activity-standard/overview/activity-file",
-            "nt": "https://iati-html.surge.sh/activity-standard/overview/self-defined-vocabularies",        // div.highlight-xml.html
-            "c": "https://iati-html.surge.sh/activity-standard/overview/self-defined-vocabularies",         // div.highlight-xml.html
-            "na": "https://iati-html.surge.sh/activity-standard/overview/self-defined-vocabularies",        // div.highlight-xml.html
-            "s": "https://iati-html.surge.sh/activity-standard/overview/self-defined-vocabularies",         // div.highlight-xml.html
-            "caption-text": "https://iati-html.surge.sh/activity-standard/overview/all-elements-in-IATI",
-            "xref|std|std-ref": "https://iati-html.surge.sh/activity-standard/iati-activities/iati-activity/location",
-            "n": "https://iati-html.surge.sh/activity-standard/summary-table",                              // div.code.highlight-default.html
-            "p": "https://iati-html.surge.sh/activity-standard/summary-table",                              // div.code.highlight-default.html
-            "o": "https://iati-html.surge.sh/activity-standard/summary-table",                              // div.code.highlight-default.html
-            "mf": "https://iati-html.surge.sh/activity-standard/summary-table",
-            "mi": "https://iati-html.surge.sh/activity-standard/summary-table",
-            "ow": "https://iati-html.surge.sh/activity-standard/summary-table",                             // div.code.highlight-default.html
-            "k": "https://iati-html.surge.sh/activity-standard/summary-table",
-            "nb": "https://iati-html.surge.sh/activity-standard/summary-table",
-            "s2": "https://iati-html.surge.sh/rulesets/ruleset-spec",
-            "std|std-ref": "https://iati-html.surge.sh/codelists/Country",
-            "problematic": "https://iati-html.surge.sh/codelists/OrganisationRegistrationAgency"
+            "pre": "http://reference.iatistandard.org/203/organisation-identifiers",                                    // div.highlight-xml.html, converted to <pre>
+            "doc": "http://reference.iatistandard.org/203/organisation-identifiers",                                    // p.first.html
+            "underline": "http://reference.iatistandard.org/203/activity-standard/overview/budgets",                    // span.underline.html
+            "xref|std|std-doc": "http://reference.iatistandard.org/203/activity-standard/overview/activity-file",       // span.xref.std.std-doc.html
+            "nt": "http://reference.iatistandard.org/203/activity-standard/overview/self-defined-vocabularies",         // div.highlight-xml.html
+            "c": "http://reference.iatistandard.org/203/activity-standard/overview/self-defined-vocabularies",          // div.highlight-xml.html
+            "na": "http://reference.iatistandard.org/203/activity-standard/overview/self-defined-vocabularies",         // div.highlight-xml.html
+            "s": "http://reference.iatistandard.org/203/activity-standard/overview/self-defined-vocabularies",          // div.highlight-xml.html
+            "caption-text": "https://iati-html.surge.sh/activity-standard/overview/all-elements-in-IATI/",              // span.caption-text.html
+            "xref|std|std-ref": "http://reference.iatistandard.org/203/activity-standard/iati-activities/iati-activity/location",  // span.xref.std.std-ref.html
+            "n": "http://reference.iatistandard.org/203/activity-standard/summary-table",                               // div.code.highlight-default.html
+            "p": "http://reference.iatistandard.org/203/activity-standard/summary-table",                               // div.code.highlight-default.html
+            "o": "http://reference.iatistandard.org/203/activity-standard/summary-table",                               // div.code.highlight-default.html
+            "mf": "http://reference.iatistandard.org/203/activity-standard/summary-table",                              // span.mf.html
+            "mi": "http://reference.iatistandard.org/203/activity-standard/summary-table",                              // span.mf.html
+            "ow": "http://reference.iatistandard.org/203/activity-standard/summary-table",                              // div.code.highlight-default.html
+            "k": "http://reference.iatistandard.org/203/activity-standard/summary-table",                               // span.mf.html
+            "nb": "http://reference.iatistandard.org/203/activity-standard/summary-table",                              // span.mf.html
+            "s2": "http://reference.iatistandard.org/203/rulesets/ruleset-spec",
+            "std|std-ref": "http://reference.iatistandard.org/203/codelists/Country",
+            "problematic": "http://reference.iatistandard.org/203/codelists/OrganisationRegistrationAgency"
         },
         "img": {},
         "ol": {
-            "arabic|simple": "https://iati-html.surge.sh/organisation-identifiers"
+            "arabic|simple": "http://reference.iatistandard.org/203/organisation-identifiers"
         },
         "cite": {},
         "h3": {},
         "dl": {
-            "first|docutils": "https://iati-html.surge.sh/activity-standard/overview/transactions",         // ul.first.last.html
-            "docutils": "https://iati-html.surge.sh/activity-standard/iati-activities"                      // p.first.html
+            "first|docutils": "http://reference.iatistandard.org/203/activity-standard/overview/transactions",          // ul.first.last.html
+            "docutils": "http://reference.iatistandard.org/203/activity-standard/iati-activities"                       // p.first.html
         },
         "dt": {},
         "dd": {},
         "pre": {},
         "table": {
-            "colwidths-given|docutils": "https://iati-html.surge.sh/activity-standard/overview/all-elements-in-IATI",
-            "docutils": "https://iati-html.surge.sh/activity-standard/summary-table"
+            "colwidths-given|docutils": "http://reference.iatistandard.org/203/activity-standard/overview/all-elements-in-IATI",    // span.caption-text.html
+            "docutils": "http://reference.iatistandard.org/203/activity-standard/summary-table"
         },
         "caption": {},
         "colgroup": {},
         "col": {},
         "thead": {},
         "tr": {
-            "row-odd": "https://iati-html.surge.sh/activity-standard/overview/all-elements-in-IATI",
-            "row-even": "https://iati-html.surge.sh/activity-standard/overview/all-elements-in-IATI",
-            "withdrawn|row-even": "https://iati-html.surge.sh/codelists/Country",
-            "withdrawn|row-odd": "https://iati-html.surge.sh/codelists/FileFormat"
+            "row-odd": "http://reference.iatistandard.org/203/activity-standard/overview/all-elements-in-IATI",         // span.caption-text.html
+            "row-even": "http://reference.iatistandard.org/203/activity-standard/overview/all-elements-in-IATI",        // span.caption-text.html
+            "withdrawn|row-even": "http://reference.iatistandard.org/203/codelists/Country",
+            "withdrawn|row-odd": "http://reference.iatistandard.org/203/codelists/FileFormat"
         },
         "th": {
-            "head": "https://iati-html.surge.sh/activity-standard/overview/all-elements-in-IATI"
+            "head": "http://reference.iatistandard.org/203/activity-standard/overview/all-elements-in-IATI"             // span.caption-text.html
         },
         "tbody": {
-            "withdrawn": "https://iati-html.surge.sh/codelists/BudgetIdentifierVocabulary"
+            "withdrawn": "http://reference.iatistandard.org/203/codelists/BudgetIdentifierVocabulary"
         },
         "td": {},
         "blockquote": {},

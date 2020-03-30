@@ -5475,6 +5475,10 @@
         </dl>
     </li>
 </ul>
+<ul>
+    <li><a href="http://iatistandard.org/104/codelists/downloads/clv1/">http://iatistandard.org/104/codelists/downloads/clv1/</a> will always return v1.04 codelists</li>
+    <li><a href="http://iatistandard.org/105/codelists/downloads/clv1/">http://iatistandard.org/105/codelists/downloads/clv1/</a> will always return v1.05 codelists</li>
+</ul>
 
 
 <!-- Original content
@@ -5493,7 +5497,228 @@
         </dl>
     </li>
 </ul>
+<ul class="first last simple">
+    <li><a class="reference external" href="http://iatistandard.org/104/codelists/downloads/clv1/">http://iatistandard.org/104/codelists/downloads/clv1/</a> will always return v1.04 codelists</li>
+    <li><a class="reference external" href="http://iatistandard.org/105/codelists/downloads/clv1/">http://iatistandard.org/105/codelists/downloads/clv1/</a> will always return v1.05 codelists</li>
+</ul>
 -->
+
+
+            <div id="definition">
+    <h3>Definition<a href="#definition" title="Permalink to this headline">¶</a></h3>
+    <p>The monetary <em>budgets</em> assigned to a specific <code><pre>iati-activity</pre></code> can be described in the <strong>IATI activity standard</strong> using the following:</p>
+    <ul>
+        <li><code><pre>transaction-type</pre></code> type Commitment (code <em>2</em>) can be used to describe the total committed budget for the duration of the activity. Any changes to the original commitment should be reported as additional, incremental transactions (positive or negative) so that the sum of commitments represents the total committed budget.</li>
+        <li><code><pre>budget</pre></code> - the value of the <code><pre>iati-activity</pre></code> <code><pre>budget</pre></code> for each financial year over the lifetime of the activity, as stated in the <span>original</span> project document or <span>revised</span> accordingly. The status explains whether the budget being reported is indicative or has been formally committed. The value should appear within the <a href="http://iatistandard.org/203/codelists/BudgetStatus/">BudgetStatus</a> codelist. If the @status attribute is not present, the budget is assumed to be indicative. The sum of budgets may or may not match the sum of commitments, depending on a publisher’s business model and legal frameworks.</li>
+        <li><code><pre>planned-disbursement</pre></code> - a scheduled payment, set up against the <code><pre>budget</pre></code></li>
+    </ul>
+    <p>Additionally, there are two areas within the <strong>IATI activity standard</strong> that allow further clarification of budgets:</p>
+    <ul>
+        <li><code><pre>country-budget-item</pre></code> - alignment of <code><pre>iati-activity</pre></code> with the functional and administrative classifications used in the <code><pre>recipient-country</pre></code> Chart of Accounts.</li>
+        <li><code><pre>capital-spend</pre></code> - the percentage of the total commitment that is for capital spending.</li>
+    </ul>
+    <p>These all relate to the specific <code><pre>iati-activity</pre></code> being described.</p>
+</div>
+
+
+<!-- Original content
+<div class="section" id="definition">
+    <h3>Definition<a class="headerlink" href="#definition" title="Permalink to this headline">¶</a></h3>
+    <p>The monetary <em>budgets</em> assigned to a specific <code class="docutils literal"><span class="pre">iati-activity</span></code> can be described in the <strong>IATI activity standard</strong> using the following:</p>
+    <ul class="simple">
+        <li><code class="docutils literal"><span class="pre">transaction-type</span></code> type Commitment (code <em>2</em>) can be used to describe the total committed budget for the duration of the activity. Any changes to the original commitment should be reported as additional, incremental transactions (positive or negative) so that the sum of commitments represents the total committed budget.</li>
+        <li><code class="docutils literal"><span class="pre">budget</span></code> - the value of the <code class="docutils literal"><span class="pre">iati-activity</span></code> <code class="docutils literal"><span class="pre">budget</span></code> for each financial year over the lifetime of the activity, as stated in the <span class="underline">original</span> project document or <span class="underline">revised</span> accordingly. The status explains whether the budget being reported is indicative or has been formally committed. The value should appear within the <a class="reference external" href="http://iatistandard.org/203/codelists/BudgetStatus/">BudgetStatus</a> codelist. If the @status attribute is not present, the budget is assumed to be indicative. The sum of budgets may or may not match the sum of commitments, depending on a publisher’s business model and legal frameworks.</li>
+        <li><code class="docutils literal"><span class="pre">planned-disbursement</span></code> - a scheduled payment, set up against the <code class="docutils literal"><span class="pre">budget</span></code></li>
+    </ul>
+    <p>Additionally, there are two areas within the <strong>IATI activity standard</strong> that allow further clarification of budgets:</p>
+    <ul class="simple">
+        <li><code class="docutils literal"><span class="pre">country-budget-item</span></code> - alignment of <code class="docutils literal"><span class="pre">iati-activity</span></code> with the functional and administrative classifications used in the <code class="docutils literal"><span class="pre">recipient-country</span></code> Chart of Accounts.</li>
+        <li><code class="docutils literal"><span class="pre">capital-spend</span></code> - the percentage of the total commitment that is for capital spending.</li>
+    </ul>
+    <p>These all relate to the specific <code class="docutils literal"><span class="pre">iati-activity</span></code> being described.</p>
+</div>
+-->
+
+
+            <div id="considerations">
+    <h2>Considerations<a href="#considerations" title="Permalink to this headline">¶</a></h2>
+    <p>When using the <strong>IATI activity standard</strong> to produce an <em>activity-file</em>, the following should be considered:</p>
+    <ul>
+        <li>An IATI publisher should publish at least one activity file.</li>
+        <li>An activity file should contain at least one <code><pre>iati-activity</pre></code></li>
+        <li>It should be updated at least annually.</li>
+        <li>It must be <span>well-formed XML</span>.</li>
+    </ul>
+</div>
+
+
+<!-- Original content
+<div class="section" id="considerations">
+    <h2>Considerations<a class="headerlink" href="#considerations" title="Permalink to this headline">¶</a></h2>
+    <p>When using the <strong>IATI activity standard</strong> to produce an <em>activity-file</em>, the following should be considered:</p>
+    <ul class="simple">
+        <li>An IATI publisher should publish at least one activity file.</li>
+        <li>An activity file should contain at least one <code class="docutils literal"><span class="pre">iati-activity</span></code></li>
+        <li>It should be updated at least annually.</li>
+        <li>It must be <span class="xref std std-doc">well-formed XML</span>.</li>
+    </ul>
+</div>
+-->
+
+
+            <div id="full-list-of-top-level-elements-in-iati">
+    <h1>Full list of top-level elements in IATI<a href="#full-list-of-top-level-elements-in-iati" title="Permalink to this headline">¶</a></h1>
+    <p>The table below lists all of the elements that can be included in your publishing to IATI. This includes all of the mandatory and recommended elements outlined in <a href="../what-to-publish/"><span>What to Publish</span></a>.</p>
+    <p>One publishing approach is to start with the mandatory and recommended (minimum) elements, and then build up over time. Each element you include will increase the comprehensiveness of your data and will help people to understand the work you are carrying out.</p>
+    <table border="1" id="id1">
+        <caption><span>List of top-level elements</span><a href="#id1" title="Permalink to this table">¶</a></caption>
+        <colgroup>
+            <col>
+            <col>
+            <col>
+            <col>
+        </colgroup>
+        <thead valign="bottom">
+            <tr>
+                <th>Topic</th>
+                <th>Element</th>
+                <th>Mandatory</th>
+                <th>Recommended (minimum)</th>
+            </tr>
+        </thead>
+        <tbody valign="top">
+            <tr>
+                <td>Identification</td>
+                <td>IATI Identifier</td>
+                <td>Yes</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>Reporting Org</td>
+                <td>Yes</td>
+                <td>Yes</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!-- Original content
+<div class="section" id="full-list-of-top-level-elements-in-iati">
+    <h1>Full list of top-level elements in IATI<a class="headerlink" href="#full-list-of-top-level-elements-in-iati" title="Permalink to this headline">¶</a></h1>
+    <p>The table below lists all of the elements that can be included in your publishing to IATI. This includes all of the mandatory and recommended elements outlined in <a class="reference internal" href="../what-to-publish/"><span class="doc">What to Publish</span></a>.</p>
+    <p>One publishing approach is to start with the mandatory and recommended (minimum) elements, and then build up over time. Each element you include will increase the comprehensiveness of your data and will help people to understand the work you are carrying out.</p>
+    <table border="1" class="colwidths-given docutils" id="id1">
+        <caption><span class="caption-text">List of top-level elements</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+        <colgroup>
+            <col width="25%">
+            <col width="25%">
+            <col width="25%">
+            <col width="25%">
+        </colgroup>
+        <thead valign="bottom">
+            <tr class="row-odd">
+                <th class="head">Topic</th>
+                <th class="head">Element</th>
+                <th class="head">Mandatory</th>
+                <th class="head">Recommended (minimum)</th>
+            </tr>
+        </thead>
+        <tbody valign="top">
+            <tr class="row-even">
+                <td>Identification</td>
+                <td>IATI Identifier</td>
+                <td>Yes</td>
+                <td>Yes</td>
+            </tr>
+            <tr class="row-odd">
+                <td>&nbsp;</td>
+                <td>Reporting Org</td>
+                <td>Yes</td>
+                <td>Yes</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+-->
+
+
+            <div id="id2">
+    <h3>1.04<a href="#id2" title="Permalink to this headline">¶</a></h3>
+    <p>Note that major changes were made to the subelements of <code><pre>location</pre></code> in version 1.04.</p>
+    <div>
+        <div>For more information refer to:</div>
+    </div>
+    <ul>
+        <li>the <a href="../../../../upgrades/decimal-upgrade-to-1-04/location-summary/"><span>1.04 location changes overview guidance</span></a></li>
+        <li>the <a href="../../../../upgrades/decimal-upgrade-to-1-04/1-04-changes/#activities-schema-changes"><span>Activities Schema Changelog</span></a> (or the individual subemelement pages)</li>
+    </ul>
+    <div>
+        <div>The @ref attribute was introduced to provide a cross reference that a publisher can use to link back to their own internal system.</div>
+        <div>The @percentage attribute was deemed unworkable and deprecated in 1.04</div>
+    </div>
+</div>
+
+
+<!-- Original content
+<div class="section" id="id2">
+    <h3>1.04<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+    <p>Note that major changes were made to the subelements of <code class="docutils literal"><span class="pre">location</span></code> in version 1.04.</p>
+    <div class="line-block">
+        <div class="line">For more information refer to:</div>
+    </div>
+    <ul class="simple">
+        <li>the <a class="reference internal" href="../../../../upgrades/decimal-upgrade-to-1-04/location-summary/"><span class="doc">1.04 location changes overview guidance</span></a></li>
+        <li>the <a class="reference internal" href="../../../../upgrades/decimal-upgrade-to-1-04/1-04-changes/#activities-schema-changes"><span class="std std-ref">Activities Schema Changelog</span></a> (or the individual subemelement pages)</li>
+    </ul>
+    <div class="line-block">
+        <div class="line">The @ref attribute was introduced to provide a cross reference that a publisher can use to link back to their own internal system.</div>
+        <div class="line">The @percentage attribute was deemed unworkable and deprecated in 1.04</div>
+    </div>
+</div>
+-->
+
+
+            <div id="activity-standard-summary-table">
+    <h1>Activity Standard Summary Table<a href="#activity-standard-summary-table" title="Permalink to this headline">¶</a></h1>
+    <div>
+        <div>
+            <pre><span></span><span>International</span> <span>Aid</span> <span>Transparency</span> <span>Initiative</span><span>:</span> <span>Activity</span><span>-</span><span>Information</span> <span>Schema</span>
+
+<span>Release</span> <span>2.03</span><span>,</span> <span>2018</span><span>-</span><span>02</span><span>-</span><span>19</span>
+
+<span>NOTE</span><span>:</span> <span>the</span> <span>xml</span><span>.</span><span>xsd</span> <span>and</span> <span>iati</span><span>-</span><span>common</span><span>.</span><span>xsd</span> <span>schemas</span> <span>must</span> <span>be</span> <span>in</span> <span>the</span>
+<span>same</span> <span>directory</span> <span>as</span> <span>this</span> <span>one</span><span>.</span>
+
+<span>This</span> <span>W3C</span> <span>XML</span> <span>Schema</span> <span>defines</span> <span>an</span> <span>XML</span> <span>document</span> <span>type</span> <span>for</span> <span>information</span>
+</pre>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Original content
+<div class="section" id="activity-standard-summary-table">
+    <h1>Activity Standard Summary Table<a class="headerlink" href="#activity-standard-summary-table" title="Permalink to this headline">¶</a></h1>
+    <div class="highlight-default">
+        <div class="highlight">
+            <pre><span></span><span class="n">International</span> <span class="n">Aid</span> <span class="n">Transparency</span> <span class="n">Initiative</span><span class="p">:</span> <span class="n">Activity</span><span class="o">-</span><span class="n">Information</span> <span class="n">Schema</span>
+
+<span class="n">Release</span> <span class="mf">2.03</span><span class="p">,</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">19</span>
+
+<span class="n">NOTE</span><span class="p">:</span> <span class="n">the</span> <span class="n">xml</span><span class="o">.</span><span class="n">xsd</span> <span class="ow">and</span> <span class="n">iati</span><span class="o">-</span><span class="n">common</span><span class="o">.</span><span class="n">xsd</span> <span class="n">schemas</span> <span class="n">must</span> <span class="n">be</span> <span class="ow">in</span> <span class="n">the</span>
+<span class="n">same</span> <span class="n">directory</span> <span class="k">as</span> <span class="n">this</span> <span class="n">one</span><span class="o">.</span>
+
+<span class="n">This</span> <span class="n">W3C</span> <span class="n">XML</span> <span class="n">Schema</span> <span class="n">defines</span> <span class="n">an</span> <span class="n">XML</span> <span class="n">document</span> <span class="nb">type</span> <span class="k">for</span> <span class="n">information</span>
+</pre>
+        </div>
+    </div>
+</div>
+-->
+
 
         </div>
     </section>
