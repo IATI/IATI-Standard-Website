@@ -5884,6 +5884,296 @@
 -->
 
 
+            <div id="organisation-identifiers">
+    <h1>Organisation Identifiers<a href="#organisation-identifiers" title="Permalink to this headline">¶</a></h1>
+    <p>The <strong>IATI standard</strong> allows for the recording of information on all <em>organisations</em> that participate in any part of the lifecycle of an aid activity: inter alia donors, beneficiaries, extending and implementing agencies.</p>
+    <p>Crucial to this, is a common process through which to identify and declare identifiers for these organisations.</p>
+    <div id="two-components-of-iati-organisation-identifiers">
+        <h2>Two components of IATI Organisation Identifiers<a href="#two-components-of-iati-organisation-identifiers" title="Permalink to this headline">¶</a></h2>
+        <p><a href="Organisational-ID-Diagrams.png"><img alt="image0" src="../_images/Organisational-ID-Diagrams.png"></a></p>
+        <p>The two components of <strong>IATI Organisation Identifiers</strong></p>
+        <p>The <strong>IATI Organisational Identifier</strong> scheme is based on re-using existing known identifiers for an <em>organisation</em>.</p>
+        <p>Identifier strings consist of two components:</p>
+        <ol>
+            <li>The <strong>namespace code</strong> - a code that creates and maintains a given organisational identifier registry</li>
+            <li>The <strong>base identifier</strong> – re-use of an existing identifier from that namespace/registry</li>
+        </ol>
+        <p>1 and 2 are separated by a dash <code><pre>-</pre></code>.</p>
+        <p>The namespace code (1) may contain a dash <code><pre>-</pre></code>.</p>
+    </div>
+</div>
+
+
+<!-- Original content
+<div class="section" id="organisation-identifiers">
+    <h1>Organisation Identifiers<a class="headerlink" href="#organisation-identifiers" title="Permalink to this headline">¶</a></h1>
+    <p>The <strong>IATI standard</strong> allows for the recording of information on all <em>organisations</em> that participate in any part of the lifecycle of an aid activity: inter alia donors, beneficiaries, extending and implementing agencies.</p>
+    <p>Crucial to this, is a common process through which to identify and declare identifiers for these organisations.</p>
+    <div class="section" id="two-components-of-iati-organisation-identifiers">
+        <h2>Two components of IATI Organisation Identifiers<a class="headerlink" href="#two-components-of-iati-organisation-identifiers" title="Permalink to this headline">¶</a></h2>
+        <p><a class="reference external" href="Organisational-ID-Diagrams.png"><img alt="image0" src="../_images/Organisational-ID-Diagrams.png"></a></p>
+        <p>The two components of <strong>IATI Organisation Identifiers</strong></p>
+        <p>The <strong>IATI Organisational Identifier</strong> scheme is based on re-using existing known identifiers for an <em>organisation</em>.</p>
+        <p>Identifier strings consist of two components:</p>
+        <ol class="arabic simple">
+            <li>The <strong>namespace code</strong> - a code that creates and maintains a given organisational identifier registry</li>
+            <li>The <strong>base identifier</strong> – re-use of an existing identifier from that namespace/registry</li>
+        </ol>
+        <p>1 and 2 are separated by a dash <code class="docutils literal"><span class="pre">-</span></code>.</p>
+        <p>The namespace code (1) may contain a dash <code class="docutils literal"><span class="pre">-</span></code>.</p>
+    </div>
+</div>
+-->
+
+
+            <div id="activity-standard-summary-table">
+    <h1>Activity Standard Summary Table<a href="#activity-standard-summary-table" title="Permalink to this headline">¶</a></h1>
+    <table>
+        <colgroup>
+            <col width="13%">
+            <col width="13%">
+            <col width="13%">
+            <col width="13%">
+            <col width="13%">
+            <col width="13%">
+            <col width="13%">
+            <col width="13%">
+        </colgroup>
+        <thead valign="bottom">
+            <tr>
+                <th>Section</th>
+                <th>Item</th>
+                <th>Description</th>
+                <th>Type</th>
+                <th>Codelist</th>
+                <th>XML</th>
+                <th>Occur</th>
+                <th>Rules</th>
+            </tr>
+        </thead>
+        <tbody valign="top">
+            <tr>
+                <td><a href="../iati-activities/"><span>iati-activities</span></a></td>
+                <td>&nbsp;</td>
+                <td>Top-level list of one or more IATI activity records.</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>iati-activities</td>
+                <td></td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>version</td>
+                <td>A number indicating the IATI specification version in use.
+                    This is mandatory and must be a valid version.
+                </td>
+                <td>xsd:string</td>
+                <td><a href="../../codelists/Version/"><span>Version</span></a></td>
+                <td>iati-activities/@version</td>
+                <td>1..1</td>
+                <td>&nbsp;</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!-- Original content
+<div class="section" id="activity-standard-summary-table">
+    <h1>Activity Standard Summary Table<a class="headerlink" href="#activity-standard-summary-table" title="Permalink to this headline">¶</a></h1>
+    <table class="docutils">
+        <colgroup>
+            <col width="13%">
+            <col width="13%">
+            <col width="13%">
+            <col width="13%">
+            <col width="13%">
+            <col width="13%">
+            <col width="13%">
+            <col width="13%">
+        </colgroup>
+        <thead valign="bottom">
+            <tr class="row-odd">
+                <th class="head">Section</th>
+                <th class="head">Item</th>
+                <th class="head">Description</th>
+                <th class="head">Type</th>
+                <th class="head">Codelist</th>
+                <th class="head">XML</th>
+                <th class="head">Occur</th>
+                <th class="head">Rules</th>
+            </tr>
+        </thead>
+        <tbody valign="top">
+            <tr class="row-even">
+                <td><a class="reference internal" href="../iati-activities/"><span class="doc">iati-activities</span></a></td>
+                <td>&nbsp;</td>
+                <td>Top-level list of one or more IATI activity records.</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>iati-activities</td>
+                <td></td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr class="row-odd">
+                <td>&nbsp;</td>
+                <td>version</td>
+                <td>A number indicating the IATI specification version in use.
+                    This is mandatory and must be a valid version.
+                </td>
+                <td>xsd:string</td>
+                <td><a class="reference internal" href="../../codelists/Version/"><span class="doc">Version</span></a></td>
+                <td>iati-activities/@version</td>
+                <td>1..1</td>
+                <td>&nbsp;</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+-->
+
+
+            <div id="file-format">
+    <div id="codes">
+        <h2>Codes<a href="#codes" title="Permalink to this headline">¶</a></h2>
+        <table id="fileformat">
+            <colgroup>
+                <col width="25%">
+                <col width="25%">
+                <col width="25%">
+                <col width="25%">
+            </colgroup>
+            <thead valign="bottom">
+                <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                </tr>
+            </thead>
+            <tbody valign="top">
+                <tr>
+                    <td>application/font-sfnt (withdrawn)</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>application</td>
+                </tr>
+                <tr>
+                    <td>application/smil (withdrawn)</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>application</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<!-- Original content
+<div class="section" id="file-format">
+    <div class="section" id="codes">
+        <h2>Codes<a class="headerlink" href="#codes" title="Permalink to this headline">¶</a></h2>
+        <table class="docutils" id="fileformat">
+            <colgroup>
+                <col width="25%">
+                <col width="25%">
+                <col width="25%">
+                <col width="25%">
+            </colgroup>
+            <thead valign="bottom">
+                <tr class="row-odd">
+                    <th class="head">Code</th>
+                    <th class="head">Name</th>
+                    <th class="head">Description</th>
+                    <th class="head">Category</th>
+                </tr>
+            </thead>
+            <tbody valign="top">
+                <tr class="withdrawn row-odd">
+                    <td>application/font-sfnt (withdrawn)</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>application</td>
+                </tr>
+                <tr class="withdrawn row-even">
+                    <td>application/smil (withdrawn)</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>application</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+-->
+
+
+            <div id="codes">
+    <h2>Codes<a href="#codes" title="Permalink to this headline">¶</a></h2>
+    <table id="budgetidentifiervocabulary">
+        <colgroup>
+            <col width="33%">
+            <col width="33%">
+            <col width="33%">
+        </colgroup>
+        <thead valign="bottom">
+            <tr>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody valign="top">
+            <tr>
+                <td>1 (withdrawn)</td>
+                <td>IATI</td>
+                <td>The budget identifier reported uses IATI budget identifier categories</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Country Chart of Accounts</td>
+                <td>The budget identifier reported corresponds to the recipient country chart of accounts</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!-- Original content
+<div class="section" id="codes">
+    <h2>Codes<a class="headerlink" href="#codes" title="Permalink to this headline">¶</a></h2>
+    <table class="docutils" id="budgetidentifiervocabulary">
+        <colgroup>
+            <col width="33%">
+            <col width="33%">
+            <col width="33%">
+        </colgroup>
+        <thead valign="bottom">
+            <tr class="row-odd">
+                <th class="head">Code</th>
+                <th class="head">Name</th>
+                <th class="head">Description</th>
+            </tr>
+        </thead>
+        <tbody class="withdrawn" valign="top">
+            <tr class="row-even">
+                <td>1 (withdrawn)</td>
+                <td>IATI</td>
+                <td>The budget identifier reported uses IATI budget identifier categories</td>
+            </tr>
+            <tr class="row-odd">
+                <td>2</td>
+                <td>Country Chart of Accounts</td>
+                <td>The budget identifier reported corresponds to the recipient country chart of accounts</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+-->
+
+
         </div>
     </section>
 

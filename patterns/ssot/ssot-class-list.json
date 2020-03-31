@@ -70,7 +70,7 @@
         },
         "img": {},
         "ol": {
-            "arabic|simple": "http://reference.iatistandard.org/203/organisation-identifiers"
+            "arabic|simple": "http://reference.iatistandard.org/203/organisation-identifiers"                           // ol.arabic.simple.html
         },
         "cite": {},
         "h3": {},
@@ -83,7 +83,7 @@
         "pre": {},
         "table": {
             "colwidths-given|docutils": "http://reference.iatistandard.org/203/activity-standard/overview/all-elements-in-IATI",    // span.caption-text.html
-            "docutils": "http://reference.iatistandard.org/203/activity-standard/summary-table"
+            "docutils": "http://reference.iatistandard.org/203/activity-standard/summary-table"                         // table.docutils.html
         },
         "caption": {},
         "colgroup": {},
@@ -92,14 +92,14 @@
         "tr": {
             "row-odd": "http://reference.iatistandard.org/203/activity-standard/overview/all-elements-in-IATI",         // span.caption-text.html
             "row-even": "http://reference.iatistandard.org/203/activity-standard/overview/all-elements-in-IATI",        // span.caption-text.html
-            "withdrawn|row-even": "http://reference.iatistandard.org/203/codelists/Country",
-            "withdrawn|row-odd": "http://reference.iatistandard.org/203/codelists/FileFormat"
+            "withdrawn|row-even": "http://reference.iatistandard.org/203/codelists/Country",                            // tr.withdrawn.row-even.html
+            "withdrawn|row-odd": "http://reference.iatistandard.org/203/codelists/FileFormat"                           // tr.withdrawn.row-even.html
         },
         "th": {
             "head": "http://reference.iatistandard.org/203/activity-standard/overview/all-elements-in-IATI"             // span.caption-text.html
         },
         "tbody": {
-            "withdrawn": "http://reference.iatistandard.org/203/codelists/BudgetIdentifierVocabulary"
+            "withdrawn": "http://reference.iatistandard.org/203/codelists/BudgetIdentifierVocabulary"                   // tbody.withdrawn.html
         },
         "td": {},
         "blockquote": {},
