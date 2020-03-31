@@ -64,9 +64,9 @@
             "ow": "http://reference.iatistandard.org/203/activity-standard/summary-table",                              // div.code.highlight-default.html
             "k": "http://reference.iatistandard.org/203/activity-standard/summary-table",                               // span.mf.html
             "nb": "http://reference.iatistandard.org/203/activity-standard/summary-table",                              // span.mf.html
-            "s2": "http://reference.iatistandard.org/203/rulesets/ruleset-spec",
-            "std|std-ref": "http://reference.iatistandard.org/203/codelists/Country",
-            "problematic": "http://reference.iatistandard.org/203/codelists/OrganisationRegistrationAgency"
+            "s2": "http://reference.iatistandard.org/203/rulesets/ruleset-spec",                                        // span.s2.html
+            "std|std-ref": "http://reference.iatistandard.org/203/codelists/Country",                                   // span.std.std-ref.html
+            "problematic": "http://reference.iatistandard.org/203/codelists/OrganisationRegistrationAgency"             // span.problematic.html
         },
         "img": {},
         "ol": {
