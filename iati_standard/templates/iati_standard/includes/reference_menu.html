@@ -11,7 +11,7 @@
       <form>
         <ul class="navigation-secondary__list">
           {% for page_obj in menu_json %}
-            {% include "iati_standard/includes/reference_menu_item.html" with page_obj=page_obj calling_page=calling_page %}
+            {% include "iati_standard/includes/reference_menu_item.html" with page_obj=page_obj calling_page=calling_page parent_open=True %}
           {% endfor %}
         </ul>
       </form>
