@@ -5570,6 +5570,12 @@
     <p>One publishing approach is to start with the mandatory and recommended (minimum) elements, and then build up over time. Each element you include will increase the comprehensiveness of your data and will help people to understand the work you are carrying out.</p>
     <table>
         <caption><span>List of top-level elements</span><a href="#id1" title="Permalink to this table">¶</a></caption>
+        <colgroup>
+            <col width="25%">
+            <col width="25%">
+            <col width="25%">
+            <col width="25%">
+        </colgroup>
         <thead>
             <tr>
                 <th>Topic</th>
@@ -5674,17 +5680,16 @@
         <code>
             <pre>InternationalAid Transparency Initiative: Activity-Information Schema
 
-<span>Release</span> <span>2.03</span><span>,</span> <span>2018</span><span>-</span><span>02</span><span>-</span><span>19</span>
+Release 2.03, 2018-02-19
 
-<span>NOTE</span><span>:</span> <span>the</span> <span>xml</span><span>.</span><span>xsd</span> <span>and</span> <span>iati</span><span>-</span><span>common</span><span>.</span><span>xsd</span> <span>schemas</span> <span>must</span> <span>be</span> <span>in</span> <span>the</span>
-<span>same</span> <span>directory</span> <span>as</span> <span>this</span> <span>one</span><span>.</span>
+NOTE: the xml.xsd and iati-common.xsd schemas must be in the
+same directory as this one.
 
-<span>This</span> <span>W3C</span> <span>XML</span> <span>Schema</span> <span>defines</span> <span>an</span> <span>XML</span> <span>document</span> <span>type</span> <span>for</span> <span>information</span>
+This W3C XML Schema defines an XML document type for information
 </pre>
         </code>
     </div>
 </div>
-
 
 
 
@@ -5713,17 +5718,17 @@
     <p>A <a href="https://github.com/IATI/IATI-Rulesets/blob/version-2.01/schema.json">JSON schema</a> is availible to test that the structure of a Ruleset is correct.</p>
     <p>Each JSON document has the form.:</p>
     <div>
-        <div>
-            <pre><span></span><span>{</span>
-    <span>"CONTEXT"</span><span>:</span> <span>{</span>
-        <span>"RULE_NAME"</span><span>:</span> <span>{</span>
-            <span>"cases"</span><span>:</span> <span>CASE_DICT_ARRAY</span>
-        <span>}</span>
-    <span>}</span>
+        <code>
+            <pre>{
+    "CONTEXT": {
+        "RULE_NAME": {
+            "cases": CASE_DICT_ARRAY
+        }
+    }
 
-<span>}</span>
+}
 </pre>
-        </div>
+        </code>
     </div>
 </div>
 
@@ -5749,7 +5754,6 @@
     </div>
 </div>
 -->
-
 
             <div id="country">
     <h1>Country<a href="#country" title="Permalink to this headline">¶</a></h1>
@@ -5791,7 +5795,7 @@
                 <col width="17%">
                 <col width="17%">
             </colgroup>
-            <thead valign="bottom">
+            <thead>
                 <tr>
                     <th>Code</th>
                     <th>Name</th>
@@ -5801,7 +5805,7 @@
                     <th>Public Database?</th>
                 </tr>
             </thead>
-            <tbody valign="top">
+            <tbody>
                 <tr>
                     <td>AE-ADCD</td>
                     <td>Abu Dhabi Commercial Directory</td>
@@ -5870,7 +5874,6 @@
 </div>
 -->
 
-
             <div id="organisation-identifiers">
     <h1>Organisation Identifiers<a href="#organisation-identifiers" title="Permalink to this headline">¶</a></h1>
     <p>The <strong>IATI standard</strong> allows for the recording of information on all <em>organisations</em> that participate in any part of the lifecycle of an aid activity: inter alia donors, beneficiaries, extending and implementing agencies.</p>
@@ -5885,8 +5888,8 @@
             <li>The <strong>namespace code</strong> - a code that creates and maintains a given organisational identifier registry</li>
             <li>The <strong>base identifier</strong> – re-use of an existing identifier from that namespace/registry</li>
         </ol>
-        <p>1 and 2 are separated by a dash <code><pre>-</pre></code>.</p>
-        <p>The namespace code (1) may contain a dash <code><pre>-</pre></code>.</p>
+        <p>1 and 2 are separated by a dash <code>-</code>.</p>
+        <p>The namespace code (1) may contain a dash <code>-</code>.</p>
     </div>
 </div>
 
@@ -5912,7 +5915,6 @@
 </div>
 -->
 
-
             <div id="activity-standard-summary-table">
     <h1>Activity Standard Summary Table<a href="#activity-standard-summary-table" title="Permalink to this headline">¶</a></h1>
     <table>
@@ -5926,7 +5928,7 @@
             <col width="13%">
             <col width="13%">
         </colgroup>
-        <thead valign="bottom">
+        <thead>
             <tr>
                 <th>Section</th>
                 <th>Item</th>
@@ -5938,7 +5940,7 @@
                 <th>Rules</th>
             </tr>
         </thead>
-        <tbody valign="top">
+        <tbody>
             <tr>
                 <td><a href="../iati-activities/"><span>iati-activities</span></a></td>
                 <td>&nbsp;</td>
@@ -6020,7 +6022,6 @@
 </div>
 -->
 
-
             <div id="file-format">
     <div id="codes">
         <h2>Codes<a href="#codes" title="Permalink to this headline">¶</a></h2>
@@ -6031,7 +6032,7 @@
                 <col width="25%">
                 <col width="25%">
             </colgroup>
-            <thead valign="bottom">
+            <thead>
                 <tr>
                     <th>Code</th>
                     <th>Name</th>
@@ -6039,14 +6040,14 @@
                     <th>Category</th>
                 </tr>
             </thead>
-            <tbody valign="top">
-                <tr>
+            <tbody>
+                <tr class="withdrawn">
                     <td>application/font-sfnt (withdrawn)</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td>application</td>
                 </tr>
-                <tr>
+                <tr class="withdrawn">
                     <td>application/smil (withdrawn)</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
@@ -6095,7 +6096,6 @@
     </div>
 </div>
 -->
-
 
             <div id="codes">
     <h2>Codes<a href="#codes" title="Permalink to this headline">¶</a></h2>
@@ -6159,7 +6159,6 @@
     </table>
 </div>
 -->
-
 
         </div>
     </section>

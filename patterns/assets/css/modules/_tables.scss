@@ -51,6 +51,10 @@ td {
 	vertical-align: top;
 	@include font-size($epsilon);
 	border-right: 1px solid $default-border-color;
+	tr.withdrawn & {
+		color: lighten($base-color, 30%);
+		font-style: italic;
+	}
 }
 
 
