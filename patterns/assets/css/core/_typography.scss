@@ -136,7 +136,7 @@
 	h1 {
 		@extend .type-l;
 		@extend .type-l--leader;
-		//@extend .type-l--trailer;
+		@extend .type-l--trailer;
 		@extend .heading;
 		&:hover > a.m-header-link {
 			visibility: visible;
@@ -146,7 +146,7 @@
 	h2 {
 		@extend .type-m;
 		@extend .type-m--leader;
-		//@extend .type-m--trailer;
+		@extend .type-m--trailer;
 		@extend .heading;
 		&:hover > a.m-header-link {
 			visibility: visible;
@@ -223,10 +223,18 @@
 		border-radius: 3px;
 		color: $iati-rain;
 		margin-bottom: 1em;
+		pre {
+			display: inline-block;
+			overflow-x: auto;
+	        white-space: pre-wrap;
+	        word-wrap: break-word;
+			word-break: break-word;
+			vertical-align: middle;
+		}
 	}
 
 	pre code {
-		display: block;
+		display: inline-block;
 		overflow-x: auto;
         white-space: pre-wrap;
         word-wrap: break-word;
@@ -270,6 +278,38 @@
 	cite:empty,
 	div:empty {
 		display: none;
+	}
+
+
+	// For SSOT html output
+	&--data {
+		div {
+			@extend .para;
+			@extend .para--typeset;
+		}
+		div.highlight {
+			background-color: #fff;
+			padding: 0.1em 0.25em;
+			border: 1px solid darken(#fff, 10%);
+			font-family: 'Courier', sans-serif;
+			@include font-size($para);
+			display: inline-block;
+			border-radius: 3px;
+			color: $iati-rain;
+			margin-bottom: 1em;
+			pre {
+				display: block;
+				overflow-x: auto;
+		        white-space: pre-wrap;
+		        word-wrap: break-word;
+			}
+		}
+		strong {
+			@extend %font-heading;
+		}
+		em {
+			text-decoration: underline;
+		}
 	}
 }
 

@@ -5181,21 +5181,21 @@
 		<div class="l-sidebar__body">
 			
     <section>
-        <div class="is-typeset">
+        <div class="is-typeset is-typeset--data">
             <div id="definition">
-    <h2>Definition<a href="#definition" title="Permalink to this headline">¶</a></h2>
+    <h2>Definition <a href="#definition" title="Permalink to this headline">¶</a></h2>
     <p>The <strong>IATI activity standard</strong> is designed for reporting the details of individual development cooperation activities/projects.
         An activity is defined by the reporting organisation.  Depending on who is reporting, it might be a large programme, a small project or another logical grouping of work and resources.
     </p>
-    <div>
-        <div>The <strong>IATI activity standard</strong> is the most widely used part of IATI.  The activity standard supports around forty different fields, referenced by standard codelists, and designed to capture information about many different kinds of aid activities.</div>
-    </div>
-    <div>
-        <div>Organisations publish this data in an <a href="overview/activity-file/"><span>activity file</span></a>.  It is expected that every organisation publishing IATI data should include one at least <em>activity file</em>.</div>
-    </div>
-    <div>
-        <div>A <em>activity file</em> can detail one or many activities, and a organisation can publish one or many files.</div>
-    </div>
+    <p>
+        The <strong>IATI activity standard</strong> is the most widely used part of IATI.  The activity standard supports around forty different fields, referenced by standard codelists, and designed to capture information about many different kinds of aid activities.
+    </p>
+    <p>
+        Organisations publish this data in an <a href="overview/activity-file/"><span>activity file</span></a>.  It is expected that every organisation publishing IATI data should include one at least <em>activity file</em>.
+    </p>
+    <p>
+        A <em>activity file</em> can detail one or many activities, and a organisation can publish one or many files.
+    </p>
 </div>
 
 
@@ -5216,9 +5216,6 @@
     </div>
 </div>
 -->
-
-
-
 
             <div id="contents">
     <h2>Contents<a href="#contents" title="Permalink to this headline">¶</a></h2>
@@ -5243,9 +5240,6 @@
 </div>
 -->
 
-
-
-
             <div id="self-defined-vocabularies">
     <h1>Self-defined Vocabularies<a href="#self-defined-vocabularies" title="Permalink to this headline">¶</a></h1>
     <div id="definition">
@@ -5256,18 +5250,23 @@
         <p>It’s important to note that if there are multiple sectors given from the same vocabulary, their <code><pre>@percentage</pre></code> attributes should add up to 100.</p>
         <p>Here is an example:</p>
         <div>
-            <div >
-                <pre><span></span><span class="nt">&lt;iati-activity&gt;</span>
-    <span>&lt;!-- Other elements --&gt;</span>
-    <span>&lt;sector</span> <span>vocabulary=</span><span>"1"</span> <span>code=</span><span>"11120"</span> <span>percentage=</span><span>"50"</span> <span>/&gt;</span>
-    <span>&lt;sector</span> <span>vocabulary=</span><span>"1"</span> <span>code=</span><span>"11121"</span> <span>percentage=</span><span>"50"</span> <span>/&gt;</span>
-    <span>&lt;!-- Other elements --&gt;</span>
-<span>&lt;/iati-activity&gt;</span>
+
+            <!-- This needs to be a <code> instead of <div> to pick up styles ideally -->
+            <code>
+<pre>&lt;iati-activity&gt;
+    &lt;!-- Other elements --&gt;
+    &lt;sector vocabulary="1" code="11120" percentage="50" /&gt;
+    &lt;sector vocabulary="1" code="11121" percentage="50" /&gt;
+    &lt;!-- Other elements --&gt;
+&lt;/iati-activity&gt;
 </pre>
-            </div>
+            </code>
+
+
         </div>
     </div>
 </div>
+
 
 
 <!-- Original content
@@ -5303,9 +5302,9 @@
     </p>
     <p>It is also available as XML and JSON from the codelist API:</p>
     <div>
-        <div>
-            <pre><span></span><span>http</span><span>:</span><span>//</span><span>iatistandard</span><span>.</span><span>org</span><span>/</span><span>{</span><span>105</span><span>,</span><span>201</span><span>}</span><span>/</span><span>codelists</span><span>/</span><span>downloads</span><span>/</span><span>clv</span><span>{</span><span>1</span><span>,</span><span>2</span><span>,</span><span>3</span><span>}</span><span>/</span><span>mapping</span><span>.</span><span>{</span><span>xml</span><span>,</span><span>json</span><span>}</span></pre>
-        </div>
+        <code>
+            <pre>http://iatistandard.org{105,201}/codelists/downloads/clv{1,2,3}/mapping.{xml,json}</pre>
+        </code>
     </div>
 </div>
 
@@ -5509,7 +5508,7 @@
     <p>The monetary <em>budgets</em> assigned to a specific <code><pre>iati-activity</pre></code> can be described in the <strong>IATI activity standard</strong> using the following:</p>
     <ul>
         <li><code><pre>transaction-type</pre></code> type Commitment (code <em>2</em>) can be used to describe the total committed budget for the duration of the activity. Any changes to the original commitment should be reported as additional, incremental transactions (positive or negative) so that the sum of commitments represents the total committed budget.</li>
-        <li><code><pre>budget</pre></code> - the value of the <code><pre>iati-activity</pre></code> <code><pre>budget</pre></code> for each financial year over the lifetime of the activity, as stated in the <span>original</span> project document or <span>revised</span> accordingly. The status explains whether the budget being reported is indicative or has been formally committed. The value should appear within the <a href="http://iatistandard.org/203/codelists/BudgetStatus/">BudgetStatus</a> codelist. If the @status attribute is not present, the budget is assumed to be indicative. The sum of budgets may or may not match the sum of commitments, depending on a publisher’s business model and legal frameworks.</li>
+        <li><code><pre>budget</pre></code> - the value of the <code><pre>iati-activity</pre></code> <code><pre>budget</pre></code> for each financial year over the lifetime of the activity, as stated in the <em>original</em> project document or <em>revised</em> accordingly. The status explains whether the budget being reported is indicative or has been formally committed. The value should appear within the <a href="http://iatistandard.org/203/codelists/BudgetStatus/">BudgetStatus</a> codelist. If the @status attribute is not present, the budget is assumed to be indicative. The sum of budgets may or may not match the sum of commitments, depending on a publisher’s business model and legal frameworks.</li>
         <li><code><pre>planned-disbursement</pre></code> - a scheduled payment, set up against the <code><pre>budget</pre></code></li>
     </ul>
     <p>Additionally, there are two areas within the <strong>IATI activity standard</strong> that allow further clarification of budgets:</p>
@@ -5538,7 +5537,6 @@
     <p>These all relate to the specific <code class="docutils literal"><span class="pre">iati-activity</span></code> being described.</p>
 </div>
 -->
-
 
             <div id="considerations">
     <h2>Considerations<a href="#considerations" title="Permalink to this headline">¶</a></h2>
@@ -5570,15 +5568,9 @@
     <h1>Full list of top-level elements in IATI<a href="#full-list-of-top-level-elements-in-iati" title="Permalink to this headline">¶</a></h1>
     <p>The table below lists all of the elements that can be included in your publishing to IATI. This includes all of the mandatory and recommended elements outlined in <a href="../what-to-publish/"><span>What to Publish</span></a>.</p>
     <p>One publishing approach is to start with the mandatory and recommended (minimum) elements, and then build up over time. Each element you include will increase the comprehensiveness of your data and will help people to understand the work you are carrying out.</p>
-    <table border="1" id="id1">
+    <table>
         <caption><span>List of top-level elements</span><a href="#id1" title="Permalink to this table">¶</a></caption>
-        <colgroup>
-            <col>
-            <col>
-            <col>
-            <col>
-        </colgroup>
-        <thead valign="bottom">
+        <thead>
             <tr>
                 <th>Topic</th>
                 <th>Element</th>
@@ -5586,7 +5578,7 @@
                 <th>Recommended (minimum)</th>
             </tr>
         </thead>
-        <tbody valign="top">
+        <tbody>
             <tr>
                 <td>Identification</td>
                 <td>IATI Identifier</td>
@@ -5643,21 +5635,18 @@
 </div>
 -->
 
-
             <div id="id2">
     <h3>1.04<a href="#id2" title="Permalink to this headline">¶</a></h3>
     <p>Note that major changes were made to the subelements of <code><pre>location</pre></code> in version 1.04.</p>
-    <div>
-        <div>For more information refer to:</div>
-    </div>
+    <p>
+        For more information refer to:
+    </p>
     <ul>
         <li>the <a href="../../../../upgrades/decimal-upgrade-to-1-04/location-summary/"><span>1.04 location changes overview guidance</span></a></li>
         <li>the <a href="../../../../upgrades/decimal-upgrade-to-1-04/1-04-changes/#activities-schema-changes"><span>Activities Schema Changelog</span></a> (or the individual subemelement pages)</li>
     </ul>
-    <div>
-        <div>The @ref attribute was introduced to provide a cross reference that a publisher can use to link back to their own internal system.</div>
-        <div>The @percentage attribute was deemed unworkable and deprecated in 1.04</div>
-    </div>
+    <p>The @ref attribute was introduced to provide a cross reference that a publisher can use to link back to their own internal system.</p>
+    <p>The @percentage attribute was deemed unworkable and deprecated in 1.04</p>
 </div>
 
 
@@ -5679,12 +5668,11 @@
 </div>
 -->
 
-
             <div id="activity-standard-summary-table">
     <h1>Activity Standard Summary Table<a href="#activity-standard-summary-table" title="Permalink to this headline">¶</a></h1>
     <div>
-        <div>
-            <pre><span></span><span>International</span> <span>Aid</span> <span>Transparency</span> <span>Initiative</span><span>:</span> <span>Activity</span><span>-</span><span>Information</span> <span>Schema</span>
+        <code>
+            <pre>InternationalAid Transparency Initiative: Activity-Information Schema
 
 <span>Release</span> <span>2.03</span><span>,</span> <span>2018</span><span>-</span><span>02</span><span>-</span><span>19</span>
 
@@ -5693,7 +5681,7 @@
 
 <span>This</span> <span>W3C</span> <span>XML</span> <span>Schema</span> <span>defines</span> <span>an</span> <span>XML</span> <span>document</span> <span>type</span> <span>for</span> <span>information</span>
 </pre>
-        </div>
+        </code>
     </div>
 </div>
 
@@ -5718,7 +5706,6 @@
     </div>
 </div>
 -->
-
 
             <div id="iati-ruleset-spec">
     <h1>IATI Ruleset Spec<a href="#iati-ruleset-spec" title="Permalink to this headline">¶</a></h1>

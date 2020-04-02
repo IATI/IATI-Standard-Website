@@ -8,18 +8,23 @@
         <p>It’s important to note that if there are multiple sectors given from the same vocabulary, their <code><pre>@percentage</pre></code> attributes should add up to 100.</p>
         <p>Here is an example:</p>
         <div>
-            <div >
-                <pre><span></span><span class="nt">&lt;iati-activity&gt;</span>
-    <span>&lt;!-- Other elements --&gt;</span>
-    <span>&lt;sector</span> <span>vocabulary=</span><span>"1"</span> <span>code=</span><span>"11120"</span> <span>percentage=</span><span>"50"</span> <span>/&gt;</span>
-    <span>&lt;sector</span> <span>vocabulary=</span><span>"1"</span> <span>code=</span><span>"11121"</span> <span>percentage=</span><span>"50"</span> <span>/&gt;</span>
-    <span>&lt;!-- Other elements --&gt;</span>
-<span>&lt;/iati-activity&gt;</span>
+
+            <!-- This needs to be a <code> instead of <div> to pick up styles ideally -->
+            <code>
+<pre>&lt;iati-activity&gt;
+    &lt;!-- Other elements --&gt;
+    &lt;sector vocabulary="1" code="11120" percentage="50" /&gt;
+    &lt;sector vocabulary="1" code="11121" percentage="50" /&gt;
+    &lt;!-- Other elements --&gt;
+&lt;/iati-activity&gt;
 </pre>
-            </div>
+            </code>
+
+
         </div>
     </div>
 </div>
+
 
 
 <!-- Original content
