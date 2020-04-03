@@ -82,31 +82,31 @@ msgstr "Informations complémentaires"
 
 #: governance/templates/governance/members-filter.html:5
 msgid "Filter by Constituency:"
-msgstr ""
+msgstr "Filtrer par catégorie :"
 
 #: governance/templates/governance/members-filter.html:8
 msgid "All Constituencies"
-msgstr ""
+msgstr "Toutes catégories confondues"
 
 #: governance/templates/governance/members-filter.html:18
 msgid "Sort by:"
-msgstr ""
+msgstr "Trier par :"
 
 #: governance/templates/governance/members-filter.html:21
 msgid "Alphabetical"
-msgstr ""
+msgstr "Ordre alphabétique"
 
 #: governance/templates/governance/members-filter.html:24
 msgid "Year joined"
-msgstr ""
+msgstr "Année d’adhésion"
 
 #: governance/templates/governance/members_assembly_page.html:23
 msgid "Chair"
-msgstr ""
+msgstr "Président"
 
 #: governance/templates/governance/members_assembly_page.html:28
 msgid "Vice chair"
-msgstr ""
+msgstr "Vice-président"
 
 #: guidance_and_support/forms.py:11
 msgid "Name"
@@ -126,7 +126,7 @@ msgstr "votre.adresse@electronique.com"
 
 #: guidance_and_support/forms.py:27 guidance_and_support/forms.py:40
 msgid "This field is required."
-msgstr ""
+msgstr "Champs obligatoire."
 
 #: guidance_and_support/forms.py:28
 #, fuzzy
@@ -136,7 +136,7 @@ msgstr "Adresse électronique"
 
 #: guidance_and_support/forms.py:32
 msgid "How can we help you?"
-msgstr ""
+msgstr "Comment pouvons-nous vous aider ?"
 
 #: guidance_and_support/mixins.py:28
 #, fuzzy
@@ -192,14 +192,22 @@ msgid ""
 "help you. Alternatively, you can email support at <a href=\"mailto:"
 "support@iatistandard.org\">support@iatistandard.org</a>.\n"
 "            "
-msgstr ""
+msgid ""
+"\n"
+"                Veuillez remplir le formulaire ci-dessous pour que notre équipe puisse "
+"vous aider. Vous pouvez également écrire à notre équipe d’assistance à l’adresse <a href=\"mailto:"
+"support@iatistandard.org\">support@iatistandard.org</a>.\n"
+"            "
 
 #: guidance_and_support/templates/guidance_and_support/includes/contact_form.html:18
 msgid ""
 "\n"
 "                Thank you - your message has been sent.\n"
 "            "
-msgstr ""
+msgid ""
+"\n"
+"                Votre message a été envoyé. Merci.\n"
+"            "
 
 #: guidance_and_support/templates/guidance_and_support/includes/contact_form.html:22
 #, fuzzy
@@ -215,14 +223,18 @@ msgstr "Courriel"
 
 #: guidance_and_support/templates/guidance_and_support/includes/contact_form.html:25
 msgid "Message"
-msgstr ""
+msgstr "Message"
 
 #: guidance_and_support/templates/guidance_and_support/includes/contact_form.html:41
 msgid ""
 "\n"
 "                    Sorry, there appears to be an issue.\n"
 "                "
-msgstr ""
+
+msgid ""
+"\n"
+"                    Il semble que nous rencontrions un problème. Veuillez nous excuser pour la gêne occasionnée.\n"
+"                "
 
 #: guidance_and_support/templates/guidance_and_support/includes/contact_form.html:59
 msgid "Submit request"
@@ -230,7 +242,7 @@ msgstr "Envoyer la requête"
 
 #: guidance_and_support/templates/guidance_and_support/includes/contact_form.html:65
 msgid "This site is protected by reCAPTCHA and the Google"
-msgstr ""
+msgstr "Ce site est protégé par reCAPTCHA et Google"
 
 #: guidance_and_support/templates/guidance_and_support/includes/contact_form.html:66
 #, fuzzy
@@ -240,15 +252,15 @@ msgstr "Politique de confidentialité"
 
 #: guidance_and_support/templates/guidance_and_support/includes/contact_form.html:66
 msgid "and"
-msgstr ""
+msgstr "et"
 
 #: guidance_and_support/templates/guidance_and_support/includes/contact_form.html:67
 msgid "Terms of Service"
-msgstr ""
+msgstr "Conditions d’utilisation "
 
 #: guidance_and_support/templates/guidance_and_support/includes/contact_form.html:67
 msgid "apply"
-msgstr ""
+msgstr "appliquer"
 
 #: home/templates/home/home_page_legacy.html:16
 msgid "Photo of Achim Steiner, UNDP Administrator"
@@ -507,7 +519,7 @@ msgstr "Visitez l'outil à"
 
 #: home/templates/home/modules/news-tweets.html:36
 msgid "by"
-msgstr ""
+msgstr "par"
 
 #: home/translation_helper.py:51
 msgid "Promote"
@@ -599,7 +611,7 @@ msgstr "Twitter"
 
 #: iati/templates/scaffold/footer.html:41
 msgid "YouTube"
-msgstr ""
+msgstr "YouTube"
 
 #: iati/templates/scaffold/header.html:7
 #: navigation/templates/navigation/primary.html:16
