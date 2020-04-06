@@ -24,10 +24,6 @@ class Migration(migrations.Migration):
         except Exception:
             return
 
-        # return if we already have a search page
-        if SearchPage.objects.all().first():
-            return
-
         # test for the existance of a news index page
         # an empty database won't have this, but it needs wrapping in an atomic transaction so we can back out successfully
         # https://docs.djangoproject.com/en/2.2/topics/db/transactions/#controlling-transactions-explicitly
@@ -40,6 +36,11 @@ class Migration(migrations.Migration):
 
         # only proceed if we have a news indes page (e.g. not an empty database)
         if news_index_page_count:
+
+            # return if we already have a search page
+            if SearchPage.objects.all().first():
+                return
+
             parent = HomePage.objects.all().first()
             new_page = SearchPage()
             for field, value in DATA.items():
