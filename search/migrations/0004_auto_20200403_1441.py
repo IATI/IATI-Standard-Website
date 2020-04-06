@@ -5,11 +5,7 @@ from importlib import import_module
 
 DATA = {
     'title': 'Search iatistandard.org',
-    'title_en': 'Search iatistandard.org',
-    'title_fr': 'Recherche iatistandard.org',
     'slug': 'search',
-    'slug_en': 'search',
-    'slug_fr': 'search',
     'heading': 'Search iatistandard.org',
     'heading_en': 'Search iatistandard.org',
     'heading_fr': 'Recherche iatistandard.org',
@@ -50,7 +46,7 @@ class Migration(migrations.Migration):
                 setattr(new_page, field, value)
 
             parent.add_child(instance=new_page)
-            new_page.save_revision()
+            new_page.save_revision().publish()
 
     dependencies = [
         ('search', '0003_add_search_page'),
