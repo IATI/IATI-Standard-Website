@@ -2,7 +2,6 @@ from itertools import chain
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
 from wagtail.core.models import Page
-from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.search.models import Query
 from about.models import AboutPage, AboutSubPage, CaseStudyPage, HistoryPage, PeoplePage
 from contact.models import ContactPage
@@ -58,9 +57,7 @@ class SearchPage(AbstractBasePage):
         ]
         # TODO: add KnowledgebasePage back if activated
 
-        # get the query string
         query = request.GET
-
         search_query = request.GET.get('query', '')
         page = request.GET.get('page', 1)
 

@@ -1,4 +1,5 @@
- {% load i18n %}
+{% load i18n %}
+
 <div class="pagination">
     <ul class="pagination pagination__listing">
         {% if children.has_previous %}
@@ -20,9 +21,8 @@
 		{% endif %}
 		<div class="pagination pagination__count">
 		    {% if children.paginator.num_pages > 1 %}
-				<p class="pagination__item">{{ children.paginator.num_pages }} pages</p>
+				<p class="pagination__item">{{ children.paginator.num_pages }} {% trans "pages" %}</p>
 			{% endif %}
 		</div>
     </ul>
-
 </div>

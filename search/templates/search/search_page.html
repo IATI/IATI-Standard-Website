@@ -25,13 +25,11 @@
                             <p class="listing-search-header__copy">Results are ordered by relevance.</p>
                         {% endblocktrans %}
                     </div>
-
                     <div class="l-cards-block">
                         {% for result in search_results %}
                             {% include 'search/search-listing.html' with item=result %}
                         {% endfor %}
                     </div>
-
                     {% include 'home/includes/pagination_links.html' with children=search_results %}
 
                 {% elif search_query %}
@@ -51,7 +49,7 @@
                     </div>
                     <div class="aside-m__body">
                         <p class="aside-m__copy">{% trans "Our technical team are ready to help you." %}</p>
-                        <a class="button js-move" data-target="support" href="#support">{% trans "Get help" %}</a>
+                        <a class="button" data-target="support" href="{{ global.support_page.url }}">{% trans "Get help" %}</a>
                     </div>
                 </div>
             </aside>

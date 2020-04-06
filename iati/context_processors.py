@@ -9,6 +9,7 @@ from navigation.models import (
     UsefulLinks,
 )
 from search.models import SearchPage
+from guidance_and_support.models import SupportPage
 
 
 def get_current_page(request):
@@ -32,6 +33,7 @@ def globals(request):
     """Return a global context dictionary for use by templates."""
     current_page = get_current_page(request)
     search_page = SearchPage.objects.all().live().first()
+    support_page = SupportPage.objects.all().live().first()
 
     return {
         'global': {
@@ -40,6 +42,7 @@ def globals(request):
             'useful_links': UsefulLinks.for_site(request.site).useful_links.all(),
             'twitter_handle': settings.TWITTER_HANDLE,
             'search_page': search_page,
+            'support_page': support_page,
         },
     }
 
