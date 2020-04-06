@@ -24,6 +24,7 @@ class Migration(migrations.Migration):
         try:
             HomePage = import_module('home.models').HomePage
             SearchPage = import_module('search.models').SearchPage
+            NewsIndexPage = import_module('news.models').NewsIndexPage
         except Exception:
             return
 
@@ -31,19 +32,25 @@ class Migration(migrations.Migration):
         if SearchPage.objects.all().first():
             return
 
-        # wrap in an atomic transaction so we can back out successfully (Travis essentially)
+        # test for the existance of a news index page
+        # an empty database won't have this, but it needs wrapping in an atomic transaction so we can back out successfully
         # https://docs.djangoproject.com/en/2.2/topics/db/transactions/#controlling-transactions-explicitly
+        news_index_page_count = 0
         try:
             with transaction.atomic():
-                parent = HomePage.objects.all().first()
-                new_page = SearchPage().specific
-                for field, value in DATA.items():
-                    setattr(new_page, field, value)
+                news_index_page_count = NewsIndexPage.objects.all().count()
         except Exception:
             return
 
-        parent.add_child(instance=new_page)
-        new_page.save_revision()
+        # only proceed if we have a news indes page (e.g. not an empty database)
+        if news_index_page_count:
+            parent = HomePage.objects.all().first()
+            new_page = SearchPage()
+            for field, value in DATA.items():
+                setattr(new_page, field, value)
+
+            parent.add_child(instance=new_page)
+            new_page.save_revision()
 
     dependencies = [
         ('search', '0003_add_search_page'),
