@@ -69,10 +69,10 @@ class SearchPage(AbstractBasePage):
 
             promoted = [x.page.specific for x in Query.get(search_query).editors_picks.all() if x.page.live]
             query = Query.get(search_query)
+            query.add_hit()
 
             results = list(chain(promoted, search_results))
 
-            query.add_hit()
         else:
             results = Page.objects.none()
 
