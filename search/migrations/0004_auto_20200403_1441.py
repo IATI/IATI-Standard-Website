@@ -32,7 +32,7 @@ class Migration(migrations.Migration):
             return
 
         parent = HomePage.objects.all().first()
-        new_page = SearchPage()
+        new_page = SearchPage().specific
         for field, value in DATA.items():
             if hasattr(new_page, field):
                 setattr(new_page, field, value)
