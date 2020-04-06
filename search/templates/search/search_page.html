@@ -20,8 +20,8 @@
             <div class="l-sidebar__body">
                 {% if search_results %}
                     <div class="listing-search-header">
-                        {% blocktrans %}
-                            <h2 class="type-l type-l--trailer heading">Showing {{ search_results.start_index }}–{{ search_results.end_index }} of {{ paginator.count }} results</h2>
+                        {% blocktrans with start=search_results.start_index end=search_results.end_index total=paginator.count %}
+                            <h2 class="type-l type-l--trailer heading">Showing {{ start }}–{{ end }} of {{ total }} results</h2>
                             <p class="listing-search-header__copy">Results are ordered by relevance.</p>
                         {% endblocktrans %}
                     </div>
