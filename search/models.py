@@ -14,6 +14,7 @@ from iati_standard.models import IATIStandardPage
 
 
 class SearchPage(AbstractBasePage):
+    """A model for a seach page, to respond to query requests."""
 
     class Meta:
         verbose_name = 'Search'
@@ -24,7 +25,7 @@ class SearchPage(AbstractBasePage):
     max_count = 1
 
     def get_paginated(self, collection, page: int, per_page: int = 10):
-        """Handle some error conditions and tries to return working pagination"""
+        """Handle some error conditions and tries to return working pagination."""
         results = None
         paginator = None
         try:
@@ -44,7 +45,7 @@ class SearchPage(AbstractBasePage):
         return results, paginator
 
     def serve(self, request, page=None):
-        """Serve the search page with query info and paginated results"""
+        """Serve the search page with query info and paginated results."""
         template = self.get_template(request)
         context = self.get_context(request)
 
