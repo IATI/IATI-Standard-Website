@@ -23,7 +23,7 @@ cache: pip
 
 stages:
   - strict lint
-  - test
+  - travis_wait test
 
 jobs:
   include:
