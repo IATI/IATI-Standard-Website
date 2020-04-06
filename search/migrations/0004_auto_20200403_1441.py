@@ -34,7 +34,8 @@ class Migration(migrations.Migration):
         parent = HomePage.objects.all().first()
         new_page = SearchPage()
         for field, value in DATA.items():
-            setattr(new_page, field, value)
+            if hasattr(new_page, field):
+                setattr(new_page, field, value)
 
         parent.add_child(instance=new_page)
         new_page.save_revision()
