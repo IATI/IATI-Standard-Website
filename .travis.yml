@@ -18,7 +18,7 @@ before_script:
   - python manage.py collectstatic
   - python manage.py runserver &
 script:
-  - pytest events
+  - make test
 cache: pip
 
 stages:
@@ -28,7 +28,7 @@ stages:
 jobs:
   include:
     - stage: test
-      script: make test
+      script: pytest events
     - stage: strict lint
       env:
         - LINTER=pylint
