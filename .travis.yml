@@ -28,7 +28,7 @@ stages:
 jobs:
   include:
     - stage: test
-      script: pytest events
+      script: make test
     - stage: strict lint
       env:
         - LINTER=pylint
