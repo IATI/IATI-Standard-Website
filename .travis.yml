@@ -18,7 +18,7 @@ before_script:
   - python manage.py collectstatic
   - python manage.py runserver &
 script:
-  - make test
+  - pytest events
 cache: pip
 
 stages:
