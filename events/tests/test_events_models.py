@@ -1,31 +1,31 @@
-import pytest
-from django.utils import timezone
-from events.factories import EventPageFactory, EventIndexPageFactory, EventTypeFactory
-from events.models import EventPage
-from home.models import HomePage
+# import pytest
+# from django.utils import timezone
+# from events.factories import EventPageFactory, EventIndexPageFactory, EventTypeFactory
+# from events.models import EventPage
+# from home.models import HomePage
 
 
-@pytest.fixture
-def events():
-    """Fixture to generate event pages."""
-    home_page = HomePage.objects.first()
-    event_listing = EventIndexPageFactory(
-        parent=home_page
-    )
-    event_types = EventTypeFactory.create_batch(2)
-    EventPageFactory.create_batch(
-        10,
-        parent=event_listing,
-        event_type=[event_types[0]],
-        starts_in_past=True,
-    )
-    EventPageFactory.create_batch(
-        10,
-        parent=event_listing,
-        event_type=[event_types[1]],
-        starts_in_future=True
-    )
-    return event_listing
+# @pytest.fixture
+# def events():
+#     """Fixture to generate event pages."""
+#     home_page = HomePage.objects.first()
+#     event_listing = EventIndexPageFactory(
+#         parent=home_page
+#     )
+#     event_types = EventTypeFactory.create_batch(2)
+#     EventPageFactory.create_batch(
+#         10,
+#         parent=event_listing,
+#         event_type=[event_types[0]],
+#         starts_in_past=True,
+#     )
+#     EventPageFactory.create_batch(
+#         10,
+#         parent=event_listing,
+#         event_type=[event_types[1]],
+#         starts_in_future=True
+#     )
+#     return event_listing
 
 
 # @pytest.mark.django_db
