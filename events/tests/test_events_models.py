@@ -14,13 +14,13 @@ def events():
     )
     event_types = EventTypeFactory.create_batch(2)
     EventPageFactory.create_batch(
-        10,
+        1,
         parent=event_listing,
         event_type=[event_types[0]],
         starts_in_past=True,
     )
     EventPageFactory.create_batch(
-        10,
+        1,
         parent=event_listing,
         event_type=[event_types[1]],
         starts_in_future=True
