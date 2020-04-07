@@ -32,10 +32,10 @@ def events():
 class TestEventPage():
     """Tests EventPage."""
 
-    # @pytest.mark.filterwarnings('ignore::RuntimeWarning')
-    # def test_event_types_on_index(self, client, events):
-    #     """Test that event with random date is created."""
-    #     assert events.event_types.count() == 2
+    @pytest.mark.filterwarnings('ignore::RuntimeWarning')
+    def test_event_types_on_index(self, client, events):
+        """Test that event with random date is created."""
+        assert events.event_types.count() == 2
 
     # @pytest.mark.filterwarnings('ignore::RuntimeWarning')
     # def test_past_events(self, client, events):
