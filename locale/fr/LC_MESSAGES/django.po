@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-06 16:43+0000\n"
+"POT-Creation-Date: 2020-04-08 13:19+0000\n"
 "PO-Revision-Date: 2018-11-02 17:54+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -22,12 +22,12 @@ msgstr ""
 #, python-format
 msgid " Showing \"%(event_type_name)s\" events from %(year)s"
 msgstr ""
-" Voir les événements de la catégorie « %(event_type_name)s » de %(year)s"
+" Voir les événements de la catégorie « %(event_type_name)s » de %(year)s"
 
 #: events/templates/events/event_index_page.html:22
 #, python-format
 msgid " Showing \"%(event_type_name)s\" events"
-msgstr " Voir les événements de la catégorie « %(event_type_name)s »"
+msgstr " Voir les événements de la catégorie « %(event_type_name)s »"
 
 #: events/templates/events/event_index_page.html:25
 #: events/templates/events/event_index_page.html:32
@@ -37,7 +37,7 @@ msgstr "Voir tous les événements"
 #: events/templates/events/event_index_page.html:30
 #, python-format
 msgid " Showing events from %(year)s"
-msgstr " Voir les événements de %(year)s"
+msgstr " Voir les événements de %(year)s"
 
 #: events/templates/events/event_index_page.html:55
 #: events/templates/events/event_page.html:16
@@ -82,31 +82,31 @@ msgstr "Informations complémentaires"
 
 #: governance/templates/governance/members-filter.html:5
 msgid "Filter by Constituency:"
-msgstr ""
+msgstr "Filtrer par catégorie :"
 
 #: governance/templates/governance/members-filter.html:8
 msgid "All Constituencies"
-msgstr ""
+msgstr "Toutes catégories confondues"
 
 #: governance/templates/governance/members-filter.html:18
 msgid "Sort by:"
-msgstr ""
+msgstr "Trier par :"
 
 #: governance/templates/governance/members-filter.html:21
 msgid "Alphabetical"
-msgstr ""
+msgstr "Ordre alphabétique"
 
 #: governance/templates/governance/members-filter.html:24
 msgid "Year joined"
-msgstr ""
+msgstr "Année d’adhésion"
 
 #: governance/templates/governance/members_assembly_page.html:23
 msgid "Chair"
-msgstr ""
+msgstr "Président"
 
 #: governance/templates/governance/members_assembly_page.html:28
 msgid "Vice chair"
-msgstr ""
+msgstr "Vice-président"
 
 #: guidance_and_support/forms.py:11
 msgid "Name"
@@ -126,7 +126,7 @@ msgstr "votre.adresse@electronique.com"
 
 #: guidance_and_support/forms.py:27 guidance_and_support/forms.py:40
 msgid "This field is required."
-msgstr ""
+msgstr "Champs obligatoire."
 
 #: guidance_and_support/forms.py:28
 #, fuzzy
@@ -136,7 +136,7 @@ msgstr "Adresse électronique"
 
 #: guidance_and_support/forms.py:32
 msgid "How can we help you?"
-msgstr ""
+msgstr "Comment pouvons-nous vous aider ?"
 
 #: guidance_and_support/mixins.py:28
 #, fuzzy
@@ -161,7 +161,7 @@ msgstr "Dans cette partie"
 #: guidance_and_support/templates/guidance_and_support/guidance_group_page.html:39
 #, python-format
 msgid "%(pagecount)s pages"
-msgstr "%(pagecount)s pages"
+msgstr "%(pagecount)s pages"
 
 #: guidance_and_support/templates/guidance_and_support/guidance_page.html:29
 #: guidance_and_support/templates/guidance_and_support/includes/contact_form.html:6
@@ -193,6 +193,12 @@ msgid ""
 "support@iatistandard.org\">support@iatistandard.org</a>.\n"
 "            "
 msgstr ""
+"\n"
+"                Veuillez remplir le formulaire ci-dessous pour que notre "
+"équipe puisse vous aider. Vous pouvez également écrire à notre équipe "
+"d’assistance à l’adresse <a href=\"mailto:support@iatistandard.org"
+"\">support@iatistandard.org</a>.\n"
+"            "
 
 #: guidance_and_support/templates/guidance_and_support/includes/contact_form.html:18
 msgid ""
@@ -200,6 +206,9 @@ msgid ""
 "                Thank you - your message has been sent.\n"
 "            "
 msgstr ""
+"\n"
+"                Votre message a été envoyé. Merci.\n"
+"            "
 
 #: guidance_and_support/templates/guidance_and_support/includes/contact_form.html:22
 #, fuzzy
@@ -215,7 +224,7 @@ msgstr "Courriel"
 
 #: guidance_and_support/templates/guidance_and_support/includes/contact_form.html:25
 msgid "Message"
-msgstr ""
+msgstr "Message"
 
 #: guidance_and_support/templates/guidance_and_support/includes/contact_form.html:41
 msgid ""
@@ -223,6 +232,10 @@ msgid ""
 "                    Sorry, there appears to be an issue.\n"
 "                "
 msgstr ""
+"\n"
+"                    Il semble que nous rencontrions un problème. Veuillez "
+"nous excuser pour la gêne occasionnée.\n"
+"                "
 
 #: guidance_and_support/templates/guidance_and_support/includes/contact_form.html:59
 msgid "Submit request"
@@ -230,7 +243,7 @@ msgstr "Envoyer la requête"
 
 #: guidance_and_support/templates/guidance_and_support/includes/contact_form.html:65
 msgid "This site is protected by reCAPTCHA and the Google"
-msgstr ""
+msgstr "Ce site est protégé par reCAPTCHA et Google"
 
 #: guidance_and_support/templates/guidance_and_support/includes/contact_form.html:66
 #, fuzzy
@@ -240,19 +253,19 @@ msgstr "Politique de confidentialité"
 
 #: guidance_and_support/templates/guidance_and_support/includes/contact_form.html:66
 msgid "and"
-msgstr ""
+msgstr "et"
 
 #: guidance_and_support/templates/guidance_and_support/includes/contact_form.html:67
 msgid "Terms of Service"
-msgstr ""
+msgstr "Conditions d’utilisation "
 
 #: guidance_and_support/templates/guidance_and_support/includes/contact_form.html:67
 msgid "apply"
-msgstr ""
+msgstr "appliquer"
 
 #: home/templates/home/home_page_legacy.html:16
 msgid "Photo of Achim Steiner, UNDP Administrator"
-msgstr "Photographie d’Achim Steiner, administrateur du PNUD"
+msgstr "Photographie d’Achim Steiner, administrateur du PNUD"
 
 #: home/templates/home/home_page_legacy.html:19
 msgid "&ldquo;Transparency is a cornerstone of our work at UNDP.&rdquo;"
@@ -416,7 +429,7 @@ msgstr ""
 "                  L’IITA permet à ses utilisateurs du monde entier de suivre "
 "les flux de ressources liés à l’aide, aux actions humanitaires et au "
 "développement. Certains d’entre eux ont recours à la norme de l’IITA pour "
-"publier leurs données ; d’autres consultent ces données afin d’étayer leurs "
+"publier leurs données ; d’autres consultent ces données afin d’étayer leurs "
 "prises de décisions et de demander des comptes aux autorités. Nos études de "
 "cas vous présentent quelques-uns d’entre eux.\n"
 "                  "
@@ -436,7 +449,7 @@ msgstr "Partenaires"
 
 #: home/templates/home/home_page_legacy.html:168
 msgid "Photo of Hillevi Ekberg of Sida"
-msgstr "Photographie d’Hillevi Ekberg, de l’ASDI"
+msgstr "Photographie d’Hillevi Ekberg, de l’ASDI"
 
 #: home/templates/home/home_page_legacy.html:173
 msgid ""
@@ -455,7 +468,7 @@ msgstr "ASDI – Agence suédoise de coopération internationale au développeme
 
 #: home/templates/home/home_page_legacy.html:185
 msgid "Photo of Winnie Kamau, Data Journalist"
-msgstr "Photographie de Winnie Kamau, journaliste de données"
+msgstr "Photographie de Winnie Kamau, journaliste de données"
 
 #: home/templates/home/home_page_legacy.html:190
 msgid ""
@@ -523,7 +536,7 @@ msgstr "Visitez l'outil à"
 
 #: home/templates/home/modules/news-tweets.html:36
 msgid "by"
-msgstr ""
+msgstr "par"
 
 #: home/translation_helper.py:51
 msgid "Promote"
@@ -563,7 +576,7 @@ msgstr "Nous ne trouvons pas ce que vous cherchez."
 
 #: iati/templates/500-non-static.html:4
 msgid "500 error"
-msgstr "Erreur 500"
+msgstr "Erreur 500"
 
 #: iati/templates/500-non-static.html:5
 msgid ""
@@ -571,7 +584,7 @@ msgid ""
 "and this page will be back soon."
 msgstr ""
 "Une erreur technique est survenue. Ceci n’est pas de votre faute. Nous avons "
-"été prévenus ; la page demandée sera accessible sous peu."
+"été prévenus ; la page demandée sera accessible sous peu."
 
 #: iati/templates/base.html:51
 msgid "Skip to main content"
@@ -607,7 +620,7 @@ msgstr "S’abonner"
 
 #: iati/templates/scaffold/footer.html:38
 msgid "Copyright IATI 2018. All rights reserved"
-msgstr "Copyright IITA 2018. Tous droits réservés."
+msgstr "Copyright IITA 2018. Tous droits réservés."
 
 #: iati/templates/scaffold/footer.html:40
 msgid "Twitter"
@@ -615,7 +628,7 @@ msgstr "Twitter"
 
 #: iati/templates/scaffold/footer.html:41
 msgid "YouTube"
-msgstr ""
+msgstr "YouTube"
 
 #: iati/templates/scaffold/header.html:7
 #: navigation/templates/navigation/primary.html:16
@@ -696,7 +709,7 @@ msgstr "Menu"
 #, python-format
 msgid " Showing \"%(news_category_name)s\" news posts"
 msgstr ""
-" Voir les nouvelles publications de la catégorie « %(news_category_name)s »"
+" Voir les nouvelles publications de la catégorie « %(news_category_name)s »"
 
 #: news/templates/news/news_index_page.html:19
 msgid "Show all posts"
@@ -744,6 +757,9 @@ msgstr ""
 #: using_data/templates/using_data/using_data_page.html:51
 msgid "View tools and resources"
 msgstr "Accéder aux outils et aux ressources"
+
+#~ msgid "Search iatistandard.org"
+#~ msgstr "Recherche iatistandard.org"
 
 #~ msgid ""
 #~ "\n"
@@ -805,9 +821,6 @@ msgstr "Accéder aux outils et aux ressources"
 
 #~ msgid "Translation FAQs"
 #~ msgstr "Questions fréquentes concernant la traduction"
-
-#~ msgid "Search iatistandard.org"
-#~ msgstr "Recherche iatistandard.org"
 
 #~ msgid "Language"
 #~ msgstr "Langue"
