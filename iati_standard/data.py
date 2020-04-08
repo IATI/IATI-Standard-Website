@@ -129,12 +129,18 @@ def recursive_create_menu(parent_page):
     return page_obj
 
 
-def populate_index(observer, tag, previous_tag=None):
+def populate_index(observer, tag):
     """Use ReferenceData objects to populate page index."""
     observer.update_state(
         state='PROGRESS',
         meta='Populating index'
     )
+
+    new_object_paths = set(ReferenceData.objects.filter(tag=tag).order_by().values_list('ssot_path'))
+    old_object_paths = set(ReferenceData.objects.exclude(tag=tag).order_by().values_list('ssot_path'))
+
+    to_delete = [item[0] for item in (old_object_paths - new_object_paths)]
+    ActivityStandardPage.objects.filter(ssot_path__in=list(to_delete)).delete()
 
     ssot_roots = [roots[0] for roots in ReferenceData.objects.filter(tag=tag).order_by().values_list('ssot_root_slug').distinct()]
     ActivityStandardPage.objects.all().update(has_been_recursed=False)
@@ -155,10 +161,3 @@ def populate_index(observer, tag, previous_tag=None):
         tag=tag,
         defaults={'menu_json': menu_json},
     )
-
-    if previous_tag:
-        new_object_paths = set(ReferenceData.objects.filter(tag=tag).order_by().values_list('ssot_path'))
-        old_object_paths = set(ReferenceData.objects.filter(tag=previous_tag).order_by().values_list('ssot_path'))
-
-        to_delete = (old_object_paths - new_object_paths)
-        ActivityStandardPage.objects.filter(ssot_path__in=list(to_delete)).delete()
