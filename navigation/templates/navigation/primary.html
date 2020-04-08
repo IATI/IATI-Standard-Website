@@ -1,4 +1,4 @@
-{% load wagtailcore_tags iati_tags i18n %}
+{% load iati_tags i18n %}
 
 <button role="button button--small" class="navigation-primary-toggle" id="navigation-primary-toggle"><span>{% trans "Menu" %}</span></button>
 
@@ -12,7 +12,7 @@
         {% endfor %}
     </ul>
     <div class="search-mobile">
-        <form action="{% pageurl global.search_page %}">
+        <form action="{{ global.search_page_url }}">
             <label for="search-mobile" class="form-label form-label--hidden">{% trans "Search the IATI website" %}</label>
             <input class="form-item" type="text" name="query" placeholder="{% trans "Search the IATI website" %}">
             <button class="button" type="submit">{% trans "Search" %}</button>

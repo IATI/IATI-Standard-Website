@@ -1,6 +1,6 @@
-{% load wagtailcore_tags wagtailimages_tags i18n %}
+{% load wagtailimages_tags i18n %}
 
-<form class="m-search" action="{% pageurl global.search_page %}" method="get">
+<form class="m-search" action="{{ global.search_page_url }}" method="get">
     <div class="row">
         <div class="form-field">
             <label class="form-label" for="query">{% trans "Search the site" %}</label>
