@@ -507,7 +507,7 @@ msgstr "Page suivante"
 
 #: home/templates/home/includes/pagination_links.html:24
 msgid "pages"
-msgstr ""
+msgstr "pages"
 
 #: home/templates/home/includes/search_bar.html:6
 #, fuzzy
@@ -733,6 +733,12 @@ msgid ""
 "are ordered by relevance.</p>\n"
 "                        "
 msgstr ""
+"\n"
+"                            <h2 class=\"type-l type-l--trailer heading"
+"\">Afficher %(start)s–%(end)s des %(total)s résultats</h2>\n"
+"                            <p class=\"listing-search-header__copy\">Les résultats "
+"sont classés par pertinence.</p>\n"
+"                        "
 
 #: search/templates/search/search_page.html:37
 msgid ""
@@ -743,6 +749,12 @@ msgid ""
 "please try again</p>\n"
 "                        "
 msgstr ""
+"\n"
+"                            <h3 class=\"type-s type-s--trailer\">Aucun résultat "
+"trouvé</h3>\n"
+"                            <p>Votre recherche n’a donné aucun résultat."
+" Veuillez réessayer.</p>\n"
+"                        "
 
 #: using_data/templates/using_data/tools_index_page.html:24
 msgid "Support"
