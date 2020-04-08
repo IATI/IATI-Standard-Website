@@ -41,8 +41,8 @@ def globals(request):
             'utility_menu': construct_nav(UtilityMenu.for_site(request.site).utility_menu_links.all(), current_page),
             'useful_links': UsefulLinks.for_site(request.site).useful_links.all(),
             'twitter_handle': settings.TWITTER_HANDLE,
-            'search_page': search_page.url if search_page else '',
-            'support_page': support_page.url if support_page else '',
+            'search_page_url': search_page.url if search_page else '',
+            'support_page_url': support_page.url if support_page else '',
         },
     }
 
