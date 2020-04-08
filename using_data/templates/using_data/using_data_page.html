@@ -1,60 +1,58 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags wagtailimages_tags wagtail_modeltranslation iati_tags i18n %}
+
+{% load wagtailcore_tags iati_tags i18n static %}
+
 {% block body_class %}body body--data{% endblock %}
 {% block body_id %}body-data{% endblock %}
 
 {% block content %}
-  <div class="hero">
-    {% include "home/includes/hero_heading.html" %}
-  </div>
-
-<div class="row">
-  <div class="l-sidebar l-sidebar--reverse">
-    <aside class="l-sidebar__aside">
-      {% side_panel calling_page=self %}
-    </aside>
-
-    <div class="l-sidebar__body">
-        {% if page.content_editor %}
-          {% include "home/includes/streamfield.html" with content=page.content_editor %}
-        {% endif %}
+    <div class="hero">
+        {% include "home/includes/hero_heading.html" %}
     </div>
-</div>
 
-      <div class="space-section-top">
-          <div class="row">
-              <div class="l-cards">
-                {% for subpage in subpages %}
-                    {% with subpage=subpage.specific %}
-                  <div class="card card--alt">
-                      <h2 class="card__heading">{{ subpage.heading }}</h2>
-                      <p class="card__excerpt">{{ subpage.excerpt|default:"" }}</p>
-                      <p class="card__excerpt--truncated">{{ subpage.excerpt|default:""|truncatechars:35 }}</p>
-                      <a href="{% pageurl subpage %}" class="button">{% trans "Find out more" %}</a>
-                  </div>
-                  {% endwith %}
-                {% endfor %}
-              </div>
-          </div>
-      </div>
+    <div class="row">
+        <div class="l-sidebar l-sidebar--reverse">
+            <aside class="l-sidebar__aside">
+                {% side_panel calling_page=self %}
+            </aside>
+            <div class="l-sidebar__body">
+                {% if page.content_editor %}
+                    {% include "home/includes/streamfield.html" with content=page.content_editor %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="space-section-top">
+            <div class="row">
+                <div class="l-cards">
+                    {% for subpage in subpages %}
+                        {% with subpage=subpage.specific %}
+                            <div class="card card--alt">
+                                <h2 class="card__heading">{{ subpage.heading }}</h2>
+                                <p class="card__excerpt">{{ subpage.excerpt|default:"" }}</p>
+                                <p class="card__excerpt--truncated">{{ subpage.excerpt|default:""|truncatechars:35 }}</p>
+                                <a href="{% pageurl subpage %}" class="button">{% trans "Find out more" %}</a>
+                            </div>
+                        {% endwith %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
 
-
-</div>
-
-      <div class="section">
-          <div class="row">
-              <div class="l-2up">
-                  <div class="l-2up__col">
-                      <h2 class="section__heading">{{ toolsindex.heading }}</h2>
-                      <div class="is-typeset">
-                          <p>{{ toolsindex.excerpt|default:"" }}</p>
-                          <a class="button" href="{% pageurl toolsindex %}">{% trans "View tools and resources" %}</a>
-                      </div>
-                  </div>
-                  <div class="l-2up__col">
-                      <img src="http://styles.iatistandard.org/assets/img/content-image3.jpg" alt="alt tag">
-                  </div>
-              </div>
-          </div>
-      </div>
+    <div class="section">
+        <div class="row">
+            <div class="l-2up">
+                <div class="l-2up__col">
+                    <h2 class="section__heading">{{ toolsindex.heading }}</h2>
+                    <div class="is-typeset">
+                        <p>{{ toolsindex.excerpt|default:"" }}</p>
+                        <a class="button" href="{% pageurl toolsindex %}">{% trans "View tools and resources" %}</a>
+                    </div>
+                </div>
+                <div class="l-2up__col">
+                    <img src="{% static 'img/content-image3.jpg' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

@@ -372,6 +372,12 @@ class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage): 
 class StandardPage(AbstractContentPage):
     """A standard content page for generic use, i.e. a Privacy page."""
 
+    parent_page_types = [
+        'home.HomePage',
+        'home.StandardPage',
+    ]
+    subpage_types = ['home.StandardPage']
+
     FIXED_PAGE_TYPES = (
         ("privacy", "Privacy"),
         ("terms", "Terms and conditions"),
