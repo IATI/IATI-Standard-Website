@@ -19,6 +19,8 @@ class EventIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
     parent_page_types = ['home.HomePage']
     subpage_types = ['events.EventPage']
 
+    max_count = 1
+
     @property
     def event_types(self):
         """List all of the event types."""
