@@ -277,6 +277,8 @@ class DefaultPageHeaderImageMixin(Page):
 class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage):  # pylint: disable=too-many-ancestors
     """Proof-of-concept model definition for the homepage."""
 
+    max_count = 1
+
     activities = models.PositiveIntegerField(default=1000000)
     organisations = models.PositiveIntegerField(default=700)
 
