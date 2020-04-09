@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-08 13:19+0000\n"
+"POT-Creation-Date: 2020-04-09 14:46+0000\n"
 "PO-Revision-Date: 2018-11-02 17:54+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -510,15 +510,17 @@ msgid "pages"
 msgstr "pages"
 
 #: home/templates/home/includes/search_bar.html:6
-#, fuzzy
-#| msgid "Search the IATI website"
 msgid "Search the site"
-msgstr "Rechercher sur le site Web de l'IITA"
+msgstr "Rechercher sur le site web"
 
 #: home/templates/home/includes/search_bar.html:7
-#, fuzzy
-#| msgid "Search"
 msgid "Search term..."
+msgstr "Terme de recherche..."
+
+#: home/templates/home/includes/search_bar.html:10
+#: iati/templates/scaffold/header.html:9 iati/templates/scaffold/header.html:22
+#: navigation/templates/navigation/primary.html:18
+msgid "Search"
 msgstr "Recherche"
 
 #: home/templates/home/includes/sibling_links.html:7
@@ -636,11 +638,6 @@ msgstr "YouTube"
 msgid "Search the IATI website"
 msgstr "Rechercher sur le site Web de l'IITA"
 
-#: iati/templates/scaffold/header.html:9 iati/templates/scaffold/header.html:22
-#: navigation/templates/navigation/primary.html:18
-msgid "Search"
-msgstr "Recherche"
-
 #: iati/templates/scaffold/header.html:14
 msgid "IATI - International Aid Transparency Initiative"
 msgstr "IITA – Initiative internationale pour la transparence de l’aide"
@@ -736,8 +733,8 @@ msgstr ""
 "\n"
 "                            <h2 class=\"type-l type-l--trailer heading"
 "\">Afficher %(start)s–%(end)s des %(total)s résultats</h2>\n"
-"                            <p class=\"listing-search-header__copy\">Les résultats "
-"sont classés par pertinence.</p>\n"
+"                            <p class=\"listing-search-header__copy\">Les "
+"résultats sont classés par pertinence.</p>\n"
 "                        "
 
 #: search/templates/search/search_page.html:37
@@ -750,10 +747,10 @@ msgid ""
 "                        "
 msgstr ""
 "\n"
-"                            <h3 class=\"type-s type-s--trailer\">Aucun résultat "
-"trouvé</h3>\n"
-"                            <p>Votre recherche n’a donné aucun résultat."
-" Veuillez réessayer.</p>\n"
+"                            <h3 class=\"type-s type-s--trailer\">Aucun "
+"résultat trouvé</h3>\n"
+"                            <p>Votre recherche n’a donné aucun résultat. "
+"Veuillez réessayer.</p>\n"
 "                        "
 
 #: using_data/templates/using_data/tools_index_page.html:24

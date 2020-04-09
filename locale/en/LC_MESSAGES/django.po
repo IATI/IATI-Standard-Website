@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-08 13:19+0000\n"
+"POT-Creation-Date: 2020-04-09 14:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -432,6 +432,12 @@ msgstr ""
 msgid "Search term..."
 msgstr ""
 
+#: home/templates/home/includes/search_bar.html:10
+#: iati/templates/scaffold/header.html:9 iati/templates/scaffold/header.html:22
+#: navigation/templates/navigation/primary.html:18
+msgid "Search"
+msgstr ""
+
 #: home/templates/home/includes/sibling_links.html:7
 msgid "Previous"
 msgstr ""
@@ -543,11 +549,6 @@ msgstr ""
 #: navigation/templates/navigation/primary.html:16
 #: navigation/templates/navigation/primary.html:17
 msgid "Search the IATI website"
-msgstr ""
-
-#: iati/templates/scaffold/header.html:9 iati/templates/scaffold/header.html:22
-#: navigation/templates/navigation/primary.html:18
-msgid "Search"
 msgstr ""
 
 #: iati/templates/scaffold/header.html:14
