@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-02 14:10+0000\n"
+"POT-Creation-Date: 2020-04-09 14:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -152,17 +152,17 @@ msgstr ""
 
 #: guidance_and_support/templates/guidance_and_support/guidance_page.html:29
 #: guidance_and_support/templates/guidance_and_support/includes/contact_form.html:6
-#: search/templates/search/search.html:45
+#: search/templates/search/search_page.html:48
 msgid "Contact support"
 msgstr ""
 
 #: guidance_and_support/templates/guidance_and_support/guidance_page.html:32
-#: search/templates/search/search.html:48
+#: search/templates/search/search_page.html:51
 msgid "Our technical team are ready to help you."
 msgstr ""
 
 #: guidance_and_support/templates/guidance_and_support/guidance_page.html:33
-#: search/templates/search/search.html:49
+#: search/templates/search/search_page.html:52
 #: using_data/templates/using_data/tools_index_page.html:28
 msgid "Get help"
 msgstr ""
@@ -411,13 +411,31 @@ msgstr ""
 msgid "View event"
 msgstr ""
 
-#: home/templates/home/includes/pagination_links.html:6
+#: home/templates/home/includes/pagination_links.html:7
 msgid "Prev"
 msgstr ""
 
-#: home/templates/home/includes/pagination_links.html:18
+#: home/templates/home/includes/pagination_links.html:19
 #: home/templates/home/includes/sibling_links.html:10
 msgid "Next"
+msgstr ""
+
+#: home/templates/home/includes/pagination_links.html:24
+msgid "pages"
+msgstr ""
+
+#: home/templates/home/includes/search_bar.html:6
+msgid "Search the site"
+msgstr ""
+
+#: home/templates/home/includes/search_bar.html:7
+msgid "Search term..."
+msgstr ""
+
+#: home/templates/home/includes/search_bar.html:10
+#: iati/templates/scaffold/header.html:9 iati/templates/scaffold/header.html:22
+#: navigation/templates/navigation/primary.html:18
+msgid "Search"
 msgstr ""
 
 #: home/templates/home/includes/sibling_links.html:7
@@ -533,12 +551,6 @@ msgstr ""
 msgid "Search the IATI website"
 msgstr ""
 
-#: iati/templates/scaffold/header.html:9 iati/templates/scaffold/header.html:22
-#: navigation/templates/navigation/primary.html:18
-#: search/templates/search/search.html:4
-msgid "Search"
-msgstr ""
-
 #: iati/templates/scaffold/header.html:14
 msgid "IATI - International Aid Transparency Initiative"
 msgstr ""
@@ -620,8 +632,25 @@ msgstr ""
 msgid "Related news"
 msgstr ""
 
-#: search/templates/search/search.html:9
-msgid "Search iatistandard.org"
+#: search/templates/search/search_page.html:23
+#, python-format
+msgid ""
+"\n"
+"                            <h2 class=\"type-l type-l--trailer heading"
+"\">Showing %(start)s–%(end)s of %(total)s results</h2>\n"
+"                            <p class=\"listing-search-header__copy\">Results "
+"are ordered by relevance.</p>\n"
+"                        "
+msgstr ""
+
+#: search/templates/search/search_page.html:37
+msgid ""
+"\n"
+"                            <h3 class=\"type-s type-s--trailer\">No results "
+"found</h3>\n"
+"                            <p>Your search did not return any results, "
+"please try again</p>\n"
+"                        "
 msgstr ""
 
 #: using_data/templates/using_data/tools_index_page.html:24

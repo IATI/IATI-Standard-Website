@@ -4,6 +4,6 @@
 <li class="navigation-language__item">Lang:</li>
 {% for language in languages %}
     <li class="navigation-language__item {% if LANGUAGE_CODE == language.code %} navigation-language__item--active {% endif %}">
-        <a href="{{ language.url }}">{{ language.code|upper }}</a>
+        <a href="{{ language.url }}{{ language.query }}">{{ language.code|upper }}</a>
     </li>
 {% endfor %}

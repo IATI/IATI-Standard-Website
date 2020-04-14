@@ -19,7 +19,7 @@ class TestHomePage():
             parent=self.home_page
         )
         case_study_pages = CaseStudyPageFactory.create_batch(
-            size=10,
+            size=4,
             parent=case_study_index
         )
 
@@ -35,7 +35,7 @@ class TestHomePage():
             parent=self.home_page
         )
         CaseStudyPageFactory.create_batch(
-            size=10,
+            size=4,
             parent=case_study_index,
             live=False,
         )

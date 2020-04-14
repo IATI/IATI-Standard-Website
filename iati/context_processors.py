@@ -8,6 +8,8 @@ from navigation.models import (
     UtilityMenu,
     UsefulLinks,
 )
+from search.models import SearchPage
+from guidance_and_support.models import SupportPage
 
 
 def get_current_page(request):
@@ -30,6 +32,8 @@ def captchakey(request):
 def globals(request):
     """Return a global context dictionary for use by templates."""
     current_page = get_current_page(request)
+    search_page = SearchPage.objects.all().live().first()
+    support_page = SupportPage.objects.all().live().first()
 
     return {
         'global': {
@@ -37,6 +41,8 @@ def globals(request):
             'utility_menu': construct_nav(UtilityMenu.for_site(request.site).utility_menu_links.all(), current_page),
             'useful_links': UsefulLinks.for_site(request.site).useful_links.all(),
             'twitter_handle': settings.TWITTER_HANDLE,
+            'search_page_url': search_page.url if search_page else '',
+            'support_page_url': support_page.url if support_page else '',
         },
     }
 
