@@ -33,7 +33,7 @@ class NewsCategoryAdmin(ModelAdmin):
 class NewsAdminGroup(ModelAdminGroup):
     menu_label = 'News'
     menu_icon = 'doc-full'
-    menu_order = 120
+    menu_order = 130
     items = (NewsPageAdmin, NewsCategoryAdmin, )
 
 

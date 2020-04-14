@@ -4,6 +4,11 @@ from django.utils.html import format_html
 from wagtail.core import hooks
 
 
+@hooks.register('construct_main_menu')
+def hide_snippets_menu_item(request, menu_items):
+    menu_items[:] = [item for item in menu_items if item.name != 'snippets']
+
+
 @hooks.register('insert_editor_css')
 def editor_css():
     """Inject new editor CSS."""
