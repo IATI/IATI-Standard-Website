@@ -14,13 +14,13 @@ def events():
     )
     event_types = EventTypeFactory.create_batch(2)
     EventPageFactory.create_batch(
-        10,
+        4,
         parent=event_listing,
         event_type=[event_types[0]],
         starts_in_past=True,
     )
     EventPageFactory.create_batch(
-        10,
+        4,
         parent=event_listing,
         event_type=[event_types[1]],
         starts_in_future=True
@@ -32,10 +32,12 @@ def events():
 class TestEventPage():
     """Tests EventPage."""
 
+    @pytest.mark.filterwarnings('ignore::RuntimeWarning')
     def test_event_types_on_index(self, client, events):
         """Test that event with random date is created."""
         assert events.event_types.count() == 2
 
+    @pytest.mark.filterwarnings('ignore::RuntimeWarning')
     def test_past_events(self, client, events):
         """Test that past parameter calls past events."""
         response = client.get(events.url, {'past': 1}, follow=True)

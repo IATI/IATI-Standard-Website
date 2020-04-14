@@ -10,7 +10,7 @@ def listing():
         parent=home_page
     )
     ToolPageFactory.create_batch(
-        10,
+        4,
         parent=listing,
     )
     # listing.featured_tool(True, tools=tools[:5])
@@ -39,7 +39,7 @@ class TestTools():
     def test_tools(self, client):
         """Test that listing page has children ."""
 
-        assert listing().get_children().count() == 10
+        assert listing().get_children().count() == 4
 
     # def test_featured_tools(self, client):
     #     """Test that listing page has featured tools."""

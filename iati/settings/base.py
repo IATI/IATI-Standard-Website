@@ -265,7 +265,7 @@ DEFAULT_SHARE_IMAGE_URL = 'img/iati-share-social.png'
 # Search settings
 WAGTAILSEARCH_BACKENDS = {
     'default': {
-        'BACKEND': 'wagtail.search.backends.elasticsearch2',
+        'BACKEND': 'wagtail.search.backends.elasticsearch6',
         'URLS': [os.getenv('ELASTICSEARCH_URL', 'http://localhost:9200')],
         'INDEX': 'iati',
     },

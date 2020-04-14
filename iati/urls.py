@@ -11,7 +11,6 @@ from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from wagtail.images.views.serve import serve
 
-from search import views as search_views
 from .activate_languages import i18n_patterns  # For internationalization
 
 
@@ -25,9 +24,6 @@ urlpatterns = [  # pylint: disable=invalid-name
 urlpatterns += i18n_patterns(
     # Wagtail sitemap
     url(r'^sitemap\.xml$', sitemap),
-
-    # These URLs will have /<language_code>/ appended to the beginning
-    url(r'^search/$', search_views.search, name='search'),
 
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's page serving mechanism. This should be the last pattern in

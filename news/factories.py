@@ -1,4 +1,5 @@
 import factory
+from factory import fuzzy
 from wagtail_factories import ImageFactory
 from django.utils import timezone
 from django.utils.text import slugify
@@ -24,7 +25,7 @@ class NewsPageFactory(BasePageFactory):
     class Meta:
         model = NewsPage
 
-    date = factory.fuzzy.FuzzyDate(
+    date = fuzzy.FuzzyDate(
         start_date=timezone.now() - timezone.timedelta(weeks=520),
         end_date=timezone.now(),
     )

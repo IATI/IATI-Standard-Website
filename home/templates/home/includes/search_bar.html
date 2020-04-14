@@ -1,13 +1,13 @@
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load wagtailimages_tags i18n %}
 
-<form class="m-search" action="{% url 'search' %}" method="get">
+<form class="m-search" action="{{ global.search_page_url }}" method="get">
     <div class="row">
         <div class="form-field">
-            <label class="form-label" for="query">Search the site</label>
-            <input class="form-item" id="query" type="text" name="query" value="{% if search_query %}{{ search_query }}{% endif %}" placeholder="Search term...">
+            <label class="form-label" for="query">{% trans "Search the site" %}</label>
+            <input class="form-item" id="query" type="text" name="query" value="{% if search_query %}{{ search_query }}{% endif %}" placeholder="{% trans "Search term..." %}">
         </div>
         <div class="form-field">
-            <input class="button button--block" type="submit" value="Search">
+            <input class="button button--block" type="submit" value="{% trans "Search" %}">
         </div>
     </div>
 </form>

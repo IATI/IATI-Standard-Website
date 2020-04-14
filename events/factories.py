@@ -1,7 +1,8 @@
 import factory
+from factory.fuzzy import FuzzyChoice
+from factory import fuzzy
 import random
 from wagtail_factories import ImageFactory
-from factory.fuzzy import FuzzyChoice
 from django.utils import timezone
 from django.utils.text import slugify
 from events.models import EventIndexPage, EventPage, EventType, FeaturedEvent
@@ -26,7 +27,7 @@ class EventPageFactory(BasePageFactory):
     featured_event = FuzzyChoice(
         choices=(True, False)
     )
-    date_start = factory.fuzzy.FuzzyDate(
+    date_start = fuzzy.FuzzyDate(
         start_date=timezone.now() - timezone.timedelta(weeks=520),
         end_date=timezone.now() + timezone.timedelta(weeks=52),
     )
@@ -54,13 +55,13 @@ class EventPageFactory(BasePageFactory):
 
     class Params:
         starts_in_future = factory.Trait(
-            date_start=factory.fuzzy.FuzzyDate(
+            date_start=fuzzy.FuzzyDate(
                 start_date=timezone.now(),
                 end_date=timezone.now() + timezone.timedelta(days=30),
             )
         )
         starts_in_past = factory.Trait(
-            date_start=factory.fuzzy.FuzzyDate(
+            date_start=fuzzy.FuzzyDate(
                 start_date=timezone.now() - timezone.timedelta(weeks=12),
                 end_date=timezone.now() - timezone.timedelta(days=1),
             ),

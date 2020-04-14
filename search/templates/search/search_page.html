@@ -1,42 +1,45 @@
 {% extends "base.html" %}
 {% load static wagtailcore_tags wagtail_modeltranslation i18n %}
+
 {% block body_class %}template-searchresults{% endblock %}
-{% block title %}{% trans "Search" %}{% endblock %}
+{% block title %}{{ page.heading }}{% endblock %}
+
 {% block content %}
-<div class="hero hero--minor">
-    <div class="row">
-        <div class="hero__caption">
-            <h1 class="hero__heading">{% trans "Search iatistandard.org" %}</h1>
+    <div class="hero hero--minor">
+        <div class="row">
+            <div class="hero__caption">
+                <h1 class="hero__heading">{{ page.heading }}</h1>
+            </div>
         </div>
     </div>
-</div>
 
-{% include 'home/includes/search_bar.html' %}
+    {% include 'home/includes/search_bar.html' %}
 
     <div class="row">
         <div class="l-sidebar">
             <div class="l-sidebar__body">
                 {% if search_results %}
                     <div class="listing-search-header">
-                        <h2 class="type-l type-l--trailer heading">Showing {{ search_results.start_index }}–{{ search_results.end_index }} of {{ paginator.count }} results</h2>
-                        <p class="listing-search-header__copy">Results are ordered by relevance.</p>
+                        {% blocktrans with start=search_results.start_index end=search_results.end_index total=paginator.count %}
+                            <h2 class="type-l type-l--trailer heading">Showing {{ start }}–{{ end }} of {{ total }} results</h2>
+                            <p class="listing-search-header__copy">Results are ordered by relevance.</p>
+                        {% endblocktrans %}
                     </div>
-
                     <div class="l-cards-block">
                         {% for result in search_results %}
                             {% include 'search/search-listing.html' with item=result %}
                         {% endfor %}
                     </div>
-
                     {% include 'home/includes/pagination_links.html' with children=search_results %}
 
                 {% elif search_query %}
                     <div class="alert alert--notice">
-                        <h3 class="type-s type-s--trailer">No results found</h3>
-                        <p>Your search did not return any results, please try again</p>
+                        {% blocktrans %}
+                            <h3 class="type-s type-s--trailer">No results found</h3>
+                            <p>Your search did not return any results, please try again</p>
+                        {% endblocktrans %}
                     </div>
                 {% endif %}
-
             </div>
 
             <aside class="l-sidebar__aside">
@@ -46,12 +49,10 @@
                     </div>
                     <div class="aside-m__body">
                         <p class="aside-m__copy">{% trans "Our technical team are ready to help you." %}</p>
-                        <a class="button js-move" data-target="support" href="#support">{% trans "Get help" %}</a>
+                        <a class="button" data-target="support" href="{{ global.support_page_url }}">{% trans "Get help" %}</a>
                     </div>
                 </div>
             </aside>
-
         </div>
-
     </div>
 {% endblock %}
