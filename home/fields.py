@@ -9,11 +9,6 @@ class HomeFieldsMixin(models.Model):
     class Meta:
         abstract = True
 
-    use_legacy_template = models.BooleanField(
-        blank=True,
-        default=True,
-        help_text='Use the legacy template with hard-coded text for front end display?',
-    )
     header_video = models.URLField(
         max_length=255,
         blank=True,

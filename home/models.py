@@ -314,15 +314,7 @@ class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage): 
         context['case_studies'] = case_studies
         return context
 
-    def get_template(self, request, *args, **kwargs):
-        """Return template based on flag."""
-        template = 'home/home_page.html'
-        if self.use_legacy_template:
-            template = 'home/home_page_legacy.html'
-        return template
-
     multilingual_field_panels = DefaultPageHeaderImageMixin.multilingual_field_panels + [
-        FieldPanel('use_legacy_template'),
         InlinePanel(
             'testimonial_items',
             heading='Testimonial items',
