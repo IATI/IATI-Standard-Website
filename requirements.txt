@@ -16,7 +16,7 @@ psycopg2-binary==2.8.4
 requests==2.22.0
 sentry-sdk==0.14.0
 wagtail-modeltranslation==0.10.7
-wagtail==2.7.1
+wagtail==2.7.2
 Wand==0.5.8
 wagtail-linkchecker==0.4.0
 whitenoise==5.0.1
