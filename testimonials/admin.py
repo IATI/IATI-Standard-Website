@@ -8,6 +8,8 @@ from testimonials.models import Testimonial
 
 
 class TestimonialAdmin(ModelAdmin):
+    """Admin model for testimonials."""
+
     model = Testimonial
     menu_icon = 'openquote'
     menu_order = 140

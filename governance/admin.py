@@ -22,6 +22,8 @@ from taxonomies.utils import get_or_create_term
 
 
 class MemberAdmin(ModelAdmin):
+    """Admin model for members."""
+
     model = Member
     menu_icon = 'user'
     menu_order = 100
@@ -31,6 +33,8 @@ class MemberAdmin(ModelAdmin):
 
 
 class ConstituencyAdmin(ModelAdmin):
+    """Admin model for constituencies."""
+
     model = Constituency
     menu_icon = 'tag'
     menu_order = 110
@@ -40,6 +44,8 @@ class ConstituencyAdmin(ModelAdmin):
 
 
 class MembersAdminGroup(ModelAdminGroup):
+    """Admin model group for members."""
+
     menu_label = 'Members'
     menu_icon = 'user'
     menu_order = 120

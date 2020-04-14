@@ -9,10 +9,13 @@ from events.models import EventPage, EventType, FeaturedEvent
 
 
 def types(obj):
+    """List all of the event types for the item object."""
     return ', '.join([str(x) for x in obj.event_type.all()])
 
 
 class EventPageAdmin(ModelAdmin):
+    """Admin model for event pages."""
+
     model = EventPage
     menu_icon = 'date'
     menu_order = 100
@@ -22,6 +25,8 @@ class EventPageAdmin(ModelAdmin):
 
 
 class EventTypeAdmin(ModelAdmin):
+    """Admin model for event types."""
+
     model = EventType
     menu_icon = 'tag'
     menu_order = 110
@@ -31,6 +36,8 @@ class EventTypeAdmin(ModelAdmin):
 
 
 class FeaturedEventAdmin(ModelAdmin):
+    """Admin model for featured events."""
+
     model = FeaturedEvent
     menu_icon = 'pick'
     menu_order = 120
@@ -40,6 +47,8 @@ class FeaturedEventAdmin(ModelAdmin):
 
 
 class EventsAdminGroup(ModelAdminGroup):
+    """Admin model group for events."""
+
     menu_label = 'Events'
     menu_icon = 'date'
     menu_order = 110

@@ -9,10 +9,13 @@ from news.models import NewsPage, NewsCategory
 
 
 def categories(obj):
+    """List all of the categories for the item object."""
     return ', '.join([str(x) for x in obj.news_categories.all()])
 
 
 class NewsPageAdmin(ModelAdmin):
+    """Admin model for news pages."""
+
     model = NewsPage
     menu_icon = 'doc-full'
     menu_order = 100
@@ -22,6 +25,8 @@ class NewsPageAdmin(ModelAdmin):
 
 
 class NewsCategoryAdmin(ModelAdmin):
+    """Admin model for news categories."""
+
     model = NewsCategory
     menu_icon = 'tag'
     menu_order = 110
@@ -31,6 +36,8 @@ class NewsCategoryAdmin(ModelAdmin):
 
 
 class NewsAdminGroup(ModelAdminGroup):
+    """Admin model group for news."""
+
     menu_label = 'News'
     menu_icon = 'doc-full'
     menu_order = 130

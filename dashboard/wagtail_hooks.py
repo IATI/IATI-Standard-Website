@@ -6,6 +6,7 @@ from wagtail.core import hooks
 
 @hooks.register('construct_main_menu')
 def hide_snippets_menu_item(request, menu_items):
+    """Hide the default snippets menu item."""
     menu_items[:] = [item for item in menu_items if item.name != 'snippets']
 
 
