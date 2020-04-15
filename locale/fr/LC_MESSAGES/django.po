@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-02 14:10+0000\n"
+"POT-Creation-Date: 2020-04-09 14:46+0000\n"
 "PO-Revision-Date: 2018-11-02 17:54+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -22,12 +22,12 @@ msgstr ""
 #, python-format
 msgid " Showing \"%(event_type_name)s\" events from %(year)s"
 msgstr ""
-" Voir les événements de la catégorie « %(event_type_name)s » de %(year)s"
+" Voir les événements de la catégorie « %(event_type_name)s » de %(year)s"
 
 #: events/templates/events/event_index_page.html:22
 #, python-format
 msgid " Showing \"%(event_type_name)s\" events"
-msgstr " Voir les événements de la catégorie « %(event_type_name)s »"
+msgstr " Voir les événements de la catégorie « %(event_type_name)s »"
 
 #: events/templates/events/event_index_page.html:25
 #: events/templates/events/event_index_page.html:32
@@ -37,7 +37,7 @@ msgstr "Voir tous les événements"
 #: events/templates/events/event_index_page.html:30
 #, python-format
 msgid " Showing events from %(year)s"
-msgstr " Voir les événements de %(year)s"
+msgstr " Voir les événements de %(year)s"
 
 #: events/templates/events/event_index_page.html:55
 #: events/templates/events/event_page.html:16
@@ -82,7 +82,7 @@ msgstr "Informations complémentaires"
 
 #: governance/templates/governance/members-filter.html:5
 msgid "Filter by Constituency:"
-msgstr "Filtrer par catégorie :"
+msgstr "Filtrer par catégorie :"
 
 #: governance/templates/governance/members-filter.html:8
 msgid "All Constituencies"
@@ -90,7 +90,7 @@ msgstr "Toutes catégories confondues"
 
 #: governance/templates/governance/members-filter.html:18
 msgid "Sort by:"
-msgstr "Trier par :"
+msgstr "Trier par :"
 
 #: governance/templates/governance/members-filter.html:21
 msgid "Alphabetical"
@@ -136,7 +136,7 @@ msgstr "Adresse électronique"
 
 #: guidance_and_support/forms.py:32
 msgid "How can we help you?"
-msgstr "Comment pouvons-nous vous aider ?"
+msgstr "Comment pouvons-nous vous aider ?"
 
 #: guidance_and_support/mixins.py:28
 #, fuzzy
@@ -161,21 +161,21 @@ msgstr "Dans cette partie"
 #: guidance_and_support/templates/guidance_and_support/guidance_group_page.html:39
 #, python-format
 msgid "%(pagecount)s pages"
-msgstr "%(pagecount)s pages"
+msgstr "%(pagecount)s pages"
 
 #: guidance_and_support/templates/guidance_and_support/guidance_page.html:29
 #: guidance_and_support/templates/guidance_and_support/includes/contact_form.html:6
-#: search/templates/search/search.html:45
+#: search/templates/search/search_page.html:48
 msgid "Contact support"
 msgstr "Contacter l’équipe technique"
 
 #: guidance_and_support/templates/guidance_and_support/guidance_page.html:32
-#: search/templates/search/search.html:48
+#: search/templates/search/search_page.html:51
 msgid "Our technical team are ready to help you."
 msgstr "Notre équipe technique est là pour vous aider."
 
 #: guidance_and_support/templates/guidance_and_support/guidance_page.html:33
-#: search/templates/search/search.html:49
+#: search/templates/search/search_page.html:52
 #: using_data/templates/using_data/tools_index_page.html:28
 msgid "Get help"
 msgstr "Obtenir de l’aide"
@@ -194,9 +194,10 @@ msgid ""
 "            "
 msgstr ""
 "\n"
-"                Veuillez remplir le formulaire ci-dessous pour que notre équipe puisse "
-"vous aider. Vous pouvez également écrire à notre équipe d’assistance à l’adresse <a href=\"mailto:"
-"support@iatistandard.org\">support@iatistandard.org</a>.\n"
+"                Veuillez remplir le formulaire ci-dessous pour que notre "
+"équipe puisse vous aider. Vous pouvez également écrire à notre équipe "
+"d’assistance à l’adresse <a href=\"mailto:support@iatistandard.org"
+"\">support@iatistandard.org</a>.\n"
 "            "
 
 #: guidance_and_support/templates/guidance_and_support/includes/contact_form.html:18
@@ -230,10 +231,10 @@ msgid ""
 "\n"
 "                    Sorry, there appears to be an issue.\n"
 "                "
-
 msgstr ""
 "\n"
-"                    Il semble que nous rencontrions un problème. Veuillez nous excuser pour la gêne occasionnée.\n"
+"                    Il semble que nous rencontrions un problème. Veuillez "
+"nous excuser pour la gêne occasionnée.\n"
 "                "
 
 #: guidance_and_support/templates/guidance_and_support/includes/contact_form.html:59
@@ -264,7 +265,7 @@ msgstr "appliquer"
 
 #: home/templates/home/home_page_legacy.html:16
 msgid "Photo of Achim Steiner, UNDP Administrator"
-msgstr "Photographie d’Achim Steiner, administrateur du PNUD"
+msgstr "Photographie d’Achim Steiner, administrateur du PNUD"
 
 #: home/templates/home/home_page_legacy.html:19
 msgid "&ldquo;Transparency is a cornerstone of our work at UNDP.&rdquo;"
@@ -428,7 +429,7 @@ msgstr ""
 "                  L’IITA permet à ses utilisateurs du monde entier de suivre "
 "les flux de ressources liés à l’aide, aux actions humanitaires et au "
 "développement. Certains d’entre eux ont recours à la norme de l’IITA pour "
-"publier leurs données ; d’autres consultent ces données afin d’étayer leurs "
+"publier leurs données ; d’autres consultent ces données afin d’étayer leurs "
 "prises de décisions et de demander des comptes aux autorités. Nos études de "
 "cas vous présentent quelques-uns d’entre eux.\n"
 "                  "
@@ -448,7 +449,7 @@ msgstr "Partenaires"
 
 #: home/templates/home/home_page_legacy.html:168
 msgid "Photo of Hillevi Ekberg of Sida"
-msgstr "Photographie d’Hillevi Ekberg, de l’ASDI"
+msgstr "Photographie d’Hillevi Ekberg, de l’ASDI"
 
 #: home/templates/home/home_page_legacy.html:173
 msgid ""
@@ -467,7 +468,7 @@ msgstr "ASDI – Agence suédoise de coopération internationale au développeme
 
 #: home/templates/home/home_page_legacy.html:185
 msgid "Photo of Winnie Kamau, Data Journalist"
-msgstr "Photographie de Winnie Kamau, journaliste de données"
+msgstr "Photographie de Winnie Kamau, journaliste de données"
 
 #: home/templates/home/home_page_legacy.html:190
 msgid ""
@@ -495,14 +496,32 @@ msgstr ""
 msgid "View event"
 msgstr "Voir l’événement"
 
-#: home/templates/home/includes/pagination_links.html:6
+#: home/templates/home/includes/pagination_links.html:7
 msgid "Prev"
 msgstr "Page précédente"
 
-#: home/templates/home/includes/pagination_links.html:18
+#: home/templates/home/includes/pagination_links.html:19
 #: home/templates/home/includes/sibling_links.html:10
 msgid "Next"
 msgstr "Page suivante"
+
+#: home/templates/home/includes/pagination_links.html:24
+msgid "pages"
+msgstr "pages"
+
+#: home/templates/home/includes/search_bar.html:6
+msgid "Search the site"
+msgstr "Rechercher sur le site web"
+
+#: home/templates/home/includes/search_bar.html:7
+msgid "Search term..."
+msgstr "Terme de recherche..."
+
+#: home/templates/home/includes/search_bar.html:10
+#: iati/templates/scaffold/header.html:9 iati/templates/scaffold/header.html:22
+#: navigation/templates/navigation/primary.html:18
+msgid "Search"
+msgstr "Recherche"
 
 #: home/templates/home/includes/sibling_links.html:7
 msgid "Previous"
@@ -559,7 +578,7 @@ msgstr "Nous ne trouvons pas ce que vous cherchez."
 
 #: iati/templates/500-non-static.html:4
 msgid "500 error"
-msgstr "Erreur 500"
+msgstr "Erreur 500"
 
 #: iati/templates/500-non-static.html:5
 msgid ""
@@ -567,7 +586,7 @@ msgid ""
 "and this page will be back soon."
 msgstr ""
 "Une erreur technique est survenue. Ceci n’est pas de votre faute. Nous avons "
-"été prévenus ; la page demandée sera accessible sous peu."
+"été prévenus ; la page demandée sera accessible sous peu."
 
 #: iati/templates/base.html:51
 msgid "Skip to main content"
@@ -603,7 +622,7 @@ msgstr "S’abonner"
 
 #: iati/templates/scaffold/footer.html:38
 msgid "Copyright IATI 2018. All rights reserved"
-msgstr "Copyright IITA 2018. Tous droits réservés."
+msgstr "Copyright IITA 2018. Tous droits réservés."
 
 #: iati/templates/scaffold/footer.html:40
 msgid "Twitter"
@@ -618,12 +637,6 @@ msgstr "YouTube"
 #: navigation/templates/navigation/primary.html:17
 msgid "Search the IATI website"
 msgstr "Rechercher sur le site Web de l'IITA"
-
-#: iati/templates/scaffold/header.html:9 iati/templates/scaffold/header.html:22
-#: navigation/templates/navigation/primary.html:18
-#: search/templates/search/search.html:4
-msgid "Search"
-msgstr "Recherche"
 
 #: iati/templates/scaffold/header.html:14
 msgid "IATI - International Aid Transparency Initiative"
@@ -693,7 +706,7 @@ msgstr "Menu"
 #, python-format
 msgid " Showing \"%(news_category_name)s\" news posts"
 msgstr ""
-" Voir les nouvelles publications de la catégorie « %(news_category_name)s »"
+" Voir les nouvelles publications de la catégorie « %(news_category_name)s »"
 
 #: news/templates/news/news_index_page.html:19
 msgid "Show all posts"
@@ -707,9 +720,38 @@ msgstr "Catégories"
 msgid "Related news"
 msgstr "Actualités associées"
 
-#: search/templates/search/search.html:9
-msgid "Search iatistandard.org"
-msgstr "Recherche iatistandard.org"
+#: search/templates/search/search_page.html:23
+#, python-format
+msgid ""
+"\n"
+"                            <h2 class=\"type-l type-l--trailer heading"
+"\">Showing %(start)s–%(end)s of %(total)s results</h2>\n"
+"                            <p class=\"listing-search-header__copy\">Results "
+"are ordered by relevance.</p>\n"
+"                        "
+msgstr ""
+"\n"
+"                            <h2 class=\"type-l type-l--trailer heading"
+"\">Afficher %(start)s–%(end)s des %(total)s résultats</h2>\n"
+"                            <p class=\"listing-search-header__copy\">Les "
+"résultats sont classés par pertinence.</p>\n"
+"                        "
+
+#: search/templates/search/search_page.html:37
+msgid ""
+"\n"
+"                            <h3 class=\"type-s type-s--trailer\">No results "
+"found</h3>\n"
+"                            <p>Your search did not return any results, "
+"please try again</p>\n"
+"                        "
+msgstr ""
+"\n"
+"                            <h3 class=\"type-s type-s--trailer\">Aucun "
+"résultat trouvé</h3>\n"
+"                            <p>Votre recherche n’a donné aucun résultat. "
+"Veuillez réessayer.</p>\n"
+"                        "
 
 #: using_data/templates/using_data/tools_index_page.html:24
 msgid "Support"
@@ -724,6 +766,9 @@ msgstr ""
 #: using_data/templates/using_data/using_data_page.html:51
 msgid "View tools and resources"
 msgstr "Accéder aux outils et aux ressources"
+
+#~ msgid "Search iatistandard.org"
+#~ msgstr "Recherche iatistandard.org"
 
 #~ msgid ""
 #~ "\n"

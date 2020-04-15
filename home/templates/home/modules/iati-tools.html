@@ -11,11 +11,13 @@
         <div class="l-2up">
             {% for item in page.tools %}
                 <div class="card card--tool-feature">
-                    <div class="card__logo card__logo--background">
-                        <a href="{{ item.url }}">
-                            {% image item.logo max-150x90 alt=item.logo.title width='auto' height='auto' %}
-                        </a>
-                    </div>
+                    {% if item.logo %}
+                        <div class="card__logo card__logo--background">
+                            <a href="{{ item.url }}">
+                                {% image item.logo max-150x90 alt=item.logo.title width='auto' height='auto' %}
+                            </a>
+                        </div>
+                    {% endif %}
                     <div class="card__content">
                         <h3 class="card__heading"><a href="{{ item.url }}">{{ item.heading }}</a></h3>
                         <div class="is-typeset">
