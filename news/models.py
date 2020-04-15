@@ -17,6 +17,9 @@ class NewsIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
 
     parent_page_types = ['home.HomePage']
     subpage_types = ['news.NewsPage']
+
+    max_count = 1
+
     PER_PAGE = 10
 
     @property

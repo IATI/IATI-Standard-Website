@@ -17,9 +17,11 @@ class GuidanceAndSupportPage(DefaultPageHeaderImageMixin, AbstractContentPage):
     parent_page_types = ['home.HomePage']
     subpage_types = [
         'guidance_and_support.GuidanceGroupPage',
-        # 'guidance_and_support.KnowledgebaseIndexPage',
         'guidance_and_support.SupportPage',
+        # 'guidance_and_support.KnowledgebaseIndexPage',
     ]
+
+    max_count = 1
 
     @property
     def guidance_groups(self):
@@ -31,7 +33,14 @@ class GuidanceAndSupportPage(DefaultPageHeaderImageMixin, AbstractContentPage):
 class GuidanceGroupPage(AbstractContentPage):
     """A base for Guidance Group pages."""
 
-    subpage_types = ['guidance_and_support.GuidanceGroupPage', 'guidance_and_support.GuidancePage']
+    parent_page_types = [
+        'guidance_and_support.GuidanceAndSupportPage',
+        'guidance_and_support.GuidanceGroupPage',
+    ]
+    subpage_types = [
+        'guidance_and_support.GuidanceGroupPage',
+        'guidance_and_support.GuidancePage',
+    ]
 
     section_image = models.ForeignKey(
         'wagtailimages.Image', null=True, blank=True,
@@ -67,6 +76,7 @@ class GuidanceGroupPage(AbstractContentPage):
 class GuidancePage(ContactFormMixin, AbstractContentPage):
     """A base for a single guidance page."""
 
+    parent_page_types = ['guidance_and_support.GuidanceGroupPage']
     subpage_types = []
 
 
@@ -87,6 +97,8 @@ class CommunityPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
 
     parent_page_types = ['home.HomePage']
     subpage_types = []
+
+    max_count = 1
 
     text_box = models.TextField(max_length=255, null=True, blank=True, help_text='A small ammount of text describing the community page.')
 
@@ -109,6 +121,8 @@ class SupportPage(DefaultPageHeaderImageMixin, ContactFormMixin, AbstractContent
 
     parent_page_types = ['guidance_and_support.GuidanceAndSupportPage']
     subpage_types = []
+
+    max_count = 1
 
     alternative_content = RichTextField(
         features=['h3', 'link', 'ul'],

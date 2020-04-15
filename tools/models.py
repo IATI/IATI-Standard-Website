@@ -16,6 +16,8 @@ class ToolsListingPage(DefaultPageHeaderImageMixin, AbstractContentPage):
     parent_page_types = ['home.HomePage']
     subpage_types = ['tools.ToolPage']
 
+    max_count = 1
+
     highlight_title = models.CharField(
         max_length=255,
         blank=True,
