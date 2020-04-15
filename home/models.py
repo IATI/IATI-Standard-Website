@@ -3,7 +3,6 @@ import re
 
 from django.conf import settings
 from django.db import models
-from django.apps import apps
 from django import forms
 from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
