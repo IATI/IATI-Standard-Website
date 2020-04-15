@@ -3,7 +3,6 @@ import re
 
 from django.conf import settings
 from django.db import models
-from django.apps import apps
 from django import forms
 from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -308,23 +307,7 @@ class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage): 
     translation_fields = AbstractBasePage.translation_fields + local_translation_fields
     required_languages = {'en': list(set(local_translation_fields) - set(optional_local_translation_fields))}
 
-    def get_context(self, request, *args, **kwargs):
-        """Overwrite the default get_context page to serve descendant case study pages."""
-        case_study_page = apps.get_model(app_label='about', model_name='CaseStudyPage')
-        case_studies = case_study_page.objects.live().descendant_of(self).specific()
-        context = super(HomePage, self).get_context(request)
-        context['case_studies'] = case_studies
-        return context
-
-    def get_template(self, request, *args, **kwargs):
-        """Return template based on flag."""
-        template = 'home/home_page.html'
-        if self.use_legacy_template:
-            template = 'home/home_page_legacy.html'
-        return template
-
     multilingual_field_panels = DefaultPageHeaderImageMixin.multilingual_field_panels + [
-        FieldPanel('use_legacy_template'),
         InlinePanel(
             'testimonial_items',
             heading='Testimonial items',

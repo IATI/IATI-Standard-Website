@@ -216,6 +216,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Wagtail settings
 WAGTAIL_SITE_NAME = "iati"
+WAGTAIL_FRONTEND_LOGIN_TEMPLATE = 'wagtailadmin/login.html'
 
 # Reference namespaces for URL redirection
 REFERENCE_NAMESPACES = [
