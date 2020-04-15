@@ -11,6 +11,8 @@ class GetInvolvedPage(DefaultPageHeaderImageMixin, AbstractContentPage):
     parent_page_types = ['home.HomePage']
     subpage_types = ['about.AboutSubPage']
 
+    max_count = 1
+
     highlight = highlight_streamfield()
 
     translation_fields = AbstractContentPage.translation_fields + [

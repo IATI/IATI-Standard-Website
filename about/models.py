@@ -15,7 +15,14 @@ class AboutPage(DefaultPageHeaderImageMixin, AbstractContentPage):
     """A model for the About landing page."""
 
     parent_page_types = ['home.HomePage']
-    subpage_types = ['about.AboutSubPage', 'about.CaseStudyIndexPage', 'about.HistoryPage', 'about.PeoplePage']
+    subpage_types = [
+        'about.AboutSubPage',
+        'about.CaseStudyIndexPage',
+        'about.HistoryPage',
+        'about.PeoplePage',
+    ]
+
+    max_count = 1
 
     show_featured_events = models.BooleanField(default=False)
 
@@ -27,7 +34,19 @@ class AboutPage(DefaultPageHeaderImageMixin, AbstractContentPage):
 class AboutSubPage(AbstractContentPage):
     """A model for generic About subpages."""
 
-    subpage_types = ['about.AboutSubPage', 'about.PeoplePage', 'governance.MembersAssemblyPage']
+    parent_page_types = [
+        'home.HomePage',
+        'about.AboutPage',
+        'about.AboutSubPage',
+        'about.PeoplePage',
+        'get_involved.GetInvolvedPage',
+        'using_data.UsingDataPage',
+    ]
+    subpage_types = [
+        'about.AboutSubPage',
+        'about.PeoplePage',
+        'governance.MembersAssemblyPage'
+    ]
 
     show_featured_events = models.BooleanField(default=False)
 
@@ -39,7 +58,10 @@ class AboutSubPage(AbstractContentPage):
 class CaseStudyIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
     """A model for the Case Studies Index page."""
 
+    parent_page_types = ['about.AboutPage']
     subpage_types = ['about.CaseStudyPage']
+
+    max_count = 1
 
     show_featured_events = models.BooleanField(default=False)
 
@@ -96,7 +118,10 @@ class HistoryDateBlock(StreamBlock):
 class HistoryPage(AbstractContentPage):
     """A model for the History page."""
 
+    parent_page_types = ['about.AboutPage']
     subpage_types = []
+
+    max_count = 1
 
     timeline_editor = StreamField(HistoryDateBlock, null=True, blank=True)
 
@@ -130,7 +155,14 @@ class PeopleProfileBlock(StreamBlock):
 class PeoplePage(AbstractContentPage):
     """A model for the People page."""
 
-    subpage_types = ["about.PeoplePage", "about.AboutSubPage"]
+    parent_page_types = [
+        'about.AboutSubPage',
+        'about.PeoplePage',
+    ]
+    subpage_types = [
+        'about.AboutSubPage',
+        'about.PeoplePage',
+    ]
 
     profile_content_editor = StreamField(PeopleProfileBlock, null=True, blank=True)
 

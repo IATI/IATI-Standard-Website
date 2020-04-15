@@ -8,3 +8,5 @@ class IATIStandardPage(DefaultPageHeaderImageMixin, AbstractContentPage):
 
     parent_page_types = ['home.HomePage']
     subpage_types = []
+
+    max_count = 1
