@@ -277,6 +277,8 @@ class DefaultPageHeaderImageMixin(Page):
 class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage):  # pylint: disable=too-many-ancestors
     """Proof-of-concept model definition for the homepage."""
 
+    max_count = 1
+
     activities = models.PositiveIntegerField(default=1000000)
     organisations = models.PositiveIntegerField(default=700)
 
@@ -371,6 +373,12 @@ class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage): 
 
 class StandardPage(AbstractContentPage):
     """A standard content page for generic use, i.e. a Privacy page."""
+
+    parent_page_types = [
+        'home.HomePage',
+        'home.StandardPage',
+    ]
+    subpage_types = ['home.StandardPage']
 
     FIXED_PAGE_TYPES = (
         ("privacy", "Privacy"),

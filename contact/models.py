@@ -20,5 +20,8 @@ class ContactPage(DefaultPageHeaderImageMixin, AbstractContentPage):
 
     parent_page_types = ['home.HomePage']
     subpage_types = []
+
+    max_count = 1
+
     contact_type = StreamField(ContactTypeStreamBlock, blank=True, null=True)
     translation_fields = AbstractContentPage.translation_fields + ['contact_type']

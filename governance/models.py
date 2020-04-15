@@ -88,6 +88,8 @@ class MembersAssemblyPage(MembersAssemblyFieldsMixin, RoutablePageMixin, Abstrac
     parent_page_types = ['about.AboutSubPage']
     subpage_types = []
 
+    max_count = 1
+
     local_translation_fields = [
         'members_title',
     ]
