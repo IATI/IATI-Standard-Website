@@ -548,13 +548,13 @@
 	@extend %pie-clearfix;
 	overflow: hidden;
 	position: absolute;
+	z-index: 200;
 	left: 0;
 	top: 139px;
 	display: none;
 	width: 100%;
 	background-color: $body-color;
 	padding: 2em;
-	z-index: 100;
 	text-transform: none;
 	letter-spacing: 0;
 	box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
@@ -637,9 +637,6 @@
 		ul {
 			margin-top: 0.25em;
 			margin-left: 1em;
-		}
-		.m-highlight & {
-			margin-bottom: 0.5em;
 		}
 	}
 }
