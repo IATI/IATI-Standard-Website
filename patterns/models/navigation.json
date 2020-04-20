@@ -355,12 +355,15 @@
                                 "content": "Bullet points about the tool and what it enables you to do",
                                 "label": "Link to the tool website"
                             },
-                            [
-                                "Promote IATI",
-                                "Publishing statistics",
-                                "Third party tools and services for data use",
-                                "IATI tool guide"
-                            ]
+                            {
+                                "highlight": true,
+                                "list": [
+                                    "Promote IATI",
+                                    "Publishing statistics",
+                                    "Third party tools and services for data use",
+                                    "IATI tool guide"
+                                ]
+                            }
                         ]
                     },
                     {
