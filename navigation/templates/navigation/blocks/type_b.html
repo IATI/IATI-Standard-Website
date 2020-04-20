@@ -1,7 +1,7 @@
 {% load wagtailcore_tags %}
 
 <div class="navigation-megamenu">
-    {% include_block value.highlight %}
+    {% include_block value.highlight with class=value.highlight_class %}
 
     {% if value.num_columns %}
         <div class="navigation-megamenu__col">

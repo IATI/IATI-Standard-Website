@@ -8,6 +8,10 @@ from navigation.utils import get_localised_field_value
 class ModuleStructValue(StructValue):
     """Mega-navigation struct value."""
 
+    def highlight_class(self):
+        """Set highlight class based on width field."""
+        return 'navigation-megamenu__col--%s' % self.get('highlight').get('width')
+
     def num_columns(self):
         """Define number of columns."""
         return max(3, len(self.get('columns')))
@@ -25,12 +29,8 @@ class ModuleDoubleStructValue(StructValue):
     """Mega-navigation double struct value."""
 
     def highlight_class(self):
-        """Define whether a navigation item is highlighted."""
-        highlight_class = ''
-        if len(self.get('columns')) > 2:
-            highlight_class = 'navigation-megamenu__col--small'
-
-        return highlight_class
+        """Set highlight class based on width field."""
+        return 'navigation-megamenu__col--%s' % self.get('highlight').get('width')
 
     def has_secondary(self):
         """Define whether navigation has secondary items."""
