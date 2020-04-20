@@ -190,6 +190,10 @@
 		@extend .para--typeset;
 	}
 
+	strong {
+		@extend %font-heading;
+	}
+
 	a:not(.button) {
 		border-bottom: 2px solid $action-respond;
 	}
@@ -247,7 +251,7 @@
 			margin-bottom: 0.5em;
 		}
 		dd {
-			//margin-left: 3em;
+			@extend .para;
 		}
 	}
 

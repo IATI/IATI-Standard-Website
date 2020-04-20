@@ -6,16 +6,17 @@ table {
 	border-collapse: collapse;
 	overflow-x: auto;
 	display: block;
-	width: fit-content;
-	max-width: 100%;
+	//width: fit-content;
+	width: 100%;
 	border: 1px solid $default-border-color;
 	.is-typeset & {
 		margin-bottom: 2em;
 	}
 	caption {
 		@extend %font-heading;
-		text-align: center;
+		text-align: left;
 		padding: $internal-spacing/4;
+		@include font-size($epsilon);
 	}
 }
 
@@ -54,6 +55,9 @@ td {
 	tr.withdrawn & {
 		color: lighten($base-color, 30%);
 		font-style: italic;
+	}
+	a {
+		overflow-wrap: break-word;
 	}
 }
 
