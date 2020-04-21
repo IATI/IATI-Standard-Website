@@ -32,14 +32,16 @@
             </ul>
         </div>
     {% else %}
-        <ul class="navigation-megamenu__list">
-            {% for item in col.page_list %}
-                {% if item.page and item.page.live and item.page.specific.heading %}
-                    <li class="{% if forloop.first and col.use_first_page_as_title %}navigation-megamenu__list-title{% endif %}">
-                        <a href="{{ item.page.url }}">{{ item.page.specific.heading }}</a>
-                    </li>
-                {% endif %}
-            {% endfor %}
-        </ul>
+        <div class="m-highlight m-highlight--alt">
+            <ul class="navigation-megamenu__list">
+                {% for item in col.page_list %}
+                    {% if item.page and item.page.live and item.page.specific.heading %}
+                        <li class="{% if forloop.first and col.use_first_page_as_title %}navigation-megamenu__list-title{% endif %}">
+                            <a href="{{ item.page.url }}">{{ item.page.specific.heading }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
     {% endif %}
 </div>
