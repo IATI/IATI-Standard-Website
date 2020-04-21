@@ -244,23 +244,33 @@
 }
 
 .hero-notice {
+    position: relative;
     background-color: lighten($warning, 40%);
     padding: 1.5em 0;
     margin-top: -5em;
     margin-bottom: 5em;
 }
 
+.hero-notice__icon {
+    width: 18px;
+    margin-right: 12px;
+    float: left;
+    transform: translateY(2px);
+}
+
 .hero-notice__copy {
     @include font-size($para);
     font-weight: 700;
-    line-height: 1;
+    line-height: 1.4;
+    max-width: 80%;
     color: darken($warning, 15%);
+    width: calc(100% - 30px);
+    float: left;
     a {
         color: darken($warning, 15%);
         text-decoration: underline;
     }
-    .ico {
-        top: -2px;
-        margin-right: 10px;
+    strong {
+        @extend %font-heading;
     }
 }
