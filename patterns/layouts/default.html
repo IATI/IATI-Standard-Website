@@ -25,9 +25,10 @@
     	{% include 'scaffold/header-assets.html' %}
     {% endblock %}
 </head>
-<body class="body body--{{ id }}" id="body-{{ id }}">
+<body class="body body--{{ id }} body--message" id="body-{{ id }}">
 	<div class="ui-base">
 		<a href="#pagecontent" class="skiplink" data-js="skiplink">Skip to main content</a>
+		{% include 'partials/message.html' %}
 		{% block header %}
 			{% if id == 'about' %}
 				{% include 'scaffold/header-fr.html' %}
