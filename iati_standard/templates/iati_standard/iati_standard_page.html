@@ -11,74 +11,36 @@
 
 {% block content %}
 
-{% if self.static %}
- {% include "iati_standard/includes/iati_standard_page_static.html" %}
-{% else %}
-  <div class="row">
-    <div class="l-sidebar">
-      <div class="l-sidebar__body">
-        {% if page.content_editor %}
-          {% include "home/includes/streamfield.html" with content=page.content_editor %}
-        {% endif %}
-      </div>
-      <aside class="l-sidebar__aside">
-      {% if self.how_to_use_page %}
-      <div class="aside-m">
-        <div class="aside-m__header fill-sunset">
-            <h3 class="aside-m__heading">{% trans "How to use the IATI Reference" %}</h3>
-            <a class="button" href="{% pageurl self.how_to_use_page %}">{% trans "Visit our guidance" %}</a>
-        </div>
-      </div>
-      {% endif %}
-    </aside>
-    </div>
-  </div>
-
-  <div class="space-section-bottom">
-      <div class="row">
-          <div class="l-4up">
-              {% for reference_card in self.reference_cards %}
-                {{ reference_card }}
-              {% endfor %}
-          </div>
-      </div>
-  </div>
-{% endif %}
-
-    <div class="space-section-bottom">
+    {% if self.static %}
+        {% include "iati_standard/includes/iati_standard_page_static.html" %}
+    {% else %}
         <div class="row">
-            <div class="l-cards">
-                <div class="card card--alt">
-                    <h2 class="card__heading">{% trans "Detailed information about the IATI Standard" %}</h2>
-                    <ul class="card__list">
-                        <li><a id="org-standard" href="/203/organisation-standard/">{% trans "The Organisation Standard" %}</a></li>
-                        <li><a id="act-standard" href="/203/activity-standard/">{% trans "The Activity Standard" %}</a></li>
-                        <li><a id="codelists" href="/203/codelists/">{% trans "Codelists" %}</a></li>
-                        <li><a id="schema" href="/203/schema/">{% trans "Schema" %}</a></li>
-                        <li><a id="org-ids" href="/203/organisation-identifiers/">{% trans "Organisation Identifiers" %}</a></li>
-                    </ul>
+            <div class="l-sidebar">
+                <div class="l-sidebar__body">
+                    {% if page.content_editor %}
+                        {% include "home/includes/streamfield.html" with content=page.content_editor %}
+                    {% endif %}
                 </div>
-                <div class="card card--alt">
-                    <h2 class="card__heading">{% trans "Information about changes to the IATI Standard" %}</h2>
-                    <ul class="card__list">
-                        <li><a id="standard-upgrade" href="/203/upgrades/">{% trans "How the Standard is upgraded" %}</a></li>
-                        <li><a id="prev-versions" href="/203/upgrades/all-versions/">{% trans "Previous versions" %}</a>
-                            <ul class="card__list-child">
-                                <li><a id="202" href="/202/">2.02</a></li>
-                                <li><a id="201" href="/201/">2.01</a></li>
-                                <li><a id="105" href="/105/">1.05</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div class="card card--alt">
-                    <h2 class="card__heading">{% trans "IATI Developer documentation" %}</h2>
-                    <ul class="card__list">
-                        <li><a id="info-for-devs" href="/203/developer/">{% trans "Information for developers" %}</a></li>
-                        <li><a id="datastore-guide" href="/203/guidance/datastore/">{% trans "The IATI Datastore" %}</a></li>
-                    </ul>
+                <aside class="l-sidebar__aside">
+                    {% if self.how_to_use_page %}
+                        <div class="aside-m">
+                            <div class="aside-m__header fill-sunset">
+                                <h3 class="aside-m__heading">{% trans "How to use the IATI Reference" %}</h3>
+                                <a class="button" href="{% pageurl self.how_to_use_page %}">{% trans "Visit our guidance" %}</a>
+                            </div>
+                        </div>
+                    {% endif %}
+                </aside>
+            </div>
+        </div>
+        <div class="space-section-bottom">
+            <div class="row">
+                <div class="l-4up">
+                    {% for reference_card in self.reference_cards %}
+                        {{ reference_card }}
+                    {% endfor %}
                 </div>
             </div>
         </div>
-    </div>
+    {% endif %}
 {% endblock %}

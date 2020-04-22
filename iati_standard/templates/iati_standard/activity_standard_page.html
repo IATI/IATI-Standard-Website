@@ -5,67 +5,70 @@
 {% block body_id %}body-standard{% endblock %}
 
 {% block content %}
-  <div class="hero hero--minor">
-    <div class="row">
-      {% if self.version != "guidance" and self.version != "developer-documentation" %}
-        <div class="hero__caption">
-            <p class="hero__excerpt">You are viewing <strong>
-              {% if self.version == "203" %}VERSION 2.03{% endif %}
-              {% if self.version == "202" %}VERSION 2.02{% endif %}
-              {% if self.version == "201" %}VERSION 2.01{% endif %}
-              {% if self.version == "105" %}VERSION 1.05{% endif %}
-              {% if self.version == "104" %}VERSION 1.04{% endif %}
-              {% if self.version == "103" %}VERSION 1.03{% endif %}
-              {% if self.version == "102" %}VERSION 1.02{% endif %}
-              {% if self.version == "101" %}VERSION 1.01{% endif %}
-               of IATI Standard Reference</strong>
-              {% if global.standard_page %}
-                <a href="{% pageurl global.standard_page %}">View another version</a>
-              {% endif %}
-            </p>
-        </div>
-      {% endif %}
-    </div>
-  </div>
-
-  {% if self.version == "105" or self.version == "104" or self.version == "103" or self.version == "102" or self.version == "101" %}
-  <div class="hero-notice">
-      <div class="row">
-          <p class="hero-notice__copy"><i role="presentation" aria-hidden="true" class="ico ico--18 ico-warning-warning"></i>This version is DEPRECATED,
-            {% if global.standard_page.latest_version_page %}
-              <a href="{% pageurl global.standard_page.latest_version_page %}">v2.03</a>
-            {% else %}
-              v2.03
+    <div class="hero hero--minor">
+        <div class="row">
+            {% if self.version != "guidance" and self.version != "developer-documentation" %}
+                <div class="hero__caption">
+                    <p class="hero__excerpt">You are viewing <strong>
+                        {% if self.version == "203" %}VERSION 2.03{% endif %}
+                        {% if self.version == "202" %}VERSION 2.02{% endif %}
+                        {% if self.version == "201" %}VERSION 2.01{% endif %}
+                        {% if self.version == "105" %}VERSION 1.05{% endif %}
+                        {% if self.version == "104" %}VERSION 1.04{% endif %}
+                        {% if self.version == "103" %}VERSION 1.03{% endif %}
+                        {% if self.version == "102" %}VERSION 1.02{% endif %}
+                        {% if self.version == "101" %}VERSION 1.01{% endif %}
+                         of IATI Standard Reference</strong>
+                        {% if global.standard_page %}
+                            <a href="{% pageurl global.standard_page %}">View another version</a>
+                        {% endif %}
+                    </p>
+                </div>
             {% endif %}
-          is the latest version</p>
-      </div>
-  </div>
-  {% endif %}
+        </div>
+    </div>
 
-  <div class="row">
-  	<div class="l-sidebar l-sidebar--reverse l-sidebar--wide">
-      {% reference_menu calling_page=self %}
+    {% if self.version == "105" or self.version == "104" or self.version == "103" or self.version == "102" or self.version == "101" %}
+        <div class="hero-notice">
+            <div class="row">
+                <p class="hero-notice__copy"><i role="presentation" aria-hidden="true" class="ico ico--18 ico-warning-warning"></i>This version is DEPRECATED,
+                    {% if global.standard_page.latest_version_page %}
+                        <a href="{% pageurl global.standard_page.latest_version_page %}">v2.03</a>
+                    {% else %}
+                        v2.03
+                    {% endif %}
+                is the latest version</p>
+            </div>
+        </div>
+    {% endif %}
 
-  		<div class="l-sidebar__body">
-        <section>
-          <div class="is-typeset">
-            {{ self.data|safe }}
-          </div>
-        </section>
-        {% if global.standard_page.reference_support_page %}
-        <section class="space-section-top">
-          <div class="aside-m">
-            <div class="aside-m__header fill-sunset">
-              <h3 class="aside-m__heading">Contact support</h3>
+    <div class="row">
+        <div class="l-sidebar l-sidebar--reverse l-sidebar--wide">
+            {% reference_menu calling_page=self %}
+            <div class="l-sidebar__body">
+                <section>
+                    <div class="is-typeset">
+                        {{ self.data|safe }}
+                    </div>
+                </section>
+                {% if global.standard_page.reference_support_page %}
+                    <section class="space-section-top">
+                        <div class="aside-m">
+                            <div class="aside-m__header fill-sunset">
+                                <h3 class="aside-m__heading">Contact support</h3>
+                            </div>
+                            <div class="aside-m__body">
+                                    <p class="aside-m__copy">Our technical team are ready to help you.</p>
+                                    <a class="button" href="{% pageurl global.standard_page.reference_support_page %}">Get help</a>
+                            </div>
+                        </div>
+                    </section>
+                {% endif %}
             </div>
-            <div class="aside-m__body">
-                <p class="aside-m__copy">Our technical team are ready to help you.</p>
-                <a class="button" href="{% pageurl global.standard_page.reference_support_page %}">Get help</a>
-            </div>
-          </div>
-        </section>
-        {% endif %}
-  		</div>
-  	</div>
-  </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block html_footer %}
+    {% include 'iati_standard/includes/syntax-highlight.html' %}
 {% endblock %}
