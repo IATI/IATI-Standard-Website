@@ -9,14 +9,14 @@ django-haystack==2.8.1
 django-modeltranslation==0.14.2
 django-recaptcha3==0.2.0
 django-widget-tweaks==1.4.3
-django==2.2.9
+Django==2.2.12
 elasticsearch==6.4.0
 gunicorn==20.0.4
 psycopg2-binary==2.8.4
 requests==2.22.0
 sentry-sdk==0.14.0
 wagtail-modeltranslation==0.10.7
-wagtail==2.7.1
+wagtail==2.8.1
 Wand==0.5.8
 wagtail-linkchecker==0.4.0
 whitenoise==5.0.1
