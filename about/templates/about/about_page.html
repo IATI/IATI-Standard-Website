@@ -5,24 +5,22 @@
 {% block body_id %}body-about{% endblock %}
 
 {% block content %}
-  <div class="hero">
-    {% include "home/includes/hero_heading.html" %}
-  </div>
+	<div class="hero">
+		{% include "home/includes/hero_heading.html" %}
+	</div>
+	{% include "notices/page-notice.html" %}
 
+	<div class="row">
+		<div class="l-sidebar l-sidebar--reverse">
+			<aside class="l-sidebar__aside">
+				{% side_panel calling_page=self %}
 
-  <div class="row">
-  	<div class="l-sidebar l-sidebar--reverse">
-  		<aside class="l-sidebar__aside">
-        {% side_panel calling_page=self %}
-
-  		</aside>
-  		<div class="l-sidebar__body">
-
-        {% if page.content_editor %}
-          {% include "home/includes/streamfield.html" with content=page.content_editor %}
-        {% endif %}
-
-  		</div>
-  	</div>
-  </div>
+			</aside>
+			<div class="l-sidebar__body">
+				{% if page.content_editor %}
+					{% include "home/includes/streamfield.html" with content=page.content_editor %}
+				{% endif %}
+			</div>
+		</div>
+	</div>
 {% endblock %}

@@ -49,6 +49,7 @@
         {% wagtailuserbar %}
         <div class="ui-base">
 		    <a href="#pagecontent" class="skiplink" data-js="skiplink">{% trans "Skip to main content" %}</a>
+            {% include 'notices/global-notice.html' %}
             {% block header %}
                 {% include 'scaffold/header.html' %}
             {% endblock %}
