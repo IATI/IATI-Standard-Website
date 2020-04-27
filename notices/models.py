@@ -4,6 +4,7 @@ from django.db import models
 from django.utils.html import strip_tags
 from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.core.fields import RichTextField
+from wagtail.core.models import Page
 from wagtail.snippets.models import register_snippet
 from common.utils import ForeignKeyField
 from dashboard.edit_handlers import MultiFieldPanel
@@ -78,6 +79,11 @@ class GlobalNotice(AbstractNotice):
             return False
         return super().has_add_permission(request)
 
+    @classmethod
+    def get_notice(cls):
+        """Class method for getting a global notice."""
+        return cls.objects.all().first()
+
 
 @register_snippet
 class PageNotice(AbstractNotice):
@@ -122,8 +128,54 @@ class PageNotice(AbstractNotice):
     ]
 
     def clean(self):
+        """Page field is optional, so raise a validation error when a notice is not global."""
         if self.display_location != DISPLAY_LOCATIONS[0][0] and not self.page:
             raise ValidationError({
                 'page': 'This field is required'
             })
         return super().clean()
+
+    @classmethod
+    def get_notice(cls, page):
+        """Class method for finding most specific notice to match a page."""
+
+        # return if no page
+        if not page:
+            return cls.objects.none()
+
+        # is there a selected page with same id?
+        location = DISPLAY_LOCATIONS[1][0]
+        notices = cls.objects.all().filter(page=page, display_location=location)
+        if notices:
+            return notices.last()
+
+        # is there a matching selected page and child page?
+        location = DISPLAY_LOCATIONS[2][0]
+        notices = cls.objects.all().filter(page=page, display_location=location)
+        if notices:
+            return notices.last()
+
+        # get ancestors to check for child pages
+        current_page = Page.objects.filter(id=page.id).first()
+        ancestors = Page.objects.ancestor_of(current_page).values_list('id', flat=True)
+
+        # is the page a child of a selected page and child page option?
+        location = DISPLAY_LOCATIONS[2][0]
+        notices = cls.objects.all().filter(page__id__in=[ancestors], display_location=location)
+        if notices:
+            return notices.last()
+
+        # is the page a child of selected page children only option?
+        location = DISPLAY_LOCATIONS[3][0]
+        notices = cls.objects.all().filter(page__id__in=[ancestors], display_location=location)
+        if notices:
+            return notices.last()
+
+        # is there a global notice?
+        location = DISPLAY_LOCATIONS[0][0]
+        notices = cls.objects.all().filter(display_location=location)
+        if notices:
+            return notices.last()
+
+        # nothing found, return none
+        return cls.objects.none()
