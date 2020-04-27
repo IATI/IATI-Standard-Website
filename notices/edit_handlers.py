@@ -8,7 +8,7 @@ class DisplayTypeFieldPanel(CustomisedEditHandler):
 
     def __init__(self, children=(), heading='', classname='', help_text=''):
         self.children = [
-            FieldPanel('display_type'),
+            FieldPanel('display_location'),
             PageChooserPanel('page'),
         ]
         self.heading = heading

@@ -1,10 +1,10 @@
 $(function () {
-    $('.js-displaytypefield').each(function() {
+    $('.js-displaylocationfield').each(function() {
         var $container = $(this);
-        var $toggle = $container.find('.js-display_type select');
+        var $toggle = $container.find('.js-display_location select');
         var page_field = $container.find('.js-page');
 
-        if (!page_field.hasClass('js-all')) {
+        if ($toggle.val() == 'all') {
             page_field.slideUp(0);
         }
 
@@ -13,7 +13,7 @@ $(function () {
                 page_field.slideDown();
             }
             else {
-                page_field.slideDown();
+                page_field.slideUp();
             }
         });
     });

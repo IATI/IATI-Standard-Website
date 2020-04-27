@@ -1,5 +1,7 @@
 """Module for registering admin models for the notices app."""
 
+from django.utils.html import strip_tags
+from wagtail.contrib.modeladmin.helpers import PermissionHelper
 from wagtail.contrib.modeladmin.options import (
     ModelAdmin,
     ModelAdminGroup,
@@ -8,15 +10,31 @@ from wagtail.contrib.modeladmin.options import (
 from notices.models import GlobalNotice, PageNotice
 
 
+class GlobalNoticePermissionHelper(PermissionHelper):
+    """Permission helper for global notices."""
+
+    def user_can_create(self, user):
+        """Hide the "Add" button when there is already an instance."""
+        num_objects = self.model.objects.count()
+        if num_objects >= 1:
+            return False
+        return super().user_can_create(user)
+
+
+def content(obj):
+    """Strip HTML tags for list display."""
+    return strip_tags(obj.content.replace('</', ' </'))
+
+
 class GlobalNoticeAdmin(ModelAdmin):
     """Admin model for global notices."""
 
     model = GlobalNotice
     menu_icon = 'site'
     menu_order = 100
-    menu_label = 'Global notices'
-    list_display = ('content', )
-    search_fields = ('content', )
+    menu_label = 'Global notice'
+    list_display = (content, )
+    permission_helper_class = GlobalNoticePermissionHelper
 
 
 class PageNoticeAdmin(ModelAdmin):
@@ -26,7 +44,7 @@ class PageNoticeAdmin(ModelAdmin):
     menu_icon = 'help'
     menu_order = 110
     menu_label = 'Page notices'
-    list_display = ('content', )
+    list_display = ('page', 'display_location', content, )
     search_fields = ('content', )
 
 
