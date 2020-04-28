@@ -245,17 +245,38 @@
 
 .hero-notice {
     position: relative;
-    background-color: lighten($warning, 40%);
     padding: 1.5em 0;
     margin-top: -5em;
     margin-bottom: 5em;
+    &--alert {
+        background-color: lighten($warning, 40%);
+    }
+    &--warning {
+        background-color: lighten($error, 35%);
+    }
+    &--notice {
+        background-color: $iati-air;
+    }
 }
 
 .hero-notice__icon {
     width: 18px;
+    height: 18px;
     margin-right: 12px;
-    float: left;
     transform: translateY(2px);
+    float: left;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    .hero-notice--alert & {
+        background-image: url(../svg/source/icon-alert.svg);
+    }
+    .hero-notice--warning & {
+        background-image: url(../svg/source/icon-warning.svg);
+    }
+    .hero-notice--notice & {
+        background-image: url(../svg/source/icon-notice.svg);
+    }
 }
 
 .hero-notice__copy {
@@ -263,14 +284,30 @@
     font-weight: 700;
     line-height: 1.4;
     max-width: 80%;
-    color: darken($warning, 15%);
     width: calc(100% - 30px);
     float: left;
     a {
-        color: darken($warning, 15%);
         text-decoration: underline;
     }
     strong {
         @extend %font-heading;
+    }
+    .hero-notice--alert & {
+        color: darken($warning, 15%);
+        a {
+            color: darken($warning, 15%);
+        }
+    }
+    .hero-notice--warning & {
+        color: darken($error, 15%);
+        a {
+            color: darken($error, 15%);
+        }
+    }
+    .hero-notice--notice & {
+        color: $heading-color;
+        a {
+            color: $heading-color;
+        }
     }
 }
