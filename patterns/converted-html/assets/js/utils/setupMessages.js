@@ -18,12 +18,12 @@ export default function setupMessages() {
 	// alert(getCookie('alert_cookie'));
 	if(alert_cookie != 1){
 		// $('#message__wrapper').slideDown(300);
-		$('#message__wrapper').css('display', 'block');
+		$('#global-notice').css('display', 'block');
 	}
 
-	$('#message__close').on('click', function(e) {
+	$('#global-notice__close').on('click', function(e) {
 		e.preventDefault();
-		$('#message__wrapper').slideUp(300, function(){
+		$('#global-notice').slideUp(300, function(){
 			$(this).remove();
 		});
 		setCookie('alert_cookie',1);
