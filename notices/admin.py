@@ -33,7 +33,7 @@ class GlobalNoticeAdmin(ModelAdmin):
     menu_icon = 'site'
     menu_order = 100
     menu_label = 'Global notice'
-    list_display = (content, 'notice_type', )
+    list_display = (content, 'notice_type', 'uuid', )
     permission_helper_class = GlobalNoticePermissionHelper
 
 
@@ -44,7 +44,7 @@ class PageNoticeAdmin(ModelAdmin):
     menu_icon = 'help'
     menu_order = 110
     menu_label = 'Page notices'
-    list_display = ('page', 'display_location', 'notice_type', 'allow_dismiss', content, )
+    list_display = ('page', 'display_location', 'uuid', 'notice_type', 'allow_dismiss', content, )
     search_fields = ('content', )
 
 

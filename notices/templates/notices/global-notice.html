@@ -1,9 +1,12 @@
-<div class="message__wrapper" id="message__wrapper">
-    <div class="row">
-        <div class="message__content">
-            <h2>Message heading</h2>
-            <p>An example of some message text with a <a href="#">link</a>.</p>
-            <button class="message__button" id="message__close">X</button>
+{% load wagtailcore_tags %}
+
+{% if global.global_notice %}
+    <div class="message__wrapper message__wrapper--{{ global.global_notice.notice_type }}" data-notice id="{{ global.global_notice.uuid }}">
+        <div class="row">
+            <div class="message__content">
+                {{ global.global_notice.content|richtext }}
+                <button data-notice-dismiss class="message__button">X</button>
+            </div>
         </div>
     </div>
-</div>
+{% endif %}

@@ -1,3 +1,4 @@
+import uuid
 from django import forms
 from django.core.exceptions import ValidationError
 from django.db import models
@@ -30,6 +31,10 @@ class AbstractNotice(models.Model):
     class Meta:
         abstract = True
 
+    uuid = models.UUIDField(
+        default=uuid.uuid4,
+        editable=False
+    )
     notice_type = models.CharField(
         max_length=255,
         choices=NOTICE_TYPES,
@@ -147,13 +152,13 @@ class PageNotice(AbstractNotice):
         location = DISPLAY_LOCATIONS[1][0]
         notices = cls.objects.all().filter(page=page, display_location=location)
         if notices:
-            return notices.last()
+            return notices.first()
 
         # is there a matching selected page and child page?
         location = DISPLAY_LOCATIONS[2][0]
         notices = cls.objects.all().filter(page=page, display_location=location)
         if notices:
-            return notices.last()
+            return notices.first()
 
         # get ancestors to check for child pages
         current_page = Page.objects.filter(id=page.id).first()
@@ -163,13 +168,13 @@ class PageNotice(AbstractNotice):
         location = DISPLAY_LOCATIONS[2][0]
         notices = cls.objects.all().filter(page__id__in=[ancestors], display_location=location)
         if notices:
-            return notices.last()
+            return notices.first()
 
         # is the page a child of selected page children only option?
         location = DISPLAY_LOCATIONS[3][0]
         notices = cls.objects.all().filter(page__id__in=[ancestors], display_location=location)
         if notices:
-            return notices.last()
+            return notices.first()
 
         # is there a global notice?
         location = DISPLAY_LOCATIONS[0][0]

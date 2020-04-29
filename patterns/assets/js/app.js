@@ -8,7 +8,7 @@ import searchTrigger from './utils/searchTrigger';
 import nestedNav from './utils/nestedNav';
 import megaMenu from './utils/megaMenu';
 import counter from './utils/counter';
-import setupMessages from './utils/setupMessages';
+import setupNotices from './utils/setupNotices';
 // import instance from './utils/basicScroll';
 
 function globals () {
@@ -96,8 +96,8 @@ function globals () {
         $(this).text($(this).text() == 'Hide -' ? 'Expand +' : 'Hide -').prev().toggleClass('show-hide-target--hidden');
     });
 
-    // Messages
-    setupMessages();
+    // Notices
+    setupNotices();
 }
 
 $(function run () {

@@ -1,11 +1,14 @@
 {% load wagtailcore_tags %}
 
 {% if global.page_notice %}
-    <div class="hero-notice hero-notice--{{ global.page_notice.notice_type }}">
+    <div class="hero-notice hero-notice--{{ global.page_notice.notice_type }}" data-notice id="{{ global.page_notice.uuid }}">
         <div class="row">
             <div class="hero-notice__icon"></div>
             <div class="hero-notice__copy">
                 {{ global.page_notice.content|richtext }}
+                {% if global.page_notice.allow_dismiss %}
+                    <button data-notice-dismiss class="message__button">X</button>
+                {% endif %}
             </div>
         </div>
     </div>
