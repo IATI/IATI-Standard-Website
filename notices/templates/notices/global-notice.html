@@ -1,11 +1,11 @@
 {% load wagtailcore_tags %}
 
 {% if global.global_notice %}
-    <div class="message__wrapper message__wrapper--{{ global.global_notice.notice_type }}" data-notice id="{{ global.global_notice.uuid }}">
+    <div class="notice__wrapper notice__wrapper--{{ global.global_notice.notice_type }}" data-notice id="{{ global.global_notice.uuid }}">
         <div class="row">
-            <div class="message__content">
+            <div class="notice__content">
                 {{ global.global_notice.content|richtext }}
-                <button data-notice-dismiss class="message__button">X</button>
+                <button data-notice-dismiss class="notice__button">X</button>
             </div>
         </div>
     </div>

@@ -342,4 +342,7 @@
         color: darken($error, 15%);
         border: 2px solid darken($error, 15%);
     }
+    .no-js & {
+        display: none;
+    }
 }

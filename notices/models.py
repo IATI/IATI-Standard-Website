@@ -53,6 +53,13 @@ class AbstractNotice(models.Model):
         """Get a string representation of the snippet, the content."""
         return strip_tags(self.content.replace('</', ' </'))
 
+    @classmethod
+    def filter_dismissed_notices(cls, notice, request):
+        """Only return notices that aren't set as dismissed in the user's cookies."""
+        if request.COOKIES.get(str(notice.uuid)):
+            return cls.objects.none()
+        return notice
+
 
 @register_snippet
 class GlobalNotice(AbstractNotice):
@@ -85,9 +92,9 @@ class GlobalNotice(AbstractNotice):
         return super().has_add_permission(request)
 
     @classmethod
-    def get_notice(cls):
+    def get_notice(cls, request):
         """Class method for getting a global notice."""
-        return cls.objects.all().first()
+        return cls.filter_dismissed_notices(cls.objects.all().first(), request)
 
 
 @register_snippet
@@ -141,7 +148,7 @@ class PageNotice(AbstractNotice):
         return super().clean()
 
     @classmethod
-    def get_notice(cls, page):
+    def get_notice(cls, page, request):
         """Class method for finding most specific notice to match a page."""
 
         # return if no page
@@ -152,13 +159,13 @@ class PageNotice(AbstractNotice):
         location = DISPLAY_LOCATIONS[1][0]
         notices = cls.objects.all().filter(page=page, display_location=location)
         if notices:
-            return notices.first()
+            return cls.filter_dismissed_notices(notices.first(), request)
 
         # is there a matching selected page and child page?
         location = DISPLAY_LOCATIONS[2][0]
         notices = cls.objects.all().filter(page=page, display_location=location)
         if notices:
-            return notices.first()
+            return cls.filter_dismissed_notices(notices.first(), request)
 
         # get ancestors to check for child pages
         current_page = Page.objects.filter(id=page.id).first()
@@ -168,19 +175,19 @@ class PageNotice(AbstractNotice):
         location = DISPLAY_LOCATIONS[2][0]
         notices = cls.objects.all().filter(page__id__in=[ancestors], display_location=location)
         if notices:
-            return notices.first()
+            return cls.filter_dismissed_notices(notices.first(), request)
 
         # is the page a child of selected page children only option?
         location = DISPLAY_LOCATIONS[3][0]
         notices = cls.objects.all().filter(page__id__in=[ancestors], display_location=location)
         if notices:
-            return notices.first()
+            return cls.filter_dismissed_notices(notices.first(), request)
 
         # is there a global notice?
         location = DISPLAY_LOCATIONS[0][0]
         notices = cls.objects.all().filter(display_location=location)
         if notices:
-            return notices.last()
+            return cls.filter_dismissed_notices(notices.last(), request)
 
         # nothing found, return none
         return cls.objects.none()

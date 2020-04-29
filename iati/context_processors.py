@@ -44,8 +44,8 @@ def globals(request):
             'twitter_handle': settings.TWITTER_HANDLE,
             'search_page_url': search_page.url if search_page else '',
             'support_page_url': support_page.url if support_page else '',
-            'global_notice': GlobalNotice.get_notice(),
-            'page_notice': PageNotice.get_notice(current_page),
+            'global_notice': GlobalNotice.get_notice(request),
+            'page_notice': PageNotice.get_notice(current_page, request),
         },
     }
 
