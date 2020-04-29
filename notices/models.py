@@ -56,7 +56,7 @@ class AbstractNotice(models.Model):
     @classmethod
     def filter_dismissed_notices(cls, notice, request):
         """Only return notices that aren't set as dismissed in the user's cookies."""
-        if request.COOKIES.get(str(notice.uuid)):
+        if notice and request.COOKIES.get(str(notice.uuid)):
             return cls.objects.none()
         return notice
 
@@ -158,14 +158,14 @@ class PageNotice(AbstractNotice):
         # is there a selected page with same id?
         location = DISPLAY_LOCATIONS[1][0]
         notices = cls.objects.all().filter(page=page, display_location=location)
-        if notices:
-            return cls.filter_dismissed_notices(notices.first(), request)
+        if cls.filter_dismissed_notices(notices.first(), request):
+            return notices.first()
 
         # is there a matching selected page and child page?
         location = DISPLAY_LOCATIONS[2][0]
         notices = cls.objects.all().filter(page=page, display_location=location)
-        if notices:
-            return cls.filter_dismissed_notices(notices.first(), request)
+        if cls.filter_dismissed_notices(notices.first(), request):
+            return notices.first()
 
         # get ancestors to check for child pages
         current_page = Page.objects.filter(id=page.id).first()
@@ -174,20 +174,20 @@ class PageNotice(AbstractNotice):
         # is the page a child of a selected page and child page option?
         location = DISPLAY_LOCATIONS[2][0]
         notices = cls.objects.all().filter(page__id__in=[ancestors], display_location=location)
-        if notices:
-            return cls.filter_dismissed_notices(notices.first(), request)
+        if cls.filter_dismissed_notices(notices.first(), request):
+            return notices.first()
 
         # is the page a child of selected page children only option?
         location = DISPLAY_LOCATIONS[3][0]
         notices = cls.objects.all().filter(page__id__in=[ancestors], display_location=location)
-        if notices:
-            return cls.filter_dismissed_notices(notices.first(), request)
+        if cls.filter_dismissed_notices(notices.first(), request):
+            return notices.first()
 
         # is there a global notice?
         location = DISPLAY_LOCATIONS[0][0]
         notices = cls.objects.all().filter(display_location=location)
-        if notices:
-            return cls.filter_dismissed_notices(notices.last(), request)
+        if cls.filter_dismissed_notices(notices.last(), request):
+            return notices.last()
 
         # nothing found, return none
         return cls.objects.none()
