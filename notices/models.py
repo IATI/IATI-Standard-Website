@@ -54,11 +54,9 @@ class AbstractNotice(models.Model):
         return strip_tags(self.content.replace('</', ' </'))
 
     @classmethod
-    def filter_dismissed_notices(cls, notice, request):
-        """Only return notices that aren't set as dismissed in the user's cookies."""
-        if notice and request.COOKIES.get(str(notice.uuid)):
-            return cls.objects.none()
-        return notice
+    def dismissed(cls, request):
+        """Get a list of uuids that have been dismissed for excluding from querysets."""
+        return [x for x, v in request.COOKIES.items() if v == 'dismissed']
 
 
 @register_snippet
@@ -94,7 +92,10 @@ class GlobalNotice(AbstractNotice):
     @classmethod
     def get_notice(cls, request):
         """Class method for getting a global notice."""
-        return cls.filter_dismissed_notices(cls.objects.all().first(), request)
+        # get dismissed uuids
+        dismissed = cls.dismissed(request)
+
+        return cls.objects.all().exclude(uuid__in=dismissed).first()
 
 
 @register_snippet
@@ -150,21 +151,23 @@ class PageNotice(AbstractNotice):
     @classmethod
     def get_notice(cls, page, request):
         """Class method for finding most specific notice to match a page."""
-
         # return if no page
         if not page:
             return cls.objects.none()
 
+        # get dismissed uuids
+        dismissed = cls.dismissed(request)
+
         # is there a selected page with same id?
         location = DISPLAY_LOCATIONS[1][0]
-        notices = cls.objects.all().filter(page=page, display_location=location)
-        if cls.filter_dismissed_notices(notices.first(), request):
+        notices = cls.objects.all().filter(page=page, display_location=location).exclude(uuid__in=dismissed)
+        if notices.first():
             return notices.first()
 
         # is there a matching selected page and child page?
         location = DISPLAY_LOCATIONS[2][0]
-        notices = cls.objects.all().filter(page=page, display_location=location)
-        if cls.filter_dismissed_notices(notices.first(), request):
+        notices = cls.objects.all().filter(page=page, display_location=location).exclude(uuid__in=dismissed)
+        if notices.first():
             return notices.first()
 
         # get ancestors to check for child pages
@@ -173,20 +176,20 @@ class PageNotice(AbstractNotice):
 
         # is the page a child of a selected page and child page option?
         location = DISPLAY_LOCATIONS[2][0]
-        notices = cls.objects.all().filter(page__id__in=[ancestors], display_location=location)
-        if cls.filter_dismissed_notices(notices.first(), request):
+        notices = cls.objects.all().filter(page__id__in=[ancestors], display_location=location).exclude(uuid__in=dismissed)
+        if notices.first():
             return notices.first()
 
         # is the page a child of selected page children only option?
         location = DISPLAY_LOCATIONS[3][0]
-        notices = cls.objects.all().filter(page__id__in=[ancestors], display_location=location)
-        if cls.filter_dismissed_notices(notices.first(), request):
+        notices = cls.objects.all().filter(page__id__in=[ancestors], display_location=location).exclude(uuid__in=dismissed)
+        if notices.first():
             return notices.first()
 
         # is there a global notice?
         location = DISPLAY_LOCATIONS[0][0]
-        notices = cls.objects.all().filter(display_location=location)
-        if cls.filter_dismissed_notices(notices.last(), request):
+        notices = cls.objects.all().filter(display_location=location).exclude(uuid__in=dismissed)
+        if notices.last():
             return notices.last()
 
         # nothing found, return none
