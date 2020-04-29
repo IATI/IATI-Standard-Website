@@ -73,25 +73,25 @@
 }
 .notice__button {
     position: absolute;
-    right: 20px;
+    right: 0;
     @include respond-to-max($menu-respond) {
         right: 0;
     }
-    top: 20px;
-    @include font-size($delta);
-    padding: 3px 10px 1px 10px;
-    border-radius: 50%;
-    .notice__wrapper--notice & {
-        color: $heading-color;
-        border: 2px solid $heading-color;
-    }
+    top: 24px;
+    width: 24px;
+    height: 24px;
+    display: block;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
     .notice__wrapper--alert & {
-        color: darken($warning, 15%);
-        border: 2px solid darken($warning, 15%);
+        background-image: url(../svg/source/icon-cross-alert.svg);
     }
     .notice__wrapper--warning & {
-        color: darken($error, 15%);
-        border: 2px solid darken($error, 15%);
+        background-image: url(../svg/source/icon-cross-warning.svg);
+    }
+    .notice__wrapper--notice & {
+        background-image: url(../svg/source/icon-cross-notice.svg);
     }
     .no-js & {
         display: none;

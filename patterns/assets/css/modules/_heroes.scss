@@ -246,8 +246,7 @@
 .hero-notice {
     position: relative;
     padding: 1.5em 0;
-    margin-top: -5em;
-    margin-bottom: 5em;
+    transform: translateY(-5em);
     &--alert {
         background-color: lighten($warning, 40%);
     }
@@ -326,21 +325,20 @@
     }
     right: $internal-spacing;
     top: 2px;
-    @extend %font-heading;
-    @include font-size($eta);
-    padding: 3px 6px 1px 7px;
-    border-radius: 50%;
-    .hero-notice--notice & {
-        color: $heading-color;
-        border: 2px solid $heading-color;
-    }
+    width: 24px;
+    height: 24px;
+    display: block;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
     .hero-notice--alert & {
-        color: darken($warning, 15%);
-        border: 2px solid darken($warning, 15%);
+        background-image: url(../svg/source/icon-cross-alert.svg);
     }
     .hero-notice--warning & {
-        color: darken($error, 15%);
-        border: 2px solid darken($error, 15%);
+        background-image: url(../svg/source/icon-cross-warning.svg);
+    }
+    .hero-notice--notice & {
+        background-image: url(../svg/source/icon-cross-notice.svg);
     }
     .no-js & {
         display: none;
