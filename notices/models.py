@@ -54,9 +54,21 @@ class AbstractNotice(models.Model):
         return strip_tags(self.content.replace('</', ' </'))
 
     @classmethod
+    def is_valid_uuid4(cls, uuid_string):
+        """Test if a valid version 4 uuid."""
+        try:
+            uuid.UUID(uuid_string, version=4)
+        except ValueError:
+            # If it's a value error, then the string
+            # is not a valid hex code for a UUID.
+            return False
+
+        return True
+
+    @classmethod
     def dismissed(cls, request):
         """Get a list of uuids that have been dismissed for excluding from querysets."""
-        return [x for x, v in request.COOKIES.items() if v == 'dismissed']
+        return [x for x, v in request.COOKIES.items() if v == 'dismissed' and cls.is_valid_uuid4(x)]
 
 
 @register_snippet
