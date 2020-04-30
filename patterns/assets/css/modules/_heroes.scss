@@ -288,7 +288,7 @@
     a {
         text-decoration: underline;
     }
-    strong {
+    strong, b {
         @extend %font-heading;
     }
     .hero-notice--alert & {
