@@ -25,6 +25,7 @@ from iati_standard.panels import ReferenceDataPanel
 
 class CardBlock(StructBlock):
     """A class to construct the card block streamfield for the IATI Standard Page."""
+
     major_header = CharBlock(
         required=False,
         help_text='Text for the header element of the card'
