@@ -52,6 +52,9 @@
         @include font-size($epsilon);
         @extend %font-body;
     }
+    strong, b {
+        @extend %font-heading;
+    }
     a {
         text-decoration: underline;
     }
