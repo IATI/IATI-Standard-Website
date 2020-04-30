@@ -5,43 +5,38 @@
 {% block body_id %}body-news-single{% endblock %}
 
 {% block content %}
-<div class="hero">
-  {% include "home/includes/hero_heading.html" %}
-</div>
+    <div class="hero">
+        {% include "home/includes/hero_heading.html" %}
+    </div>
+    {% include "notices/page-notice.html" %}
 
-<div class="row">
-  <div class="l-sidebar l-sidebar--reverse">
-    <aside class="l-sidebar__aside">
-      {% side_panel calling_page=self %}
-
-    </aside>
-    <div class="l-sidebar__body">
-
-      <div class="l-listing">
-
-        {% for case_study in case_studies %}
-        <article class="case-study">
-          {% if case_study.feed_image %}
-            {% image case_study.feed_image width-600 as img %}
-          <div title="{{ img.title }}" class="case-study__media background-cover" style="background-image: url({{ img.url }});"></div>
-          {% else %}
-          <div title="iati placeholder" class="case-study__media background-cover" style="background-image: url({% static 'img/image-placeholder.svg' %});"></div>
-          {% endif %}
-          <div class="case-study__panel">
-            <h2 class="case-study__heading">
-              <a href="{% pageurl case_study %}"><span>{{ case_study.heading }}</span></a>
-            </h2>
-            <p class="case-study__excerpt">{{ case_study.excerpt|default:"" }}</p>
-            <a href="{% pageurl case_study %}" class="button">Read more</a>
-          </div>
-        </article>
-        {% endfor %}
-
-      </div>
-
-      {% include "home/includes/pagination_links.html" with children=case_studies %}
-
-		</div>
-	</div>
-</div>
+    <div class="row">
+        <div class="l-sidebar l-sidebar--reverse">
+            <aside class="l-sidebar__aside">
+                {% side_panel calling_page=self %}
+            </aside>
+            <div class="l-sidebar__body">
+                <div class="l-listing">
+                    {% for case_study in case_studies %}
+                        <article class="case-study">
+                            {% if case_study.feed_image %}
+                                {% image case_study.feed_image width-600 as img %}
+                                <div title="{{ img.title }}" class="case-study__media background-cover" style="background-image: url({{ img.url }});"></div>
+                            {% else %}
+                                <div title="iati placeholder" class="case-study__media background-cover" style="background-image: url({% static 'img/image-placeholder.svg' %});"></div>
+                            {% endif %}
+                            <div class="case-study__panel">
+                                <h2 class="case-study__heading">
+                                    <a href="{% pageurl case_study %}"><span>{{ case_study.heading }}</span></a>
+                                </h2>
+                                <p class="case-study__excerpt">{{ case_study.excerpt|default:"" }}</p>
+                                <a href="{% pageurl case_study %}" class="button">Read more</a>
+                            </div>
+                        </article>
+                    {% endfor %}
+                </div>
+                {% include "home/includes/pagination_links.html" with children=case_studies %}
+            </div>
+        </div>
+    </div>
 {% endblock %}

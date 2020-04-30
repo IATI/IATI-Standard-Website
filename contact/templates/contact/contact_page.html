@@ -7,16 +7,14 @@
     <div class="hero">
       {% include "home/includes/hero_heading.html" %}
     </div>
-
+    {% include "notices/page-notice.html" %}
 
     <div class="row">
         <div class="max-meter is-typeset is-typeset--article">
             <p>{{ page.content_editor }}</p>
         </div>
-
         <div class="m-blocks">
             {% include "contact/includes/contact_type.html" with content=page.contact_type %}
         </div>
     </div>
-
 {% endblock %}

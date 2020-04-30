@@ -1,74 +1,71 @@
 {% extends "base.html" %}
+
 {% load wagtailcore_tags wagtailimages_tags wagtail_modeltranslation iati_tags i18n static %}
+
 {% block body_class %}body body--news{% endblock %}
 {% block body_id %}body-news{% endblock %}
+
 {% block content %}
-<div class="hero">
-  {% include "home/includes/hero_heading.html" %}
-</div>
-
-
-<div class="row">
-  <div class="l-sidebar">
-    <div class="l-sidebar__body">
-      {% if request.GET.type|length %}
-        <div class="section-header-link">
-          <h2 class="section__heading">
-              {% blocktrans with news_category_name=request.GET.type|news_category_verbose %} Showing "{{ news_category_name }}" news posts{% endblocktrans %}
-          </h2>
-          <a class="section-header-link__action" href="{% pageurl self %}">{% trans "Show all posts" %}</a>
-       </div>
-       {% endif %}
-      <div class="l-listing">
-        {% for news_post in news_posts %}
-          {% with news_post=news_post.specific %}
-            <article class="listing {% if forloop.first %}{% if request.GET.page == "1" or request.GET.page|length == 0 %}listing--featured{% endif %}{% else %}listing--article{% endif %}">
-              <aside class="listing__aside">
-                <div class="listing__media">
-                  {% if news_post.feed_image %}
-              		  {% image news_post.feed_image width-500 as img %}
-              		  <img src="{{ img.url }}" alt="{{ img.title }}" />
-              		 {% else %}
-              		  <img src="{% static 'svg/source/logo-square.svg' %}" alt="iati logo"/>
-              		 {% endif %}
-                </div>
-              </aside>
-              <div class="listing__body">
-                <h2 class="listing__heading"><a href="{% pageurl news_post %}"><span>{{ news_post.heading }}</span></a></h2>
-                <ul class="listing__metadata">
-                  <li class="listing__metadata__item">
-                    <i role="presentation" aria-hidden="true" class="ico ico--14 ico-calendar-ocean"></i> <span class="listing__metadata__date">{{ news_post.date }}</span>
-                  </li>
-
-                </ul>
-                <div class="listing__excerpt">{{ news_post.excerpt|default:"" }}</div>
-                <a href="{% pageurl news_post %}" class="button">{% trans "Read more" %}</a>
-              </div>
-            </article>
-          {% endwith %}
-        {% endfor %}
-
-      </div>
-      {% include 'home/includes/pagination_links.html' with children=news_posts %}
-
-
+    <div class="hero">
+        {% include "home/includes/hero_heading.html" %}
     </div>
-    <aside class="l-sidebar__aside">
+    {% include "notices/page-notice.html" %}
 
-    {% if self.news_categories %}
-      <div class="aside-m">
-        <div class="aside-m__header fill-land">
-          <h3 class="aside-m__heading">{% trans "Categories" %}</h3>
+    <div class="row">
+        <div class="l-sidebar">
+            <div class="l-sidebar__body">
+                {% if request.GET.type|length %}
+                    <div class="section-header-link">
+                        <h2 class="section__heading">
+                            {% blocktrans with news_category_name=request.GET.type|news_category_verbose %} Showing "{{ news_category_name }}" news posts{% endblocktrans %}
+                        </h2>
+                        <a class="section-header-link__action" href="{% pageurl self %}">{% trans "Show all posts" %}</a>
+                    </div>
+                {% endif %}
+                <div class="l-listing">
+                    {% for news_post in news_posts %}
+                        {% with news_post=news_post.specific %}
+                            <article class="listing {% if forloop.first %}{% if request.GET.page == "1" or request.GET.page|length == 0 %}listing--featured{% endif %}{% else %}listing--article{% endif %}">
+                                <aside class="listing__aside">
+                                    <div class="listing__media">
+                                        {% if news_post.feed_image %}
+                                            {% image news_post.feed_image width-500 as img %}
+                                            <img src="{{ img.url }}" alt="{{ img.title }}" />
+                                        {% else %}
+                                            <img src="{% static 'svg/source/logo-square.svg' %}" alt="iati logo"/>
+                                        {% endif %}
+                                    </div>
+                                </aside>
+                                <div class="listing__body">
+                                    <h2 class="listing__heading"><a href="{% pageurl news_post %}"><span>{{ news_post.heading }}</span></a></h2>
+                                    <ul class="listing__metadata">
+                                        <li class="listing__metadata__item">
+                                            <i role="presentation" aria-hidden="true" class="ico ico--14 ico-calendar-ocean"></i> <span class="listing__metadata__date">{{ news_post.date }}</span>
+                                        </li>
+                                    </ul>
+                                    <div class="listing__excerpt">{{ news_post.excerpt|default:"" }}</div>
+                                    <a href="{% pageurl news_post %}" class="button">{% trans "Read more" %}</a>
+                                </div>
+                            </article>
+                        {% endwith %}
+                    {% endfor %}
+                </div>
+                {% include 'home/includes/pagination_links.html' with children=news_posts %}
+            </div>
+            <aside class="l-sidebar__aside">
+                {% if self.news_categories %}
+                    <div class="aside-m">
+                        <div class="aside-m__header fill-land">
+                            <h3 class="aside-m__heading">{% trans "Categories" %}</h3>
+                        </div>
+                        <ul class="aside-m__list">
+                            {% for news_category in self.news_categories %}
+                                <li class="aside-m__list-item"><a href="?type={{ news_category.slug }}">{{ news_category.name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+            </aside>
         </div>
-        <ul class="aside-m__list">
-          {% for news_category in self.news_categories %}
-            <li class="aside-m__list-item"><a href="?type={{ news_category.slug }}">{{ news_category.name }}</a></li>
-          {% endfor %}
-        </ul>
-      </div>
-    {% endif %}
-
-    </aside>
-  </div>
-</div>
+    </div>
 {% endblock %}
