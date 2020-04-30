@@ -37,13 +37,15 @@
 						                            </article>
 	                   	 						{% elif sub_col.highlight %}
 						                            <div class="m-highlight {% if not sub_col.not_alt %}m-highlight--alt{% endif %}">
-						                                <h3 class="m-highlight__heading">
-						                                	{% if sub_col.no_link_heading %}
-						                                		{{ sub_col.heading }}
-						                                	{% else %}
-						                                		<a href="http://iatistandard.org">{{ sub_col.heading }}</a>
-						                                	{% endif %}
-						                                </h3>
+                                                        {% if sub_col.heading %}
+                                                            <h3 class="m-highlight__heading">
+    						                                	{% if sub_col.no_link_heading %}
+    						                                		{{ sub_col.heading }}
+    						                                	{% else %}
+    						                                		<a href="http://iatistandard.org">{{ sub_col.heading }}</a>
+    						                                	{% endif %}
+    						                                </h3>
+                                                        {% endif %}
 						                                {% if sub_col.content %}
 						                                	<p class="navigation-megamenu__block__copy">{{ sub_col.content }}</p>
 						                                {% endif %}
@@ -53,7 +55,18 @@
 						                                {% if sub_col.list %}
 							                                <ul class="navigation-megamenu__list">
 							                                	{% for label in sub_col.list %}
-							                                    	<li><a href="http://iatistandard.org">{{ label }}</a></li>
+							                                    	<li>
+                                                                        {% if label.subcolumn %}
+        	                                								{{ label.heading }}
+        								                                    <ul>
+        								                                    	{% for sub_label in label.column %}
+        								                                        	<li><a href="http://iatistandard.org">{{ sub_label }}</a></li>
+        								                                        {% endfor %}
+        								                                    </ul>
+        	                                							{% else %}
+        	                                								<a href="http://iatistandard.org">{{ label }}</a>
+        	                                							{% endif %}
+                                                                    </li>
 							                                    {% endfor %}
 							                                </ul>
 							                            {% endif %}

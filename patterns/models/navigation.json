@@ -162,38 +162,43 @@
                 "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
             },
             "columns": {
-                "class": "navigation-megamenu__col navigation-megamenu__col--border",
+                "class": "navigation-megamenu__col",
                 "columns": [
                     {
                         "class": "l-3up",
                         "column_class": "l-3up__col",
-                        "column_title_class": [
-                            "",
-                            "navigation-megamenu__list-title",
-                            "navigation-megamenu__list-title"
-                        ],
                         "columns": [
-                            [
-                                "How IATI works",
-                                "Who is IATI for?",
-                                "Why use IATI?",
-                                "About the Standard",
-                                "The IATI story so far"
-                            ],
-                            [
-                                "Case studies",
-                                "Madagascar case study",
-                                "Oxfam Novib case study",
-                                "AfDB's IATI portal improves development investments"
-                            ],
-                            [
-                                "Governance",
-                                "Annual reports",
-                                "Who runs IATI",
-                                "Finances",
-                                "IATI work plan",
-                                "Archive"
-                            ]
+                            {
+                                "highlight": true,
+                                "list": [
+                                    "How IATI works",
+                                    "Who is IATI for?",
+                                    "Why use IATI?",
+                                    "About the Standard",
+                                    "The IATI story so far"
+                                ]
+                            },
+                            {
+                                "highlight": true,
+                                "heading": "Case Studies",
+                                "list": [
+                                    "Madagascar case study",
+                                    "Oxfam Novib case study",
+                                    "AfDB's IATI portal improves development investments"
+                                ]
+                            },
+                            {
+                                "highlight": true,
+                                "heading": "Governance",
+                                "list": [
+                                    "Governance",
+                                    "Annual reports",
+                                    "Who runs IATI",
+                                    "Finances",
+                                    "IATI work plan",
+                                    "Archive"
+                                ]
+                            }
                         ]
                     }
                 ]
@@ -210,57 +215,69 @@
                 "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
             },
             "columns": {
-                "class": "navigation-megamenu__col navigation-megamenu__col--border",
+                "class": "navigation-megamenu__col",
                 "columns": [
                     {
                         "class": "l-4up",
                         "column_class": "l-4up__col",
                         "columns": [
-                            [
-                                "IATI Reference Pages v2.03",
-                                "The Organisation Standard",
-                                "The Activity Standard",
-                                "Codelists",
-                                "Schema",
-                                "Rulesets"
-                            ],
-                            [
-                                "IATI Standard Guidance",
-                                "Understanding the Standard",
-                                "Publishing Guidance",
-                                "Accessing and Using Data",
-                                "Developer Documentation",
-                                "Help and Support"
-                            ],
-                            [
-                                "Changelog",
-                                {
-                                    "subcolumn": true,
-                                    "heading": "Previous versions of IATI",
-                                    "column": [
-                                        "V2.02",
-                                        "V2.01"
-                                    ]
-                                },
-                                {
-                                    "subcolumn": true,
-                                    "heading": "Upgrade Information",
-                                    "column": [
-                                        "Upgrade process",
-                                        "Deprecation of V1"
-                                    ]
-                                }
-                            ],
-                            [
-                                "How we manage the Standard",
-                                {
-                                    "subcolumn": true,
-                                    "column": [
-                                        "Versions",
-                                        "Codelist management"
-                                    ]
-                                }
-                            ]
+                            {
+                                "highlight": true,
+                                "list": [
+                                    "IATI Reference Pages v2.03",
+                                    "The Organisation Standard",
+                                    "The Activity Standard",
+                                    "Codelists",
+                                    "Schema",
+                                    "Rulesets"
+                                ]
+                            },
+                            {
+                                "highlight": true,
+                                "list": [
+                                    "IATI Standard Guidance",
+                                    "Understanding the Standard",
+                                    "Publishing Guidance",
+                                    "Accessing and Using Data",
+                                    "Developer Documentation",
+                                    "Help and Support"
+                                ]
+                            },
+                            {
+                                "highlight": true,
+                                "list": [
+                                    "Changelog",
+                                    {
+                                        "subcolumn": true,
+                                        "heading": "Previous versions of IATI",
+                                        "column": [
+                                            "V2.02",
+                                            "V2.01"
+                                        ]
+                                    },
+                                    {
+                                        "subcolumn": true,
+                                        "heading": "Upgrade Information",
+                                        "column": [
+                                            "Upgrade process",
+                                            "Deprecation of V1"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "highlight": true,
+                                "list": [
+                                    "How we manage the Standard",
+                                    {
+                                        "subcolumn": true,
+                                        "column": [
+                                            "Versions",
+                                            "Codelist management"
+                                        ]
+                                    }
+                                ]
+                            }
                         ]
                     }
                 ]
@@ -282,13 +299,16 @@
                         "class": "l-offset",
                         "column_class": "l-offset__col",
                         "columns": [
-                            [
-                                "Types of data available",
-                                "How do I use IATI data?",
-                                "How to get help with using IATI data",
-                                "Progress on improving the use of IATI data",
-                                "IATI Data Use Fund"
-                            ],
+                            {
+                                "highlight": true,
+                                "list": [
+                                    "Types of data available",
+                                    "How do I use IATI data?",
+                                    "How to get help with using IATI data",
+                                    "Progress on improving the use of IATI data",
+                                    "IATI Data Use Fund"
+                                ]
+                            },
                             {
                                 "case_study": true,
                                 "image": "image-placeholder.svg",
@@ -335,12 +355,15 @@
                                 "content": "Bullet points about the tool and what it enables you to do",
                                 "label": "Link to the tool website"
                             },
-                            [
-                                "Promote IATI",
-                                "Publishing statistics",
-                                "Third party tools and services for data use",
-                                "IATI tool guide"
-                            ]
+                            {
+                                "highlight": true,
+                                "list": [
+                                    "Promote IATI",
+                                    "Publishing statistics",
+                                    "Third party tools and services for data use",
+                                    "IATI tool guide"
+                                ]
+                            }
                         ]
                     },
                     {

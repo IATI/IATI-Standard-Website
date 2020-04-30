@@ -2,6 +2,7 @@
 
 from wagtail.core.blocks import (
     CharBlock,
+    ChoiceBlock,
     PageChooserBlock,
     StructBlock,
     TextBlock,
@@ -42,6 +43,16 @@ class Highlight(AbstractHighlight):
                     '''
         icon = 'pick'
         template = 'navigation/blocks/highlight.html'
+
+    width = ChoiceBlock(
+        help_text='Width of the highlight module',
+        choices=[
+            ('small', 'Regular'),
+            ('wide', 'Wide'),
+        ],
+        default='small',
+        required=True,
+    )
 
 
 class SecondaryHighlight(AbstractHighlight):

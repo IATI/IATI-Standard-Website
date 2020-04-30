@@ -1,10 +1,10 @@
 {% load wagtailcore_tags %}
 
 <div class="navigation-megamenu">
-    {% include_block value.highlight %}
+    {% include_block value.highlight with class=value.highlight_class %}
 
     {% if value.num_columns %}
-        <div class="navigation-megamenu__col navigation-megamenu__col--border">
+        <div class="navigation-megamenu__col">
             <div class="{{ value.column_container_class }}">
                 {% for column in value.columns %}
                     {% include_block column with col=column.value column_class=value.column_class %}

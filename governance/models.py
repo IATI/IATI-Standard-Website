@@ -154,7 +154,12 @@ class MembersAssemblyPage(MembersAssemblyFieldsMixin, RoutablePageMixin, Abstrac
         context['query'] = '?%s' % query.urlencode() if query else ''
 
         # get the order from the query, add ordering vars to context
-        context['order'] = order_query = request.GET.get('order', self.ORDERING['name'])
+        raw_order_query = request.GET.get('order', self.ORDERING['name'])
+        if raw_order_query in self.ORDERING.values():
+            context['order'] = order_query = raw_order_query
+        else:
+            context['order'] = order_query = self.ORDERING['name']
+
         context['ordering'] = self.ORDERING
 
         # get the constituency from the path variable
