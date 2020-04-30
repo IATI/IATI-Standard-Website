@@ -5,35 +5,32 @@
 {% block body_id %}body-news-single{% endblock %}
 
 {% block content %}
-  {% if page.feed_image %}
-    {% image page.feed_image width-1400 as img %}
-    <div class="hero hero--image" style="background-image: url({{ img.url }})">
-  {% else %}
-    <div class="hero hero--minor">
-  {% endif %}
-  <div class="row">
-    <div class="max-meter">
-      <div class="hero__caption">
-        <h1 class="hero__heading">{{ page.heading }}</h1>
+	{% if page.feed_image %}
+		{% image page.feed_image width-1400 as img %}
+		<div class="hero hero--image" style="background-image: url({{ img.url }})">
+	{% else %}
+		<div class="hero hero--minor">
+	{% endif %}
+			<div class="row">
+				<div class="max-meter">
+					<div class="hero__caption">
+						<h1 class="hero__heading">{{ page.heading }}</h1>
+						<p class="hero__subheading">{{ page.excerpt|default:"" }}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% include "notices/page-notice.html" %}
 
-        <p class="hero__subheading">{{ page.excerpt|default:"" }}</p>
-
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<div class="sections">
-  <div class="row">
-    {% include "home/includes/breadcrumbs.html" %}
-      {% if page.content_editor %}
-        {% include "home/includes/streamfield.html" with content=page.content_editor %}
-      {% endif %}
-  </div>
-
-  <div class="row">
-    {% include "home/includes/sibling_links.html" %}
-  </div>
-</div>
+	<div class="sections">
+		<div class="row">
+			{% include "home/includes/breadcrumbs.html" %}
+			{% if page.content_editor %}
+				{% include "home/includes/streamfield.html" with content=page.content_editor %}
+			{% endif %}
+		</div>
+		<div class="row">
+			{% include "home/includes/sibling_links.html" %}
+		</div>
+	</div>
 {% endblock %}

@@ -41,7 +41,7 @@
         {% endblock %}
     </head>
 
-    <body class="{% block body_class %}{% endblock %}" id="{% block body_id %}{% endblock %}">
+    <body class="body--message {% block body_class %}{% endblock %}" id="{% block body_id %}{% endblock %}">
         <!-- Google Tag Manager (noscript) -->
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K6488R2"
         height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -49,6 +49,7 @@
         {% wagtailuserbar %}
         <div class="ui-base">
 		    <a href="#pagecontent" class="skiplink" data-js="skiplink">{% trans "Skip to main content" %}</a>
+            {% include 'notices/global-notice.html' %}
             {% block header %}
                 {% include 'scaffold/header.html' %}
             {% endblock %}

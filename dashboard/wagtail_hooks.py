@@ -21,12 +21,10 @@ def editor_css():
                 margin-bottom: 0;
             }}
             form > div.locale-picker {{
-                text-align: left;
                 margin: 1.5em 2em 1em !important;
             }}
             @media screen and (min-width: 800px) {{
                 form > div.locale-picker {{
-                    text-align: left;
                     margin: 1.5em 4em 1em !important;
                 }}
             }}

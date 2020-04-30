@@ -5,31 +5,30 @@
 {% block body_id %}body-support{% endblock %}
 
 {% block content %}
-<div class="hero">
-  {% include "home/includes/hero_heading.html" %}
-</div>
-
+    <div class="hero">
+        {% include "home/includes/hero_heading.html" %}
+    </div>
+    {% include "notices/page-notice.html" %}
 
     <div class="l-standard">
         <div class="row">
             <div class="max-meter max-meter--wide max-meter--center">
-              <div class="l-listing space-section-top">
-      <article class="listing listing--guidance">
-        <aside class="listing__aside">
-          <div class="listing__media">
-            <img src="https://styles.iatistandard.org/assets/img/image-placeholder.svg" alt="placeholder image">
-          </div>
-        </aside>
-        <div class="listing__body">
-          <h2 class="listing__heading"><a href="https://discuss.iatistandard.org/"><span>Discuss</span></a></h2>
-          <div class="listing__excerpt">
-            {{ page.text_box }}
-          </div>
-          <a href="{{ page.button_url }}" class="button">{{ page.button_link_text }}</a>
-        </div>
-      </article>
-
-              </div>
+                <div class="l-listing space-section-top">
+                    <article class="listing listing--guidance">
+                        <aside class="listing__aside">
+                            <div class="listing__media">
+                                <img src="https://styles.iatistandard.org/assets/img/image-placeholder.svg" alt="placeholder image">
+                            </div>
+                        </aside>
+                        <div class="listing__body">
+                            <h2 class="listing__heading"><a href="https://discuss.iatistandard.org/"><span>Discuss</span></a></h2>
+                            <div class="listing__excerpt">
+                                {{ page.text_box }}
+                            </div>
+                            <a href="{{ page.button_url }}" class="button">{{ page.button_link_text }}</a>
+                        </div>
+                    </article>
+                </div>
             </div>
         </div>
     </div>

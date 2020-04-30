@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'taxonomies',
     'common',
     'testimonials',
+    'notices',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',

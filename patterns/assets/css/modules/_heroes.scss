@@ -244,23 +244,103 @@
 }
 
 .hero-notice {
-    background-color: lighten($warning, 40%);
+    position: relative;
     padding: 1.5em 0;
-    margin-top: -5em;
-    margin-bottom: 5em;
+    transform: translateY(-5em);
+    &--alert {
+        background-color: lighten($warning, 40%);
+    }
+    &--warning {
+        background-color: lighten($error, 35%);
+    }
+    &--notice {
+        background-color: $iati-air;
+    }
+}
+
+.hero-notice__icon {
+    width: 18px;
+    height: 18px;
+    margin-right: 12px;
+    transform: translateY(2px);
+    float: left;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    .hero-notice--alert & {
+        background-image: url(../svg/source/icon-alert.svg);
+    }
+    .hero-notice--warning & {
+        background-image: url(../svg/source/icon-warning.svg);
+    }
+    .hero-notice--notice & {
+        background-image: url(../svg/source/icon-notice.svg);
+    }
 }
 
 .hero-notice__copy {
     @include font-size($para);
     font-weight: 700;
-    line-height: 1;
-    color: darken($warning, 15%);
+    line-height: 1.4;
+    max-width: 90%;
+    width: calc(100% - 30px);
+    float: left;
     a {
-        color: darken($warning, 15%);
         text-decoration: underline;
     }
-    .ico {
-        top: -2px;
-        margin-right: 10px;
+    strong, b {
+        @extend %font-heading;
+    }
+    .hero-notice--alert & {
+        color: darken($warning, 15%);
+        a {
+            color: darken($warning, 15%);
+        }
+    }
+    .hero-notice--warning & {
+        color: darken($error, 15%);
+        a {
+            color: darken($error, 15%);
+        }
+    }
+    .hero-notice--notice & {
+        color: $heading-color;
+        a {
+            color: $heading-color;
+        }
+    }
+    @include respond-to($menu-respond) {
+        max-width: 80%;
+        .body--news-single & {
+            max-width: 60%;
+        }
+
+    }
+}
+
+.hero-notice__button {
+    position: absolute;
+    @include respond-to-max($menu-respond) {
+        right: $internal-spacing/2;
+    }
+    right: $internal-spacing;
+    top: 2px;
+    width: 24px;
+    height: 24px;
+    display: block;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    .hero-notice--alert & {
+        background-image: url(../svg/source/icon-cross-alert.svg);
+    }
+    .hero-notice--warning & {
+        background-image: url(../svg/source/icon-cross-warning.svg);
+    }
+    .hero-notice--notice & {
+        background-image: url(../svg/source/icon-cross-notice.svg);
+    }
+    .no-js & {
+        display: none;
     }
 }

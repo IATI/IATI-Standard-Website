@@ -35,9 +35,19 @@
 <link rel="icon" type="image/png" href="/assets/assets/favicons/favicon-16x16.png" sizes="16x16">
     
 </head>
-<body class="body body--home" id="body-home">
+<body class="body body--home body--message" id="body-home">
 	<div class="ui-base">
 		<a href="#pagecontent" class="skiplink" data-js="skiplink">Skip to main content</a>
+		<div class="notice__wrapper notice__wrapper--notice" data-notice id="global-notice">
+	<div class="row">
+		<div class="notice__content">
+			<h2>notice heading</h2>
+			<p>An example of some notice text with a <a href="#">link</a>.</p>
+			<button data-notice-dismiss class="notice__button"></button>
+		</div>
+	</div>
+</div>
+
 		
 			
 				
@@ -1147,6 +1157,16 @@
     </div>
 </div>
 
+    <div class="hero-notice hero-notice--alert" data-notice id="page-notice">
+        <div class="row">
+            <div class="hero-notice__icon"></div>
+            <div class="hero-notice__copy">
+                <p><b>Important notice:</b></p>
+                <p>Organisations involved in addressing the COVID-19 pandemic are encouraged to publish data on their spending and activities using the IATI Standard. <a href="https://iatistandard.org/en/news/publishing-data-covid-19-using-iati-standard/">See COVID-19 publishing guidance and read more information</a>.</p>
+            </div>
+            <button data-notice-dismiss class="hero-notice__button"></button>
+        </div>
+    </div>
 
 			
     <div class="row">

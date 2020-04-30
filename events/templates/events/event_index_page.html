@@ -6,117 +6,111 @@
 {% block body_id %}body-events{% endblock %}
 
 {% block content %}
-<div class="hero">
-  {% include "home/includes/hero_heading.html" %}
-</div>
+	<div class="hero">
+		{% include "home/includes/hero_heading.html" %}
+	</div>
+	{% include "notices/page-notice.html" %}
 
-<div class="row">
-	<div class="l-sidebar">
-		<div class="l-sidebar__body">
-      {% if request.GET.event_type|length %}
-        <div class="section-header-link">
-          <h2 class="section__heading">
-            {% if request.GET.year|length %}
-              {% blocktrans with year=request.GET.year event_type_name=request.GET.event_type|event_type_verbose %} Showing "{{ event_type_name }}" events from {{ year }}{% endblocktrans %}
-            {% else %}
-              {% blocktrans with event_type_name=request.GET.event_type|event_type_verbose %} Showing "{{ event_type_name }}" events{% endblocktrans %}
-            {% endif %}
-          </h2>
-          <a class="section-header-link__action" href="{% pageurl self %}?{% for key,value in request.GET.items %}{% if key == 'past' %}{% if not forloop.first %}&amp;{% endif %}{{ key }}={{ value }}{% endif %}{% endfor %}">{% trans "Show all events" %}</a>
-       </div>
-      {% elif request.GET.year|length %}
-        <div class="section-header-link">
-          <h2 class="section__heading">
-            {% blocktrans with year=request.GET.year %} Showing events from {{ year }}{% endblocktrans %}
-          </h2>
-          <a class="section-header-link__action" href="{% pageurl self %}?{% for key,value in request.GET.items %}{% if key == 'past' %}{% if not forloop.first %}&amp;{% endif %}{{ key }}={{ value }}{% endif %}{% endfor %}">{% trans "Show all events" %}</a>
-       </div>
-      {% endif %}
-	{% if past %}
-	<div class="l-listing l-listing--past">
-	{% else %}
-	<div class="l-listing l-listing--events">
-	{% endif %}
-	{% for event in events %}
-            {% with event=event.specific %}
-			<article class="listing {% if event.featured_event %}listing--featured{% else %}listing--article{% endif %} listing--archived">
-	<aside class="listing__aside">
-		<div class="listing__media">
-		{% if event.feed_image %}
-		  {% image event.feed_image width-200 as img %}
-		  <img src="{{ img.url }}" alt="{{ img.title }}" />
-		  {% else %}
-		  <img src="{% static 'svg/source/logo-square.svg' %}" alt="iati logo"/>
-		  {% endif %}
+	<div class="row">
+		<div class="l-sidebar">
+			<div class="l-sidebar__body">
+				{% if request.GET.event_type|length %}
+					<div class="section-header-link">
+						<h2 class="section__heading">
+							{% if request.GET.year|length %}
+								{% blocktrans with year=request.GET.year event_type_name=request.GET.event_type|event_type_verbose %} Showing "{{ event_type_name }}" events from {{ year }}{% endblocktrans %}
+							{% else %}
+								{% blocktrans with event_type_name=request.GET.event_type|event_type_verbose %} Showing "{{ event_type_name }}" events{% endblocktrans %}
+							{% endif %}
+						</h2>
+						<a class="section-header-link__action" href="{% pageurl self %}?{% for key,value in request.GET.items %}{% if key == 'past' %}{% if not forloop.first %}&amp;{% endif %}{{ key }}={{ value }}{% endif %}{% endfor %}">{% trans "Show all events" %}</a>
+				 	</div>
+				{% elif request.GET.year|length %}
+					<div class="section-header-link">
+						<h2 class="section__heading">
+							{% blocktrans with year=request.GET.year %} Showing events from {{ year }}{% endblocktrans %}
+						</h2>
+						<a class="section-header-link__action" href="{% pageurl self %}?{% for key,value in request.GET.items %}{% if key == 'past' %}{% if not forloop.first %}&amp;{% endif %}{{ key }}={{ value }}{% endif %}{% endfor %}">{% trans "Show all events" %}</a>
+				 	</div>
+				{% endif %}
+				{% if past %}
+					<div class="l-listing l-listing--past">
+				{% else %}
+					<div class="l-listing l-listing--events">
+				{% endif %}
+				{% for event in events %}
+					{% with event=event.specific %}
+						<article class="listing {% if event.featured_event %}listing--featured{% else %}listing--article{% endif %} listing--archived">
+							<aside class="listing__aside">
+								<div class="listing__media">
+									{% if event.feed_image %}
+										{% image event.feed_image width-200 as img %}
+										<img src="{{ img.url }}" alt="{{ img.title }}" />
+									{% else %}
+										<img src="{% static 'svg/source/logo-square.svg' %}" alt="iati logo"/>
+									{% endif %}
+								</div>
+								{% if event.location %}
+									<h3 class="listing__location"><i role="presentation" aria-hidden="true" class="ico ico--14 ico-location-ocean"></i>{{ event.location }}</h3>
+								{% endif %}
+								<span class="badge">{% trans "Past event" %}</span>
+							</aside>
+							<div class="listing__body">
+								<h2 class="listing__heading"><a href="{% pageurl event %}"><span>{{ event.heading }}</span></a></h2>
+								<ul class="listing__metadata">
+									<li class="listing__metadata__item">
+										<i role="presentation" aria-hidden="true" class="ico ico--14 ico-calendar-ocean"></i>
+										{% with formatted_dates=event.date_start|twopartdate:event.date_end %}
+											<span class="listing__metadata__date">{{ formatted_dates.part1 }}{% if formatted_dates.part2_is_time %} {% else %}&ndash;{% endif %}{{ formatted_dates.part2 }}</span>
+										{% endwith %}
+									</li>
+								</ul>
+								<p class="listing__excerpt">{{ event.excerpt|default:"" }}</p>
+								<a href="{% pageurl event %}" class="button">{% trans "More details" %}</a>
+							</div>
+						</article>
+					{% endwith %}
+				{% endfor %}
+				</div>
+				{% include "home/includes/pagination_links.html" with children=events %}
+			</div>
+			<aside class="l-sidebar__aside">
+				{% if not past %}
+					<div class="aside-m">
+						<div class="aside-m__header fill-sunset">
+							<h3 class="aside-m__heading">{% trans "Past events" %}</h3>
+						</div>
+						<div class="aside-m__body">
+							<p class="aside-m__copy">{% trans "See events that have happened" %}</p>
+							<a class="button" href="?past=1">{% trans "View past events" %}</a>
+						</div>
+					</div>
+				{% endif %}
+				{% if page.event_types %}
+					<div class="aside-m">
+						<div class="aside-m__header fill-land">
+							<h3 class="aside-m__heading">{% trans "Event types" %}</h3>
+						</div>
+						<ul class="aside-m__list">
+							{% for event_type in page.event_types %}
+								<li class="aside-m__list-item"><a href="?event_type={{ event_type.slug }}{% for key,value in request.GET.items %}{% if key != 'event_type' %}{% if key != 'page' %}&amp;{{ key }}={{ value }}{% endif %}{% endif %}{% endfor %}">{{ event_type.name }}</a></li>
+						 	{% endfor %}
+						</ul>
+					</div>
+				{% endif %}
+				{% if past %}
+					<div class="aside-m">
+						<div class="aside-m__header fill-land">
+							<h3 class="aside-m__heading">{% trans "Archive" %}</h3>
+						</div>
+						<ul class="aside-m__list">
+							{% for year in archive_years %}
+								<li class="aside-m__list-item"><a href="?year={{ year|date:"Y" }}{% for key,value in request.GET.items %}{% if key != 'year' %}{% if key != 'page' %}&amp;{{ key }}={{ value }}{% endif %}{% endif %}{% endfor %}">{{ year|date:"Y" }}</a></li>
+							{% endfor %}
+						</ul>
+					</div>
+				{% endif %}
+			</aside>
 		</div>
-        {% if event.location %}
-		<h3 class="listing__location"><i role="presentation" aria-hidden="true" class="ico ico--14 ico-location-ocean"></i>{{ event.location }}</h3>
-        {% endif %}
-		<span class="badge">{% trans "Past event" %}</span>
-	</aside>
-	<div class="listing__body">
-		<h2 class="listing__heading"><a href="{% pageurl event %}"><span>{{ event.heading }}</span></a></h2>
-		<ul class="listing__metadata">
-			<li class="listing__metadata__item">
-				<i role="presentation" aria-hidden="true" class="ico ico--14 ico-calendar-ocean"></i>
-				{% with formatted_dates=event.date_start|twopartdate:event.date_end %}
-				<span class="listing__metadata__date">{{ formatted_dates.part1 }}{% if formatted_dates.part2_is_time %} {% else %}&ndash;{% endif %}{{ formatted_dates.part2 }}</span>
-				{% endwith %}
-			</li>
-		</ul>
-		<p class="listing__excerpt">{{ event.excerpt|default:"" }}</p>
-		<a href="{% pageurl event %}" class="button">{% trans "More details" %}</a>
 	</div>
-</article>
-
-            {% endwith %}
-        {% endfor %}
-
-
-	</div>
-    {% include "home/includes/pagination_links.html" with children=events %}
-
-
-		</div>
-		<aside class="l-sidebar__aside">
-    {% if not past %}
-      <div class="aside-m">
-        <div class="aside-m__header fill-sunset">
-          <h3 class="aside-m__heading">{% trans "Past events" %}</h3>
-        </div>
-        <div class="aside-m__body">
-          <p class="aside-m__copy">{% trans "See events that have happened" %}</p>
-          <a class="button" href="?past=1">{% trans "View past events" %}</a>
-        </div>
-      </div>
-    {% endif %}
-
-    {% if page.event_types %}
-    <div class="aside-m">
-        <div class="aside-m__header fill-land">
-            <h3 class="aside-m__heading">{% trans "Event types" %}</h3>
-        </div>
-        <ul class="aside-m__list">
-		{% for event_type in page.event_types %}
-            <li class="aside-m__list-item"><a href="?event_type={{ event_type.slug }}{% for key,value in request.GET.items %}{% if key != 'event_type' %}{% if key != 'page' %}&amp;{{ key }}={{ value }}{% endif %}{% endif %}{% endfor %}">{{ event_type.name }}</a></li>
-	       {% endfor %}
-        </ul>
-    </div>
-    {% endif %}
-    {% if past %}
-    <div class="aside-m">
-      <div class="aside-m__header fill-land">
-        <h3 class="aside-m__heading">{% trans "Archive" %}</h3>
-      </div>
-      <ul class="aside-m__list">
-        {% for year in archive_years %}
-        <li class="aside-m__list-item"><a href="?year={{ year|date:"Y" }}{% for key,value in request.GET.items %}{% if key != 'year' %}{% if key != 'page' %}&amp;{{ key }}={{ value }}{% endif %}{% endif %}{% endfor %}">{{ year|date:"Y" }}</a></li>
-        {% endfor %}
-      </ul>
-    </div>
-    {% endif %}
-
-		</aside>
-	</div>
-</div>
 {% endblock %}
