@@ -30,7 +30,7 @@ server {
     return 444;
   }
 
-  location    / {
+  location / {
 
     gzip on;
     gzip_min_length  1100;
@@ -41,10 +41,8 @@ server {
 
     # Remove static hash if mouseflow
     if ($http_referer ~ mouseflow.com) {
-        set $remove_hash 1;
-    }
-    if ($remove_hash) {
-        rewrite "^(.*)(\.[a-f0-9]{12}(?=\.\w+$))(.*)$" $1$3 last;
+        rewrite "^(.*)(\.[a-f0-9]{12}(?=\.\w+$))(.*)$" $scheme://$host$1$3 last;
+        return 302;
     }
 
     proxy_pass  http://{{ $.APP }}-{{ $upstream_port }};
@@ -100,7 +98,7 @@ server {
   # custom
   client_max_body_size 99M;
 
-  location    / {
+  location / {
 
     gzip on;
     gzip_min_length  1100;
@@ -111,10 +109,8 @@ server {
 
     # Remove static hash if mouseflow
     if ($http_referer ~ mouseflow.com) {
-        set $remove_hash 1;
-    }
-    if ($remove_hash) {
-        rewrite "^(.*)(\.[a-f0-9]{12}(?=\.\w+$))(.*)$" $1$3 last;
+        rewrite "^(.*)(\.[a-f0-9]{12}(?=\.\w+$))(.*)$" $scheme://$host$1$3 last;
+        return 302;
     }
 
     proxy_pass  http://{{ $.APP }}-{{ $upstream_port }};
