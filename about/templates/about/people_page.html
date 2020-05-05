@@ -59,8 +59,12 @@
                                                     <span class="listing__body-img--text">{{child.value.organisation_name}}</span>
                                                 {% endif %}
                                                 <ul class="listing__metadata">
-                                                    <li class="listing__metadata__item">{{ child.value.IATI_role }}</li>
-                                                    <li class="listing__metadata__item">{{ child.value.external_role }}</li>
+                                                    {% if child.value.IATI_role %}
+                                                      <li class="listing__metadata__item">{{ child.value.IATI_role }}</li>
+                                                    {% endif %}
+                                                    {% if child.value.external_role %}
+                                                      <li class="listing__metadata__item">{{ child.value.external_role }}</li>
+                                                    {% endif %}
                                                 </ul>
                                             </header>
                                             <div class="listing__excerpt is-typeset">
