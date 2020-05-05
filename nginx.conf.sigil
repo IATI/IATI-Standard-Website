@@ -41,7 +41,7 @@ server {
 
     # Remove static hash if mouseflow
     if ($http_referer ~ mouseflow.com) {
-        rewrite "^(.*)(\.[a-f0-9]{12}(?=\.\w+$))(.*)$" $scheme://$host$1$3 last;
+        rewrite "^(.*)(\.[a-f0-9]{12}(?=\.\w+$))(.*)$" $scheme://$host$1$3 break;
         return 302;
     }
 
@@ -109,7 +109,7 @@ server {
 
     # Remove static hash if mouseflow
     if ($http_referer ~ mouseflow.com) {
-        rewrite "^(.*)(\.[a-f0-9]{12}(?=\.\w+$))(.*)$" $scheme://$host$1$3 last;
+        rewrite "^(.*)(\.[a-f0-9]{12}(?=\.\w+$))(.*)$" $scheme://$host$1$3 break;
         return 302;
     }
 
