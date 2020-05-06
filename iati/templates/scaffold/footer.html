@@ -35,7 +35,7 @@
     </div>
     <div class="footer__meta">
         <div class="row">
-            <p class="footer__legal">{% trans "Copyright IATI 2018. All rights reserved" %}</p>
+            <p class="footer__legal">{% trans "Copyright IATI" %} {% now "Y" %}. {% trans "All rights reserved" %}</p>
             <ul class="social-list">
                 <li class="social-list__item social-list__item--twitter"><a href="https://twitter.com/{{ social_twitter_handle }}" rel="noopener noreferrer" target="_blank">{% trans "Twitter" %}</a></li>
                 <li class="social-list__item social-list__item--youtube"><a href="{{ social_youtube_url }}" rel="noopener noreferrer" target="_blank">{% trans "YouTube" %}</a></li>
