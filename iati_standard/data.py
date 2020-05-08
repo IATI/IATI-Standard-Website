@@ -98,16 +98,15 @@ def create_or_update_from_object(parent_page, page_model, object):
     return child_page
 
 
-def recursive_create(object_pool, parent_page, parent_path):
+def recursive_create(object_pool, parent_page, parent_path, recursed_page_paths):
     """Recursively create ActivityStandardPage objects."""
     objects = object_pool.filter(parent_path=parent_path)
     for object in objects:
         page_model = ActivityStandardPage
         child_page = create_or_update_from_object(parent_page, page_model, object)
-        if not child_page.has_been_recursed:
-            child_page.has_been_recursed = True
-            child_page.save_revision().publish()
-            recursive_create(object_pool, child_page, child_page.ssot_path)
+        if child_page.ssot_path not in recursed_page_paths:
+            recursed_page_paths.append(child_page.ssot_path)
+            recursive_create(object_pool, child_page, child_page.ssot_path, recursed_page_paths)
     return True
 
 
@@ -143,7 +142,7 @@ def populate_index(observer, tag, guidance_parent_page=None):
     ActivityStandardPage.objects.filter(ssot_path__in=list(to_delete)).delete()
 
     ssot_roots = [roots[0] for roots in ReferenceData.objects.filter(tag=tag).order_by().values_list('ssot_root_slug').distinct()]
-    ActivityStandardPage.objects.all().update(has_been_recursed=False)
+    recursed_page_paths = []
     menu_json = []
 
     for ssot_root in ssot_roots:
@@ -157,10 +156,10 @@ def populate_index(observer, tag, guidance_parent_page=None):
         ssot_root_page.title = ssot_root
         ssot_root_page.slug = slugify(ssot_root)
         ssot_root_page.save_revision().publish()
-        recursive_create(ReferenceData.objects.filter(tag=tag), ssot_root_page, ssot_root_page.ssot_path)
+        recursive_create(ReferenceData.objects.filter(tag=tag), ssot_root_page, ssot_root_page.ssot_path, recursed_page_paths)
         menu_json.append(recursive_create_menu(ssot_root_page))
 
-    ReferenceMenu.objects.update_or_create(
-        tag=tag,
-        defaults={'menu_json': menu_json},
-    )
+        ReferenceMenu.objects.update_or_create(
+            tag=tag,
+            defaults={'menu_json': menu_json},
+        )

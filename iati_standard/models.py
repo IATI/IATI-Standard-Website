@@ -199,8 +199,6 @@ class ActivityStandardPage(DefaultPageHeaderImageMixin, AbstractContentPage):
         help_text='HTML data for the page'
     )
 
-    has_been_recursed = models.BooleanField(default=False)
-
     translation_fields = AbstractContentPage.translation_fields + ["data"]
     search_fields = AbstractContentPage.search_fields + [
         SearchField('data'),
