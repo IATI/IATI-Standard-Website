@@ -5,6 +5,7 @@ import os
 from zipfile import ZipFile
 from django.conf import settings
 from django.utils.text import slugify
+from wagtail.core.models import Page
 from iati_standard.models import ReferenceData, ActivityStandardPage, IATIStandardPage, ReferenceMenu
 from iati_standard.edit_handlers import GithubAPI
 
@@ -149,7 +150,7 @@ def populate_index(observer, tag, guidance_parent_page=None):
         standard_page = IATIStandardPage.objects.live().first()
         if ssot_root == 'guidance':
             if guidance_parent_page:
-                standard_page = guidance_parent_page
+                standard_page = Page.objects.get(pk=guidance_parent_page).specific
         objects = ReferenceData.objects.filter(tag=tag, ssot_path=ssot_root)
         for object in objects:
             ssot_root_page = create_or_update_from_object(standard_page, ActivityStandardPage, object)
