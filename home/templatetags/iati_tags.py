@@ -255,4 +255,7 @@ def reference_menu(calling_page):
     for top_level_json in all_menu_json:
         if top_level_json["pk"] == main_section_pk:
             menu_json = top_level_json["children"]
+            top_level_copy = top_level_json.copy()
+            top_level_copy["children"] = list()
+            menu_json.insert(0, top_level_copy)
     return {"menu_json": menu_json, "calling_page": calling_page}
