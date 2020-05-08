@@ -62,6 +62,14 @@ class IATIStandardPage(DefaultPageHeaderImageMixin, AbstractContentPage):
         null=True
     )
 
+    guidance_parent_page = models.ForeignKey(
+        Page,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        blank=True,
+        null=True
+    )
+
     latest_version_page = models.ForeignKey(
         'iati_standard.ActivityStandardPage',
         on_delete=models.SET_NULL,

@@ -1,6 +1,6 @@
 """Module for bespoke panel definitions."""
 from django.forms.widgets import Select
-from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel
 from iati_standard.edit_handlers import TagFieldPanel, MultiFieldPanel
 
 
@@ -28,6 +28,7 @@ def ReferenceDataPanel(
         [
             TagFieldPanel('live_tag', widget=Select),
             FieldPanel('repo'),
+            PageChooserPanel('guidance_parent_page'),
         ],
         heading=heading,
         description=description

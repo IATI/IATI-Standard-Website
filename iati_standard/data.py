@@ -28,7 +28,7 @@ def extract_zip(zipfile):
                     yield thefile
 
 
-def update_or_create_tags(observer, repo, tag=None):
+def update_or_create_tags(observer, repo, tag=None, guidance_parent_page=None):
     """Create or update tags."""
     observer.update_state(
         state='PROGRESS',
@@ -40,7 +40,7 @@ def update_or_create_tags(observer, repo, tag=None):
         data = git.get_data(tag)
 
         populate_data(observer, data, tag)
-        populate_index(observer, tag)
+        populate_index(observer, tag, guidance_parent_page)
 
         observer.update_state(
             state='PROGRESS',
@@ -129,7 +129,7 @@ def recursive_create_menu(parent_page):
     return page_obj
 
 
-def populate_index(observer, tag):
+def populate_index(observer, tag, guidance_parent_page=None):
     """Use ReferenceData objects to populate page index."""
     observer.update_state(
         state='PROGRESS',
@@ -148,6 +148,9 @@ def populate_index(observer, tag):
 
     for ssot_root in ssot_roots:
         standard_page = IATIStandardPage.objects.live().first()
+        if ssot_root == 'guidance':
+            if guidance_parent_page:
+                standard_page = guidance_parent_page
         objects = ReferenceData.objects.filter(tag=tag, ssot_path=ssot_root)
         for object in objects:
             ssot_root_page = create_or_update_from_object(standard_page, ActivityStandardPage, object)

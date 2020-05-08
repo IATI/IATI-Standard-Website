@@ -6,10 +6,10 @@ from iati_standard.data import update_or_create_tags
 
 
 @shared_task(bind=True)
-def start_update_task(self, repo, tag=None):
+def start_update_task(self, repo, tag=None, guidance_parent_page=None):
     """Start the updating task."""
     try:
-        return update_or_create_tags(self, repo, tag)
+        return update_or_create_tags(self, repo, tag, guidance_parent_page)
 
     except GithubException as e:
         error = ('GitHub error: %s. Documentation URL: %s' %

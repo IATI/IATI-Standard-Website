@@ -11,6 +11,7 @@ def on_update_request(request, *args, **kwargs):
     repo = request.POST.get('repo')
     tag_to_update = request.POST.get('tag-to-update')
     tag = request.POST.get(tag_to_update)
+    guidance_parent_page = request.POST.get('guidance_parent_page')
     error = None
 
     if not repo:
@@ -29,7 +30,7 @@ def on_update_request(request, *args, **kwargs):
             'message_class': 'warning',
         })
 
-    result = start_update_task.delay(repo, tag=tag)
+    result = start_update_task.delay(repo, tag=tag, guidance_parent_page=guidance_parent_page)
 
     return JsonResponse({
         'is_valid': True,
