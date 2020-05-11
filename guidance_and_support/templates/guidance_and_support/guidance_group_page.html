@@ -4,18 +4,12 @@
 {% block body_class %}body body--support{% endblock %}
 {% block body_id %}body-support{% endblock %}
 
-{% block content %}
-    <div class="hero hero--minor">
-        <div class="row">
-            <div class="hero__caption">
-                <h1 class="hero__heading">{{ page.heading }}</h1>
-                <p class="hero__excerpt">{{ page.excerpt|default:"" }}</p>
-            </div>
-            <div class="hero__emblem"></div>
-        </div>
-    </div>
+{% block hero %}
+    {% include "home/includes/hero_heading.html" with hero_class='hero--minor' para_class='excerpt' %}
     {% include "notices/page-notice.html" %}
+{% endblock %}
 
+{% block content %}
     <div class="l-standard">
         <div class="row">
             {% include "home/includes/breadcrumbs.html" %}

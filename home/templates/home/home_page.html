@@ -3,18 +3,16 @@
 {% block body_class %}body body--home{% endblock %}
 {% block body_id %}body-home{% endblock %}
 
-{% block content %}
-
-    <div class="hero {% if page.header_video %}hero--video{% endif %}">
-        {% include "home/includes/hero_heading.html" %}
-    </div>
+{% block hero %}
+    {% include "home/includes/hero_heading.html" %}
     {% include "notices/page-notice.html" %}
+{% endblock %}
 
+{% block content %}
     {% include 'home/modules/statistics.html' %}
     {% include 'home/modules/getting-started.html' %}
     {% include 'home/modules/about-iati.html' %}
     {% include 'home/modules/iati-in-action.html' %}
     {% include 'home/modules/iati-tools.html' %}
     {% include 'home/modules/news-tweets.html' %}
-
 {% endblock %}

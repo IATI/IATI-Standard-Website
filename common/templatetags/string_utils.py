@@ -1,6 +1,7 @@
 """Module to clean up tags from text content."""
 import bleach
 import urllib
+import uuid
 from django import template
 from django.http.request import QueryDict
 from django.utils.safestring import mark_safe
@@ -53,3 +54,9 @@ def query_filter(filters, key, value=None):
 def lookup(d, key):
     """Filter to enable dictionary lookups by key in templates."""
     return d[key]
+
+
+@register.simple_tag
+def uid():
+    """Filter to return a short and very likely unique id per page view."""
+    return str(uuid.uuid4())[:6]

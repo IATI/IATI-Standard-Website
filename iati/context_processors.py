@@ -46,6 +46,7 @@ def globals(request):
             'support_page_url': support_page.url if support_page else '',
             'global_notice': GlobalNotice.get_notice(request),
             'page_notice': PageNotice.get_notice(current_page, request),
+            'hero_srcs': 'width-300 300w, width-400 400w, width-500 500w',
         },
     }
 

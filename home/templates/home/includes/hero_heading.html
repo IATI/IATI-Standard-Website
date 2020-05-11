@@ -1,21 +1,29 @@
-{% load wagtailimages_tags wagtailembeds_tags %}
+{% load responsive wagtailembeds_tags %}
 
-<div class="row">
-    <div class="hero__caption">
-        <h1 class="hero__heading">{{ page.heading }}</h1>
-        <p class="hero__subheading">{{ page.excerpt|default:"" }}</p>
-    </div>
+<div class="hero {{ hero_class }}
     {% if page.header_video %}
-        <div class="hero__media">
-            <div class="media-video-wrapper">
-                {% embed page.header_video %}
-            </div>
-        </div>
-    {% else %}
-        <div class="hero__emblem">
-            {% if page.header_image %}
-                {% image page.header_image width-1400 class='hero__emblem__mask' alt=img.alt width='auto' height='auto' %}
+        hero--video
+    {% endif %}
+">
+    <div class="row">
+        <div class="hero__caption">
+            <h1 class="hero__heading">{{ page.heading }}</h1>
+            {% if page.excerpt and not no_subhead %}
+                <p class="hero__{{ para_class|default:'subheading' }}">{{ page.excerpt|default:"" }}</p>
             {% endif %}
         </div>
-    {% endif %}
+        {% if page.header_video %}
+            <div class="hero__media">
+                <div class="media-video-wrapper">
+                    {% embed page.header_video %}
+                </div>
+            </div>
+        {% else %}
+            <div class="hero__emblem">
+                {% if page.header_image %}
+                    {% responsiveimage page.header_image width-1400 srcset=global.hero_srcs class='hero__emblem__mask' alt=page.header_image.title width='auto' height='auto' %}
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
 </div>

@@ -4,12 +4,12 @@
 {% block body_class %}body body--support{% endblock %}
 {% block body_id %}body-support{% endblock %}
 
-{% block content %}
-    <div class="hero">
-        {% include "home/includes/hero_heading.html" %}
-    </div>
+{% block hero %}
+    {% include "home/includes/hero_heading.html" %}
     {% include "notices/page-notice.html" %}
+{% endblock %}
 
+{% block content %}
     <div class="l-standard">
         <div class="row">
             <div class="max-meter max-meter--wide max-meter--center">
