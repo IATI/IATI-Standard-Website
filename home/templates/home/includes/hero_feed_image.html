@@ -1,6 +1,6 @@
-{% load responsive wagtailembeds_tags iati_tags i18n %}
+{% load responsive iati_tags i18n %}
 
-{% responsiveimage page.feed_image width-1400 srcset=global.hero_srcs as image %}
+{% responsiveimage page.feed_image width-1400 srcset=global.hero_feed_srcs as image %}
 
 <div class="hero hero--image" {{ image | responsive_id }}>
     {{ image | responsive_css }}
