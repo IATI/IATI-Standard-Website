@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags iati_tags i18n %}
+
+{% block body_class %}body body--standard{% endblock %}
+{% block body_id %}body-standard{% endblock %}
+
+{% block content %}
+  <div class="hero">
+      {% include "home/includes/hero_heading.html" %}
+  </div>
+  {% include "notices/page-notice.html" %}
+  <div class="row">
+    <form class="filter-group filter-group--reverse">
+      <div class="filter">
+        <h3 class="filter__heading">Filter by Topic:</h3>
+        <div class="form-field__checkboxes">
+          <div class="form-checkbox-group">
+            <input class="form-checkbox" type="checkbox" name="organisation" id="organisation">
+            <label class="form-label" for="organisation">Organisation</label>
+          </div>
+          <div class="form-checkbox-group">
+            <input class="form-checkbox" type="checkbox" name="activity" id="activity">
+            <label class="form-label" for="activity">Activity</label>
+          </div>
+          <input class="button" type="submit" value="Filter">
+        </div>
+      </div>
+      <div class="filter">
+        <label for="search" class="filter__heading">Search</label>
+        <input class="form-item" id="search" type="text" name="search" value="Search term...">
+      </div>
+    </form>
+  </div>
+{% endblock %}

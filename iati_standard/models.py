@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 from django.contrib.postgres.fields import JSONField
 from django.db import models
 from django.utils.functional import cached_property
+from django.utils.text import slugify
 
 from wagtail.snippets.models import register_snippet
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, PageChooserPanel, TabbedInterface
@@ -18,7 +19,7 @@ from wagtail.core.blocks import (
     StructBlock
 )
 
-from home.models import AbstractContentPage, DefaultPageHeaderImageMixin
+from home.models import AbstractContentPage, AbstractIndexPage, DefaultPageHeaderImageMixin
 
 from iati_standard.panels import ReferenceDataPanel
 
@@ -110,6 +111,75 @@ class IATIStandardPage(DefaultPageHeaderImageMixin, AbstractContentPage):
         StreamFieldPanel('reference_cards'),
         ReferenceDataPanel()
     ]
+
+
+@register_snippet
+class StandardGuidanceType(models.Model):
+    """A snippet model for standard guidance types."""
+
+    name = models.CharField(max_length=255, unique=True)
+    slug = models.SlugField(unique=True)
+
+    def __str__(self):
+        """Override magic method to return event type name."""
+        return self.name
+
+    def full_clean(self, exclude=None, validate_unique=True):
+        """Apply fixups that need to happen before per-field validation occurs."""
+        base_slug = slugify(self.name, allow_unicode=True)
+        if base_slug:
+            self.slug = base_slug
+        super(StandardGuidanceType, self).full_clean(exclude, validate_unique)
+
+    def save(self, *args, **kwargs):  # pylint: disable=arguments-differ
+        """Call full_clean method for slug validation."""
+        self.full_clean()
+        super().save(*args, **kwargs)
+
+    panels = [FieldPanel('name')]
+
+
+class StandardGuidanceIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
+    """A model for standard guidance index page."""
+
+    parent_page_types = ['guidance_and_support.GuidanceAndSupportPage']
+    subpage_types = ['iati_standard.StandardGuidancePage']
+
+    max_count = 1
+
+    @property
+    def guidance_types(self):
+        """List all of the event types."""
+        guidance_types = StandardGuidanceType.objects.all()
+        return guidance_types
+
+    def get_guidance(self, request, filter_dict=None):
+        """Return a filtered and paginated list of events."""
+        all_guidance = StandardGuidancePage.objects.live().descendant_of(self).order_by('title')
+        if filter_dict:
+            filtered_guidance = self.filter_children(all_guidance, filter_dict)
+        else:
+            filtered_guidance = all_guidance
+        paginated_guidance = self.paginate(request, filtered_guidance, 16)
+        return paginated_guidance
+
+    def get_context(self, request, *args, **kwargs):
+        """Overwrite the default wagtail get_context function to allow for filtering based on params, including pagination.
+
+        Use the functions built into the abstract index page class to dynamically filter the child pages and apply pagination, limiting the results to 3 per page.
+
+        """
+        filter_dict = {}
+
+        guidance_types = request.GET.get('guidance_type')
+        if guidance_types:
+            guidance_type_list = guidance_types.split(",")
+            filter_dict["guidance_type__slug__in"] = guidance_type_list
+
+        context = super(StandardGuidanceIndexPage, self).get_context(request)
+        context['guidance'] = self.get_guidance(request, filter_dict)
+        context['paginator_range'] = self._get_paginator_range(context['guidance'])
+        return context
 
 
 @register_snippet
@@ -227,6 +297,10 @@ class ActivityStandardPage(DefaultPageHeaderImageMixin, AbstractContentPage):
             self.title = title.text.replace("¶", "")
             self.heading = title.text.replace("¶", "")
         super(ActivityStandardPage, self).save(*args, **kwargs)
+
+
+class StandardGuidancePage(ActivityStandardPage):
+    template = 'iati_standard/standard_guidance_page.html'
 
 
 class ReferenceMenu(models.Model):
