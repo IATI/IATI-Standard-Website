@@ -181,6 +181,11 @@ class StandardGuidanceIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
         context['paginator_range'] = self._get_paginator_range(context['guidance'])
         return context
 
+    @cached_property
+    def ssot_path(self):
+        """Return the static SSOT path."""
+        return "guidance"
+
 
 @register_snippet
 class ReferenceData(models.Model):

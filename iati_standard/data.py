@@ -6,7 +6,7 @@ from zipfile import ZipFile
 from django.conf import settings
 from django.utils.text import slugify
 from wagtail.core.models import Page
-from iati_standard.models import ReferenceData, ActivityStandardPage, IATIStandardPage, ReferenceMenu
+from iati_standard.models import ReferenceData, ActivityStandardPage, IATIStandardPage, ReferenceMenu, StandardGuidanceIndexPage, StandardGuidancePage
 from iati_standard.edit_handlers import GithubAPI
 
 
@@ -148,15 +148,28 @@ def populate_index(observer, tag, guidance_parent_page=None):
 
     for ssot_root in ssot_roots:
         standard_page = IATIStandardPage.objects.live().first()
-        if ssot_root == 'guidance':
+        if ssot_root != 'guidance':
+            objects = ReferenceData.objects.filter(tag=tag, ssot_path=ssot_root)
+            for object in objects:
+                ssot_root_page = create_or_update_from_object(standard_page, ActivityStandardPage, object)
+            ssot_root_page.title = ssot_root
+            ssot_root_page.slug = slugify(ssot_root)
+            ssot_root_page.save_revision().publish()
+        else:
             if guidance_parent_page:
                 standard_page = Page.objects.get(pk=guidance_parent_page).specific
-        objects = ReferenceData.objects.filter(tag=tag, ssot_path=ssot_root)
-        for object in objects:
-            ssot_root_page = create_or_update_from_object(standard_page, ActivityStandardPage, object)
-        ssot_root_page.title = ssot_root
-        ssot_root_page.slug = slugify(ssot_root)
-        ssot_root_page.save_revision().publish()
+                ssot_root_page = StandardGuidanceIndexPage.objects.live().descendant_of(standard_page)
+                if not ssot_root_page:
+                    ssot_root_page = StandardGuidanceIndexPage(
+                        title="Standard Guidance",
+                        heading="Standard Guidance",
+                        slug="standard-guidance"
+                    )
+                    ssot_root_page.locked = True
+                    ssot_root_page.locked_by = None
+                    standard_page.add_child(instance=ssot_root_page)
+                    ssot_root_page.save_revision().publish()
+
         recursive_create(ReferenceData.objects.filter(tag=tag), ssot_root_page, ssot_root_page.ssot_path, recursed_page_paths)
         menu_json.append(recursive_create_menu(ssot_root_page))
 

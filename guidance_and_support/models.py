@@ -17,8 +17,7 @@ class GuidanceAndSupportPage(DefaultPageHeaderImageMixin, AbstractContentPage):
     parent_page_types = ['home.HomePage']
     subpage_types = [
         'guidance_and_support.GuidanceGroupPage',
-        'guidance_and_support.SupportPage',
-        # 'guidance_and_support.KnowledgebaseIndexPage',
+        'guidance_and_support.SupportPage'
     ]
 
     max_count = 1
