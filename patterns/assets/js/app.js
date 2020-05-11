@@ -9,7 +9,7 @@ import nestedNav from './utils/nestedNav';
 import megaMenu from './utils/megaMenu';
 import counter from './utils/counter';
 import setupNotices from './utils/setupNotices';
-// import instance from './utils/basicScroll';
+import setupBasicScroll from './utils/setupBasicScroll';
 
 function globals () {
 
@@ -17,7 +17,7 @@ function globals () {
     iframer();
 
     // Scroll animation
-    // instance();
+    setupBasicScroll();
 
     // Small Screen Navigation
     mNav(
@@ -106,9 +106,9 @@ $(function run () {
 });
 
 $.fn.scrollView = function () {
-  return this.each(function () {
-    $('html, body').animate({
-      scrollTop: $(this).offset().top
-    }, 600);
-  });
+    return this.each(function () {
+        $('html, body').animate({
+            scrollTop: $(this).offset().top
+        }, 600);
+    });
 }
