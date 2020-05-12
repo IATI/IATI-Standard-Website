@@ -1,6 +1,6 @@
 """Module for bespoke panel definitions."""
 from django.forms.widgets import Select
-from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel
+from wagtail.admin.edit_handlers import FieldPanel
 from iati_standard.edit_handlers import TagFieldPanel, MultiFieldPanel
 
 
@@ -12,9 +12,13 @@ def ReferenceDataPanel(
         <strong>Please note: when updating, transferring new data takes time - please be patient, and do not refresh or leave the page until the process has completed.</strong>
         <div id="profile-data-controls">
             <p>
-                <button type="button" class="button action-update-profile-data button-longrunning" data-tag="live_tag" data-clicked-text="Updating live data…">
+                <button type="button" class="button action-update-profile-data button-longrunning" data-tag="ssot" data-clicked-text="Updating SSOT data…">
                     <span class="icon icon-spinner"></span>
-                    <em>Update live data</em>
+                    <em>Update SSOT data</em>
+                </button>
+                <button type="button" class="button action-update-profile-data button-longrunning" data-tag="guidance" data-clicked-text="Updating guidance data…">
+                    <span class="icon icon-spinner"></span>
+                    <em>Update guidance data</em>
                 </button>
             </p>
             <div class="messages">
@@ -28,7 +32,6 @@ def ReferenceDataPanel(
         [
             TagFieldPanel('live_tag', widget=Select),
             FieldPanel('repo'),
-            PageChooserPanel('guidance_parent_page'),
         ],
         heading=heading,
         description=description

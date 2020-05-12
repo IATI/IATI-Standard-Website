@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags iati_tags i18n %}
+{% load wagtailcore_tags iati_tags string_utils i18n %}
 
 {% block body_class %}body body--standard{% endblock %}
 {% block body_id %}body-standard{% endblock %}
@@ -15,11 +15,11 @@
         <h3 class="filter__heading">Filter by Topic:</h3>
         <div class="form-field__checkboxes">
           <div class="form-checkbox-group">
-            <input class="form-checkbox" type="checkbox" name="organisation" id="organisation">
+            <input class="form-checkbox" type="checkbox" name="organisation" id="organisation" {% if "organisation" in request.GET.keys %}checked{% endif %}>
             <label class="form-label" for="organisation">Organisation</label>
           </div>
           <div class="form-checkbox-group">
-            <input class="form-checkbox" type="checkbox" name="activity" id="activity">
+            <input class="form-checkbox" type="checkbox" name="activity" id="activity" {% if "activity" in request.GET.keys %}checked{% endif %}>
             <label class="form-label" for="activity">Activity</label>
           </div>
           <input class="button" type="submit" value="Filter">
@@ -27,8 +27,21 @@
       </div>
       <div class="filter">
         <label for="search" class="filter__heading">Search</label>
-        <input class="form-item" id="search" type="text" name="search" value="Search term...">
+        <input class="form-item" id="search" type="text" name="search" placeholder="Search term..."
+          {% if "search" in request.GET.keys %}value="{{ request.GET.search }}"{% endif %}
+        >
       </div>
     </form>
+  </div>
+  <div class="row space-section-both">
+    <div class="l-2up">
+      {% for guidance_page in guidance %}
+      <div class="card card--simple">
+        <span class="card__flag">{{ guidance_page.last_published_at|date:"F d Y" }}</span>
+        <h2 class="card__heading"><a href="{% pageurl guidance_page %}"><span>{{ guidance_page.title }}</span></a></h2>
+        <p class="card__excerpt">{{ guidance_page.first_paragraph }}</p>
+      </div>
+      {% endfor %}
+    </div>
   </div>
 {% endblock %}

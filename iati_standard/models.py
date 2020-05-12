@@ -5,13 +5,12 @@ from bs4 import BeautifulSoup
 from django.contrib.postgres.fields import JSONField
 from django.db import models
 from django.utils.functional import cached_property
-from django.utils.text import slugify
 
-from wagtail.snippets.models import register_snippet
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, PageChooserPanel, TabbedInterface
 from wagtail.core.models import Page
 from wagtail.core.fields import StreamField
-from wagtail.search.index import SearchField
+from wagtail.search.models import Query
+from wagtail.search.index import SearchField, FilterField
 from wagtail.core.blocks import (
     CharBlock,
     PageChooserBlock,
@@ -22,6 +21,7 @@ from wagtail.core.blocks import (
 from home.models import AbstractContentPage, AbstractIndexPage, DefaultPageHeaderImageMixin
 
 from iati_standard.panels import ReferenceDataPanel
+from iati_standard.inlines import StandardGuidanceTypes
 
 
 class CardBlock(StructBlock):
@@ -59,14 +59,6 @@ class IATIStandardPage(DefaultPageHeaderImageMixin, AbstractContentPage):
     live_tag = models.CharField(
         max_length=255,
         help_text='Associated git release tag',
-        blank=True,
-        null=True
-    )
-
-    guidance_parent_page = models.ForeignKey(
-        Page,
-        on_delete=models.SET_NULL,
-        related_name="+",
         blank=True,
         null=True
     )
@@ -113,32 +105,6 @@ class IATIStandardPage(DefaultPageHeaderImageMixin, AbstractContentPage):
     ]
 
 
-@register_snippet
-class StandardGuidanceType(models.Model):
-    """A snippet model for standard guidance types."""
-
-    name = models.CharField(max_length=255, unique=True)
-    slug = models.SlugField(unique=True)
-
-    def __str__(self):
-        """Override magic method to return event type name."""
-        return self.name
-
-    def full_clean(self, exclude=None, validate_unique=True):
-        """Apply fixups that need to happen before per-field validation occurs."""
-        base_slug = slugify(self.name, allow_unicode=True)
-        if base_slug:
-            self.slug = base_slug
-        super(StandardGuidanceType, self).full_clean(exclude, validate_unique)
-
-    def save(self, *args, **kwargs):  # pylint: disable=arguments-differ
-        """Call full_clean method for slug validation."""
-        self.full_clean()
-        super().save(*args, **kwargs)
-
-    panels = [FieldPanel('name')]
-
-
 class StandardGuidanceIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
     """A model for standard guidance index page."""
 
@@ -147,47 +113,51 @@ class StandardGuidanceIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
 
     max_count = 1
 
-    @property
-    def guidance_types(self):
-        """List all of the event types."""
-        guidance_types = StandardGuidanceType.objects.all()
-        return guidance_types
-
-    def get_guidance(self, request, filter_dict=None):
-        """Return a filtered and paginated list of events."""
+    def get_guidance(self, request, filter_dict=None, search_query=None):
+        """Return a filtered list of guidance."""
         all_guidance = StandardGuidancePage.objects.live().descendant_of(self).order_by('title')
         if filter_dict:
             filtered_guidance = self.filter_children(all_guidance, filter_dict)
         else:
             filtered_guidance = all_guidance
-        paginated_guidance = self.paginate(request, filtered_guidance, 16)
-        return paginated_guidance
+        if search_query and filtered_guidance:
+            queried_guidance = all_guidance.filter(
+                id__in=filtered_guidance.values_list('id', flat=True)
+            ).search(
+                search_query
+            )
+        else:
+            queried_guidance = filtered_guidance
+        return queried_guidance
 
     def get_context(self, request, *args, **kwargs):
-        """Overwrite the default wagtail get_context function to allow for filtering based on params, including pagination.
+        """Overwrite the default wagtail get_context function to allow for filtering based on params.
 
-        Use the functions built into the abstract index page class to dynamically filter the child pages and apply pagination, limiting the results to 3 per page.
+        Use the functions built into the abstract index page class to dynamically filter the child pages.
 
         """
         filter_dict = {}
 
-        guidance_types = request.GET.get('guidance_type')
-        if guidance_types:
-            guidance_type_list = guidance_types.split(",")
-            filter_dict["guidance_type__slug__in"] = guidance_type_list
+        search_query = request.GET.get('search', None)
+        if search_query:
+            query = Query.get(search_query)
+            query.add_hit()
+
+        guidance_type_organisation = request.GET.get('organisation', None)
+        guidance_type_activity = request.GET.get('activity', None)
+        guidance_type_list = list()
+        if guidance_type_organisation:
+            guidance_type_list.append("organisation")
+        if guidance_type_activity:
+            guidance_type_list.append("activity")
+        if len(guidance_type_list):
+            filter_dict["guidance_types__guidance_type__in"] = guidance_type_list
 
         context = super(StandardGuidanceIndexPage, self).get_context(request)
-        context['guidance'] = self.get_guidance(request, filter_dict)
-        context['paginator_range'] = self._get_paginator_range(context['guidance'])
+        context['guidance'] = self.get_guidance(request, filter_dict, search_query)
         return context
 
-    @cached_property
-    def ssot_path(self):
-        """Return the static SSOT path."""
-        return "guidance"
 
-
-@register_snippet
 class ReferenceData(models.Model):
     """A model to act as a temporary holding place for SSOT data."""
 
@@ -248,8 +218,13 @@ class ReferenceData(models.Model):
         super(ReferenceData, self).save(*args, **kwargs)
 
 
-class ActivityStandardPage(DefaultPageHeaderImageMixin, AbstractContentPage):
-    """A model for reference to the Activity Standard."""
+class AbstractGithubPage(DefaultPageHeaderImageMixin, AbstractContentPage):
+    """A model for abstract reference pages build by Github."""
+
+    class Meta(object):
+        """Meta data for the class."""
+
+        abstract = True
 
     is_creatable = False
     edit_handler = TabbedInterface([])
@@ -294,6 +269,22 @@ class ActivityStandardPage(DefaultPageHeaderImageMixin, AbstractContentPage):
         """Return the first item in the ssot_path as a version."""
         return self.ssot_path.split("/")[0]
 
+    def first_paragraph(self):
+        """Extract first paragraph snippet."""
+        soup = BeautifulSoup(self.data, 'html.parser')
+        para = soup.find("p")
+        if para:
+            first_paragraph = para.text.replace("¶", "")
+        else:
+            first_paragraph = "Read more about {}.".format(self.title)
+            return first_paragraph
+        fp_split = first_paragraph.split(" ")
+        fp_trunc = ""
+        if len(fp_split) >= 50:
+            fp_trunc = "..."
+        first_paragraph = " ".join(first_paragraph.split(" ")[:50]) + fp_trunc
+        return first_paragraph
+
     def save(self, *args, **kwargs):
         """Overwrite save to automatically update title."""
         soup = BeautifulSoup(self.data, 'html.parser')
@@ -301,10 +292,14 @@ class ActivityStandardPage(DefaultPageHeaderImageMixin, AbstractContentPage):
         if title:
             self.title = title.text.replace("¶", "")
             self.heading = title.text.replace("¶", "")
-        super(ActivityStandardPage, self).save(*args, **kwargs)
+        super(AbstractGithubPage, self).save(*args, **kwargs)
 
 
-class StandardGuidancePage(ActivityStandardPage):
+class ActivityStandardPage(AbstractGithubPage):
+    template = 'iati_standard/activity_standard_page.html'
+
+
+class StandardGuidancePage(AbstractGithubPage):
     template = 'iati_standard/standard_guidance_page.html'
 
 

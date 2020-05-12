@@ -20,7 +20,7 @@ $(function() {
 
             // add the requested tag field name to the form
             var data = new FormData($form[0]);
-            data.append('tag-to-update', tag);
+            data.append('type-to-update', tag);
 
             // get and return the data
             return $.ajax({
