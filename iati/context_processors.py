@@ -56,7 +56,11 @@ def globals(request):
             'people_sizes': '(max-width: 499px) 100vw, (max-width: 779px) 25vw, (max-width: 1199px) 15vw, (min-width: 1200px) 10vw',
             'org_logo_srcs': 'max-32x8 32w, max-40x10 40w, max-60x14 60w, max-68x18 68w',
             'org_logo_sizes': '(max-width: 499px) 12vw, (max-width: 779px) 8vw, (min-width: 780px) 6vw',
-            'event_srcs': 'width-440 440w, width-720 720w',
+            'event_srcs': 'width-440 440w, width-720 720w, width-600 600w, width-500 500w',
+            'event_sizes': '(max-width: 779px) 90vw, (max-width: 999px) 60vw, (min-width: 1000px) 40vw',
+            'get_involved_srcs': 'max-240x200 1w, max-440x200 300w, max-720x200 500w, max-300x200 780w, max-360x200 1000w',
+            'chair_srcs': 'max-440x440 440w, max-180x180 180w, max-70x70 70w, max-90x90 90w',
+            'chair_sizes': '(max-width: 499px) 90vw, (max-width: 779px) 23vw, (min-width: 780px) 7vw',
         },
     }
 

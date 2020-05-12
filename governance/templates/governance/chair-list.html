@@ -1,4 +1,4 @@
-{% load static wagtailimages_tags %}
+{% load static responsive %}
 
 <div class="l-2up">
     {% for item in chairs %}
@@ -7,7 +7,7 @@
                 <aside class="listing__aside">
                     <div class="listing__media">
                         {% if item.image %}
-                            {% image item.image max-175x175 alt=item.image.title width='auto' height='auto' %}
+                            {% responsiveimage item.image max-90x90 srcset=global.chair_srcs sizes=global.chair_sizes alt=item.image.title width='auto' height='auto' %}
                         {% else %}
                             <img src="{% static 'img/portrait.png' %}" alt="">
                         {% endif %}
