@@ -1,4 +1,4 @@
-{% load static wagtailimages_tags %}
+{% load static responsive %}
 
 <article class="listing listing--article listing--member">
     <aside class="listing__aside">
@@ -7,7 +7,7 @@
                 <a href="{{ item.url }}">
             {% endif %}
             {% if item.image %}
-                {% image item.image width-170 alt=item.image.title width='auto' height='auto' %}
+                {% responsiveimage item.image width-170 srcset=global.member_srcs sizes=global.member_sizes alt=item.image.title width='auto' height='auto' %}
             {% else %}
                 <img src="{% static 'img/member-logos/image-placeholder.svg' %}" alt="">
             {% endif %}

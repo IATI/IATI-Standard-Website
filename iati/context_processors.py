@@ -61,6 +61,8 @@ def globals(request):
             'get_involved_srcs': 'max-240x200 1w, max-440x200 300w, max-720x200 500w, max-300x200 780w, max-360x200 1000w',
             'chair_srcs': 'max-440x440 440w, max-180x180 180w, max-70x70 70w, max-90x90 90w',
             'chair_sizes': '(max-width: 499px) 90vw, (max-width: 779px) 23vw, (min-width: 780px) 7vw',
+            'member_srcs': 'width-240 240w, width-170 170w, width-130 130w, width-160 160w',
+            'member_sizes': '(max-width: 499px) 48vw, (max-width: 779px) 21vw, (min-width: 780px) 13vw',
         },
     }
 
