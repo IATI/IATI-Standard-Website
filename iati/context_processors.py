@@ -63,6 +63,8 @@ def globals(request):
             'chair_sizes': '(max-width: 499px) 90vw, (max-width: 779px) 23vw, (min-width: 780px) 7vw',
             'member_srcs': 'width-240 240w, width-170 170w, width-130 130w, width-160 160w',
             'member_sizes': '(max-width: 499px) 48vw, (max-width: 779px) 21vw, (min-width: 780px) 13vw',
+            'guidance_srcs': 'width-440 440w, width-720 720w, width-320 320w',
+            'guidance_sizes': '(max-width: 779px) 90vw, (max-width: 999px) 40vw, (max-width: 1199px) 32vw, (min-width: 1200px) 26vw',
         },
     }
 

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags wagtailimages_tags wagtail_modeltranslation static %}
+{% load wagtailcore_tags responsive wagtail_modeltranslation static %}
 
 {% block body_class %}body body--support{% endblock %}
 {% block body_id %}body-support{% endblock %}
@@ -22,10 +22,9 @@
                             <aside class="listing__aside">
                                 <div class="listing__media">
                                     {% if guidance_group.section_image %}
-                                        {% image guidance_group.section_image width-300 as img %}
-                                        <img src="{{ img.url }}" alt="{{ img.title }}">
+                                        {% responsiveimage guidance_group.section_image width-320 srcset=global.guidance_srcs sizes=global.guidance_sizes alt=guidance_group.section_image.title width='auto' height='auto' %}
                                     {% else %}
-                                        <img src="{% static 'img/image-placeholder.svg' %}" alt="placeholder image">
+                                        <img src="{% static 'img/image-placeholder.svg' %}" alt="">
                                     {% endif %}
                                 </div>
                             </aside>
