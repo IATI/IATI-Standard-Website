@@ -46,8 +46,17 @@ def globals(request):
             'support_page_url': support_page.url if support_page else '',
             'global_notice': GlobalNotice.get_notice(request),
             'page_notice': PageNotice.get_notice(current_page, request),
-            'hero_feed_srcs': 'fill-300x620 1w, fill-499x450 300w, fill-780x400 500w, fill-1000x650 780w, fill-1200x650 1000w, width-1400 1200',
+            'hero_feed_srcs': 'fill-300x620 1w, fill-499x450 300w, fill-780x400 500w, fill-1000x650 780w, fill-1200x650 1000w, width-1400 1200w',
             'hero_srcs': 'width-300 300w, width-400 400w, width-500 500w',
+            'hero_sizes': '(max-width: 499px) 0vw, (min-width: 780px) 50vw, (min-width: 1000px) 40vw',
+            'tool_logo_srcs': 'max-150x90 150w',
+            'tool_logo_sizes': '(max-width: 499px) 30vw, (max-width: 779px) 20vw, (max-width: 999px) 15vw, (min-width: 1000px) 13vw',
+            'case_study_srcs': 'fill-240x110 1w, fill-440x200 300w, fill-720x315 500w, fill-550x270 780w, fill-675x325 1000w',
+            'people_srcs': 'max-240x240 240w, max-440x440 440w, max-190x190 190w, max-150x150 150w',
+            'people_sizes': '(max-width: 499px) 100vw, (max-width: 779px) 25vw, (max-width: 1199px) 15vw, (min-width: 1200px) 10vw',
+            'org_logo_srcs': 'max-32x8 32w, max-40x10 40w, max-60x14 60w, max-68x18 68w',
+            'org_logo_sizes': '(max-width: 499px) 12vw, (max-width: 779px) 8vw, (min-width: 780px) 6vw',
+            'event_srcs': 'width-440 440w, width-720 720w',
         },
     }
 

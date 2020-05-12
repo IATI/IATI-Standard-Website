@@ -1,10 +1,10 @@
-{% load wagtail_modeltranslation wagtailimages_tags tool_utils %}
+{% load responsive tool_utils %}
 
 <div class="hero hero--tool">
     <div class="row">
         {% if page.logo %}
             <div class="hero__logo">
-                {% image page.logo max-150x90 alt=item.logo.title width='auto' height='auto' %}
+                {% responsiveimage page.logo max-150x90 srcset=global.tool_logo_srcs sizes=global.tool_logo_sizes alt=page.logo.title width='auto' height='auto' %}
             </div>
         {% endif %}
         <div class="hero__caption">
