@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags iati_tags string_utils i18n %}
+
+{% block body_class %}body body--standard{% endblock %}
+{% block body_id %}body-standard{% endblock %}
+
+{% block content %}
+  <div class="hero">
+    <div class="row">
+        <div class="hero__caption">
+            <h1 class="hero__heading">{{ page.heading }}</h1>
+            <p class="hero__subheading">Last updated on {{ page.last_published_at|date }}.
+            {% if page.github_url %}
+            <a href="{{ page.github_url }}">View changes</a>
+            {% endif %}</p>
+        </div>
+    </div>
+  </div>
+  {% include "notices/page-notice.html" %}
+  <div class="row">
+    <div class="l-sidebar">
+      <div class="l-sidebar__body">
+        {% include "home/includes/breadcrumbs.html" %}
+
+        <div class="is-typeset is-typeset--article">
+          {{ self.data|safe }}
+        </div>
+
+      </div>
+      <aside class="l-sidebar__aside">
+        {% if page.related_guidance %}
+        <h3 class="aside-m__heading type-xs--trailer">Related guidance</h3>
+
+        {% for related in page.related_guidance %}
+        <div class="aside-m">
+            <div class="card card--simple">
+                <span class="card__flag">{{ related.last_published_at|date:"F d Y" }}</span>
+                <h2 class="card__heading card__heading--minor"><a href="{% pageurl related %}"><span>{{ related.title }}</span></a></h2>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+      </aside>
+    </div>
+  </div>
+{% endblock %}

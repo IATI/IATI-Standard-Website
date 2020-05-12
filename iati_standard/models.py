@@ -1,5 +1,6 @@
 """Model definitions for the iati_standard app."""
 
+import os
 from bs4 import BeautifulSoup
 
 from django.contrib.postgres.fields import JSONField
@@ -301,6 +302,26 @@ class ActivityStandardPage(AbstractGithubPage):
 
 class StandardGuidancePage(AbstractGithubPage):
     template = 'iati_standard/standard_guidance_page.html'
+
+    @cached_property
+    def github_url(self):
+        base_url = "https://github.com/IATI/IATI-Guidance/commits/guidance-test/en/"  # TODO: Change branch when appropriate
+        file_path = "/".join(self.ssot_path.split("/")[1:]) + ".rst"
+        return base_url + file_path
+
+    @cached_property
+    def related_guidance(self):
+        """Extract related_guidance."""
+        related = []
+        soup = BeautifulSoup(self.data, 'html.parser')
+        anchors = soup.findAll("a")
+        for anchor in anchors:
+            anchor_href = anchor['href']
+            if anchor_href[:3] == "../":
+                anchor_ssot_path = os.path.relpath(os.path.join(self.ssot_path, anchor_href))
+                anchor_match = StandardGuidancePage.objects.filter(ssot_path=anchor_ssot_path).first()
+                related.append(anchor_match)
+        return related
 
 
 class ReferenceMenu(models.Model):
