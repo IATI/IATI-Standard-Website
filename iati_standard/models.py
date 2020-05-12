@@ -326,7 +326,8 @@ class StandardGuidancePage(AbstractGithubPage):
             if anchor_href[:3] == "../":
                 anchor_ssot_path = os.path.relpath(os.path.join(self.ssot_path, anchor_href))
                 anchor_match = StandardGuidancePage.objects.filter(ssot_path=anchor_ssot_path).first()
-                related.append(anchor_match)
+                if anchor_match not in related:
+                    related.append(anchor_match)
         return related
 
 
