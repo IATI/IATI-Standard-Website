@@ -125,7 +125,8 @@ class StandardGuidanceIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
             queried_guidance = all_guidance.filter(
                 id__in=filtered_guidance.values_list('id', flat=True)
             ).search(
-                search_query
+                search_query,
+                order_by_relevance=False
             )
         else:
             queried_guidance = filtered_guidance
@@ -302,6 +303,11 @@ class ActivityStandardPage(AbstractGithubPage):
 
 class StandardGuidancePage(AbstractGithubPage):
     template = 'iati_standard/standard_guidance_page.html'
+
+    search_fields = AbstractGithubPage.search_fields + [
+        FilterField('title'),
+        FilterField('title_en')
+    ]
 
     @cached_property
     def github_url(self):
