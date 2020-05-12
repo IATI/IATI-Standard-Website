@@ -65,6 +65,12 @@ def globals(request):
             'member_sizes': '(max-width: 499px) 48vw, (max-width: 779px) 21vw, (min-width: 780px) 13vw',
             'guidance_srcs': 'width-440 440w, width-720 720w, width-320 320w',
             'guidance_sizes': '(max-width: 779px) 90vw, (max-width: 999px) 40vw, (max-width: 1199px) 32vw, (min-width: 1200px) 26vw',
+            'media_floated_srcs': 'width-200 200w, width-315 315w',
+            'media_floated_sizes': '(max-width: 779px) 40vw, (max-width: 1199px) 32vw, (min-width: 1200px) 26vw',
+            'media_centred_srcs': 'width-440 440w, width-700 700w, width-420 420w',
+            'media_centred_sizes': '(max-width: 779px) 90vw, (max-width: 999px) 42vw, (min-width: 1000px) 35vw',
+            'media_full_srcs': 'width-440 440w, width-700 700w',
+            'media_full_sizes': '(max-width: 779px) 90vw, (max-width: 999px) 70vw, (max-width: 1199px) 58vw, (min-width: 1200px) 55vw',
         },
     }
 

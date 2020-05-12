@@ -1,4 +1,4 @@
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load wagtailcore_tags responsive %}
 
 <div class="is-typeset {% if not notarticle %}is-typeset--article{% endif %} {{ extra_class }}">
     {% for child in content %}
@@ -24,8 +24,13 @@
             {{ child.value|richtext }}
         {% elif child.block_type == 'image_figure' %}
         <figure class="media-figure {{child.value.alignment}}">
-            {% image child.value.image max-1280x1280 as theimage %}
-            <img src="{{ theimage.url }}" width="{{ theimage.width }}" height="{{ theimage.height }}" alt="{{ theimage.alt }}" />
+            {% if child.value.alignment == 'media-figure--alignleft' or child.value.alignment == 'media-figure--alignright' %}
+                {% responsiveimage child.value.image width-315 srcset=global.media_floated_srcs sizes=global.media_floated_sizes alt=child.value.image.title width='auto' height='auto' %}
+            {% elif child.value.alignment == 'media-figure--center' %}
+                {% responsiveimage child.value.image width-420 srcset=global.media_centred_srcs sizes=global.media_centred_sizes alt=child.value.image.title width='auto' height='auto' %}
+            {% else %}
+                {% responsiveimage child.value.image width-700 srcset=global.media_full_srcs sizes=global.media_full_sizes alt=child.value.image.title width='auto' height='auto' %}
+            {% endif %}
             {% if child.value.caption.source != "<p></p>" %}
                 <figcaption class="media-figure__caption">
                     {{ child.value.caption|richtext }}
