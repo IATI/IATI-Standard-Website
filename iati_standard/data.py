@@ -73,17 +73,28 @@ def populate_data(observer, data, tag):
         raise ValueError('No data available for tag: %s' % tag)
 
 
+def page_equals_object(child_page, object):
+    if child_page.tag != object.tag:
+        return False
+    if child_page.title != object.name:
+        return False
+    if getattr(child_page, "data_{}".format(object.language)) != object.data:
+        return False
+    return True
+
+
 def create_or_update_from_object(parent_page, page_model, object):
     """Create ActivityStandardPage from ReferenceData object."""
     try:
         child_page = page_model.objects.get(
             ssot_path=object.ssot_path
         )
-        setattr(child_page, "data_{}".format(object.language), object.data)
-        child_page.tag = object.tag
-        child_page.locked = True
-        child_page.locked_by = None
-        child_page.save_revision().publish()
+        if not page_equals_object(child_page, object):
+            setattr(child_page, "data_{}".format(object.language), object.data)
+            child_page.tag = object.tag
+            child_page.locked = True
+            child_page.locked_by = None
+            child_page.save_revision().publish()
     except page_model.DoesNotExist:
         child_page = page_model(
             ssot_path=object.ssot_path,
