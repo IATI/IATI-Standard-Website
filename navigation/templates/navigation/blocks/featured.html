@@ -1,22 +1,20 @@
-{% load i18n static wagtailimages_tags %}
+{% load i18n static responsive %}
 
 {% if value.page and value.page.live %}
     <div class="l-offset__col">
         <article class="case-study">
-            <div class="case-study__media background-cover" style="background-image: url(
-                {% if value.image %}
-                    {% image value.image fill-120x250 as image %}
-                    {{ image.url }}
-                {% elif value.page.specific.header_image %}
-                    {% image value.page.specific.header_image fill-120x250 as image %}
-                    {{ image.url }}
-                {% elif value.page.specific.feed_image %}
-                    {% image value.page.specific.feed_image fill-120x250 as image %}
-                    {{ image.url }}
-                {% else %}
-                    {% static 'img/image-placeholder.svg' %}
-                {% endif %}
-            "></div>
+        {% if value.image %}
+            {% responsiveimage value.image fill-120x250 srcset=global.featured_srcs as image %}
+            <div class="case-study__media background-cover" {{ image | responsive_id }}>{{ image | responsive_css }}</div>
+        {% elif value.page.specific.header_image %}
+            {% responsiveimage value.page.specific.header_image fill-120x250 srcset=global.featured_srcs as image %}
+            <div class="case-study__media background-cover" {{ image | responsive_id }}>{{ image | responsive_css }}</div>
+        {% elif value.page.specific.feed_image %}
+            {% responsiveimage value.page.specific.feed_image fill-120x250 srcset=global.featured_srcs as image %}
+            <div class="case-study__media background-cover" {{ image | responsive_id }}>{{ image | responsive_css }}</div>
+        {% else %}
+            <div class="case-study__media background-cover" style="background-image: url({% static 'img/image-placeholder.svg' %}"></div>
+        {% endif %}
             <div class="case-study__panel">
                 <h2 class="case-study__heading">
                     <a href="{{ value.page.url }}"><span>{{ value.page.specific.heading }}</span></a>

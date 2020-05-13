@@ -1,4 +1,4 @@
-{% load static wagtailimages_tags i18n %}
+{% load static responsive i18n %}
 
 <div class="section">
     <div class="row">
@@ -10,7 +10,7 @@
                         <aside class="listing__aside">
                             <div class="listing__media">
                                 {% if item.feed_image %}
-                                    {% image item.feed_image max-700x470 alt=item.feed_image.title width='auto' height='auto' %}
+                                    {% responsiveimage item.feed_image width-155 srcset=global.iati_news_srcs sizes=global.iati_news_sizes alt=item.feed_image.title width='auto' height='auto' %}
                                  {% else %}
                                     <img src="{% static 'svg/source/logo-square.svg' %}" alt=""/>
                                  {% endif %}

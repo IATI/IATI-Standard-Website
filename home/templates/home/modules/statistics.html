@@ -1,4 +1,4 @@
-{% load static wagtailimages_tags iati_tags %}
+{% load static responsive iati_tags %}
 
 <div class="row">
     <div class="stats stats--standout">
@@ -6,7 +6,7 @@
             <div class="stat-quote fill-sunset">
                     <div class="stat-quote__media">
                         {% if page.testimonial.image %}
-                            {% image page.testimonial.image max-80x80 class='stat-quote__img' alt=page.testimonial.image width='auto' height='auto' %}
+                            {% responsiveimage page.testimonial.image fill-60x70 srcset=global.testimonial_srcs sizes=global.testimonial_sizes alt=page.testimonial.image.title width='auto' height='auto' %}
                         {% else %}
                             <img class="stat-quote__img" src="{% static 'img/portrait.png' %}" alt="">
                         {% endif %}

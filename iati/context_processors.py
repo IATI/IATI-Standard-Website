@@ -74,6 +74,11 @@ def globals(request):
             'getting_started_srcs': 'fill-240x200 1w, fill-440x200 300w, fill-720x200 500w, fill-300x200 780w, fill-360x200 1000w',
             'iati_tools_srcs': 'width-80 80w, width-150 150w, width-110 110w',
             'iati_tools_sizes': '(max-width: 499px) 16vw, (max-width: 779px) 20vw, (min-width: 780px) 10vw',
+            'iati_news_srcs': 'width-440 440w, width-720 720w, width-130 130w, width-155 155w',
+            'iati_news_sizes': '(max-width: 779px) 90vw, (min-width: 780px) 10vw',
+            'testimonial_srcs': 'fill-55x60 55w, fill-80x90 80w, fill-50x60 70w, fill-60x70 60w',
+            'testimonial_sizes': '(max-width: 779px) 11vw, (min-width: 780px) 5vw',
+            'featured_srcs': 'fill-120x250 950w',
         },
     }
 
