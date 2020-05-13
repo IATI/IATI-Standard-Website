@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags wagtailimages_tags wagtail_modeltranslation i18n static %}
+{% load wagtailcore_tags responsive wagtail_modeltranslation i18n static %}
 
 {% block body_class %}body body--news-single{% endblock %}
 {% block body_id %}body-news-single{% endblock %}
@@ -51,8 +51,7 @@
                                     <aside class="listing__aside">
                                         <div class="listing__media">
                                             {% if news_post.feed_image %}
-                                                {% image news_post.feed_image width-600 as img %}
-                                                <img src="{{ img.url }}" alt="{{ img.title }}" />
+                                                {% responsiveimage news_post.feed_image width-260 srcset=global.related_srcs sizes=global.related_sizes alt=news_post.feed_image.title width='auto' height='auto' %}
                                              {% else %}
                                                 <img src="{% static 'svg/source/logo-square.svg' %}" alt="iati logo"/>
                                              {% endif %}

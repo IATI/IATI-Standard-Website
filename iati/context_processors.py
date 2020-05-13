@@ -79,6 +79,12 @@ def globals(request):
             'testimonial_srcs': 'fill-55x60 55w, fill-80x90 80w, fill-50x60 70w, fill-60x70 60w',
             'testimonial_sizes': '(max-width: 779px) 11vw, (min-width: 780px) 5vw',
             'featured_srcs': 'fill-120x250 950w',
+            'news_list_srcs': 'width-440 440w, width-720 720w, width-570 570w, width-210 210w, width-260 260w',
+            'news_list_sizes': '(max-width: 779px) 90vw, (max-width: 949px) 60vw, (min-width: 950px) 21vw',
+            'news_featured_srcs': 'width-440 440w, width-720 720w, width-600 600w, width-500 500w',
+            'news_featured_sizes': '(max-width: 779px) 90vw, (max-width: 999px) 60vw, (min-width: 950px) 41vw',
+            'related_srcs': 'width-440 440w, width-720 720w, width-420 420w, width-155 155w, width-190 190w',
+            'related_sizes': '(max-width: 779px) 90vw, (max-width: 949px) 44vw, (min-width: 950px) 15vw',
         },
     }
 
