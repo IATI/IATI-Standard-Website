@@ -9,6 +9,7 @@ register = template.Library()
 
 @register.tag(name="responsiveimage")
 def responsiveimage(parser, token):
+    """Use in place of the native Wagtail image tag to add srcsets to images."""
     bits = token.split_contents()[1:]
     image_expr = parser.compile_filter(bits[0])
     filter_spec = bits[1]
@@ -26,6 +27,7 @@ def responsiveimage(parser, token):
 
 
 def _parse_attrs(bits):
+    """Parse the attrbutes sent to responsive image tag."""
     template_syntax_error_message = (
         '"responsiveimage" tag should be of the form '
         '{% responsiveimage self.photo max-320x200 srcset="fill-400x120 400w, fill-600x180 600w" sizes="100vw" [ custom-attr="value" ... ] %} or '
@@ -49,7 +51,10 @@ def _parse_attrs(bits):
 
 
 class ResponsiveImageNode(ImageNode, template.Node):
+    """Node for use by the responsive image tag."""
+
     def render(self, context):
+        """Render the responsive image node."""
         try:
             image = self.image_expr.resolve(context)
         except template.VariableDoesNotExist:
@@ -161,7 +166,7 @@ class ResponsiveImageNode(ImageNode, template.Node):
 
 @register.filter
 def responsive_css(image, prefix='ri'):
-
+    """Filter for use with the responsive image node to output scoped css for background images."""
     if not image or not image.srcset:
         return ''
 
@@ -213,6 +218,7 @@ def responsive_css(image, prefix='ri'):
 
 @register.filter
 def responsive_id(image, prefix='ri'):
+    """Filter to add a unique id for use with the responsive_css filter."""
     if not image:
         return ''
     image.uid = uid()
