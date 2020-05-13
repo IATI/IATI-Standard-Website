@@ -1,4 +1,4 @@
-{% load wagtailimages_tags i18n tool_utils %}
+{% load responsive i18n tool_utils %}
 
 <div class="row">
     <div class="section-alt">
@@ -14,7 +14,7 @@
                     {% if item.logo %}
                         <div class="card__logo card__logo--background">
                             <a href="{{ item.url }}">
-                                {% image item.logo max-150x90 alt=item.logo.title width='auto' height='auto' %}
+                                {% responsiveimage item.logo width-110 srcset=global.iati_tools_srcs sizes=global.iati_tools_sizes alt=item.logo.title width='auto' height='auto' %}
                             </a>
                         </div>
                     {% endif %}

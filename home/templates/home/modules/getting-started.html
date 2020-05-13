@@ -1,4 +1,4 @@
-{% load wagtailimages_tags %}
+{% load responsive %}
 
 <div class="section">
     <div class="row">
@@ -7,8 +7,9 @@
             {% for item in page.getting_started %}
                 <div class="l-3up__col">
                     <div class="help">
-                        {% image item.image max-800x500 as image %}
-                        <div class="help__header background-cover" style="background-image: url({{ image.url }})">
+                        {% responsiveimage item.image max-360x200 srcset=global.getting_started_srcs as image %}
+                        <div class="help__header background-cover" {{ image | responsive_id }}>
+                            {{ image | responsive_css }}
                             <div class="help__panel fill-wind">
                                 <h3 class="help__heading">{{ item.title }}</h3>
                             </div>
