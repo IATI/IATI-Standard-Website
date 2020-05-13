@@ -51,6 +51,8 @@ def globals(request):
             'hero_sizes': '(max-width: 499px) 0vw, (min-width: 780px) 50vw, (min-width: 1000px) 40vw',
             'tool_logo_srcs': 'width-150 150w',
             'tool_logo_sizes': '(max-width: 499px) 30vw, (max-width: 779px) 20vw, (max-width: 999px) 15vw, (min-width: 1000px) 13vw',
+            'tool_listing_logo_srcs': 'width-80 80w, width-150 150w, width-40 40w, width-60 60w',
+            'tool_listing_logo_sizes': '(max-width: 499px) 16vw, (max-width: 779px) 20vw, (min-width: 780px) 5vw',
             'case_study_srcs': 'fill-240x110 1w, fill-440x200 300w, fill-720x315 500w, fill-550x270 780w, fill-675x325 1000w',
             'people_srcs': 'max-240x240 240w, max-440x440 440w, max-190x190 190w, max-150x150 150w',
             'people_sizes': '(max-width: 499px) 100vw, (max-width: 779px) 25vw, (max-width: 1199px) 15vw, (min-width: 1200px) 10vw',

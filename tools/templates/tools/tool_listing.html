@@ -1,11 +1,11 @@
-{% load wagtailcore_tags wagtail_modeltranslation wagtailimages_tags i18n tool_utils %}
+{% load wagtailcore_tags wagtail_modeltranslation responsive i18n tool_utils %}
 
 <div class="card card--tool">
     <div class="card__header">
         {% if item.logo %}
             <div class="card__logo card__logo--background">
                 <a href="{% pageurl item %}">
-                    {% image item.logo max-150x90 alt=item.logo.title width='auto' height='auto' %}
+                    {% responsiveimage item.logo width-60 srcset=global.tool_listing_logo_srcs sizes=global.tool_listing_logo_sizes alt=item.logo width='auto' height='auto' %}
                 </a>
             </div>
         {% endif %}
