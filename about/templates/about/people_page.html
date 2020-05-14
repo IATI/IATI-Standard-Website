@@ -36,9 +36,9 @@
                                         <aside class="listing__aside">
                                             <div class="listing__media">
                                                 {% if child.value.profile_picture %}
-                                                    {% responsiveimage child.value.profile_picture max-440x440 srcset=global.people_srcs sizes=global.people_sizes alt=child.value.profile_picture.title width='auto' height='auto' %}
+                                                    {% responsiveimage child.value.profile_picture max-440x440 srcset=global.people_srcs sizes=global.people_sizes alt=child.value.profile_picture.title width='auto' height='auto' loading='auto' %}
                                                 {% else %}
-                                                    <img src="{% static 'img/portrait.png' %}" alt="placeholder portrait">
+                                                    <img src="{% static 'img/portrait.png' %}" alt="placeholder portrait" loading="auto">
                                                 {% endif %}
                                             </div>
                                         </aside>
@@ -46,7 +46,7 @@
                                             <header class="listing__header">
                                                 <h2 class="listing__heading"><span>{{ child.value.name }}</span></h2>
                                                 {% if child.value.organisation_logo %}
-                                                    {% responsiveimage child.value.organisation_logo max-68x18 srcset=global.org_logo_srcs class="listing__body-img" sizes=global.org_logo_sizes alt=child.value.organisation_logo.title width='auto' height='auto' %}
+                                                    {% responsiveimage child.value.organisation_logo max-68x18 srcset=global.org_logo_srcs class="listing__body-img" sizes=global.org_logo_sizes alt=child.value.organisation_logo.title width='auto' height='auto' loading='auto' %}
                                                 {% elif child.value.organisation_name %}
                                                     <span class="listing__body-img--text">{{child.value.organisation_name}}</span>
                                                 {% endif %}

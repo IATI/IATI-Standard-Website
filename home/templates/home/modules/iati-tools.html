@@ -14,7 +14,7 @@
                     {% if item.logo %}
                         <div class="card__logo card__logo--background">
                             <a href="{{ item.url }}">
-                                {% responsiveimage item.logo width-110 srcset=global.iati_tools_srcs sizes=global.iati_tools_sizes alt=item.logo.title width='auto' height='auto' %}
+                                {% responsiveimage item.logo width-110 srcset=global.iati_tools_srcs sizes=global.iati_tools_sizes alt=item.logo.title width='auto' height='auto' loading='auto' %}
                             </a>
                         </div>
                     {% endif %}

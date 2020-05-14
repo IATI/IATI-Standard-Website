@@ -7,9 +7,9 @@
                 <a href="{{ item.url }}">
             {% endif %}
             {% if item.image %}
-                {% responsiveimage item.image width-170 srcset=global.member_srcs sizes=global.member_sizes alt=item.image.title width='auto' height='auto' %}
+                {% responsiveimage item.image width-170 srcset=global.member_srcs sizes=global.member_sizes alt=item.image.title width='auto' height='auto' loading='auto' %}
             {% else %}
-                <img src="{% static 'img/member-logos/image-placeholder.svg' %}" alt="">
+                <img src="{% static 'img/member-logos/image-placeholder.svg' %}" alt="" loading="auto">
             {% endif %}
             {% if item.url %}
                 </a>

@@ -44,9 +44,9 @@
 							<aside class="listing__aside">
 								<div class="listing__media">
 									{% if event.feed_image %}
-                                        {% responsiveimage event.feed_image width-720 srcset=global.event_srcs sizes=global.event_sizes alt=event.feed_image.title width='auto' height='auto' %}
+                                        {% responsiveimage event.feed_image width-720 srcset=global.event_srcs sizes=global.event_sizes alt=event.feed_image.title width='auto' height='auto' loading='auto' %}
 									{% else %}
-										<img src="{% static 'svg/source/logo-square.svg' %}" alt="iati logo"/>
+										<img src="{% static 'svg/source/logo-square.svg' %}" alt="iati logo" loading="auto"/>
 									{% endif %}
 								</div>
 								{% if event.location %}

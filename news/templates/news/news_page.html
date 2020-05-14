@@ -51,9 +51,9 @@
                                     <aside class="listing__aside">
                                         <div class="listing__media">
                                             {% if news_post.feed_image %}
-                                                {% responsiveimage news_post.feed_image width-260 srcset=global.related_srcs sizes=global.related_sizes alt=news_post.feed_image.title width='auto' height='auto' %}
+                                                {% responsiveimage news_post.feed_image width-260 srcset=global.related_srcs sizes=global.related_sizes alt=news_post.feed_image.title width='auto' height='auto' loading='auto' %}
                                              {% else %}
-                                                <img src="{% static 'svg/source/logo-square.svg' %}" alt="iati logo"/>
+                                                <img src="{% static 'svg/source/logo-square.svg' %}" alt="iati logo" loading="auto"/>
                                              {% endif %}
                                         </div>
                                     </aside>

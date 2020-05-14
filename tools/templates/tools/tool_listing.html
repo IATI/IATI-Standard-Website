@@ -5,7 +5,7 @@
         {% if item.logo %}
             <div class="card__logo card__logo--background">
                 <a href="{% pageurl item %}">
-                    {% responsiveimage item.logo width-60 srcset=global.tool_listing_logo_srcs sizes=global.tool_listing_logo_sizes alt=item.logo width='auto' height='auto' %}
+                    {% responsiveimage item.logo width-60 srcset=global.tool_listing_logo_srcs sizes=global.tool_listing_logo_sizes alt=item.logo width='auto' height='auto' loading='auto' %}
                 </a>
             </div>
         {% endif %}

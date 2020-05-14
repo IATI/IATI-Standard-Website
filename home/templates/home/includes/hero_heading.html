@@ -24,7 +24,7 @@
             {% else %}
                 <div class="hero__emblem">
                     {% if page.header_image %}
-                        {% responsiveimage page.header_image width-1400 srcset=global.hero_srcs sizes=global.hero_sizes class='hero__emblem__mask' alt=page.header_image.title width='auto' height='auto' %}
+                        {% responsiveimage page.header_image width-1400 srcset=global.hero_srcs sizes=global.hero_sizes class='hero__emblem__mask' alt=page.header_image.title width='auto' height='auto' loading='auto' %}
                     {% endif %}
                 </div>
             {% endif %}
