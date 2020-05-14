@@ -1,29 +1,15 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags iati_tags wagtailimages_tags i18n %}
+{% load iati_tags i18n %}
 
 {% block body_class %}body body--news-single{% endblock %}
 {% block body_id %}body-news-single{% endblock %}
 
-{% block content %}
-    {% if page.feed_image %}
-        {% image page.feed_image width-1400 as img %}
-        <div class="hero hero--image" style="background-image: url({{ img.url }})">
-    {% else %}
-        <div class="hero hero--minor">
-    {% endif %}
-        <div class="row">
-            <div class="max-meter">
-                <div class="hero__caption">
-                    <h1 class="hero__heading">{{ page.heading }}</h1> {% if page.date_start|haspassed %}
-                    <span class="badge">{% trans "Past event" %}</span> {% endif %}
-                    <p class="hero__subheading">{{ page.excerpt|default:"" }}</p>
-                    <span class="hero__type">{{ page.event_type_concat }}</span>
-                </div>
-            </div>
-        </div>
-    </div>
+{% block hero %}
+    {% include "home/includes/hero_feed_image.html" with is_event=True %}
     {% include "notices/page-notice.html" %}
+{% endblock %}
 
+{% block content %}
     <div class="row">
         <div class="l-sidebar l-sidebar--mobile">
             <aside class="l-sidebar__aside">

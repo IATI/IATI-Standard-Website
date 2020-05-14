@@ -1,15 +1,15 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags wagtailimages_tags wagtail_modeltranslation iati_tags static %}
+{% load wagtailcore_tags responsive wagtail_modeltranslation iati_tags static %}
 
 {% block body_class %}body body--news-single{% endblock %}
 {% block body_id %}body-news-single{% endblock %}
 
-{% block content %}
-    <div class="hero">
-        {% include "home/includes/hero_heading.html" %}
-    </div>
+{% block hero %}
+    {% include "home/includes/hero_heading.html" %}
     {% include "notices/page-notice.html" %}
+{% endblock %}
 
+{% block content %}
     <div class="row">
         <div class="l-sidebar l-sidebar--reverse">
             <aside class="l-sidebar__aside">
@@ -20,8 +20,9 @@
                     {% for case_study in case_studies %}
                         <article class="case-study">
                             {% if case_study.feed_image %}
-                                {% image case_study.feed_image width-600 as img %}
-                                <div title="{{ img.title }}" class="case-study__media background-cover" style="background-image: url({{ img.url }});"></div>
+                                {% responsiveimage case_study.feed_image fill-675x325 srcset=global.case_study_srcs as image %}
+                                <div title="{{ image.title }}" class="case-study__media background-cover" {{ image | responsive_id }}></div>
+                                {{ image | responsive_css }}
                             {% else %}
                                 <div title="iati placeholder" class="case-study__media background-cover" style="background-image: url({% static 'img/image-placeholder.svg' %});"></div>
                             {% endif %}

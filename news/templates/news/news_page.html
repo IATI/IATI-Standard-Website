@@ -1,23 +1,17 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags wagtailimages_tags wagtail_modeltranslation i18n static %}
+{% load wagtailcore_tags responsive wagtail_modeltranslation i18n static %}
 
 {% block body_class %}body body--news-single{% endblock %}
 {% block body_id %}body-news-single{% endblock %}
 
-{% block content %}
+{% block hero %}
     <div id="fb-root"></div>
-    <div class="hero hero--minor">
-        <div class="row">
-            <div class="max-meter max-meter--center">
-                <div class="hero__caption">
-                    <h1 class="hero__heading">{{ page.heading }}</h1>
-                </div>
-            </div>
-        </div>
-    </div>
+    {% include "home/includes/hero_heading.html" with hero_class='hero--minor' wrapper_class='max-meter max-meter--center' no_subhead=True %}
     {% include "notices/page-notice.html" %}
+{% endblock %}
 
+{% block content %}
     <div class="row">
         <div class="max-meter max-meter--center">
             <div class="aside-m aside-m--clipping fill-land">
@@ -57,10 +51,9 @@
                                     <aside class="listing__aside">
                                         <div class="listing__media">
                                             {% if news_post.feed_image %}
-                                                {% image news_post.feed_image width-600 as img %}
-                                                <img src="{{ img.url }}" alt="{{ img.title }}" />
+                                                {% responsiveimage news_post.feed_image width-260 srcset=global.related_srcs sizes=global.related_sizes alt=news_post.feed_image.title width='auto' height='auto' loading='auto' %}
                                              {% else %}
-                                                <img src="{% static 'svg/source/logo-square.svg' %}" alt="iati logo"/>
+                                                <img src="{% static 'svg/source/logo-square.svg' %}" alt="iati logo" loading="auto"/>
                                              {% endif %}
                                         </div>
                                     </aside>

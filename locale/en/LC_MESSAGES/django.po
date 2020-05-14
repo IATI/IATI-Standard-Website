@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-09 14:46+0000\n"
+"POT-Creation-Date: 2020-05-14 13:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,28 +18,28 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: events/templates/events/event_index_page.html:20
+#: events/templates/events/event_index_page.html:21
 #, python-format
 msgid " Showing \"%(event_type_name)s\" events from %(year)s"
 msgstr ""
 
-#: events/templates/events/event_index_page.html:22
+#: events/templates/events/event_index_page.html:23
 #, python-format
 msgid " Showing \"%(event_type_name)s\" events"
 msgstr ""
 
-#: events/templates/events/event_index_page.html:25
-#: events/templates/events/event_index_page.html:32
+#: events/templates/events/event_index_page.html:26
+#: events/templates/events/event_index_page.html:33
 msgid "Show all events"
 msgstr ""
 
-#: events/templates/events/event_index_page.html:30
+#: events/templates/events/event_index_page.html:31
 #, python-format
 msgid " Showing events from %(year)s"
 msgstr ""
 
 #: events/templates/events/event_index_page.html:55
-#: events/templates/events/event_page.html:16
+#: home/templates/home/includes/hero_feed_image.html:13
 msgid "Past event"
 msgstr ""
 
@@ -47,35 +47,35 @@ msgstr ""
 msgid "More details"
 msgstr ""
 
-#: events/templates/events/event_index_page.html:85
+#: events/templates/events/event_index_page.html:80
 msgid "Past events"
 msgstr ""
 
-#: events/templates/events/event_index_page.html:88
+#: events/templates/events/event_index_page.html:83
 msgid "See events that have happened"
 msgstr ""
 
-#: events/templates/events/event_index_page.html:89
+#: events/templates/events/event_index_page.html:84
 msgid "View past events"
 msgstr ""
 
-#: events/templates/events/event_index_page.html:97
+#: events/templates/events/event_index_page.html:91
 msgid "Event types"
 msgstr ""
 
-#: events/templates/events/event_index_page.html:109
+#: events/templates/events/event_index_page.html:103
 msgid "Archive"
 msgstr ""
 
-#: events/templates/events/event_page.html:32
+#: events/templates/events/event_page.html:18
 msgid "Where &amp; when"
 msgstr ""
 
-#: events/templates/events/event_page.html:57
+#: events/templates/events/event_page.html:45
 msgid "Register your place"
 msgstr ""
 
-#: events/templates/events/event_page.html:69
+#: events/templates/events/event_page.html:56
 msgid "Additional information"
 msgstr ""
 
@@ -99,11 +99,11 @@ msgstr ""
 msgid "Year joined"
 msgstr ""
 
-#: governance/templates/governance/members_assembly_page.html:23
+#: governance/templates/governance/members_assembly_page.html:22
 msgid "Chair"
 msgstr ""
 
-#: governance/templates/governance/members_assembly_page.html:28
+#: governance/templates/governance/members_assembly_page.html:27
 msgid "Vice chair"
 msgstr ""
 
@@ -140,35 +140,34 @@ msgid ""
 "Sorry, something went wrong submitting your query. Please try again later."
 msgstr ""
 
-#: guidance_and_support/templates/guidance_and_support/guidance_group_page.html:29
+#: guidance_and_support/templates/guidance_and_support/guidance_group_page.html:22
 #: home/templates/home/includes/sidepanel.html:5
 msgid "In this section"
 msgstr ""
 
-#: guidance_and_support/templates/guidance_and_support/guidance_group_page.html:39
+#: guidance_and_support/templates/guidance_and_support/guidance_group_page.html:30
 #, python-format
 msgid "%(pagecount)s pages"
 msgstr ""
 
-#: guidance_and_support/templates/guidance_and_support/guidance_page.html:29
+#: guidance_and_support/templates/guidance_and_support/guidance_page.html:30
 #: guidance_and_support/templates/guidance_and_support/includes/contact_form.html:6
-#: search/templates/search/search_page.html:48
+#: search/templates/search/search_page.html:46
 msgid "Contact support"
 msgstr ""
 
-#: guidance_and_support/templates/guidance_and_support/guidance_page.html:32
-#: search/templates/search/search_page.html:51
+#: guidance_and_support/templates/guidance_and_support/guidance_page.html:33
+#: search/templates/search/search_page.html:49
 msgid "Our technical team are ready to help you."
 msgstr ""
 
-#: guidance_and_support/templates/guidance_and_support/guidance_page.html:33
-#: search/templates/search/search_page.html:52
-#: using_data/templates/using_data/tools_index_page.html:28
+#: guidance_and_support/templates/guidance_and_support/guidance_page.html:34
+#: search/templates/search/search_page.html:50
 msgid "Get help"
 msgstr ""
 
-#: guidance_and_support/templates/guidance_and_support/guidance_page.html:43
-#: guidance_and_support/templates/guidance_and_support/guidance_page.html:60
+#: guidance_and_support/templates/guidance_and_support/guidance_page.html:44
+#: guidance_and_support/templates/guidance_and_support/guidance_page.html:61
 msgid "Related guidance"
 msgstr ""
 
@@ -231,182 +230,6 @@ msgstr ""
 msgid "apply"
 msgstr ""
 
-#: home/templates/home/home_page_legacy.html:16
-msgid "Photo of Achim Steiner, UNDP Administrator"
-msgstr ""
-
-#: home/templates/home/home_page_legacy.html:19
-msgid "&ldquo;Transparency is a cornerstone of our work at UNDP.&rdquo;"
-msgstr ""
-
-#: home/templates/home/home_page_legacy.html:20
-msgid "Achim Steiner, UNDP Administrator"
-msgstr ""
-
-#: home/templates/home/home_page_legacy.html:20
-#: home/templates/home/home_page_legacy.html:176
-#: home/templates/home/home_page_legacy.html:193
-msgid "IATI member"
-msgstr ""
-
-#: home/templates/home/home_page_legacy.html:27
-msgid "Development and humanitarian activities published to the IATI Standard"
-msgstr ""
-
-#: home/templates/home/home_page_legacy.html:34
-msgid ""
-"IATI publishers that contribute data for decision-making and accountability"
-msgstr ""
-
-#: home/templates/home/home_page_legacy.html:42
-msgid "Getting started"
-msgstr ""
-
-#: home/templates/home/home_page_legacy.html:48
-msgid "Explore our data"
-msgstr ""
-
-#: home/templates/home/home_page_legacy.html:52
-msgid ""
-"Understand the ways you can access IATI data, what information you can find "
-"and the benefits of using it."
-msgstr ""
-
-#: home/templates/home/home_page_legacy.html:53
-msgid "Explore IATI data"
-msgstr ""
-
-#: home/templates/home/home_page_legacy.html:61
-msgid "Our publishing guide"
-msgstr ""
-
-#: home/templates/home/home_page_legacy.html:65
-msgid ""
-"Find out how to publish data to the IATI Standard and improve your data by "
-"using our publishing guidance."
-msgstr ""
-
-#: home/templates/home/home_page_legacy.html:66
-msgid "Get started"
-msgstr ""
-
-#: home/templates/home/home_page_legacy.html:74
-msgid "Discover the Standard"
-msgstr ""
-
-#: home/templates/home/home_page_legacy.html:78
-msgid ""
-"View IATI reference pages that contain the rules and technical framework for "
-"publishing and interpreting IATI data."
-msgstr ""
-
-#: home/templates/home/home_page_legacy.html:79
-#: tools/templates/tools/tool_listing.html:18
-#: using_data/templates/using_data/using_data_page.html:33
-msgid "Find out more"
-msgstr ""
-
-#: home/templates/home/home_page_legacy.html:88
-msgid "About IATI"
-msgstr ""
-
-#: home/templates/home/home_page_legacy.html:94
-msgid ""
-"\n"
-"                          IATI is a global initiative to improve the "
-"transparency of development and humanitarian resources and their results for "
-"addressing poverty and crises.\n"
-"                          "
-msgstr ""
-
-#: home/templates/home/home_page_legacy.html:99
-msgid ""
-"\n"
-"                          IATI brings together governments, multilateral "
-"institutions, private sector and civil society organisations and others to "
-"increase the transparency of resources flowing into developing countries.\n"
-"                          "
-msgstr ""
-
-#: home/templates/home/home_page_legacy.html:104
-msgid ""
-"\n"
-"                          We encourage all organisations that distribute or "
-"spend resources to publish information about their development and "
-"humanitarian activities using IATI’s data standard. This is a set of rules "
-"and guidance to ensure information is easy to access, understand and use.\n"
-"                          "
-msgstr ""
-
-#: home/templates/home/home_page_legacy.html:108
-msgid "Find out more about IATI"
-msgstr ""
-
-#: home/templates/home/home_page_legacy.html:113
-msgid "https://www.youtube.com/embed/PbwIUQwL_Jc"
-msgstr ""
-
-#: home/templates/home/home_page_legacy.html:122
-msgid "Case studies"
-msgstr ""
-
-#: home/templates/home/home_page_legacy.html:126
-msgid ""
-"\n"
-"                  People all over the world use IATI to track the flow of "
-"aid, humanitarian and development resources. Some use IATI to publish their "
-"data, others access data to inform decision-making and hold authorities to "
-"account. Our case studies tell some of their stories.\n"
-"                  "
-msgstr ""
-
-#: home/templates/home/home_page_legacy.html:147
-#: home/templates/home/modules/news-tweets.html:29
-#: navigation/templates/navigation/blocks/featured.html:25
-#: navigation/templates/navigation/blocks/highlight.html:8
-#: news/templates/news/news_index_page.html:45
-#: news/templates/news/news_page.html:72
-msgid "Read more"
-msgstr ""
-
-#: home/templates/home/home_page_legacy.html:162
-msgid "Partners"
-msgstr ""
-
-#: home/templates/home/home_page_legacy.html:168
-msgid "Photo of Hillevi Ekberg of Sida"
-msgstr ""
-
-#: home/templates/home/home_page_legacy.html:173
-msgid ""
-"&ldquo;Transparency has driven us to strengthen data quality and improve our "
-"processes. Open data is a foundation for reinforcing trust and improving "
-"coordination with partners to achieve more effective aid.&rdquo;"
-msgstr ""
-
-#: home/templates/home/home_page_legacy.html:176
-msgid "Sida - Swedish International Development Cooperation Agency"
-msgstr ""
-
-#: home/templates/home/home_page_legacy.html:185
-msgid "Photo of Winnie Kamau, Data Journalist"
-msgstr ""
-
-#: home/templates/home/home_page_legacy.html:190
-msgid ""
-"&ldquo;IATI is key to ensuring the public knows where development and "
-"humanitarian spending goes and what impact it makes. Accessing this data is "
-"vital when telling stories and holding decision makers to account.&rdquo;"
-msgstr ""
-
-#: home/templates/home/home_page_legacy.html:193
-msgid "Data Journalist"
-msgstr ""
-
-#: home/templates/home/home_page_legacy.html:193
-msgid "Association of Freelance Journalists"
-msgstr ""
-
 #: home/templates/home/includes/featured_event.html:9
 msgid "View event"
 msgstr ""
@@ -446,9 +269,17 @@ msgstr ""
 msgid "pages in this section"
 msgstr ""
 
-#: home/templates/home/modules/iati-tools.html:31
+#: home/templates/home/modules/iati-tools.html:33
 #: tools/templates/tools/tool_listing.html:20
 msgid "Visit the tool at"
+msgstr ""
+
+#: home/templates/home/modules/news-tweets.html:29
+#: navigation/templates/navigation/blocks/featured.html:23
+#: navigation/templates/navigation/blocks/highlight.html:8
+#: news/templates/news/news_index_page.html:54
+#: news/templates/news/news_page.html:68
+msgid "Read more"
 msgstr ""
 
 #: home/templates/home/modules/news-tweets.html:36
@@ -467,19 +298,19 @@ msgstr ""
 msgid "Multilingual"
 msgstr ""
 
-#: iati/settings/base.py:170 iati/settings/base.py:177
+#: iati/settings/base.py:172 iati/settings/base.py:179
 msgid "English"
 msgstr ""
 
-#: iati/settings/base.py:171 iati/settings/base.py:178
+#: iati/settings/base.py:173 iati/settings/base.py:180
 msgid "French"
 msgstr ""
 
-#: iati/settings/base.py:172
+#: iati/settings/base.py:174
 msgid "Spanish"
 msgstr ""
 
-#: iati/settings/base.py:173
+#: iati/settings/base.py:175
 msgid "Portuguese"
 msgstr ""
 
@@ -534,7 +365,11 @@ msgid "Subscribe"
 msgstr ""
 
 #: iati/templates/scaffold/footer.html:38
-msgid "Copyright IATI 2018. All rights reserved"
+msgid "Copyright IATI"
+msgstr ""
+
+#: iati/templates/scaffold/footer.html:38
+msgid "All rights reserved"
 msgstr ""
 
 #: iati/templates/scaffold/footer.html:40
@@ -615,24 +450,24 @@ msgstr ""
 msgid "Menu"
 msgstr ""
 
-#: news/templates/news/news_index_page.html:17
+#: news/templates/news/news_index_page.html:20
 #, python-format
 msgid " Showing \"%(news_category_name)s\" news posts"
 msgstr ""
 
-#: news/templates/news/news_index_page.html:19
+#: news/templates/news/news_index_page.html:22
 msgid "Show all posts"
 msgstr ""
 
-#: news/templates/news/news_index_page.html:61
+#: news/templates/news/news_index_page.html:66
 msgid "Categories"
 msgstr ""
 
-#: news/templates/news/news_page.html:44
+#: news/templates/news/news_page.html:41
 msgid "Related news"
 msgstr ""
 
-#: search/templates/search/search_page.html:23
+#: search/templates/search/search_page.html:21
 #, python-format
 msgid ""
 "\n"
@@ -643,7 +478,7 @@ msgid ""
 "                        "
 msgstr ""
 
-#: search/templates/search/search_page.html:37
+#: search/templates/search/search_page.html:35
 msgid ""
 "\n"
 "                            <h3 class=\"type-s type-s--trailer\">No results "
@@ -653,14 +488,11 @@ msgid ""
 "                        "
 msgstr ""
 
-#: using_data/templates/using_data/tools_index_page.html:24
-msgid "Support"
+#: tools/templates/tools/tool_listing.html:18
+#: using_data/templates/using_data/using_data_page.html:34
+msgid "Find out more"
 msgstr ""
 
-#: using_data/templates/using_data/tools_index_page.html:27
-msgid "Find out what support is available for you using IATI data."
-msgstr ""
-
-#: using_data/templates/using_data/using_data_page.html:51
+#: using_data/templates/using_data/using_data_page.html:50
 msgid "View tools and resources"
 msgstr ""
