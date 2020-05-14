@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags wagtailimages_tags wagtail_modeltranslation iati_tags i18n static %}
+{% load wagtailcore_tags responsive wagtail_modeltranslation iati_tags i18n static %}
 
 {% block body_class %}body body--news{% endblock %}
 {% block body_id %}body-news{% endblock %}
 
-{% block content %}
-    <div class="hero">
-        {% include "home/includes/hero_heading.html" %}
-    </div>
+{% block hero %}
+    {% include "home/includes/hero_heading.html" %}
     {% include "notices/page-notice.html" %}
+{% endblock %}
 
+{% block content %}
     <div class="row">
         <div class="l-sidebar">
             <div class="l-sidebar__body">
@@ -29,8 +29,15 @@
                                 <aside class="listing__aside">
                                     <div class="listing__media">
                                         {% if news_post.feed_image %}
-                                            {% image news_post.feed_image width-500 as img %}
-                                            <img src="{{ img.url }}" alt="{{ img.title }}" />
+                                            {% if forloop.first %}
+                                                {% if request.GET.page == "1" or request.GET.page|length == 0 %}
+                                                    {% responsiveimage news_post.feed_image width-260 srcset=global.news_featured_srcs sizes=global.news_featured_sizes alt=news_post.feed_image.title width='auto' height='auto' loading='auto' %}
+                                                {% else %}
+                                                    {% responsiveimage news_post.feed_image width-260 srcset=global.news_list_srcs sizes=global.news_list_sizes alt=news_post.feed_image.title width='auto' height='auto' loading='auto' %}
+                                                {% endif %}
+                                            {% else %}
+                                                {% responsiveimage news_post.feed_image width-260 srcset=global.news_list_srcs sizes=global.news_list_sizes alt=news_post.feed_image.title width='auto' height='auto' loading='auto' %}
+                                            {% endif %}
                                         {% else %}
                                             <img src="{% static 'svg/source/logo-square.svg' %}" alt="iati logo"/>
                                         {% endif %}

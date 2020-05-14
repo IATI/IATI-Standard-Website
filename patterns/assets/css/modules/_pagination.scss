@@ -55,3 +55,20 @@
 .pagination__item--next {
     float: right;
 }
+
+
+// legacy css from home/css/custom.css
+
+.pagination__item a {
+    display: inline !important;
+}
+
+.pagination__item-link--active {
+    color: #155366 !important;
+    border-bottom: 2px solid #155366 !important;
+}
+
+.langs-ss a{
+    display: inline-block;
+}
+

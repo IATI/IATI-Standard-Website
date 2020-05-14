@@ -24,6 +24,8 @@ services:
       - ELASTICSEARCH_URL=http://elasticsearch:9200
       - DJANGO_SETTINGS_MODULE=iati.settings.dev
   postgres:
+    environment:
+      - POSTGRES_PASSWORD=''
     image: postgres:9.6
     ports:
      - 5432:5432

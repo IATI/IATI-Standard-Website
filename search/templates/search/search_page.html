@@ -4,16 +4,13 @@
 {% block body_class %}template-searchresults{% endblock %}
 {% block title %}{{ page.heading }}{% endblock %}
 
-{% block content %}
-    <div class="hero hero--minor">
-        <div class="row">
-            <div class="hero__caption">
-                <h1 class="hero__heading">{{ page.heading }}</h1>
-            </div>
-        </div>
-    </div>
+{% block hero %}
+    <div id="fb-root"></div>
+    {% include "home/includes/hero_heading.html" with hero_class='hero--minor' no_subhead=True %}
     {% include "notices/page-notice.html" %}
+{% endblock %}
 
+{% block content %}
     {% include 'home/includes/search_bar.html' %}
 
     <div class="row">

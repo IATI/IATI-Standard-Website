@@ -45,7 +45,6 @@
         padding-bottom: 5em;
     }
     &--tool {
-
     }
     @include respond-to($c-vp) {
         &--image {
@@ -141,6 +140,7 @@
 }
 
 .hero__logo {
+    max-width: 150px;
     margin-bottom: 1em;
     img {
         @extend %max-width;

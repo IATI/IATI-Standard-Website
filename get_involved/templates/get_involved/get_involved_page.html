@@ -1,14 +1,12 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load wagtailcore_tags responsive %}
 
 
 {% block body_class %}body body--community{% endblock %}
 {% block body_id %}body-community{% endblock %}
 
 {% block hero %}
-    <div class="hero">
-        {% include "home/includes/hero_heading.html" %}
-    </div>
+    {% include "home/includes/hero_heading.html" %}
     {% include "notices/page-notice.html" %}
 {% endblock %}
 
@@ -40,8 +38,9 @@
                         <div class="l-3up__col">
                             <div class="help {% if not item.image %}help--simple{% endif %}">
                                 {% if item.image %}
-                                    {% image item.image max-700x200 as img %}
-                                    <div class="help__header background-cover" style="background-image: url({{ img.url }})">
+                                    {% responsiveimage item.image max-360x200 srcset=global.get_involved_srcs as image %}
+                                    <div class="help__header background-cover" {{ image | responsive_id }}>
+                                        {{ image | responsive_css }}
                                         <div class="help__panel fill-wind">
                                             <h3 class="help__heading">{{ item.title }}</h3>
                                         </div>

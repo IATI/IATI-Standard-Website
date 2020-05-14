@@ -3,18 +3,12 @@
 {% block body_class %}body body--{% endblock %}
 {% block body_id %}body-{% endblock %}
 
-{% block content %}
-    <div class="hero hero--minor">
-        <div class="row">
-            <div class="max-meter max-meter--center">
-                <div class="hero__caption">
-                    <h1 class="hero__heading">{{ page.heading }}</h1>
-                </div>
-            </div>
-        </div>
-    </div>
+{% block hero %}
+    {% include "home/includes/hero_heading.html" with hero_class='hero--minor' no_subhead=True %}
     {% include "notices/page-notice.html" %}
+{% endblock %}
 
+{% block content %}
     <div class="l-standard">
         <div class="row">
             <div class="max-meter max-meter--center">

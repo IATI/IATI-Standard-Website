@@ -4,12 +4,12 @@
 {% block body_class %}body body--about{% endblock %}
 {% block body_id %}body-about{% endblock %}
 
-{% block content %}
-	<div class="hero">
-		{% include "home/includes/hero_heading.html" %}
-	</div>
+{% block hero %}
+	{% include "home/includes/hero_heading.html" %}
 	{% include "notices/page-notice.html" %}
+{% endblock %}
 
+{% block content %}
 	<div class="row">
 		<div class="l-sidebar l-sidebar--reverse">
 			<aside class="l-sidebar__aside">

@@ -11,7 +11,7 @@
 {% block body_id %}body-support{% endblock %}
 
 {% block hero %}
-    {% include "home/includes/hero_excerpt.html" %}
+    {% include "home/includes/hero_heading.html" with hero_class='hero--minor' para_class='excerpt' %}
     {% include "notices/page-notice.html" %}
 {% endblock %}
 

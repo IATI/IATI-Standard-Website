@@ -1,15 +1,15 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags wagtailimages_tags wagtail_modeltranslation %}
+{% load wagtailcore_tags static wagtail_modeltranslation %}
 
 {% block body_class %}body body--support{% endblock %}
 {% block body_id %}body-support{% endblock %}
 
-{% block content %}
-    <div class="hero">
-        {% include "home/includes/hero_heading.html" %}
-    </div>
+{% block hero %}
+    {% include "home/includes/hero_heading.html" %}
     {% include "notices/page-notice.html" %}
+{% endblock %}
 
+{% block content %}
     <div class="l-standard">
         <div class="row">
             <div class="max-meter max-meter--wide max-meter--center">
@@ -17,7 +17,7 @@
                     <article class="listing listing--guidance">
                         <aside class="listing__aside">
                             <div class="listing__media">
-                                <img src="https://styles.iatistandard.org/assets/img/image-placeholder.svg" alt="placeholder image">
+                                <img src="{% static 'img/image-placeholder.svg' %}" alt="">
                             </div>
                         </aside>
                         <div class="listing__body">

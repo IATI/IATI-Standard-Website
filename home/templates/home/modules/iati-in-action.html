@@ -1,4 +1,4 @@
-{% load wagtailimages_tags %}
+{% load responsive %}
 
 <div class="section section-alt-bottom">
     <div class="row">
@@ -12,10 +12,8 @@
             <div class="l-offset__col">
                 {% if page.iati_in_action_featured %}
                     <article class="case-study">
-                        {% if page.iati_in_action_featured.get_image %}
-                            {% image page.iati_in_action_featured.get_image max-700x310 as image %}
-                        {% endif  %}
-                        <div class="case-study__media background-cover" style="background-image: url({{ image.url }})"></div>
+                        {% responsiveimage page.iati_in_action_featured.get_image max-700x310 srcset=global.case_study_srcs as image %}
+                        <div class="case-study__media background-cover" {{ image | responsive_id }}>{{ image | responsive_css }}</div>
                         <div class="case-study__panel">
                             <h2 class="case-study__heading">
                                 <a href="{{ page.iati_in_action_featured.page.url }}">
