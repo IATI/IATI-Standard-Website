@@ -109,7 +109,7 @@ class BaseRelatedOptionalItem(BaseRelatedPageItem):
         help_text='Optional: title for the item. Defaults to the selected page title if left blank',
     )
     description = models.CharField(
-        max_length=255,
+        max_length=500,
         blank=True,
         help_text='Optional: description for the item. Defaults to the selected page excerpt if left blank',
     )
