@@ -39,7 +39,7 @@
       <div class="card card--simple">
         <span class="card__flag">{{ guidance_page.last_published_at|date:"F d Y" }}</span>
         <h2 class="card__heading"><a href="{% pageurl guidance_page %}"><span>{{ guidance_page.title }}</span></a></h2>
-        <p class="card__excerpt">{{ guidance_page.first_paragraph }}</p>
+        <p class="card__excerpt">{{ guidance_page.excerpt }}</p>
       </div>
       {% endfor %}
     </div>

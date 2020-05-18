@@ -170,12 +170,6 @@ def populate_index(observer, tag, type_to_update):
             standard_page.add_child(instance=ssot_root_page)
             ssot_root_page.save_revision().publish()
         recursive_create(StandardGuidancePage, ReferenceData.objects.filter(tag=tag), ssot_root_page, "guidance", recursed_page_paths)
-        for guidance_page in StandardGuidancePage.objects.all():
-            random_number = random.uniform(0, 1)  # TODO: Make non-stochastic
-            if random_number > 0.5:
-                StandardGuidanceTypes.objects.create(page=guidance_page, guidance_type="activity")
-            else:
-                StandardGuidanceTypes.objects.create(page=guidance_page, guidance_type="organisation")
 
     else:
         menu_json = []

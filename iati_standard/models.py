@@ -290,10 +290,25 @@ class AbstractGithubPage(DefaultPageHeaderImageMixin, AbstractContentPage):
     def save(self, *args, **kwargs):
         """Overwrite save to automatically update title."""
         soup = BeautifulSoup(self.data, 'html.parser')
-        title = soup.find("h1")
-        if title:
-            self.title = title.text.replace("¶", "")
-            self.heading = title.text.replace("¶", "")
+        meta_title = soup.find("meta", {"name": "title"})
+        if meta_title:
+            self.title = meta_title["content"].replace("¶", "")
+            self.heading = meta_title["content"].replace("¶", "")
+        else:
+            title = soup.find("h1")
+            if title:
+                self.title = title.text.replace("¶", "")
+                self.heading = title.text.replace("¶", "")
+        meta_description = soup.find("meta", {"name": "description"})
+        if meta_description:
+            self.excerpt = meta_description["content"].replace("¶", "")
+        else:
+            self.excerpt = self.first_paragraph()
+        meta_guidance_type = soup.find("meta", {"name": "guidance_type"})
+        if meta_guidance_type:
+            guidance_types = meta_guidance_type["content"].split(",")
+            for guidance_type in guidance_types:
+                StandardGuidanceTypes.objects.create(page=self, guidance_type=guidance_type)  # TODO: Test this works before save?
         super(AbstractGithubPage, self).save(*args, **kwargs)
 
 
