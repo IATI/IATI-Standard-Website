@@ -306,9 +306,10 @@ class AbstractGithubPage(DefaultPageHeaderImageMixin, AbstractContentPage):
             self.excerpt = self.first_paragraph()
         meta_guidance_type = soup.find("meta", {"name": "guidance_type"})
         if meta_guidance_type:
+            super(AbstractGithubPage, self).save(*args, **kwargs)
             guidance_types = meta_guidance_type["content"].split(",")
             for guidance_type in guidance_types:
-                StandardGuidanceTypes.objects.create(page=self, guidance_type=guidance_type)  # TODO: Test this works before save?
+                StandardGuidanceTypes.objects.create(page=self, guidance_type=guidance_type)
 
         all_metas = soup.findAll("meta")
         for all_meta in all_metas:
