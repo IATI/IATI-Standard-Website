@@ -114,6 +114,20 @@ class StandardGuidanceIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
 
     max_count = 1
 
+    section_summary = models.TextField(
+        blank=True,
+        null=True,
+        help_text='Summary seen on Guidance and Support page'
+    )
+    button_link_text = models.CharField(
+        blank=True,
+        null=True,
+        max_length=255,
+        help_text='Button text to be shown on Guidance and Support page',
+    )
+
+    translation_fields = AbstractIndexPage.translation_fields + ["section_summary", "button_link_text"]
+
     def get_guidance(self, request, filter_dict=None, search_query=None):
         """Return a filtered list of guidance."""
         all_guidance = StandardGuidancePage.objects.live().descendant_of(self).order_by('title')

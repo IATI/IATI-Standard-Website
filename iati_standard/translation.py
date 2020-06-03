@@ -3,7 +3,7 @@
 from modeltranslation.translator import TranslationOptions
 from modeltranslation.decorators import register
 from home.translation_helper import add_language_content_panels
-from .models import IATIStandardPage, ActivityStandardPage, StandardGuidancePage
+from .models import IATIStandardPage, ActivityStandardPage, StandardGuidancePage, StandardGuidanceIndexPage
 
 
 @register(IATIStandardPage)
@@ -20,6 +20,13 @@ class ActivityStandardPageTR(TranslationOptions):
     fields = ActivityStandardPage.translation_fields
 
 
+@register(StandardGuidanceIndexPage)
+class StandardGuidanceIndexPageTR(TranslationOptions):
+    """Class declaring which fields of the StandardGuidanceIndexPage model to translate."""
+
+    fields = StandardGuidanceIndexPage.translation_fields
+
+
 @register(StandardGuidancePage)
 class StandardGuidancePageTR(TranslationOptions):
     """Class declaring which fields of the StandardGuidancePage model to translate."""
@@ -28,3 +35,4 @@ class StandardGuidancePageTR(TranslationOptions):
 
 
 add_language_content_panels(IATIStandardPage)
+add_language_content_panels(StandardGuidanceIndexPage)

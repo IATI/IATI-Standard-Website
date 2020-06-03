@@ -163,10 +163,10 @@ def populate_index(observer, tag, type_to_update):
             ssot_root_page = StandardGuidanceIndexPage(
                 title="Standard Guidance",
                 heading="Standard Guidance",
-                slug="standard-guidance"
+                slug="standard-guidance",
+                section_summary="Standard guidance section summary",
+                button_link_text="Read more about the standard guidance"
             )
-            ssot_root_page.locked = True
-            ssot_root_page.locked_by = None
             standard_page.add_child(instance=ssot_root_page)
             ssot_root_page.save_revision().publish()
         recursive_create(StandardGuidancePage, ReferenceData.objects.filter(tag=tag), ssot_root_page, "guidance", recursed_page_paths)

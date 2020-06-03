@@ -8,6 +8,7 @@ from wagtail.core.models import Page
 from wagtail.images.edit_handlers import ImageChooserPanel
 
 from home.models import AbstractContentPage, AbstractIndexPage, DefaultPageHeaderImageMixin, IATIStreamBlock
+from iati_standard.models import StandardGuidanceIndexPage
 from .mixins import ContactFormMixin
 
 
@@ -27,6 +28,11 @@ class GuidanceAndSupportPage(DefaultPageHeaderImageMixin, AbstractContentPage):
         """Get all GuidanceGroupPage objects that have been published."""
         guidance_groups = GuidanceGroupPage.objects.child_of(self).live()
         return guidance_groups
+
+    @property
+    def standard_guidance_index(self):
+        """Get StandardGuidanceIndexPage object."""
+        return StandardGuidanceIndexPage.objects.child_of(self).live().first()
 
 
 class GuidanceGroupPage(AbstractContentPage):
