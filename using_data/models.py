@@ -16,6 +16,6 @@ class UsingDataPage(AboutPage):
         """Overwrite the default wagtail get_context function to add all subpages of UsingDataPage."""
         context = super(UsingDataPage, self).get_context(request)
 
-        context['subpages'] = AboutSubPage.objects.child_of(self)
-        context['toolsindex'] = ToolsListingPage.objects.all().first()
+        context['subpages'] = AboutSubPage.objects.live().child_of(self)
+        context['toolsindex'] = ToolsListingPage.objects.live().first()
         return context
