@@ -164,8 +164,8 @@ def populate_index(observer, tag, type_to_update):
                 title="Standard Guidance",
                 heading="Standard Guidance",
                 slug="standard-guidance",
-                section_summary="Standard guidance section summary",
-                button_link_text="Read more about the standard guidance"
+                section_summary="Use this section to find guidance on how to publish and interpret data on specific topics according to the IATI Standard.",
+                button_link_text="Search the Standard guidance pages"
             )
             standard_page.add_child(instance=ssot_root_page)
             ssot_root_page.save_revision().publish()
