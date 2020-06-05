@@ -7,7 +7,7 @@
 {% block content %}
     <div class="hero hero--minor">
         <div class="row">
-            {% if self.version != "guidance" and self.version != "developer-documentation" %}
+            {% if self.version != "guidance" and self.version != "developer-docs" and self.version != "upgrades" %}
                 <div class="hero__caption">
                     <p class="hero__excerpt">You are viewing <strong>
                         {% if self.version == "203" %}VERSION 2.03{% endif %}

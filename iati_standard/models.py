@@ -259,6 +259,13 @@ class AbstractGithubPage(DefaultPageHeaderImageMixin, AbstractContentPage):
         help_text='Associated git release tag',
     )
 
+    ssot_root_slug = models.CharField(
+        null=True,
+        blank=True,
+        max_length=255,
+        help_text='Slug of the highest parent folder.'
+    )
+
     data = models.TextField(
         null=True,
         blank=True,
@@ -329,6 +336,7 @@ class AbstractGithubPage(DefaultPageHeaderImageMixin, AbstractContentPage):
         for all_meta in all_metas:
             all_meta.decompose()
         self.data = str(soup)
+        self.ssot_root_slug = self.ssot_path.split("/")[0]
         super(AbstractGithubPage, self).save(*args, **kwargs)
 
 

@@ -200,22 +200,21 @@ def populate_index(observer, tag, type_to_update):
         ActivityStandardPage.objects.filter(ssot_path__in=list(to_delete), ssot_root_slug="developer-docs").delete()
 
         standard_page = GuidanceAndSupportPage.objects.live().first()
-        ssot_roots = [roots[0] for roots in ReferenceData.objects.filter(tag=tag).order_by().values_list('ssot_root_slug').distinct() if roots[0] in ["developer-docs"]]
+        ssot_root = "developer-docs"
 
-        for ssot_root in ssot_roots:
-            objects = ReferenceData.objects.filter(tag=tag, ssot_path=ssot_root)
-            for object in objects:
-                ssot_root_page = create_or_update_from_object(standard_page, ActivityStandardPage, object)
-            ssot_root_page.title = ssot_root
-            ssot_root_page.slug = slugify(ssot_root)
-            ssot_root_page.save_revision().publish()
-            recursive_create(ActivityStandardPage, ReferenceData.objects.filter(tag=tag), ssot_root_page, ssot_root_page.ssot_path, recursed_page_paths)
-            menu_json.append(recursive_create_menu(ssot_root_page))
+        objects = ReferenceData.objects.filter(tag=tag, ssot_path=ssot_root)
+        for object in objects:
+            ssot_root_page = create_or_update_from_object(standard_page, ActivityStandardPage, object)
+        ssot_root_page.title = ssot_root
+        ssot_root_page.slug = slugify(ssot_root)
+        ssot_root_page.save_revision().publish()
+        recursive_create(ActivityStandardPage, ReferenceData.objects.filter(tag=tag), ssot_root_page, ssot_root_page.ssot_path, recursed_page_paths)
+        menu_json.append(recursive_create_menu(ssot_root_page))
 
-            ReferenceMenu.objects.update_or_create(
-                tag=tag,
-                menu_type="developer",
-                defaults={'menu_json': menu_json},
-            )
+        ReferenceMenu.objects.update_or_create(
+            tag=tag,
+            menu_type="developer",
+            defaults={'menu_json': menu_json},
+        )
 
     call_command('update_index')
