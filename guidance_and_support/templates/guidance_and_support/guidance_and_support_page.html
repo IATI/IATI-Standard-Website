@@ -57,6 +57,22 @@
                           </div>
                       </article>
                     {% endif %}
+                    {% if self.developer_docs %}
+                      <article class="listing listing--guidance">
+                          <aside class="listing__aside">
+                              <div class="listing__media">
+                                  <img src="{% static 'img/image-placeholder.svg' %}" alt="placeholder image">
+                              </div>
+                          </aside>
+                          <div class="listing__body">
+                              <h2 class="listing__heading"><a href="{% pageurl self.developer_docs %}"><span>{{ self.developer_docs.heading }}</span></a></h2>
+                              <div class="listing__excerpt">
+                                  Use this section to find guidance on how IATI is developed and how to develop your own tools.
+                              </div>
+                              <a href="{% pageurl self.standard_guidance_index %}" class="button">Read more about IATI developer documentation</a>
+                          </div>
+                      </article>
+                    {% endif %}
                 </div>
             </div>
         </div>
