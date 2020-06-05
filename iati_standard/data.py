@@ -171,13 +171,13 @@ def populate_index(observer, tag, type_to_update):
             ssot_root_page.save_revision().publish()
         recursive_create(StandardGuidancePage, ReferenceData.objects.filter(tag=tag), ssot_root_page, "guidance", recursed_page_paths)
 
-    else:
+    elif type_to_update == "ssot":
         menu_json = []
 
-        ActivityStandardPage.objects.filter(ssot_path__in=list(to_delete)).delete()
+        ActivityStandardPage.objects.filter(ssot_path__in=list(to_delete)).exclude(ssot_root_slug="developer-docs").delete()
 
         standard_page = IATIStandardPage.objects.live().first()
-        ssot_roots = [roots[0] for roots in ReferenceData.objects.filter(tag=tag).order_by().values_list('ssot_root_slug').distinct() if roots[0] != "guidance"]
+        ssot_roots = [roots[0] for roots in ReferenceData.objects.filter(tag=tag).order_by().values_list('ssot_root_slug').distinct() if roots[0] not in ["guidance", "developer-docs"]]
 
         for ssot_root in ssot_roots:
             objects = ReferenceData.objects.filter(tag=tag, ssot_path=ssot_root)
@@ -191,6 +191,30 @@ def populate_index(observer, tag, type_to_update):
 
             ReferenceMenu.objects.update_or_create(
                 tag=tag,
+                menu_type="ssot",
+                defaults={'menu_json': menu_json},
+            )
+    else:
+        menu_json = []
+
+        ActivityStandardPage.objects.filter(ssot_path__in=list(to_delete), ssot_root_slug="developer-docs").delete()
+
+        standard_page = GuidanceAndSupportPage.objects.live().first()
+        ssot_roots = [roots[0] for roots in ReferenceData.objects.filter(tag=tag).order_by().values_list('ssot_root_slug').distinct() if roots[0] in ["developer-docs"]]
+
+        for ssot_root in ssot_roots:
+            objects = ReferenceData.objects.filter(tag=tag, ssot_path=ssot_root)
+            for object in objects:
+                ssot_root_page = create_or_update_from_object(standard_page, ActivityStandardPage, object)
+            ssot_root_page.title = ssot_root
+            ssot_root_page.slug = slugify(ssot_root)
+            ssot_root_page.save_revision().publish()
+            recursive_create(ActivityStandardPage, ReferenceData.objects.filter(tag=tag), ssot_root_page, ssot_root_page.ssot_path, recursed_page_paths)
+            menu_json.append(recursive_create_menu(ssot_root_page))
+
+            ReferenceMenu.objects.update_or_create(
+                tag=tag,
+                menu_type="developer",
                 defaults={'menu_json': menu_json},
             )
 

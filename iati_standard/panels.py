@@ -20,6 +20,10 @@ def ReferenceDataPanel(
                     <span class="icon icon-spinner"></span>
                     <em>Update guidance data</em>
                 </button>
+                <button type="button" class="button action-update-profile-data button-longrunning" data-tag="developer" data-clicked-text="Updating guidance data…">
+                    <span class="icon icon-spinner"></span>
+                    <em>Update developer data</em>
+                </button>
             </p>
             <div class="messages">
                 <ul></ul>

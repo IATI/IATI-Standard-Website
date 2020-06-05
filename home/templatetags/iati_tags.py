@@ -245,12 +245,16 @@ def reference_menu(calling_page):
     """Return the reference menu given the page hierarchy."""
     calling_page_tag = calling_page.specific.tag
     calling_page_pk = calling_page.pk
+    calling_page_root = calling_page.ssot_root_slug
     standard_page = IATIStandardPage.objects.live().first()
     if calling_page.depth > 4:
         main_section_pk = standard_page.get_children().ancestor_of(calling_page).first().pk
     else:
         main_section_pk = calling_page.pk
-    all_menu_json = ReferenceMenu.objects.get(tag=calling_page_tag).menu_json
+    if calling_page_root == "developer":
+        all_menu_json = ReferenceMenu.objects.get(tag=calling_page_tag, menu_type="developer").menu_json
+    else:
+        all_menu_json = ReferenceMenu.objects.get(tag=calling_page_tag, menu_type="ssot").menu_json
     menu_json = None
     for top_level_json in all_menu_json:
         if top_level_json["pk"] == main_section_pk:

@@ -373,5 +373,10 @@ class ReferenceMenu(models.Model):
         max_length=255,
         help_text='Associated git release tag',
     )
+    menu_type = models.CharField(
+        default="ssot",
+        max_length=255,
+        help_text="The set of pages to which this menu belongs",
+    )
 
     menu_json = JSONField()
