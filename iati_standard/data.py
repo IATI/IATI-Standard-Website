@@ -218,3 +218,7 @@ def populate_index(observer, tag, type_to_update):
         )
 
     call_command('update_index')
+
+    observer.update_state(
+        state='SUCCESS'
+    )
