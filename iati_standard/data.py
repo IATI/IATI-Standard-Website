@@ -68,7 +68,7 @@ def populate_data(observer, data, tag):
                 ReferenceData.objects.update_or_create(
                     ssot_path=ssot_path,
                     tag=tag,
-                    defaults={'data': item.read().decode('utf-8').replace("\n", "")},
+                    defaults={'data': item.read().decode('utf-8')},
                 )
 
     else:
