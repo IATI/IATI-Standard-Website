@@ -366,11 +366,10 @@ class StandardGuidancePage(AbstractGithubPage):
         anchors = soup.findAll("a")
         for anchor in anchors:
             anchor_href = anchor['href']
-            if anchor_href[:3] == "../":
-                anchor_ssot_path = os.path.relpath(os.path.join(self.ssot_path, anchor_href))
-                anchor_match = StandardGuidancePage.objects.filter(ssot_path=anchor_ssot_path).first()
-                if anchor_match not in related:
-                    related.append(anchor_match)
+            anchor_ssot_path = os.path.relpath(os.path.join(self.ssot_path, anchor_href))
+            anchor_match = StandardGuidancePage.objects.filter(ssot_path=anchor_ssot_path).first()
+            if anchor_match and anchor_match not in related:
+                related.append(anchor_match)
         return related
 
 
