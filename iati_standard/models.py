@@ -10,6 +10,8 @@ from django.utils.functional import cached_property
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, PageChooserPanel, TabbedInterface
 from wagtail.core.models import Page
 from wagtail.core.fields import StreamField
+from wagtail.contrib.redirects.models import Redirect
+from wagtail.documents.models import Document
 from wagtail.search.models import Query
 from wagtail.search.index import SearchField, FilterField
 from wagtail.core.blocks import (
@@ -23,6 +25,24 @@ from home.models import AbstractContentPage, AbstractIndexPage, DefaultPageHeade
 
 from iati_standard.panels import ReferenceDataPanel
 from iati_standard.inlines import StandardGuidanceTypes
+
+
+class ReferenceDownload(models.Model):
+    document = models.ForeignKey(
+        Document,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        blank=True,
+        null=True
+    )
+    redirect = models.ForeignKey(
+        Redirect,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        blank=True,
+        null=True
+    )
+
 
 
 class CardBlock(StructBlock):

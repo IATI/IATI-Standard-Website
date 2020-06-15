@@ -5,9 +5,13 @@ import os
 import random
 from zipfile import ZipFile
 from django.core.management import call_command
+from django.core.files import File
 from django.conf import settings
 from django.utils.text import slugify
-from iati_standard.models import ReferenceData, ActivityStandardPage, IATIStandardPage, ReferenceMenu, StandardGuidanceIndexPage, StandardGuidancePage
+from wagtail.contrib.redirects.models import Redirect
+from wagtail.documents.models import Document
+from home.models import HomePage
+from iati_standard.models import ReferenceData, ActivityStandardPage, IATIStandardPage, ReferenceMenu, StandardGuidanceIndexPage, StandardGuidancePage, ReferenceDownload
 from iati_standard.inlines import StandardGuidanceTypes
 from iati_standard.edit_handlers import GithubAPI
 from guidance_and_support.models import GuidanceAndSupportPage
@@ -41,8 +45,10 @@ def update_or_create_tags(observer, repo, tag=None, type_to_update=None):
     git = GithubAPI(repo)
 
     if tag:
-        data = git.get_data(tag)
+        data, media = git.get_data(tag)
 
+        if type_to_update == "ssot":
+            populate_media(observer, media, tag)
         populate_data(observer, data, tag)
         populate_index(observer, tag, type_to_update)
 
@@ -52,6 +58,43 @@ def update_or_create_tags(observer, repo, tag=None, type_to_update=None):
         )
 
     return True
+
+
+def populate_media(observer, media, tag):
+    """Use ZIP data to create reference download objects."""
+    observer.update_state(
+        state='PROGRESS',
+        meta='Creating reference downloads'
+    )
+
+    home_page = HomePage.objects.first()
+
+    if media:
+        for old_download in ReferenceDownload.objects.all():
+            old_download.document.delete()
+            old_download.redirect.delete()
+            old_download.delete()
+        for item in extract_zip(download_zip(media.url)):
+            redirect_path = "/downloads/" + item.name
+            item_basename = os.path.basename(item.name)
+            doc = Document(
+                title=item_basename
+            )
+            doc.file.save(item_basename, File(item), save=True)
+            doc.save()
+            redir = Redirect.objects.create(
+                site=home_page.get_site(),
+                old_path=redirect_path,
+                redirect_link=doc.url,
+                is_permanent=False
+            )
+            ReferenceDownload.objects.create(
+                document=doc,
+                redirect=redir
+            )
+
+    else:
+        raise ValueError('No data available for tag: %s' % tag)
 
 
 def populate_data(observer, data, tag):

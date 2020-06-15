@@ -8,6 +8,7 @@ from wagtail.admin.edit_handlers import MultiFieldPanel as WagtailMultiFieldPane
 
 
 DATA_FILENAME = 'output.zip'
+MEDIA_FILENAME = 'downloads.zip'
 
 
 class MultiFieldPanel(WagtailMultiFieldPanel):
@@ -51,8 +52,9 @@ class GithubAPI:
         release = self._get_release(tag_name)
         assets = self._get_assets_for_release(release)
         data = self._get_zip_for_release(assets, DATA_FILENAME)
+        media = self._get_zip_for_release(assets, MEDIA_FILENAME)
 
-        return data
+        return (data, media)
 
     def get_live_data(self):
         """Fetch outputs.zip given a live tag name."""
