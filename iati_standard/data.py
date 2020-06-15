@@ -82,12 +82,13 @@ def populate_media(observer, media, tag):
             )
             doc.file.save(item_basename, File(item), save=True)
             doc.save()
-            redir = Redirect.objects.create(
+            redir, created = Redirect.objects.get_or_create(
                 site=home_page.get_site(),
                 old_path=redirect_path,
-                redirect_link=doc.url,
                 is_permanent=False
             )
+            redir.redirect_link = doc.url
+            redir.save()
             ReferenceDownload.objects.create(
                 document=doc,
                 redirect=redir
