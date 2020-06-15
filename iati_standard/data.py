@@ -75,7 +75,7 @@ def populate_media(observer, media, tag):
             old_download.redirect.delete()
             old_download.delete()
         for item in extract_zip(download_zip(media.url)):
-            redirect_path = "/downloads/" + item.name
+            redirect_path = "/en/downloads/" + item.name
             item_basename = os.path.basename(item.name)
             doc = Document(
                 title=item_basename
