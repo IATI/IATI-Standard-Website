@@ -87,7 +87,7 @@ def populate_media(observer, media, tag):
                 old_path=redirect_path,
                 is_permanent=False
             )
-            redir.redirect_link = doc.url
+            redir.redirect_link = home_page.get_site().root_url + doc.url
             redir.save()
             ReferenceDownload.objects.create(
                 document=doc,
