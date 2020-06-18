@@ -53,6 +53,7 @@ class HomeFieldsMixin(models.Model):
     iati_in_action_description = models.TextField(
         blank=True,
         help_text='Optional: description for the IATI in action section',
+        max_length=500
     )
     iati_tools_title = models.CharField(
         max_length=255,
