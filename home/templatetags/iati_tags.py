@@ -246,7 +246,7 @@ def reference_menu(calling_page):
     calling_page_tag = calling_page.specific.tag
     calling_page_pk = calling_page.pk
     calling_page_root = calling_page.ssot_root_slug
-    if calling_page_root == "developer-docs":
+    if calling_page_root == "developer":
         standard_page = GuidanceAndSupportPage.objects.live().first()
         menu_type = "developer"
     else:
