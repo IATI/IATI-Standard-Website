@@ -218,10 +218,10 @@ def populate_index(observer, tag, type_to_update):
     elif type_to_update == "ssot":
         menu_json = []
 
-        ActivityStandardPage.objects.filter(ssot_path__in=list(to_delete)).exclude(ssot_root_slug="developer-docs").delete()
+        ActivityStandardPage.objects.filter(ssot_path__in=list(to_delete)).exclude(ssot_root_slug="developer").delete()
 
         standard_page = IATIStandardPage.objects.live().first()
-        ssot_roots = [roots[0] for roots in ReferenceData.objects.filter(tag=tag).order_by().values_list('ssot_root_slug').distinct() if roots[0] not in ["guidance", "developer-docs"]]
+        ssot_roots = [roots[0] for roots in ReferenceData.objects.filter(tag=tag).order_by().values_list('ssot_root_slug').distinct() if roots[0] not in ["guidance", "developer"]]
 
         for ssot_root in ssot_roots:
             objects = ReferenceData.objects.filter(tag=tag, ssot_path=ssot_root)
@@ -241,10 +241,10 @@ def populate_index(observer, tag, type_to_update):
     else:
         menu_json = []
 
-        ActivityStandardPage.objects.filter(ssot_path__in=list(to_delete), ssot_root_slug="developer-docs").delete()
+        ActivityStandardPage.objects.filter(ssot_path__in=list(to_delete), ssot_root_slug="developer").delete()
 
         standard_page = GuidanceAndSupportPage.objects.live().first()
-        ssot_root = "developer-docs"
+        ssot_root = "developer"
 
         objects = ReferenceData.objects.filter(tag=tag, ssot_path=ssot_root)
         for object in objects:
