@@ -26,7 +26,7 @@ from home.models import AbstractContentPage, AbstractIndexPage, DefaultPageHeade
 
 from iati_standard.panels import ReferenceDataPanel
 from iati_standard.inlines import StandardGuidanceTypes
-from prettyjson import PrettyJSONWidget
+from iati_standard.widgets import JSONFieldWidget
 
 class ReferenceDownload(models.Model):
     document = models.ForeignKey(
@@ -419,4 +419,4 @@ class ReferenceMenu(models.Model):
 
     menu_json = JSONField()
 
-    panels = [FieldPanel('menu_json', widget=PrettyJSONWidget)]
+    panels = [FieldPanel('menu_json', widget=JSONFieldWidget)]
