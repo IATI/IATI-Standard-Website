@@ -13,7 +13,7 @@ class ReferenceMenuAdmin(ModelAdmin):
     model = ReferenceMenu
     menu_icon = 'doc-full'
     menu_order = 145
-    menu_label = 'Standard Reference Navigation'
+    menu_label = 'Reference Menu'
     list_display = ('tag', 'menu_type', )
     search_fields = ('tag', )
 
