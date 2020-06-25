@@ -14,6 +14,7 @@ from wagtail.contrib.redirects.models import Redirect
 from wagtail.documents.models import Document
 from wagtail.search.models import Query
 from wagtail.search.index import SearchField, FilterField
+from wagtail.snippets.models import register_snippet
 from wagtail.core.blocks import (
     CharBlock,
     PageChooserBlock,
@@ -393,8 +394,18 @@ class StandardGuidancePage(AbstractGithubPage):
         return related
 
 
+@register_snippet
 class ReferenceMenu(models.Model):
     """A model for to store the Standard Reference menu."""
+
+    def __str__(self):
+        """Display the category name in the CMS rather than the class."""
+        return self.menu_type + " - " + self.tag
+
+    class Meta(object):
+        """Change verbose name for correct pluralization."""
+
+        verbose_name_plural = "reference menus"
 
     tag = models.CharField(
         max_length=255,
@@ -407,3 +418,5 @@ class ReferenceMenu(models.Model):
     )
 
     menu_json = JSONField()
+
+    panels = [FieldPanel('menu_json')]
