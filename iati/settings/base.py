@@ -75,6 +75,7 @@ INSTALLED_APPS = [
     'import_export',
     'widget_tweaks',
     'snowpenguin.django.recaptcha3',
+    'prettyjson',
 
     'django_celery_results',
 
