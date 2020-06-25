@@ -1,7 +1,6 @@
-from django.contrib.postgres.forms.jsonb import JSONField
-
-from wagtail.wagtailadmin.forms import WagtailAdminModelForm
-
+"""Module of forms for IATI Standard"""
+from django.contrib.postgres.fields import JSONField
+from wagtail.admin.forms import WagtailAdminModelForm
 from iati_standard.widgets import JSONFieldWidget
 
 
