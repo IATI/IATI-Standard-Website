@@ -269,6 +269,10 @@ class AbstractGithubPage(DefaultPageHeaderImageMixin, AbstractContentPage):
     parent_page_types = []
     subpage_types = []
 
+    meta_order = models.IntegerField(
+        default=0
+    )
+
     ssot_path = models.TextField(
         null=True,
         blank=True,
@@ -332,6 +336,12 @@ class AbstractGithubPage(DefaultPageHeaderImageMixin, AbstractContentPage):
     def save(self, *args, **kwargs):
         """Overwrite save to automatically update title."""
         soup = BeautifulSoup(self.data, 'html.parser')
+        meta_order = soup.find("meta", {"name": "order"})
+        if meta_order:
+            try:
+                self.meta_order = int(meta_order)
+            except ValueError:
+                self.meta_order = 0
         meta_title = soup.find("meta", {"name": "title"})
         if meta_title:
             self.title = meta_title["content"].replace("¶", "")

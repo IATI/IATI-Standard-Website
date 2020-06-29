@@ -165,6 +165,10 @@ def iati_order(json_page_obj):
         return 999
 
 
+def default_order(json_page_obj):
+    return json_page_obj["meta_order"], json_page_obj["title"]
+
+
 def download_zip(url):
     """Download a ZIP file."""
     headers = {
@@ -321,6 +325,7 @@ def recursive_create_menu(parent_page):
         "title": parent_page.title,
         "pk": parent_page.pk,
         "ssot_path": parent_page.specific.ssot_path,
+        "meta_order": parent_page.specific.meta_order,
         "children": list()
     }
     page_children = parent_page.get_children()
@@ -332,6 +337,8 @@ def recursive_create_menu(parent_page):
         )
     if list(filter(page_obj["ssot_path"].endswith, SORT_ORDER.keys())):
         page_obj["children"].sort(key=iati_order)
+    else:
+        page_obj["children"].sort(key=default_order)
     return page_obj
 
 
