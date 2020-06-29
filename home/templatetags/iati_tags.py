@@ -259,10 +259,15 @@ def reference_menu(calling_page):
 
     all_menu_json = ReferenceMenu.objects.get(tag=calling_page_tag, menu_type=menu_type).menu_json
     menu_json = None
+    upgrades_menu_json = None
     for top_level_json in all_menu_json:
         if top_level_json["pk"] == main_section_pk:
             menu_json = top_level_json["children"]
             top_level_copy = top_level_json.copy()
             top_level_copy["children"] = list()
             menu_json.insert(0, top_level_copy)
+        if top_level_json["ssot_path"] == "upgrades":
+            upgrades_menu_json = top_level_json
+    if menu_type == "ssot" and calling_page_root != "upgrades":
+        menu_json.append(upgrades_menu_json)
     return {"menu_json": menu_json, "calling_page": calling_page}
