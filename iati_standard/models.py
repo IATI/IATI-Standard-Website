@@ -339,7 +339,7 @@ class AbstractGithubPage(DefaultPageHeaderImageMixin, AbstractContentPage):
         meta_order = soup.find("meta", {"name": "order"})
         if meta_order:
             try:
-                self.meta_order = int(meta_order)
+                self.meta_order = int(meta_order["content"])
             except ValueError:
                 self.meta_order = 0
         meta_title = soup.find("meta", {"name": "title"})
