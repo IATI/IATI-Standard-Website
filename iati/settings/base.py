@@ -221,30 +221,37 @@ WAGTAIL_SITE_NAME = "iati"
 WAGTAIL_FRONTEND_LOGIN_TEMPLATE = 'wagtailadmin/login.html'
 
 # Reference namespaces for URL redirection
-REFERENCE_NAMESPACES = [
-    "101",
-    "102",
-    "103",
-    "104",
-    "105",
-    "201",
-    "202",
-    "203",
-    "activity-standard",
-    "codelists",
-    "developer",
-    "introduction",
-    "namespaces-extensions",
-    "organisation-identifiers",
-    "organisation-standard",
-    "reference",
-    "rulesets",
-    "schema",
-    "upgrades",
-    "guidance/datastore",
-]
+# `EXACT` catches wildcards, redirects to single page
+# `WILDCARD` catches wildcards, redirects old path to new path
+REFERENCE_NAMESPACE_EXACT_REDIRECT_DICT = {
+    "developer": "en/guidance/developer/",
+    "introduction": "en/iati-standard/",
+    "guidance/datastore": "en/iati-tools-and-resources/iati-datastore/"
+}
+REFERENCE_NAMESPACE_WILDCARD_REDIRECT_DICT = {
+    "101": "en/iati-standard/101/",
+    "102": "en/iati-standard/102/",
+    "103": "en/iati-standard/103/",
+    "104": "en/iati-standard/104/",
+    "105": "en/iati-standard/105/",
+    "201": "en/iati-standard/201/",
+    "202": "en/iati-standard/202/",
+    "203": "en/iati-standard/203/",
+    "activity-standard": "en/iati-standard/203/activity-standard/",
+    "codelists": "en/iati-standard/203/codelists/",
+    "namespaces-extensions": "en/iati-standard/203/namespaces-extensions/",
+    "organisation-identifiers": "en/iati-standard/203/organisation-identifiers/",
+    "organisation-standard": "en/iati-standard/203/organisation-standard/",
+    "reference": "en/iati-standard/203/reference/",
+    "rulesets": "en/iati-standard/203/rulesets/",
+    "schema": "en/iati-standard/203/schema/",
+    "upgrades": "en/iati-standard/upgrades/",
+}
 
-REFERENCE_REDIRECT_BASE_URL = 'http://reference.iatistandard.org'
+EXACT_REFERENCE_NAMESPACES = list(REFERENCE_NAMESPACE_EXACT_REDIRECT_DICT.keys())
+WILDCARD_REFERENCE_NAMESPACES = list(REFERENCE_NAMESPACE_WILDCARD_REDIRECT_DICT.keys())
+
+REFERENCE_REDIRECT_BASE_URL = 'https://iatistandard.org'
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
