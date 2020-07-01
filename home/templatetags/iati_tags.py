@@ -248,26 +248,38 @@ def reference_menu(calling_page):
     calling_page_root = calling_page.ssot_root_slug
     if calling_page_root == "developer":
         standard_page = GuidanceAndSupportPage.objects.live().first()
+        latest_version_page = IATIStandardPage.objects.live().first().latest_version_page
         menu_type = "developer"
     else:
         standard_page = IATIStandardPage.objects.live().first()
+        latest_version_page = standard_page.latest_version_page
         menu_type = "ssot"
     if calling_page.depth > 4:
         main_section_pk = standard_page.get_children().ancestor_of(calling_page).first().pk
     else:
         main_section_pk = calling_page.pk
+    if latest_version_page:
+        latest_version_page_pk = latest_version_page.pk
+    else:
+        latest_version_page_pk = None
 
     all_menu_json = ReferenceMenu.objects.get(tag=calling_page_tag, menu_type=menu_type).menu_json
     menu_json = None
     upgrades_menu_json = None
+    latest_version_json = None
     for top_level_json in all_menu_json:
         if top_level_json["pk"] == main_section_pk:
             menu_json = top_level_json["children"]
             top_level_copy = top_level_json.copy()
             top_level_copy["children"] = list()
             menu_json.insert(0, top_level_copy)
+        if top_level_json["pk"] == latest_version_page_pk:
+            latest_version_json = top_level_json.copy()
+            latest_version_json["children"] = list()
         if top_level_json["ssot_path"] == "upgrades":
             upgrades_menu_json = top_level_json
     if menu_type == "ssot" and calling_page_root != "upgrades":
         menu_json.append(upgrades_menu_json)
+    if calling_page_root == "upgrades":
+        menu_json.append(latest_version_json)
     return {"menu_json": menu_json, "calling_page": calling_page}
