@@ -62,11 +62,11 @@ class RedirectIATISites:
             redirect_match = next(dict_value for dict_key, dict_value in settings.REFERENCE_NAMESPACE_EXACT_REDIRECT_DICT.items() if self.stripped_path.startswith(dict_key))
             return '{}{}'.format(settings.REFERENCE_REDIRECT_BASE_URL, redirect_match)
         if self.stripped_path.startswith(self.wildcard_redirect_urls):
+            redirect_match = next(dict_value for dict_key, dict_value in settings.REFERENCE_NAMESPACE_WILDCARD_REDIRECT_DICT.items() if self.stripped_path.startswith(dict_key))
             if self.is_download:
-                redirect_match = "/downloads/"
-            else:
-                redirect_match = next(dict_value for dict_key, dict_value in settings.REFERENCE_NAMESPACE_WILDCARD_REDIRECT_DICT.items() if self.stripped_path.startswith(dict_key))
-            return '{}{}{}'.format(settings.REFERENCE_REDIRECT_BASE_URL, redirect_match, self.stripped_path)
+                return '{}{}{}'.format(settings.REFERENCE_REDIRECT_BASE_URL, redirect_match, self.stripped_path)
+            return '{}{}{}{}'.format(settings.REFERENCE_REDIRECT_BASE_URL, redirect_match, self.stripped_path, "/")
+
         return self.path
 
 
