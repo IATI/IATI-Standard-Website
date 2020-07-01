@@ -224,28 +224,28 @@ WAGTAIL_FRONTEND_LOGIN_TEMPLATE = 'wagtailadmin/login.html'
 # `EXACT` catches wildcards, redirects to single page
 # `WILDCARD` catches wildcards, redirects old path to new path
 REFERENCE_NAMESPACE_EXACT_REDIRECT_DICT = {
-    "developer": "en/guidance/developer/",
-    "introduction": "en/iati-standard/",
-    "guidance/datastore": "en/iati-tools-and-resources/iati-datastore/"
+    "developer": "/en/guidance/developer/",
+    "introduction": "/en/iati-standard/",
+    "guidance/datastore": "/en/iati-tools-and-resources/iati-datastore/"
 }
 REFERENCE_NAMESPACE_WILDCARD_REDIRECT_DICT = {
-    "101": "en/iati-standard/",
-    "102": "en/iati-standard/",
-    "103": "en/iati-standard/",
-    "104": "en/iati-standard/",
-    "105": "en/iati-standard/",
-    "201": "en/iati-standard/",
-    "202": "en/iati-standard/",
-    "203": "en/iati-standard/",
-    "activity-standard": "en/iati-standard/203/",
-    "codelists": "en/iati-standard/203/",
-    "namespaces-extensions": "en/iati-standard/203/",
-    "organisation-identifiers": "en/iati-standard/203/",
-    "organisation-standard": "en/iati-standard/203/",
-    "reference": "en/iati-standard/203/",
-    "rulesets": "en/iati-standard/203/",
-    "schema": "en/iati-standard/203/",
-    "upgrades": "en/iati-standard/",
+    "101": "/en/iati-standard/",
+    "102": "/en/iati-standard/",
+    "103": "/en/iati-standard/",
+    "104": "/en/iati-standard/",
+    "105": "/en/iati-standard/",
+    "201": "/en/iati-standard/",
+    "202": "/en/iati-standard/",
+    "203": "/en/iati-standard/",
+    "activity-standard": "/en/iati-standard/203/",
+    "codelists": "/en/iati-standard/203/",
+    "namespaces-extensions": "/en/iati-standard/203/",
+    "organisation-identifiers": "/en/iati-standard/203/",
+    "organisation-standard": "/en/iati-standard/203/",
+    "reference": "/en/iati-standard/203/",
+    "rulesets": "/en/iati-standard/203/",
+    "schema": "/en/iati-standard/203/",
+    "upgrades": "/en/iati-standard/",
 }
 
 EXACT_REFERENCE_NAMESPACES = list(REFERENCE_NAMESPACE_EXACT_REDIRECT_DICT.keys())
