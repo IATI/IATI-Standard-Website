@@ -29,7 +29,8 @@ class TestRedirectMiddleware():
 
     @pytest.mark.parametrize('redirect_mapping', [
         ('/203/codelists/OtherIdentifierType/', 'https://iatistandard.org/en/iati-standard/203/codelists/OtherIdentifierType/'),
-        ('/schema/downloads/CHANGES.txt', 'https://iatistandard.org/en/iati-standard/203/schema/downloads/CHANGES.txt')
+        ('/schema/downloads/CHANGES.txt', 'https://iatistandard.org/en/iati-standard/203/schema/downloads/CHANGES.txt'),
+        ('/developer/test_slug_here', 'https://iatistandard.org/en/guidance/developer/')
     ])
     def test_redirect_middleware_external(self, client, redirect_mapping):
         """Test behavior for external redirects."""
