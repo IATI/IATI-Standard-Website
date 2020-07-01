@@ -281,5 +281,5 @@ def reference_menu(calling_page):
     if menu_type == "ssot" and calling_page_root != "upgrades":
         menu_json.append(upgrades_menu_json)
     if calling_page_root == "upgrades":
-        menu_json.append(latest_version_json)
+        menu_json.insert(0, latest_version_json)
     return {"menu_json": menu_json, "calling_page": calling_page}
