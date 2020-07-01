@@ -50,7 +50,7 @@ class RedirectIATISites:
     @property
     def path_is_redirect(self):
         """Verify if path is redirect."""
-        if self.stripped_path.startswith(self.exact_redirect_urls) or self.stripped_path.startswith(self.exact_redirect_urls):
+        if self.stripped_path.startswith(self.exact_redirect_urls) or self.stripped_path.startswith(self.wildcard_redirect_urls):
             return True
         return False
 
@@ -59,7 +59,7 @@ class RedirectIATISites:
         """Construct redirect URL from base url and request path."""
         if self.stripped_path.startswith(self.exact_redirect_urls):
             redirect_match = next(dict_value for dict_key, dict_value in settings.REFERENCE_NAMESPACE_EXACT_REDIRECT_DICT.items() if self.stripped_path.startswith(dict_key))
-            return '{}{}{}'.format(settings.REFERENCE_REDIRECT_BASE_URL, redirect_match)
+            return '{}{}'.format(settings.REFERENCE_REDIRECT_BASE_URL, redirect_match)
         if self.stripped_path.startswith(self.wildcard_redirect_urls):
             redirect_match = next(dict_value for dict_key, dict_value in settings.REFERENCE_NAMESPACE_WILDCARD_REDIRECT_DICT.items() if self.stripped_path.startswith(dict_key))
             return '{}{}{}'.format(settings.REFERENCE_REDIRECT_BASE_URL, redirect_match, self.stripped_path)
