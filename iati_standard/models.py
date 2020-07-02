@@ -385,7 +385,7 @@ class StandardGuidancePage(AbstractGithubPage):
 
     @cached_property
     def github_url(self):
-        base_url = "https://github.com/IATI/IATI-Guidance/commits/guidance-test/en/"  # TODO: Change branch when appropriate
+        base_url = "https://github.com/IATI/IATI-Guidance/commits/master/en/"
         file_path = "/".join(self.ssot_path.split("/")[1:]) + ".rst"
         return base_url + file_path
 
