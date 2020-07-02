@@ -469,6 +469,13 @@ REFERENCE_NAMESPACE_EXACT_REDIRECT_DICT = {
     "organisation-standard/overview": "/en/guidance/standard-guidance/",
 }
 REFERENCE_NAMESPACE_WILDCARD_REDIRECT_DICT = {
+    "203/codelists/downloads": "/downloads/",
+    "203/schema/downloads": "/downloads/",
+    "202/codelists/downloads": "/downloads/",
+    "202/schema/downloads": "/downloads/",
+    "201/codelists/downloads": "/downloads/",
+    "201/schema/downloads": "/downloads/",
+    "downloads": "/downloads/archive/",
     "101": "/en/iati-standard/",
     "102": "/en/iati-standard/",
     "103": "/en/iati-standard/",
