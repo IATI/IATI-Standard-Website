@@ -7,6 +7,18 @@
 {% block extra_css %}
 <style>
   dd {margin-left: 5%;}
+  {% if page.name == "summary-table" %}
+    main div.row {
+      max-width: 100% !important;
+    }
+    aside.l-sidebar__aside{
+      width: 0px !important;
+      visibility: hidden !important;
+    }
+    div.l-sidebar__body {
+      width: 100% !important;
+    }
+  {% endif %}
 </style>
 {% endblock %}
 
