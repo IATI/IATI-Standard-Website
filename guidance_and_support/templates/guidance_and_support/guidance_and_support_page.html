@@ -50,7 +50,9 @@
                               <h2 class="listing__heading"><a href="{% pageurl self.standard_guidance_index %}"><span>{{ self.standard_guidance_index.heading }}</span></a></h2>
                               <div class="listing__excerpt">
                                   {% if self.standard_guidance_index.section_summary %}
-                                      {{ self.standard_guidance_index.section_summary }}
+                                    <div class="rich-text">
+                                      <p>{{ self.standard_guidance_index.section_summary }}</p>
+                                    </div>
                                   {% endif %}
                               </div>
                               <a href="{% pageurl self.standard_guidance_index %}" class="button">{{ self.standard_guidance_index.button_link_text|default:"Read more" }}</a>
@@ -67,7 +69,9 @@
                           <div class="listing__body">
                               <h2 class="listing__heading"><a href="{% pageurl self.developer_docs %}"><span>{{ self.developer_docs.heading }}</span></a></h2>
                               <div class="listing__excerpt">
-                                  Use this section to find guidance on how IATI is developed and how to develop your own tools.
+                                <div class="rich-text">
+                                  <p>Use this section to find guidance on how IATI is developed and how to develop your own tools.</p>
+                                </div>
                               </div>
                               <a href="{% pageurl self.developer_docs %}" class="button">Read more about IATI developer documentation</a>
                           </div>
