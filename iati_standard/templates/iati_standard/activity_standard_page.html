@@ -13,6 +13,7 @@
     }
     aside.l-sidebar__aside{
       width: 0px !important;
+      height: 0px !important;
       visibility: hidden !important;
     }
     div.l-sidebar__body {
@@ -64,7 +65,7 @@
         <div class="l-sidebar l-sidebar--reverse l-sidebar--wide">
             {% reference_menu calling_page=self %}
             <div class="l-sidebar__body">
-              {% if self.version == "developer" %}
+              {% if self.version == "developer" or self.name == "summary-table" %}
                 {% include "home/includes/breadcrumbs.html" %}
               {% endif %}
                 <section>
