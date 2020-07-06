@@ -275,7 +275,6 @@ def reference_menu(calling_page):
             menu_json.insert(0, top_level_copy)
         if top_level_json["pk"] == latest_version_page_pk:
             latest_version_json = top_level_json.copy()
-            latest_version_json["children"] = list()
         if top_level_json["ssot_path"] == "upgrades":
             upgrades_menu_json = top_level_json
     if menu_type == "ssot" and calling_page_root != "upgrades":
