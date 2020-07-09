@@ -225,6 +225,11 @@ WAGTAIL_FRONTEND_LOGIN_TEMPLATE = 'wagtailadmin/login.html'
 # `WILDCARD` catches wildcards, redirects old path to new path
 REFERENCE_NAMESPACE_EXACT_REDIRECT_DICT = {
     "developer": "/en/guidance/developer/",
+    "203/developer": "/en/guidance/developer/",
+    "202/developer": "/en/guidance/developer/",
+    "201/developer": "/en/guidance/developer/",
+    "105/developer": "/en/guidance/developer/",
+    "104/developer": "/en/guidance/developer/",
     "introduction": "/en/iati-standard/",
     "guidance/datastore": "/en/iati-tools-and-resources/iati-datastore/",
     "203/upgrades/all-versions": "/en/iati-standard/upgrades/how-we-manage-the-standard/versions/",
