@@ -44,10 +44,14 @@ def search_content(obj):
         if obj.excerpt:
             indexable_text.append(obj.excerpt)
 
-    if not hasattr(obj, 'content_editor'):
-        return ' '.join(indexable_text)
+    if hasattr(obj, 'data'):
+        content = obj.data
 
-    content = obj.content_editor
+    elif hasattr(obj, 'content_editor'):
+        content = obj.content_editor
+
+    else:
+        return ' '.join(indexable_text)
 
     if isinstance(content, str):
         indexable_text.append(return_all_content(content))

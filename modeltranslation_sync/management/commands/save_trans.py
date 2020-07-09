@@ -14,6 +14,11 @@ from modeltranslation.translator import translator
 from babel.messages.catalog import Catalog
 from babel.messages.pofile import read_po, write_po
 
+from iati_standard.models import ActivityStandardPage, StandardGuidanceIndexPage, StandardGuidancePage
+
+
+EXCLUDE_MODELS = [ActivityStandardPage, StandardGuidanceIndexPage, StandardGuidancePage]
+
 
 def load_translation_settings(django_settings):
     """Check app settings and load configuration for translation."""
@@ -65,46 +70,47 @@ class Command(BaseCommand):
                 catalog = Catalog(locale=lang)
 
             for model in translator.get_registered_models():
-                opts = translator.get_options_for_model(model)
+                if model not in EXCLUDE_MODELS:
+                    opts = translator.get_options_for_model(model)
 
-                for field in opts.get_field_names():
-                    tr_field = "%s_%s" % (field, lang)
-                    en_field = "%s_%s" % (field, "en")
-                    for item in model.objects.all():
-                        msgid = "%s.%s.%s" % (item._meta, item.pk, field)
-                        msgval = getattr(item, tr_field)
-                        enval = getattr(item, en_field)
-                        if isinstance(msgval, StreamValue):
-                            msgstr = json.dumps(msgval.stream_data)
-                        else:
-                            msgstr = "%s" % msgval
-                        if enval is not None and field not in ["slug", "url_path"]:
-                            if isinstance(enval, StreamValue):
-                                enstr = json.dumps(enval.stream_data)
+                    for field in opts.get_field_names():
+                        tr_field = "%s_%s" % (field, lang)
+                        en_field = "%s_%s" % (field, "en")
+                        for item in model.objects.all():
+                            msgid = "%s.%s.%s" % (item._meta, item.pk, field)
+                            msgval = getattr(item, tr_field)
+                            enval = getattr(item, en_field)
+                            if isinstance(msgval, StreamValue):
+                                msgstr = json.dumps(msgval.stream_data)
                             else:
-                                enstr = "%s" % enval
-                            # We already have a translation, just add the new comment to pick it up
-                            if enstr in existing_ids:
-                                catalog.add(id=enstr, string=msgstr, auto_comments=[msgid, ])
-                            # We don't have an exact translation, but we've translated the page before
-                            elif msgid in existing_trans.keys():
-                                # If it's JSON, the dumped strings might not match, but the objs can
+                                msgstr = "%s" % msgval
+                            if enval is not None and field not in ["slug", "url_path"]:
                                 if isinstance(enval, StreamValue):
-                                    new_json = json.loads(enstr)
-                                    old_json = json.loads(existing_trans[msgid])
-                                    # If it doesn't match, delete the old and readd. If it does match, do nothing
-                                    if new_json != old_json:
-                                        catalog.delete(id=existing_trans[msgid])
+                                    enstr = json.dumps(enval.stream_data)
+                                else:
+                                    enstr = "%s" % enval
+                                # We already have a translation, just add the new comment to pick it up
+                                if enstr in existing_ids:
+                                    catalog.add(id=enstr, string=msgstr, auto_comments=[msgid, ])
+                                # We don't have an exact translation, but we've translated the page before
+                                elif msgid in existing_trans.keys():
+                                    # If it's JSON, the dumped strings might not match, but the objs can
+                                    if isinstance(enval, StreamValue):
+                                        new_json = json.loads(enstr)
+                                        old_json = json.loads(existing_trans[msgid])
+                                        # If it doesn't match, delete the old and readd. If it does match, do nothing
+                                        if new_json != old_json:
+                                            catalog.delete(id=existing_trans[msgid])
+                                            catalog.add(id=enstr, string=msgstr, auto_comments=[msgid, ])
+                                            word_count += len(enstr.split())
+                                    # If it's not JSON, just add it. We can't delete because can't guarantee it's not reused later
+                                    else:
                                         catalog.add(id=enstr, string=msgstr, auto_comments=[msgid, ])
                                         word_count += len(enstr.split())
-                                # If it's not JSON, just add it. We can't delete because can't guarantee it's not reused later
+                                # If we don't have a translation, and it's not in a previously translated page, it's brand new
                                 else:
                                     catalog.add(id=enstr, string=msgstr, auto_comments=[msgid, ])
                                     word_count += len(enstr.split())
-                            # If we don't have a translation, and it's not in a previously translated page, it's brand new
-                            else:
-                                catalog.add(id=enstr, string=msgstr, auto_comments=[msgid, ])
-                                word_count += len(enstr.split())
             # write catalog to file
             po_file = open(po_filepath, "wb")
             write_po(po_file, catalog, width=None)

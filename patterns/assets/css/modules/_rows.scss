@@ -8,11 +8,15 @@
 
 .row {
 	@extend %pie-clearfix;
-	min-width: auto; 
+	min-width: auto;
 	position: relative;
 	margin-left: auto;
 	margin-right: auto;
 	max-width: $max-grid;
 	padding-left: $internal-spacing;
 	padding-right: $internal-spacing;
+	@include respond-to($max-vp) {
+		padding-left: 0;
+		padding-right: 0;
+	}
 }

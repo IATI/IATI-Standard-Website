@@ -1,0 +1,36 @@
+{% load wagtailcore_tags iati_tags i18n %}
+{% with page_obj_page=page_obj.pk|pagepk %}
+  <li class="navigation-secondary__child__item--{{page_obj.depth|add:"-5"}} navigation-secondary{% if page_obj.depth|add:"-5" > 0 %}__child{% endif %}__item
+  {% if calling_page.pk == page_obj.pk %}active{% endif %}
+  {% if parent_open %}
+    {% with page_open=page_obj.pk|isancestor:calling_page %}
+      {% if page_open %}open{% endif %}
+      " data-nested-nav-item>
+        {% if page_obj.children %}
+          <button name="toggle" value="{{ page_obj.title }}:{% if page_open %}open{% endif %}" data-nested-nav-toggle=""></button>
+        {% endif %}
+        <a href="{% pageurl page_obj_page %}">{{ page_obj.title }}</a>
+        {% if page_obj.children %}
+          <ul class="navigation-secondary__child-list {% if page_open %}open{% endif %}" data-nested-nav-child-list="">
+            {% for sub_page_obj in page_obj.children %}
+              {% include "iati_standard/includes/reference_menu_item.html" with page_obj=sub_page_obj calling_page=calling_page parent_open=page_open %}
+            {% endfor %}
+          </ul>
+        {% endif %}
+    {% endwith %}
+  {% else %}
+    " data-nested-nav-item>
+      {% if page_obj.children %}
+        <button name="toggle" value="{{ page_obj.title }}:" data-nested-nav-toggle=""></button>
+      {% endif %}
+      <a href="{% pageurl page_obj_page %}">{{ page_obj.title }}</a>
+      {% if page_obj.children %}
+        <ul class="navigation-secondary__child-list" data-nested-nav-child-list="">
+          {% for sub_page_obj in page_obj.children %}
+            {% include "iati_standard/includes/reference_menu_item.html" with page_obj=sub_page_obj calling_page=calling_page parent_open=parent_open %}
+          {% endfor %}
+        </ul>
+      {% endif %}
+  {% endif %}
+  </li>
+{% endwith %}

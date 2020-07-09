@@ -1,0 +1,1670 @@
+
+{
+    "203": {
+        "div": {
+            "section": "http://reference.iatistandard.org/203/",                                            // ignored, no style
+            "line-block": "http://reference.iatistandard.org/203/activity-standard",                        // div.line-block.html
+            "line": "http://reference.iatistandard.org/203/activity-standard",                              // div.line-block.html
+            "toctree-wrapper|compound": "http://reference.iatistandard.org/203/activity-standard",          // div.toctree-wrapper.compound.html
+            "highlight-xml": "http://reference.iatistandard.org/203/activity-standard/overview/self-defined-vocabularies",  // div.highlight-xml.html
+            "highlight": "http://reference.iatistandard.org/203/activity-standard/overview/self-defined-vocabularies",      // div.highlight-xml.html
+            "highlight-default": "http://reference.iatistandard.org/203/activity-standard/summary-table",                   // ignored, no style
+            "code|highlight-default": "http://reference.iatistandard.org/203/codelists-guides/codelist-api"                 // div.code.highlight-default.html
+        },
+        "h1": {},
+        "a": {
+            "headerlink": "http://reference.iatistandard.org/203/",                                         // div.line-block.html
+            "reference|external": "http://reference.iatistandard.org/203/organisation-identifiers",         // div.highlight-xml.html
+            "reference|internal": "http://reference.iatistandard.org/203/organisation-identifiers"          // div.line-block.html
+        },
+        "p": {
+            "first": "http://reference.iatistandard.org/203/activity-standard/iati-activities",             // p.first.html
+            "last": "http://reference.iatistandard.org/203/activity-standard/iati-activities"               // p.first.html
+        },
+        "strong": {},
+        "em": {},
+        "h2": {},
+        "ul": {
+            "simple": "http://reference.iatistandard.org/203/organisation-identifiers",                     // ul.simple.html
+            "first|last": "http://reference.iatistandard.org/203/activity-standard/overview/transactions",  // ul.first.last.html
+            "first|last|simple": "http://reference.iatistandard.org/203/codelists-guides/codelist-api"      // ul.first.last.html
+        },
+        "li": {
+            "toctree-l1": "http://reference.iatistandard.org/203/activity-standard",                        // ignored, LH navigation covered by PL style
+            "toctree-l2": "http://reference.iatistandard.org/203/activity-standard/elements",               // ignored, LH navigation covered by PL style
+            "toctree-l3": "http://reference.iatistandard.org/203/activity-standard/elements",               // ignored, LH navigation covered by PL style
+            "toctree-l4": "http://reference.iatistandard.org/203/activity-standard/elements",               // ignored, LH navigation covered by PL style
+            "toctree-l5": "http://reference.iatistandard.org/203/activity-standard/elements",               // ignored, LH navigation covered by PL style
+            "toctree-l6": "http://reference.iatistandard.org/203/activity-standard/elements",               // ignored, LH navigation covered by PL style
+            "toctree-l7": "http://reference.iatistandard.org/203/activity-standard/elements",               // ignored, LH navigation covered by PL style
+            "toctree-l8": "http://reference.iatistandard.org/203/activity-standard/elements",               // ignored, LH navigation covered by PL style
+            "toctree-l9": "http://reference.iatistandard.org/203/activity-standard/elements",               // ignored, LH navigation covered by PL style
+            "toctree-l10": "http://reference.iatistandard.org/203/reference",                               // ignored, LH navigation covered by PL style
+            "toctree-l11": "http://reference.iatistandard.org/203/reference"                                // ignored, LH navigation covered by PL style
+        },
+        "code": {
+            "docutils|literal": "http://reference.iatistandard.org/203/organisation-identifiers"            // div.highlight-xml.html
+        },
+        "span": {
+            "pre": "http://reference.iatistandard.org/203/organisation-identifiers",                                    // div.highlight-xml.html, converted to <pre>
+            "doc": "http://reference.iatistandard.org/203/organisation-identifiers",                                    // p.first.html
+            "underline": "http://reference.iatistandard.org/203/activity-standard/overview/budgets",                    // span.underline.html
+            "xref|std|std-doc": "http://reference.iatistandard.org/203/activity-standard/overview/activity-file",       // span.xref.std.std-doc.html
+            "nt": "http://reference.iatistandard.org/203/activity-standard/overview/self-defined-vocabularies",         // div.highlight-xml.html
+            "c": "http://reference.iatistandard.org/203/activity-standard/overview/self-defined-vocabularies",          // div.highlight-xml.html
+            "na": "http://reference.iatistandard.org/203/activity-standard/overview/self-defined-vocabularies",         // div.highlight-xml.html
+            "s": "http://reference.iatistandard.org/203/activity-standard/overview/self-defined-vocabularies",          // div.highlight-xml.html
+            "caption-text": "https://iati-html.surge.sh/activity-standard/overview/all-elements-in-IATI/",              // span.caption-text.html
+            "xref|std|std-ref": "http://reference.iatistandard.org/203/activity-standard/iati-activities/iati-activity/location",  // span.xref.std.std-ref.html
+            "n": "http://reference.iatistandard.org/203/activity-standard/summary-table",                               // div.code.highlight-default.html
+            "p": "http://reference.iatistandard.org/203/activity-standard/summary-table",                               // div.code.highlight-default.html
+            "o": "http://reference.iatistandard.org/203/activity-standard/summary-table",                               // div.code.highlight-default.html
+            "mf": "http://reference.iatistandard.org/203/activity-standard/summary-table",                              // span.mf.html
+            "mi": "http://reference.iatistandard.org/203/activity-standard/summary-table",                              // span.mf.html
+            "ow": "http://reference.iatistandard.org/203/activity-standard/summary-table",                              // div.code.highlight-default.html
+            "k": "http://reference.iatistandard.org/203/activity-standard/summary-table",                               // span.mf.html
+            "nb": "http://reference.iatistandard.org/203/activity-standard/summary-table",                              // span.mf.html
+            "s2": "http://reference.iatistandard.org/203/rulesets/ruleset-spec",                                        // span.s2.html
+            "std|std-ref": "http://reference.iatistandard.org/203/codelists/Country",                                   // span.std.std-ref.html
+            "problematic": "http://reference.iatistandard.org/203/codelists/OrganisationRegistrationAgency"             // span.problematic.html
+        },
+        "img": {},
+        "ol": {
+            "arabic|simple": "http://reference.iatistandard.org/203/organisation-identifiers"                           // ol.arabic.simple.html
+        },
+        "cite": {},
+        "h3": {},
+        "dl": {
+            "first|docutils": "http://reference.iatistandard.org/203/activity-standard/overview/transactions",          // ul.first.last.html
+            "docutils": "http://reference.iatistandard.org/203/activity-standard/iati-activities"                       // p.first.html
+        },
+        "dt": {},
+        "dd": {},
+        "pre": {},
+        "table": {
+            "colwidths-given|docutils": "http://reference.iatistandard.org/203/activity-standard/overview/all-elements-in-IATI",    // span.caption-text.html
+            "docutils": "http://reference.iatistandard.org/203/activity-standard/summary-table"                         // table.docutils.html
+        },
+        "caption": {},
+        "colgroup": {},
+        "col": {},
+        "thead": {},
+        "tr": {
+            "row-odd": "http://reference.iatistandard.org/203/activity-standard/overview/all-elements-in-IATI",         // span.caption-text.html
+            "row-even": "http://reference.iatistandard.org/203/activity-standard/overview/all-elements-in-IATI",        // span.caption-text.html
+            "withdrawn|row-even": "http://reference.iatistandard.org/203/codelists/Country",                            // tr.withdrawn.row-even.html
+            "withdrawn|row-odd": "http://reference.iatistandard.org/203/codelists/FileFormat"                           // tr.withdrawn.row-even.html
+        },
+        "th": {
+            "head": "http://reference.iatistandard.org/203/activity-standard/overview/all-elements-in-IATI"             // span.caption-text.html
+        },
+        "tbody": {
+            "withdrawn": "http://reference.iatistandard.org/203/codelists/BudgetIdentifierVocabulary"                   // tbody.withdrawn.html
+        },
+        "td": {},
+        "blockquote": {},
+        "br": {},
+        "h4": {}
+    },
+    "202": {
+        "div": {
+            "section": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml",
+            "line-block": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard",
+            "line": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard",
+            "toctree-wrapper|compound": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard",
+            "highlight-xml": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard/overview/self-defined-vocabularies",
+            "highlight": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard/overview/self-defined-vocabularies",
+            "highlight-default": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard/summary-table",
+            "code|highlight-default": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/codelists-guides/codelist-api"
+        },
+        "h1": {},
+        "a": {
+            "headerlink": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml",
+            "reference|external": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/organisation-identifiers",
+            "reference|internal": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/organisation-identifiers"
+        },
+        "p": {
+            "first": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard/iati-activities",
+            "last": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard/iati-activities"
+        },
+        "strong": {},
+        "em": {},
+        "h2": {},
+        "ul": {
+            "simple": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/organisation-identifiers",
+            "first|last": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard/overview/transactions",
+            "first|last|simple": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/codelists-guides/codelist-api"
+        },
+        "li": {
+            "toctree-l1": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard",
+            "toctree-l2": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard/elements",
+            "toctree-l3": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard/elements",
+            "toctree-l4": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard/elements",
+            "toctree-l5": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard/elements",
+            "toctree-l6": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard/elements",
+            "toctree-l7": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard/elements",
+            "toctree-l8": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard/elements",
+            "toctree-l9": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/reference",
+            "toctree-l10": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/reference"
+        },
+        "code": {
+            "docutils|literal": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/organisation-identifiers"
+        },
+        "span": {
+            "pre": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/organisation-identifiers",
+            "doc": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/organisation-identifiers",
+            "underline": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard/overview/budgets",
+            "xref|std|std-doc": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard/overview/activity-file",
+            "nt": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard/overview/self-defined-vocabularies",
+            "c": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard/overview/self-defined-vocabularies",
+            "na": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard/overview/self-defined-vocabularies",
+            "s": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard/overview/self-defined-vocabularies",
+            "caption-text": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard/overview/all-elements-in-IATI",
+            "hll": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard/iati-activities/iati-activity/country-budget-items",
+            "xref|std|std-ref": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard/iati-activities/iati-activity/location",
+            "n": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard/summary-table",
+            "p": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard/summary-table",
+            "o": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard/summary-table",
+            "mf": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard/summary-table",
+            "mi": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard/summary-table",
+            "ow": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard/summary-table",
+            "k": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard/summary-table",
+            "nb": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard/summary-table",
+            "s2": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/rulesets/ruleset-spec",
+            "std|std-ref": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/codelists/Country",
+            "problematic": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/codelists/OrganisationRegistrationAgency"
+        },
+        "img": {},
+        "ol": {
+            "arabic|simple": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/organisation-identifiers"
+        },
+        "cite": {},
+        "h3": {},
+        "dl": {
+            "first|docutils": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard/overview/transactions",
+            "docutils": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard/iati-activities"
+        },
+        "dt": {},
+        "dd": {},
+        "pre": {},
+        "table": {
+            "colwidths-given|docutils": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard/overview/all-elements-in-IATI",
+            "docutils": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard/summary-table"
+        },
+        "caption": {},
+        "colgroup": {},
+        "col": {},
+        "thead": {},
+        "tr": {
+            "row-odd": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard/overview/all-elements-in-IATI",
+            "row-even": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard/overview/all-elements-in-IATI"
+        },
+        "th": {
+            "head": "IATI-Standard-SSOT-version-2.02/docs/en/_build/dirhtml/activity-standard/overview/all-elements-in-IATI"
+        },
+        "tbody": {},
+        "td": {},
+        "blockquote": {},
+        "br": {},
+        "h4": {}
+    },
+    "201": {
+        "div": {
+            "section": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml",
+            "line-block": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/activity-standard",
+            "line": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/activity-standard",
+            "toctree-wrapper|compound": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/activity-standard",
+            "highlight-xml": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/activity-standard/iati-activities",
+            "highlight": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/activity-standard/iati-activities",
+            "highlight-default": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/activity-standard/summary-table",
+            "code|highlight-default": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/codelists-guides/codelist-api"
+        },
+        "h1": {},
+        "a": {
+            "headerlink": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml",
+            "reference|external": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/organisation-identifiers",
+            "reference|internal": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/organisation-identifiers"
+        },
+        "p": {
+            "first": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/activity-standard/iati-activities",
+            "last": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/activity-standard/iati-activities"
+        },
+        "strong": {},
+        "em": {},
+        "h2": {},
+        "ul": {
+            "simple": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/organisation-identifiers",
+            "first|last": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/activity-standard/overview/transactions",
+            "first|last|simple": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/codelists-guides/codelist-api"
+        },
+        "li": {
+            "toctree-l1": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/activity-standard",
+            "toctree-l2": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/activity-standard/elements",
+            "toctree-l3": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/activity-standard/elements",
+            "toctree-l4": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/activity-standard/elements",
+            "toctree-l5": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/activity-standard/elements",
+            "toctree-l6": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/activity-standard/elements",
+            "toctree-l7": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/activity-standard/elements",
+            "toctree-l8": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/activity-standard/elements",
+            "toctree-l9": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/reference",
+            "toctree-l10": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/reference"
+        },
+        "code": {
+            "docutils|literal": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/organisation-identifiers"
+        },
+        "span": {
+            "pre": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/organisation-identifiers",
+            "doc": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/organisation-identifiers",
+            "xref|std|std-doc": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/activity-standard/overview/activity-file",
+            "nt": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/activity-standard/iati-activities",
+            "na": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/activity-standard/iati-activities",
+            "s": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/activity-standard/iati-activities",
+            "hll": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/activity-standard/iati-activities/iati-activity/country-budget-items",
+            "c": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/activity-standard/iati-activities/iati-activity/transaction",
+            "xref|std|std-ref": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/activity-standard/iati-activities/iati-activity/location",
+            "n": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/activity-standard/summary-table",
+            "p": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/activity-standard/summary-table",
+            "o": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/activity-standard/summary-table",
+            "mf": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/activity-standard/summary-table",
+            "mi": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/activity-standard/summary-table",
+            "ow": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/activity-standard/summary-table",
+            "k": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/activity-standard/summary-table",
+            "nb": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/activity-standard/summary-table",
+            "s2": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/rulesets/ruleset-spec",
+            "std|std-ref": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/codelists/Country",
+            "problematic": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/codelists/OrganisationRegistrationAgency"
+        },
+        "img": {},
+        "ol": {
+            "arabic|simple": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/organisation-identifiers"
+        },
+        "cite": {},
+        "h3": {},
+        "dl": {
+            "first|docutils": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/activity-standard/overview/transactions",
+            "docutils": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/activity-standard/iati-activities"
+        },
+        "dt": {},
+        "dd": {},
+        "blockquote": {},
+        "pre": {},
+        "table": {
+            "docutils": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/activity-standard/summary-table"
+        },
+        "colgroup": {},
+        "col": {},
+        "thead": {},
+        "tr": {
+            "row-odd": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/activity-standard/summary-table",
+            "row-even": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/activity-standard/summary-table"
+        },
+        "th": {
+            "head": "IATI-Standard-SSOT-version-2.01/docs/en/_build/dirhtml/activity-standard/summary-table"
+        },
+        "tbody": {},
+        "td": {},
+        "br": {},
+        "h4": {}
+    },
+    "105": {
+        "div": {
+            "section": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml",
+            "line-block": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/activity-standard",
+            "line": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/activity-standard",
+            "toctree-wrapper|compound": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/activity-standard",
+            "highlight-xml": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/activity-standard/iati-activities",
+            "highlight": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/activity-standard/iati-activities",
+            "highlight-default": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/activity-standard/summary-table"
+        },
+        "h1": {},
+        "a": {
+            "headerlink": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml",
+            "reference|external": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/organisation-identifiers",
+            "reference|internal": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/organisation-identifiers"
+        },
+        "p": {
+            "first": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/activity-standard/iati-activities",
+            "last": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/activity-standard/iati-activities"
+        },
+        "strong": {},
+        "em": {},
+        "h2": {},
+        "ul": {
+            "simple": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/organisation-identifiers",
+            "first|last": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/activity-standard/overview/transactions",
+            "first|last|simple": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/codelists-guides/codelist-api"
+        },
+        "li": {
+            "toctree-l1": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/activity-standard",
+            "toctree-l2": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/activity-standard/elements",
+            "toctree-l3": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/activity-standard/elements",
+            "toctree-l4": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/activity-standard/elements",
+            "toctree-l5": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/activity-standard/elements",
+            "toctree-l6": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/activity-standard/elements",
+            "toctree-l7": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/activity-standard/elements",
+            "toctree-l8": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/reference",
+            "toctree-l9": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/reference"
+        },
+        "code": {
+            "docutils|literal": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/organisation-identifiers"
+        },
+        "span": {
+            "pre": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/organisation-identifiers",
+            "doc": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/organisation-identifiers",
+            "xref|std|std-doc": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/activity-standard/overview/activity-file",
+            "nt": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/activity-standard/iati-activities",
+            "na": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/activity-standard/iati-activities",
+            "s": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/activity-standard/iati-activities",
+            "hll": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/activity-standard/iati-activities/iati-activity/legacy-data",
+            "xref|std|std-ref": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/activity-standard/iati-activities/iati-activity/location",
+            "n": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/activity-standard/summary-table",
+            "p": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/activity-standard/summary-table",
+            "o": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/activity-standard/summary-table",
+            "mf": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/activity-standard/summary-table",
+            "mi": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/activity-standard/summary-table",
+            "ow": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/activity-standard/summary-table",
+            "k": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/activity-standard/summary-table",
+            "nb": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/activity-standard/summary-table",
+            "c": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/activity-standard/example-xml",
+            "s2": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/rulesets/ruleset-spec",
+            "std|std-ref": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/codelists/Country",
+            "problematic": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/codelists/OrganisationRegistrationAgency"
+        },
+        "img": {},
+        "ol": {
+            "arabic|simple": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/organisation-identifiers"
+        },
+        "cite": {},
+        "dl": {
+            "first|docutils": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/activity-standard/overview/transactions",
+            "docutils": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/activity-standard/iati-activities"
+        },
+        "dt": {},
+        "dd": {},
+        "blockquote": {},
+        "pre": {},
+        "h3": {},
+        "br": {},
+        "table": {
+            "docutils": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/activity-standard/summary-table"
+        },
+        "colgroup": {},
+        "col": {},
+        "thead": {},
+        "tr": {
+            "row-odd": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/activity-standard/summary-table",
+            "row-even": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/activity-standard/summary-table"
+        },
+        "th": {
+            "head": "IATI-Standard-SSOT-version-1.05/docs/en/_build/dirhtml/activity-standard/summary-table"
+        },
+        "tbody": {},
+        "td": {},
+        "h4": {}
+    },
+    "104": {
+        "div": {
+            "section": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml",
+            "line-block": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/activity-standard",
+            "line": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/activity-standard",
+            "toctree-wrapper|compound": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/activity-standard",
+            "highlight-xml": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/activity-standard/iati-activities",
+            "highlight": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/activity-standard/iati-activities",
+            "highlight-default": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/activity-standard/summary-table"
+        },
+        "h1": {},
+        "a": {
+            "headerlink": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml",
+            "reference|external": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/organisation-identifiers",
+            "reference|internal": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/organisation-identifiers"
+        },
+        "p": {
+            "first": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/activity-standard/iati-activities",
+            "last": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/activity-standard/iati-activities"
+        },
+        "strong": {},
+        "em": {},
+        "h2": {},
+        "ul": {
+            "simple": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/organisation-identifiers",
+            "first|last": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/activity-standard/overview/transactions"
+        },
+        "li": {
+            "toctree-l1": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/activity-standard",
+            "toctree-l2": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/activity-standard/elements",
+            "toctree-l3": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/activity-standard/elements",
+            "toctree-l4": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/activity-standard/elements",
+            "toctree-l5": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/activity-standard/elements",
+            "toctree-l6": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/activity-standard/elements",
+            "toctree-l7": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/activity-standard/elements",
+            "toctree-l8": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/reference",
+            "toctree-l9": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/reference"
+        },
+        "code": {
+            "docutils|literal": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/organisation-identifiers"
+        },
+        "span": {
+            "pre": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/organisation-identifiers",
+            "doc": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/organisation-identifiers",
+            "xref|std|std-doc": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/activity-standard/overview/activity-file",
+            "nt": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/activity-standard/iati-activities",
+            "na": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/activity-standard/iati-activities",
+            "s": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/activity-standard/iati-activities",
+            "hll": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/activity-standard/iati-activities/iati-activity/legacy-data",
+            "xref|std|std-ref": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/activity-standard/iati-activities/iati-activity/location",
+            "n": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/activity-standard/summary-table",
+            "p": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/activity-standard/summary-table",
+            "o": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/activity-standard/summary-table",
+            "mf": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/activity-standard/summary-table",
+            "mi": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/activity-standard/summary-table",
+            "ow": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/activity-standard/summary-table",
+            "k": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/activity-standard/summary-table",
+            "nb": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/activity-standard/summary-table",
+            "c": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/activity-standard/example-xml",
+            "s2": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/rulesets/ruleset-spec",
+            "std|std-ref": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/codelists/Country",
+            "problematic": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/codelists/OrganisationRegistrationAgency"
+        },
+        "img": {},
+        "ol": {
+            "arabic|simple": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/organisation-identifiers"
+        },
+        "cite": {},
+        "dl": {
+            "first|docutils": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/activity-standard/overview/transactions",
+            "docutils": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/activity-standard/iati-activities"
+        },
+        "dt": {},
+        "dd": {},
+        "blockquote": {},
+        "pre": {},
+        "h3": {},
+        "br": {},
+        "table": {
+            "docutils": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/activity-standard/summary-table"
+        },
+        "colgroup": {},
+        "col": {},
+        "thead": {},
+        "tr": {
+            "row-odd": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/activity-standard/summary-table",
+            "row-even": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/activity-standard/summary-table"
+        },
+        "th": {
+            "head": "IATI-Standard-SSOT-version-1.04/docs/en/_build/dirhtml/activity-standard/summary-table"
+        },
+        "tbody": {},
+        "td": {},
+        "h4": {}
+    },
+    "103": {
+        "div": {
+            "entry-content": "IATI-Standard-SSOT-version-1.03/103.new/activity-schema-table",
+            "date-comments": "IATI-Standard-SSOT-version-1.03/103.new/activity-schema-table",
+            "under-review": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/related-documents/related-activity",
+            "wp-caption|alignnone": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/organisation-data/organisation-identifiers",
+            "entry": "IATI-Standard-SSOT-version-1.03/103.new/updates/decimal-upgrade-to-1-04",
+            "level1": "IATI-Standard-SSOT-version-1.03/103.new/updates/decimal-upgrade-to-1-04",
+            "table|sectionedit2": "IATI-Standard-SSOT-version-1.03/103.new/updates/decimal-upgrade-to-1-04",
+            "fix": "IATI-Standard-SSOT-version-1.03/103.new/updates/decimal-upgrade-to-1-04",
+            "wp-caption|aligncenter": "IATI-Standard-SSOT-version-1.03/103.new/standard",
+            "entry|schema_data": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/related-activity",
+            "schema-wrap": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/related-activity",
+            "entry|rulesets": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/related-activity",
+            "level2": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/related-activity",
+            "page4release": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/related-activity",
+            "level3": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/related-activity",
+            "level4": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/country-budget-items",
+            "li": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/contact-info",
+            "last-modified": "IATI-Standard-SSOT-version-1.03/103.new/codelists/organisation",
+            "version": "IATI-Standard-SSOT-version-1.03/103.new/codelists/organisation",
+            "codelist-links": "IATI-Standard-SSOT-version-1.03/103.new/codelists/organisation"
+        },
+        "h1": {
+            "entry-title": "IATI-Standard-SSOT-version-1.03/103.new/activity-schema-table",
+            "sectionedit1": "IATI-Standard-SSOT-version-1.03/103.new/updates/decimal-upgrade-to-1-04"
+        },
+        "article": {
+            "post-3383|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activity-schema-table",
+            "post-2336|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/overview",
+            "post-3658|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/changelog",
+            "post-3107|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/community-support",
+            "post-2410|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started",
+            "post-2791|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/licencing",
+            "post-2837|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/licencing/licence-types",
+            "post-2464|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/licencing/licensing-your-iati-data",
+            "post-2639|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/data-considerations",
+            "post-2783|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/data-considerations/data-quality",
+            "post-2449|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/data-considerations/defining-an-activity",
+            "post-2786|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/data-considerations/data-availability",
+            "post-2641|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/technical-issues",
+            "post-2816|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/technical-issues/in-house-capacity",
+            "post-2814|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/technical-issues/data-architecture",
+            "post-2645|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/publishing-data",
+            "post-2828|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/publishing-data/registering",
+            "post-2880|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/publishing-data/outputting-xml",
+            "post-2830|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/publishing-data/updating",
+            "post-2467|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/publishing-data/the-iati-registry",
+            "post-2673|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/related-documents",
+            "post-2468|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/related-documents/related-activity",
+            "post-2454|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/related-documents/legacy-data",
+            "post-2452|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/related-documents/documents",
+            "post-2664|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/geographic-data",
+            "post-2459|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/geographic-data/countries-regions",
+            "post-2632|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/what-is-iati",
+            "post-2668|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/organisation-data",
+            "post-1647|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/organisation-data/organisation-identifiers",
+            "post-2475|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/organisation-data/contact-information",
+            "post-2441|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/organisation-data/participating-organisations",
+            "post-2797|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/managing-implementation",
+            "post-2636|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/managing-implementation/implementation-support",
+            "post-2844|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/managing-implementation/change-management",
+            "post-2709|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/classifications",
+            "post-2425|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/classifications/sectors",
+            "post-2446|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/classifications/namespaces-extensions",
+            "post-2654|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/financial-data",
+            "post-2437|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/financial-data/transactions",
+            "post-2681|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/formatting",
+            "post-2420|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/formatting/character-encoding",
+            "post-1671|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/formatting/dates",
+            "post-2643|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/preparing-data",
+            "post-2875|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/preparing-data/using-codelists",
+            "post-2871|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/preparing-data/mandatory-data",
+            "post-2873|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/preparing-data/optional-data",
+            "post-2634|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/policy-considerations",
+            "post-2594|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/policy-considerations/exclusions-and-thresholds",
+            "post-2776|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/policy-considerations/understanding-transparency",
+            "post-2773|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/policy-considerations/units-of-aid",
+            "post-2781|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/policy-considerations/organisational-incentives-and-buy-in",
+            "post-2647|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/tools-to-help",
+            "post-2851|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/tools-to-help/tools-to-create-data",
+            "post-2891|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/tools-to-help/tools-to-validate-data",
+            "post-2920|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/tools-to-help/tools-to-view-data",
+            "post-2537|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/updates",
+            "post-4012|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/updates/decimal-upgrade-to-1-04",
+            "post-3897|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/updates/previous-versions",
+            "post-3124|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/updates/decimal-upgrade-to-1-02",
+            "post-3858|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/updates/decimal-upgrade-to-1-03",
+            "post-3911|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/updates/decimal-upgrade-to-1-03/1-03-changes",
+            "post-720|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/schema",
+            "post-2394|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/get-involved",
+            "post-3934|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/datastore",
+            "post-709|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/standard",
+            "post-711|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/standard/organisation",
+            "post-713|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/standard/activities",
+            "post-1025|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/standard/codelists",
+            "post-1523|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/organisation-standard",
+            "post-2962|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/organisation-standard/org-overview",
+            "post-1533|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/organisation-standard/budget-institution",
+            "post-1538|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/organisation-standard/documents",
+            "post-1529|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/organisation-standard/organisation-name",
+            "post-1596|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/organisation-standard/record-header",
+            "post-1525|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/organisation-standard/organisation-identifier",
+            "post-1535|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/organisation-standard/budget-country",
+            "post-1723|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/organisation-standard/reporting-organisation",
+            "post-1531|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/organisation-standard/budget-organisation",
+            "post-1527|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/organisation-standard/file-header",
+            "post-2402|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/quick-links",
+            "post-1379|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard",
+            "post-1433|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/related-activity",
+            "post-2318|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/legacy-data",
+            "post-3715|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/country-budget-items",
+            "post-3731|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/country-budget-items/budget-item",
+            "post-2863|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/overview",
+            "post-1469|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/result",
+            "post-2313|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/result/indicator",
+            "post-2328|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/result/indicator/period",
+            "post-2332|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/result/indicator/period/period-start",
+            "post-2341|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/result/indicator/period/period-end",
+            "post-2347|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/result/indicator/period/actual",
+            "post-4001|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/result/indicator/period/actual/comment",
+            "post-2344|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/result/indicator/period/target",
+            "post-3997|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/result/indicator/period/target/comment",
+            "post-2324|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/result/indicator/title",
+            "post-2330|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/result/indicator/baseline",
+            "post-2350|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/result/indicator/baseline/comment",
+            "post-2326|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/result/indicator/description",
+            "post-2306|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/result/title",
+            "post-2308|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/result/description",
+            "post-1387|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/iati-activities",
+            "post-1417|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/other-identifier",
+            "post-3786|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/fss",
+            "post-3790|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/fss/forecast",
+            "post-3781|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/crs-add",
+            "post-3793|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/crs-add/loan-status",
+            "post-3804|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/crs-add/loan-status/interest-received",
+            "post-3819|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/crs-add/loan-status/principal-outstanding",
+            "post-3821|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/crs-add/loan-status/principal-arrears",
+            "post-3809|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/crs-add/loan-status/interest-arrears",
+            "post-3787|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/crs-add/loan-terms",
+            "post-3806|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/crs-add/loan-terms/repayment-final-date",
+            "post-3799|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/crs-add/loan-terms/commitment-date",
+            "post-3802|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/crs-add/loan-terms/repayment-first-date",
+            "post-3794|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/crs-add/loan-terms/repayment-type",
+            "post-3796|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/crs-add/loan-terms/repayment-plan",
+            "post-3783|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/crs-add/aidtype-flag",
+            "post-1400|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/recipient-country",
+            "post-3327|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/transaction",
+            "post-1449|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/transaction/flow-type",
+            "post-1437|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/transaction/transaction-type",
+            "post-1457|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/transaction/tied-status",
+            "post-1441|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/transaction/receiver-org",
+            "post-1447|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/transaction/transaction-date",
+            "post-1451|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/transaction/finance-type",
+            "post-1439|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/transaction/provider-org",
+            "post-1443|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/transaction/value",
+            "post-1455|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/transaction/disbursement-channel",
+            "post-1453|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/transaction/aid-type",
+            "post-1445|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/transaction/description",
+            "post-1402|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/recipient-region",
+            "post-1423|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/default-tied-status",
+            "post-1410|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/default-flow-type",
+            "post-1429|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/contact-info",
+            "post-2246|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/contact-info/organisation",
+            "post-2262|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/contact-info/mailing-address",
+            "post-2260|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/contact-info/email",
+            "post-2254|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/contact-info/telephone",
+            "post-3747|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/contact-info/website",
+            "post-2252|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/contact-info/person-name",
+            "post-3726|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/contact-info/job-title",
+            "post-3712|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/capital-spend",
+            "post-1415|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/default-finance-type",
+            "post-1467|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/location",
+            "post-2282|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/location/gazetteer-entry",
+            "post-2270|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/location/location-type",
+            "post-2280|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/location/coordinates",
+            "post-2272|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/location/name",
+            "post-2276|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/location/administrative",
+            "post-2274|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/location/description",
+            "post-1463|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/planned-disbursement",
+            "post-2290|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/planned-disbursement/period-start",
+            "post-2292|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/planned-disbursement/period-end",
+            "post-2294|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/planned-disbursement/value",
+            "post-1381|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/iati-activity",
+            "post-1404|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/title",
+            "post-1421|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/activity-date",
+            "post-1393|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/participating-org",
+            "post-1425|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/policy-marker",
+            "post-1427|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/activity-status",
+            "post-1419|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/sector",
+            "post-1389|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/reporting-org",
+            "post-1461|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/budget",
+            "post-2284|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/budget/period-start",
+            "post-2286|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/budget/period-end",
+            "post-2288|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/budget/value",
+            "post-1431|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/activity-website",
+            "post-1406|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/description",
+            "post-1412|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/default-aid-type",
+            "post-1408|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/collaboration-type",
+            "post-1459|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/document-link",
+            "post-2299|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/document-link/category",
+            "post-3617|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/document-link/language",
+            "post-2297|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/document-link/title",
+            "post-1465|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/conditions",
+            "post-2304|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/conditions/condition",
+            "post-1391|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/iati-identifier",
+            "post-3701|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/activity-scope",
+            "post-737|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists",
+            "post-825|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/organisation",
+            "post-1551|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/indicator_measure",
+            "post-965|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/related_activity_type",
+            "post-865|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/flow_type",
+            "post-1549|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/result_type",
+            "post-858|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/region",
+            "post-1122|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/budget_type",
+            "post-940|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/geographical_precision",
+            "post-3771|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/contact_type",
+            "post-960|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/policy_significance",
+            "post-970|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/tied_status",
+            "post-977|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/disbursement_channel",
+            "post-3733|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/budget_identifier",
+            "post-3774|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/loan_repayment_period",
+            "post-798|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/currency",
+            "post-915|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/activity_date_type",
+            "post-3769|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/region_vocabulary",
+            "post-957|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/policy_marker",
+            "post-883|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/vocabulary",
+            "post-791|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/language",
+            "post-3705|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/activity_scope",
+            "post-937|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/gazetteer_agency",
+            "post-973|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/transaction_type",
+            "post-3741|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/budget_identifier_vocabulary",
+            "post-837|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/publisher_type",
+            "post-943|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/location_type",
+            "post-3779|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/aid_type_flag",
+            "post-923|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/administrative_area_1",
+            "post-873|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/finance_type",
+            "post-928|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/document_category",
+            "post-844|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/country",
+            "post-848|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/verification_status",
+            "post-862|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/collaboration_type",
+            "post-968|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/sector",
+            "post-925|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/administrative_area_2",
+            "post-851|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/file_format",
+            "post-2397|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/all-codelists",
+            "post-1221|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/condition_type",
+            "post-878|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/description_type",
+            "post-2973|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/code-list-api",
+            "post-869|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/aid_type",
+            "post-919|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/activity_status",
+            "post-839|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/organisation_type",
+            "post-854|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/organisation_role",
+            "post-3777|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/codelists/loan_repayment_type",
+            "post-3234|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.03/103.new/old-standard-tables"
+        },
+        "header": {
+            "entry-header": "IATI-Standard-SSOT-version-1.03/103.new/activity-schema-table"
+        },
+        "table": {
+            "tblGenFixed": "IATI-Standard-SSOT-version-1.03/103.new/activity-schema-table",
+            "inline": "IATI-Standard-SSOT-version-1.03/103.new/updates/decimal-upgrade-to-1-04",
+            "attributes_list": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/related-activity"
+        },
+        "tr": {
+            "row0": "IATI-Standard-SSOT-version-1.03/103.new/updates/decimal-upgrade-to-1-04",
+            "row1": "IATI-Standard-SSOT-version-1.03/103.new/updates/decimal-upgrade-to-1-04",
+            "row2": "IATI-Standard-SSOT-version-1.03/103.new/updates/decimal-upgrade-to-1-04",
+            "row3": "IATI-Standard-SSOT-version-1.03/103.new/updates/decimal-upgrade-to-1-04",
+            "row4": "IATI-Standard-SSOT-version-1.03/103.new/updates/decimal-upgrade-to-1-04",
+            "row5": "IATI-Standard-SSOT-version-1.03/103.new/updates/decimal-upgrade-to-1-04",
+            "row6": "IATI-Standard-SSOT-version-1.03/103.new/updates/decimal-upgrade-to-1-04",
+            "row7": "IATI-Standard-SSOT-version-1.03/103.new/updates/decimal-upgrade-to-1-04",
+            "row8": "IATI-Standard-SSOT-version-1.03/103.new/updates/decimal-upgrade-to-1-04",
+            "row9": "IATI-Standard-SSOT-version-1.03/103.new/updates/decimal-upgrade-to-1-04",
+            "row10": "IATI-Standard-SSOT-version-1.03/103.new/updates/decimal-upgrade-to-1-04",
+            "row11": "IATI-Standard-SSOT-version-1.03/103.new/updates/decimal-upgrade-to-1-04",
+            "row12": "IATI-Standard-SSOT-version-1.03/103.new/updates/decimal-upgrade-to-1-04"
+        },
+        "td": {
+            "s0": "IATI-Standard-SSOT-version-1.03/103.new/activity-schema-table",
+            "s1": "IATI-Standard-SSOT-version-1.03/103.new/activity-schema-table",
+            "s3": "IATI-Standard-SSOT-version-1.03/103.new/activity-schema-table",
+            "s5": "IATI-Standard-SSOT-version-1.03/103.new/activity-schema-table",
+            "s6": "IATI-Standard-SSOT-version-1.03/103.new/activity-schema-table",
+            "s7": "IATI-Standard-SSOT-version-1.03/103.new/activity-schema-table",
+            "col0": "IATI-Standard-SSOT-version-1.03/103.new/updates/decimal-upgrade-to-1-04",
+            "col1": "IATI-Standard-SSOT-version-1.03/103.new/updates/decimal-upgrade-to-1-04",
+            "col2|leftalign": "IATI-Standard-SSOT-version-1.03/103.new/updates/decimal-upgrade-to-1-04",
+            "col3": "IATI-Standard-SSOT-version-1.03/103.new/updates/decimal-upgrade-to-1-04",
+            "col4": "IATI-Standard-SSOT-version-1.03/103.new/updates/decimal-upgrade-to-1-04",
+            "col2": "IATI-Standard-SSOT-version-1.03/103.new/updates/decimal-upgrade-to-1-04",
+            "col1|leftalign": "IATI-Standard-SSOT-version-1.03/103.new/updates/decimal-upgrade-to-1-04",
+            "col3|leftalign": "IATI-Standard-SSOT-version-1.03/103.new/updates/decimal-upgrade-to-1-04"
+        },
+        "a": {
+            "urlextern": "IATI-Standard-SSOT-version-1.03/103.new/updates/decimal-upgrade-to-1-04",
+            "wikilink1": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/related-activity"
+        },
+        "br": {},
+        "pre": {
+            "code|xml": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/related-activity",
+            "code": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/fss"
+        },
+        "footer": {
+            "entry-meta": "IATI-Standard-SSOT-version-1.03/103.new/activity-schema-table"
+        },
+        "p": {
+            "fl": "IATI-Standard-SSOT-version-1.03/103.new/activity-schema-table",
+            "wp-caption-text": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/organisation-data/organisation-identifiers",
+            "element_documentation": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/related-activity"
+        },
+        "h3": {
+            "element_name": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/related-activity",
+            "sectionedit2": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/related-activity",
+            "sectionedit3": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/country-budget-items",
+            "sectionedit4": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/country-budget-items"
+        },
+        "ul": {
+            "element_documentation": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/related-activity"
+        },
+        "li": {
+            "level1": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/contact-info"
+        },
+        "strong": {},
+        "ol": {},
+        "h4": {},
+        "em": {},
+        "code": {},
+        "img": {
+            "size-full|wp-image-3322|": "IATI-Standard-SSOT-version-1.03/103.new/getting-started/organisation-data/organisation-identifiers",
+            "alignright|wp-image-1345": "IATI-Standard-SSOT-version-1.03/103.new/get-involved",
+            "size-full|wp-image-1234|": "IATI-Standard-SSOT-version-1.03/103.new/standard",
+            "alignright|size-full|wp-image-3233": "IATI-Standard-SSOT-version-1.03/103.new/old-standard-tables",
+            "alignright|size-full|wp-image-3281": "IATI-Standard-SSOT-version-1.03/103.new/old-standard-tables"
+        },
+        "th": {
+            "col0": "IATI-Standard-SSOT-version-1.03/103.new/updates/decimal-upgrade-to-1-04",
+            "col1": "IATI-Standard-SSOT-version-1.03/103.new/updates/decimal-upgrade-to-1-04",
+            "col2": "IATI-Standard-SSOT-version-1.03/103.new/updates/decimal-upgrade-to-1-04",
+            "col3": "IATI-Standard-SSOT-version-1.03/103.new/updates/decimal-upgrade-to-1-04",
+            "col4": "IATI-Standard-SSOT-version-1.03/103.new/updates/decimal-upgrade-to-1-04"
+        },
+        "h2": {
+            "get-involved": "IATI-Standard-SSOT-version-1.03/103.new/get-involved",
+            "element_name": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/related-activity",
+            "sectionedit1": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/related-activity"
+        },
+        "dl": {},
+        "dt": {},
+        "dd": {},
+        "tbody": {},
+        "span": {
+            "active_page4release": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/related-activity",
+            "sc3": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/related-activity",
+            "re1": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/related-activity",
+            "re0": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/related-activity",
+            "st0": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/related-activity",
+            "re2": "IATI-Standard-SSOT-version-1.03/103.new/activities-standard/related-activity"
+        },
+        "abbr": {},
+        "thead": {},
+        "reporting-org": {}
+    },
+    "102": {
+        "div": {
+            "entry-content": "IATI-Standard-SSOT-version-1.02/102.new/activity-schema-table",
+            "date-comments": "IATI-Standard-SSOT-version-1.02/102.new/activity-schema-table",
+            "under-review": "IATI-Standard-SSOT-version-1.02/102.new/governance",
+            "wp-caption|alignright": "IATI-Standard-SSOT-version-1.02/102.new/governance",
+            "entry": "IATI-Standard-SSOT-version-1.02/102.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "level1": "IATI-Standard-SSOT-version-1.02/102.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "table|sectionedit2": "IATI-Standard-SSOT-version-1.02/102.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "fix": "IATI-Standard-SSOT-version-1.02/102.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "wp-caption|alignnone": "IATI-Standard-SSOT-version-1.02/102.new/guides/organisation-data/organisation-identifiers",
+            "wp-caption|aligncenter": "IATI-Standard-SSOT-version-1.02/102.new/standard",
+            "entry|schema_data": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/related-activity",
+            "schema-wrap": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/related-activity",
+            "entry|rulesets": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/related-activity",
+            "level2": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/related-activity",
+            "page4release": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/related-activity",
+            "level3": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/related-activity",
+            "level4": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/iati-activities",
+            "last-modified": "IATI-Standard-SSOT-version-1.02/102.new/codelists/organisation",
+            "version": "IATI-Standard-SSOT-version-1.02/102.new/codelists/organisation",
+            "codelist-links": "IATI-Standard-SSOT-version-1.02/102.new/codelists/organisation"
+        },
+        "h1": {
+            "entry-title": "IATI-Standard-SSOT-version-1.02/102.new/activity-schema-table",
+            "sectionedit1": "IATI-Standard-SSOT-version-1.02/102.new/governance/updating-the-standard/decimal-upgrade-to-1-02"
+        },
+        "article": {
+            "post-3383|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activity-schema-table",
+            "post-2418|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/governance",
+            "post-3090|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/governance/steering-committee",
+            "post-2537|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/governance/updating-the-standard",
+            "post-3124|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "post-3092|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/governance/iati-secretariat",
+            "post-3094|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/governance/technical-advisory-group",
+            "post-2336|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/overview",
+            "post-3658|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/changelog",
+            "post-3107|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/community-support",
+            "post-2410|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/getting-started",
+            "post-2791|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/getting-started/licencing",
+            "post-2837|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/getting-started/licencing/licence-types",
+            "post-2464|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/getting-started/licencing/licensing-your-iati-data",
+            "post-2639|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/getting-started/data-considerations",
+            "post-2783|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/getting-started/data-considerations/data-quality",
+            "post-2786|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/getting-started/data-considerations/data-availability",
+            "post-2641|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/getting-started/technical-issues",
+            "post-2816|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/getting-started/technical-issues/in-house-capacity",
+            "post-2814|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/getting-started/technical-issues/data-architecture",
+            "post-2645|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/getting-started/publishing-data",
+            "post-2828|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/getting-started/publishing-data/registering",
+            "post-2880|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/getting-started/publishing-data/outputting-xml",
+            "post-2830|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/getting-started/publishing-data/updating",
+            "post-2632|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/getting-started/what-is-iati",
+            "post-2797|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/getting-started/managing-implementation",
+            "post-2636|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/getting-started/managing-implementation/implementation-support",
+            "post-2844|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/getting-started/managing-implementation/change-management",
+            "post-2643|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/getting-started/preparing-data",
+            "post-2875|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/getting-started/preparing-data/using-codelists",
+            "post-2871|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/getting-started/preparing-data/mandatory-data",
+            "post-2873|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/getting-started/preparing-data/optional-data",
+            "post-2634|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/getting-started/policy-considerations",
+            "post-2594|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/getting-started/policy-considerations/exclusions-and-thresholds",
+            "post-2776|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/getting-started/policy-considerations/understanding-transparency",
+            "post-2773|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/getting-started/policy-considerations/units-of-aid",
+            "post-2781|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/getting-started/policy-considerations/organisational-incentives-and-buy-in",
+            "post-2647|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/getting-started/tools-to-help",
+            "post-2851|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/getting-started/tools-to-help/tools-to-create-data",
+            "post-2891|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/getting-started/tools-to-help/tools-to-validate-data",
+            "post-2920|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/getting-started/tools-to-help/tools-to-view-data",
+            "post-1279|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/guides",
+            "post-2649|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/guides/data-considerations",
+            "post-2449|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/guides/data-considerations/defining-an-activity",
+            "post-2470|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/guides/data-considerations/segmenting-your-data",
+            "post-2462|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/guides/data-considerations/traceability",
+            "post-2681|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/guides/technical-issues",
+            "post-2420|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/guides/technical-issues/character-encoding",
+            "post-1671|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/guides/technical-issues/dates",
+            "post-2673|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/guides/related-documents",
+            "post-2468|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/guides/related-documents/related-activity",
+            "post-2454|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/guides/related-documents/legacy-data",
+            "post-2452|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/guides/related-documents/documents",
+            "post-2664|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/guides/geographic-data",
+            "post-2457|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/guides/geographic-data/geocoding",
+            "post-2459|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/guides/geographic-data/countries-regions",
+            "post-2668|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/guides/organisation-data",
+            "post-1647|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/guides/organisation-data/organisation-identifiers",
+            "post-2475|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/guides/organisation-data/contact-information",
+            "post-2441|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/guides/organisation-data/participating-organisations",
+            "post-892|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/guides/xml-schema-tutorial",
+            "post-2709|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/guides/classifications",
+            "post-2425|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/guides/classifications/sectors",
+            "post-2446|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/guides/classifications/namespaces-extensions",
+            "post-2654|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/guides/financial-data",
+            "post-2657|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/guides/financial-data/multi-funded-projects",
+            "post-2437|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/guides/financial-data/transactions",
+            "post-2439|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/guides/financial-data/budgets-planned-disbursements",
+            "post-2662|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/guides/financial-data/double-counting",
+            "post-2467|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/guides/the-iati-registry",
+            "post-720|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/schema",
+            "post-1041|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/schema/sample-activity-xml",
+            "post-2394|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/get-involved",
+            "post-1037|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/get-involved/support",
+            "post-709|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/standard",
+            "post-711|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/standard/organisation",
+            "post-713|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/standard/activities",
+            "post-1025|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/standard/codelists",
+            "post-1523|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/organisation-standard",
+            "post-2962|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/organisation-standard/org-overview",
+            "post-1533|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/organisation-standard/budget-institution",
+            "post-1538|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/organisation-standard/documents",
+            "post-1529|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/organisation-standard/organisation-name",
+            "post-1596|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/organisation-standard/record-header",
+            "post-1525|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/organisation-standard/organisation-identifier",
+            "post-1535|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/organisation-standard/budget-country",
+            "post-1723|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/organisation-standard/reporting-organisation",
+            "post-1531|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/organisation-standard/budget-organisation",
+            "post-1527|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/organisation-standard/file-header",
+            "post-2402|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/quick-links",
+            "post-3036|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/icons",
+            "post-1379|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard",
+            "post-1433|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/related-activity",
+            "post-2318|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/legacy-data",
+            "post-2863|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/overview",
+            "post-1469|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/result",
+            "post-2313|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/result/indicator",
+            "post-2328|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/result/indicator/period",
+            "post-2332|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/result/indicator/period/period-start",
+            "post-2341|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/result/indicator/period/period-end",
+            "post-2347|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/result/indicator/period/actual",
+            "post-2344|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/result/indicator/period/target",
+            "post-2324|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/result/indicator/title",
+            "post-2330|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/result/indicator/baseline",
+            "post-2350|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/result/indicator/baseline/comment",
+            "post-2326|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/result/indicator/description",
+            "post-2306|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/result/title",
+            "post-2308|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/result/description",
+            "post-1387|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/iati-activities",
+            "post-1400|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/recipient-country",
+            "post-3327|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/transaction",
+            "post-1449|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/transaction/flow-type",
+            "post-1437|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/transaction/transaction-type",
+            "post-1457|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/transaction/tied-status",
+            "post-1441|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/transaction/receiver-org",
+            "post-1447|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/transaction/transaction-date",
+            "post-1451|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/transaction/finance-type",
+            "post-1439|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/transaction/provider-org",
+            "post-1443|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/transaction/value",
+            "post-1455|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/transaction/disbursement-channel",
+            "post-1453|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/transaction/aid-type",
+            "post-1445|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/transaction/description",
+            "post-1417|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/other-activity-identifiers",
+            "post-1402|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/recipient-region",
+            "post-1423|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/default-tied-status",
+            "post-1410|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/default-flow-type",
+            "post-1429|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/contact-info",
+            "post-2246|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/contact-info/organisation",
+            "post-2262|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/contact-info/mailing-address",
+            "post-2260|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/contact-info/email",
+            "post-2254|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/contact-info/telephone",
+            "post-2252|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/contact-info/person-name",
+            "post-1415|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/default-finance-type",
+            "post-1467|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/location",
+            "post-2282|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/location/gazetteer-entry",
+            "post-2270|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/location/location-type",
+            "post-2280|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/location/coordinates",
+            "post-2272|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/location/name",
+            "post-2276|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/location/administrative",
+            "post-2274|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/location/description",
+            "post-1463|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/planned-disbursement",
+            "post-2290|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/planned-disbursement/period-start",
+            "post-2292|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/planned-disbursement/period-end",
+            "post-2294|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/planned-disbursement/value",
+            "post-1381|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/iati-activity",
+            "post-1404|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/title",
+            "post-1425|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/thematic-marker",
+            "post-1393|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/participating-org",
+            "post-1427|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/activity-status",
+            "post-1419|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/sector",
+            "post-1389|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/reporting-org",
+            "post-1461|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/budget",
+            "post-2284|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/budget/period-start",
+            "post-2286|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/budget/period-end",
+            "post-2288|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/budget/value",
+            "post-1431|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/activity-website",
+            "post-1406|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/description",
+            "post-1412|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/default-aid-type",
+            "post-1408|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/collaboration-type",
+            "post-1421|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/activity-dates",
+            "post-1459|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/document-link",
+            "post-2299|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/document-link/category",
+            "post-3617|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/document-link/language",
+            "post-2297|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/document-link/title",
+            "post-1465|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/conditions",
+            "post-2304|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/conditions/condition",
+            "post-1391|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/iati-identifier",
+            "post-737|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/codelists",
+            "post-825|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/codelists/organisation",
+            "post-1551|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/codelists/indicator_measure",
+            "post-965|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/codelists/related_activity_type",
+            "post-865|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/codelists/flow_type",
+            "post-1549|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/codelists/result_type",
+            "post-858|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/codelists/region",
+            "post-1122|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/codelists/budget_type",
+            "post-940|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/codelists/geographical_precision",
+            "post-960|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/codelists/policy_significance",
+            "post-970|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/codelists/tied_status",
+            "post-977|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/codelists/disbursement_channel",
+            "post-798|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/codelists/currency",
+            "post-915|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/codelists/activity_date_type",
+            "post-957|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/codelists/policy_marker",
+            "post-883|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/codelists/vocabulary",
+            "post-791|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/codelists/language",
+            "post-937|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/codelists/gazetteer_agency",
+            "post-973|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/codelists/transaction_type",
+            "post-837|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/codelists/publisher_type",
+            "post-943|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/codelists/location_type",
+            "post-923|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/codelists/administrative_area_1",
+            "post-873|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/codelists/finance_type",
+            "post-928|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/codelists/document_category",
+            "post-844|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/codelists/country",
+            "post-848|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/codelists/verification_status",
+            "post-862|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/codelists/collaboration_type",
+            "post-968|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/codelists/sector",
+            "post-925|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/codelists/administrative_area_2",
+            "post-851|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/codelists/file_format",
+            "post-2397|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/codelists/all-codelists",
+            "post-1221|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/codelists/condition_type",
+            "post-878|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/codelists/description_type",
+            "post-2973|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/codelists/code-list-api",
+            "post-869|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/codelists/aid_type",
+            "post-919|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/codelists/activity_status",
+            "post-839|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/codelists/organisation_type",
+            "post-854|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/codelists/organisation_role",
+            "post-3234|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.02/102.new/old-standard-tables"
+        },
+        "header": {
+            "entry-header": "IATI-Standard-SSOT-version-1.02/102.new/activity-schema-table"
+        },
+        "table": {
+            "tblGenFixed": "IATI-Standard-SSOT-version-1.02/102.new/activity-schema-table",
+            "inline": "IATI-Standard-SSOT-version-1.02/102.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "attributes_list": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/related-activity"
+        },
+        "tr": {
+            "row0": "IATI-Standard-SSOT-version-1.02/102.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "row1": "IATI-Standard-SSOT-version-1.02/102.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "row2": "IATI-Standard-SSOT-version-1.02/102.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "row3": "IATI-Standard-SSOT-version-1.02/102.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "row4": "IATI-Standard-SSOT-version-1.02/102.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "row5": "IATI-Standard-SSOT-version-1.02/102.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "row6": "IATI-Standard-SSOT-version-1.02/102.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "row7": "IATI-Standard-SSOT-version-1.02/102.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "row8": "IATI-Standard-SSOT-version-1.02/102.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "row9": "IATI-Standard-SSOT-version-1.02/102.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "row10": "IATI-Standard-SSOT-version-1.02/102.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "row11": "IATI-Standard-SSOT-version-1.02/102.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "row12": "IATI-Standard-SSOT-version-1.02/102.new/governance/updating-the-standard/decimal-upgrade-to-1-02"
+        },
+        "td": {
+            "s0": "IATI-Standard-SSOT-version-1.02/102.new/activity-schema-table",
+            "s1": "IATI-Standard-SSOT-version-1.02/102.new/activity-schema-table",
+            "s3": "IATI-Standard-SSOT-version-1.02/102.new/activity-schema-table",
+            "s5": "IATI-Standard-SSOT-version-1.02/102.new/activity-schema-table",
+            "s6": "IATI-Standard-SSOT-version-1.02/102.new/activity-schema-table",
+            "s7": "IATI-Standard-SSOT-version-1.02/102.new/activity-schema-table",
+            "col0": "IATI-Standard-SSOT-version-1.02/102.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "col1": "IATI-Standard-SSOT-version-1.02/102.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "col2|leftalign": "IATI-Standard-SSOT-version-1.02/102.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "col3": "IATI-Standard-SSOT-version-1.02/102.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "col2": "IATI-Standard-SSOT-version-1.02/102.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "col1|leftalign": "IATI-Standard-SSOT-version-1.02/102.new/governance/updating-the-standard/decimal-upgrade-to-1-02"
+        },
+        "a": {
+            "urlextern": "IATI-Standard-SSOT-version-1.02/102.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "wikilink1": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/related-activity"
+        },
+        "br": {
+            "c1": "IATI-Standard-SSOT-version-1.02/102.new/guides/xml-schema-tutorial"
+        },
+        "p": {
+            "fl": "IATI-Standard-SSOT-version-1.02/102.new/activity-schema-table",
+            "wp-caption-text": "IATI-Standard-SSOT-version-1.02/102.new/governance",
+            "c4": "IATI-Standard-SSOT-version-1.02/102.new/guides/xml-schema-tutorial",
+            "c4|c17": "IATI-Standard-SSOT-version-1.02/102.new/guides/xml-schema-tutorial",
+            "c4|c8": "IATI-Standard-SSOT-version-1.02/102.new/guides/xml-schema-tutorial",
+            "c4|c13": "IATI-Standard-SSOT-version-1.02/102.new/guides/xml-schema-tutorial",
+            "c4|c6": "IATI-Standard-SSOT-version-1.02/102.new/guides/xml-schema-tutorial",
+            "c4|c16": "IATI-Standard-SSOT-version-1.02/102.new/guides/xml-schema-tutorial",
+            "c7": "IATI-Standard-SSOT-version-1.02/102.new/guides/xml-schema-tutorial",
+            "c4|c10": "IATI-Standard-SSOT-version-1.02/102.new/guides/xml-schema-tutorial",
+            "element_documentation": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/related-activity"
+        },
+        "pre": {
+            "code|xml": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/related-activity",
+            "code": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/contact-info"
+        },
+        "footer": {
+            "entry-meta": "IATI-Standard-SSOT-version-1.02/102.new/activity-schema-table"
+        },
+        "ul": {
+            "element_documentation": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/related-activity"
+        },
+        "li": {
+            "c9": "IATI-Standard-SSOT-version-1.02/102.new/guides/xml-schema-tutorial"
+        },
+        "h3": {
+            "element_name": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/related-activity",
+            "sectionedit2": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/related-activity",
+            "sectionedit3": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/iati-activities"
+        },
+        "img": {
+            "size-full|wp-image-2800": "IATI-Standard-SSOT-version-1.02/102.new/governance",
+            "size-full|wp-image-3322|": "IATI-Standard-SSOT-version-1.02/102.new/guides/organisation-data/organisation-identifiers",
+            "alignright|wp-image-1345": "IATI-Standard-SSOT-version-1.02/102.new/get-involved",
+            "size-full|wp-image-1234|": "IATI-Standard-SSOT-version-1.02/102.new/standard",
+            "alignright|size-full|wp-image-3233": "IATI-Standard-SSOT-version-1.02/102.new/old-standard-tables",
+            "alignright|size-full|wp-image-3281": "IATI-Standard-SSOT-version-1.02/102.new/old-standard-tables"
+        },
+        "strong": {},
+        "th": {
+            "col0": "IATI-Standard-SSOT-version-1.02/102.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "col1": "IATI-Standard-SSOT-version-1.02/102.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "col2": "IATI-Standard-SSOT-version-1.02/102.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "col3": "IATI-Standard-SSOT-version-1.02/102.new/governance/updating-the-standard/decimal-upgrade-to-1-02"
+        },
+        "ol": {
+            "c19": "IATI-Standard-SSOT-version-1.02/102.new/guides/xml-schema-tutorial",
+            "c22": "IATI-Standard-SSOT-version-1.02/102.new/guides/xml-schema-tutorial"
+        },
+        "h4": {},
+        "em": {},
+        "code": {},
+        "del": {},
+        "span": {
+            "c1": "IATI-Standard-SSOT-version-1.02/102.new/guides/xml-schema-tutorial",
+            "c18|c5": "IATI-Standard-SSOT-version-1.02/102.new/guides/xml-schema-tutorial",
+            "c11": "IATI-Standard-SSOT-version-1.02/102.new/guides/xml-schema-tutorial",
+            "c15|c5": "IATI-Standard-SSOT-version-1.02/102.new/guides/xml-schema-tutorial",
+            "c1|c2": "IATI-Standard-SSOT-version-1.02/102.new/guides/xml-schema-tutorial",
+            "c0": "IATI-Standard-SSOT-version-1.02/102.new/guides/xml-schema-tutorial",
+            "c3": "IATI-Standard-SSOT-version-1.02/102.new/guides/xml-schema-tutorial",
+            "c3|c5": "IATI-Standard-SSOT-version-1.02/102.new/guides/xml-schema-tutorial",
+            "c1|c21": "IATI-Standard-SSOT-version-1.02/102.new/guides/xml-schema-tutorial",
+            "c14|c5": "IATI-Standard-SSOT-version-1.02/102.new/guides/xml-schema-tutorial",
+            "c1|c5": "IATI-Standard-SSOT-version-1.02/102.new/guides/xml-schema-tutorial",
+            "active_page4release": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/related-activity",
+            "sc3": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/related-activity",
+            "re1": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/related-activity",
+            "re0": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/related-activity",
+            "st0": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/related-activity",
+            "re2": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/related-activity"
+        },
+        "h2": {
+            "get-involved": "IATI-Standard-SSOT-version-1.02/102.new/get-involved",
+            "element_name": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/related-activity",
+            "sectionedit1": "IATI-Standard-SSOT-version-1.02/102.new/activities-standard/related-activity"
+        },
+        "dl": {},
+        "dt": {},
+        "dd": {},
+        "tbody": {},
+        "abbr": {},
+        "thead": {},
+        "reporting-org": {}
+    },
+    "101": {
+        "article": {
+            "post-17|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new",
+            "post-3383|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activity-schema-table",
+            "post-2796|post|type-post|status-publish|format-standard|hentry|category-news": "IATI-Standard-SSOT-version-1.01/101.new/2012/09",
+            "post-3124|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "post-2336|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/overview",
+            "post-3107|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/community-support",
+            "post-720|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/schema",
+            "post-1041|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/schema/sample-activity-xml",
+            "post-1037|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/get-involved/support",
+            "post-709|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/standard",
+            "post-711|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/standard/organisation",
+            "post-713|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/standard/activities",
+            "post-1025|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/standard/codelists",
+            "post-1523|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/organisation-standard",
+            "post-2962|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/organisation-standard/org-overview",
+            "post-1533|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/organisation-standard/budget-institution",
+            "post-1538|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/organisation-standard/documents",
+            "post-1529|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/organisation-standard/organisation-name",
+            "post-1596|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/organisation-standard/record-header",
+            "post-1525|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/organisation-standard/organisation-identifier",
+            "post-1535|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/organisation-standard/budget-country",
+            "post-1723|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/organisation-standard/reporting-organisation",
+            "post-1531|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/organisation-standard/budget-organisation",
+            "post-1527|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/organisation-standard/file-header",
+            "post-3036|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/icons",
+            "post-1379|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard",
+            "post-1469|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/results",
+            "post-2313|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/results/indicator",
+            "post-2328|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/results/indicator/period",
+            "post-2332|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/results/indicator/period/period-start",
+            "post-2341|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/results/indicator/period/period-end",
+            "post-2347|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/results/indicator/period/actual",
+            "post-2344|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/results/indicator/period/target",
+            "post-2324|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/results/indicator/title",
+            "post-2330|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/results/indicator/baseline",
+            "post-2350|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/results/indicator/baseline/comment",
+            "post-2326|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/results/indicator/description",
+            "post-2306|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/results/title",
+            "post-2308|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/results/description",
+            "post-2318|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/legacy-data",
+            "post-2143|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/container-elements",
+            "post-1381|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/container-elements/record-header",
+            "post-1387|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/container-elements/file-header",
+            "post-2863|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/overview",
+            "post-1435|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/financial-transaction",
+            "post-1437|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/financial-transaction/transaction-type",
+            "post-1451|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/financial-transaction/transaction-finance-type",
+            "post-3327|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/financial-transaction/transaction",
+            "post-1453|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/financial-transaction/transaction-aid-type",
+            "post-1447|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/financial-transaction/transaction-date",
+            "post-1457|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/financial-transaction/transaction-tied-aid-status",
+            "post-1449|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/financial-transaction/transaction-flow-type",
+            "post-1439|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/financial-transaction/transaction-provider",
+            "post-1441|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/financial-transaction/transaction-receiver",
+            "post-1455|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/financial-transaction/transaction-channel-of-disbursement",
+            "post-1445|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/financial-transaction/transaction-description",
+            "post-1443|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/financial-transaction/transaction-value",
+            "post-2133|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/related-documents",
+            "post-1433|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/related-documents/related-activity",
+            "post-1459|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/related-documents/activity-documents",
+            "post-2299|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/related-documents/activity-documents/category",
+            "post-2297|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/related-documents/activity-documents/title",
+            "post-1431|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/related-documents/activity-web-site",
+            "post-2098|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/identification",
+            "post-1391|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/identification/iati-activity-identifier",
+            "post-1417|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/identification/other-activity-identifiers",
+            "post-1389|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/identification/reporting-organisation",
+            "post-2114|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/geopolitical-information",
+            "post-1467|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/geopolitical-information/sub-national-geo-location",
+            "post-2282|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/geopolitical-information/sub-national-geo-location/gazetteer-entry",
+            "post-2270|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/geopolitical-information/sub-national-geo-location/location-type",
+            "post-2280|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/geopolitical-information/sub-national-geo-location/coordinates",
+            "post-2272|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/geopolitical-information/sub-national-geo-location/name",
+            "post-2276|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/geopolitical-information/sub-national-geo-location/administration",
+            "post-2274|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/geopolitical-information/sub-national-geo-location/description",
+            "post-1400|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/geopolitical-information/recipient-country",
+            "post-1402|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/geopolitical-information/recipient-region",
+            "post-2128|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/financial",
+            "post-1463|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/financial/planned-disbursements",
+            "post-2290|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/financial/planned-disbursements/period-start",
+            "post-2292|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/financial/planned-disbursements/period-end",
+            "post-2294|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/financial/planned-disbursements/value",
+            "post-1461|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/financial/activity-budgets",
+            "post-2284|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/financial/activity-budgets/period-start",
+            "post-2286|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/financial/activity-budgets/period-end",
+            "post-2288|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/financial/activity-budgets/value",
+            "post-2119|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/classifications",
+            "post-1412|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/classifications/default-flow-type-a",
+            "post-1410|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/classifications/default-flow-type",
+            "post-1415|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/classifications/default-finance-type",
+            "post-1419|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/classifications/general-detailed-sector",
+            "post-1425|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/classifications/policy-thematic-markers",
+            "post-1408|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/classifications/collaboration-type",
+            "post-1423|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/classifications/default-tied-aid-status",
+            "post-1465|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/conditions",
+            "post-2304|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/conditions/condition",
+            "post-2107|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/basic-activity-information",
+            "post-1406|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/basic-activity-information/activity-description",
+            "post-1404|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/basic-activity-information/activity-title",
+            "post-1429|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/basic-activity-information/activity-contacts",
+            "post-2246|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/basic-activity-information/activity-contacts/organisation",
+            "post-2262|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/basic-activity-information/activity-contacts/mailing-address",
+            "post-2260|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/basic-activity-information/activity-contacts/email",
+            "post-2254|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/basic-activity-information/activity-contacts/telephone",
+            "post-2252|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/basic-activity-information/activity-contacts/person-name",
+            "post-1393|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/basic-activity-information/participating-organisation",
+            "post-1427|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/basic-activity-information/activity-status",
+            "post-1421|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/basic-activity-information/activity-dates",
+            "post-737|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/codelists",
+            "post-825|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/codelists/organisation",
+            "post-1551|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/codelists/indicator_measure",
+            "post-965|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/codelists/related_activity_type",
+            "post-865|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/codelists/flow_type",
+            "post-1549|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/codelists/result_type",
+            "post-858|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/codelists/region",
+            "post-1122|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/codelists/budget_type",
+            "post-940|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/codelists/geographical_precision",
+            "post-960|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/codelists/policy_significance",
+            "post-970|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/codelists/tied_status",
+            "post-977|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/codelists/disbursement_channel",
+            "post-798|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/codelists/currency",
+            "post-915|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/codelists/activity_date_type",
+            "post-957|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/codelists/policy_marker",
+            "post-883|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/codelists/vocabulary",
+            "post-791|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/codelists/language",
+            "post-937|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/codelists/gazetteer_agency",
+            "post-973|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/codelists/transaction_type",
+            "post-837|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/codelists/publisher_type",
+            "post-943|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/codelists/location_type",
+            "post-923|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/codelists/administrative_area_1",
+            "post-873|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/codelists/finance_type",
+            "post-928|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/codelists/document_category",
+            "post-844|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/codelists/country",
+            "post-848|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/codelists/verification_status",
+            "post-862|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/codelists/collaboration_type",
+            "post-968|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/codelists/sector",
+            "post-925|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/codelists/administrative_area_2",
+            "post-851|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/codelists/file_format",
+            "post-2397|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/codelists/all-codelists",
+            "post-1221|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/codelists/condition_type",
+            "post-878|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/codelists/description_type",
+            "post-2973|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/codelists/code-list-api",
+            "post-869|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/codelists/aid_type",
+            "post-919|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/codelists/activity_status",
+            "post-839|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/codelists/organisation_type",
+            "post-854|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/codelists/organisation_role",
+            "post-3234|page|type-page|status-publish|hentry": "IATI-Standard-SSOT-version-1.01/101.new/old-standard-tables"
+        },
+        "header": {
+            "entry-header": "IATI-Standard-SSOT-version-1.01/101.new",
+            "page-header": "IATI-Standard-SSOT-version-1.01/101.new/2012/09"
+        },
+        "h1": {
+            "entry-title": "IATI-Standard-SSOT-version-1.01/101.new",
+            "page-title": "IATI-Standard-SSOT-version-1.01/101.new/2012/09",
+            "sectionedit1": "IATI-Standard-SSOT-version-1.01/101.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "page-title|author": "IATI-Standard-SSOT-version-1.01/101.new/author/davidc"
+        },
+        "div": {
+            "entry-content": "IATI-Standard-SSOT-version-1.01/101.new",
+            "got-a-question": "IATI-Standard-SSOT-version-1.01/101.new",
+            "text-with-image": "IATI-Standard-SSOT-version-1.01/101.new",
+            "date-comments": "IATI-Standard-SSOT-version-1.01/101.new",
+            "entry-meta": "IATI-Standard-SSOT-version-1.01/101.new/2012/09",
+            "entry": "IATI-Standard-SSOT-version-1.01/101.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "level1": "IATI-Standard-SSOT-version-1.01/101.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "table|sectionedit2": "IATI-Standard-SSOT-version-1.01/101.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "fix": "IATI-Standard-SSOT-version-1.01/101.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "category-archive-meta": "IATI-Standard-SSOT-version-1.01/101.new/category/news",
+            "under-review": "IATI-Standard-SSOT-version-1.01/101.new/schema/sample-activity-xml",
+            "wp-caption|aligncenter": "IATI-Standard-SSOT-version-1.01/101.new/standard",
+            "entry|schema_data": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/results",
+            "schema-wrap": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/results",
+            "entry|rulesets": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/results",
+            "level2": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/results",
+            "page4release": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/results",
+            "level3": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/results",
+            "level4": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/financial-transaction/transaction-provider",
+            "last-modified": "IATI-Standard-SSOT-version-1.01/101.new/codelists/organisation",
+            "version": "IATI-Standard-SSOT-version-1.01/101.new/codelists/organisation",
+            "codelist-links": "IATI-Standard-SSOT-version-1.01/101.new/codelists/organisation"
+        },
+        "a": {
+            "url|fn|n": "IATI-Standard-SSOT-version-1.01/101.new/2012/09",
+            "urlextern": "IATI-Standard-SSOT-version-1.01/101.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "wikilink1": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/results/indicator/period"
+        },
+        "br": {},
+        "p": {
+            "fl": "IATI-Standard-SSOT-version-1.01/101.new",
+            "wp-caption-text": "IATI-Standard-SSOT-version-1.01/101.new/standard",
+            "element_documentation": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/results"
+        },
+        "strong": {},
+        "h3": {
+            "assistive-text": "IATI-Standard-SSOT-version-1.01/101.new/2012/09/07/test-news-post",
+            "element_name": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/results",
+            "sectionedit2": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/results",
+            "sectionedit3": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/financial-transaction/transaction-type"
+        },
+        "img": {
+            "size-full|wp-image-1234|": "IATI-Standard-SSOT-version-1.01/101.new/standard",
+            "alignright|size-full|wp-image-3233": "IATI-Standard-SSOT-version-1.01/101.new/old-standard-tables",
+            "alignright|size-full|wp-image-3281": "IATI-Standard-SSOT-version-1.01/101.new/old-standard-tables"
+        },
+        "footer": {
+            "entry-meta": "IATI-Standard-SSOT-version-1.01/101.new"
+        },
+        "table": {
+            "tblGenFixed": "IATI-Standard-SSOT-version-1.01/101.new/activity-schema-table",
+            "inline": "IATI-Standard-SSOT-version-1.01/101.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "attributes_list": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/results"
+        },
+        "tbody": {},
+        "tr": {
+            "row0": "IATI-Standard-SSOT-version-1.01/101.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "row1": "IATI-Standard-SSOT-version-1.01/101.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "row2": "IATI-Standard-SSOT-version-1.01/101.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "row3": "IATI-Standard-SSOT-version-1.01/101.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "row4": "IATI-Standard-SSOT-version-1.01/101.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "row5": "IATI-Standard-SSOT-version-1.01/101.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "row6": "IATI-Standard-SSOT-version-1.01/101.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "row7": "IATI-Standard-SSOT-version-1.01/101.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "row8": "IATI-Standard-SSOT-version-1.01/101.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "row9": "IATI-Standard-SSOT-version-1.01/101.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "row10": "IATI-Standard-SSOT-version-1.01/101.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "row11": "IATI-Standard-SSOT-version-1.01/101.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "row12": "IATI-Standard-SSOT-version-1.01/101.new/governance/updating-the-standard/decimal-upgrade-to-1-02"
+        },
+        "td": {
+            "s0": "IATI-Standard-SSOT-version-1.01/101.new/activity-schema-table",
+            "s1": "IATI-Standard-SSOT-version-1.01/101.new/activity-schema-table",
+            "s3": "IATI-Standard-SSOT-version-1.01/101.new/activity-schema-table",
+            "s5": "IATI-Standard-SSOT-version-1.01/101.new/activity-schema-table",
+            "s6": "IATI-Standard-SSOT-version-1.01/101.new/activity-schema-table",
+            "s7": "IATI-Standard-SSOT-version-1.01/101.new/activity-schema-table",
+            "col0": "IATI-Standard-SSOT-version-1.01/101.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "col1": "IATI-Standard-SSOT-version-1.01/101.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "col2|leftalign": "IATI-Standard-SSOT-version-1.01/101.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "col3": "IATI-Standard-SSOT-version-1.01/101.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "col2": "IATI-Standard-SSOT-version-1.01/101.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "col1|leftalign": "IATI-Standard-SSOT-version-1.01/101.new/governance/updating-the-standard/decimal-upgrade-to-1-02"
+        },
+        "pre": {
+            "code|xml": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/results",
+            "code": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/basic-activity-information/activity-contacts"
+        },
+        "span": {
+            "sep": "IATI-Standard-SSOT-version-1.01/101.new/2012/09",
+            "by-author": "IATI-Standard-SSOT-version-1.01/101.new/2012/09",
+            "author|vcard": "IATI-Standard-SSOT-version-1.01/101.new/2012/09",
+            "cat-links": "IATI-Standard-SSOT-version-1.01/101.new/2012/09",
+            "entry-utility-prep|entry-utility-prep-cat-links": "IATI-Standard-SSOT-version-1.01/101.new/2012/09",
+            "nav-previous": "IATI-Standard-SSOT-version-1.01/101.new/2012/09/07/test-news-post",
+            "nav-next": "IATI-Standard-SSOT-version-1.01/101.new/2012/09/07/test-news-post",
+            "active_page4release": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/results",
+            "sc3": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/results",
+            "re1": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/results",
+            "re0": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/results",
+            "st0": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/results",
+            "re2": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/results",
+            "vcard": "IATI-Standard-SSOT-version-1.01/101.new/author/davidc"
+        },
+        "time": {
+            "entry-date": "IATI-Standard-SSOT-version-1.01/101.new/2012/09"
+        },
+        "nav": {},
+        "th": {
+            "col0": "IATI-Standard-SSOT-version-1.01/101.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "col1": "IATI-Standard-SSOT-version-1.01/101.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "col2": "IATI-Standard-SSOT-version-1.01/101.new/governance/updating-the-standard/decimal-upgrade-to-1-02",
+            "col3": "IATI-Standard-SSOT-version-1.01/101.new/governance/updating-the-standard/decimal-upgrade-to-1-02"
+        },
+        "ul": {
+            "element_documentation": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/results"
+        },
+        "li": {},
+        "h2": {
+            "element_name": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/results",
+            "sectionedit1": "IATI-Standard-SSOT-version-1.01/101.new/activities-standard/results"
+        },
+        "em": {},
+        "abbr": {},
+        "h4": {},
+        "thead": {},
+        "reporting-org": {}
+    },
+    "guidance": {
+        "div": {
+            "section": "IATI-Guidance/en/_build/dirhtml",
+            "toctree-wrapper|compound": "IATI-Guidance/en/_build/dirhtml",
+            "highlight-xml": "IATI-Guidance/en/_build/dirhtml/financial-transactions",
+            "highlight": "IATI-Guidance/en/_build/dirhtml/financial-transactions",
+            "highlight-json": "IATI-Guidance/en/_build/dirhtml/datastore/reference/structure-of-data",
+            "line-block": "IATI-Guidance/en/_build/dirhtml/Abudgets",
+            "line": "IATI-Guidance/en/_build/dirhtml/Abudgets",
+            "contents|topic": "IATI-Guidance/en/_build/dirhtml/upgrades/decimal-upgrade-to-2-03/2-03-changes",
+            "first|last|highlight-xml": "IATI-Guidance/en/_build/dirhtml/upgrades/decimal-upgrade-to-1-04/location-summary",
+            "last|highlight-xml": "IATI-Guidance/en/_build/dirhtml/upgrades/decimal-upgrade-to-1-04/location-summary",
+            "first|line-block": "IATI-Guidance/en/_build/dirhtml/upgrades/decimal-upgrade-to-1-03/1-03-changes"
+        },
+        "h1": {},
+        "a": {
+            "headerlink": "IATI-Guidance/en/_build/dirhtml",
+            "reference|internal": "IATI-Guidance/en/_build/dirhtml",
+            "reference|external": "IATI-Guidance/en/_build/dirhtml/financial-transactions",
+            "toc-backref": "IATI-Guidance/en/_build/dirhtml/upgrades/decimal-upgrade-to-2-03/2-03-changes"
+        },
+        "ul": {
+            "simple": "IATI-Guidance/en/_build/dirhtml/financial-transactions",
+            "first|last": "IATI-Guidance/en/_build/dirhtml/datastore/reference/metadata-api",
+            "first|last|simple": "IATI-Guidance/en/_build/dirhtml/upgrades/decimal-upgrade-to-2-03",
+            "first": "IATI-Guidance/en/_build/dirhtml/upgrades/integer-upgrade-to-2-01/migrating"
+        },
+        "li": {
+            "toctree-l1": "IATI-Guidance/en/_build/dirhtml",
+            "toctree-l2": "IATI-Guidance/en/_build/dirhtml",
+            "toctree-l3": "IATI-Guidance/en/_build/dirhtml"
+        },
+        "p": {
+            "first": "IATI-Guidance/en/_build/dirhtml/Abudgets",
+            "last": "IATI-Guidance/en/_build/dirhtml/Abudgets",
+            "topic-title|first": "IATI-Guidance/en/_build/dirhtml/upgrades/decimal-upgrade-to-2-03/2-03-changes"
+        },
+        "code": {
+            "docutils|literal": "IATI-Guidance/en/_build/dirhtml/financial-transactions"
+        },
+        "span": {
+            "pre": "IATI-Guidance/en/_build/dirhtml/financial-transactions",
+            "nt": "IATI-Guidance/en/_build/dirhtml/financial-transactions",
+            "na": "IATI-Guidance/en/_build/dirhtml/financial-transactions",
+            "s": "IATI-Guidance/en/_build/dirhtml/financial-transactions",
+            "c": "IATI-Guidance/en/_build/dirhtml/datastore/reference/structure-of-data",
+            "p": "IATI-Guidance/en/_build/dirhtml/datastore/reference/metadata-api",
+            "s2": "IATI-Guidance/en/_build/dirhtml/datastore/reference/metadata-api",
+            "mi": "IATI-Guidance/en/_build/dirhtml/datastore/reference/metadata-api",
+            "problematic": "IATI-Guidance/en/_build/dirhtml/datastore/reference/data-api",
+            "xref|std|std-doc": "IATI-Guidance/en/_build/dirhtml/upgrades/decimal-upgrade-to-2-03/2-03-changes",
+            "xref|std|std-ref": "IATI-Guidance/en/_build/dirhtml/upgrades/integer-upgrade-to-2-01/migrating",
+            "doc": "IATI-Guidance/en/_build/dirhtml/upgrades/integer-upgrade-to-2-01/migrating",
+            "cp": "IATI-Guidance/en/_build/dirhtml/upgrades/decimal-upgrade-to-1-04/location-summary",
+            "caption-text": "IATI-Guidance/en/_build/dirhtml/upgrades/noncore-codelist-changelog"
+        },
+        "pre": {},
+        "h2": {},
+        "strong": {},
+        "table": {
+            "colwidths-given|docutils": "IATI-Guidance/en/_build/dirhtml/financial-transactions",
+            "docutils": "IATI-Guidance/en/_build/dirhtml/Abudgets"
+        },
+        "colgroup": {},
+        "col": {},
+        "thead": {},
+        "tr": {
+            "row-odd": "IATI-Guidance/en/_build/dirhtml/financial-transactions",
+            "row-even": "IATI-Guidance/en/_build/dirhtml/financial-transactions"
+        },
+        "th": {
+            "head": "IATI-Guidance/en/_build/dirhtml/financial-transactions"
+        },
+        "tbody": {},
+        "td": {},
+        "cite": {},
+        "dl": {
+            "first|docutils": "IATI-Guidance/en/_build/dirhtml/datastore/reference/metadata-api",
+            "docutils": "IATI-Guidance/en/_build/dirhtml/datastore/reference/data-api"
+        },
+        "dt": {},
+        "dd": {},
+        "h3": {},
+        "em": {},
+        "blockquote": {},
+        "ol": {
+            "arabic|simple": "IATI-Guidance/en/_build/dirhtml/upgrades",
+            "first|last|loweralpha": "IATI-Guidance/en/_build/dirhtml/upgrades"
+        },
+        "h4": {},
+        "caption": {}
+    },
+    "developer-documentation": {
+        "div": {
+            "section": "IATI-Developer-Documentation/_build/dirhtml",
+            "toctree-wrapper|compound": "IATI-Developer-Documentation/_build/dirhtml",
+            "contents|topic": "IATI-Developer-Documentation/_build/dirhtml/ssot/proposal",
+            "highlight-xquery": "IATI-Developer-Documentation/_build/dirhtml/xquery",
+            "highlight": "IATI-Developer-Documentation/_build/dirhtml/xquery"
+        },
+        "h1": {},
+        "a": {
+            "headerlink": "IATI-Developer-Documentation/_build/dirhtml",
+            "reference|external": "IATI-Developer-Documentation/_build/dirhtml",
+            "reference|internal": "IATI-Developer-Documentation/_build/dirhtml",
+            "toc-backref": "IATI-Developer-Documentation/_build/dirhtml/ssot/proposal"
+        },
+        "p": {
+            "topic-title|first": "IATI-Developer-Documentation/_build/dirhtml/ssot/proposal"
+        },
+        "ul": {
+            "simple": "IATI-Developer-Documentation/_build/dirhtml/contribute",
+            "first|last": "IATI-Developer-Documentation/_build/dirhtml/ssot"
+        },
+        "li": {
+            "toctree-l1": "IATI-Developer-Documentation/_build/dirhtml"
+        },
+        "h2": {},
+        "dl": {
+            "first|docutils": "IATI-Developer-Documentation/_build/dirhtml/contribute"
+        },
+        "dt": {},
+        "dd": {},
+        "blockquote": {},
+        "span": {
+            "doc": "IATI-Developer-Documentation/_build/dirhtml/ssot",
+            "pre": "IATI-Developer-Documentation/_build/dirhtml/ssot",
+            "std|std-ref": "IATI-Developer-Documentation/_build/dirhtml/ssot",
+            "p": "IATI-Developer-Documentation/_build/dirhtml/xquery",
+            "nt": "IATI-Developer-Documentation/_build/dirhtml/xquery",
+            "nf": "IATI-Developer-Documentation/_build/dirhtml/xquery",
+            "na": "IATI-Developer-Documentation/_build/dirhtml/xquery",
+            "o": "IATI-Developer-Documentation/_build/dirhtml/xquery",
+            "s1": "IATI-Developer-Documentation/_build/dirhtml/xquery",
+            "k": "IATI-Developer-Documentation/_build/dirhtml/xquery",
+            "mi": "IATI-Developer-Documentation/_build/dirhtml/xquery",
+            "nv": "IATI-Developer-Documentation/_build/dirhtml/xquery",
+            "n": "IATI-Developer-Documentation/_build/dirhtml/xquery",
+            "ow": "IATI-Developer-Documentation/_build/dirhtml/xquery",
+            "s2": "IATI-Developer-Documentation/_build/dirhtml/xquery",
+            "xref|std|std-ref": "IATI-Developer-Documentation/_build/dirhtml/code"
+        },
+        "code": {
+            "docutils|literal": "IATI-Developer-Documentation/_build/dirhtml/ssot"
+        },
+        "h3": {},
+        "img": {},
+        "h4": {},
+        "em": {},
+        "strong": {},
+        "pre": {},
+        "cite": {}
+    }
+}

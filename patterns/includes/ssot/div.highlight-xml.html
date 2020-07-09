@@ -1,0 +1,53 @@
+<div id="self-defined-vocabularies">
+    <h1>Self-defined Vocabularies<a href="#self-defined-vocabularies" title="Permalink to this headline">¶</a></h1>
+    <div id="definition">
+        <h2>Definition<a href="#definition" title="Permalink to this headline">¶</a></h2>
+        <p>For several elements in the <strong>IATI activity standard</strong> and the <strong>IATI organisation standard</strong>, the <em>vocabulary</em> for a given code can be set via the <code><pre>@vocabulary</pre></code> attribute:</p>
+        <p>A good example of this is the <code><pre>sector</pre></code> element, which will typically be given a 5-digit <code><pre>code</pre></code> such as “11120”. However, this code only makes sense to data users if they know which sector codelist it is from.</p>
+        <p>To achieve this, the <code><pre>sector</pre></code>/<code><pre>@vocabulary</pre></code> should be set to the appropriate entry on the <a href="http://iatistandard.org/codelists/SectorVocabulary/">SectorVocabulary</a> codelist. For “11120”, this would be vocabulary <code><pre>"1"</pre></code> - the <em>OECD DAC CRS Purpose Codes (5 digit)</em>, and would hence denote the code for <a href="http://iatistandard.org/201/codelists/Sector/">Education facilities and training</a>.</p>
+        <p>It’s important to note that if there are multiple sectors given from the same vocabulary, their <code><pre>@percentage</pre></code> attributes should add up to 100.</p>
+        <p>Here is an example:</p>
+        <div>
+
+            <!-- This needs to be a <code> instead of <div> to pick up styles ideally -->
+            <code>
+<pre>&lt;iati-activity&gt;
+    &lt;!-- Other elements --&gt;
+    &lt;sector vocabulary="1" code="11120" percentage="50" /&gt;
+    &lt;sector vocabulary="1" code="11121" percentage="50" /&gt;
+    &lt;!-- Other elements --&gt;
+&lt;/iati-activity&gt;
+</pre>
+            </code>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Original content
+<div class="section" id="self-defined-vocabularies">
+    <h1>Self-defined Vocabularies<a class="headerlink" href="#self-defined-vocabularies" title="Permalink to this headline">¶</a></h1>
+    <div class="section" id="definition">
+        <h2>Definition<a class="headerlink" href="#definition" title="Permalink to this headline">¶</a></h2>
+        <p>For several elements in the <strong>IATI activity standard</strong> and the <strong>IATI organisation standard</strong>, the <em>vocabulary</em> for a given code can be set via the <code class="docutils literal"><span class="pre">@vocabulary</span></code> attribute:</p>
+        <p>A good example of this is the <code class="docutils literal"><span class="pre">sector</span></code> element, which will typically be given a 5-digit <code class="docutils literal"><span class="pre">code</span></code> such as “11120”. However, this code only makes sense to data users if they know which sector codelist it is from.</p>
+        <p>To achieve this, the <code class="docutils literal"><span class="pre">sector</span></code>/<code class="docutils literal"><span class="pre">@vocabulary</span></code> should be set to the appropriate entry on the <a class="reference external" href="http://iatistandard.org/codelists/SectorVocabulary/">SectorVocabulary</a> codelist. For “11120”, this would be vocabulary <code class="docutils literal"><span class="pre">"1"</span></code> - the <em>OECD DAC CRS Purpose Codes (5 digit)</em>, and would hence denote the code for <a class="reference external" href="http://iatistandard.org/201/codelists/Sector/">Education facilities and training</a>.</p>
+        <p>It’s important to note that if there are multiple sectors given from the same vocabulary, their <code class="docutils literal"><span class="pre">@percentage</span></code> attributes should add up to 100.</p>
+        <p>Here is an example:</p>
+        <div class="highlight-xml">
+            <div class="highlight">
+                <pre><span></span><span class="nt">&lt;iati-activity&gt;</span>
+    <span class="c">&lt;!-- Other elements --&gt;</span>
+    <span class="nt">&lt;sector</span> <span class="na">vocabulary=</span><span class="s">"1"</span> <span class="na">code=</span><span class="s">"11120"</span> <span class="na">percentage=</span><span class="s">"50"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;sector</span> <span class="na">vocabulary=</span><span class="s">"1"</span> <span class="na">code=</span><span class="s">"11121"</span> <span class="na">percentage=</span><span class="s">"50"</span> <span class="nt">/&gt;</span>
+    <span class="c">&lt;!-- Other elements --&gt;</span>
+<span class="nt">&lt;/iati-activity&gt;</span>
+</pre>
+            </div>
+        </div>
+    </div>
+</div>
+-->
