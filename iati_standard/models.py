@@ -31,6 +31,7 @@ from iati_standard.widgets import JSONFieldWidget
 
 class ReferenceDownload(models.Model):
     """A class to hold the relationship between Wagtail documents and previous URL redirects."""
+
     document = models.ForeignKey(
         Document,
         on_delete=models.SET_NULL,
