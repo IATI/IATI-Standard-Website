@@ -480,7 +480,6 @@ REFERENCE_NAMESPACE_WILDCARD_REDIRECT_DICT = {
     "202/schema/downloads": "/downloads/",
     "201/codelists/downloads": "/downloads/",
     "201/schema/downloads": "/downloads/",
-    "downloads": "/downloads/archive/",
     "101": "/en/iati-standard/",
     "102": "/en/iati-standard/",
     "103": "/en/iati-standard/",
