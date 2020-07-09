@@ -28,7 +28,9 @@ from iati_standard.panels import ReferenceDataPanel
 from iati_standard.inlines import StandardGuidanceTypes
 from iati_standard.widgets import JSONFieldWidget
 
+
 class ReferenceDownload(models.Model):
+    """A class to hold the relationship between Wagtail documents and previous URL redirects."""
     document = models.ForeignKey(
         Document,
         on_delete=models.SET_NULL,
@@ -43,7 +45,6 @@ class ReferenceDownload(models.Model):
         blank=True,
         null=True
     )
-
 
 
 class CardBlock(StructBlock):
@@ -372,10 +373,14 @@ class AbstractGithubPage(DefaultPageHeaderImageMixin, AbstractContentPage):
 
 
 class ActivityStandardPage(AbstractGithubPage):
+    """A model for the Activity Standard Page, an IATI reference page."""
+
     template = 'iati_standard/activity_standard_page.html'
 
 
 class StandardGuidancePage(AbstractGithubPage):
+    """A model for the Standard Guidance Page, an IATI reference page."""
+
     template = 'iati_standard/standard_guidance_page.html'
 
     search_fields = AbstractGithubPage.search_fields + [
@@ -385,6 +390,7 @@ class StandardGuidancePage(AbstractGithubPage):
 
     @cached_property
     def github_url(self):
+        """Calculate a Github changelog url."""
         base_url = "https://github.com/IATI/IATI-Guidance/commits/master/en/"
         file_path = "/".join(self.ssot_path.split("/")[1:]) + ".rst"
         return base_url + file_path

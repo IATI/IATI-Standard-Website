@@ -2,7 +2,6 @@
 import requests
 import io
 import os
-import random
 from zipfile import ZipFile
 from django.core.management import call_command
 from django.core.files import File
@@ -158,6 +157,7 @@ SORT_ORDER = {
 
 
 def iati_order(json_page_obj):
+    """Return IATI Standard element order."""
     family_tag = "/".join(json_page_obj["ssot_path"].split("/")[-2:])
     try:
         return SORT_ORDER[family_tag]
@@ -166,6 +166,7 @@ def iati_order(json_page_obj):
 
 
 def default_order(json_page_obj):
+    """Return ordering based on metadata."""
     return json_page_obj["meta_order"], json_page_obj["title"]
 
 
@@ -272,6 +273,7 @@ def populate_data(observer, data, tag):
 
 
 def child_equals_object(child_page, object):
+    """Check whether a page has changed by comparing it to a Reference Data object."""
     if child_page.tag != object.tag:
         return False
     if getattr(child_page, "data_{}".format(object.language)) != object.data:
