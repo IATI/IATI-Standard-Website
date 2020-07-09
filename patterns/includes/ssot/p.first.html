@@ -1,0 +1,100 @@
+<div id="attributes">
+    <h2>Attributes<a href="#attributes" title="Permalink to this headline">¶</a></h2>
+    <dl id="iati-activities-version">
+        <dt>@version</dt>
+        <dd>
+            <p>A number indicating the IATI specification version in use.
+                This is mandatory and must be a valid version.
+            </p>
+            <p>This attribute is required.</p>
+            <p>This value must be of type xsd:string.</p>
+            <p>This value must be on the <a href="../../codelists/Version/"><span>Version codelist</span></a>.</p>
+        </dd>
+    </dl>
+    <dl id="iati-activities-generated-datetime">
+        <dt>@generated-datetime</dt>
+        <dd>
+            <p>A date/time stamp for when this file was generated. This
+                is not necessarily the last-updated date for the
+                individual activity records in it. Use of this attribute
+                is highly recommended, to allow recipients to know when a
+                file has been updated.
+            </p>
+            <p>This value must be of type xsd:dateTime.</p>
+        </dd>
+    </dl>
+    <dl id="iati-activities-linked-data-default">
+        <dt>@linked-data-default</dt>
+        <dd>
+            <p>If a publisher chooses to publish linked data about their
+                IATI activities then allowing them to declare where this
+                data is published would support discovery of it, and any
+                additional information they may choose to publish as
+                Linked Data alongside it.
+            </p>
+            <p>This attribute is a URI path upon which an activity
+                identifier can be appended to get a differentiable URI
+                for any activity contained within a file.
+            </p>
+            <p>Where a publisher declares using one of these properties
+                that authoritative linked data is accessible for an
+                activity then consuming applications that are generating
+                Linked Data from an IATI XML file should assert an
+                owl:sameAs relationship to the relevant URI.
+            </p>
+            <p>This value must be of type xsd:anyURI.</p>
+        </dd>
+    </dl>
+</div>
+
+
+<!-- Original content
+<div class="section" id="attributes">
+    <h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h2>
+    <dl class="docutils" id="iati-activities-version">
+        <dt>@version</dt>
+        <dd>
+            <p class="first">A number indicating the IATI specification version in use.
+                This is mandatory and must be a valid version.
+            </p>
+            <p>This attribute is required.</p>
+            <p>This value must be of type xsd:string.</p>
+            <p class="last">This value must be on the <a class="reference internal" href="../../codelists/Version/"><span class="doc">Version codelist</span></a>.</p>
+        </dd>
+    </dl>
+    <dl class="docutils" id="iati-activities-generated-datetime">
+        <dt>@generated-datetime</dt>
+        <dd>
+            <p class="first">A date/time stamp for when this file was generated. This
+                is not necessarily the last-updated date for the
+                individual activity records in it. Use of this attribute
+                is highly recommended, to allow recipients to know when a
+                file has been updated.
+            </p>
+            <p class="last">This value must be of type xsd:dateTime.</p>
+        </dd>
+    </dl>
+    <dl class="docutils" id="iati-activities-linked-data-default">
+        <dt>@linked-data-default</dt>
+        <dd>
+            <p class="first">If a publisher chooses to publish linked data about their
+                IATI activities then allowing them to declare where this
+                data is published would support discovery of it, and any
+                additional information they may choose to publish as
+                Linked Data alongside it.
+            </p>
+            <p>This attribute is a URI path upon which an activity
+                identifier can be appended to get a differentiable URI
+                for any activity contained within a file.
+            </p>
+            <p>Where a publisher declares using one of these properties
+                that authoritative linked data is accessible for an
+                activity then consuming applications that are generating
+                Linked Data from an IATI XML file should assert an
+                owl:sameAs relationship to the relevant URI.
+            </p>
+            <p class="last">This value must be of type xsd:anyURI.</p>
+        </dd>
+    </dl>
+</div>
+-->

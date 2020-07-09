@@ -1,0 +1,8 @@
+<div class="card card--alt">
+    {% if self.major_header %}
+      <h2 class="card__heading">{{ self.major_header }}</h2>
+    {% endif %}
+    {% for item in self.card_content %}
+      {{ item }}
+    {% endfor %}
+</div>

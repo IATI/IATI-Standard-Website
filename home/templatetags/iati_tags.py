@@ -8,6 +8,7 @@ from django.template.defaultfilters import date as _date
 from django.urls import reverse, NoReverseMatch
 from django.utils import timezone
 from django.utils.translation import get_language_info
+from wagtail.core.models import Page
 from wagtail_modeltranslation.contextlib import use_language
 from wagtail.core.templatetags.wagtailcore_tags import pageurl
 from home.models import HomePage, StandardPage
@@ -16,7 +17,7 @@ from contact.models import ContactPage
 from events.models import EventIndexPage, EventType, FeaturedEvent
 from guidance_and_support.models import GuidanceAndSupportPage, CommunityPage
 from news.models import NewsIndexPage, NewsCategory
-from iati_standard.models import IATIStandardPage
+from iati_standard.models import IATIStandardPage, ReferenceMenu
 from using_data.models import UsingDataPage
 from tools.models import ToolsListingPage
 
@@ -223,3 +224,61 @@ def featured_events():
 def news_category_verbose(news_category_slug):
     """Return the localized news category name given a slug."""
     return NewsCategory.objects.get(slug=news_category_slug).name
+
+
+@register.filter
+def pagepk(pk):
+    """Return a page given a page pk."""
+    page = Page.objects.get(pk=pk)
+    return page
+
+
+@register.filter
+def isancestor(pk, calling_page):
+    """Return a page given a page pk."""
+    potential_ancestor_page = Page.objects.filter(pk=pk).ancestor_of(calling_page)
+    return potential_ancestor_page
+
+
+@register.inclusion_tag('iati_standard/includes/reference_menu.html')
+def reference_menu(calling_page):
+    """Return the reference menu given the page hierarchy."""
+    calling_page_tag = calling_page.specific.tag
+    calling_page_pk = calling_page.pk
+    calling_page_root = calling_page.ssot_root_slug
+    if calling_page_root == "developer":
+        standard_page = GuidanceAndSupportPage.objects.live().first()
+        latest_version_page = IATIStandardPage.objects.live().first().latest_version_page
+        menu_type = "developer"
+    else:
+        standard_page = IATIStandardPage.objects.live().first()
+        latest_version_page = standard_page.latest_version_page
+        menu_type = "ssot"
+    if calling_page.depth > 4:
+        main_section_pk = standard_page.get_children().ancestor_of(calling_page).first().pk
+    else:
+        main_section_pk = calling_page.pk
+    if latest_version_page:
+        latest_version_page_pk = latest_version_page.pk
+    else:
+        latest_version_page_pk = None
+
+    all_menu_json = ReferenceMenu.objects.get(tag=calling_page_tag, menu_type=menu_type).menu_json
+    menu_json = None
+    upgrades_menu_json = None
+    latest_version_json = None
+    for top_level_json in all_menu_json:
+        if top_level_json["pk"] == main_section_pk:
+            menu_json = top_level_json["children"]
+            top_level_copy = top_level_json.copy()
+            top_level_copy["children"] = list()
+            menu_json.insert(0, top_level_copy)
+        if top_level_json["pk"] == latest_version_page_pk:
+            latest_version_json = top_level_json.copy()
+        if top_level_json["ssot_path"] == "upgrades":
+            upgrades_menu_json = top_level_json
+    if menu_type == "ssot" and calling_page_root != "upgrades":
+        menu_json.append(upgrades_menu_json)
+    if calling_page_root == "upgrades":
+        menu_json.insert(0, latest_version_json)
+    return {"menu_json": menu_json, "calling_page": calling_page}

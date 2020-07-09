@@ -1,0 +1,34 @@
+<div id="definition">
+    <h3>Definition<a href="#definition" title="Permalink to this headline">¶</a></h3>
+    <p>The monetary <em>budgets</em> assigned to a specific <code><pre>iati-activity</pre></code> can be described in the <strong>IATI activity standard</strong> using the following:</p>
+    <ul>
+        <li><code><pre>transaction-type</pre></code> type Commitment (code <em>2</em>) can be used to describe the total committed budget for the duration of the activity. Any changes to the original commitment should be reported as additional, incremental transactions (positive or negative) so that the sum of commitments represents the total committed budget.</li>
+        <li><code><pre>budget</pre></code> - the value of the <code><pre>iati-activity</pre></code> <code><pre>budget</pre></code> for each financial year over the lifetime of the activity, as stated in the <em>original</em> project document or <em>revised</em> accordingly. The status explains whether the budget being reported is indicative or has been formally committed. The value should appear within the <a href="http://iatistandard.org/203/codelists/BudgetStatus/">BudgetStatus</a> codelist. If the @status attribute is not present, the budget is assumed to be indicative. The sum of budgets may or may not match the sum of commitments, depending on a publisher’s business model and legal frameworks.</li>
+        <li><code><pre>planned-disbursement</pre></code> - a scheduled payment, set up against the <code><pre>budget</pre></code></li>
+    </ul>
+    <p>Additionally, there are two areas within the <strong>IATI activity standard</strong> that allow further clarification of budgets:</p>
+    <ul>
+        <li><code><pre>country-budget-item</pre></code> - alignment of <code><pre>iati-activity</pre></code> with the functional and administrative classifications used in the <code><pre>recipient-country</pre></code> Chart of Accounts.</li>
+        <li><code><pre>capital-spend</pre></code> - the percentage of the total commitment that is for capital spending.</li>
+    </ul>
+    <p>These all relate to the specific <code><pre>iati-activity</pre></code> being described.</p>
+</div>
+
+
+<!-- Original content
+<div class="section" id="definition">
+    <h3>Definition<a class="headerlink" href="#definition" title="Permalink to this headline">¶</a></h3>
+    <p>The monetary <em>budgets</em> assigned to a specific <code class="docutils literal"><span class="pre">iati-activity</span></code> can be described in the <strong>IATI activity standard</strong> using the following:</p>
+    <ul class="simple">
+        <li><code class="docutils literal"><span class="pre">transaction-type</span></code> type Commitment (code <em>2</em>) can be used to describe the total committed budget for the duration of the activity. Any changes to the original commitment should be reported as additional, incremental transactions (positive or negative) so that the sum of commitments represents the total committed budget.</li>
+        <li><code class="docutils literal"><span class="pre">budget</span></code> - the value of the <code class="docutils literal"><span class="pre">iati-activity</span></code> <code class="docutils literal"><span class="pre">budget</span></code> for each financial year over the lifetime of the activity, as stated in the <span class="underline">original</span> project document or <span class="underline">revised</span> accordingly. The status explains whether the budget being reported is indicative or has been formally committed. The value should appear within the <a class="reference external" href="http://iatistandard.org/203/codelists/BudgetStatus/">BudgetStatus</a> codelist. If the @status attribute is not present, the budget is assumed to be indicative. The sum of budgets may or may not match the sum of commitments, depending on a publisher’s business model and legal frameworks.</li>
+        <li><code class="docutils literal"><span class="pre">planned-disbursement</span></code> - a scheduled payment, set up against the <code class="docutils literal"><span class="pre">budget</span></code></li>
+    </ul>
+    <p>Additionally, there are two areas within the <strong>IATI activity standard</strong> that allow further clarification of budgets:</p>
+    <ul class="simple">
+        <li><code class="docutils literal"><span class="pre">country-budget-item</span></code> - alignment of <code class="docutils literal"><span class="pre">iati-activity</span></code> with the functional and administrative classifications used in the <code class="docutils literal"><span class="pre">recipient-country</span></code> Chart of Accounts.</li>
+        <li><code class="docutils literal"><span class="pre">capital-spend</span></code> - the percentage of the total commitment that is for capital spending.</li>
+    </ul>
+    <p>These all relate to the specific <code class="docutils literal"><span class="pre">iati-activity</span></code> being described.</p>
+</div>
+-->

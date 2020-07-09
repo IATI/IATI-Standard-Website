@@ -183,6 +183,10 @@
 		"stage": "approved"
 	},
 	{
+		"name": "09-1d-example-content",
+		"stage": "template"
+	},
+	{
 		"name": "10-get-involved",
 		"stage": "review"
 	},

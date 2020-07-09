@@ -1,0 +1,20 @@
+{% load wagtailcore_tags iati_tags i18n %}
+
+<aside class="l-sidebar__aside">
+
+  <div class="aside-m">
+    <div class="aside-m__header fill-sunrise">
+        <h3 class="aside-m__heading">Reference</h3>
+    </div>
+    <button class="navigation-secondary-toggle" type="button" id="navigation-secondary-toggle">pages in this section <i role="presentation" aria-hidden="true" class="ico ico--16 ico-plus-sunrise"></i></button>
+    <nav class="navigation-secondary navigation-secondary--reference" id="navigation-secondary" data-nested-list="">
+      <form>
+        <ul class="navigation-secondary__list">
+          {% for page_obj in menu_json %}
+            {% include "iati_standard/includes/reference_menu_item.html" with page_obj=page_obj calling_page=calling_page parent_open=True %}
+          {% endfor %}
+        </ul>
+      </form>
+    </nav>
+  </div>
+</aside>

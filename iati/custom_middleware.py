@@ -25,6 +25,7 @@ class RedirectIATISites:
         split_path = self.path.split('/')
         valid_path_parts = list(filter(None, split_path))
         self.path_parts = self.remove_language_code(valid_path_parts)
+        self.is_download = "downloads" in self.path_parts
         self.stripped_path = '/'.join(self.path_parts)
 
         if self.path_is_redirect:
@@ -38,21 +39,35 @@ class RedirectIATISites:
         return tuple(x for x in path_parts_list if x not in codes)
 
     @property
-    def redirect_urls(self):
+    def exact_redirect_urls(self):
         """Construct tuple of cached redirect urls from settings."""
-        return tuple(x for x in settings.REFERENCE_NAMESPACES)
+        return tuple(x for x in settings.EXACT_REFERENCE_NAMESPACES)
+
+    @property
+    def wildcard_redirect_urls(self):
+        """Construct tuple of cached redirect urls from settings."""
+        return tuple(x for x in settings.WILDCARD_REFERENCE_NAMESPACES)
 
     @property
     def path_is_redirect(self):
         """Verify if path is redirect."""
-        if self.stripped_path.startswith(self.redirect_urls):
+        if self.stripped_path.startswith(self.exact_redirect_urls) or self.stripped_path.startswith(self.wildcard_redirect_urls):
             return True
         return False
 
     @property
     def redirected_url(self):
         """Construct redirect URL from base url and request path."""
-        return '{}{}'.format(settings.REFERENCE_REDIRECT_BASE_URL, self.path)
+        if self.stripped_path.startswith(self.exact_redirect_urls):
+            redirect_match = next(dict_value for dict_key, dict_value in settings.REFERENCE_NAMESPACE_EXACT_REDIRECT_DICT.items() if self.stripped_path.startswith(dict_key))
+            return '{}{}'.format(settings.REFERENCE_REDIRECT_BASE_URL, redirect_match)
+        if self.stripped_path.startswith(self.wildcard_redirect_urls):
+            redirect_match = next(dict_value for dict_key, dict_value in settings.REFERENCE_NAMESPACE_WILDCARD_REDIRECT_DICT.items() if self.stripped_path.startswith(dict_key))
+            if self.is_download:
+                return '{}{}{}'.format(settings.REFERENCE_REDIRECT_BASE_URL, redirect_match, self.stripped_path)
+            return '{}{}{}{}'.format(settings.REFERENCE_REDIRECT_BASE_URL, redirect_match, self.stripped_path, "/")
+
+        return self.path
 
 
 class LowercaseMiddleware:
