@@ -38,6 +38,12 @@ class RedirectIATISites:
         codes = [x[0] for x in settings.ACTIVE_LANGUAGES]
         return tuple(x for x in path_parts_list if x not in codes)
 
+    def remove_index_html(self, stripped_path):
+        """Remove index.html from path if exists."""
+        stripped_path_split = stripped_path.split('/')
+        stripped_path_split = [x for x in stripped_path_split if x != "index.html"]
+        return "/".join(stripped_path_split)
+
     @property
     def exact_redirect_urls(self):
         """Construct tuple of cached redirect urls from settings."""
@@ -63,6 +69,7 @@ class RedirectIATISites:
             return '{}{}'.format(settings.REFERENCE_REDIRECT_BASE_URL, redirect_match)
         if self.stripped_path.startswith(self.wildcard_redirect_urls):
             redirect_match = next(dict_value for dict_key, dict_value in settings.REFERENCE_NAMESPACE_WILDCARD_REDIRECT_DICT.items() if self.stripped_path.startswith(dict_key))
+            self.stripped_path = self.remove_index_html(self.stripped_path)
             if self.is_download:
                 return '{}{}{}'.format(settings.REFERENCE_REDIRECT_BASE_URL, redirect_match, self.stripped_path)
             return '{}{}{}{}'.format(settings.REFERENCE_REDIRECT_BASE_URL, redirect_match, self.stripped_path, "/")
