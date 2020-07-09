@@ -4,11 +4,12 @@
 {% block body_class %}body body--standard{% endblock %}
 {% block body_id %}body-standard{% endblock %}
 
+{% block hero %}
+    {% include "home/includes/hero_heading.html" %}
+    {% include "notices/page-notice.html" %}
+{% endblock %}
+
 {% block content %}
-  <div class="hero">
-      {% include "home/includes/hero_heading.html" %}
-  </div>
-  {% include "notices/page-notice.html" %}
   <div class="row">
     <form class="filter-group filter-group--reverse">
       <div class="filter">
