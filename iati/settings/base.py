@@ -224,6 +224,9 @@ WAGTAIL_FRONTEND_LOGIN_TEMPLATE = 'wagtailadmin/login.html'
 # `EXACT` catches wildcards, redirects to single page
 # `WILDCARD` catches wildcards, redirects old path to new path
 REFERENCE_NAMESPACE_EXACT_REDIRECT_DICT = {
+    "archived/101": "/en/iati-standard/101",
+    "archived/102": "/en/iati-standard/102",
+    "archived/103": "/en/iati-standard/103",
     "developer": "/en/guidance/developer/",
     "203/developer": "/en/guidance/developer/",
     "202/developer": "/en/guidance/developer/",
