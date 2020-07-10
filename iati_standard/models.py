@@ -2,10 +2,12 @@
 
 import os
 from bs4 import BeautifulSoup
+from datetime import datetime
 
 from django.contrib.postgres.fields import JSONField
 from django.db import models
 from django.utils.functional import cached_property
+from django.template.defaultfilters import date
 
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, PageChooserPanel, TabbedInterface
 from wagtail.core.models import Page
@@ -22,7 +24,7 @@ from wagtail.core.blocks import (
     StructBlock
 )
 
-from home.models import AbstractContentPage, AbstractIndexPage, DefaultPageHeaderImageMixin
+from home.models import AbstractContentPage, AbstractIndexPage, DefaultPageHeaderImageMixin, IATIStreamBlock
 
 from iati_standard.panels import ReferenceDataPanel
 from iati_standard.inlines import StandardGuidanceTypes
@@ -149,7 +151,9 @@ class StandardGuidanceIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
         help_text='Button text to be shown on Guidance and Support page',
     )
 
-    translation_fields = AbstractIndexPage.translation_fields + ["section_summary", "button_link_text"]
+    content_editor = StreamField(IATIStreamBlock(required=False), null=True, blank=True)
+
+    translation_fields = AbstractIndexPage.translation_fields + ["section_summary", "button_link_text", "content_editor"]
 
     def get_guidance(self, request, filter_dict=None, search_query=None):
         """Return a filtered list of guidance."""
@@ -299,6 +303,11 @@ class AbstractGithubPage(DefaultPageHeaderImageMixin, AbstractContentPage):
         help_text='HTML data for the page'
     )
 
+    publish_date = models.TextField(
+        null=True,
+        blank=True
+    )
+
     translation_fields = AbstractContentPage.translation_fields + ["data"]
     search_fields = AbstractContentPage.search_fields + [
         SearchField('data'),
@@ -344,6 +353,11 @@ class AbstractGithubPage(DefaultPageHeaderImageMixin, AbstractContentPage):
                 self.meta_order = int(meta_order["content"])
             except ValueError:
                 self.meta_order = 0
+        meta_date = soup.find("meta", {"name": "date"})
+        if meta_date:
+            self.publish_date = meta_date["content"]
+        else:
+            self.publish_date = date(datetime.now(), "F d, Y")
         meta_title = soup.find("meta", {"name": "title"})
         if meta_title:
             self.title = meta_title["content"].replace("¶", "")

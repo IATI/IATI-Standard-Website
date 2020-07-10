@@ -15,7 +15,12 @@
     <div class="row">
         <div class="hero__caption">
             <h1 class="hero__heading">{{ page.heading }}</h1>
-            <p class="hero__subheading">Last updated on {{ page.last_published_at|date }}.
+            <p class="hero__subheading">Last updated on
+              {% if page.publish_date %}
+                {{ page.publish_date }}.
+              {% else %}
+                {{ page.last_published_at|date:"F d, Y" }}.
+              {% endif %}
             {% if page.github_url %}
             <a href="{{ page.github_url }}">View changes</a>
             {% endif %}</p>
@@ -40,7 +45,13 @@
         {% for related in page.related_guidance %}
         <div class="aside-m">
             <div class="card card--simple">
-                <span class="card__flag">{{ related.last_published_at|date:"F d Y" }}</span>
+                <span class="card__flag">
+                  {% if related.publish_date %}
+                    {{ related.publish_date }}
+                  {% else %}
+                    {{ related.last_published_at|date:"F d, Y" }}
+                  {% endif %}
+                </span>
                 <h2 class="card__heading card__heading--minor"><a href="{% pageurl related %}"><span>{{ related.title }}</span></a></h2>
             </div>
         </div>
