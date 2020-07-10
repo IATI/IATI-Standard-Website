@@ -10,6 +10,11 @@
 {% endblock %}
 
 {% block content %}
+<div class="row">
+  {% if page.content_editor %}
+    {% include "home/includes/streamfield.html" with content=page.content_editor %}
+  {% endif %}
+</div>
   <div class="row">
     <form class="filter-group filter-group--reverse">
       <div class="filter">
@@ -38,7 +43,13 @@
     <div class="l-2up">
       {% for guidance_page in guidance %}
       <div class="card card--simple">
-        <span class="card__flag">{{ guidance_page.last_published_at|date:"F d Y" }}</span>
+        <span class="card__flag">
+          {% if guidance_page.publish_date %}
+            {{ guidance_page.publish_date }}
+          {% else %}
+            {{ guidance_page.last_published_at|date:"F d, Y" }}
+          {% endif %}
+        </span>
         <h2 class="card__heading"><a href="{% pageurl guidance_page %}"><span>{{ guidance_page.title }}</span></a></h2>
         <p class="card__excerpt">{{ guidance_page.excerpt }}</p>
       </div>
