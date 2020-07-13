@@ -31,25 +31,6 @@ from iati_standard.inlines import StandardGuidanceTypes
 from iati_standard.widgets import JSONFieldWidget
 
 
-class ReferenceDownload(models.Model):
-    """A class to hold the relationship between Wagtail documents and previous URL redirects."""
-
-    document = models.ForeignKey(
-        Document,
-        on_delete=models.SET_NULL,
-        related_name="+",
-        blank=True,
-        null=True
-    )
-    redirect = models.ForeignKey(
-        Redirect,
-        on_delete=models.SET_NULL,
-        related_name="+",
-        blank=True,
-        null=True
-    )
-
-
 class CardBlock(StructBlock):
     """A class to construct the card block streamfield for the IATI Standard Page."""
 

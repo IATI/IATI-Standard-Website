@@ -208,6 +208,8 @@ STATIC_URL = '/assets/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+REFERENCE_DOWNLOAD_ROOT = os.path.join(BASE_DIR, 'reference_downloads')
+
 DOCUMENTS_SLUG = 'documents'
 DOCUMENTS_URL = '/{}/'.format(DOCUMENTS_SLUG)
 
@@ -477,12 +479,17 @@ REFERENCE_NAMESPACE_EXACT_REDIRECT_DICT = {
     "organisation-standard/overview": "/en/guidance/standard-guidance/",
 }
 REFERENCE_NAMESPACE_WILDCARD_REDIRECT_DICT = {
-    "203/codelists/downloads": "/downloads/",
-    "203/schema/downloads": "/downloads/",
-    "202/codelists/downloads": "/downloads/",
-    "202/schema/downloads": "/downloads/",
-    "201/codelists/downloads": "/downloads/",
-    "201/schema/downloads": "/downloads/",
+    "203/codelists/downloads": "/reference_downloads/",
+    "203/schema/downloads": "/reference_downloads/",
+    "202/codelists/downloads": "/reference_downloads/",
+    "202/schema/downloads": "/reference_downloads/",
+    "201/codelists/downloads": "/reference_downloads/",
+    "201/schema/downloads": "/reference_downloads/",
+    "105/codelists/downloads": "/reference_downloads/",
+    "105/schema/downloads": "/reference_downloads/",
+    "104/codelists/downloads": "/reference_downloads/",
+    "104/schema/downloads": "/reference_downloads/",
+    "downloads": "/reference_downloads/archive/",
     "101": "/en/iati-standard/",
     "102": "/en/iati-standard/",
     "103": "/en/iati-standard/",
