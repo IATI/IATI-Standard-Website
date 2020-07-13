@@ -12,6 +12,7 @@ DEBUG = False
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 MEDIA_ROOT = os.path.join('/', 'storage')
+REFERENCE_DOWNLOAD_ROOT = os.path.join(MEDIA_ROOT, "reference_downloads")
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
