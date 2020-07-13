@@ -499,13 +499,13 @@ REFERENCE_NAMESPACE_WILDCARD_REDIRECT_DICT = {
     "202": "/en/iati-standard/",
     "203": "/en/iati-standard/",
     "activity-standard": "/en/iati-standard/203/",
-    "codelists/downloads": "/downloads/203/",
+    "codelists/downloads": "/reference_downloads/203/",
     "codelists": "/en/iati-standard/203/",
     "namespaces-extensions": "/en/iati-standard/203/",
     "organisation-standard": "/en/iati-standard/203/",
     "reference": "/en/iati-standard/203/",
     "rulesets": "/en/iati-standard/203/",
-    "schema/downloads": "/downloads/203/",
+    "schema/downloads": "/reference_downloads/203/",
     "schema": "/en/iati-standard/203/",
 }
 
