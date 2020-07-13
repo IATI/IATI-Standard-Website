@@ -133,7 +133,7 @@ server {
     error_page 404 /not-found/;
   }
   location /reference_downloads/ {
-    {{ if eq  $.APP "www" }}alias /mnt/storage/www/;{{ else }}alias /mnt/storage/dev/;{{ end }}
+    {{ if eq  $.APP "www" }}alias /mnt/storage/www/reference_downloads/;{{ else }}alias /mnt/storage/dev/reference_downloads/;{{ end }}
     error_page 403 =404 /not-found/;
     error_page 404 /not-found/;
   }
