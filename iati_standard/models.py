@@ -12,8 +12,6 @@ from django.template.defaultfilters import date
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, PageChooserPanel, TabbedInterface
 from wagtail.core.models import Page
 from wagtail.core.fields import StreamField
-from wagtail.contrib.redirects.models import Redirect
-from wagtail.documents.models import Document
 from wagtail.search.models import Query
 from wagtail.search.index import SearchField, FilterField
 from wagtail.snippets.models import register_snippet
