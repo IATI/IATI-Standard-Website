@@ -4,13 +4,9 @@ import io
 import os
 from zipfile import ZipFile
 from django.core.management import call_command
-from django.core.files import File
 from django.conf import settings
 from django.utils.text import slugify
-from wagtail.contrib.redirects.models import Redirect
-from wagtail.documents.models import Document
-from home.models import HomePage
-from iati_standard.models import ReferenceData, ActivityStandardPage, IATIStandardPage, ReferenceMenu, StandardGuidanceIndexPage, StandardGuidancePage, ReferenceDownload
+from iati_standard.models import ReferenceData, ActivityStandardPage, IATIStandardPage, ReferenceMenu, StandardGuidanceIndexPage, StandardGuidancePage
 from iati_standard.inlines import StandardGuidanceTypes
 from iati_standard.edit_handlers import GithubAPI
 from guidance_and_support.models import GuidanceAndSupportPage
@@ -220,32 +216,14 @@ def populate_media(observer, media, tag):
         meta='Creating reference downloads'
     )
 
-    home_page = HomePage.objects.first()
-
     if media:
-        for old_download in ReferenceDownload.objects.all():
-            old_download.document.delete()
-            old_download.redirect.delete()
-            old_download.delete()
         for item in extract_zip(download_zip(media.url)):
-            redirect_path = "/downloads/" + item.name
-            item_basename = os.path.basename(item.name)
-            doc = Document(
-                title=item_basename
-            )
-            doc.file.save(item_basename, File(item), save=True)
-            doc.save()
-            redir, created = Redirect.objects.get_or_create(
-                site=home_page.get_site(),
-                old_path=redirect_path,
-                is_permanent=False
-            )
-            redir.redirect_link = home_page.get_site().root_url + doc.url
-            redir.save()
-            ReferenceDownload.objects.create(
-                document=doc,
-                redirect=redir
-            )
+            output_path = os.path.join(settings.REFERENCE_DOWNLOAD_ROOT, item.name)
+            output_dir = os.path.dirname(output_path)
+            if not os.path.isdir(output_dir):
+                os.makedirs(output_dir)
+            with open(output_path, "wb") as output_file:
+                output_file.write(item.read())
 
     else:
         raise ValueError('No data available for tag: %s' % tag)
