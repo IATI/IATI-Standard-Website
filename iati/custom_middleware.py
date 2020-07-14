@@ -30,6 +30,8 @@ class RedirectIATISites:
 
         if self.path_is_redirect:
             return http.HttpResponsePermanentRedirect(self.redirected_url)
+        elif self.path_missing_slash:
+            return http.HttpResponsePermanentRedirect(self.path + "/")
 
         return response
 
@@ -61,6 +63,13 @@ class RedirectIATISites:
     def path_is_redirect(self):
         """Verify if path is redirect."""
         if self.stripped_path.startswith(self.exact_redirect_urls) or self.stripped_path.startswith(self.wildcard_redirect_urls):
+            return True
+        return False
+
+    @property
+    def path_missing_slash(self):
+        """Check if path is missing slash."""
+        if self.path[-1]!="/":
             return True
         return False
 
