@@ -30,8 +30,9 @@ class RedirectIATISites:
 
         if self.path_is_redirect:
             return http.HttpResponsePermanentRedirect(self.redirected_url)
-        elif self.path_missing_slash:
-            return http.HttpResponsePermanentRedirect(self.path + "/")
+        elif not request.path_info.endswith('/') and self.path_is_not_exception:
+            new_path = request.get_full_path(force_append_slash=True)
+            return http.HttpResponsePermanentRedirect(new_path)
 
         return response
 
@@ -67,13 +68,6 @@ class RedirectIATISites:
         return False
 
     @property
-    def path_missing_slash(self):
-        """Check if path is missing slash."""
-        if self.path[-1] != "/":
-            return True
-        return False
-
-    @property
     def redirected_url(self):
         """Construct redirect URL from base url and request path."""
         if self.stripped_path.startswith(self.exact_redirect_urls):
@@ -87,6 +81,20 @@ class RedirectIATISites:
             return '{}{}{}{}'.format(settings.REFERENCE_REDIRECT_BASE_URL, redirect_match, self.stripped_path, "/")
 
         return self.path
+
+    @property
+    def exception_values(self):
+        """Return values to except from lowercase ruling."""
+        return [settings.ADMIN_URL, settings.MEDIA_URL, settings.DOCUMENTS_URL, settings.STATIC_URL, settings.REFERENCE_DOWNLOAD_URL]
+
+    @property
+    def path_is_not_exception(self):
+        """Review exceptions to the lowercase ruling."""
+        if self.path == '/':
+            return False
+        if any(item in self.path for item in self.exception_values):
+            return False
+        return True
 
 
 class LowercaseMiddleware:
