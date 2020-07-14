@@ -124,7 +124,7 @@ class LowercaseMiddleware:
     @property
     def exception_values(self):
         """Return values to except from lowercase ruling."""
-        return [settings.ADMIN_URL, settings.MEDIA_URL, settings.DOCUMENTS_URL, settings.STATIC_URL]
+        return [settings.ADMIN_URL, settings.MEDIA_URL, settings.DOCUMENTS_URL, settings.STATIC_URL, settings.REFERENCE_DOWNLOAD_URL]
 
     @property
     def path_is_not_exception(self):
