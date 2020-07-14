@@ -209,6 +209,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 REFERENCE_DOWNLOAD_ROOT = os.path.join(BASE_DIR, 'reference_downloads')
+REFERENCE_DOWNLOAD_URL = '/reference_downloads/'
 
 DOCUMENTS_SLUG = 'documents'
 DOCUMENTS_URL = '/{}/'.format(DOCUMENTS_SLUG)
