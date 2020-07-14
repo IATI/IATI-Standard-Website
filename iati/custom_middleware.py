@@ -69,7 +69,7 @@ class RedirectIATISites:
     @property
     def path_missing_slash(self):
         """Check if path is missing slash."""
-        if self.path[-1]!="/":
+        if self.path[-1] != "/":
             return True
         return False
 
