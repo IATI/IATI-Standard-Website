@@ -32,7 +32,8 @@ class RedirectIATISites:
             return http.HttpResponsePermanentRedirect(self.redirected_url)
         elif not request.path_info.endswith('/') and self.path_is_not_exception:
             new_path = request.get_full_path(force_append_slash=True)
-            return http.HttpResponsePermanentRedirect(new_path)
+            if new_path != self.path:
+                return http.HttpResponsePermanentRedirect(new_path)
 
         return response
 
