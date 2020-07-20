@@ -13,6 +13,9 @@ def generate_ticket(request, form, score=None, suspicious=False):
         suspicious: boolean, whether the submission is suspicious
 
     """
+    spam_settings = SpamSettings.for_request(request)
+    if score <= spam_settings.spam_threshold:
+        return False
     path = request.path
     email = form.cleaned_data.get('email')
     query = form.cleaned_data.get('query')
@@ -31,9 +34,6 @@ def generate_ticket(request, form, score=None, suspicious=False):
             }
         }
         if suspicious:
-            spam_settings = SpamSettings.for_request(request)
-            if score <= spam_settings.spam_threshold:
-                return False
             request_obj['request']['custom_fields'] = [
                 {
                     "id": settings.ZENDESK_CAPTCHA_FIELD_ID,
