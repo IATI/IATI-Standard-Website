@@ -7,6 +7,7 @@ from guidance_and_support.zendeskhelper import generate_ticket
 
 LEGITIMATE_USER = {}
 LEGITIMATE_USER['request'] = HttpRequest()
+LEGITIMATE_USER['request'].META['SERVER_NAME'] = "iatistandard.org"
 LEGITIMATE_USER['request'].path = "/en/a-test-path"
 LEGITIMATE_USER['form'] = forms.Form()
 LEGITIMATE_USER['form'].cleaned_data = {
