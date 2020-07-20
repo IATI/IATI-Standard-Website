@@ -17,6 +17,7 @@ from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.search.index import FilterField, SearchField
 from home.fields import HomeFieldsMixin
 from home.inlines import GettingStartedItems  # noqa
+from wagtail.contrib.settings.models import BaseSetting, register_setting
 
 
 class DocumentBoxBlock(StreamBlock):
@@ -372,4 +373,29 @@ class StandardPage(AbstractContentPage):
 
     multilingual_field_panels = [
         FieldPanel('fixed_page_type'),
+    ]
+
+
+class MinMaxFloat(models.FloatField):
+    def __init__(self, min_value=None, max_value=None, *args, **kwargs):
+        self.min_value, self.max_value = min_value, max_value
+        super(MinMaxFloat, self).__init__(*args, **kwargs)
+
+    def formfield(self, **kwargs):
+        defaults = {'min_value': self.min_value, 'max_value': self.max_value}
+        defaults.update(kwargs)
+        return super(MinMaxFloat, self).formfield(**defaults)
+
+
+@register_setting
+class SpamSettings(BaseSetting):
+    spam_threshold = MinMaxFloat(
+        default=0.0,
+        min_value=0.0,
+        max_value=1.0,
+        help_text='Automatically delete Zendesk tickets equal to or below this threshold. 0.0 indicates spam, 1.0 indicates human.'
+    )
+
+    panels = [
+        FieldPanel('spam_threshold', widget=forms.widgets.NumberInput(attrs={'min': '0', 'max': '1', 'step': '0.1'}))
     ]

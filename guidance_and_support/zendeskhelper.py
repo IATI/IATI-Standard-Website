@@ -1,5 +1,6 @@
 """A module to contain helper function to format data for ZenDesk."""
 from django.conf import settings
+from home.models import SpamSettings
 
 
 def generate_ticket(request, form, score=None, suspicious=False):
@@ -30,6 +31,9 @@ def generate_ticket(request, form, score=None, suspicious=False):
             }
         }
         if suspicious:
+            spam_settings = SpamSettings.for_request(request)
+            if score <= spam_settings.spam_threshold:
+                return False
             request_obj['request']['custom_fields'] = [
                 {
                     "id": settings.ZENDESK_CAPTCHA_FIELD_ID,
