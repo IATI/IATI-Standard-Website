@@ -47,5 +47,5 @@ SPAM_BOT['expected_output'] = False
 @pytest.mark.parametrize("user", [LEGITIMATE_USER, SPAM_BOT])
 def test_generate_ticket(user):
     """Test a ticket from a valid user and a spam bot."""
-    ticket = generate_ticket(user['request'], user['form'])
+    ticket = generate_ticket(user['request'], user['form'], score=user['score'])
     assert ticket == user['expected_output']
