@@ -377,11 +377,15 @@ class StandardPage(AbstractContentPage):
 
 
 class MinMaxFloat(models.FloatField):
+    """A custom class to enforce minimum and maximum values on a float field."""
+
     def __init__(self, min_value=None, max_value=None, *args, **kwargs):
+        """Initialize the class."""
         self.min_value, self.max_value = min_value, max_value
         super(MinMaxFloat, self).__init__(*args, **kwargs)
 
     def formfield(self, **kwargs):
+        """Change the formfield defaults"""
         defaults = {'min_value': self.min_value, 'max_value': self.max_value}
         defaults.update(kwargs)
         return super(MinMaxFloat, self).formfield(**defaults)
@@ -389,6 +393,8 @@ class MinMaxFloat(models.FloatField):
 
 @register_setting
 class SpamSettings(BaseSetting):
+    """Register a new setting for holding spam threshold."""
+
     spam_threshold = MinMaxFloat(
         default=0.0,
         min_value=0.0,
