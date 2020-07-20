@@ -46,6 +46,7 @@ SPAM_BOT['score'] = 0.0
 SPAM_BOT['expected_output'] = False
 
 
+@pytest.mark.django_db
 @pytest.mark.parametrize("user", [LEGITIMATE_USER, SPAM_BOT])
 def test_generate_ticket(user):
     """Test a ticket from a valid user and a spam bot."""
