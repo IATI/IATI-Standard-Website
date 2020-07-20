@@ -8,6 +8,7 @@ from guidance_and_support.zendeskhelper import generate_ticket
 LEGITIMATE_USER = {}
 LEGITIMATE_USER['request'] = HttpRequest()
 LEGITIMATE_USER['request'].META['SERVER_NAME'] = "iatistandard.org"
+LEGITIMATE_USER['request'].META['SERVER_PORT'] = 80
 LEGITIMATE_USER['request'].path = "/en/a-test-path"
 LEGITIMATE_USER['form'] = forms.Form()
 LEGITIMATE_USER['form'].cleaned_data = {
@@ -32,6 +33,7 @@ LEGITIMATE_USER['expected_output'] = {
 SPAM_BOT = {}
 SPAM_BOT['request'] = HttpRequest()
 SPAM_BOT['request'].META['SERVER_NAME'] = "iatistandard.org"
+SPAM_BOT['request'].META['SERVER_PORT'] = 80
 SPAM_BOT['request'].path = "/en/a-test-path"
 SPAM_BOT['form'] = forms.Form()
 SPAM_BOT['form'].cleaned_data = {
