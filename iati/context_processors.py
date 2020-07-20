@@ -2,7 +2,7 @@
 
 import itertools
 from django.conf import settings
-from wagtail.core.models import Page
+from wagtail.core.models import Page, Site
 from navigation.models import (
     PrimaryMenu,
     UtilityMenu,
@@ -20,7 +20,7 @@ def get_current_page(request):
         # this try is here to protect against 500 errors when there is a 404 error
         # taken from https://github.com/torchbox/wagtail/blob/master/wagtail/wagtailcore/views.py#L17
         path_components = [component for component in request.path.split('/') if component]
-        current_page, args, kwargs = request.site.root_page.specific.route(request, path_components[1:])
+        current_page, args, kwargs = Site.find_for_request(request).root_page.specific.route(request, path_components[1:])
         return current_page
     except Exception:
         return None
@@ -40,9 +40,9 @@ def globals(request):
 
     return {
         'global': {
-            'primary_menu': construct_nav(PrimaryMenu.for_site(request.site).primary_menu_links.all(), current_page),
-            'utility_menu': construct_nav(UtilityMenu.for_site(request.site).utility_menu_links.all(), current_page),
-            'useful_links': UsefulLinks.for_site(request.site).useful_links.all(),
+            'primary_menu': construct_nav(PrimaryMenu.for_request(request).primary_menu_links.all(), current_page),
+            'utility_menu': construct_nav(UtilityMenu.for_request(request).utility_menu_links.all(), current_page),
+            'useful_links': UsefulLinks.for_request(request).useful_links.all(),
             'twitter_handle': settings.TWITTER_HANDLE,
             'standard_page': standard_page,
             'search_page_url': search_page.url if search_page else '',
