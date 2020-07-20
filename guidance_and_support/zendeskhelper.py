@@ -13,7 +13,7 @@ def generate_ticket(request, form, score=None, suspicious=False):
         suspicious: boolean, whether the submission is suspicious
 
     """
-    if score:
+    if score is not None:
         spam_settings = SpamSettings.for_request(request)
         if score <= spam_settings.spam_threshold:
             return False
