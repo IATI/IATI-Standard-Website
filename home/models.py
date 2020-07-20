@@ -398,10 +398,10 @@ class SpamSettings(BaseSetting):
     spam_threshold = MinMaxFloat(
         default=0.0,
         min_value=0.0,
-        max_value=1.0,
+        max_value=settings.RECAPTCHA_SCORE_THRESHOLD,
         help_text='Automatically delete Zendesk tickets equal to or below this threshold. 0.0 indicates spam, 1.0 indicates human.'
     )
 
     panels = [
-        FieldPanel('spam_threshold', widget=forms.widgets.NumberInput(attrs={'min': '0', 'max': '1', 'step': '0.1'}))
+        FieldPanel('spam_threshold', widget=forms.widgets.NumberInput(attrs={'min': '0', 'max': str(settings.RECAPTCHA_SCORE_THRESHOLD), 'step': '0.1'}))
     ]
