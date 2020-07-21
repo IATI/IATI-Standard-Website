@@ -24,6 +24,8 @@ class ContactFormMixin(models.Model):
             response = requests.post(settings.ZENDESK_REQUEST_URL, json=ticket)
             if response.status_code == 201:
                 context['form_success'] = True
+            else:
+                form.add_error(None, _('Sorry, something went wrong submitting your query. Please try again later.'))
         else:
             form.add_error(None, _('Sorry, something went wrong submitting your query. Please try again later.'))
 
