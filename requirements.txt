@@ -11,7 +11,7 @@ django-modeltranslation==0.15
 django-prettyjson==0.4.1
 django-recaptcha3==0.2.0
 django-widget-tweaks==1.4.8
-Django==2.2.12
+Django==2.2.13
 elasticsearch==6.8.1
 gunicorn==20.0.4
 PyGithub==1.43.8
