@@ -1,9 +1,10 @@
+{% load wagtailcore_tags %}
 {% block extra_js %}
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.2"></script>
 {% endblock %}
 <ul class="social-list social-list---inline">
     <li class="social-list__item">
-        <div class="fb-share-button" data-href="{% if not debug %}{{ request.scheme }}://{% endif %}{{ request.site.hostname }}{{ page.url }}" data-layout="button" data-size="small">
+        <div class="fb-share-button" data-href="{% if not debug %}{{ request.scheme }}://{% endif %}{{ wagtail_site.hostname }}{{ page.url }}" data-layout="button" data-size="small">
             <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
                 Share
             </a>
@@ -17,6 +18,6 @@
     </li>
     <li class="social-list__item">
         <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
-        <script type="IN/Share" data-url="{{ request.site.hostname }}{{ page.url }}"></script>
+        <script type="IN/Share" data-url="{{ wagtail_site.hostname }}{{ page.url }}"></script>
     </li>
 </ul>

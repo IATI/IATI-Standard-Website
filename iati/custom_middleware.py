@@ -1,6 +1,7 @@
 """Middleware for redirecting mixed case urls into lowercase."""
 from django import http
 from django.conf import settings
+from wagtail.core.models import Site
 
 
 class RedirectIATISites:
@@ -116,7 +117,7 @@ class LowercaseMiddleware:
         response = self.get_response(request)
 
         self.request_host = request.get_host()
-        self.site_hostname = request.site.hostname
+        self.site_hostname = Site.find_for_request(request).hostname
         self.path = request.get_full_path()
         self.lower_path = self.path.lower()
 
