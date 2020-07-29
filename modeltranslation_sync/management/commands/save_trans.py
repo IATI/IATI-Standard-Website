@@ -17,7 +17,7 @@ from babel.messages.pofile import read_po, write_po
 from iati_standard.models import ActivityStandardPage, StandardGuidanceIndexPage, StandardGuidancePage
 
 
-EXCLUDE_MODELS = [ActivityStandardPage, StandardGuidanceIndexPage, StandardGuidancePage]
+EXCLUDE_MODELS = (ActivityStandardPage, StandardGuidanceIndexPage, StandardGuidancePage,)
 
 
 def load_translation_settings(django_settings):
@@ -77,6 +77,8 @@ class Command(BaseCommand):
                         tr_field = "%s_%s" % (field, lang)
                         en_field = "%s_%s" % (field, "en")
                         for item in model.objects.all():
+                            if hasattr(item, "specific") and isinstance(item.specific, EXCLUDE_MODELS):
+                                continue
                             msgid = "%s.%s.%s" % (item._meta, item.pk, field)
                             msgval = getattr(item, tr_field)
                             enval = getattr(item, en_field)
