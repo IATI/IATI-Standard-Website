@@ -78,7 +78,7 @@ class Command(BaseCommand):
                         tr_field = "%s_%s" % (field, lang)
                         en_field = "%s_%s" % (field, "en")
                         for item in model.objects.all():
-                            if isinstance(item.specific, EXCLUDE_MODELS):
+                            if hasattr(item, "specific") and isinstance(item.specific, EXCLUDE_MODELS):
                                 continue
                             msgid = "%s.%s.%s" % (item._meta, item.pk, field)
                             msgval = getattr(item, tr_field)
