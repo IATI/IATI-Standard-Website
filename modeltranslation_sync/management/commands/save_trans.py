@@ -7,7 +7,6 @@ from os import mkdir
 from os.path import join, isdir, exists
 
 from wagtail.core.blocks.stream_block import StreamValue
-from wagtail.core.models import Page
 
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
