@@ -28,6 +28,7 @@ jobs:
       run: make pydocstyle
     - name: Build and test
       run: |
+        export TRAVIS=mock
         export DJANGO_SETTINGS_MODULE=iati.settings.test
         psql -c "CREATE DATABASE travisci;" -U postgres
         python manage.py makemigrations_translation
