@@ -4,6 +4,18 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
     steps:
     - uses: actions/checkout@v2
     - name: Setup Python
@@ -28,9 +40,8 @@ jobs:
       run: make pydocstyle
     - name: Build and test
       run: |
-        export TRAVIS=mock
+        export DATABASE_URL=postgres://postgres:postgres@localhost:5432/postgres
         export DJANGO_SETTINGS_MODULE=iati.settings.test
-        psql -c "CREATE DATABASE travisci;" -U postgres
         python manage.py makemigrations_translation
         python manage.py migrate_translation --no-input
         python manage.py collectstatic
