@@ -1,0 +1,37 @@
+name: CI
+
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: flake8 lint
+      run: make flake8
+    - name: pylint
+      run: make pylint
+    - name: pydocstyle lint
+      run: make pydocstyle
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+    - name: Cache pip
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('requirements_dev.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+          ${{ runner.os }}-
+    - name: Install dependencies
+      run: pip install -r requirements_dev.txt
+    - name: Build and test
+      run: |
+        export DJANGO_SETTINGS_MODULE=iati.settings.test
+        psql -c "CREATE DATABASE travisci;" -U postgres
+        python manage.py makemigrations_translation
+        python manage.py migrate_translation --no-input
+        python manage.py collectstatic
+        python manage.py runserver &
+        make test
