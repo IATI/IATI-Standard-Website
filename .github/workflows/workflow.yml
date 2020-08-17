@@ -6,12 +6,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: flake8 lint
-      run: make flake8
-    - name: pylint
-      run: make pylint
-    - name: pydocstyle lint
-      run: make pydocstyle
     - name: Setup Python
       uses: actions/setup-python@v2
       with:
@@ -26,6 +20,12 @@ jobs:
           ${{ runner.os }}-
     - name: Install dependencies
       run: pip install -r requirements_dev.txt
+    - name: flake8 lint
+      run: make flake8
+    - name: pylint
+      run: make pylint
+    - name: pydocstyle lint
+      run: make pydocstyle
     - name: Build and test
       run: |
         export DJANGO_SETTINGS_MODULE=iati.settings.test
