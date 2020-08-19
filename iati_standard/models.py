@@ -358,10 +358,6 @@ class AbstractGithubPage(DefaultPageHeaderImageMixin, AbstractContentPage):
             for guidance_type in guidance_types:
                 StandardGuidanceTypes.objects.create(page=self, guidance_type=guidance_type.strip())
 
-        all_metas = soup.findAll("meta")
-        for all_meta in all_metas:
-            all_meta.decompose()
-        self.data = str(soup)
         self.ssot_root_slug = self.ssot_path.split("/")[0]
         super(AbstractGithubPage, self).save(*args, **kwargs)
 
