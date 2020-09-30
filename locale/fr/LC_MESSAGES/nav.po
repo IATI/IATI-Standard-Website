@@ -1,0 +1,238 @@
+
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2020-09-30 16:59+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: fr\n"
+"Language-Team: fr <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.8.0\n"
+
+#. navigation.primarymenulinks.1.label_fr.
+msgid "About"
+msgstr "À propos"
+
+#. navigation.primarymenulinks.2.label_fr.
+msgid "IATI Standard"
+msgstr "Norme de l’IITA"
+
+#. navigation.primarymenulinks.3.label_fr.
+msgid "Using Data"
+msgstr "Utilisation des données"
+
+#. navigation.primarymenulinks.4.label_fr.
+msgid "Tools & Resources"
+msgstr "Outils & Ressources"
+
+#. navigation.primarymenulinks.5.label_fr.
+msgid "Guidance & Support"
+msgstr "Conseils et assistance"
+
+#. navigation.primarymenulinks.6.label_fr.
+msgid "Get Involved"
+msgstr ""
+
+#. navigation.primarymenulinks.7.label_fr.
+msgid "Governance"
+msgstr ""
+
+#. navigation.primarymenulinks.1.meganav.#960b44b4-87c3-44f4-b257-bf8996a87536/value/highlight/description_en
+msgid "Our work involves making data on development and humanitarian spending and projects easier to access, use and understand. Organisations publish information according to the rules and guidance set out in the IATI Standard and this data is freely available and open to anyone in the world."
+msgstr "L’Initiative internationale pour la transparence de l’aide (IITA) œuvre à rendre les données relatives aux dépenses humanitaires et de développement plus accessibles, plus faciles d’utilisation et plus compréhensibles. La norme de l’IITA établit les règles et orientations que doivent suivre les organisations signataires concernant la publication de leurs informations. Ces directives sont rendues disponibles à tous gratuitement."
+
+#. navigation.primarymenulinks.1.meganav.#960b44b4-87c3-44f4-b257-bf8996a87536/value/columns#66addc9f-7e48-48f1-8d83-b0784e894cc0/value/title_en
+msgid "Introduction to IATI"
+msgstr "Présentation de l’IITA"
+
+#. navigation.primarymenulinks.1.meganav.#960b44b4-87c3-44f4-b257-bf8996a87536/value/columns#66addc9f-7e48-48f1-8d83-b0784e894cc0/value/description_en
+msgid "Read basic information about our initiative."
+msgstr "Informations essentielles sur l’Initiative"
+
+#. navigation.primarymenulinks.1.meganav.#960b44b4-87c3-44f4-b257-bf8996a87536/value/columns#4f1b0775-a35d-4f5d-9fbd-1d45039d439a/value/title_en
+msgid "Case studies"
+msgstr "Études de cas"
+
+#. navigation.primarymenulinks.1.meganav.#960b44b4-87c3-44f4-b257-bf8996a87536/value/columns#4f1b0775-a35d-4f5d-9fbd-1d45039d439a/value/description_en
+msgid "See how IATI data is used to improve decisions and accountability."
+msgstr "Comment les données de l’IITA servent à améliorer la prise de décisions et la responsabilité."
+
+#. navigation.primarymenulinks.2.meganav.#eafa4a95-682e-4011-ac93-3e7f95a76042/value/highlight/description_en
+msgid "The IATI Standard is a set of rules and guidance on how to publish useful development and humanitarian data. Find out the full range of data included in the IATI Standard and more about its technical format."
+msgstr "La norme de l’IITA est un ensemble de règles et d’orientations portant sur la marche à suivre pour publier des données au service du développement et de l’action humanitaire. Découvrez toutes les données auxquelles la norme de l’IITA s’applique ainsi que les détails de son format technique."
+
+#. navigation.primarymenulinks.2.meganav.#eafa4a95-682e-4011-ac93-3e7f95a76042/value/columns#9645f022-f6a9-48a1-a4be-799b9271ef79/value/title_en
+msgid "Using the reference site"
+msgstr "Utilisation du guide de référence"
+
+#. navigation.primarymenulinks.2.meganav.#eafa4a95-682e-4011-ac93-3e7f95a76042/value/columns#9645f022-f6a9-48a1-a4be-799b9271ef79/value/description_en
+msgid "IATI Reference is an ‘instruction manual’ giving details of all the ‘parts’ you’ll need to build your datafiles."
+msgstr "Le guide de référence de l’IITA tient lieu de notice d’utilisation et décrit tout ce dont vous avez besoin pour constituer vos fichiers de données."
+
+#. navigation.primarymenulinks.2.meganav.#eafa4a95-682e-4011-ac93-3e7f95a76042/value/columns#5b97ec7e-2d79-40ae-920a-2102287e3b9e/value/title_en
+msgid "Standard documentation"
+msgstr "Documentation de l'IITA"
+
+#. navigation.primarymenulinks.2.meganav.#eafa4a95-682e-4011-ac93-3e7f95a76042/value/columns#5b97ec7e-2d79-40ae-920a-2102287e3b9e/value/description_en
+msgid "Find details of all the elements and attributes that can be included in IATI data."
+msgstr ""
+
+#. navigation.primarymenulinks.2.meganav.#eafa4a95-682e-4011-ac93-3e7f95a76042/value/columns#42b2e10f-7985-465a-9750-cd3d8ef653bc/value/title_en
+msgid "Developer documentation"
+msgstr "Documentation pour les développeurs"
+
+#. navigation.primarymenulinks.2.meganav.#eafa4a95-682e-4011-ac93-3e7f95a76042/value/columns#42b2e10f-7985-465a-9750-cd3d8ef653bc/value/description_en
+msgid "Explore how IATI data and the schema can be imported and used in different platforms."
+msgstr ""
+
+#. navigation.primarymenulinks.3.meganav.#b35e83de-9ddf-49e4-ac3f-310149f18d3f/value/highlight/description_en
+msgid "IATI data can be an invaluable resource for anyone searching for information on development or humanitarian spending and projects."
+msgstr "Les données de l’IITA peuvent se révéler précieuses pour les personnes à la recherche d’informations sur les dépenses ou les projets humanitaires et de développement."
+
+#. navigation.primarymenulinks.3.meganav.#b35e83de-9ddf-49e4-ac3f-310149f18d3f/value/columns#7d89d52d-13c4-450c-a044-3501e388eab2/value/description_en
+msgid "A multi-stakeholder group of IATI community members who oversee the delivery of IATI's Data Use Fund."
+msgstr ""
+
+#. navigation.primarymenulinks.4.meganav.#a271b646-2777-448b-bae3-e0f21ce3b184/value/highlight/description_en
+msgid "IATI data can be accessed through various online tools and platforms providing different visualisations and formats. Users are encouraged to find the tool that best meets their data needs."
+msgstr "Les données de l’IITA sont accessibles en ligne par le biais de nombreux canaux et plateformes aux visuels et aux formats différents. Les utilisateurs sont encouragés à trouver l’outil qui leur convient le mieux pour satisfaire leurs besoins en matière de données."
+
+#. navigation.primarymenulinks.4.meganav.#a271b646-2777-448b-bae3-e0f21ce3b184/value/columns#eca9e3dd-6eea-4c86-ad69-238560fd75b9/value/description_en
+msgid "Search key data on development and humanitarian activities presented in charts, graphs and maps. Recommended for users who are new to IATI."
+msgstr "Parcourez des tableaux, des graphiques et des cartes afin de consulter des données clés portant sur les activités humanitaires et de développement. Recommandé pour les utilisateurs qui viennent de rejoindre l’IITA."
+
+#. navigation.primarymenulinks.4.meganav.#a271b646-2777-448b-bae3-e0f21ce3b184/value/columns#eca9e3dd-6eea-4c86-ad69-238560fd75b9/value/link_label_en
+msgid "Visit d-portal"
+msgstr "d-portal.org"
+
+#. navigation.primarymenulinks.4.meganav.#a271b646-2777-448b-bae3-e0f21ce3b184/value/columns#00129fca-3e4a-4929-8926-1616f69835fb/value/description_en
+msgid "Search and download a wide range of IATI data in CSV, JSON and XML formats. Use the API or user-friendly Query Builder to build complex searches."
+msgstr "Consultez et téléchargez une large gamme de données de l’IITA aux formats CSV, JSON et XML. Utilisez l’interface de programmation ou le générateur de requêtes ergonomique pour effectuer des recherches complexes."
+
+#. navigation.primarymenulinks.4.meganav.#a271b646-2777-448b-bae3-e0f21ce3b184/value/columns#00129fca-3e4a-4929-8926-1616f69835fb/value/link_label_en
+msgid "Visit Datastore"
+msgstr "Banque de données de l’IITA"
+
+#. navigation.primarymenulinks.4.meganav.#a271b646-2777-448b-bae3-e0f21ce3b184/value/columns#e10031a1-91ec-4a97-9b74-bfbcd136573e/value/description_en
+msgid "Check if your data files align with the rules and guidance of the IATI Standard. Run checks on data files published by all other organisations."
+msgstr "Vérifiez que vos fichiers de données sont conformes aux règles et orientations de la norme de l’IITA. Effectuez des contrôles sur les fichiers de données publiés par toutes les autres organisations."
+
+#. navigation.primarymenulinks.4.meganav.#a271b646-2777-448b-bae3-e0f21ce3b184/value/columns#e10031a1-91ec-4a97-9b74-bfbcd136573e/value/link_label_en
+msgid "Visit Validator"
+msgstr "Outil de validation de l’IITA"
+
+#. navigation.primarymenulinks.4.meganav.#a271b646-2777-448b-bae3-e0f21ce3b184/value/columns#3af9bf5d-63c0-4e03-8cd9-aa788d413a24/value/title_en
+msgid "Additional IATI tools"
+msgstr "Outils supplémentaires de l’IITA"
+
+#. navigation.primarymenulinks.5.meganav.#b9fc004f-81a1-4a16-b214-97c6a4b6ca31/value/highlight/description_en
+msgid "Find out how to publish data to the IATI Standard and improve your data by using our publishing guidance."
+msgstr "Découvrez comment publier vos données conformément à la norme de l’IITA et améliorez-les grâce à notre guide de publication."
+
+#. navigation.primarymenulinks.5.meganav.#b9fc004f-81a1-4a16-b214-97c6a4b6ca31/value/columns#8a306cfc-ea82-41e1-8d61-95dd9cd3d28a/value/title_en
+msgid "Standard overview"
+msgstr "Présentation de la norme IATI"
+
+#. navigation.primarymenulinks.5.meganav.#b9fc004f-81a1-4a16-b214-97c6a4b6ca31/value/columns#8a306cfc-ea82-41e1-8d61-95dd9cd3d28a/value/description_en
+msgid "Understand what data you can publish to IATI."
+msgstr "Comprendre quelles données vous pouvez publier sur l'IITA"
+
+#. navigation.primarymenulinks.5.meganav.#b9fc004f-81a1-4a16-b214-97c6a4b6ca31/value/columns#f35e18a6-765d-44cc-ab6c-d0d441fdfd54/value/title_en
+msgid "Publishing guidance"
+msgstr "Publication de vos données"
+
+#. navigation.primarymenulinks.5.meganav.#b9fc004f-81a1-4a16-b214-97c6a4b6ca31/value/columns#f35e18a6-765d-44cc-ab6c-d0d441fdfd54/value/description_en
+msgid "Understand how to create, check and publish your IATI files."
+msgstr "Apprenez à créer, vérifier et publier vos fichiers IITA."
+
+#. navigation.primarymenulinks.5.meganav.#b9fc004f-81a1-4a16-b214-97c6a4b6ca31/value/columns#1d0e768e-8cd7-4221-947b-476f8299eabd/value/title_en
+msgid "Standard guidance"
+msgstr "Conseils sur la norme de l'IITA"
+
+#. navigation.primarymenulinks.5.meganav.#b9fc004f-81a1-4a16-b214-97c6a4b6ca31/value/columns#1d0e768e-8cd7-4221-947b-476f8299eabd/value/description_en
+msgid "Find guides on to how interpret specific areas of the IATI Standard."
+msgstr "Guides sur la façon d'interpréter les domaines de la norme de l'IITA."
+
+#. navigation.primarymenulinks.5.meganav.#b9fc004f-81a1-4a16-b214-97c6a4b6ca31/value/columns#89e41604-cf69-48b1-a6b5-0588a488fd9e/value/title_en
+msgid "Get Support"
+msgstr "Obtenir de l'aide"
+
+#. navigation.primarymenulinks.5.meganav.#b9fc004f-81a1-4a16-b214-97c6a4b6ca31/value/columns#89e41604-cf69-48b1-a6b5-0588a488fd9e/value/description_en
+msgid "Contact the IATI Helpdesk with questions about using and publishing IATI data, and other technical enquiries."
+msgstr "Aide à la publication de données suivant la norme de l’IITA et autres demandes techniques."
+
+#. navigation.primarymenulinks.6.meganav.#e97f854c-93e9-4f6c-ae2e-a7c3ae49601d/value/highlight/description_en
+msgid "Find out how to join IATI as a member, engage with IATI’s community and access useful resources about the initiative."
+msgstr "L’IITA est soutenue par une communauté mondiale de professionnels du développement et du secteur humanitaire, de militants en faveur de la transparence, d’experts en matière de données et de spécialistes techniques."
+
+#. navigation.primarymenulinks.6.meganav.#e97f854c-93e9-4f6c-ae2e-a7c3ae49601d/value/columns#3cf373f1-88a8-4758-9c0f-3c938245ada7/value/description_en
+msgid "Join IATI Discuss, our online community forum."
+msgstr "Rejoignez Discuss, notre forum communautaire en ligne."
+
+#. navigation.primarymenulinks.6.meganav.#e97f854c-93e9-4f6c-ae2e-a7c3ae49601d/value/columns#3cf373f1-88a8-4758-9c0f-3c938245ada7/value/link_label_en
+msgid "Visit Discuss"
+msgstr "Découvrez le forum Discuss de l’IITA"
+
+#. navigation.primarymenulinks.6.meganav.#e97f854c-93e9-4f6c-ae2e-a7c3ae49601d/value/columns#5ac8e090-6fdc-4e4e-a3bd-9c31deb67a47/value/description_en
+#. navigation.primarymenulinks.7.meganav.#bccaa7ef-3193-44c0-b1aa-7a8c118c347c/value/columns#f3e4449e-01c9-4734-adee-983738b040e8/value/description_en
+msgid "Discover the benefits of joining IATI as a member."
+msgstr ""
+
+#. navigation.primarymenulinks.6.meganav.#e97f854c-93e9-4f6c-ae2e-a7c3ae49601d/value/columns#5ac8e090-6fdc-4e4e-a3bd-9c31deb67a47/value/link_label_en
+msgid "Join IATI"
+msgstr ""
+
+#. navigation.primarymenulinks.6.meganav.#e97f854c-93e9-4f6c-ae2e-a7c3ae49601d/value/columns#e5219e82-ebe5-4dfa-a805-5d7f70672e8b/value/description_en
+msgid "Access custom presentation materials on IATI."
+msgstr ""
+
+#. navigation.primarymenulinks.6.meganav.#e97f854c-93e9-4f6c-ae2e-a7c3ae49601d/value/columns#e5219e82-ebe5-4dfa-a805-5d7f70672e8b/value/link_label_en
+msgid "Learn more"
+msgstr ""
+
+#. navigation.primarymenulinks.7.meganav.#bccaa7ef-3193-44c0-b1aa-7a8c118c347c/value/highlight/description_en
+msgid "IATI is governed and funded by our members and run by the Governing Board and Secretariat."
+msgstr "L’IITA est financée et dirigée par ses membres à travers son Conseil d’administration et son Secrétariat."
+
+#. navigation.primarymenulinks.7.meganav.#bccaa7ef-3193-44c0-b1aa-7a8c118c347c/value/columns#4a39a43d-7da7-49b9-86be-186edcad9807/value/description_en
+msgid "Meet the Governing Board and Secretariat and understand their roles and responsibilities."
+msgstr "Découvrez les membres du Conseil d’administration et du Secrétariat, leurs rôles et leurs responsabilités."
+
+#. navigation.primarymenulinks.7.meganav.#bccaa7ef-3193-44c0-b1aa-7a8c118c347c/value/columns#4a39a43d-7da7-49b9-86be-186edcad9807/value/link_label_en
+msgid "Governing Board and Secretariat"
+msgstr "Conseil d’administration et Secrétariat"
+
+#. navigation.primarymenulinks.7.meganav.#bccaa7ef-3193-44c0-b1aa-7a8c118c347c/value/columns#f3e4449e-01c9-4734-adee-983738b040e8/value/link_label_en
+msgid "List of members"
+msgstr "Liste des membres"
+
+#. navigation.utilitymenulinks.1.label_fr.
+msgid "News"
+msgstr "Actualités"
+
+#. navigation.utilitymenulinks.2.label_fr.
+msgid "Events"
+msgstr "Événements"
+
+#. navigation.utilitymenulinks.3.label_fr.
+#. navigation.usefullinksmenu.1.label_fr.
+msgid "Contact"
+msgstr "Contact"
+
+#. navigation.usefullinksmenu.2.label_fr.
+msgid "Privacy policy"
+msgstr "Politique de confidentialité"
+
+#. navigation.usefullinksmenu.3.label_fr.
+msgid "Translation FAQs"
+msgstr "Questions fréquentes concernant la traduction"
+
+#. navigation.usefullinksmenu.4.label_fr.
+msgid "Data removal"
+msgstr ""
+
