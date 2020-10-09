@@ -1,0 +1,238 @@
+
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2020-09-30 16:59+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.8.0\n"
+
+#. navigation.primarymenulinks.1.label_en.
+msgid "About"
+msgstr "About"
+
+#. navigation.primarymenulinks.2.label_en.
+msgid "IATI Standard"
+msgstr "IATI Standard"
+
+#. navigation.primarymenulinks.3.label_en.
+msgid "Using Data"
+msgstr "Using Data"
+
+#. navigation.primarymenulinks.4.label_en.
+msgid "Tools & Resources"
+msgstr "Tools & Resources"
+
+#. navigation.primarymenulinks.5.label_en.
+msgid "Guidance & Support"
+msgstr "Guidance & Support"
+
+#. navigation.primarymenulinks.6.label_en.
+msgid "Get Involved"
+msgstr "Get Involved"
+
+#. navigation.primarymenulinks.7.label_en.
+msgid "Governance"
+msgstr "Governance"
+
+#. navigation.primarymenulinks.1.meganav.#960b44b4-87c3-44f4-b257-bf8996a87536/value/highlight/description_en
+msgid "Our work involves making data on development and humanitarian spending and projects easier to access, use and understand. Organisations publish information according to the rules and guidance set out in the IATI Standard and this data is freely available and open to anyone in the world."
+msgstr "Our work involves making data on development and humanitarian spending and projects easier to access, use and understand. Organisations publish information according to the rules and guidance set out in the IATI Standard and this data is freely available and open to anyone in the world."
+
+#. navigation.primarymenulinks.1.meganav.#960b44b4-87c3-44f4-b257-bf8996a87536/value/columns#66addc9f-7e48-48f1-8d83-b0784e894cc0/value/title_en
+msgid "Introduction to IATI"
+msgstr "Introduction to IATI"
+
+#. navigation.primarymenulinks.1.meganav.#960b44b4-87c3-44f4-b257-bf8996a87536/value/columns#66addc9f-7e48-48f1-8d83-b0784e894cc0/value/description_en
+msgid "Read basic information about our initiative."
+msgstr "Read basic information about our initiative."
+
+#. navigation.primarymenulinks.1.meganav.#960b44b4-87c3-44f4-b257-bf8996a87536/value/columns#4f1b0775-a35d-4f5d-9fbd-1d45039d439a/value/title_en
+msgid "Case studies"
+msgstr "Case studies"
+
+#. navigation.primarymenulinks.1.meganav.#960b44b4-87c3-44f4-b257-bf8996a87536/value/columns#4f1b0775-a35d-4f5d-9fbd-1d45039d439a/value/description_en
+msgid "See how IATI data is used to improve decisions and accountability."
+msgstr "See how IATI data is used to improve decisions and accountability."
+
+#. navigation.primarymenulinks.2.meganav.#eafa4a95-682e-4011-ac93-3e7f95a76042/value/highlight/description_en
+msgid "The IATI Standard is a set of rules and guidance on how to publish useful development and humanitarian data. Find out the full range of data included in the IATI Standard and more about its technical format."
+msgstr "The IATI Standard is a set of rules and guidance on how to publish useful development and humanitarian data. Find out the full range of data included in the IATI Standard and more about its technical format."
+
+#. navigation.primarymenulinks.2.meganav.#eafa4a95-682e-4011-ac93-3e7f95a76042/value/columns#9645f022-f6a9-48a1-a4be-799b9271ef79/value/title_en
+msgid "Using the reference site"
+msgstr "Using the reference site"
+
+#. navigation.primarymenulinks.2.meganav.#eafa4a95-682e-4011-ac93-3e7f95a76042/value/columns#9645f022-f6a9-48a1-a4be-799b9271ef79/value/description_en
+msgid "IATI Reference is an ‘instruction manual’ giving details of all the ‘parts’ you’ll need to build your datafiles."
+msgstr "IATI Reference is an ‘instruction manual’ giving details of all the ‘parts’ you’ll need to build your datafiles."
+
+#. navigation.primarymenulinks.2.meganav.#eafa4a95-682e-4011-ac93-3e7f95a76042/value/columns#5b97ec7e-2d79-40ae-920a-2102287e3b9e/value/title_en
+msgid "Standard documentation"
+msgstr "Standard documentation"
+
+#. navigation.primarymenulinks.2.meganav.#eafa4a95-682e-4011-ac93-3e7f95a76042/value/columns#5b97ec7e-2d79-40ae-920a-2102287e3b9e/value/description_en
+msgid "Find details of all the elements and attributes that can be included in IATI data."
+msgstr "Find details of all the elements and attributes that can be included in IATI data."
+
+#. navigation.primarymenulinks.2.meganav.#eafa4a95-682e-4011-ac93-3e7f95a76042/value/columns#42b2e10f-7985-465a-9750-cd3d8ef653bc/value/title_en
+msgid "Developer documentation"
+msgstr "Developer documentation"
+
+#. navigation.primarymenulinks.2.meganav.#eafa4a95-682e-4011-ac93-3e7f95a76042/value/columns#42b2e10f-7985-465a-9750-cd3d8ef653bc/value/description_en
+msgid "Explore how IATI data and the schema can be imported and used in different platforms."
+msgstr "Explore how IATI data and the schema can be imported and used in different platforms."
+
+#. navigation.primarymenulinks.3.meganav.#b35e83de-9ddf-49e4-ac3f-310149f18d3f/value/highlight/description_en
+msgid "IATI data can be an invaluable resource for anyone searching for information on development or humanitarian spending and projects."
+msgstr "IATI data can be an invaluable resource for anyone searching for information on development or humanitarian spending and projects."
+
+#. navigation.primarymenulinks.3.meganav.#b35e83de-9ddf-49e4-ac3f-310149f18d3f/value/columns#7d89d52d-13c4-450c-a044-3501e388eab2/value/description_en
+msgid "A multi-stakeholder group of IATI community members who oversee the delivery of IATI's Data Use Fund."
+msgstr "A multi-stakeholder group of IATI community members who oversee the delivery of IATI's Data Use Fund."
+
+#. navigation.primarymenulinks.4.meganav.#a271b646-2777-448b-bae3-e0f21ce3b184/value/highlight/description_en
+msgid "IATI data can be accessed through various online tools and platforms providing different visualisations and formats. Users are encouraged to find the tool that best meets their data needs."
+msgstr "IATI data can be accessed through various online tools and platforms providing different visualisations and formats. Users are encouraged to find the tool that best meets their data needs."
+
+#. navigation.primarymenulinks.4.meganav.#a271b646-2777-448b-bae3-e0f21ce3b184/value/columns#eca9e3dd-6eea-4c86-ad69-238560fd75b9/value/description_en
+msgid "Search key data on development and humanitarian activities presented in charts, graphs and maps. Recommended for users who are new to IATI."
+msgstr "Search key data on development and humanitarian activities presented in charts, graphs and maps. Recommended for users who are new to IATI."
+
+#. navigation.primarymenulinks.4.meganav.#a271b646-2777-448b-bae3-e0f21ce3b184/value/columns#eca9e3dd-6eea-4c86-ad69-238560fd75b9/value/link_label_en
+msgid "Visit d-portal"
+msgstr "Visit d-portal"
+
+#. navigation.primarymenulinks.4.meganav.#a271b646-2777-448b-bae3-e0f21ce3b184/value/columns#00129fca-3e4a-4929-8926-1616f69835fb/value/description_en
+msgid "Search and download a wide range of IATI data in CSV, JSON and XML formats. Use the API or user-friendly Query Builder to build complex searches."
+msgstr "Search and download a wide range of IATI data in CSV, JSON and XML formats. Use the API or user-friendly Query Builder to build complex searches."
+
+#. navigation.primarymenulinks.4.meganav.#a271b646-2777-448b-bae3-e0f21ce3b184/value/columns#00129fca-3e4a-4929-8926-1616f69835fb/value/link_label_en
+msgid "Visit Datastore"
+msgstr "Visit Datastore"
+
+#. navigation.primarymenulinks.4.meganav.#a271b646-2777-448b-bae3-e0f21ce3b184/value/columns#e10031a1-91ec-4a97-9b74-bfbcd136573e/value/description_en
+msgid "Check if your data files align with the rules and guidance of the IATI Standard. Run checks on data files published by all other organisations."
+msgstr "Check if your data files align with the rules and guidance of the IATI Standard. Run checks on data files published by all other organisations."
+
+#. navigation.primarymenulinks.4.meganav.#a271b646-2777-448b-bae3-e0f21ce3b184/value/columns#e10031a1-91ec-4a97-9b74-bfbcd136573e/value/link_label_en
+msgid "Visit Validator"
+msgstr "Visit Validator"
+
+#. navigation.primarymenulinks.4.meganav.#a271b646-2777-448b-bae3-e0f21ce3b184/value/columns#3af9bf5d-63c0-4e03-8cd9-aa788d413a24/value/title_en
+msgid "Additional IATI tools"
+msgstr "Additional IATI tools"
+
+#. navigation.primarymenulinks.5.meganav.#b9fc004f-81a1-4a16-b214-97c6a4b6ca31/value/highlight/description_en
+msgid "Find out how to publish data to the IATI Standard and improve your data by using our publishing guidance."
+msgstr "Find out how to publish data to the IATI Standard and improve your data by using our publishing guidance."
+
+#. navigation.primarymenulinks.5.meganav.#b9fc004f-81a1-4a16-b214-97c6a4b6ca31/value/columns#8a306cfc-ea82-41e1-8d61-95dd9cd3d28a/value/title_en
+msgid "Standard overview"
+msgstr "Standard overview"
+
+#. navigation.primarymenulinks.5.meganav.#b9fc004f-81a1-4a16-b214-97c6a4b6ca31/value/columns#8a306cfc-ea82-41e1-8d61-95dd9cd3d28a/value/description_en
+msgid "Understand what data you can publish to IATI."
+msgstr "Understand what data you can publish to IATI."
+
+#. navigation.primarymenulinks.5.meganav.#b9fc004f-81a1-4a16-b214-97c6a4b6ca31/value/columns#f35e18a6-765d-44cc-ab6c-d0d441fdfd54/value/title_en
+msgid "Publishing guidance"
+msgstr "Publishing guidance"
+
+#. navigation.primarymenulinks.5.meganav.#b9fc004f-81a1-4a16-b214-97c6a4b6ca31/value/columns#f35e18a6-765d-44cc-ab6c-d0d441fdfd54/value/description_en
+msgid "Understand how to create, check and publish your IATI files."
+msgstr "Understand how to create, check and publish your IATI files."
+
+#. navigation.primarymenulinks.5.meganav.#b9fc004f-81a1-4a16-b214-97c6a4b6ca31/value/columns#1d0e768e-8cd7-4221-947b-476f8299eabd/value/title_en
+msgid "Standard guidance"
+msgstr "Standard guidance"
+
+#. navigation.primarymenulinks.5.meganav.#b9fc004f-81a1-4a16-b214-97c6a4b6ca31/value/columns#1d0e768e-8cd7-4221-947b-476f8299eabd/value/description_en
+msgid "Find guides on to how interpret specific areas of the IATI Standard."
+msgstr "Find guides on to how interpret specific areas of the IATI Standard."
+
+#. navigation.primarymenulinks.5.meganav.#b9fc004f-81a1-4a16-b214-97c6a4b6ca31/value/columns#89e41604-cf69-48b1-a6b5-0588a488fd9e/value/title_en
+msgid "Get Support"
+msgstr "Get Support"
+
+#. navigation.primarymenulinks.5.meganav.#b9fc004f-81a1-4a16-b214-97c6a4b6ca31/value/columns#89e41604-cf69-48b1-a6b5-0588a488fd9e/value/description_en
+msgid "Contact the IATI Helpdesk with questions about using and publishing IATI data, and other technical enquiries."
+msgstr "Contact the IATI Helpdesk with questions about using and publishing IATI data, and other technical enquiries."
+
+#. navigation.primarymenulinks.6.meganav.#e97f854c-93e9-4f6c-ae2e-a7c3ae49601d/value/highlight/description_en
+msgid "Find out how to join IATI as a member, engage with IATI’s community and access useful resources about the initiative."
+msgstr "Find out how to join IATI as a member, engage with IATI’s community and access useful resources about the initiative."
+
+#. navigation.primarymenulinks.6.meganav.#e97f854c-93e9-4f6c-ae2e-a7c3ae49601d/value/columns#3cf373f1-88a8-4758-9c0f-3c938245ada7/value/description_en
+msgid "Join IATI Discuss, our online community forum."
+msgstr "Join IATI Discuss, our online community forum."
+
+#. navigation.primarymenulinks.6.meganav.#e97f854c-93e9-4f6c-ae2e-a7c3ae49601d/value/columns#3cf373f1-88a8-4758-9c0f-3c938245ada7/value/link_label_en
+msgid "Visit Discuss"
+msgstr "Visit Discuss"
+
+#. navigation.primarymenulinks.6.meganav.#e97f854c-93e9-4f6c-ae2e-a7c3ae49601d/value/columns#5ac8e090-6fdc-4e4e-a3bd-9c31deb67a47/value/description_en
+#. navigation.primarymenulinks.7.meganav.#bccaa7ef-3193-44c0-b1aa-7a8c118c347c/value/columns#f3e4449e-01c9-4734-adee-983738b040e8/value/description_en
+msgid "Discover the benefits of joining IATI as a member."
+msgstr "Discover the benefits of joining IATI as a member."
+
+#. navigation.primarymenulinks.6.meganav.#e97f854c-93e9-4f6c-ae2e-a7c3ae49601d/value/columns#5ac8e090-6fdc-4e4e-a3bd-9c31deb67a47/value/link_label_en
+msgid "Join IATI"
+msgstr "Join IATI"
+
+#. navigation.primarymenulinks.6.meganav.#e97f854c-93e9-4f6c-ae2e-a7c3ae49601d/value/columns#e5219e82-ebe5-4dfa-a805-5d7f70672e8b/value/description_en
+msgid "Access custom presentation materials on IATI."
+msgstr "Access custom presentation materials on IATI."
+
+#. navigation.primarymenulinks.6.meganav.#e97f854c-93e9-4f6c-ae2e-a7c3ae49601d/value/columns#e5219e82-ebe5-4dfa-a805-5d7f70672e8b/value/link_label_en
+msgid "Learn more"
+msgstr "Learn more"
+
+#. navigation.primarymenulinks.7.meganav.#bccaa7ef-3193-44c0-b1aa-7a8c118c347c/value/highlight/description_en
+msgid "IATI is governed and funded by our members and run by the Governing Board and Secretariat."
+msgstr "IATI is governed and funded by our members and run by the Governing Board and Secretariat."
+
+#. navigation.primarymenulinks.7.meganav.#bccaa7ef-3193-44c0-b1aa-7a8c118c347c/value/columns#4a39a43d-7da7-49b9-86be-186edcad9807/value/description_en
+msgid "Meet the Governing Board and Secretariat and understand their roles and responsibilities."
+msgstr "Meet the Governing Board and Secretariat and understand their roles and responsibilities."
+
+#. navigation.primarymenulinks.7.meganav.#bccaa7ef-3193-44c0-b1aa-7a8c118c347c/value/columns#4a39a43d-7da7-49b9-86be-186edcad9807/value/link_label_en
+msgid "Governing Board and Secretariat"
+msgstr "Governing Board and Secretariat"
+
+#. navigation.primarymenulinks.7.meganav.#bccaa7ef-3193-44c0-b1aa-7a8c118c347c/value/columns#f3e4449e-01c9-4734-adee-983738b040e8/value/link_label_en
+msgid "List of members"
+msgstr "List of members"
+
+#. navigation.utilitymenulinks.1.label_en.
+msgid "News"
+msgstr "News"
+
+#. navigation.utilitymenulinks.2.label_en.
+msgid "Events"
+msgstr "Events"
+
+#. navigation.utilitymenulinks.3.label_en.
+#. navigation.usefullinksmenu.1.label_en.
+msgid "Contact"
+msgstr "Contact"
+
+#. navigation.usefullinksmenu.2.label_en.
+msgid "Privacy policy"
+msgstr "Privacy policy"
+
+#. navigation.usefullinksmenu.3.label_en.
+msgid "Translation FAQs"
+msgstr "Translation FAQs"
+
+#. navigation.usefullinksmenu.4.label_en.
+msgid "Data removal"
+msgstr "Data removal"
+
