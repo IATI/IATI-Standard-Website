@@ -1,4 +1,6 @@
-{% load responsive iati_tags i18n %} {% responsiveimage page.feed_imagewidth-1400 srcset=global.hero_feed_srcs as image %}
+{% load responsive iati_tags i18n %} 
+
+{% responsiveimage page.feed_image width-1400 srcset=global.hero_feed_srcs as image %}
 
 <div class="hero hero--image" {{ image | responsive_id }}>
   {{ image | responsive_css }}
@@ -10,7 +12,7 @@
         <span class="badge">{% trans "Past event" %}</span>
         {% elif page.date_end and page.date_start|haspassed %}
         <span class="badge">{% trans "In Progress" %}</span>
-        {% elseif page.date_start|haspassed %}
+        {% elif page.date_start|haspassed %}
         <span class="badge">{% trans "Past event" %}</span>
         {% endif %} {% endif %} {% if page.excerpt %}
         <p class="hero__{{ para_class|default:'subheading' }}">
