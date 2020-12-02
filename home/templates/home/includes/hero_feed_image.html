@@ -7,10 +7,12 @@ width-1400 srcset=global.hero_feed_srcs as image %}
     <div class="max-meter">
       <div class="hero__caption">
         <h1 class="hero__heading">{{ page.heading }}</h1>
-        {% if is_event %} {% if page.date_end|haspassed %}
+        {% if is_event %} {% if page.date_end and page.date_end|haspassed %}
         <span class="badge">{% trans "Past event" %}</span>
-        {% elif page.date_start|haspassed %}
+        {% elif page.date_end and page.date_start|haspassed %}
         <span class="badge">{% trans "In Progress" %}</span>
+        {% elseif page.date_start|haspassed %}
+        <span class="badge">{% trans "Past event" %}</span>
         {% endif %} {% endif %} {% if page.excerpt %}
         <p class="hero__{{ para_class|default:'subheading' }}">
           {{ page.excerpt|default:"" }}
