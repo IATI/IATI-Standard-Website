@@ -5,7 +5,7 @@ import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 from .base import *  # noqa: F401, F403 # pylint: disable=unused-wildcard-import, wildcard-import
 
-DEBUG = False
+DEBUG = True
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # Overwrite this variable in local.py with another unguessable string.
