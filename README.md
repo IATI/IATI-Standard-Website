@@ -1,8 +1,8 @@
 # IATI Website
+
 [![Build Status](https://travis-ci.org/IATI/IATI-Standard-Website.svg?branch=master)](https://travis-ci.org/IATI/IATI-Standard-Website)
 
-This repository hosts the new IATI website based on Django and Wagtail CMS.  A PostgreSQL database stores the underlaying content and user data.
-
+This repository hosts the new IATI website based on Django and Wagtail CMS. A PostgreSQL database stores the underlaying content and user data.
 
 ## Local Development
 
@@ -13,8 +13,12 @@ This repository hosts the new IATI website based on Django and Wagtail CMS.  A P
 
 **Important:** Ensure that native Postgres and Elasticsearch services are stopped. Docker will attempt to use these ports for its own services.
 
-
 ### Dev setup
+
+#### Docker-compose set up
+
+- Set a SECRET_KEY
+- If postgres fails to connect replace POSTGRES_PASSWORD='' with POSTGRES_HOST_AUTH_METHOD=trust
 
 Build the project. The following will build linked `web` and `postgres` containers.
 
@@ -33,6 +37,16 @@ See the status of your containers by using
 ```
 docker ps
 ```
+
+#### Copy data from live site
+
+A script is available [here](https://github.com/IATI/IATI-Internal-Wiki/blob/master/scripts/standard-website-local-sync.sh) to sync your local dev environment with the latest database and media currently on `www`'s live instance. The script will download a daily db backup from the live server and the media assets as well (NB: might take a while)
+
+1. Download the script in `IATI-Standard-Website`'s root folder
+2. Run `chmod a+x standard-website-local-sync.sh` to make it executable
+3. Run `sh standard-website-local-sync.sh` to run it
+
+#### Docker-compose commands
 
 You can interact with the `web` container directly (in this example, when running a `manage.py` command), like so:
 
@@ -64,6 +78,7 @@ docker volume ls -qf dangling=true | xargs -r docker volume rm  //remove all vol
 ```
 
 Create default pages for each of the main sections (e.g. home, about, events etc) of the website
+
 ```
 docker-compose exec web python manage.py createdefaultpages
 ```
@@ -82,26 +97,6 @@ For logging, use:
 docker-compose logs -f web
 ```
 
-## Moving from `pyenv` development environment to `docker` development environment
-
-Previous iterations of this project utilised `pyenv` for development. This included using postgres natively, and adding local database credentials to `local.py`. 
-
-* Firstly, remove the `pyenv` directory.
-
-```
-rm -r pyenv/
-```
-
-* Secondly, remove the `DATABASES` dict from `local.py` entirely. The database config is now handled in `dev.py`, and does not need user customisation.
-
-If you are receiving the following error on `web`:
-
-```
-psql: could not connect to server: Connection refused Is the server running on host "" and accepting TCP/IP connections on port 5432?
-```
-
-Follow the instructions on [this SO answer](https://stackoverflow.com/a/41161674). Your postgres configuration may need amending to listen for all addresses. Postgres will need restarting, and importantly, **your computer will require a restart** for changes to take place.
-
 ## Tests & linters
 
 Tests are run using [pytest](https://pytest.org/) as it [provides a number of benefits](https://pytest-django.readthedocs.io/en/latest/#why-would-i-use-this-instead-of-django-s-manage-py-test-command) over stock Django test approaches.
@@ -116,13 +111,15 @@ docker-compose exec web pytest
 ```
 
 Code linting is performed using [pylint](https://github.com/PyCQA/pylint) (with the [pylint-django](https://github.com/PyCQA/pylint-django) plugin), [flake8](http://flake8.pycqa.org) and [pydocstyle](http://www.pydocstyle.org).
+
 ```
 docker-compose exec web pylint .
 docker-compose exec web flake8
-docker-compose exec web pydocstyle 
+docker-compose exec web pydocstyle
 ```
 
 Alternatively, the Makefile can be used:
+
 ```
 docker-compose exec web make test
 docker-compose exec web make lint
@@ -131,3 +128,25 @@ docker-compose exec web make lint
 
 docker-compose exec web make all
 ```
+
+## Moving from `pyenv` development environment to `docker` development environment
+
+Previous iterations of this project utilised `pyenv` for development. This included using postgres natively, and adding local database credentials to `local.py`.
+
+- Firstly, remove the `pyenv` directory.
+
+```
+rm -r pyenv/
+```
+
+- Secondly, remove the `DATABASES` dict from `local.py` entirely. The database config is now handled in `dev.py`, and does not need user customisation.
+
+If you are receiving the following error on `web`:
+
+```
+psql: could not connect to server: Connection refused Is the server running on host "" and accepting TCP/IP connections on port 5432?
+```
+
+First try replacing `POSTGRES_PASSWORD=''` with `POSTGRES_HOST_AUTH_METHOD=trust` in `docker-compose.yml`
+
+Follow the instructions on [this SO answer](https://stackoverflow.com/a/41161674). Your postgres configuration may need amending to listen for all addresses. Postgres will need restarting, and importantly, **your computer will require a restart** for changes to take place.
