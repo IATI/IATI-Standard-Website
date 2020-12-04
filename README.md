@@ -38,14 +38,6 @@ See the status of your containers by using
 docker ps
 ```
 
-#### Copy data from live site
-
-A script is available [here](https://github.com/IATI/IATI-Internal-Wiki/blob/master/scripts/standard-website-local-sync.sh) to sync your local dev environment with the latest database and media currently on `www`'s live instance. The script will download a daily db backup from the live server and the media assets as well (NB: might take a while)
-
-1. Download the script in `IATI-Standard-Website`'s root folder
-2. Run `chmod a+x standard-website-local-sync.sh` to make it executable
-3. Run `sh standard-website-local-sync.sh` to run it
-
 #### Docker-compose commands
 
 You can interact with the `web` container directly (in this example, when running a `manage.py` command), like so:
