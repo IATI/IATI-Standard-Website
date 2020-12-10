@@ -4,7 +4,7 @@ import re
 from django.conf import settings
 from django.db import models
 from django import forms
-from django.contrib.staticfiles.templatetags.staticfiles import static
+from django.templatetags.static import static
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template.defaultfilters import slugify
 from wagtail.core.models import Page
