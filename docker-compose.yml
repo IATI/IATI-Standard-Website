@@ -1,5 +1,4 @@
-
-version: '3.3'
+version: "3.3"
 services:
   elasticsearch:
     image: elasticsearch:6.8.1
@@ -13,22 +12,22 @@ services:
     volumes:
       - ./:/usr/src/app
     links:
-     - postgres
-     - elasticsearch
-     - rabbitmq
+      - postgres
+      - elasticsearch
+      - rabbitmq
     ports:
-     - 80:80
+      - 80:80
     environment:
       - DATABASE_URL=postgres://postgres:@postgres:5432/postgres
       - SECRET_KEY=enter-a-long-unguessable-string-here
       - ELASTICSEARCH_URL=http://elasticsearch:9200
       - DJANGO_SETTINGS_MODULE=iati.settings.dev
   postgres:
+    image: postgres:9.6
     environment:
       - POSTGRES_PASSWORD=''
-    image: postgres:9.6
     ports:
-     - 5432:5432
+      - 5432:5432
   rabbitmq:
     image: rabbitmq:latest
     ports:
