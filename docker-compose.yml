@@ -4,11 +4,11 @@ services:
     image: elasticsearch:6.8.1
     ports:
       - "9200:9200"
+
   web:
     build:
       context: .
       dockerfile: .dockerfile
-    command: bash -c "celery -A iati worker -l info & python manage.py runserver 0.0.0.0:80"
     volumes:
       - ./:/usr/src/app
     links:
@@ -22,12 +22,7 @@ services:
       - SECRET_KEY=enter-a-long-unguessable-string-here
       - ELASTICSEARCH_URL=http://elasticsearch:9200
       - DJANGO_SETTINGS_MODULE=iati.settings.dev
-  postgres:
-    image: postgres:9.6
-    environment:
-      - POSTGRES_PASSWORD=''
-    ports:
-      - 5432:5432
+
   rabbitmq:
     image: rabbitmq:latest
     ports:
