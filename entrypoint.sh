@@ -1,6 +1,15 @@
-#!/bin/sh
-python manage.py makemigrations
-python manage.py migrate --noinput
-python manage.py update_index
-python manage.py runserver 0.0.0.0:80 --settings=iati.settings.dev
+#!/bin/bash
+set -e
+
+>&2 echo "$DATABASE_URL"
+until psql $DATABASE_URL -c '\l'; do
+  >&2 echo "Postgres is unavailable - sleeping"
+  sleep 1
+done
+
+
+python manage.py collectstatic --noinput
+python manage.py migrate
+python manage.py compilemessages
+
 exec "$@"

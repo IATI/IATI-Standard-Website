@@ -14,3 +14,11 @@ RUN pip3 install -r requirements_dev.txt
 RUN apt-get update && apt-get install -y \
         gettext \
     --no-install-recommends
+
+# Create unprivileged celery user
+RUN addgroup celery
+RUN adduser -D -g '' celery -G celery
+
+ENTRYPOINT ["/usr/src/app/docker-entrypoint.sh"]
+CMD ["gunicorn","iati.wsgi:application","--bind","0.0.0.0:5000","--workers","3"]
+
