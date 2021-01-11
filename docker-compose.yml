@@ -1,9 +1,5 @@
 version: "3.3"
 services:
-  elasticsearch:
-    image: elasticsearch:6.8.1
-    ports:
-      - "9200:9200"
 
   web:
     build:
@@ -13,14 +9,13 @@ services:
       - ./:/usr/src/app
     links:
       - postgres
-      - elasticsearch
       - rabbitmq
     ports:
       - 80:80
     environment:
       - DATABASE_URL=postgres://postgres:@postgres:5432/postgres
       - SECRET_KEY=enter-a-long-unguessable-string-here
-      - ELASTICSEARCH_URL=http://elasticsearch:9200
+      - ELASTICSEARCH_URL=http://localhost:9200
       - DJANGO_SETTINGS_MODULE=iati.settings.dev
 
   rabbitmq:
