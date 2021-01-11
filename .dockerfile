@@ -5,15 +5,24 @@ ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONIOENCODING utf_8
 
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
-COPY requirements.txt /usr/src/app/
-COPY requirements_dev.txt /usr/src/app/
-RUN pip3 install -r requirements_dev.txt
+# For psycopg
+RUN apk add postgresql-client && \
+    set -ex \
+	&& apk add gcc \
+		g++ \
+		make \
+		libc-dev \
+		musl-dev \
+		linux-headers \
+		pcre-dev \
+		postgresql-dev \
+		git
 
-RUN apt-get update && apt-get install -y \
-        gettext \
-    --no-install-recommends
+RUN apk add python3-dev
+
+RUN apk add --no-cache jpeg-dev zlib-dev
+RUN apk add --no-cache postgresql-dev
+RUN apk add --no-cache libmemcached-dev zlib-dev
 
 # Elasticsearch from https://github.com/blacktop/docker-elasticsearch-alpine/blob/master/6.8/Dockerfile
 
@@ -66,6 +75,18 @@ RUN apk add --no-cache -t .build-deps wget ca-certificates gnupg openssl \
 
 COPY config/elastic /usr/share/elasticsearch/config
 COPY config/elastic/logrotate /etc/logrotate.d/elasticsearch
+
+# Web app dependencies
+
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+COPY requirements.txt /usr/src/app/
+COPY requirements_dev.txt /usr/src/app/
+RUN pip3 install -r requirements_dev.txt
+
+RUN apt-get update && apt-get install -y \
+        gettext \
+    --no-install-recommends
 
 # Create unprivileged celery user
 RUN addgroup celery
