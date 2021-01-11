@@ -8,7 +8,6 @@ services:
     volumes:
       - ./:/usr/src/app
     links:
-      - postgres
       - rabbitmq
     ports:
       - 80:80
