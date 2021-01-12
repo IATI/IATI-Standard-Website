@@ -84,9 +84,7 @@ COPY requirements.txt /usr/src/app/
 COPY requirements_dev.txt /usr/src/app/
 RUN pip3 install -r requirements_dev.txt
 
-RUN apt-get update && apt-get install -y \
-        gettext \
-    --no-install-recommends
+RUN apk add --no-cache gettext
 
 # Create unprivileged celery user
 RUN addgroup celery
