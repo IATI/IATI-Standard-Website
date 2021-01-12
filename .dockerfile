@@ -82,6 +82,7 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY requirements.txt /usr/src/app/
 COPY requirements_dev.txt /usr/src/app/
+COPY entrypoint.sh /usr/src/app/
 RUN pip3 install -r requirements_dev.txt
 
 RUN apk add --no-cache gettext
@@ -90,6 +91,6 @@ RUN apk add --no-cache gettext
 RUN addgroup celery
 RUN adduser -D -g '' celery -G celery
 
-ENTRYPOINT ["/usr/src/app/docker-entrypoint.sh"]
+ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
 CMD ["gunicorn","iati.wsgi:application","--bind","0.0.0.0:5000","--workers","3"]
 
