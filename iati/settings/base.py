@@ -20,7 +20,7 @@ PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 ADMINS = (
-    ('Russell Kirkland', 'russell@mashandgravy.co.uk'),
+    ('Alex Miller', 'alex.miller@devinit.org'),
 )
 
 SECRET_KEY = 'enter-a-long-unguessable-string-here'
@@ -557,7 +557,7 @@ RECAPTCHA_DEFAULT_ACTION = 'contact'
 RECAPTCHA_SCORE_THRESHOLD = float(os.getenv('RECAPTCHA_SCORE_THRESHOLD', 0.5))
 
 # Celery settings
-CELERY_BROKER_URL = os.getenv('RABBITMQ_URL', 'amqp://rabbitmq:5672')
+CELERY_BROKER_URL = os.getenv('RABBITMQ_URL', 'amqp://localhost:5672')
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
