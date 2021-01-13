@@ -18,7 +18,6 @@ This repository hosts the new IATI website based on Django and Wagtail CMS. A Po
 #### Docker-compose set up
 
 - Set a SECRET_KEY
-- If postgres fails to connect replace POSTGRES_PASSWORD='' with POSTGRES_HOST_AUTH_METHOD=trust
 
 Build the project. The following will build linked `web` and `postgres` containers.
 
