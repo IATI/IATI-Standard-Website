@@ -16,5 +16,7 @@ services:
       - RABBITMQ_URL=amqp://localhost:5672
     links:
       - postgres
+    ports:
+      - 5000:5000
     volumes:
       - ./:/usr/src/app
