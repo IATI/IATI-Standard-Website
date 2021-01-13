@@ -1,13 +1,17 @@
-FROM python:3.7.6-alpine
+FROM rabbitmq:3.8.9-alpine
 
 ENV LANG en_US.UTF-8
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONIOENCODING utf_8
 
+RUN apk update
+RUN apk add --no-cache bash
+
 # Init engine
 
 RUN apk add --no-cache openrc
+COPY config/rabbit/rabbitmq-server.service /etc/init.d/rabbitmq-server.service
 
 # For psycopg + celery
 RUN apk add postgresql-client && \
@@ -22,9 +26,14 @@ RUN apk add postgresql-client && \
 		postgresql-dev \
 		git
 
+RUN apk add python3-dev
 
-RUN apk update && \
-    apk add build-base python3 python3-dev libffi-dev libressl-dev && \
+RUN apk add --no-cache python3 py3-pip && \
+ if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
+ if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi
+
+
+RUN apk add build-base libffi-dev libressl-dev && \
     ln -sf /usr/bin/python3 /usr/bin/python && \
     ln -sf /usr/bin/pip3 usr/bin/pip && \
     pip install --upgrade pip
@@ -45,7 +54,6 @@ ENV EXPECTED_SHA_URL "${DOWNLOAD_URL}/elasticsearch-oss-${VERSION}.tar.gz.sha512
 ENV ES_TARBALL_SHA "e06b3486585e67f1e34e4268834b6625de6c4dcc380b15551306f42b02b5b2a0997fa2c26e82d965e6040cbf2367f399d4802e881fc649972382c895fa925573"
 ENV GPG_KEY "46095ACC8548582C1A2699A9D27D666CD88E42B4"
 # https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-oss-6.3.0.zip
-RUN apk add --no-cache bash
 RUN apk add --no-cache -t .build-deps wget ca-certificates gnupg openssl \
   && set -ex \
   && cd /tmp \
@@ -106,6 +114,8 @@ RUN addgroup celery
 RUN adduser -D -g '' celery -G celery
 COPY config/celery/default/celeryd /etc/default/celeryd
 COPY config/celery/init.d/celeryd /etc/init.d/celeryd
+
+EXPOSE 5000
 
 ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
 CMD ["gunicorn","iati.wsgi:application","--bind","0.0.0.0:5000","--workers","3"]

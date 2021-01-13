@@ -1,27 +1,20 @@
 version: "3.3"
 services:
 
+  postgres:
+    image: postgres:9.6
+    ports:
+      - 5432:5432
   web:
     build:
       context: .
-      dockerfile: .dockerfile
-    volumes:
-      - ./:/usr/src/app
-    links:
-      - rabbitmq
-    ports:
-      - 80:80
     environment:
       - DATABASE_URL=postgres://postgres:@postgres:5432/postgres
       - SECRET_KEY=enter-a-long-unguessable-string-here
       - ELASTICSEARCH_URL=http://localhost:9200
       - DJANGO_SETTINGS_MODULE=iati.settings.dev
-
-  rabbitmq:
-    image: rabbitmq:latest
-    ports:
-      - 4369:4369
-      - 5671:5671
-      - 5672:5672
-      - 15672:15672
-    restart: always
+      - RABBITMQ_URL=amqp://localhost:5672
+    links:
+      - postgres
+    volumes:
+      - ./:/usr/src/app
