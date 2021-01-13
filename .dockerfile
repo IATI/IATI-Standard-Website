@@ -84,6 +84,7 @@ RUN apk add --no-cache -t .build-deps wget ca-certificates gnupg openssl \
 
 COPY config/elastic/elasticsearch.yml /usr/share/elasticsearch/config/elasticsearch.yml
 COPY config/elastic/log4j2.properties /usr/share/elasticsearch/config/log4j2.properties
+
 COPY config/elastic/logrotate /etc/logrotate.d/elasticsearch
 COPY config/elastic/elasticsearch.service /etc/init.d/elasticsearch.service
 
@@ -97,6 +98,8 @@ COPY entrypoint.sh /usr/src/app/
 RUN pip3 install -r requirements_dev.txt
 
 RUN apk add --no-cache gettext
+
+RUN chmod 775 /usr/src/app
 
 # Celery
 RUN addgroup celery
