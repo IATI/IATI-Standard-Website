@@ -8,8 +8,11 @@ set -e
 # done
 
 
-python manage.py collectstatic --noinput
-python manage.py migrate
-python manage.py compilemessages
+# python manage.py collectstatic --noinput
+# python manage.py migrate
+# python manage.py compilemessages
+
+rc-service elasticsearch.service start
+rc-service celeryd start
 
 exec "$@"

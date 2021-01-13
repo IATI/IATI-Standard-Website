@@ -5,7 +5,11 @@ ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONIOENCODING utf_8
 
-# For psycopg
+# Init engine
+
+RUN apk add --no-cache openrc
+
+# For psycopg + celery
 RUN apk add postgresql-client && \
     set -ex \
 	&& apk add gcc \
@@ -18,7 +22,12 @@ RUN apk add postgresql-client && \
 		postgresql-dev \
 		git
 
-RUN apk add python3-dev
+
+RUN apk update && \
+    apk add build-base python3 python3-dev libffi-dev libressl-dev && \
+    ln -sf /usr/bin/python3 /usr/bin/python && \
+    ln -sf /usr/bin/pip3 usr/bin/pip && \
+    pip install --upgrade pip
 
 RUN apk add --no-cache jpeg-dev zlib-dev
 RUN apk add --no-cache postgresql-dev
@@ -73,8 +82,10 @@ RUN apk add --no-cache -t .build-deps wget ca-certificates gnupg openssl \
   && rm -rf /tmp/* \
   && apk del --purge .build-deps
 
-COPY config/elastic /usr/share/elasticsearch/config
+COPY config/elastic/elasticsearch.yml /usr/share/elasticsearch/config/elasticsearch.yml
+COPY config/elastic/log4j2.properties /usr/share/elasticsearch/config/log4j2.properties
 COPY config/elastic/logrotate /etc/logrotate.d/elasticsearch
+COPY config/elastic/elasticsearch.service /etc/init.d/elasticsearch.service
 
 # Web app dependencies
 
@@ -87,9 +98,11 @@ RUN pip3 install -r requirements_dev.txt
 
 RUN apk add --no-cache gettext
 
-# Create unprivileged celery user
+# Celery
 RUN addgroup celery
 RUN adduser -D -g '' celery -G celery
+COPY config/celery/default/celeryd /etc/default/celeryd
+COPY config/celery/init.d/celeryd /etc/init.d/celeryd
 
 ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
 CMD ["gunicorn","iati.wsgi:application","--bind","0.0.0.0:5000","--workers","3"]
