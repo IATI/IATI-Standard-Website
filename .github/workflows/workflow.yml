@@ -22,10 +22,10 @@ jobs:
           docker-compose up -d
           while ! echo exit | nc localhost 5000; do sleep 10; done
       - name: flake8 lint
-        run: docker-compose exec make flake8
+        run: docker-compose exec web make flake8
       - name: pylint
-        run: docker-compose exec make pylint
+        run: docker-compose exec web make pylint
       - name: pydocstyle lint
-        run: docker-compose exec make pydocstyle
+        run: docker-compose exec web make pydocstyle
       - name: pytest
-        run: docker-compose exec make test
+        run: docker-compose exec web make test
