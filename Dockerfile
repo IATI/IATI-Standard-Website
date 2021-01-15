@@ -28,12 +28,12 @@ RUN apk add postgresql-client && \
 
 RUN apk add python3-dev
 
-RUN mkdir -p /var/lib/rabbitmq/.cache/pip && apk add --no-cache python3 py3-pip && \
+RUN apk add --no-cache python3 py3-pip && \
  if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
  if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi
 
 
-RUN apk add build-base libffi-dev libressl-dev && \
+RUN mkdir -p /var/lib/rabbitmq/.cache/pip && apk add build-base libffi-dev libressl-dev && \
     ln -sf /usr/bin/python3 /usr/bin/python && \
     ln -sf /usr/bin/pip3 usr/bin/pip && \
     pip install --upgrade pip
