@@ -14,46 +14,18 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres
-        env:
-          POSTGRES_PASSWORD: postgres
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        ports:
-          - 5432:5432
     steps:
       - uses: actions/checkout@v2
-      - name: Setup Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: "3.x"
-      - name: Cache pip
-        uses: actions/cache@v2
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('requirements_dev.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-            ${{ runner.os }}-
-      - name: Install dependencies
-        run: pip install -r requirements_dev.txt
-      - name: flake8 lint
-        run: make flake8
-      - name: pylint
-        run: make pylint
-      - name: pydocstyle lint
-        run: make pydocstyle
-      - name: Build and test
+      - name: Setup docker-compose
         run: |
-          export DATABASE_URL=postgres://postgres:postgres@localhost:5432/postgres
-          export DJANGO_SETTINGS_MODULE=iati.settings.test
-          python manage.py makemigrations_translation
-          python manage.py migrate_translation --no-input
-          python manage.py collectstatic
-          python manage.py runserver &
-          make test
+          docker-compose build
+          docker-compose up -d
+          while ! echo exit | nc localhost 5000; do sleep 10; done
+      - name: flake8 lint
+        run: docker-compose exec make flake8
+      - name: pylint
+        run: docker-compose exec make pylint
+      - name: pydocstyle lint
+        run: docker-compose exec make pydocstyle
+      - name: pytest
+        run: docker-compose exec make test
