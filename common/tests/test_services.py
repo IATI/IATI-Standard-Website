@@ -1,3 +1,4 @@
+"""Module of common tests."""
 import pytest
 from django.core.management import call_command
 from common.tasks import multiplication_test
@@ -32,14 +33,14 @@ def es_events():
 
 @pytest.fixture
 def task_result(django_db_blocker):
+    """Fixture to setup celery task outside of blocker."""
     with django_db_blocker.unblock():
         task_result = multiplication_test.delay(4, 4).get(timeout=10) == 16
     return task_result
 
 
-
 class TestServices():
-    """Tests Celery, Rabbit, and ElasticSearch services via updating index."""
+    """Test Celery, Rabbit, and ElasticSearch services via updating index."""
 
     @pytest.mark.timeout(10)
     def test_run_task(self, task_result):
