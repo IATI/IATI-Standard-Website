@@ -52,6 +52,14 @@ if APPLICATIONINSIGHTS_CONNECTION_STRING:
         },
     }
 
+AZURE_ACCOUNT_NAME = os.environ.get('AZURE_ACCOUNT_NAME', None)
+
+if AZURE_ACCOUNT_NAME:
+    AZURE_ACCOUNT_KEY = os.environ.get('AZURE_ACCOUNT_KEY', None)
+    AZURE_CONTAINER = os.environ.get('AZURE_CONTAINER', None)
+    DEFAULT_FILE_STORAGE = 'storages.backends.azure_storage.AzureStorage'
+    STATICFILES_STORAGE = 'storages.backends.azure_storage.AzureStorage'
+
 try:
     from .local import *  # # noqa: F401, F403  # pylint: disable=unused-wildcard-import, wildcard-import
 except ImportError:
