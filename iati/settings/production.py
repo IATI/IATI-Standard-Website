@@ -30,6 +30,27 @@ if SENTRY_DSN:
         integrations=[DjangoIntegration()]
     )
 
+APPLICATIONINSIGHTS_CONNECTION_STRING = os.environ.get('APPLICATIONINSIGHTS_CONNECTION_STRING', None)
+
+if APPLICATIONINSIGHTS_CONNECTION_STRING:
+    LOGGING = {
+        "handlers": {
+            "azure": {
+                "level": "DEBUG",
+            "class": "opencensus.ext.azure.log_exporter.AzureLogHandler",
+                "instrumentation_key": APPLICATIONINSIGHTS_CONNECTION_STRING,
+            },
+            "console": {
+                "level": "DEBUG",
+                "class": "logging.StreamHandler",
+                "stream": sys.stdout,
+            },
+        },
+        "loggers": {
+            "logger_name": {"handlers": ["azure", "console"]},
+        },
+    }
+
 try:
     from .local import *  # # noqa: F401, F403  # pylint: disable=unused-wildcard-import, wildcard-import
 except ImportError:
