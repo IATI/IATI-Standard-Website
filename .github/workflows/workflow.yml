@@ -17,19 +17,19 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Pull static images
-        run: docker-compose pull
+        run: docker-compose -f docker-compose.dev.yml pull
       - uses: satackey/action-docker-layer-caching@v0.0.11
         continue-on-error: true
       - name: Setup docker-compose
         run: |
-          docker-compose build
-          docker-compose up -d
+          docker-compose -f docker-compose.dev.yml build
+          docker-compose -f docker-compose.dev.yml up -d
           while ! echo exit | nc localhost 5000; do sleep 10; done
       - name: flake8 lint
-        run: docker-compose exec -T web make flake8
+        run: docker-compose -f docker-compose.dev.yml exec -T web make flake8
       - name: pylint
-        run: docker-compose exec -T web make pylint
+        run: docker-compose -f docker-compose.dev.yml exec -T web make pylint
       - name: pydocstyle lint
-        run: docker-compose exec -T web make pydocstyle
+        run: docker-compose -f docker-compose.dev.yml exec -T web make pydocstyle
       - name: pytest
-        run: docker-compose exec -T web make test
+        run: docker-compose -f docker-compose.dev.yml exec -T web make test
