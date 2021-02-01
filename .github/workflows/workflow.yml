@@ -42,3 +42,36 @@ jobs:
         run: docker-compose -f docker-compose.dev.yml exec -T web make pydocstyle
       - name: pytest
         run: docker-compose -f docker-compose.dev.yml exec -T web make test
+
+  deploy:
+    needs: [build]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/develop'
+    env:
+      TAG: ${{ github.sha }}
+      STAGE: dev
+      NAME: aci-iati-website
+    steps:
+      - name: "Login to azure"
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+      - name: "Build and push image"
+      - run: |
+          docker build -f Dockerfile_deploy . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/$STAGE-$NAME:$TAG
+          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/$STAGE-$NAME:$TAG
+      - name: "Deploy to Azure Container Instances"
+        uses: "azure/aci-deploy@v1.1"
+        with:
+          secure-environment-variables: DJANGO_SETTINGS_MODULE=iati.settings.dev SECRET_KEY=${{ secrets.DEV_SECRET_KEY }} DATABASE_URL=${{ secrets.DEV_DATABASE_URL }} APPLICATIONINSIGHTS_CONNECTION_STRING=${{ secrets.DEV_APPLICATIONINSIGHTS_CONNECTION_STRING }} AZURE_ACCOUNT_NAME=${{ secrets.DEV_AZURE_ACCOUNT_NAME }} AZURE_ACCOUNT_KEY=${{ secrets.DEV_AZURE_ACCOUNT_KEY }} AZURE_CONTAINER=${{ secrets.DEV_AZURE_CONTAINER }}
+          resource-group: ${{ secrets.RESOURCE_GROUP }}
+          dns-name-label: ${{ env.STAGE }}-${{ env.NAME }} # url subdomain: dns-name-label.location.azurecontainer.io/
+          image: ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}
+          registry-login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+          registry-username: ${{ secrets.REGISTRY_USERNAME }}
+          registry-password: ${{ secrets.REGISTRY_PASSWORD }}
+          name: ${{ env.STAGE }}-${{ env.NAME }}
+          location: "uksouth"
+          ports: 5000

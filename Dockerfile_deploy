@@ -1,0 +1,34 @@
+FROM iati-standard-website_web:latest
+
+COPY about /usr/src/app/
+COPY common /usr/src/app/
+COPY contact /usr/src/app/
+COPY dashboard /usr/src/app/
+COPY events /usr/src/app/
+COPY get_involved /usr/src/app/
+COPY governance /usr/src/app/
+COPY guidance_and_support /usr/src/app/
+COPY home /usr/src/app/
+COPY iati /usr/src/app/
+COPY iati_standard /usr/src/app/
+COPY locale /usr/src/app/
+COPY modeltranslation_sync /usr/src/app/
+COPY navigation /usr/src/app/
+COPY news /usr/src/app/
+COPY notices /usr/src/app/
+COPY patterns /usr/src/app/
+COPY search /usr/src/app/
+COPY taxonomies /usr/src/app/
+COPY testimonials /usr/src/app/
+COPY tools /usr/src/app/
+COPY using_data /usr/src/app/
+COPY __init__.py /usr/src/app/
+COPY .pylintrc /usr/src/app/
+COPY entrypoint.sh /usr/src/app/
+COPY Makefile /usr/src/app/
+COPY manage.py /usr/src/app/
+COPY pytest.ini /usr/src/app/
+COPY setup.cfg /usr/src/app/
+
+ENV ELASTICSEARCH_URL=http://localhost:9200
+ENV RABBITMQ_URL=amqp://localhost:5672
