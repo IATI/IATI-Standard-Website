@@ -14,10 +14,8 @@
                             <a class="button" href="{{ child.value.button_url }}">{{ child.value.button_text }}</a>
                         {% endif %}
                     </div>
-                    <div class="l-2up__col">
-                        <div class="media-video-wrapper">
-                            {% responsiveimage child.value.image max-700x700 srcset=global.case_study_srcs alt=child.value.image.title width='auto' height='auto' loading='auto' %}
-                        </div>
+                    <div class="l-2up__col media-figure">
+                        {% responsiveimage child.value.image max-700x700 srcset=global.media_floated_srcs alt=child.value.image.title width='auto' height='auto' loading='auto' %}
                     </div>
                 </div>
             {% else %}
