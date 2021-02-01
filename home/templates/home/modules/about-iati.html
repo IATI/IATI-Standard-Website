@@ -1,7 +1,7 @@
 {% load wagtailembeds_tags %}
 
-<div class="row">
-    <div class="section-alt-top section-alt-bottom">
+<div {% if alt %}class="section-alt-top section-alt-bottom"{% else %}class="section"{% endif %}>
+    <div class="row">
         <h2 class="section__heading">{{ page.about_iati_title }}</h2>
         {% if page.about_iati_video %}
             <div class="l-2up">

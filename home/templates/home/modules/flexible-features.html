@@ -1,0 +1,33 @@
+{% load wagtailcore_tags responsive %}
+
+{% for child in page.flexible_features %}
+    <div class="{% cycle 'section-alt' 'section' %}">
+        <div class="row">
+            <h2 class="section__heading">{{ child.value.title }}</h2>
+            {% if child.value.image %}
+                <div class="l-2up">
+                    <div class="l-2up__col">
+                        <div class="is-typeset is-typeset--article">
+                            {{ child.value.description|richtext }}
+                        </div>
+                        {% if child.value.button_url %}
+                            <a class="button" href="{{ child.value.button_url }}">{{ child.value.button_text }}</a>
+                        {% endif %}
+                    </div>
+                    <div class="l-2up__col">
+                        <div class="media-video-wrapper">
+                            {% responsiveimage child.value.image max-700x700 srcset=global.case_study_srcs alt=child.value.image.title width='auto' height='auto' loading='auto' %}
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="is-typeset is-typeset--article is-typeset--columns">
+                    {{ child.value.description|richtext }}
+                </div>
+                {% if child.value.button_url %}
+                    <a class="button" href="{{ child.value.button_url }}">{{ child.value.button_text }}</a>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+{% endfor %}

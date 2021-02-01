@@ -1,6 +1,6 @@
 {% load responsive %}
 
-<div class="section section-alt-bottom">
+<div {% if not notalt %}class="section-alt-top section-alt-bottom"{% else %}class="section"{% endif %}>
     <div class="row">
         <h2 class="section__heading">{{ page.iati_in_action_title }}</h2>
         {% if page.iati_in_action_description %}
