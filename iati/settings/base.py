@@ -21,6 +21,9 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 ADMINS = (
     ('Alex Miller', 'alex.miller@devinit.org'),
+    ('Nik Osvalds', 'nik.osvalds@devinit.org'),
+    ('Alex Lydiate', 'alexl@devinit.org'),
+    ('IATI Code', 'code@iatistandard.org'),
 )
 
 SECRET_KEY = 'enter-a-long-unguessable-string-here'
