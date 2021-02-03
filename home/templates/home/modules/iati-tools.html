@@ -1,7 +1,7 @@
 {% load responsive i18n tool_utils %}
 
-<div {% if alt %}class="section-alt-top section-alt-bottom"{% else %}class="section"{% endif %}>
-    <div class="row">
+<div class="row">
+    <div class="section-alt">
         <h2 class="section__heading">{{ page.iati_tools_title }}</h2>
         {% if page.iati_tools_description %}
             <div class="max-meter is-typeset is-typeset--article">

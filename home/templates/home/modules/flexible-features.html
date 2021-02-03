@@ -1,7 +1,7 @@
 {% load wagtailcore_tags responsive %}
 
 {% for child in page.flexible_features %}
-    <div class="{% cycle 'section-alt' 'section' %}">
+    <div class="{% cycle 'section' 'section-alt' %}">
         <div class="row">
             <h2 class="section__heading">{{ child.value.title }}</h2>
             {% if child.value.image %}

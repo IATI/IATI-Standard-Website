@@ -11,9 +11,9 @@
 {% block content %}
     {% include 'home/modules/statistics.html' %}
     {% include 'home/modules/getting-started.html' %}
+    {% include 'home/modules/about-iati.html' %}
+    {% include 'home/modules/iati-in-action.html' %}
+    {% include 'home/modules/iati-tools.html' %}
     {% include 'home/modules/flexible-features.html' %}
-    {% include 'home/modules/about-iati.html' with alt=page.flexible_features|length|divisibleby:2 %}
-    {% include 'home/modules/iati-in-action.html' with notalt=page.flexible_features|length|divisibleby:2 %}
-    {% include 'home/modules/iati-tools.html' with alt=page.flexible_features|length|divisibleby:2 %}
-    {% include 'home/modules/news-tweets.html' with notalt=page.flexible_features|length|divisibleby:2 %}
+    {% include 'home/modules/news-tweets.html' with alt=page.flexible_features|length|divisibleby:2 %}
 {% endblock %}
