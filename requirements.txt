@@ -19,7 +19,6 @@ opencensus-ext-azure==1.0.7
 PyGithub==1.43.8
 psycopg2-binary==2.8.5
 requests==2.25.0
-sentry-sdk==0.14.3
 wagtail-modeltranslation==0.10.13
 wagtail==2.9.3
 Wand==0.5.9

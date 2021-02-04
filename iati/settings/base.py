@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import sys
 import dj_database_url
 
 # Mark language names as translation strings
@@ -587,33 +588,31 @@ CELERY_RESULT_SERIALIZER = 'json'
 GITHUB_TOKEN = os.getenv('GITHUB_TOKEN')
 
 # Blob storage
-AZURE_ACCOUNT_NAME = os.getenv('AZURE_ACCOUNT_NAME', None)
+AZURE_ACCOUNT_NAME = os.getenv('AZURE_ACCOUNT_NAME')
 
 if AZURE_ACCOUNT_NAME:
-    AZURE_ACCOUNT_KEY = os.getenv('AZURE_ACCOUNT_KEY', None)
-    AZURE_CONTAINER = os.getenv('AZURE_CONTAINER', None)
+    AZURE_ACCOUNT_KEY = os.getenv('AZURE_ACCOUNT_KEY')
+    AZURE_CONTAINER = os.getenv('AZURE_CONTAINER')
     DEFAULT_FILE_STORAGE = 'storages.backends.azure_storage.AzureStorage'
     STATICFILES_STORAGE = 'storages.backends.azure_storage.AzureStorage'
 
 # App insights
 
-APPLICATIONINSIGHTS_CONNECTION_STRING = os.getenv('APPLICATIONINSIGHTS_CONNECTION_STRING', None)
+APPLICATIONINSIGHTS_CONNECTION_STRING = os.getenv('APPLICATIONINSIGHTS_CONNECTION_STRING')
 
 if APPLICATIONINSIGHTS_CONNECTION_STRING:
     LOGGING = {
+        "version": 1,
+        "disable_existing_loggers": False,
         "handlers": {
             "azure": {
                 "level": "DEBUG",
                 "class": "opencensus.ext.azure.log_exporter.AzureLogHandler",
-                "instrumentation_key": APPLICATIONINSIGHTS_CONNECTION_STRING,
-            },
-            "console": {
-                "level": "DEBUG",
-                "class": "logging.StreamHandler",
-                "stream": sys.stdout,
-            },
+                "connection_string": APPLICATIONINSIGHTS_CONNECTION_STRING,
+            }
         },
-        "loggers": {
-            "logger_name": {"handlers": ["azure", "console"]},
-        },
+        "root": {
+            "handlers": ["azure"],
+            "level": "DEBUG",
+        }
     }

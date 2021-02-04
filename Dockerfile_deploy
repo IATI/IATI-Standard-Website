@@ -30,6 +30,5 @@ COPY manage.py /usr/src/app/manage.py
 COPY pytest.ini /usr/src/app/pytest.init
 COPY setup.cfg /usr/src/app/setup.cfg
 
-ENV DJANGO_SETTINGS_MODULE=iati.settings.production
 ENV ELASTICSEARCH_URL=http://localhost:9200
 ENV RABBITMQ_URL=amqp://localhost:5672

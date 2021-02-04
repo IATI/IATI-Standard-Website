@@ -118,5 +118,5 @@ COPY config/celery/init.d/celeryd /etc/init.d/celeryd
 EXPOSE 5000
 
 ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
-CMD ["gunicorn","iati.wsgi:application","--bind","0.0.0.0:5000","--workers","3"]
+CMD ["gunicorn","iati.wsgi:application","--bind","0.0.0.0:5000","--workers","3", "--timeout","120"]
 

@@ -5,7 +5,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile_deploy
+    image: 'iati-standard-website_web_deploy'
     environment:
+      - DJANGO_SETTINGS_MODULE=iati.settings.dev
       - SECRET_KEY
       - DATABASE_NAME
       - DATABASE_USER
