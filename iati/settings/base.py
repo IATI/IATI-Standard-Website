@@ -585,3 +585,35 @@ CELERY_RESULT_SERIALIZER = 'json'
 # Github settings
 
 GITHUB_TOKEN = os.getenv('GITHUB_TOKEN')
+
+# Blob storage
+AZURE_ACCOUNT_NAME = os.getenv('AZURE_ACCOUNT_NAME', None)
+
+if AZURE_ACCOUNT_NAME:
+    AZURE_ACCOUNT_KEY = os.getenv('AZURE_ACCOUNT_KEY', None)
+    AZURE_CONTAINER = os.getenv('AZURE_CONTAINER', None)
+    DEFAULT_FILE_STORAGE = 'storages.backends.azure_storage.AzureStorage'
+    STATICFILES_STORAGE = 'storages.backends.azure_storage.AzureStorage'
+
+# App insights
+
+APPLICATIONINSIGHTS_CONNECTION_STRING = os.getenv('APPLICATIONINSIGHTS_CONNECTION_STRING', None)
+
+if APPLICATIONINSIGHTS_CONNECTION_STRING:
+    LOGGING = {
+        "handlers": {
+            "azure": {
+                "level": "DEBUG",
+                "class": "opencensus.ext.azure.log_exporter.AzureLogHandler",
+                "instrumentation_key": APPLICATIONINSIGHTS_CONNECTION_STRING,
+            },
+            "console": {
+                "level": "DEBUG",
+                "class": "logging.StreamHandler",
+                "stream": sys.stdout,
+            },
+        },
+        "loggers": {
+            "logger_name": {"handlers": ["azure", "console"]},
+        },
+    }
