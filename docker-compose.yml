@@ -4,12 +4,14 @@ services:
   web:
     build:
       context: .
+      dockerfile: Dockerfile_deploy
     environment:
-      - DJANGO_SETTINGS_MODULE=iati.settings.production
-      - ELASTICSEARCH_URL=http://localhost:9200
-      - RABBITMQ_URL=amqp://localhost:5672
       - SECRET_KEY
-      - DATABASE_URL
+      - DATABASE_NAME
+      - DATABASE_USER
+      - DATABASE_PASS
+      - DATABASE_HOST
+      - DATABASE_PORT
       - APPLICATIONINSIGHTS_CONNECTION_STRING
       - AZURE_ACCOUNT_NAME
       - AZURE_ACCOUNT_KEY

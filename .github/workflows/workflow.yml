@@ -64,7 +64,18 @@ jobs:
       - name: "Deploy to Azure Container Instances"
         uses: "azure/aci-deploy@v1.1"
         with:
-          secure-environment-variables: DJANGO_SETTINGS_MODULE=iati.settings.dev SECRET_KEY=${{ secrets.DEV_SECRET_KEY }} DATABASE_URL=${{ secrets.DEV_DATABASE_URL }} APPLICATIONINSIGHTS_CONNECTION_STRING=${{ secrets.DEV_APPLICATIONINSIGHTS_CONNECTION_STRING }} AZURE_ACCOUNT_NAME=${{ secrets.DEV_AZURE_ACCOUNT_NAME }} AZURE_ACCOUNT_KEY=${{ secrets.DEV_AZURE_ACCOUNT_KEY }} AZURE_CONTAINER=${{ secrets.DEV_AZURE_CONTAINER }}
+          secure-environment-variables: |
+            DJANGO_SETTINGS_MODULE=iati.settings.dev
+            SECRET_KEY=${{ secrets.DEV_SECRET_KEY }}
+            DATABASE_NAME=${{ secrets.DEV_DATABASE_NAME }}
+            DATABASE_USER=${{ secrets.DEV_DATABASE_USER }}
+            DATABASE_PASS=${{ secrets.DEV_DATABASE_PASS }}
+            DATABASE_HOST=${{ secrets.DEV_DATABASE_HOST }}
+            DATABASE_PORT=${{ secrets.DEV_DATABASE_PORT }}
+            APPLICATIONINSIGHTS_CONNECTION_STRING=${{ secrets.DEV_APPLICATIONINSIGHTS_CONNECTION_STRING }}
+            AZURE_ACCOUNT_NAME=${{ secrets.DEV_AZURE_ACCOUNT_NAME }}
+            AZURE_ACCOUNT_KEY=${{ secrets.DEV_AZURE_ACCOUNT_KEY }}
+            AZURE_CONTAINER=${{ secrets.DEV_AZURE_CONTAINER }}
           resource-group: ${{ secrets.RESOURCE_GROUP }}
           dns-name-label: ${{ env.STAGE }}-${{ env.NAME }} # url subdomain: dns-name-label.location.azurecontainer.io/
           image: ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}
