@@ -17,7 +17,6 @@ jobs:
     env:
       DOCKER_BUILDKIT: '1'
     steps:
-      - run: echo ${{github.ref}}
       - uses: actions/checkout@v2
       - name: Pull static images
         run: docker-compose -f docker-compose.dev.yml pull
@@ -46,7 +45,7 @@ jobs:
   deploy:
     needs: [build]
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/feature/gateway-ify'
+    if: github.ref == 'refs/pull/531/merge'
     env:
       TAG: ${{ github.sha }}
       STAGE: dev
