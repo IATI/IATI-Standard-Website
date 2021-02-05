@@ -47,10 +47,19 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/pull/531/merge'
     env:
+      DOCKER_BUILDKIT: '1'
       TAG: ${{ github.sha }}
       STAGE: dev
       NAME: aci-iati-website
     steps:
+      - uses: actions/checkout@v2
+      - id: cache-docker
+        uses: actions/cache@v2
+        with:
+          path: /tmp/docker-registry
+          key: docker-registry-buildkit-${{ hashFiles('Dockerfile') }}
+      - run: docker run -d -p 5000:5000 --restart=always --name registry -v /tmp/docker-registry:/var/lib/registry registry:2 && npx wait-on tcp:5000
+      - run: docker build . -t iati-standard-website_web:latest --cache-from=localhost:5000/iati-standard-website_web --build-arg BUILDKIT_INLINE_CACHE=1
       - name: "Login to azure"
         uses: azure/docker-login@v1
         with:
@@ -59,8 +68,8 @@ jobs:
           password: ${{ secrets.REGISTRY_PASSWORD }}
       - name: "Build and push image"
         run: |
-          docker build -f Dockerfile_deploy . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/$STAGE-$NAME:$TAG
-          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/$STAGE-$NAME:$TAG
+          docker build -f Dockerfile_deploy . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}
+          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}
       - name: "Deploy to Azure Container Instances"
         uses: "azure/aci-deploy@v1.1"
         with:
