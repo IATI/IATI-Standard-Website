@@ -603,15 +603,27 @@ if APPLICATIONINSIGHTS_CONNECTION_STRING:
     LOGGING = {
         "version": 1,
         "disable_existing_loggers": False,
+        "formatters": {
+            "default": {
+                "format": "%(asctime)s - %(levelname)s - %(processName)s - %(name)s\n%(message)s",
+            },
+        },
         "handlers": {
             "azure": {
-                "level": "DEBUG",
                 "class": "opencensus.ext.azure.log_exporter.AzureLogHandler",
+                "formatter":"default",
                 "connection_string": APPLICATIONINSIGHTS_CONNECTION_STRING,
-            }
+            },
+            "console": {
+                "class": "logging.StreamHandler",
+                "formatter": "default",
+            },
         },
-        "root": {
-            "handlers": ["azure"],
-            "level": "DEBUG",
+        "loggers": {
+            "": {
+                "handlers": ["azure", "console"],
+                "level":"DEBUG",
+                "propagate": True
+            },
         }
     }
