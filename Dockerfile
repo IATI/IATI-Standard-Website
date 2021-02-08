@@ -103,8 +103,7 @@ WORKDIR /usr/src/app
 COPY requirements.txt /usr/src/app/
 COPY requirements_dev.txt /usr/src/app/
 COPY entrypoint.sh /usr/src/app/
-RUN apk add openssl-dev cargo
-ENV PATH=/usr/local/cargo/bin:$PATH
+ENV PATH=$HOME/.cargo/bin:$PATH
 
 RUN set -eux; \
     apk add --no-cache \
@@ -116,11 +115,10 @@ RUN set -eux; \
     chmod +x rustup-init; \
     ./rustup-init -y --no-modify-path --default-toolchain nightly; \
     rm rustup-init; \
-    chmod -R a+w /usr/local/rustup /usr/local/cargo; \
     rustup --version; \
     cargo --version; \
-    rustc --version;
-RUN mkdir -p /var/lib/rabbitmq/.cache/pip && pip3 install -r requirements_dev.txt
+    rustc --version; \
+    mkdir -p /var/lib/rabbitmq/.cache/pip && pip3 install -r requirements_dev.txt
 
 RUN apk add --no-cache gettext
 
