@@ -611,7 +611,7 @@ if APPLICATIONINSIGHTS_CONNECTION_STRING:
         "handlers": {
             "azure": {
                 "class": "opencensus.ext.azure.log_exporter.AzureLogHandler",
-                "formatter":"default",
+                "formatter": "default",
                 "connection_string": APPLICATIONINSIGHTS_CONNECTION_STRING,
             },
             "console": {
@@ -622,7 +622,7 @@ if APPLICATIONINSIGHTS_CONNECTION_STRING:
         "loggers": {
             "": {
                 "handlers": ["azure", "console"],
-                "level":"DEBUG",
+                "level": "DEBUG",
                 "propagate": True
             },
         }
