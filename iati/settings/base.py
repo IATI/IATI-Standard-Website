@@ -112,6 +112,7 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'iati.custom_middleware.RedirectIATISites',
     'iati.custom_middleware.LowercaseMiddleware',
+    'opencensus.ext.django.middleware.OpencensusMiddleware',
 ]
 
 ROOT_URLCONF = 'iati.urls'
@@ -619,11 +620,11 @@ if APPLICATIONINSIGHTS_CONNECTION_STRING:
                 "formatter": "default",
             },
         },
-        "loggers": {
-            "": {
-                "handlers": ["azure", "console"],
-                "level": "DEBUG",
-                "propagate": True
+        'loggers': {
+            'django': {
+                'handlers': ["azure", "console"],
+                'level': "DEBUG",
+                'propagate': True,
             },
-        }
+        },
     }
