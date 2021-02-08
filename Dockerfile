@@ -103,7 +103,8 @@ WORKDIR /usr/src/app
 COPY requirements.txt /usr/src/app/
 COPY requirements_dev.txt /usr/src/app/
 COPY entrypoint.sh /usr/src/app/
-RUN mkdir -p /var/lib/rabbitmq/.cache/pip && pip install --upgrade pip && pip3 install -r requirements_dev.txt
+RUN apk add openssl-dev cargo
+RUN mkdir -p /var/lib/rabbitmq/.cache/pip && pip3 install -r requirements_dev.txt
 
 RUN apk add --no-cache gettext
 
