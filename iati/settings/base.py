@@ -623,8 +623,17 @@ if APPLICATIONINSIGHTS_CONNECTION_STRING:
         'loggers': {
             'django': {
                 'handlers': ["azure", "console"],
-                'level': "DEBUG",
+                'level': "INFO",
                 'propagate': True,
             },
         },
+    }
+
+    OPENCENSUS = {
+        'TRACE': {
+            'SAMPLER': 'opencensus.trace.samplers.ProbabilitySampler(rate=1)',
+            'EXPORTER': '''opencensus.ext.azure.trace_exporter.AzureExporter(
+                connection_string="{}"
+            )'''.format(APPLICATIONINSIGHTS_CONNECTION_STRING),
+        }
     }
