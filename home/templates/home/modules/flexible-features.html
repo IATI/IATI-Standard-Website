@@ -14,8 +14,8 @@
                             <a class="button" href="{{ child.value.button_url }}">{{ child.value.button_text }}</a>
                         {% endif %}
                     </div>
-                    <div class="l-2up__col media-figure">
-                        {% responsiveimage child.value.image max-700x700 srcset=global.media_floated_srcs alt=child.value.image.title width='auto' height='auto' loading='auto' %}
+                    <div class="l-2up__col media-figure media-figure--center">
+                        {% responsiveimage child.value.image max-320x200 srcset=global.media_floated_srcs sizes=global.media_floated_sizes alt=child.value.image.title width='auto' height='auto' loading='auto' %}
                     </div>
                 </div>
             {% else %}
