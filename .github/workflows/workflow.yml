@@ -90,7 +90,6 @@ jobs:
             --registry-username "${{ secrets.REGISTRY_USERNAME }}" \
             --ports 5000 \
             --location uksouth \
-            --dns-name-label "${{ env.STAGE }}-${{ env.NAME }}" \
             --secure-environment-variables \
               DJANGO_SETTINGS_MODULE="iati.settings.dev" \
               SECRET_KEY="${{ secrets.DEV_SECRET_KEY }}" \
