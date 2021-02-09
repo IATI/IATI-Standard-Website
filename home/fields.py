@@ -1,6 +1,25 @@
 from django.db import models
 from django.utils.functional import cached_property
 from common.utils import ForeignKeyField, get_selected_or_fallback
+from wagtail.core.blocks import StructBlock, StreamBlock, CharBlock, RichTextBlock, URLBlock
+from wagtail.core.fields import StreamField
+from wagtail.images.blocks import ImageChooserBlock
+
+
+class HomePageFeature(StructBlock):
+    """Block class for flexible home page features."""
+
+    title = CharBlock(icon="title", classname="title", help_text="Feature title.")
+    description = RichTextBlock()
+    image = ImageChooserBlock(required=False)
+    button_text = CharBlock(required=False, help_text="Button text.")
+    button_url = URLBlock(required=False, help_text="Button URL.")
+
+
+class FlexibleFeatures(StreamBlock):
+    """A block for holding flexible home page features."""
+
+    feature = HomePageFeature()
 
 
 class HomeFieldsMixin(models.Model):
@@ -26,6 +45,7 @@ class HomeFieldsMixin(models.Model):
         max_length=255,
         help_text='Title for the getting started section',
     )
+    flexible_features = StreamField(FlexibleFeatures(required=False), null=True, blank=True)
     about_iati_title = models.CharField(
         max_length=255,
         help_text='Title for the about IATI section',
