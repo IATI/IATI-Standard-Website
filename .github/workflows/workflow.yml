@@ -75,32 +75,35 @@ jobs:
           docker build -f Dockerfile_deploy . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}
           docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}
       - name: "Deploy to Azure Container Instances"
-        uses: "azure/aci-deploy@v1.1"
+        uses: "azure/CLI@v1"
         with:
-          secure-environment-variables: |
-            DJANGO_SETTINGS_MODULE=iati.settings.dev
-            SECRET_KEY=${{ secrets.DEV_SECRET_KEY }}
-            DATABASE_NAME=${{ secrets.DEV_DATABASE_NAME }}
-            DATABASE_USER=${{ secrets.DEV_DATABASE_USER }}
-            DATABASE_PASS=${{ secrets.DEV_DATABASE_PASS }}
-            DATABASE_HOST=${{ secrets.DEV_DATABASE_HOST }}
-            DATABASE_PORT=${{ secrets.DEV_DATABASE_PORT }}
-            APPLICATIONINSIGHTS_CONNECTION_STRING=${{ secrets.DEV_APPLICATIONINSIGHTS_CONNECTION_STRING }}
-            AZURE_ACCOUNT_NAME=${{ secrets.DEV_AZURE_ACCOUNT_NAME }}
-            AZURE_ACCOUNT_KEY=${{ secrets.DEV_AZURE_ACCOUNT_KEY }}
-            AZURE_CONTAINER=${{ secrets.DEV_AZURE_CONTAINER }}
-            ZENDESK_CAPTCHA_FIELD_ID=${{ secrets.ZENDESK_CAPTCHA_FIELD_ID }}
-            ZENDESK_SUSPICIOUS_FIELD_ID=${{ secrets.ZENDESK_SUSPICIOUS_FIELD_ID }}
-            RECAPTCHA_PUBLIC_KEY=${{ secrets.RECAPTCHA_PUBLIC_KEY }}
-            RECAPTCHA_PRIVATE_KEY=${{ secrets.RECAPTCHA_PRIVATE_KEY }}
-          resource-group: ${{ secrets.RESOURCE_GROUP }}
-          vnet: ${{ secrets.DEV_VNET }}
-          subset: default
-          dns-name-label: ${{ env.STAGE }}-${{ env.NAME }} # url subdomain: dns-name-label.location.azurecontainer.io/
-          image: ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}
-          registry-login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
-          registry-username: ${{ secrets.REGISTRY_USERNAME }}
-          registry-password: ${{ secrets.REGISTRY_PASSWORD }}
-          name: ${{ env.STAGE }}-${{ env.NAME }}
-          location: "ukwest"
-          ports: 5000
+          azcliversion: 2.0.72
+          inlineScript: |
+            az container create \
+            --resource-group "${{ secrets.RESOURCE_GROUP }}" \
+            --name "${{ env.STAGE }}-${{ env.NAME }}" \
+            --image "${{ secrets.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}" \
+            --vnet "${{ secrets.DEV_VNET }}" \
+            --subnet "${{ secrets.DEV_SUBNET }}" \
+            --registry-login-server "${{ secrets.REGISTRY_LOGIN_SERVER }}" \
+            --registry-password "${{ secrets.REGISTRY_PASSWORD }}" \
+            --registry-username "${{ secrets.REGISTRY_USERNAME }}" \
+            --ports 5000 \
+            --location uksouth \
+            --dns-name-label "${{ env.STAGE }}-${{ env.NAME }}" \
+            --secure-environment-variables \
+              DJANGO_SETTINGS_MODULE="iati.settings.dev" \
+              SECRET_KEY="${{ secrets.DEV_SECRET_KEY }}" \
+              DATABASE_NAME="${{ secrets.DEV_DATABASE_NAME }}" \
+              DATABASE_USER="${{ secrets.DEV_DATABASE_USER }}" \
+              DATABASE_PASS="${{ secrets.DEV_DATABASE_PASS }}" \
+              DATABASE_HOST="${{ secrets.DEV_DATABASE_HOST }}" \
+              DATABASE_PORT="${{ secrets.DEV_DATABASE_PORT }}" \
+              APPLICATIONINSIGHTS_CONNECTION_STRING="${{ secrets.DEV_APPLICATIONINSIGHTS_CONNECTION_STRING }}" \
+              AZURE_ACCOUNT_NAME="${{ secrets.DEV_AZURE_ACCOUNT_NAME }}" \
+              AZURE_ACCOUNT_KEY="${{ secrets.DEV_AZURE_ACCOUNT_KEY }}" \
+              AZURE_CONTAINER="${{ secrets.DEV_AZURE_CONTAINER }}" \
+              ZENDESK_CAPTCHA_FIELD_ID="${{ secrets.ZENDESK_CAPTCHA_FIELD_ID }}" \
+              ZENDESK_SUSPICIOUS_FIELD_ID="${{ secrets.ZENDESK_SUSPICIOUS_FIELD_ID }}" \
+              RECAPTCHA_PUBLIC_KEY="${{ secrets.RECAPTCHA_PUBLIC_KEY }}" \
+              RECAPTCHA_PRIVATE_KEY="${{ secrets.RECAPTCHA_PRIVATE_KEY }}"
