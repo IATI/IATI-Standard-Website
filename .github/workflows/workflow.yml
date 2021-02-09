@@ -94,11 +94,13 @@ jobs:
             RECAPTCHA_PUBLIC_KEY=${{ secrets.RECAPTCHA_PUBLIC_KEY }}
             RECAPTCHA_PRIVATE_KEY=${{ secrets.RECAPTCHA_PRIVATE_KEY }}
           resource-group: ${{ secrets.RESOURCE_GROUP }}
+          vnet: ${{ secrets.DEV_VNET }}
+          subset: default
           dns-name-label: ${{ env.STAGE }}-${{ env.NAME }} # url subdomain: dns-name-label.location.azurecontainer.io/
           image: ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}
           registry-login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
           registry-username: ${{ secrets.REGISTRY_USERNAME }}
           registry-password: ${{ secrets.REGISTRY_PASSWORD }}
           name: ${{ env.STAGE }}-${{ env.NAME }}
-          location: "uksouth"
+          location: "ukwest"
           ports: 5000
