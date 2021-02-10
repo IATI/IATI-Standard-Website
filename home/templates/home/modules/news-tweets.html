@@ -1,6 +1,6 @@
 {% load static responsive i18n %}
 
-<div class="section">
+<div {% if not notalt %}class="section-alt-top section-alt-bottom"{% else %}class="section"{% endif %}>
     <div class="row">
         <h2 class="section__heading">{{ page.latest_news_title }}</h2>
         <div class="l-2up">

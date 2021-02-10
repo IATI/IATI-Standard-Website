@@ -290,6 +290,7 @@ class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage): 
         'about_iati_title',
         'about_iati_description',
         'about_iati_video',
+        'flexible_features',
         'about_iati_link_label',
         'iati_in_action_title',
         'iati_in_action_description',
@@ -302,6 +303,7 @@ class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage): 
     optional_local_translation_fields = [
         'header_video',
         'about_iati_video',
+        'flexible_features',
         'iati_in_action_description',
         'iati_tools_description',
     ]
