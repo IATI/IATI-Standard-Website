@@ -3,6 +3,8 @@ import requests
 import io
 import os
 from zipfile import ZipFile
+from django.core.files.base import ContentFile
+from django.core.files.storage import default_storage
 from django.core.management import call_command
 from django.conf import settings
 from django.utils.text import slugify
@@ -219,11 +221,11 @@ def populate_media(observer, media, tag):
     if media:
         for item in extract_zip(download_zip(media.url)):
             output_path = os.path.join(settings.REFERENCE_DOWNLOAD_ROOT, item.name)
-            output_dir = os.path.dirname(output_path)
-            if not os.path.isdir(output_dir):
-                os.makedirs(output_dir)
-            with open(output_path, "wb") as output_file:
-                output_file.write(item.read())
+            if not settings.AZURE_ACCOUNT_NAME:
+                output_dir = os.path.dirname(output_path)
+                if not os.path.isdir(output_dir):
+                    os.makedirs(output_dir)
+            default_storage.save(output_path, ContentFile(item.read()))
 
     else:
         raise ValueError('No data available for tag: %s' % tag)
