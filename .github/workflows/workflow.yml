@@ -77,7 +77,7 @@ jobs:
       - name: "Deploy to Azure Container Instances"
         uses: "azure/CLI@v1"
         with:
-          azcliversion: 2.0.72
+          azcliversion: 2.19.1
           inlineScript: |
             az container create \
             --resource-group "${{ secrets.RESOURCE_GROUP }}" \
@@ -109,15 +109,10 @@ jobs:
       - name: "Update Application gateway backend"
         uses: "azure/CLI@v1"
         with:
-          azcliversion: 2.0.72
+          azcliversion: 2.19.1
           inlineScript: |
             az network application-gateway address-pool update \
             --gateway-name "${{ secrets.DEV_APP_GATEWAY_NAME }}" \
             --resource-group "${{ secrets.RESOURCE_GROUP }}" \
             --name "${{ secrets.DEV_APP_GATEWAY_POOL }}" \
-            --set backendAddresses[0].ipAddress=$(\
-                az container show \
-                --name "${{ env.STAGE }}-${{ env.NAME }}" \
-                --resource-group "${{ secrets.RESOURCE_GROUP }}" \
-                --query ipAddress.ip --output tsv\
-              )
+            --set backendAddresses[0].ipAddress=$(az container show --name "${{ env.STAGE }}-${{ env.NAME }}" --resource-group "${{ secrets.RESOURCE_GROUP }}" --query ipAddress.ip --output tsv)
