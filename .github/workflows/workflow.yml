@@ -107,7 +107,7 @@ jobs:
               RECAPTCHA_PUBLIC_KEY="${{ secrets.RECAPTCHA_PUBLIC_KEY }}" \
               RECAPTCHA_PRIVATE_KEY="${{ secrets.RECAPTCHA_PRIVATE_KEY }}"
       - name: "Update Application gateway backend"
-      - uses: "azure/CLI@v1"
+        uses: "azure/CLI@v1"
         with:
           azcliversion: 2.0.72
           inlineScript: |
