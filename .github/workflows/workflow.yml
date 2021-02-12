@@ -83,14 +83,14 @@ jobs:
           inlineScript: az container show --resource-group "${{ secrets.RESOURCE_GROUP }}" --name "${{ env.STAGE }}-${{ env.NAME }}-blue"
       - name: "Set new colour green"
         if: steps.blue_is_running.outcome == 'success'
-        env:
-          NEW_COLOUR: 'green'
-          OLD_COLOUR: 'blue'
+        run: |
+          echo "NEW_COLOUR=green" >> $GITHUB_ENV
+          echo "OLD_COLOUR=blue" >> $GITHUB_ENV
       - name: "Set new colour blue"
         if: steps.blue_is_running.outcome != 'success'
-        env:
-          NEW_COLOUR: 'green'
-          OLD_COLOUR: 'blue'
+        run: |
+          echo "NEW_COLOUR=blue" >> $GITHUB_ENV
+          echo "OLD_COLOUR=green" >> $GITHUB_ENV
       - name: "Deploy new Azure Container Instance"
         uses: "azure/CLI@v1"
         with:
