@@ -155,7 +155,7 @@ jobs:
         with:
           azcliversion: 2.19.1
           inlineScript: |
-            az container delete \
+            az container delete --yes \
             --resource-group "${{ secrets.RESOURCE_GROUP }}" \
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.OLD_COLOUR }}"
       - if: steps.new_has_succeeded.outcome != 'success'
@@ -164,6 +164,6 @@ jobs:
         with:
           azcliversion: 2.19.1
           inlineScript: |
-            az container delete \
+            az container delete --yes \
             --resource-group "${{ secrets.RESOURCE_GROUP }}" \
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}"
