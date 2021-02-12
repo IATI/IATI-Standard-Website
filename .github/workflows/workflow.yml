@@ -126,6 +126,8 @@ jobs:
       - name: "Wait for 10 minutes"
         run: sleep 600
       - name: "Check new Azure Container Instance success"
+        id: new_has_succeeded
+        continue-on-error: true
         uses: "Azure/CLI@v1"
         with:
           azcliversion: 2.19.1
@@ -136,7 +138,8 @@ jobs:
               echo "Failure"
               exit 1
             fi
-      - name: "Update Application gateway backend"
+      - if: steps.new_has_succeeded.outcome == 'success'
+        name: "Update Application gateway backend"
         uses: "azure/CLI@v1"
         with:
           azcliversion: 2.19.1
@@ -146,7 +149,8 @@ jobs:
             --resource-group "${{ secrets.RESOURCE_GROUP }}" \
             --name "${{ secrets.DEV_APP_GATEWAY_POOL }}" \
             --set backendAddresses[0].ipAddress=$(az container show --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --resource-group "${{ secrets.RESOURCE_GROUP }}" --query ipAddress.ip --output tsv)
-      - name: "Delete previous Container Instance"
+      - if: steps.new_has_succeeded.outcome == 'success'
+        name: "Delete previous Container Instance"
         uses: "azure/CLI@v1"
         with:
           azcliversion: 2.19.1
@@ -154,3 +158,12 @@ jobs:
             az container delete \
             --resource-group "${{ secrets.RESOURCE_GROUP }}" \
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.OLD_COLOUR }}"
+      - if: steps.new_has_succeeded.outcome != 'success'
+        name: "Delete failed Container Instance"
+        uses: "azure/CLI@v1"
+        with:
+          azcliversion: 2.19.1
+          inlineScript: |
+            az container delete \
+            --resource-group "${{ secrets.RESOURCE_GROUP }}" \
+            --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}"
