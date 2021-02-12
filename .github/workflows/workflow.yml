@@ -74,14 +74,31 @@ jobs:
         run: |
           docker build -f Dockerfile_deploy . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}
           docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}
-      - name: "Deploy to Azure Container Instances"
+      - name: "Check if blue is running"
+        id: blue_is_running
+        continue-on-error: true
+        uses: "azure/CLI@v1"
+        with:
+          azcliversion: 2.19.1
+          inlineScript: az container show --resource-group "${{ secrets.RESOURCE_GROUP }}" --name "${{ env.STAGE }}-${{ env.NAME }}-blue"
+      - name: "Set new colour green"
+        if: steps.blue_is_running.outcome == 'success'
+        env:
+          NEW_COLOUR: 'green'
+          OLD_COLOUR: 'blue'
+      - name: "Set new colour blue"
+        if: steps.blue_is_running.outcome != 'success'
+        env:
+          NEW_COLOUR: 'green'
+          OLD_COLOUR: 'blue'
+      - name: "Deploy new Azure Container Instance"
         uses: "azure/CLI@v1"
         with:
           azcliversion: 2.19.1
           inlineScript: |
             az container create \
             --resource-group "${{ secrets.RESOURCE_GROUP }}" \
-            --name "${{ env.STAGE }}-${{ env.NAME }}" \
+            --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
             --image "${{ secrets.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}" \
             --vnet "${{ secrets.DEV_VNET }}" \
             --subnet "${{ secrets.DEV_SUBNET }}" \
@@ -106,6 +123,19 @@ jobs:
               ZENDESK_SUSPICIOUS_FIELD_ID="${{ secrets.ZENDESK_SUSPICIOUS_FIELD_ID }}" \
               RECAPTCHA_PUBLIC_KEY="${{ secrets.RECAPTCHA_PUBLIC_KEY }}" \
               RECAPTCHA_PRIVATE_KEY="${{ secrets.RECAPTCHA_PRIVATE_KEY }}"
+      - name: "Wait for 10 minutes"
+        run: sleep 600
+      - name: "Check new Azure Container Instance success"
+        uses: "Azure/CLI@v1"
+        with:
+          azcliversion: 2.19.1
+          inlineScript: |
+            if echo $(az container logs --resource-group "${{ secrets.RESOURCE_GROUP }}" --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}") | grep -q "Booting worker with pid"; then
+              echo "Success"
+            else
+              echo "Failure"
+              exit 1
+            fi
       - name: "Update Application gateway backend"
         uses: "azure/CLI@v1"
         with:
@@ -115,4 +145,12 @@ jobs:
             --gateway-name "${{ secrets.DEV_APP_GATEWAY_NAME }}" \
             --resource-group "${{ secrets.RESOURCE_GROUP }}" \
             --name "${{ secrets.DEV_APP_GATEWAY_POOL }}" \
-            --set backendAddresses[0].ipAddress=$(az container show --name "${{ env.STAGE }}-${{ env.NAME }}" --resource-group "${{ secrets.RESOURCE_GROUP }}" --query ipAddress.ip --output tsv)
+            --set backendAddresses[0].ipAddress=$(az container show --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --resource-group "${{ secrets.RESOURCE_GROUP }}" --query ipAddress.ip --output tsv)
+      - name: "Delete previous Container Instance"
+        uses: "azure/CLI@v1"
+        with:
+          azcliversion: 2.19.1
+          inlineScript: |
+            az container delete \
+            --resource-group "${{ secrets.RESOURCE_GROUP }}" \
+            --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.OLD_COLOUR }}"
