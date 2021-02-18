@@ -106,8 +106,8 @@ class ToolSubPage(AbstractToolPage):
 
     template = 'tools/tool_page.html'
 
-    parent_page_types = ['tools.ToolPage']
-    subpage_types = []
+    parent_page_types = ['tools.ToolPage', 'tools.ToolSubPage']
+    subpage_types = ['tools.ToolSubPage']
 
 
 class FeaturedTool(Orderable):
