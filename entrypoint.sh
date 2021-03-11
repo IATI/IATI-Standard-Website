@@ -21,8 +21,8 @@ python manage.py collectstatic --noinput
 python manage.py migrate --noinput
 python manage.py compilemessages
 
-rc-service elasticsearch.service start
-rc-service celeryd start
-rc-service rabbitmq-server.service start
+# rc-service elasticsearch.service start
+# rc-service celeryd start
+# rc-service rabbitmq-server.service start
 
 exec "$@"

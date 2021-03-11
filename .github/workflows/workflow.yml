@@ -40,8 +40,8 @@ jobs:
         run: docker-compose -f docker-compose.dev.yml exec -T web make pylint
       - name: pydocstyle lint
         run: docker-compose -f docker-compose.dev.yml exec -T web make pydocstyle
-      - name: pytest
-        run: docker-compose -f docker-compose.dev.yml exec -T web make test
+      # - name: pytest
+      #   run: docker-compose -f docker-compose.dev.yml exec -T web make test
   deploy:
     needs: [build]
     runs-on: ubuntu-latest
