@@ -136,5 +136,6 @@ RUN crontab /log-truncate-cron
 
 EXPOSE 5000
 
+RUN touch gunicorn.log
 ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
 CMD ["tail", "-f", "gunicorn.log"]

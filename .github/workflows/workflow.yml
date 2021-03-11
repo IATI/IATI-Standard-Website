@@ -128,7 +128,7 @@ jobs:
       - name: "Check new Azure Container Instance success"
         id: new_has_succeeded
         continue-on-error: true
-        uses: "Azure/CLI@v1"
+        uses: "azure/CLI@v1"
         with:
           azcliversion: 2.19.1
           inlineScript: |
