@@ -130,8 +130,11 @@ RUN adduser -D -g '' celery -G celery
 COPY config/celery/default/celeryd /etc/default/celeryd
 COPY config/celery/init.d/celeryd /etc/init.d/celeryd
 
+# Cron
+COPY config/cron.d/log-truncate-cron /log-truncate-cron
+RUN crontab /log-truncate-cron
+
 EXPOSE 5000
 
 ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
-CMD ["gunicorn","iati.wsgi:application","--bind","0.0.0.0:5000","--workers","3","--worker-connections","1000","--worker-class","gevent","--timeout","0"]
-
+CMD ["tail", "-f", "gunicorn.log"]

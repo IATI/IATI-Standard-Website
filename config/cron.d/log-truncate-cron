@@ -1,0 +1,3 @@
+0 0 * * * truncate -s 0 /usr/src/app/gunicorn.log
+0 0 * * * rm -rf /var/log/celery/*.log
+0 0 * * * rm -rf /var/log/rabbitmq/log/*.log
