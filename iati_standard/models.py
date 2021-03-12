@@ -37,9 +37,11 @@ class SyncTaskResult(models.Model):
     info = models.TextField(blank=True)
 
     def update_state(self, state, meta=""):
+        """Imitate the update_state function of an asyncronous task runner."""
         self.state = state
         self.info = meta
         self.save()
+
 
 class CardBlock(StructBlock):
     """A class to construct the card block streamfield for the IATI Standard Page."""

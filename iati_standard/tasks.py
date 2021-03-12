@@ -3,6 +3,7 @@ from __future__ import absolute_import, unicode_literals
 from github import GithubException
 from iati_standard.data import update_or_create_tags
 
+
 def start_update_task(task, repo, tag=None, type_to_update=None):
     """Start the updating task."""
     try:
