@@ -29,6 +29,18 @@ from iati_standard.inlines import StandardGuidanceTypes
 from iati_standard.widgets import JSONFieldWidget
 
 
+class SyncTaskResult(models.Model):
+    """Replacement for Celery task result."""
+
+    task_id = models.AutoField(primary_key=True)
+    state = models.TextField(default='PENDING')
+    info = models.TextField(blank=True)
+
+    def update_state(self, state, meta=""):
+        self.state = state
+        self.info = meta
+        self.save()
+
 class CardBlock(StructBlock):
     """A class to construct the card block streamfield for the IATI Standard Page."""
 

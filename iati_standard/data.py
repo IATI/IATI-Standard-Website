@@ -204,7 +204,7 @@ def update_or_create_tags(observer, repo, tag=None, type_to_update=None):
         populate_index(observer, tag, type_to_update)
 
         observer.update_state(
-            state='PROGRESS',
+            state='SUCCESS',
             meta='All tasks complete'
         )
 
@@ -402,7 +402,3 @@ def populate_index(observer, tag, type_to_update):
         )
 
     call_command('update_index')
-
-    observer.update_state(
-        state='SUCCESS'
-    )

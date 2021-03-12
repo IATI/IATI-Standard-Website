@@ -13,16 +13,15 @@ else
   done
 fi
 
-gunicorn iati.wsgi:application --bind 0.0.0.0:5000 --workers 3 --worker-connections 1000 --worker-class gevent --timeout 0 > gunicorn.log 2>&1 &
+rc-service elasticsearch.service start
+
+gunicorn iati.wsgi:application --bind 0.0.0.0:5000 --workers 3 --worker-connections 1000 --worker-class gevent --timeout 0 > /var/log/gunicorn/gunicorn.log 2>&1 &
 
 /usr/sbin/crond -f -l 8 &
 
 python manage.py collectstatic --noinput
 python manage.py migrate --noinput
 python manage.py compilemessages
-
-# rc-service elasticsearch.service start
-# rc-service celeryd start
-# rc-service rabbitmq-server.service start
+python manage.py update_index
 
 exec "$@"

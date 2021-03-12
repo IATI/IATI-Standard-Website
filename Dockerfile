@@ -1,4 +1,4 @@
-FROM rabbitmq:3.8.9-alpine
+FROM alpine:3.13.2
 
 ENV LANG en_US.UTF-8
 ENV PYTHONUNBUFFERED 1
@@ -11,7 +11,6 @@ RUN apk add --no-cache bash
 # Init engine
 
 RUN apk add --no-cache openrc
-COPY config/rabbit/rabbitmq-server.service /etc/init.d/rabbitmq-server.service
 
 # For psycopg + celery
 RUN apk add postgresql-client && \
@@ -33,7 +32,7 @@ RUN apk add --no-cache python3 py3-pip && \
  if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi
 
 
-RUN mkdir -p /var/lib/rabbitmq/.cache/pip && apk add build-base libffi-dev libressl-dev && \
+RUN apk add build-base libffi-dev libressl-dev && \
     ln -sf /usr/bin/python3 /usr/bin/python && \
     ln -sf /usr/bin/pip3 usr/bin/pip && \
     pip install --upgrade pip
@@ -93,7 +92,10 @@ RUN apk add --no-cache -t .build-deps wget ca-certificates gnupg openssl \
 COPY config/elastic/elasticsearch.yml /usr/share/elasticsearch/config/elasticsearch.yml
 COPY config/elastic/log4j2.properties /usr/share/elasticsearch/config/log4j2.properties
 
+RUN mkdir -p /var/log/messages
+RUN apk add logrotate
 COPY config/elastic/logrotate /etc/logrotate.d/elasticsearch
+RUN chmod 644 /etc/logrotate.d/elasticsearch
 COPY config/elastic/elasticsearch.service /etc/init.d/elasticsearch.service
 
 # Web app dependencies
@@ -105,37 +107,18 @@ COPY requirements_dev.txt /usr/src/app/
 COPY entrypoint.sh /usr/src/app/
 ENV PATH=$HOME/.cargo/bin:$PATH
 
-RUN set -eux; \
-    apk add --no-cache \
-    ca-certificates \
-    gcc; \
-    \
-    url="https://static.rust-lang.org/rustup/dist/x86_64-unknown-linux-musl/rustup-init"; \
-    wget "$url"; \
-    chmod +x rustup-init; \
-    ./rustup-init -y --no-modify-path --default-toolchain nightly; \
-    rm rustup-init; \
-    rustup --version; \
-    cargo --version; \
-    rustc --version; \
-    mkdir -p /var/lib/rabbitmq/.cache/pip && pip3 install -r requirements_dev.txt
+RUN apk -U upgrade
+RUN apk add --no-cache gcc musl-dev python3-dev libffi-dev openssl-dev cargo &&\
+        pip3 install -r requirements_dev.txt
 
 RUN apk add --no-cache gettext
 
 RUN chmod 775 /usr/src/app
 
-# Celery
-RUN addgroup celery
-RUN adduser -D -g '' celery -G celery
-COPY config/celery/default/celeryd /etc/default/celeryd
-COPY config/celery/init.d/celeryd /etc/init.d/celeryd
-
-# Cron
-COPY config/cron.d/log-truncate-cron /log-truncate-cron
-RUN crontab /log-truncate-cron
-
 EXPOSE 5000
 
-RUN touch gunicorn.log
+RUN mkdir -p /var/log/gunicorn
+RUN chmod 644 /var/log/gunicorn
+RUN touch /var/log/gunicorn/gunicorn.log
 ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
-CMD ["tail", "-f", "gunicorn.log"]
+CMD ["tail", "-f", "/var/log/gunicorn/gunicorn.log"]

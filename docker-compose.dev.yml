@@ -15,7 +15,7 @@ services:
       - SECRET_KEY=enter-a-long-unguessable-string-here
       - ELASTICSEARCH_URL=http://localhost:9200
       - DJANGO_SETTINGS_MODULE=iati.settings.dev
-      - RABBITMQ_URL=amqp://localhost:5672
+      - GITHUB_TOKEN
     links:
       - postgres
     ports:

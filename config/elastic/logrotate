@@ -9,3 +9,6 @@
     notifempty
     create 644 elasticsearch elasticsearch
 }
+/var/log/gunicorn/*.log {
+    size 10M
+}

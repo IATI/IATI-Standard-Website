@@ -70,8 +70,6 @@ INSTALLED_APPS = [
     'wagtail.admin',
     'wagtail.core',
 
-    'wagtaillinkchecker',
-
     'modelcluster',
     'taggit',
     'haystack',
@@ -79,8 +77,6 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'snowpenguin.django.recaptcha3',
     'prettyjson',
-
-    'django_celery_results',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -575,13 +571,6 @@ RECAPTCHA_PUBLIC_KEY = os.getenv('RECAPTCHA_PUBLIC_KEY')
 RECAPTCHA_PRIVATE_KEY = os.getenv('RECAPTCHA_PRIVATE_KEY')
 RECAPTCHA_DEFAULT_ACTION = 'contact'
 RECAPTCHA_SCORE_THRESHOLD = float(os.getenv('RECAPTCHA_SCORE_THRESHOLD', 0.5))
-
-# Celery settings
-CELERY_BROKER_URL = os.getenv('RABBITMQ_URL', 'amqp://localhost:5672')
-CELERY_RESULT_BACKEND = 'django-db'
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
 
 # Github settings
 
