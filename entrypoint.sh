@@ -21,7 +21,7 @@ python manage.py collectstatic --noinput
 python manage.py migrate --noinput
 python manage.py compilemessages
 
-# rc-service elasticsearch.service start
-# python manage.py update_index
+rc-service elasticsearch.service start
+python manage.py update_index
 
 exec "$@"
