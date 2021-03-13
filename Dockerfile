@@ -91,7 +91,7 @@ RUN apk add --no-cache -t .build-deps wget ca-certificates gnupg openssl \
 
 COPY config/elastic/elasticsearch.yml /usr/share/elasticsearch/config/elasticsearch.yml
 COPY config/elastic/log4j2.properties /usr/share/elasticsearch/config/log4j2.properties
-RUN chown -R elasticsearch:elasticsearch /usr/share/elasticsearch
+RUN chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/config
 
 RUN mkdir -p /var/log/messages
 RUN apk add logrotate
