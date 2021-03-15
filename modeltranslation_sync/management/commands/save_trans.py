@@ -127,5 +127,7 @@ class Command(BaseCommand):
             output_dir = dirname(output_path)
             if not isdir(output_dir):
                 makedirs(output_dir)
-            default_storage.save(output_path, ContentFile(stream_str.getvalue().decode('utf-8')))
+            if default_storage.exists(output_path):
+                default_storage.delete(output_path)
+            default_storage.save(output_path, ContentFile(stream_str.getvalue()))
             print("New {} word count: {}".format(lang, word_count))

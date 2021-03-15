@@ -225,6 +225,8 @@ def populate_media(observer, media, tag):
                 output_dir = os.path.dirname(output_path)
                 if not os.path.isdir(output_dir):
                     os.makedirs(output_dir)
+            if default_storage.exists(output_path):
+                default_storage.delete(output_path)
             default_storage.save(output_path, ContentFile(item.read()))
 
     else:
