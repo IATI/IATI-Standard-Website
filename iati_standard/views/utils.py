@@ -30,7 +30,7 @@ def on_update_request(request, *args, **kwargs):
             'message_class': 'warning',
         })
     task = SyncTaskResult.objects.create()
-    threading.Thread(target=start_update_task, args=[task, repo], kwargs={'tag':tag, 'type_to_update':type_to_update}).start()
+    threading.Thread(target=start_update_task, args=[task, repo], kwargs={'tag': tag, 'type_to_update': type_to_update}).start()
     return JsonResponse({
         'is_valid': True,
         'error': error,
