@@ -1,4 +1,5 @@
 """Module of utilities to assist with IATI Standard views."""
+import threading
 from iati_standard.tasks import start_update_task
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_protect
@@ -29,9 +30,7 @@ def on_update_request(request, *args, **kwargs):
             'message_class': 'warning',
         })
     task = SyncTaskResult.objects.create()
-    start_update_task(task, repo, tag=tag, type_to_update=type_to_update)
-    task.refresh_from_db()
-
+    threading.Thread(target=start_update_task, args=[task, repo], kwargs={'tag':tag, 'type_to_update':type_to_update}).start()
     return JsonResponse({
         'is_valid': True,
         'error': error,
@@ -48,7 +47,7 @@ def get_update_progress(request, *args, **kwargs):
     state = result.state
     message_class = 'success'
 
-    if state == 'FAILURE':
+    if state in ['FAILURE', 'ERROR']:
         message_class = 'error'
         result.delete()
 
