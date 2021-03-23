@@ -89,6 +89,13 @@ For logging, use:
 docker-compose logs -f web
 ```
 
+#### Debugging
+
+- Set a breakpoint in code `import pdb; pdb.set_trace()`
+- SSH into running Docker container `docker exec -it <container id> /bin/sh`
+- Run command `python manage.py <command>`
+- debugging away in your terminal session
+
 ## Tests & linters
 
 Tests are run using [pytest](https://pytest.org/) as it [provides a number of benefits](https://pytest-django.readthedocs.io/en/latest/#why-would-i-use-this-instead-of-django-s-manage-py-test-command) over stock Django test approaches.
