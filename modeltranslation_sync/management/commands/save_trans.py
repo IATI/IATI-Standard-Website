@@ -100,10 +100,10 @@ class Command(BaseCommand):
                                     if isinstance(enval, StreamValue):
                                         new_json = json.loads(enstr)
                                         old_json = json.loads(existing_trans[msgid])
-                                        # If it doesn't match, delete the old and readd. If it does match, do nothing
+                                        # If it doesn't match, delete the old and re-add with a blank translation so the vendor knows it needs re-translation. If it does match, do nothing
                                         if new_json != old_json:
                                             catalog.delete(id=existing_trans[msgid])
-                                            catalog.add(id=enstr, string=msgstr, auto_comments=[msgid, ])
+                                            catalog.add(id=enstr, string="", auto_comments=[msgid, ])
                                             word_count += len(enstr.split())
                                     # If it's not JSON, just add it. We can't delete because can't guarantee it's not reused later
                                     else:
