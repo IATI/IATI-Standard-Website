@@ -155,8 +155,8 @@ jobs:
           ssh-agent -a $SSH_AUTH_SOCK > /dev/null && \
           ssh-add - <<< "${{ secrets.DEV_NGINX_KEY }}" && \
           sed -i 's/XX.XX.XX.XX/'${{ env.NEW_IP }}'/g' config/nginx/website.conf && \
-          scp config/nginx/website.conf azureuser@${{ secrets.DEV_NGINX_IP }}:/etc/nginx/conf.d/website.conf && \
-          ssh azureuser@${{ secrets.DEV_NGINX_IP }} /home/azureuser/restart_nginx.sh
+          scp -o StrictHostKeyChecking=no config/nginx/website.conf azureuser@${{ secrets.DEV_NGINX_IP }}:/etc/nginx/conf.d/website.conf && \
+          ssh -o StrictHostKeyChecking=no azureuser@${{ secrets.DEV_NGINX_IP }} /home/azureuser/restart_nginx.sh
       - if: steps.new_has_succeeded.outcome == 'success'
         name: "Delete previous Container Instance"
         uses: "azure/CLI@v1"
