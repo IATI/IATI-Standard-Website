@@ -125,8 +125,8 @@ jobs:
               RECAPTCHA_PUBLIC_KEY="${{ secrets.RECAPTCHA_PUBLIC_KEY }}" \
               RECAPTCHA_PRIVATE_KEY="${{ secrets.RECAPTCHA_PRIVATE_KEY }}" \
               GITHUB_TOKEN="${{ secrets.SSOT_GITHUB_TOKEN }}"
-      - name: "Wait for 10 minutes"
-        run: sleep 600
+      - name: "Wait for 5 minutes"
+        run: sleep 300
       - name: "Check new Azure Container Instance success"
         id: new_has_succeeded
         continue-on-error: true
@@ -150,7 +150,7 @@ jobs:
       - if: steps.new_has_succeeded.outcome == 'success'
         name: "Update NGINX VM backend"
         run: |
-          echo ${{ secrets.DEV_NGINX_KEY }} > /tmp/key && \
+          echo "${{ secrets.DEV_NGINX_KEY }}" > /tmp/key && \
           chmod 400 /tmp/key && \
           sed -i 's/XX.XX.XX.XX/'$NEW_IP'/g' config/nginx/website.conf && \
           scp -i /tmp/key config/nginx/website.conf azureuser@${{ secrets.DEV_NGINX_IP }}:/etc/nginx/conf.d/website.conf && \
