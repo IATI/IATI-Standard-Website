@@ -141,16 +141,21 @@ jobs:
               exit 1
             fi
       - if: steps.new_has_succeeded.outcome == 'success'
-        name: "Update Application gateway backend"
+        name: "Grab new container instance IP"
         uses: "azure/CLI@v1"
         with:
           azcliversion: 2.19.1
           inlineScript: |
-            az network application-gateway address-pool update \
-            --gateway-name "${{ secrets.DEV_APP_GATEWAY_NAME }}" \
-            --resource-group "${{ secrets.RESOURCE_GROUP }}" \
-            --name "${{ secrets.DEV_APP_GATEWAY_POOL }}" \
-            --set backendAddresses[0].ipAddress=$(az container show --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --resource-group "${{ secrets.RESOURCE_GROUP }}" --query ipAddress.ip --output tsv)
+            echo "NEW_IP=$(az container show --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --resource-group "${{ secrets.RESOURCE_GROUP }}" --query ipAddress.ip --output tsv)" >> $GITHUB_ENV
+      - if: steps.new_has_succeeded.outcome == 'success'
+        name: "Update NGINX VM backend"
+        run: |
+          echo ${{ secrets.DEV_NGINX_KEY }} > /tmp/key && \
+          chmod 400 /tmp/key && \
+          sed -i 's/XX.XX.XX.XX/'$NEW_IP'/g' config/nginx/website.conf && \
+          scp -i /tmp/key config/nginx/website.conf azureuser@${{ secrets.DEV_NGINX_IP }}:/etc/nginx/conf.d/website.conf && \
+          ssh -i /tmp/key azureuser@${{ secrets.DEV_NGINX_IP }} /home/azureuser/restart_nginx.sh && \
+          rm /tmp/key
       - if: steps.new_has_succeeded.outcome == 'success'
         name: "Delete previous Container Instance"
         uses: "azure/CLI@v1"
