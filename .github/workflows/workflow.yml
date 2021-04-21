@@ -75,56 +75,64 @@ jobs:
           docker build -f Dockerfile_deploy . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}
           docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}
       - name: "Check if blue is running"
-        id: blue_is_running
-        continue-on-error: true
-        uses: "azure/CLI@v1"
-        with:
-          azcliversion: 2.19.1
-          inlineScript: az container show --resource-group "${{ secrets.RESOURCE_GROUP }}" --name "${{ env.STAGE }}-${{ env.NAME }}-blue"
-      - name: "Set new colour green"
-        if: steps.blue_is_running.outcome == 'success'
-        run: |
-          echo "NEW_COLOUR=green" >> $GITHUB_ENV
-          echo "OLD_COLOUR=blue" >> $GITHUB_ENV
-      - name: "Set new colour blue"
-        if: steps.blue_is_running.outcome != 'success'
-        run: |
-          echo "NEW_COLOUR=blue" >> $GITHUB_ENV
-          echo "OLD_COLOUR=green" >> $GITHUB_ENV
-      - name: "Deploy new Azure Container Instance"
         uses: "azure/CLI@v1"
         with:
           azcliversion: 2.19.1
           inlineScript: |
-            az container create \
-            --resource-group "${{ secrets.RESOURCE_GROUP }}" \
+            if echo $(az group exists --name "${{ env.STAGE }}-${{ env.NAME }}-blue") | grep -q "true"; then
+              echo "NEW_COLOUR=green" >> $GITHUB_ENV
+              echo "OLD_COLOUR=blue" >> $GITHUB_ENV
+            else
+              echo "NEW_COLOUR=blue" >> $GITHUB_ENV
+              echo "OLD_COLOUR=green" >> $GITHUB_ENV
+            fi
+      - name: "Create new resource group"
+        uses: "azure/CLI@v1"
+        with:
+          azcliversion: 2.19.1
+          inlineScript: az group create --location uksouth --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}"
+      - name: "Deploy new Azure VM"
+        uses: "azure/CLI@v1"
+        with:
+          azcliversion: 2.19.1
+          inlineScript: |
+            az vm create \
+            --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
-            --image "${{ secrets.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}" \
-            --memory 4 \
+            --image UbuntuLTS \
             --vnet "${{ secrets.DEV_VNET }}" \
             --subnet "${{ secrets.DEV_SUBNET }}" \
-            --registry-login-server "${{ secrets.REGISTRY_LOGIN_SERVER }}" \
-            --registry-password "${{ secrets.REGISTRY_PASSWORD }}" \
-            --registry-username "${{ secrets.REGISTRY_USERNAME }}" \
-            --ports 5000 \
-            --location uksouth \
-            --secure-environment-variables \
-              DJANGO_SETTINGS_MODULE="iati.settings.dev" \
-              SECRET_KEY="${{ secrets.DEV_SECRET_KEY }}" \
-              DATABASE_NAME="${{ secrets.DEV_DATABASE_NAME }}" \
-              DATABASE_USER="${{ secrets.DEV_DATABASE_USER }}" \
-              DATABASE_PASS="${{ secrets.DEV_DATABASE_PASS }}" \
-              DATABASE_HOST="${{ secrets.DEV_DATABASE_HOST }}" \
-              DATABASE_PORT="${{ secrets.DEV_DATABASE_PORT }}" \
-              APPLICATIONINSIGHTS_CONNECTION_STRING="${{ secrets.DEV_APPLICATIONINSIGHTS_CONNECTION_STRING }}" \
-              AZURE_ACCOUNT_NAME="${{ secrets.DEV_AZURE_ACCOUNT_NAME }}" \
-              AZURE_ACCOUNT_KEY="${{ secrets.DEV_AZURE_ACCOUNT_KEY }}" \
-              AZURE_CONTAINER="${{ secrets.DEV_AZURE_CONTAINER }}" \
-              ZENDESK_CAPTCHA_FIELD_ID="${{ secrets.ZENDESK_CAPTCHA_FIELD_ID }}" \
-              ZENDESK_SUSPICIOUS_FIELD_ID="${{ secrets.ZENDESK_SUSPICIOUS_FIELD_ID }}" \
-              RECAPTCHA_PUBLIC_KEY="${{ secrets.RECAPTCHA_PUBLIC_KEY }}" \
-              RECAPTCHA_PRIVATE_KEY="${{ secrets.RECAPTCHA_PRIVATE_KEY }}" \
-              GITHUB_TOKEN="${{ secrets.SSOT_GITHUB_TOKEN }}"
+            --ssh-key-values ${{ secrets.DEV_PUB_KEYS }} && \
+            az vm run-command invoke \
+            --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
+            --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
+            --command-id RunShellScript \
+            --scripts "sudo snap install docker" && \
+            az vm run-command invoke \
+            --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
+            --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
+            --command-id RunShellScript \
+            --scripts "\
+              docker login \ -u '${{ secrets.REGISTRY_USERNAME }}' -p '${{ secrets.REGISTRY_PASSWORD }}' ${{ secrets.REGISTRY_LOGIN_SERVER }} && \
+              docker pull '${{ secrets.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}' && \
+              docker run --name website -d -p 5000:5000 '${{ secrets.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}' \
+                -e DJANGO_SETTINGS_MODULE='iati.settings.dev' \
+                -e SECRET_KEY='${{ secrets.DEV_SECRET_KEY }}' \
+                -e DATABASE_NAME='${{ secrets.DEV_DATABASE_NAME }}' \
+                -e DATABASE_USER='${{ secrets.DEV_DATABASE_USER }}' \
+                -e DATABASE_PASS='${{ secrets.DEV_DATABASE_PASS }}' \
+                -e DATABASE_HOST='${{ secrets.DEV_DATABASE_HOST }}' \
+                -e DATABASE_PORT='${{ secrets.DEV_DATABASE_PORT }}' \
+                -e APPLICATIONINSIGHTS_CONNECTION_STRING='${{ secrets.DEV_APPLICATIONINSIGHTS_CONNECTION_STRING }}' \
+                -e AZURE_ACCOUNT_NAME='${{ secrets.DEV_AZURE_ACCOUNT_NAME }}' \
+                -e AZURE_ACCOUNT_KEY='${{ secrets.DEV_AZURE_ACCOUNT_KEY }}' \
+                -e AZURE_CONTAINER='${{ secrets.DEV_AZURE_CONTAINER }}' \
+                -e ZENDESK_CAPTCHA_FIELD_ID='${{ secrets.ZENDESK_CAPTCHA_FIELD_ID }}' \
+                -e ZENDESK_SUSPICIOUS_FIELD_ID='${{ secrets.ZENDESK_SUSPICIOUS_FIELD_ID }}' \
+                -e RECAPTCHA_PUBLIC_KEY='${{ secrets.RECAPTCHA_PUBLIC_KEY }}' \
+                -e RECAPTCHA_PRIVATE_KEY='${{ secrets.RECAPTCHA_PRIVATE_KEY }}' \
+                -e GITHUB_TOKEN='${{ secrets.SSOT_GITHUB_TOKEN }}'\
+              "
       - name: "Wait for 5 minutes"
         run: sleep 300
       - name: "Check new Azure Container Instance success"
@@ -134,7 +142,7 @@ jobs:
         with:
           azcliversion: 2.19.1
           inlineScript: |
-            if echo $(az container logs --resource-group "${{ secrets.RESOURCE_GROUP }}" --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}") | grep -q "Booting worker with pid"; then
+            if echo $(az vm run-command invoke -g "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" -n "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --command-id RunShellScript --scripts "docker logs website" -o tsv --query value[0].message) | grep -q "Booting worker with pid"; then
               echo "Success"
             else
               echo "Failure"
@@ -146,7 +154,7 @@ jobs:
         with:
           azcliversion: 2.19.1
           inlineScript: |
-            echo "NEW_IP=$(az container show --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --resource-group "${{ secrets.RESOURCE_GROUP }}" --query ipAddress.ip --output tsv)" >> $GITHUB_ENV
+            echo "NEW_IP=$(az vm list-ip-addresses --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --query [].virtualMachine.network[].publicIpAddresses[][].ipAddress --output tsv)" >> $GITHUB_ENV
       - if: steps.new_has_succeeded.outcome == 'success'
         name: "Update NGINX VM backend"
         env:
@@ -158,20 +166,18 @@ jobs:
           scp -o StrictHostKeyChecking=no config/nginx/website.conf azureuser@${{ secrets.DEV_NGINX_IP }}:/etc/nginx/conf.d/website.conf && \
           ssh -o StrictHostKeyChecking=no azureuser@${{ secrets.DEV_NGINX_IP }} /home/azureuser/restart_nginx.sh
       - if: steps.new_has_succeeded.outcome == 'success'
-        name: "Delete previous Container Instance"
+        name: "Delete previous VM resource group"
         uses: "azure/CLI@v1"
         with:
           azcliversion: 2.19.1
           inlineScript: |
-            az container delete --yes \
-            --resource-group "${{ secrets.RESOURCE_GROUP }}" \
+            az group delete --yes --no-wait \
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.OLD_COLOUR }}"
       - if: steps.new_has_succeeded.outcome != 'success'
-        name: "Delete failed Container Instance"
+        name: "Delete failed VM resource group"
         uses: "azure/CLI@v1"
         with:
           azcliversion: 2.19.1
           inlineScript: |
-            az container delete --yes \
-            --resource-group "${{ secrets.RESOURCE_GROUP }}" \
+            az group delete --yes --no-wait \
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}"
