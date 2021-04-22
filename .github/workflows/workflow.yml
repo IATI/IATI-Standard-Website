@@ -113,7 +113,7 @@ jobs:
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
             --command-id RunShellScript \
             --scripts "\
-              docker login \ -u '${{ secrets.REGISTRY_USERNAME }}' -p '${{ secrets.REGISTRY_PASSWORD }}' ${{ secrets.REGISTRY_LOGIN_SERVER }} && \
+              docker login -u '${{ secrets.REGISTRY_USERNAME }}' -p '${{ secrets.REGISTRY_PASSWORD }}' ${{ secrets.REGISTRY_LOGIN_SERVER }} && \
               docker pull '${{ secrets.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}' && \
               docker run --name website -d -p 5000:5000 '${{ secrets.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}' \
                 -e DJANGO_SETTINGS_MODULE='iati.settings.dev' \
