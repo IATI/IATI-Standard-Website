@@ -100,7 +100,7 @@ jobs:
             --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
             --image UbuntuLTS \
-            --vnet "${{ secrets.DEV_VNET }}" \
+            --vnet-name "${{ secrets.DEV_VNET }}" \
             --subnet "${{ secrets.DEV_SUBNET }}" \
             --ssh-key-values ${{ secrets.DEV_PUB_KEYS }} && \
             az vm run-command invoke \
