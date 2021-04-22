@@ -115,7 +115,7 @@ jobs:
             --scripts "\
               docker login -u '${{ secrets.REGISTRY_USERNAME }}' -p '${{ secrets.REGISTRY_PASSWORD }}' ${{ secrets.REGISTRY_LOGIN_SERVER }} && \
               docker pull '${{ secrets.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}' && \
-              docker run --name website -d -p 5000:5000 '${{ secrets.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}' \
+              docker run --restart always --name website -d -p 5000:5000 \
                 -e DJANGO_SETTINGS_MODULE='iati.settings.dev' \
                 -e SECRET_KEY='${{ secrets.DEV_SECRET_KEY }}' \
                 -e DATABASE_NAME='${{ secrets.DEV_DATABASE_NAME }}' \
@@ -132,7 +132,8 @@ jobs:
                 -e RECAPTCHA_PUBLIC_KEY='${{ secrets.RECAPTCHA_PUBLIC_KEY }}' \
                 -e RECAPTCHA_PRIVATE_KEY='${{ secrets.RECAPTCHA_PRIVATE_KEY }}' \
                 -e GITHUB_TOKEN='${{ secrets.SSOT_GITHUB_TOKEN }}'\
-              "
+              " \
+              '${{ secrets.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}'
       - name: "Wait for 5 minutes"
         run: sleep 300
       - name: "Check new Azure Container Instance success"
