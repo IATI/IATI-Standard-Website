@@ -113,27 +113,32 @@ jobs:
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
             --command-id RunShellScript \
             --scripts "\
+              echo \"DJANGO_SETTINGS_MODULE='iati.settings.dev'\" > .env && \
+              echo \"SECRET_KEY='${{ secrets.DEV_SECRET_KEY }}'\" >> .env && \
+              echo \"DATABASE_NAME='${{ secrets.DEV_DATABASE_NAME }}'\" >> .env && \
+              echo \"DATABASE_USER='${{ secrets.DEV_DATABASE_USER }}'\" >> .env && \
+              echo \"DATABASE_PASS='${{ secrets.DEV_DATABASE_PASS }}'\" >> .env && \
+              echo \"DATABASE_HOST='${{ secrets.DEV_DATABASE_HOST }}'\" >> .env && \
+              echo \"DATABASE_PORT='${{ secrets.DEV_DATABASE_PORT }}'\" >> .env && \
+              echo \"APPLICATIONINSIGHTS_CONNECTION_STRING='${{ secrets.DEV_APPLICATIONINSIGHTS_CONNECTION_STRING }}'\" >> .env && \
+              echo \"AZURE_ACCOUNT_NAME='${{ secrets.DEV_AZURE_ACCOUNT_NAME }}'\" >> .env && \
+              echo \"AZURE_ACCOUNT_KEY='${{ secrets.DEV_AZURE_ACCOUNT_KEY }}'\" >> .env && \
+              echo \"AZURE_CONTAINER='${{ secrets.DEV_AZURE_CONTAINER }}'\" >> .env && \
+              echo \"ZENDESK_CAPTCHA_FIELD_ID='${{ secrets.ZENDESK_CAPTCHA_FIELD_ID }}'\" >> .env && \
+              echo \"ZENDESK_SUSPICIOUS_FIELD_ID='${{ secrets.ZENDESK_SUSPICIOUS_FIELD_ID }}'\" >> .env && \
+              echo \"RECAPTCHA_PUBLIC_KEY='${{ secrets.RECAPTCHA_PUBLIC_KEY }}'\" >> .env && \
+              echo \"RECAPTCHA_PRIVATE_KEY='${{ secrets.RECAPTCHA_PRIVATE_KEY }}'\" >> .env && \
+              echo \"GITHUB_TOKEN='${{ secrets.SSOT_GITHUB_TOKEN }}'\" >> .env \
+            " && \
+            az vm run-command invoke \
+            --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
+            --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
+            --command-id RunShellScript \
+            --scripts "\
               docker login -u '${{ secrets.REGISTRY_USERNAME }}' -p '${{ secrets.REGISTRY_PASSWORD }}' ${{ secrets.REGISTRY_LOGIN_SERVER }} && \
               docker pull '${{ secrets.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}' && \
-              docker run --restart always --name website -d -p 5000:5000 \
-                -e DJANGO_SETTINGS_MODULE='iati.settings.dev' \
-                -e SECRET_KEY='${{ secrets.DEV_SECRET_KEY }}' \
-                -e DATABASE_NAME='${{ secrets.DEV_DATABASE_NAME }}' \
-                -e DATABASE_USER='${{ secrets.DEV_DATABASE_USER }}' \
-                -e DATABASE_PASS='${{ secrets.DEV_DATABASE_PASS }}' \
-                -e DATABASE_HOST='${{ secrets.DEV_DATABASE_HOST }}' \
-                -e DATABASE_PORT='${{ secrets.DEV_DATABASE_PORT }}' \
-                -e APPLICATIONINSIGHTS_CONNECTION_STRING='${{ secrets.DEV_APPLICATIONINSIGHTS_CONNECTION_STRING }}' \
-                -e AZURE_ACCOUNT_NAME='${{ secrets.DEV_AZURE_ACCOUNT_NAME }}' \
-                -e AZURE_ACCOUNT_KEY='${{ secrets.DEV_AZURE_ACCOUNT_KEY }}' \
-                -e AZURE_CONTAINER='${{ secrets.DEV_AZURE_CONTAINER }}' \
-                -e ZENDESK_CAPTCHA_FIELD_ID='${{ secrets.ZENDESK_CAPTCHA_FIELD_ID }}' \
-                -e ZENDESK_SUSPICIOUS_FIELD_ID='${{ secrets.ZENDESK_SUSPICIOUS_FIELD_ID }}' \
-                -e RECAPTCHA_PUBLIC_KEY='${{ secrets.RECAPTCHA_PUBLIC_KEY }}' \
-                -e RECAPTCHA_PRIVATE_KEY='${{ secrets.RECAPTCHA_PRIVATE_KEY }}' \
-                -e GITHUB_TOKEN='${{ secrets.SSOT_GITHUB_TOKEN }}'\
-              " \
-              '${{ secrets.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}'
+              docker run --restart always --name website -d -p 5000:5000 --env-file .env \
+            "
       - name: "Wait for 5 minutes"
         run: sleep 300
       - name: "Check new Azure Container Instance success"
