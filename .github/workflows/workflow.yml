@@ -100,9 +100,15 @@ jobs:
             --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
             --image UbuntuLTS \
-            --vnet-name "${{ secrets.DEV_VNET }}" \
-            --subnet "${{ secrets.DEV_SUBNET }}" \
             --ssh-key-values ${{ secrets.DEV_PUB_KEYS }} && \
+            export NEW_IP=$(az vm list-ip-addresses --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --query [].virtualMachine.network[].publicIpAddresses[][].ipAddress --output tsv) && \
+            echo "NEW_IP=$NEW_IP" >> $GITHUB_ENV && \
+            az postgres server firewall-rule update \
+            --resource-group "${{ secrets.RESOURCE_GROUP }}" \
+            --server-name "${{ secrets.DEV_PSQL_NAME }}" \
+            --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
+            --start-ip-address $NEW_IP \
+            --end-ip-address $NEW_IP && \
             az vm run-command invoke \
             --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
@@ -150,13 +156,6 @@ jobs:
               exit 1
             fi
       - if: steps.new_has_succeeded.outcome == 'success'
-        name: "Grab new container instance IP"
-        uses: "azure/CLI@v1"
-        with:
-          azcliversion: 2.19.1
-          inlineScript: |
-            echo "NEW_IP=$(az vm list-ip-addresses --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --query [].virtualMachine.network[].publicIpAddresses[][].ipAddress --output tsv)" >> $GITHUB_ENV
-      - if: steps.new_has_succeeded.outcome == 'success'
         name: "Update NGINX VM backend"
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
@@ -166,19 +165,19 @@ jobs:
           sed -i 's/XX.XX.XX.XX/'${{ env.NEW_IP }}'/g' config/nginx/website.conf && \
           scp -o StrictHostKeyChecking=no config/nginx/website.conf azureuser@${{ secrets.DEV_NGINX_IP }}:/etc/nginx/conf.d/website.conf && \
           ssh -o StrictHostKeyChecking=no azureuser@${{ secrets.DEV_NGINX_IP }} /home/azureuser/restart_nginx.sh
-      # - if: steps.new_has_succeeded.outcome == 'success'
-      #   name: "Delete previous VM resource group"
-      #   uses: "azure/CLI@v1"
-      #   with:
-      #     azcliversion: 2.19.1
-      #     inlineScript: |
-      #       az group delete --yes --no-wait \
-      #       --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.OLD_COLOUR }}"
-      # - if: steps.new_has_succeeded.outcome != 'success'
-      #   name: "Delete failed VM resource group"
-      #   uses: "azure/CLI@v1"
-      #   with:
-      #     azcliversion: 2.19.1
-      #     inlineScript: |
-      #       az group delete --yes --no-wait \
-      #       --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}"
+      - if: steps.new_has_succeeded.outcome == 'success'
+        name: "Delete previous VM resource group"
+        uses: "azure/CLI@v1"
+        with:
+          azcliversion: 2.19.1
+          inlineScript: |
+            az group delete --yes --no-wait \
+            --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.OLD_COLOUR }}"
+      - if: steps.new_has_succeeded.outcome != 'success'
+        name: "Delete failed VM resource group"
+        uses: "azure/CLI@v1"
+        with:
+          azcliversion: 2.19.1
+          inlineScript: |
+            az group delete --yes --no-wait \
+            --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}"
