@@ -109,6 +109,14 @@ jobs:
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
             --start-ip-address $NEW_IP \
             --end-ip-address $NEW_IP && \
+            az network nsg rule create \
+            --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
+            --nsg-name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}NSG" \
+            --name AllowPort5000 \
+            --priority 1010 \
+            --access Allow \
+            --protocol Tcp \
+            --destination-port-ranges 5000 && \
             az vm run-command invoke \
             --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
