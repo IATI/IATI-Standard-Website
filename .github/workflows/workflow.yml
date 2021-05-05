@@ -45,8 +45,7 @@ jobs:
   deploy_dev:
     needs: [build]
     runs-on: ubuntu-latest
-    # if: github.ref == 'refs/heads/develop'
-    if: github.ref == 'refs/pull/531/merge'
+    if: github.ref == 'refs/heads/develop'
     env:
       DOCKER_BUILDKIT: '1'
       TAG: ${{ github.sha }}
@@ -193,8 +192,7 @@ jobs:
   deploy_prod:
     needs: [build]
     runs-on: ubuntu-latest
-    # if: github.ref == 'refs/heads/master'
-    if: github.ref == 'refs/pull/531/merge'
+    if: github.ref == 'refs/heads/master'
     env:
       DOCKER_BUILDKIT: '1'
       TAG: ${{ github.sha }}
