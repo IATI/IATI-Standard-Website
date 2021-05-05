@@ -9,8 +9,6 @@ DEBUG = False
 # Overwrite this variable in local.py with another unguessable string.
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
-REFERENCE_DOWNLOAD_ROOT = os.path.join(MEDIA_ROOT, "reference_downloads")
-
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 ALLOWED_HOSTS = [
