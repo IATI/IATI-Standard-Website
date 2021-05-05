@@ -9,7 +9,6 @@ DEBUG = False
 # Overwrite this variable in local.py with another unguessable string.
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
-MEDIA_ROOT = os.path.join('/', 'storage')
 REFERENCE_DOWNLOAD_ROOT = os.path.join(MEDIA_ROOT, "reference_downloads")
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -19,6 +18,12 @@ ALLOWED_HOSTS = [
     'iatistandard.org',
     '.iatistandard.org',
 ]
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+SECURE_SSL_REDIRECT = not DEBUG
+CSRF_COOKIE_SECURE = not DEBUG
+SESSION_COOKIE_SECURE = not DEBUG
 
 try:
     from .local import *  # # noqa: F401, F403  # pylint: disable=unused-wildcard-import, wildcard-import
