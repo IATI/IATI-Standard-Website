@@ -288,9 +288,9 @@ jobs:
               -e DATABASE_HOST='${{ secrets.PROD_DATABASE_HOST }}' \
               -e DATABASE_PORT='${{ secrets.PROD_DATABASE_PORT }}' \
               -e APPLICATIONINSIGHTS_CONNECTION_STRING='${{ secrets.PROD_APPLICATIONINSIGHTS_CONNECTION_STRING }}' \
-              -e AZURE_ACCOUNT_NAME='${{ secrets.DEV_AZURE_ACCOUNT_NAME }}' \
-              -e AZURE_ACCOUNT_KEY='${{ secrets.DEV_AZURE_ACCOUNT_KEY }}' \
-              -e AZURE_CONTAINER='${{ secrets.DEV_AZURE_CONTAINER }}' \
+              -e AZURE_ACCOUNT_NAME='${{ secrets.PROD_AZURE_ACCOUNT_NAME }}' \
+              -e AZURE_ACCOUNT_KEY='${{ secrets.PROD_AZURE_ACCOUNT_KEY }}' \
+              -e AZURE_CONTAINER='${{ secrets.PROD_AZURE_CONTAINER }}' \
               -e ZENDESK_CAPTCHA_FIELD_ID='${{ secrets.ZENDESK_CAPTCHA_FIELD_ID }}' \
               -e ZENDESK_SUSPICIOUS_FIELD_ID='${{ secrets.ZENDESK_SUSPICIOUS_FIELD_ID }}' \
               -e RECAPTCHA_PUBLIC_KEY='${{ secrets.RECAPTCHA_PUBLIC_KEY }}' \
