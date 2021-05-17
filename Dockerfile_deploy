@@ -1,0 +1,33 @@
+FROM iati-standard-website_web:latest
+
+COPY about /usr/src/app/about
+COPY common /usr/src/app/common
+COPY contact /usr/src/app/contact
+COPY dashboard /usr/src/app/dashboard
+COPY events /usr/src/app/events
+COPY get_involved /usr/src/app/get_involved
+COPY governance /usr/src/app/governance
+COPY guidance_and_support /usr/src/app/guidance_and_support
+COPY home /usr/src/app/home
+COPY iati /usr/src/app/iati
+COPY iati_standard /usr/src/app/iati_standard
+COPY locale /usr/src/app/locale
+COPY modeltranslation_sync /usr/src/app/modeltranslation_sync
+COPY navigation /usr/src/app/navigation
+COPY news /usr/src/app/news
+COPY notices /usr/src/app/notices
+COPY patterns /usr/src/app/patterns
+COPY search /usr/src/app/search
+COPY taxonomies /usr/src/app/taxonomies
+COPY testimonials /usr/src/app/testimonials
+COPY tools /usr/src/app/tools
+COPY using_data /usr/src/app/using_data
+COPY __init__.py /usr/src/app/__init__.py
+COPY .pylintrc /usr/src/app/.pylintrc
+COPY entrypoint.sh /usr/src/app/entrypoint.sh
+COPY Makefile /usr/src/app/Makefile
+COPY manage.py /usr/src/app/manage.py
+COPY pytest.ini /usr/src/app/pytest.init
+COPY setup.cfg /usr/src/app/setup.cfg
+
+ENV ELASTICSEARCH_URL=http://localhost:9200

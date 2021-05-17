@@ -20,7 +20,10 @@ PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 ADMINS = (
-    ('Russell Kirkland', 'russell@mashandgravy.co.uk'),
+    ('Alex Miller', 'alex.miller@devinit.org'),
+    ('Nik Osvalds', 'nik.osvalds@devinit.org'),
+    ('Alex Lydiate', 'alexl@devinit.org'),
+    ('IATI Code', 'code@iatistandard.org'),
 )
 
 SECRET_KEY = 'enter-a-long-unguessable-string-here'
@@ -67,8 +70,6 @@ INSTALLED_APPS = [
     'wagtail.admin',
     'wagtail.core',
 
-    'wagtaillinkchecker',
-
     'modelcluster',
     'taggit',
     'haystack',
@@ -76,8 +77,6 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'snowpenguin.django.recaptcha3',
     'prettyjson',
-
-    'django_celery_results',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -109,6 +108,7 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'iati.custom_middleware.RedirectIATISites',
     'iati.custom_middleware.LowercaseMiddleware',
+    'opencensus.ext.django.middleware.OpencensusMiddleware',
 ]
 
 ROOT_URLCONF = 'iati.urls'
@@ -139,9 +139,24 @@ WSGI_APPLICATION = 'iati.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-DATABASES = {
-    'default': dj_database_url.config()
-}
+DATABASE_URL = os.getenv('DATABASE_URL', None)
+
+if DATABASE_URL:
+    DATABASES = {
+        'default': dj_database_url.config()
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': os.getenv('DATABASE_NAME'),
+            'USER': os.getenv('DATABASE_USER'),
+            'PASSWORD': os.getenv('DATABASE_PASS'),
+            'HOST': os.getenv('DATABASE_HOST'),
+            'PORT': os.getenv('DATABASE_PORT'),
+            'OPTIONS': {'sslmode': 'require'},
+        }
+    }
 
 
 # Password validation
@@ -556,13 +571,58 @@ RECAPTCHA_PRIVATE_KEY = os.getenv('RECAPTCHA_PRIVATE_KEY')
 RECAPTCHA_DEFAULT_ACTION = 'contact'
 RECAPTCHA_SCORE_THRESHOLD = float(os.getenv('RECAPTCHA_SCORE_THRESHOLD', 0.5))
 
-# Celery settings
-CELERY_BROKER_URL = os.getenv('RABBITMQ_URL', 'amqp://rabbitmq:5672')
-CELERY_RESULT_BACKEND = 'django-db'
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
-
 # Github settings
 
 GITHUB_TOKEN = os.getenv('GITHUB_TOKEN')
+
+# Blob storage
+AZURE_ACCOUNT_NAME = os.getenv('AZURE_ACCOUNT_NAME')
+
+if AZURE_ACCOUNT_NAME:
+    REFERENCE_DOWNLOAD_ROOT = os.path.join('/reference_downloads')
+    AZURE_ACCOUNT_KEY = os.getenv('AZURE_ACCOUNT_KEY')
+    AZURE_CONTAINER = os.getenv('AZURE_CONTAINER')
+    DEFAULT_FILE_STORAGE = 'storages.backends.azure_storage.AzureStorage'
+    STATICFILES_STORAGE = 'storages.backends.azure_storage.AzureStorage'
+
+# App insights
+
+APPLICATIONINSIGHTS_CONNECTION_STRING = os.getenv('APPLICATIONINSIGHTS_CONNECTION_STRING')
+
+if APPLICATIONINSIGHTS_CONNECTION_STRING:
+    LOGGING = {
+        "version": 1,
+        "disable_existing_loggers": False,
+        "formatters": {
+            "default": {
+                "format": "%(asctime)s - %(levelname)s - %(processName)s - %(name)s\n%(message)s",
+            },
+        },
+        "handlers": {
+            "azure": {
+                "class": "opencensus.ext.azure.log_exporter.AzureLogHandler",
+                "formatter": "default",
+                "connection_string": APPLICATIONINSIGHTS_CONNECTION_STRING,
+            },
+            "console": {
+                "class": "logging.StreamHandler",
+                "formatter": "default",
+            },
+        },
+        'loggers': {
+            'django': {
+                'handlers': ["azure", "console"],
+                'level': "INFO",
+                'propagate': True,
+            },
+        },
+    }
+
+    OPENCENSUS = {
+        'TRACE': {
+            'SAMPLER': 'opencensus.trace.samplers.ProbabilitySampler(rate=1)',
+            'EXPORTER': '''opencensus.ext.azure.trace_exporter.AzureExporter(
+                connection_string="{}"
+            )'''.format(APPLICATIONINSIGHTS_CONNECTION_STRING),
+        }
+    }

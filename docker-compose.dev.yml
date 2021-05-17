@@ -1,0 +1,24 @@
+version: "3.3"
+services:
+
+  postgres:
+    image: postgres:9.6
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    ports:
+      - 5432:5432
+  web:
+    build:
+      context: .
+    environment:
+      - DATABASE_URL=postgres://postgres:@postgres:5432/postgres
+      - SECRET_KEY=enter-a-long-unguessable-string-here
+      - ELASTICSEARCH_URL=http://localhost:9200
+      - DJANGO_SETTINGS_MODULE=iati.settings.dev
+      - GITHUB_TOKEN
+    links:
+      - postgres
+    ports:
+      - 5000:5000
+    volumes:
+      - ./:/usr/src/app

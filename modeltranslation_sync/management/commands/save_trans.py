@@ -3,12 +3,15 @@
 
 from __future__ import unicode_literals
 import json
-from os import mkdir
-from os.path import join, isdir, exists
+import io
+from os import mkdir, makedirs
+from os.path import join, isdir, dirname, exists
 
 from wagtail.core.blocks.stream_block import StreamValue
 
 from django.core.management.base import BaseCommand, CommandError
+from django.core.files.base import ContentFile
+from django.core.files.storage import default_storage
 from django.conf import settings
 from modeltranslation.translator import translator
 from babel.messages.catalog import Catalog
@@ -117,4 +120,14 @@ class Command(BaseCommand):
             po_file = open(po_filepath, "wb")
             write_po(po_file, catalog, width=None)
             po_file.close()
+            # write copy to default_storage
+            stream_str = io.BytesIO()
+            write_po(stream_str, catalog, width=None)
+            output_path = join("po_files", lang, filename_po)
+            output_dir = dirname(output_path)
+            if not isdir(output_dir):
+                makedirs(output_dir)
+            if default_storage.exists(output_path):
+                default_storage.delete(output_path)
+            default_storage.save(output_path, ContentFile(stream_str.getvalue()))
             print("New {} word count: {}".format(lang, word_count))
