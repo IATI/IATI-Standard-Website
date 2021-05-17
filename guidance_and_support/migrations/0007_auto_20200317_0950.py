@@ -8,7 +8,6 @@ class Migration(migrations.Migration):
     dependencies = [
         ('wagtailforms', '0003_capitalizeverbose'),
         ('wagtailredirects', '0006_redirect_increase_max_length'),
-        ('wagtaillinkchecker', '0005_auto_20180922_1835'),
         ('wagtailsearchpromotions', '0002_capitalizeverbose'),
         ('wagtailcore', '0041_group_collection_permissions_verbose_name_plural'),
         ('guidance_and_support', '0006_supportpage'),

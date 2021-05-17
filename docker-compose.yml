@@ -1,38 +1,23 @@
 version: "3.3"
 services:
-  elasticsearch:
-    image: elasticsearch:6.8.1
-    ports:
-      - "9200:9200"
+
   web:
     build:
       context: .
-      dockerfile: .dockerfile
-    command: bash -c "celery -A iati worker -l info & python manage.py runserver 0.0.0.0:80"
-    volumes:
-      - ./:/usr/src/app
-    links:
-      - postgres
-      - elasticsearch
-      - rabbitmq
-    ports:
-      - 80:80
+      dockerfile: Dockerfile_deploy
+    image: 'iati-standard-website_web_deploy'
     environment:
-      - DATABASE_URL=postgres://postgres:@postgres:5432/postgres
-      - SECRET_KEY=enter-a-long-unguessable-string-here
-      - ELASTICSEARCH_URL=http://elasticsearch:9200
       - DJANGO_SETTINGS_MODULE=iati.settings.dev
-  postgres:
-    image: postgres:9.6
-    environment:
-      - POSTGRES_PASSWORD=''
+      - SECRET_KEY
+      - DATABASE_NAME
+      - DATABASE_USER
+      - DATABASE_PASS
+      - DATABASE_HOST
+      - DATABASE_PORT
+      - APPLICATIONINSIGHTS_CONNECTION_STRING
+      - AZURE_ACCOUNT_NAME
+      - AZURE_ACCOUNT_KEY
+      - AZURE_CONTAINER
+      - GITHUB_TOKEN
     ports:
-      - 5432:5432
-  rabbitmq:
-    image: rabbitmq:latest
-    ports:
-      - 4369:4369
-      - 5671:5671
-      - 5672:5672
-      - 15672:15672
-    restart: always
+      - 5000:5000
