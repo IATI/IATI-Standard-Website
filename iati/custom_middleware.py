@@ -17,8 +17,6 @@ class RedirectIATISites:
 
     def __call__(self, request):
         """Call response to redirect old urls externally."""
-        response = self.get_response(request)
-
         self.path = request.get_full_path()
         self.lower_path = self.path.lower()
 
@@ -36,7 +34,7 @@ class RedirectIATISites:
             if new_path != self.path:
                 return http.HttpResponsePermanentRedirect(new_path)
 
-        return response
+        return self.get_response(request)
 
     def remove_language_code(self, path_parts_list):
         """Remove language code from path parts if exists."""
@@ -114,8 +112,6 @@ class LowercaseMiddleware:
 
     def __call__(self, request):
         """Redirect url paths as lowercase except for documents or media files."""
-        response = self.get_response(request)
-
         self.request_host = request.get_host()
         self.site_hostname = Site.find_for_request(request).hostname
         self.path = request.get_full_path()
@@ -124,7 +120,7 @@ class LowercaseMiddleware:
         if self.path_is_not_lowercase and self.path_is_not_exception:
             return http.HttpResponsePermanentRedirect(self.lower_path)
 
-        return response
+        return self.get_response(request)
 
     @property
     def path_is_not_lowercase(self):
