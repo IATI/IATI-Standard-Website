@@ -15,7 +15,7 @@ fi
 
 rc-service elasticsearch.service start
 
-gunicorn iati.wsgi:application --bind 0.0.0.0:5000 --workers 3 --worker-connections 1000 --worker-class gevent --timeout 0 > /var/log/gunicorn/gunicorn.log 2>&1 &
+gunicorn iati.wsgi:application --bind 0.0.0.0:5000 --workers 5 > /var/log/gunicorn/gunicorn.log 2>&1 &
 
 /usr/sbin/crond -f -l 8 &
 
