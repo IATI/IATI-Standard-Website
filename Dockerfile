@@ -121,5 +121,5 @@ EXPOSE 5000
 RUN mkdir -p /var/log/gunicorn
 RUN chmod 644 /var/log/gunicorn
 RUN touch /var/log/gunicorn/gunicorn.log
-ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
+ENTRYPOINT ["/usr/src/app/entrypoint_test.sh"]
 CMD ["tail", "-f", "/var/log/gunicorn/gunicorn.log"]
