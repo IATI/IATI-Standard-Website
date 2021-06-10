@@ -24,7 +24,7 @@ class Command(LoadCommand):
         locale_path = settings.MODELTRANSLATION_LOCALE_PATH
         if not isdir(locale_path):
             raise CommandError("Locale directory does not exists.")
-        for lang in [l[0] for l in list(settings.LANGUAGES)]:
+        for lang in [lang_tup[0] for lang_tup in list(settings.LANGUAGES)]:
             if lang != "en":
                 lang_path = join(locale_path, lang)
                 if not isdir(lang_path):

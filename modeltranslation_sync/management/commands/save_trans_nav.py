@@ -75,7 +75,7 @@ class Command(BaseCommand):
         if not isdir(locale_path):
             mkdir(locale_path)
 
-        for lang in [l[0] for l in list(settings.LANGUAGES)]:
+        for lang in [lang_tup[0] for lang_tup in list(settings.LANGUAGES)]:
 
             word_count = 0
 
