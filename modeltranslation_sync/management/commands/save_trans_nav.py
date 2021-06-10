@@ -109,7 +109,7 @@ class Command(BaseCommand):
                         msgid = "%s.%s.%s." % (item._meta, item.pk, field_str)
                         msgval = getattr(item, field_str)
                         if isinstance(msgval, StreamValue):
-                            msg_data = msgval.stream_data
+                            msg_data = msgval.raw_data
                             path_dict = {}
                             original_path = ""
                             path_dict = generate_json_paths(msg_data, original_path, path_dict)
