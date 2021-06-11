@@ -13,7 +13,12 @@ else
   done
 fi
 
-rc-service elasticsearch.service start
+if [[ -z "${ELASTICSEARCH_URL}" ]]; then
+  >&2 echo "Skipping Elasticsearch"
+else
+  >&2 echo "Starting Elasticsearch"
+  rc-service elasticsearch.service start
+fi
 
 gunicorn iati.wsgi:application --bind 0.0.0.0:5000 --workers $GUNICORN_WORKERS > /var/log/gunicorn/gunicorn.log 2>&1 &
 
