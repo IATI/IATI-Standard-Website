@@ -48,7 +48,7 @@ class Command(BaseCommand):
         if not isdir(locale_path):
             mkdir(locale_path)
 
-        for lang in [l[0] for l in list(settings.LANGUAGES)]:
+        for lang in [lang_tup[0] for lang_tup in list(settings.LANGUAGES)]:
 
             word_count = 0
 
@@ -86,12 +86,12 @@ class Command(BaseCommand):
                             msgval = getattr(item, tr_field)
                             enval = getattr(item, en_field)
                             if isinstance(msgval, StreamValue):
-                                msgstr = json.dumps(msgval.stream_data)
+                                msgstr = json.dumps(msgval.raw_data)
                             else:
                                 msgstr = "%s" % msgval
                             if enval is not None and field not in ["slug", "url_path"]:
                                 if isinstance(enval, StreamValue):
-                                    enstr = json.dumps(enval.stream_data)
+                                    enstr = json.dumps(enval.raw_data)
                                 else:
                                     enstr = "%s" % enval
                                 # We already have a translation, just add the new comment to pick it up

@@ -41,7 +41,7 @@ class Command(BaseCommand):
                 content_field_name = "content_editor_{}".format(language_code)
                 if hasattr(specific_page, content_field_name):
                     content_field = getattr(specific_page, content_field_name)
-                    content_str = json.dumps(content_field.stream_data)
+                    content_str = json.dumps(content_field.raw_data)
                     if old_link_str in content_str:
                         self.stdout.write(self.style.SUCCESS('Replacing soft-link in page: {}'.format(specific_page.title)))
                         edited_content_str = content_str.replace(old_link_str, new_link_str)

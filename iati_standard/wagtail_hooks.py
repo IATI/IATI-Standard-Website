@@ -1,5 +1,6 @@
 """Module to update wagtail hooks with bespoke JavaScript and urls."""
-from django.conf.urls import include, url
+from django.conf.urls import include
+from django.urls import re_path
 from django.utils.html import format_html_join
 from django.templatetags.static import static
 from wagtail.core import hooks
@@ -10,7 +11,7 @@ from iati_standard import urls
 def register_admin_urls():
     """Register bespoke URLs."""
     return [
-        url(r'^iati_standard/', include(urls, namespace='iati_standard')),
+        re_path(r'^iati_standard/', include(urls, namespace='iati_standard')),
     ]
 
 
