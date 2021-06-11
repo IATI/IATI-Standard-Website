@@ -132,6 +132,7 @@ jobs:
               docker pull '${{ secrets.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}' && \
               docker run --restart always --name website -d -p 5000:5000 \
               -e DJANGO_SETTINGS_MODULE='iati.settings.dev' \
+              -e GUNICORN_WORKERS=5 \
               -e SECRET_KEY='${{ secrets.DEV_SECRET_KEY }}' \
               -e DATABASE_NAME='${{ secrets.DEV_DATABASE_NAME }}' \
               -e DATABASE_USER='${{ secrets.DEV_DATABASE_USER }}' \
@@ -279,6 +280,7 @@ jobs:
               docker pull '${{ secrets.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}' && \
               docker run --restart always --name website -d -p 5000:5000 \
               -e DJANGO_SETTINGS_MODULE='iati.settings.production' \
+              -e GUNICORN_WORKERS=5 \
               -e SECRET_KEY='${{ secrets.PROD_SECRET_KEY }}' \
               -e DATABASE_NAME='${{ secrets.PROD_DATABASE_NAME }}' \
               -e DATABASE_USER='${{ secrets.PROD_DATABASE_USER }}' \

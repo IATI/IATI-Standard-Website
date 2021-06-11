@@ -8,6 +8,7 @@ services:
     image: 'iati-standard-website_web_deploy'
     environment:
       - DJANGO_SETTINGS_MODULE=iati.settings.dev
+      - GUNICORN_WORKERS=1
       - SECRET_KEY
       - DATABASE_NAME
       - DATABASE_USER
