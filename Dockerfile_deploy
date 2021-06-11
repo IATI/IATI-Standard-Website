@@ -31,4 +31,3 @@ COPY pytest.ini /usr/src/app/pytest.init
 COPY setup.cfg /usr/src/app/setup.cfg
 
 ENV ELASTICSEARCH_URL=http://localhost:9200
-ENTRYPOINT ["/usr/src/app/entrypoint_test.sh"]
