@@ -105,7 +105,7 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY requirements.txt /usr/src/app/
 COPY requirements_dev.txt /usr/src/app/
-COPY entrypoint.sh /usr/src/app/
+COPY entrypoint_test.sh /usr/src/app/
 ENV PATH=$HOME/.cargo/bin:$PATH
 
 RUN apk -U upgrade
