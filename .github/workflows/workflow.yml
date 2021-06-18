@@ -296,6 +296,15 @@ jobs:
               -e GITHUB_TOKEN='${{ secrets.SSOT_GITHUB_TOKEN }}' \
               '${{ secrets.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}'\
               "
+            az vm run-command invoke \
+            --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
+            --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
+            --command-id RunShellScript \
+            --scripts "\
+                echo '#!/bin/sh
+                docker exec -ti website sh -c '\''python3 manage.py publish_scheduled_pages'\''' > /etc/cron.hourly/hourly-cron.sh && \
+                chmod +x /etc/cron.hourly/hourly-cron.sh \
+              "
       - name: "Wait for 5 minutes"
         run: sleep 300
       - name: "Check new Azure Container Instance success"
