@@ -16,7 +16,6 @@ from dashboard.edit_handlers import NoEmptyLabelFieldPanel
 from home.models import AbstractContentPage
 from governance.fields import MembersAssemblyFieldsMixin
 from governance.inlines import *  # noqa
-from governance.resources import MemberResource
 from taxonomies.models import Constituency
 from taxonomies.utils import get_active_taxonomy_list
 
@@ -122,10 +121,6 @@ class MembersAssemblyPage(MembersAssemblyFieldsMixin, RoutablePageMixin, Abstrac
     def members(self, order):
         """Return all active member items, ordered by order argument."""
         return Member.objects.filter(active=True).order_by(order)
-
-    def members_csv(self):
-        """Return export of all active members."""
-        return MemberResource.export().subset(cols=['name', 'date_joined', 'url']).csv
 
     def filtered_collection(self, constituency, order):
         """Return a filtered collection based on constituency, with some extra legwork for translation."""
