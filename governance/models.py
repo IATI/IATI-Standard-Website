@@ -124,6 +124,7 @@ class MembersAssemblyPage(MembersAssemblyFieldsMixin, RoutablePageMixin, Abstrac
         return Member.objects.filter(active=True).order_by(order)
 
     def members_csv(self):
+        """Return export of all active members."""
         return MemberResource.export().subset(cols=['name', 'date_joined', 'url']).csv
 
     def filtered_collection(self, constituency, order):
