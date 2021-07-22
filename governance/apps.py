@@ -15,7 +15,7 @@ class GovernanceConfig(AppConfig):
 
         def members_csv(self):
             members = self.members(order='name')
-            export = MemberResource().export(members).subset(cols=['name', 'date_joined', 'url'])
+            export = MemberResource().export(members).subset(cols=['name', 'constituency', 'date_joined', 'url'])
             if export:
                 return export.csv
             return ""
