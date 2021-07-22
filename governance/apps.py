@@ -16,4 +16,4 @@ class GovernanceConfig(AppConfig):
         members = MembersAssemblyPage().members(order='name')
         export = MemberResource().export(members).subset(cols=['name', 'date_joined', 'url'])
         if export:
-            MembersAssemblyPage.members_csv =  export.csv
+            MembersAssemblyPage.members_csv = export.csv
