@@ -13,7 +13,11 @@ class GovernanceConfig(AppConfig):
         from .models import MembersAssemblyPage
         from .admin import MemberResource
 
-        members = MembersAssemblyPage().members(order='name')
-        export = MemberResource().export(members).subset(cols=['name', 'date_joined', 'url'])
-        if export:
-            MembersAssemblyPage.members_csv = export.csv
+        def members_csv(self):
+            members = self.members(order='name')
+            export = MemberResource().export(members).subset(cols=['name', 'date_joined', 'url'])
+            if export:
+                return export.csv
+            return ""
+
+        MembersAssemblyPage.members_csv = members_csv
