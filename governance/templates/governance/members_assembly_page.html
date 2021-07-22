@@ -31,7 +31,7 @@
     <div class="l-listing l-listing--people l-listing--no-pagination space-module-top" id="members">
         <div class="section-border">
             <h2 class="section__heading">{{ page.members_title }}</h2>
-            <a class="button" href="data:text/csv;charset=utf-8,{{ page.members_csv }}" download="members.csv">Download CSV</a>
+            <a class="button" href="data:text/csv;charset=utf-8,{{ page.members_csv }}" download="members.csv" style="margin-bottom: 20px;">Download CSV</a>
             {% include 'governance/members-filter.html' %}
             <div class="listing-box">
                 {% for item in listing %}
