@@ -110,4 +110,4 @@ RUN mkdir -p /var/log/gunicorn
 RUN chmod 644 /var/log/gunicorn
 RUN touch /var/log/gunicorn/gunicorn.log
 ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
-CMD ["tail", "-f", "/var/log/gunicorn/gunicorn.log"]
+CMD ["tail", "-n", "+0", "-f", "/var/log/gunicorn/gunicorn.log"]
