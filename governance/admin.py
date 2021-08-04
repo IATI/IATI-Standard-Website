@@ -118,6 +118,10 @@ class MemberResource(resources.ModelResource):
         import_id_fields = ['id']
         model = Member
 
+    def dehydrate_constituency(self, member):
+        """Define export method for constituency taxonomy title."""
+        return '%s' % (member.constituency.title)
+
     name = Field(
         attribute='name',
         column_name='name',

@@ -53,7 +53,7 @@ class Command(LoadCommand):
         locale_path = settings.MODELTRANSLATION_LOCALE_PATH
         if not isdir(locale_path):
             raise CommandError("Locale directory does not exists.")
-        for lang in [l[0] for l in list(settings.LANGUAGES)]:
+        for lang in [lang_tup[0] for lang_tup in list(settings.LANGUAGES)]:
             if lang != "en":
                 lang_path = join(locale_path, lang)
                 if not isdir(lang_path):
@@ -74,7 +74,7 @@ class Command(LoadCommand):
                                 setattr(obj, field, message.string)
                                 obj.save()
                             else:
-                                msg_data = getattr(obj, field).stream_data
+                                msg_data = getattr(obj, field).raw_data
                                 tr_json_path = "%s_%s" % (json_path[:-3], lang)
                                 msg_data = setattr_by_json_path(msg_data, tr_json_path, message.string)
                                 setattr(obj, field, json.dumps(msg_data))

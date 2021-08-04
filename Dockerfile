@@ -48,11 +48,8 @@ RUN apk add --no-cache openjdk8-jre su-exec
 ENV VERSION 6.8.13
 ENV DOWNLOAD_URL "https://artifacts.elastic.co/downloads/elasticsearch"
 ENV ES_TARBAL "${DOWNLOAD_URL}/elasticsearch-oss-${VERSION}.tar.gz"
-ENV ES_TARBALL_ASC "${DOWNLOAD_URL}/elasticsearch-oss-${VERSION}.tar.gz.asc"
-ENV EXPECTED_SHA_URL "${DOWNLOAD_URL}/elasticsearch-oss-${VERSION}.tar.gz.sha512"
+# ENV EXPECTED_SHA_URL "${DOWNLOAD_URL}/elasticsearch-oss-${VERSION}.tar.gz.sha512"
 ENV ES_TARBALL_SHA "e06b3486585e67f1e34e4268834b6625de6c4dcc380b15551306f42b02b5b2a0997fa2c26e82d965e6040cbf2367f399d4802e881fc649972382c895fa925573"
-ENV GPG_KEY "46095ACC8548582C1A2699A9D27D666CD88E42B4"
-# https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-oss-6.3.0.zip
 RUN apk add --no-cache -t .build-deps wget ca-certificates gnupg openssl \
   && set -ex \
   && cd /tmp \
@@ -60,15 +57,6 @@ RUN apk add --no-cache -t .build-deps wget ca-certificates gnupg openssl \
   && wget --progress=bar:force -O elasticsearch.tar.gz "$ES_TARBAL"; \
   if [ "$ES_TARBALL_SHA" ]; then \
   echo "$ES_TARBALL_SHA *elasticsearch.tar.gz" | sha512sum -c -; \
-  fi; \
-  if [ "$ES_TARBALL_ASC" ]; then \
-  wget --progress=bar:force -O elasticsearch.tar.gz.asc "$ES_TARBALL_ASC"; \
-  export GNUPGHOME="$(mktemp -d)"; \
-  ( gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$GPG_KEY" \
-  || gpg --keyserver pgp.mit.edu --recv-keys "$GPG_KEY" \
-  || gpg --keyserver keyserver.pgp.com --recv-keys "$GPG_KEY" ); \
-  gpg --batch --verify elasticsearch.tar.gz.asc elasticsearch.tar.gz; \
-  rm -rf "$GNUPGHOME" elasticsearch.tar.gz.asc || true; \
   fi; \
   tar -xf elasticsearch.tar.gz \
   && ls -lah \

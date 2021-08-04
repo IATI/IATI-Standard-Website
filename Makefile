@@ -28,4 +28,4 @@ pydocstyle: $(IATI_FOLDER)
 
 
 test: $(IATI_FOLDER)
-	pytest $(IATI_FOLDER)
+	pytest --disable-warnings $(IATI_FOLDER)
