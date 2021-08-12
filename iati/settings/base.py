@@ -615,7 +615,7 @@ if APPLICATIONINSIGHTS_CONNECTION_STRING:
         'loggers': {
             'django': {
                 'handlers': ["azure", "console"],
-                'level': "INFO",
+                'level': "ERROR",
                 'propagate': True,
             },
         },
