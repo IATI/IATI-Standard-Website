@@ -623,7 +623,7 @@ if APPLICATIONINSIGHTS_CONNECTION_STRING:
 
     OPENCENSUS = {
         'TRACE': {
-            'SAMPLER': 'opencensus.trace.samplers.ProbabilitySampler(rate=1)',
+            'SAMPLER': 'opencensus.trace.samplers.ProbabilitySampler(rate=0.1)',
             'EXPORTER': '''opencensus.ext.azure.trace_exporter.AzureExporter(
                 connection_string="{}"
             )'''.format(APPLICATIONINSIGHTS_CONNECTION_STRING),
