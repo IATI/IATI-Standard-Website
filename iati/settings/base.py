@@ -621,15 +621,6 @@ if APPLICATIONINSIGHTS_CONNECTION_STRING:
         },
     }
 
-    OPENCENSUS = {
-        'TRACE': {
-            'SAMPLER': 'opencensus.trace.samplers.ProbabilitySampler(rate=0.1)',
-            'EXPORTER': '''opencensus.ext.azure.trace_exporter.AzureExporter(
-                connection_string="{}"
-            )'''.format(APPLICATIONINSIGHTS_CONNECTION_STRING),
-        }
-    }
-
 # Ignore Whitenoise error when running with Azure storage
 ignore_warnings(message="No directory at", module="whitenoise.base").enable()
 
