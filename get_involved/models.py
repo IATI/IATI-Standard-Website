@@ -1,6 +1,6 @@
 """Model definitions for the get involved app."""
 from django.utils.functional import cached_property
-from wagtail.admin.edit_handlers import InlinePanel
+from wagtail.admin.edit_handlers import InlinePanel, StreamFieldPanel
 from home.models import AbstractContentPage, DefaultPageHeaderImageMixin, highlight_streamfield
 from get_involved.inlines import *  # noqa
 
