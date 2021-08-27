@@ -19,13 +19,12 @@ urlpatterns = [  # pylint: disable=invalid-name
     re_path(r'^django-{}/'.format(settings.ADMIN_SLUG), admin.site.urls),
     re_path(r'^{}/'.format(settings.ADMIN_SLUG), include(wagtailadmin_urls)),
     re_path(r'^{}/'.format(settings.DOCUMENTS_SLUG), include(wagtaildocs_urls)),
+    # Wagtail sitemap
+    re_path(r'^sitemap\.xml$', sitemap),
 ]
 
 
 urlpatterns += i18n_patterns(
-    # Wagtail sitemap
-    re_path(r'^sitemap\.xml$', sitemap),
-
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's page serving mechanism. This should be the last pattern in
     # the list:

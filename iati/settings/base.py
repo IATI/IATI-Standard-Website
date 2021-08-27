@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'testimonials',
     'notices',
 
+    'wagtail.locales',
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
     'wagtail.embeds',
@@ -182,7 +183,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en'
 
-LANGUAGES = [
+WAGTAIL_I18N_ENABLED = True
+
+WAGTAIL_CONTENT_LANGUAGES = LANGUAGES = [
     ('en', _('English')),
     ('fr', _('French')),
     ('es', _('Spanish')),
