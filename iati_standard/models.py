@@ -392,9 +392,7 @@ class StandardGuidancePage(AbstractGithubPage):
     template = 'iati_standard/standard_guidance_page.html'
 
     search_fields = AbstractGithubPage.search_fields + [
-        FilterField('title'),
-        FilterField('title_en')
-    ]
+        FilterField('title')    ]
 
     @cached_property
     def github_url(self):
