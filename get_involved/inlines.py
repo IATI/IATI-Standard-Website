@@ -43,12 +43,6 @@ class GetInvolvedItems(Orderable, GetInvolvedItem):
 
     item = ParentalKey('GetInvolvedPage', related_name='get_involved_items')
 
-    translation_fields = [
-        'title',
-        'description',
-        'link_label',
-    ]
-
     panels = [
         FieldPanel('title'),
         ImageChooserPanel('image'),

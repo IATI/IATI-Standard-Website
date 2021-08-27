@@ -38,7 +38,7 @@ class RedirectIATISites:
 
     def remove_language_code(self, path_parts_list):
         """Remove language code from path parts if exists."""
-        codes = [x[0] for x in settings.ACTIVE_LANGUAGES]
+        codes = [x[0] for x in settings.LANGUAGES]
         if len(path_parts_list) > 0:
             if path_parts_list[0] in codes:
                 return tuple(x for x in path_parts_list[1:])

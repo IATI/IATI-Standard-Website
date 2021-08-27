@@ -66,7 +66,7 @@ class NewsPage(AbstractContentPage):
 
     news_categories = ParentalManyToManyField('news.NewsCategory', blank=True)
 
-    multilingual_field_panels = [
+    content_panels = AbstractContentPage.content_panels + [
         FieldPanel('date'),
         FieldPanel('news_categories', widget=forms.CheckboxSelectMultiple),
         ImageChooserPanel('feed_image'),
@@ -103,8 +103,6 @@ class NewsCategory(models.Model):
         if base_slug:
             self.slug = base_slug
         super(NewsCategory, self).full_clean(exclude, validate_unique)
-
-    translation_fields = ['name']
 
     panels = [FieldPanel('name')]
 

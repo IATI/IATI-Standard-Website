@@ -2,7 +2,7 @@
 
 from django.db import models
 
-from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.core.fields import StreamField, RichTextField
 from wagtail.core.models import Page
 from wagtail.images.edit_handlers import ImageChooserPanel
@@ -76,9 +76,9 @@ class GuidanceGroupPage(AbstractContentPage):
         guidance_group_list = [{"page": page, "count": len(page.get_children())} for page in guidance_groups]
         return guidance_group_list
 
-    translation_fields = AbstractContentPage.translation_fields + ["section_summary", "button_link_text"]
-
-    multilingual_field_panels = [
+    content_panels = AbstractContentPage.content_panels + [
+        StreamFieldPanel('section_summary'),
+        FieldPanel('button_link_text')
         ImageChooserPanel('section_image'),
     ]
 
@@ -116,10 +116,7 @@ class CommunityPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
 
     button_url = models.URLField(null=True, blank=True, help_text='The url for the community page being linked')
 
-    translation_fields = AbstractIndexPage.translation_fields + ["text_box", "button_link_text"]
-
-    content_panels = AbstractIndexPage.content_panels + [
-        FieldPanel('heading'),
+    content_panels = AbstractIndexPage.content_panels + DefaultPageHeaderImageMixin.content_panels + [
         FieldPanel('button_link_text'),
         FieldPanel('button_url'),
         FieldPanel('text_box')
@@ -139,6 +136,6 @@ class SupportPage(DefaultPageHeaderImageMixin, ContactFormMixin, AbstractContent
         help_text='Content to describe alternative ways of receiving support',
     )
 
-    translation_fields = AbstractContentPage.translation_fields + [
-        'alternative_content',
+    content_panels = AbstractContentPage.content_panels + DefaultPageHeaderImageMixin.content_panels + [
+        FieldPanel('alternative_content'),
     ]

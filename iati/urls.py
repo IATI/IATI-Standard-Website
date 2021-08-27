@@ -12,7 +12,7 @@ from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from wagtail.images.views.serve import serve
 
-from .activate_languages import i18n_patterns  # For internationalization
+from django.conf.urls.i18n import i18n_patterns
 
 
 urlpatterns = [  # pylint: disable=invalid-name

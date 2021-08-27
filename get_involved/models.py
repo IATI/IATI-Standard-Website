@@ -15,16 +15,13 @@ class GetInvolvedPage(DefaultPageHeaderImageMixin, AbstractContentPage):
 
     highlight = highlight_streamfield()
 
-    translation_fields = AbstractContentPage.translation_fields + [
-        'highlight',
-    ]
-
-    multilingual_field_panels = DefaultPageHeaderImageMixin.multilingual_field_panels + [
+    content_panels =  AbstractContentPage.content_panels + DefaultPageHeaderImageMixin.content_panels + [
         InlinePanel(
             'get_involved_items',
             heading='Get involved items',
             label='Get involved item',
         ),
+        StreamFieldPanel('highlight')
     ]
 
     @cached_property

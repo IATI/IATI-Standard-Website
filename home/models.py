@@ -8,7 +8,7 @@ from django.templatetags.static import static
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template.defaultfilters import slugify
 from wagtail.core.models import Page
-from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, PageChooserPanel
+from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, PageChooserPanel, StreamFieldPanel
 from wagtail.core.blocks import TextBlock, StructBlock, StreamBlock, FieldBlock, CharBlock, RichTextBlock, RawHTMLBlock, PageChooserBlock
 from wagtail.core.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
@@ -141,10 +141,11 @@ class AbstractBasePage(Page):
         help_text='This image will be used as the image for social media sharing cards.'
     )
 
-    translation_fields = [
-        "heading",
-        "excerpt"
+    content_panels = Page.content_panels + [
+        FieldPanel('heading'),
+        FieldPAnel('excerpt')
     ]
+
     search_fields = Page.search_fields + [
         FilterField('live'),
         SearchField('heading'),
@@ -163,7 +164,7 @@ class AbstractBasePage(Page):
     def get_context(self, request, *args, **kwargs):
         """Override get_context method to check for active language length."""
         context = super(AbstractBasePage, self).get_context(request, *args, **kwargs)
-        context['has_multilanguage_support'] = len(settings.ACTIVE_LANGUAGES)
+        context['has_multilanguage_support'] = len(settings.LANGUAGES)
         context['social_twitter_handle'] = settings.TWITTER_HANDLE
         context['social_youtube_url'] = settings.YOUTUBE_CHANNEL_URL
         return context
@@ -205,7 +206,9 @@ class AbstractContentPage(AbstractBasePage):
 
     content_editor = StreamField(IATIStreamBlock(required=False), null=True, blank=True)
 
-    translation_fields = AbstractBasePage.translation_fields + ["content_editor"]
+    content_panels = AbstractBasePage.content_panels + [
+        StreamFieldPanel('content_editor'),
+    ]
     search_fields = AbstractBasePage.search_fields + [SearchField('content_editor')]
 
     class Meta(object):
@@ -253,7 +256,7 @@ class AbstractIndexPage(AbstractBasePage):
 
 
 class DefaultPageHeaderImageMixin(Page):
-    """A mixin to add a Multilingual tab with the ability to edit the header image for default pages.
+    """A mixin to add the ability to edit the header image for default pages.
 
     As only default pages require an editable header image this mixin allows selective inclusion alongside other inherited abstract page models.
 
@@ -264,9 +267,8 @@ class DefaultPageHeaderImageMixin(Page):
         on_delete=models.SET_NULL, related_name='+',
         help_text='This is the image that will appear in the header banner at the top of the page. If no image is added a placeholder image will be used.'
     )
-    multilingual_field_panels = [
-        ImageChooserPanel('header_image')
-    ]
+
+    content_panels = [ImageChooserPanel('header_image')]
 
     class Meta(object):
         """Meta data for the class."""
@@ -282,35 +284,7 @@ class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage): 
     activities = models.PositiveIntegerField(default=1000000)
     organisations = models.PositiveIntegerField(default=700)
 
-    local_translation_fields = [
-        'header_video',
-        'activities_description',
-        'organisations_description',
-        'getting_started_title',
-        'about_iati_title',
-        'about_iati_description',
-        'about_iati_video',
-        'flexible_features',
-        'about_iati_link_label',
-        'iati_in_action_title',
-        'iati_in_action_description',
-        'iati_tools_title',
-        'iati_tools_description',
-        'latest_news_title',
-        'latest_news_link_label',
-        'latest_news_tweets_title',
-    ]
-    optional_local_translation_fields = [
-        'header_video',
-        'about_iati_video',
-        'flexible_features',
-        'iati_in_action_description',
-        'iati_tools_description',
-    ]
-    translation_fields = AbstractBasePage.translation_fields + local_translation_fields
-    required_languages = {'en': list(set(local_translation_fields) - set(optional_local_translation_fields))}
-
-    multilingual_field_panels = DefaultPageHeaderImageMixin.multilingual_field_panels + [
+    content_panels = AbstractBasePage.content_panels + DefaultPageHeaderImageMixin.content_panels + [
         InlinePanel(
             'testimonial_items',
             heading='Testimonial items',
@@ -354,6 +328,22 @@ class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage): 
             label='Latest news item',
             max_num=3,
         ),
+        FieldPanel('activities_description'),
+        FieldPanel('organisations_description'),
+        FieldPanel('getting_started_title'),
+        FieldPanel('about_iati_title'),
+        FieldPanel('about_iati_description'),
+        FieldPanel('about_iati_video'),
+        FieldPanel('flexible_features'),
+        FieldPanel('about_iati_link_label'),
+        FieldPanel('iati_in_action_title'),
+        FieldPanel('iati_in_action_description'),
+        FieldPanel('iati_tools_title'),
+        FieldPanel('iati_tools_description'),
+        FieldPanel('latest_news_title'),
+        FieldPanel('latest_news_link_label'),
+        FieldPanel('latest_news_tweets_title'),
+        FieldPanel('header_video'),
     ]
 
 
@@ -373,7 +363,7 @@ class StandardPage(AbstractContentPage):
     )
     fixed_page_type = models.CharField(max_length=7, choices=FIXED_PAGE_TYPES, null=True, blank=True)
 
-    multilingual_field_panels = [
+    content_panels = AbstractContentPage.content_panels + [
         FieldPanel('fixed_page_type'),
     ]
 

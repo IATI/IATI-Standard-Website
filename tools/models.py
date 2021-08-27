@@ -29,18 +29,15 @@ class ToolsListingPage(DefaultPageHeaderImageMixin, AbstractContentPage):
         help_text='Optional: content for the highlight panel displayed after featured tools',
     )
 
-    translation_fields = AbstractContentPage.translation_fields + [
-        'highlight_title',
-        'highlight_content',
-    ]
-
-    multilingual_field_panels = DefaultPageHeaderImageMixin.multilingual_field_panels + [
+    content_panels = AbstractContentPage.content_panels + DefaultPageHeaderImageMixin.content_panels + [
         MultiFieldPanel(
             [
                 InlinePanel('featured_tools', label='Featured tool', help_text='Select and order the tools to be featured on the page.'),
             ],
             heading='Featured tools',
-        )
+        ),
+        FieldPanel('highlight_title'),
+        FieldPanel('highlight_content'),
     ]
 
     @cached_property
@@ -83,14 +80,11 @@ class AbstractToolPage(AbstractContentPage):
         help_text='Optional: label for the external URL button',
     )
 
-    translation_fields = AbstractContentPage.translation_fields + [
-        'listing_description',
-        'button_label',
-    ]
-
-    multilingual_field_panels = [
+    content_panels =  AbstractContentPage.content_panels + [
         ImageChooserPanel('logo'),
         FieldPanel('external_url')
+        FieldPanel('listing_description'),
+        FieldPanel('button_label')
     ]
 
 

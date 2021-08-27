@@ -27,11 +27,6 @@ class Testimonial(index.Indexed, models.Model):
         help_text='Optional: image for the quotee'
     )
 
-    translation_fields = [
-        'quote',
-        'quotee',
-    ]
-
     search_fields = [
         index.SearchField('quote', partial_match=True),
         index.SearchField('quotee', partial_match=True),

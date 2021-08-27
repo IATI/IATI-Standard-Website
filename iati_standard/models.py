@@ -114,7 +114,7 @@ class IATIStandardPage(DefaultPageHeaderImageMixin, AbstractContentPage):
         ('card', CardBlock())
     ], null=True, blank=True)
 
-    multilingual_field_panels = DefaultPageHeaderImageMixin.multilingual_field_panels + [
+    content_panels = AbstractContentPage.content_panels + DefaultPageHeaderImageMixin.content_panels + [
         FieldPanel('static'),
         PageChooserPanel('latest_version_page', 'iati_standard.ActivityStandardPage'),
         PageChooserPanel('reference_support_page'),
@@ -146,7 +146,11 @@ class StandardGuidanceIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
 
     content_editor = StreamField(IATIStreamBlock(required=False), null=True, blank=True)
 
-    translation_fields = AbstractIndexPage.translation_fields + ["section_summary", "button_link_text", "content_editor"]
+    content_panels = AbstractIndexPage.content_panels + DefaultPageHeaderImageMixin.content_panels + [
+        FieldPanel("section_summary"),
+        FieldPanel("button_link_text"),
+        StreamFieldPanel("content_editor")
+    ]
 
     def get_guidance(self, request, filter_dict=None, search_query=None):
         """Return a filtered list of guidance."""
@@ -301,7 +305,7 @@ class AbstractGithubPage(DefaultPageHeaderImageMixin, AbstractContentPage):
         blank=True
     )
 
-    translation_fields = AbstractContentPage.translation_fields + ["data"]
+    content_panels = AbstractContentPage.content_panels + DefaultPageHeaderImageMixin.content_panels + [FieldPanel("data")]
     search_fields = AbstractContentPage.search_fields + [
         SearchField('data'),
     ]

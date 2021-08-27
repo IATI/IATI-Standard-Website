@@ -6,7 +6,7 @@ from django.utils import timezone
 from django.utils.text import slugify
 from django.template.defaultfilters import date as _date
 from modelcluster.fields import ParentalManyToManyField
-from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel
+from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel, StreamFieldPanel
 from wagtail.core.fields import StreamField
 from wagtail.snippets.models import register_snippet
 from wagtail.images.edit_handlers import ImageChooserPanel
@@ -110,9 +110,7 @@ class EventPage(AbstractContentPage):
 
         return " | ".join(event_types)
 
-    translation_fields = AbstractContentPage.translation_fields + ["additional_information"]
-
-    multilingual_field_panels = [
+    content_panels = AbstractContentPage.content_panels + [
         FieldPanel('featured_event'),
         FieldPanel('date_start'),
         FieldPanel('date_end'),
@@ -120,6 +118,7 @@ class EventPage(AbstractContentPage):
         FieldPanel('registration_link'),
         FieldPanel('event_type', widget=forms.CheckboxSelectMultiple),
         ImageChooserPanel('feed_image'),
+        StreamFieldPanel('additional_information'),
     ]
 
     @property
@@ -157,8 +156,6 @@ class EventType(models.Model):
         """Call full_clean method for slug validation."""
         self.full_clean()
         super().save(*args, **kwargs)
-
-    translation_fields = ['name']
 
     panels = [FieldPanel('name')]
 

@@ -25,11 +25,6 @@ class ChairItem(models.Model):
         help_text='Short bio for the chair',
     )
 
-    translation_fields = [
-        'name',
-        'bio',
-    ]
-
 
 class ChairItems(Orderable, ChairItem):
     """Concrete clustrable model class for chair items."""

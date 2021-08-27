@@ -38,9 +38,6 @@ SECRET_KEY = 'enter-a-long-unguessable-string-here'
 # Application definition
 
 INSTALLED_APPS = [
-    'wagtail_modeltranslation',
-    'wagtail_modeltranslation.makemigrations',
-    'wagtail_modeltranslation.migrate',
     'home',
     'search',
     'about',
@@ -92,7 +89,6 @@ INSTALLED_APPS = [
     'wagtail.contrib.settings',
     'wagtail.contrib.modeladmin',
 
-    'modeltranslation_sync',
     'django_extensions',
 ]
 
@@ -191,11 +187,6 @@ LANGUAGES = [
     ('fr', _('French')),
     ('es', _('Spanish')),
     ('pt', _('Portuguese')),
-]
-
-ACTIVE_LANGUAGES = [
-    ('en', _('English')),
-    ('fr', _('French')),
 ]
 
 TIME_ZONE = 'UTC'
@@ -535,11 +526,6 @@ REFERENCE_REDIRECT_BASE_URL = 'https://iatistandard.org'
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 BASE_URL = 'http://iatistandard.org'
-
-# Modeltranslation sync Settings
-MODELTRANSLATION_LOCALE_PATH = os.path.join(BASE_DIR, 'locale')
-LOCALE_PATHS = (MODELTRANSLATION_LOCALE_PATH,)
-MODELTRANSLATION_PO_FILE = "iati.po"
 
 # Community URL
 COMMUNITY_URL = 'https://discuss.iatistandard.org/'
