@@ -78,7 +78,7 @@ class GuidanceGroupPage(AbstractContentPage):
 
     content_panels = AbstractContentPage.content_panels + [
         StreamFieldPanel('section_summary'),
-        FieldPanel('button_link_text')
+        FieldPanel('button_link_text'),
         ImageChooserPanel('section_image'),
     ]
 
