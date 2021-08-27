@@ -82,7 +82,7 @@ class AbstractToolPage(AbstractContentPage):
 
     content_panels =  AbstractContentPage.content_panels + [
         ImageChooserPanel('logo'),
-        FieldPanel('external_url')
+        FieldPanel('external_url'),
         FieldPanel('listing_description'),
         FieldPanel('button_label')
     ]
