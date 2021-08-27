@@ -143,7 +143,7 @@ class AbstractBasePage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel('heading'),
-        FieldPAnel('excerpt')
+        FieldPanel('excerpt')
     ]
 
     search_fields = Page.search_fields + [
