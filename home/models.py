@@ -171,13 +171,12 @@ class AbstractBasePage(Page):
 
     def clean(self):
         """Override clean to remove trailing dashes from slugs with whitespaces."""
-        for lang in tuple(x[0] for x in settings.LANGUAGES):
-            slug_field = 'slug_{}'.format(lang)
-            slug = getattr(self, slug_field)
-            if slug:
-                slug_stripped = re.sub(r'[^\w\s-]', '', slug).strip("-")
-                slug_valid = slugify(slug_stripped)
-                setattr(self, slug_field, slug_valid)
+        slug_field = 'slug'
+        slug = getattr(self, slug_field)
+        if slug:
+            slug_stripped = re.sub(r'[^\w\s-]', '', slug).strip("-")
+            slug_valid = slugify(slug_stripped)
+            setattr(self, slug_field, slug_valid)
         super(AbstractBasePage, self).clean()
 
     @property
