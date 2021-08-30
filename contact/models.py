@@ -2,7 +2,7 @@
 
 from wagtail.core.blocks import RichTextBlock, StreamBlock, StructBlock, TextBlock
 from wagtail.core.fields import StreamField
-from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from home.models import AbstractContentPage, DefaultPageHeaderImageMixin
 
 
@@ -26,5 +26,5 @@ class ContactPage(DefaultPageHeaderImageMixin, AbstractContentPage):
 
     contact_type = StreamField(ContactTypeStreamBlock, blank=True, null=True)
     content_panels = AbstractContentPage.content_panels + DefaultPageHeaderImageMixin.content_panels + [
-        FieldPanel('contact_type'),
+        StreamFieldPanel('contact_type'),
     ]

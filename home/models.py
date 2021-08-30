@@ -334,7 +334,7 @@ class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage): 
         FieldPanel('about_iati_title'),
         FieldPanel('about_iati_description'),
         FieldPanel('about_iati_video'),
-        FieldPanel('flexible_features'),
+        StreamFieldPanel('flexible_features'),
         FieldPanel('about_iati_link_label'),
         FieldPanel('iati_in_action_title'),
         FieldPanel('iati_in_action_description'),
