@@ -57,7 +57,8 @@ INSTALLED_APPS = [
     'testimonials',
     'notices',
 
-    'wagtail.locales',
+    "wagtail_localize",
+    "wagtail_localize.locales",
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
     'wagtail.embeds',
