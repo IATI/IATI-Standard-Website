@@ -153,7 +153,9 @@ jobs:
               --command-id RunShellScript \
               --scripts "\
                 echo '#!/bin/sh\ndocker exec -ti website sh -c '\''python3 manage.py publish_scheduled_pages'\''' > /etc/cron.hourly/hourly-cron && \
-                chmod +x /etc/cron.hourly/hourly-cron"
+                echo '#!/bin/sh\ndocker exec -ti website sh -c '\''python3 manage.py updatestatistics'\''' > /etc/cron.daily/daily-cron && \
+                chmod +x /etc/cron.hourly/hourly-cron && \
+                chmod +x /etc/cron.daily/daily-cron"
       - name: "Wait for 5 minutes"
         run: sleep 300
       - name: "Check new Azure Container Instance success"
