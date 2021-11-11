@@ -75,9 +75,9 @@ jobs:
           docker build -f Dockerfile_deploy . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}
           docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}
       - name: "Check if blue is running"
-        uses: "azure/CLI@v1"
+        uses: "azure/CLI@1.0.4"
         with:
-          azcliversion: 2.19.1
+          azcliversion: 2.30.0
           inlineScript: |
             if echo $(az group exists --name "${{ env.STAGE }}-${{ env.NAME }}-blue") | grep -q "true"; then
               echo "NEW_COLOUR=green" >> $GITHUB_ENV
@@ -87,14 +87,14 @@ jobs:
               echo "OLD_COLOUR=green" >> $GITHUB_ENV
             fi
       - name: "Create new resource group"
-        uses: "azure/CLI@v1"
+        uses: "azure/CLI@1.0.4"
         with:
-          azcliversion: 2.19.1
+          azcliversion: 2.30.0
           inlineScript: az group create --location uksouth --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}"
       - name: "Deploy new Azure VM"
-        uses: "azure/CLI@v1"
+        uses: "azure/CLI@1.0.4"
         with:
-          azcliversion: 2.19.1
+          azcliversion: 2.30.0
           inlineScript: |
             az vm create \
             --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
@@ -161,9 +161,9 @@ jobs:
       - name: "Check new Azure Container Instance success"
         id: new_has_succeeded
         continue-on-error: true
-        uses: "azure/CLI@v1"
+        uses: "azure/CLI@1.0.4"
         with:
-          azcliversion: 2.19.1
+          azcliversion: 2.30.0
           inlineScript: |
             if echo $(az vm run-command invoke -g "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" -n "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --command-id RunShellScript --scripts "docker logs website" -o tsv --query value[0].message) | grep -q "Booting worker with pid"; then
               echo "Success"
@@ -183,17 +183,17 @@ jobs:
           ssh -o StrictHostKeyChecking=no azureuser@${{ secrets.DEV_NGINX_IP }} /home/azureuser/restart_nginx.sh
       - if: steps.new_has_succeeded.outcome == 'success'
         name: "Delete previous VM resource group"
-        uses: "azure/CLI@v1"
+        uses: "azure/CLI@1.0.4"
         with:
-          azcliversion: 2.19.1
+          azcliversion: 2.30.0
           inlineScript: |
             az group delete --yes --no-wait \
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.OLD_COLOUR }}"
       - if: steps.new_has_succeeded.outcome != 'success'
         name: "Delete failed VM resource group"
-        uses: "azure/CLI@v1"
+        uses: "azure/CLI@1.0.4"
         with:
-          azcliversion: 2.19.1
+          azcliversion: 2.30.0
           inlineScript: |
             az group delete --yes --no-wait \
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}"
@@ -230,9 +230,9 @@ jobs:
           docker build -f Dockerfile_deploy . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}
           docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}
       - name: "Check if blue is running"
-        uses: "azure/CLI@v1"
+        uses: "azure/CLI@1.0.4"
         with:
-          azcliversion: 2.19.1
+          azcliversion: 2.30.0
           inlineScript: |
             if echo $(az group exists --name "${{ env.STAGE }}-${{ env.NAME }}-blue") | grep -q "true"; then
               echo "NEW_COLOUR=green" >> $GITHUB_ENV
@@ -242,14 +242,14 @@ jobs:
               echo "OLD_COLOUR=green" >> $GITHUB_ENV
             fi
       - name: "Create new resource group"
-        uses: "azure/CLI@v1"
+        uses: "azure/CLI@1.0.4"
         with:
-          azcliversion: 2.19.1
+          azcliversion: 2.30.0
           inlineScript: az group create --location uksouth --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}"
       - name: "Deploy new Azure VM"
-        uses: "azure/CLI@v1"
+        uses: "azure/CLI@1.0.4"
         with:
-          azcliversion: 2.19.1
+          azcliversion: 2.30.0
           inlineScript: |
             az vm create \
             --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
@@ -315,9 +315,9 @@ jobs:
       - name: "Check new Azure Container Instance success"
         id: new_has_succeeded
         continue-on-error: true
-        uses: "azure/CLI@v1"
+        uses: "azure/CLI@1.0.4"
         with:
-          azcliversion: 2.19.1
+          azcliversion: 2.30.0
           inlineScript: |
             if echo $(az vm run-command invoke -g "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" -n "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --command-id RunShellScript --scripts "docker logs website" -o tsv --query value[0].message) | grep -q "Booting worker with pid"; then
               echo "Success"
@@ -337,17 +337,17 @@ jobs:
           ssh -o StrictHostKeyChecking=no azureuser@${{ secrets.PROD_NGINX_IP }} /home/azureuser/restart_nginx.sh
       - if: steps.new_has_succeeded.outcome == 'success'
         name: "Delete previous VM resource group"
-        uses: "azure/CLI@v1"
+        uses: "azure/CLI@1.0.4"
         with:
-          azcliversion: 2.19.1
+          azcliversion: 2.30.0
           inlineScript: |
             az group delete --yes --no-wait \
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.OLD_COLOUR }}"
       - if: steps.new_has_succeeded.outcome != 'success'
         name: "Delete failed VM resource group"
-        uses: "azure/CLI@v1"
+        uses: "azure/CLI@1.0.4"
         with:
-          azcliversion: 2.19.1
+          azcliversion: 2.30.0
           inlineScript: |
             az group delete --yes --no-wait \
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}"
