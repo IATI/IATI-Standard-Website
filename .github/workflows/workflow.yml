@@ -152,10 +152,8 @@ jobs:
               --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
               --command-id RunShellScript \
               --scripts "\
-                echo '#!/bin/sh\ndocker exec -ti website sh -c '\''python3 manage.py publish_scheduled_pages'\''' > /etc/cron.hourly/hourly-cron && \
-                echo '#!/bin/sh\ndocker exec -ti website sh -c '\''python3 manage.py updatestatistics'\''' > /etc/cron.hourly/stats-cron && \
-                chmod +x /etc/cron.hourly/hourly-cron && \
-                chmod +x /etc/cron.hourly/stats-cron"
+                echo '#!/bin/sh\n/snap/bin/docker exec -i website sh -c '\''python3 manage.py publish_scheduled_pages && python3 manage.py updatestatistics'\''' > /etc/cron.hourly/hourly-cron && \
+                chmod +x /etc/cron.hourly/hourly-cron"
       - name: "Wait for 5 minutes"
         run: sleep 300
       - name: "Check new Azure Container Instance success"
@@ -308,10 +306,8 @@ jobs:
               --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
               --command-id RunShellScript \
               --scripts "\
-                echo '#!/bin/sh\ndocker exec -ti website sh -c '\''python3 manage.py publish_scheduled_pages'\''' > /etc/cron.hourly/hourly-cron && \
-                echo '#!/bin/sh\ndocker exec -ti website sh -c '\''python3 manage.py updatestatistics'\''' > /etc/cron.hourly/stats-cron && \
-                chmod +x /etc/cron.hourly/hourly-cron && \
-                chmod +x /etc/cron.hourly/stats-cron"
+                echo '#!/bin/sh\n/snap/bin/docker exec -i website sh -c '\''python3 manage.py publish_scheduled_pages && python3 manage.py updatestatistics'\''' > /etc/cron.hourly/hourly-cron && \
+                chmod +x /etc/cron.hourly/hourly-cron"
       - name: "Wait for 5 minutes"
         run: sleep 300
       - name: "Check new Azure Container Instance success"
