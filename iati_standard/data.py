@@ -14,7 +14,7 @@ from iati_standard.edit_handlers import GithubAPI
 from guidance_and_support.models import GuidanceAndSupportPage
 
 
-SORT_ORDER = {
+ACTIVITY_SORT_ORDER = {
     "iati-activities/iati-activity": 0,
     "iati-activity/iati-identifier": 1,
     "iati-activity/reporting-org": 2,
@@ -150,8 +150,53 @@ SORT_ORDER = {
     "loan-status/principal-arrears": 132,
     "loan-status/interest-arrears": 133,
     "iati-activity/fss": 134,
-    "fss/forecast": 135
+    "fss/forecast": 135,
 }
+
+
+ORGANISATION_SORT_ORDER = {
+    "iati-organisations/iati-organisation": 0,
+    "iati-organisation/organisation-identifier": 1,
+    "iati-organisation/name": 2,
+    "iati-organisation/reporting-org": 3,
+    "iati-organisation/total-budget": 4,
+    "total-budget/period-start": 5,
+    "total-budget/period-end": 6,
+    "total-budget/value": 7,
+    "total-budget/budget-line": 8,
+    "budget-line/value": 9,
+    "budget-line/narrative": 10,
+    "iati-organisation/recipient-org-budget": 11,
+    "recipient-org-budget/recipient-org": 12,
+    "recipient-org-budget/period-start": 13,
+    "recipient-org-budget/period-end": 14,
+    "recipient-org-budget/value": 15,
+    "recipient-org-budget/budget-line": 16,
+    "iati-organisation/recipient-region-budget": 17,
+    "recipient-region-budget/recipient-region": 18,
+    "recipient-region-budget/period-start": 19,
+    "recipient-region-budget/period-end": 20,
+    "recipient-region-budget/value": 21,
+    "recipient-region-budget/budget-line": 22,
+    "iati-organisation/recipient-country-budget": 23,
+    "recipient-country-budget/recipient-country": 24,
+    "recipient-country-budget/period-start": 25,
+    "recipient-country-budget/period-end": 26,
+    "recipient-country-budget/value": 27,
+    "recipient-country-budget/budget-line": 28,
+    "iati-organisation/total-expenditure": 29,
+    "total-expenditure/period-start": 30,
+    "total-expenditure/period-end": 31,
+    "total-expenditure/value": 32,
+    "total-expenditure/expense-line": 33,
+    "expense-line/value": 34,
+    "expense-line/narrative": 35,
+    "iati-organisation/document-link": 36,
+    "document-link/recipient-country": 96,
+}
+
+
+SORT_ORDER = {**ACTIVITY_SORT_ORDER, **ORGANISATION_SORT_ORDER}
 
 
 def iati_order(json_page_obj):
