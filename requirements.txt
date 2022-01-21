@@ -19,7 +19,7 @@ PyGithub==1.55
 psycopg2-binary==2.8.6
 requests==2.25.1
 wagtail-modeltranslation==0.10.17
-wagtail==2.13.2
+wagtail==2.15.2
 Wand==0.6.6
 whitenoise==5.2.0
 wrapt==1.11.*
