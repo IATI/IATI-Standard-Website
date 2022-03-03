@@ -56,6 +56,7 @@ class RedirectIATISites:
         return "/".join(stripped_path_split)
 
     def remove_nul_bytes(self, path):
+        """Remove nul bytes from path."""
         return path.replace('%00', '')
 
     @property
