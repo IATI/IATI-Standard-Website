@@ -1,4 +1,5 @@
 """Middleware for redirecting mixed case urls into lowercase."""
+import urllib.parse
 from django import http
 from django.conf import settings
 from wagtail.core.models import Site
@@ -134,7 +135,7 @@ class LowercaseMiddleware:
     @property
     def path_is_not_lowercase(self):
         """Check that path is not lowercase already."""
-        return self.path != self.lower_path
+        return urllib.parse.unquote(self.path) != urllib.parse.unquote(self.lower_path)
 
     @property
     def exception_values(self):
