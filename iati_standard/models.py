@@ -395,7 +395,7 @@ class StandardGuidancePage(AbstractGithubPage):
     @cached_property
     def github_url(self):
         """Calculate a Github changelog url."""
-        base_url = "https://github.com/IATI/IATI-Guidance/commits/master/en/"
+        base_url = "https://github.com/IATI/IATI-Guidance/commits/main/en/"
         file_path = "/".join(self.ssot_path.split("/")[1:]) + ".rst"
         return base_url + file_path
 

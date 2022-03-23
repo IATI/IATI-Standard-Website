@@ -1,4 +1,5 @@
 """Middleware for redirecting mixed case urls into lowercase."""
+import urllib.parse
 from django import http
 from django.conf import settings
 from wagtail.core.models import Site
@@ -31,8 +32,13 @@ class RedirectIATISites:
             return http.HttpResponsePermanentRedirect(self.redirected_url)
         elif not request.path_info.endswith('/') and self.path_is_not_exception:
             new_path = request.get_full_path(force_append_slash=True)
+            if '%00' in new_path:
+                new_path = self.remove_nul_bytes(new_path)
             if new_path != self.path:
                 return http.HttpResponsePermanentRedirect(new_path)
+        elif '%00' in self.path:
+            new_path = self.remove_nul_bytes(self.path)
+            return http.HttpResponsePermanentRedirect(new_path)
 
         return self.get_response(request)
 
@@ -49,6 +55,10 @@ class RedirectIATISites:
         stripped_path_split = stripped_path.split('/')
         stripped_path_split = [x for x in stripped_path_split if x != "index.html"]
         return "/".join(stripped_path_split)
+
+    def remove_nul_bytes(self, path):
+        """Remove nul bytes from path."""
+        return path.replace('%00', '')
 
     @property
     def exact_redirect_urls(self):
@@ -125,7 +135,7 @@ class LowercaseMiddleware:
     @property
     def path_is_not_lowercase(self):
         """Check that path is not lowercase already."""
-        return self.path != self.lower_path
+        return urllib.parse.unquote(self.path) != urllib.parse.unquote(self.lower_path)
 
     @property
     def exception_values(self):
