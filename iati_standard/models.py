@@ -389,7 +389,8 @@ class StandardGuidancePage(AbstractGithubPage):
 
     search_fields = AbstractGithubPage.search_fields + [
         FilterField('title'),
-        FilterField('title_en')
+        FilterField('title_en'),
+        FilterField('title_fr'),
     ]
 
     @cached_property
