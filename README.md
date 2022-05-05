@@ -148,3 +148,8 @@ psql: could not connect to server: Connection refused Is the server running on h
 First try replacing `POSTGRES_PASSWORD=''` with `POSTGRES_HOST_AUTH_METHOD=trust` in `docker-compose.dev.yml`
 
 Follow the instructions on [this SO answer](https://stackoverflow.com/a/41161674). Your postgres configuration may need amending to listen for all addresses. Postgres will need restarting, and importantly, **your computer will require a restart** for changes to take place.
+
+
+## GitHub PAT
+
+`SSOT_GITHUB_TOKEN` is a GitHub PAT for the "IATI Bot" GitHub account under `code@iatistandard.org`
