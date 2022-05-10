@@ -39,6 +39,8 @@ def get_selected_or_fallback(selected=None, fallback=None, max_length=None, orde
                 fallbacks = fallbacks.exclude(
                     id__in=[x.id for x in list(selected)]
                 ).live().specific()
+            else:
+                fallbacks = fallbacks.live().specific()
             if order:
                 fallbacks = fallbacks.order_by(order)
         except AssertionError as e:
