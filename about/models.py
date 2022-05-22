@@ -3,7 +3,7 @@
 from django.db import models
 
 from wagtail.admin.edit_handlers import FieldPanel
-from wagtail.core.blocks import CharBlock, StreamBlock, StructBlock, TextBlock
+from wagtail.core.blocks import CharBlock, StreamBlock, StructBlock, TextBlock, RichTextBlock
 from wagtail.core.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.images.edit_handlers import ImageChooserPanel
@@ -139,13 +139,14 @@ class PeopleProfileBlock(StreamBlock):
 
     section_heading = CharBlock(icon="title", classname="title")
     paragraph = CharBlock(icon="pilcrow")
+    rich_paragraph = RichTextBlock(icon="pilcrow")
     pullquote = PullQuoteBlock()
     profile_editor = StructBlock([
-        ('name', CharBlock(required=False, max_length=100)),
+        ('name', CharBlock(required=False, max_length=200)),
         ('profile_picture', ImageChooserBlock(required=False, label="Profile picture", icon="image")),
         ('organisation_logo', ImageChooserBlock(required=False, label="Organisation logo", icon="image")),
-        ('organisation_name', CharBlock(required=False, max_length=100)),
-        ('IATI_role', CharBlock(required=False, max_length=100)),
+        ('organisation_name', CharBlock(required=False, max_length=200)),
+        ('IATI_role', CharBlock(required=False, max_length=200)),
         ('external_role', CharBlock(required=False, max_length=200)),
         ('description', TextBlock(required=False)),
         ('IATI_constituency', CharBlock(required=False, max_length=200))

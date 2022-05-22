@@ -27,6 +27,10 @@
                                     <h2 class="section__heading">{{ child }}</h2>
                                 {% elif child.block_type == "paragraph" %}
                                     <p class="type-s">{{ child }}</p>
+                                    {% elif child.block_type == "rich_paragraph" %}
+                                    <div class="is-typeset">
+                                        {{ child.value|richtext }}
+                                    </div>
                                 {% elif child.block_type == "pullquote" %}
                                     <blockquote class="as-blockquote listing-quote">
                                         <p>{{ child.value.quote }}</p>
