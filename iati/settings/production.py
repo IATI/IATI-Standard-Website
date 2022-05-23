@@ -26,7 +26,7 @@ SESSION_COOKIE_SECURE = not DEBUG
 AZURE_ACCOUNT_NAME = os.getenv('AZURE_ACCOUNT_NAME')
 
 if AZURE_ACCOUNT_NAME:
-    AZURE_CUSTOM_DOMAIN = 'prod-iati-website.azureedge.net'
+    AZURE_CUSTOM_DOMAIN = 'cdn.iatistandard.org'
 
 try:
     from .local import *  # # noqa: F401, F403  # pylint: disable=unused-wildcard-import, wildcard-import
