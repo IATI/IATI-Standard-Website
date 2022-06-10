@@ -11,6 +11,12 @@ on:
     branches:
       - master
       - develop
+
+env:
+  REGISTRY_LOGIN_SERVER: ${{ secrets.ACR_LOGIN_SERVER }}
+  REGISTRY_USERNAME: ${{ secrets.ACR_USERNAME }}
+  REGISTRY_PASSWORD: ${{ secrets.ACR_PASSWORD }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -77,13 +83,13 @@ jobs:
       - name: "Login to azure"
         uses: azure/docker-login@v1
         with:
-          login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
-          username: ${{ secrets.REGISTRY_USERNAME }}
-          password: ${{ secrets.REGISTRY_PASSWORD }}
+          login-server: ${{ env.REGISTRY_LOGIN_SERVER }}
+          username: ${{ env.REGISTRY_USERNAME }}
+          password: ${{ env.REGISTRY_PASSWORD }}
       - name: "Build and push image"
         run: |
-          docker build -f Dockerfile_deploy . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}
-          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}
+          docker build -f Dockerfile_deploy . -t ${{ env.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}
+          docker push ${{ env.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}
       - name: "Check if blue is running"
         uses: "azure/CLI@1.0.4"
         with:
@@ -138,8 +144,8 @@ jobs:
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
             --command-id RunShellScript \
             --scripts "\
-              docker login -u '${{ secrets.REGISTRY_USERNAME }}' -p '${{ secrets.REGISTRY_PASSWORD }}' ${{ secrets.REGISTRY_LOGIN_SERVER }} && \
-              docker pull '${{ secrets.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}' && \
+              docker login -u '${{ env.REGISTRY_USERNAME }}' -p '${{ env.REGISTRY_PASSWORD }}' ${{ env.REGISTRY_LOGIN_SERVER }} && \
+              docker pull '${{ env.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}' && \
               docker run --restart always --name website -d -p 5000:5000 \
               -e DJANGO_SETTINGS_MODULE='iati.settings.dev' \
               -e SECRET_KEY='${{ secrets.DEV_SECRET_KEY }}' \
@@ -156,7 +162,7 @@ jobs:
               -e RECAPTCHA_PUBLIC_KEY='${{ secrets.RECAPTCHA_PUBLIC_KEY }}' \
               -e RECAPTCHA_PRIVATE_KEY='${{ secrets.RECAPTCHA_PRIVATE_KEY }}' \
               -e GITHUB_TOKEN='${{ secrets.SSOT_GITHUB_TOKEN }}' \
-              '${{ secrets.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}'" && \
+              '${{ env.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}'" && \
               az vm run-command invoke \
               --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
               --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
@@ -235,13 +241,13 @@ jobs:
       - name: "Login to azure"
         uses: azure/docker-login@v1
         with:
-          login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
-          username: ${{ secrets.REGISTRY_USERNAME }}
-          password: ${{ secrets.REGISTRY_PASSWORD }}
+          login-server: ${{ env.REGISTRY_LOGIN_SERVER }}
+          username: ${{ env.REGISTRY_USERNAME }}
+          password: ${{ env.REGISTRY_PASSWORD }}
       - name: "Build and push image"
         run: |
-          docker build -f Dockerfile_deploy . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}
-          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}
+          docker build -f Dockerfile_deploy . -t ${{ env.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}
+          docker push ${{ env.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}
       - name: "Check if blue is running"
         uses: "azure/CLI@1.0.4"
         with:
@@ -296,8 +302,8 @@ jobs:
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
             --command-id RunShellScript \
             --scripts "\
-              docker login -u '${{ secrets.REGISTRY_USERNAME }}' -p '${{ secrets.REGISTRY_PASSWORD }}' ${{ secrets.REGISTRY_LOGIN_SERVER }} && \
-              docker pull '${{ secrets.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}' && \
+              docker login -u '${{ env.REGISTRY_USERNAME }}' -p '${{ env.REGISTRY_PASSWORD }}' ${{ env.REGISTRY_LOGIN_SERVER }} && \
+              docker pull '${{ env.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}' && \
               docker run --restart always --name website -d -p 5000:5000 \
               -e DJANGO_SETTINGS_MODULE='iati.settings.production' \
               -e SECRET_KEY='${{ secrets.PROD_SECRET_KEY }}' \
@@ -315,7 +321,7 @@ jobs:
               -e RECAPTCHA_PUBLIC_KEY='${{ secrets.RECAPTCHA_PUBLIC_KEY }}' \
               -e RECAPTCHA_PRIVATE_KEY='${{ secrets.RECAPTCHA_PRIVATE_KEY }}' \
               -e GITHUB_TOKEN='${{ secrets.SSOT_GITHUB_TOKEN }}' \
-              '${{ secrets.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}'" && \
+              '${{ env.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}'" && \
               az vm run-command invoke \
               --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
               --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
