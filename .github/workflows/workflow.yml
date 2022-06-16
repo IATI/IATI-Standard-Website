@@ -115,9 +115,9 @@ jobs:
             az vm create \
             --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
-            --tags env=$STAGE avgCPU=true ACU=true ACUvalue=300 \ 
             --size Standard_B2s \
             --image UbuntuLTS \
+            --tags env=$STAGE avgCPU=true ACU=true ACUvalue=300 \ 
             --ssh-key-values ${{ secrets.DEV_PUB_KEYS }} && \
             export NEW_IP=$(az vm list-ip-addresses --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --query [].virtualMachine.network[].publicIpAddresses[][].ipAddress --output tsv) && \
             echo "NEW_IP=$NEW_IP" >> $GITHUB_ENV && \
@@ -274,9 +274,9 @@ jobs:
             az vm create \
             --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
-            --tags env=$STAGE avgCPU=true ACU=true ACUvalue=300 \ 
             --size Standard_B2s \
             --image UbuntuLTS \
+            --tags env=$STAGE avgCPU=true ACU=true ACUvalue=300 \
             --ssh-key-values ${{ secrets.DEV_PUB_KEYS }} && \
             export NEW_IP=$(az vm list-ip-addresses --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --query [].virtualMachine.network[].publicIpAddresses[][].ipAddress --output tsv) && \
             echo "NEW_IP=$NEW_IP" >> $GITHUB_ENV && \
