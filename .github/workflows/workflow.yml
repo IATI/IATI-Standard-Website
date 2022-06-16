@@ -115,6 +115,7 @@ jobs:
             az vm create \
             --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
+            --tags env=$STAGE avgCPU=true ACU=true ACUvalue=300 \ 
             --size Standard_B2s \
             --image UbuntuLTS \
             --ssh-key-values ${{ secrets.DEV_PUB_KEYS }} && \
@@ -273,6 +274,7 @@ jobs:
             az vm create \
             --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
+            --tags env=$STAGE avgCPU=true ACU=true ACUvalue=300 \ 
             --size Standard_B2s \
             --image UbuntuLTS \
             --ssh-key-values ${{ secrets.DEV_PUB_KEYS }} && \
