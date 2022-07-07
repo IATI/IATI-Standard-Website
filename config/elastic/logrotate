@@ -11,4 +11,5 @@
 }
 /var/log/gunicorn/*.log {
     size 10M
+    copytruncate
 }
