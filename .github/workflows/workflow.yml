@@ -147,6 +147,9 @@ jobs:
               docker login -u '${{ env.REGISTRY_USERNAME }}' -p '${{ env.REGISTRY_PASSWORD }}' ${{ env.REGISTRY_LOGIN_SERVER }} && \
               docker pull '${{ env.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}' && \
               docker run --restart always --name website -d -p 5000:5000 \
+              --log-driver 'json-file' \
+              --log-opt max-size=100m \
+              --log-opt max-file=3 \
               -e DJANGO_SETTINGS_MODULE='iati.settings.dev' \
               -e SECRET_KEY='${{ secrets.DEV_SECRET_KEY }}' \
               -e DATABASE_NAME='${{ secrets.DEV_DATABASE_NAME }}' \
