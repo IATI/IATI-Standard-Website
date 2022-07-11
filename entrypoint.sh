@@ -20,7 +20,7 @@ else
   rc-service elasticsearch.service start
 fi
 
-gunicorn iati.wsgi:application --bind 0.0.0.0:5000 --workers $GUNICORN_WORKERS > /var/log/gunicorn/gunicorn.log 2>&1 &
+gunicorn iati.wsgi:application --bind 0.0.0.0:5000 --workers $GUNICORN_WORKERS >> /var/log/gunicorn/gunicorn.log 2>&1 &
 
 /usr/sbin/crond -f -l 8 &
 
