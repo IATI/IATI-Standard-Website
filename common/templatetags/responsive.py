@@ -1,4 +1,5 @@
 from django import template
+from django.conf import settings
 from wagtail.images.models import SourceImageIOError
 from wagtail.images.templatetags.wagtailimages_tags import ImageNode
 from django.utils.safestring import mark_safe
@@ -14,6 +15,12 @@ def responsiveimage(parser, token):
     image_expr = parser.compile_filter(bits[0])
     filter_spec = bits[1]
     remaining_bits = bits[2:]
+
+    if remaining_bits[0][:6] == 'format':
+        filter_spec = "{}|{}".format(filter_spec, remaining_bits[0])
+        remaining_bits = remaining_bits[1:]
+    elif settings.RESPONSIVE_IMAGE_DEFAULT_FORMAT is not None:
+        filter_spec = "{}|{}".format(filter_spec, settings.RESPONSIVE_IMAGE_DEFAULT_FORMAT)
 
     if remaining_bits[-2] == 'as':
         attrs = _parse_attrs(remaining_bits[:-2])
@@ -125,8 +132,8 @@ class ResponsiveImageNode(ImageNode, template.Node):
                 widths.append(width_retina)
 
                 try:
-                    srcset_renditions.append(image.get_rendition(flt))
-                    srcset_renditions.append(image.get_rendition(flt_retina))
+                    srcset_renditions.append(image.get_rendition("{}|{}".format(flt, settings.RESPONSIVE_IMAGE_DEFAULT_FORMAT)))
+                    srcset_renditions.append(image.get_rendition("{}|{}".format(flt_retina, settings.RESPONSIVE_IMAGE_DEFAULT_FORMAT)))
                 except SourceImageIOError:
                     # pick up any custom Image / Rendition classes that may be in use
                     TmpRendition = image.renditions.model

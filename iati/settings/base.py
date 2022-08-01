@@ -626,3 +626,6 @@ ignore_warnings(message="No directory at", module="whitenoise.base").enable()
 
 # Configure PK field for non-Page models for Django 3.2+
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+# Default responsive image file format
+RESPONSIVE_IMAGE_DEFAULT_FORMAT = "format-webp"
