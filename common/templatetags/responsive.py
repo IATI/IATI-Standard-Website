@@ -77,7 +77,7 @@ class ResponsiveImageNode(ImageNode, template.Node):
                 )
                 if output_format not in ['jpeg', 'png', 'gif', 'webp']:
                     output_format = 'webp'
-            if output_format != original_format:
+            if output_format != original_format and "format" not in self.filter_spec:
                 self.filter_spec = "{}|{}".format(self.filter_spec, "format-{}".format(output_format))
             rendition = image.get_rendition(self.filter)
         except SourceImageIOError:
