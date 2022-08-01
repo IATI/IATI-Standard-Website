@@ -628,4 +628,11 @@ ignore_warnings(message="No directory at", module="whitenoise.base").enable()
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 # Default responsive image file format
-RESPONSIVE_IMAGE_DEFAULT_FORMAT = "format-webp"
+WAGTAILIMAGES_FORMAT_CONVERSIONS = {
+    'webp': 'webp',
+    'jpg': 'webp',
+    'jpeg': 'webp',
+    'png': 'webp',
+    'bmp': 'webp',
+    'gif': 'gif'
+}
