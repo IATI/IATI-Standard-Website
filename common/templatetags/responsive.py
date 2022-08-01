@@ -72,9 +72,12 @@ class ResponsiveImageNode(ImageNode, template.Node):
             with image.get_willow_image() as willow:
                 original_format = willow.format_name
                 conversion = getattr(settings, "WAGTAILIMAGES_FORMAT_CONVERSIONS", None)
-                output_format = conversion.get(
-                    original_format, original_format
-                )
+                if conversion is not None:
+                    output_format = conversion.get(
+                        original_format, original_format
+                    )
+                else:
+                    output_format = original_format
                 if output_format not in ['jpeg', 'png', 'gif', 'webp']:
                     output_format = 'webp'
             if output_format != original_format and "format" not in self.filter_spec:
