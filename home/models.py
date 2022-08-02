@@ -9,7 +9,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template.defaultfilters import slugify
 from wagtail.core.models import Page
 from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, PageChooserPanel
-from wagtail.core.blocks import TextBlock, StructBlock, StreamBlock, FieldBlock, CharBlock, RichTextBlock, RawHTMLBlock, PageChooserBlock
+from wagtail.core.blocks import TextBlock, StructBlock, StreamBlock, FieldBlock, CharBlock, RichTextBlock, RawHTMLBlock, PageChooserBlock, URLBlock
 from wagtail.core.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.images.edit_handlers import ImageChooserPanel
@@ -118,6 +118,7 @@ class IATIStreamBlock(StreamBlock):
     aligned_html = AlignedHTMLBlock(icon="code", label='Raw HTML')
     document_box = DocumentBoxBlock(icon="doc-full-inverse")
     anchor_point = CharBlock(icon="order-down", help_text="Custom anchor points are expected to precede other content.")
+    fast_youtube_embed = URLBlock(icon="fa-video-camera", label='Fast YouTube Embed')
 
     def get_searchable_content(self, value):
         """Overidden method to fix None type errors on indexing."""
