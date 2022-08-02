@@ -118,7 +118,7 @@ class IATIStreamBlock(StreamBlock):
     aligned_html = AlignedHTMLBlock(icon="code", label='Raw HTML')
     document_box = DocumentBoxBlock(icon="doc-full-inverse")
     anchor_point = CharBlock(icon="order-down", help_text="Custom anchor points are expected to precede other content.")
-    fast_youtube_embed = URLBlock(icon="fa-video-camera", label='Fast YouTube Embed')
+    fast_youtube_embed = URLBlock(icon="code", label='Fast YouTube Embed')
 
     def get_searchable_content(self, value):
         """Overidden method to fix None type errors on indexing."""
