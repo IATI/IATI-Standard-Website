@@ -1,4 +1,4 @@
-{% load wagtailembeds_tags %}
+{% load iati_tags %}
 
 <div class="row">
     <div class="section-alt-top section-alt-bottom">
@@ -13,7 +13,7 @@
                 </div>
                 <div class="l-2up__col">
                     <div class="media-video-wrapper">
-                        {% embed page.about_iati_video %}
+                        {% fast_youtube_embed youtube_url=page.about_iati_video %}
                     </div>
                 </div>
             </div>
