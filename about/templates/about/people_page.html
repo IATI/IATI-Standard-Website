@@ -42,7 +42,7 @@
                                                 {% if child.value.profile_picture %}
                                                     {% responsiveimage child.value.profile_picture max-440x440 srcset=global.people_srcs sizes=global.people_sizes alt=child.value.profile_picture.title width='auto' height='auto' loading='auto' %}
                                                 {% else %}
-                                                    <img src="{% static 'img/portrait.png' %}" alt="placeholder portrait" loading="auto">
+                                                    <img src="{% static 'img/portrait.webp' %}" alt="placeholder portrait" loading="auto">
                                                 {% endif %}
                                             </div>
                                         </aside>
