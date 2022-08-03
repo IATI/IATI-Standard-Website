@@ -2,9 +2,49 @@
 {% load wagtailcore_tags i18n recaptcha3 %}
 
 {% block html_header %}
+    <link rel="preconnect" href="https://www.google.com">
+    <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
     {% include 'scaffold/header-assets.html' %}
-    {% recaptcha_init %}
-    {% recaptcha_ready action_name='contact' %}
+    <script async src="https://www.google.com/recaptcha/api.js?render={{ public_key }}"></script>
+    <script>
+    // How this code snippet works:
+    // This logic overwrites the default behavior of `grecaptcha.ready()` to
+    // ensure that it can be safely called at any time. When `grecaptcha.ready()`
+    // is called before reCAPTCHA is loaded, the callback function that is passed
+    // by `grecaptcha.ready()` is enqueued for execution after reCAPTCHA is
+    // loaded.
+    if(typeof grecaptcha === 'undefined') {
+        grecaptcha = {};
+    }
+    grecaptcha.ready = function(cb){
+        if(typeof grecaptcha === 'undefined') {
+        // window.__grecaptcha_cfg is a global variable that stores reCAPTCHA's
+        // configuration. By default, any functions listed in its 'fns' property
+        // are automatically executed when reCAPTCHA loads.
+        const c = '___grecaptcha_cfg';
+        window[c] = window[c] || {};
+        (window[c]['fns'] = window[c]['fns']||[]).push(cb);
+        } else {
+        cb();
+        }
+    }
+
+    // Usage
+    grecaptcha.ready(function() {
+        var grecaptcha_execute = function(){
+            if(typeof grecaptcha.execute !== 'undefined'){
+                grecaptcha.execute('{{ public_key }}', {action: 'contact'}).then(function(token) {
+                    document.querySelectorAll('input.django-recaptcha-hidden-field').forEach(function (value) {
+                        value.value = token;
+                    });
+                    return token;
+                })
+            };
+        };
+        setTimeout(grecaptcha_execute, 1000);
+        setInterval(grecaptcha_execute, 120000);
+    });
+    </script>
 {% endblock %}
 
 {% block body_class %}body body--support{% endblock %}
