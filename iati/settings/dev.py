@@ -25,7 +25,7 @@ MIDDLEWARE = MIDDLEWARE + [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
-RESULTS_CACHE_SIZE = 2000
+# RESULTS_CACHE_SIZE = 100
 
 RENDER_PANELS = False
 
