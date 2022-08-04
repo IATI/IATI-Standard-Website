@@ -24,7 +24,7 @@ if [[ -z "${DEBUG_SERVER}" ]]; then
   gunicorn iati.wsgi:application --bind 0.0.0.0:5000 --workers $GUNICORN_WORKERS >> /var/log/gunicorn/gunicorn.log 2>&1 &
 else
   >&2 echo "Debug flag detected, running local server instead of gunicorn"
-  python3 manage.py runserver --settings iati.settings.dev 0.0.0.0:8000 >> /var/log/gunicorn/gunicorn.log 2>&1 &
+  python3 manage.py runserver --settings iati.settings.dev 0.0.0.0:5000 >> /var/log/gunicorn/gunicorn.log 2>&1 &
 fi
 
 

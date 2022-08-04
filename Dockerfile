@@ -104,7 +104,7 @@ RUN apk add --no-cache gettext
 
 RUN chmod 775 /usr/src/app
 
-EXPOSE 5000 8000
+EXPOSE 5000
 
 RUN mkdir -p /var/log/gunicorn
 RUN chmod 644 /var/log/gunicorn
