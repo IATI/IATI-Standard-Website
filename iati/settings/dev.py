@@ -21,13 +21,13 @@ INSTALLED_APPS = INSTALLED_APPS + [
     'debug_toolbar',
 ]
 
-MIDDLEWARE = [
+MIDDLEWARE = MIDDLEWARE + [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
-] + MIDDLEWARE
+]
 
-RESULTS_CACHE_SIZE = 200
+RESULTS_CACHE_SIZE = 2000
 
-RENDER_PANELS = True
+RENDER_PANELS = False
 
 try:
     from .local import *  # # noqa: F401, F403  # pylint: disable=unused-wildcard-import, wildcard-import
