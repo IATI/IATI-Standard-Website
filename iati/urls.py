@@ -2,7 +2,7 @@
 
 from django.conf import settings
 from django.conf.urls import include
-from django.urls import re_path
+from django.urls import path, re_path
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
@@ -14,12 +14,22 @@ from wagtail.images.views.serve import serve
 
 from .activate_languages import i18n_patterns  # For internationalization
 
+if settings.DEBUG:
+    # Debug toolbar
+    import debug_toolbar
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls)),
+    ]
+    # Serve static and media files from development server
+    urlpatterns += staticfiles_urlpatterns()
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-urlpatterns = [  # pylint: disable=invalid-name
+urlpatterns += [  # pylint: disable=invalid-name
     re_path(r'^django-{}/'.format(settings.ADMIN_SLUG), admin.site.urls),
     re_path(r'^{}/'.format(settings.ADMIN_SLUG), include(wagtailadmin_urls)),
     re_path(r'^{}/'.format(settings.DOCUMENTS_SLUG), include(wagtaildocs_urls)),
 ]
+
 
 
 urlpatterns += i18n_patterns(
@@ -36,9 +46,3 @@ urlpatterns += i18n_patterns(
     # of your site, rather than the site root:
     #    url(r'^pages/', include(wagtail_urls)),
 )
-
-
-if settings.DEBUG:
-    # Serve static and media files from development server
-    urlpatterns += staticfiles_urlpatterns()
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

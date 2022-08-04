@@ -1,6 +1,7 @@
 """Settings for dev environments (overrides base settings)."""
 import os
 from .base import *  # noqa: F401, F403 # pylint: disable=unused-wildcard-import, wildcard-import
+import socket
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -9,13 +10,24 @@ DEBUG = True
 # Overwrite this variable in local.py with another unguessable string.
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
+hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+INTERNAL_IPS = [ip[: ip.rfind(".")] + ".1" for ip in ips] + ["127.0.0.1", "10.0.2.2"]
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 ALLOWED_HOSTS = ['*']
-INTERNAL_IPS = (
-    '127.0.0.1',
-)
+
+INSTALLED_APPS = INSTALLED_APPS + [
+    'debug_toolbar',
+]
+
+MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+] + MIDDLEWARE
+
+RESULTS_CACHE_SIZE = 200
+
+RENDER_PANELS = True
 
 try:
     from .local import *  # # noqa: F401, F403  # pylint: disable=unused-wildcard-import, wildcard-import

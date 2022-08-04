@@ -11,6 +11,7 @@ services:
     build:
       context: .
     environment:
+      - DEBUG_SERVER=True
       - DATABASE_URL=postgres://postgres:@postgres:5432/postgres
       - SECRET_KEY=enter-a-long-unguessable-string-here
       - ELASTICSEARCH_URL=http://localhost:9200
@@ -22,6 +23,6 @@ services:
     links:
       - postgres
     ports:
-      - 5000:5000
+      - 8000:8000
     volumes:
       - ./:/usr/src/app
