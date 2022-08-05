@@ -30,8 +30,6 @@ urlpatterns += [  # pylint: disable=invalid-name
     re_path(r'^{}/'.format(settings.DOCUMENTS_SLUG), include(wagtaildocs_urls)),
 ]
 
-
-
 urlpatterns += i18n_patterns(
     # Wagtail sitemap
     re_path(r'^sitemap\.xml$', sitemap),

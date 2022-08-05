@@ -17,11 +17,11 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 ALLOWED_HOSTS = ['*']
 
-INSTALLED_APPS = INSTALLED_APPS + [
+INSTALLED_APPS = INSTALLED_APPS + [  # noqa: F405
     'debug_toolbar',
 ]
 
-MIDDLEWARE = MIDDLEWARE + [
+MIDDLEWARE = MIDDLEWARE + [  # noqa: F405
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
