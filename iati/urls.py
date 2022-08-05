@@ -14,10 +14,12 @@ from wagtail.images.views.serve import serve
 
 from .activate_languages import i18n_patterns  # For internationalization
 
+urlpatterns = list()
+
 if settings.DEBUG:
     # Debug toolbar
     import debug_toolbar
-    urlpatterns = [
+    urlpatterns += [
         path('__debug__/', include(debug_toolbar.urls)),
     ]
     # Serve static and media files from development server
