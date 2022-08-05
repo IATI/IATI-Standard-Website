@@ -1,16 +1,20 @@
-{% load iati_tags i18n %}
+{% load iati_tags i18n cache %}
+
+{% get_current_language as LANGUAGE_CODE %}
 
 <button role="button button--small" class="navigation-primary-toggle" id="navigation-primary-toggle"><span>{% trans "Menu" %}</span></button>
 
 <nav class="navigation-primary" role="navigation" id="navigation-primary">
-    <ul class="navigation-primary__items">
-        {% for item in global.primary_menu %}
-            {% include 'navigation/primary-item.html' %}
-        {% endfor %}
-        {% for item in global.utility_menu %}
-            {% include 'navigation/utility-item.html' with class='navigation-primary__item navigation-primary__item--ss-only' active_class='navigation-primary__item--active' link_class='navigation-primary__item--link' %}
-        {% endfor %}
-    </ul>
+    {% cache 3600 nav_primary LANGUAGE_CODE self.pk %}
+        <ul class="navigation-primary__items">
+            {% for item in global.primary_menu %}
+                {% include 'navigation/primary-item.html' %}
+            {% endfor %}
+            {% for item in global.utility_menu %}
+                {% include 'navigation/utility-item.html' with class='navigation-primary__item navigation-primary__item--ss-only' active_class='navigation-primary__item--active' link_class='navigation-primary__item--link' %}
+            {% endfor %}
+        </ul>
+    {% endcache %}
     <div class="search-mobile">
         <form action="{{ global.search_page_url }}">
             <label for="search-mobile" class="form-label form-label--hidden">{% trans "Search the IATI website" %}</label>
