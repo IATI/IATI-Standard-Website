@@ -636,3 +636,11 @@ WAGTAILIMAGES_FORMAT_CONVERSIONS = {
     'bmp': 'webp',
     'gif': 'gif'
 }
+
+# Caches
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'wagtail_cache',
+    }
+}

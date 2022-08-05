@@ -34,5 +34,6 @@ python manage.py collectstatic --noinput
 python manage.py migrate --noinput
 python manage.py compilemessages
 python manage.py update_index
+python manage.py createcachetable
 
 exec "$@"
