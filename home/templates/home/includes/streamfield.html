@@ -1,4 +1,4 @@
-{% load wagtailcore_tags responsive %}
+{% load wagtailcore_tags responsive iati_tags %}
 
 <div class="is-typeset {% if not notarticle %}is-typeset--article{% endif %} {{ extra_class }}">
     {% for child in content %}
@@ -65,6 +65,10 @@
         <div class="is-typeset {% if not notarticle %}is-typeset--article{% endif %}">
         {% elif child.block_type == 'anchor_point' %}
           <a id="{{ child }}"></a>
+        {% elif child.block_type == 'fast_youtube_embed' %}
+            <div class="media-video-wrapper">
+                {% fast_youtube_embed youtube_url=child.value %}
+            </div>
         {% else %}
             {{ child }}
         {% endif %}

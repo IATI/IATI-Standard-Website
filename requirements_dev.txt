@@ -13,3 +13,4 @@ pylint-django==2.0.13
 git+https://github.com/IATI/wagtail-factories.git@35e1bbe135acec42c47f9e0ddb73faf20f2cce32#egg=wagtail-factories
 factory-boy==2.11.0
 sqlparse==0.4.2
+django-debug-toolbar==3.5.0

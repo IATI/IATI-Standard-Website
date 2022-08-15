@@ -104,6 +104,8 @@ class RedirectIATISites:
             return False
         if any(item in self.path for item in self.exception_values):
             return False
+        if self.path.startswith("/__debug__"):
+            return False
         return True
 
 
@@ -148,5 +150,7 @@ class LowercaseMiddleware:
         if self.path == '/':
             return False
         if any(item in self.path for item in self.exception_values):
+            return False
+        if self.path.startswith("/__debug__"):
             return False
         return True

@@ -97,7 +97,7 @@ COPY entrypoint.sh /usr/src/app/
 ENV PATH=$HOME/.cargo/bin:$PATH
 
 RUN apk -U upgrade
-RUN apk add --no-cache gcc musl-dev python3-dev libffi-dev openssl-dev cargo &&\
+RUN apk add --no-cache gcc musl-dev python3-dev libffi-dev openssl-dev cargo libwebp libwebp-tools &&\
         pip3 install -r requirements_dev.txt
 
 RUN apk add --no-cache gettext

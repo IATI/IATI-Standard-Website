@@ -1,6 +1,12 @@
-<ul class="navigation-utility">
-    {% for item in global.utility_menu %}
-        {% include 'navigation/utility-item.html' with class='navigation-utility__item' active_class='navigation-utility__item--active' %}
-    {% endfor %}
-</ul>
+{% load i18n cache %}
+
+{% get_current_language as LANGUAGE_CODE %}
+
+{% cache 3600 nav_utility LANGUAGE_CODE self.pk %}
+    <ul class="navigation-utility">
+        {% for item in global.utility_menu %}
+            {% include 'navigation/utility-item.html' with class='navigation-utility__item' active_class='navigation-utility__item--active' %}
+        {% endfor %}
+    </ul>
+{% endcache %}
 

@@ -17,6 +17,8 @@ services:
       - DJANGO_SETTINGS_MODULE=iati.settings.dev
       - GUNICORN_WORKERS=1
       - GITHUB_TOKEN
+      - RECAPTCHA_PUBLIC_KEY
+      - RECAPTCHA_PRIVATE_KEY
     links:
       - postgres
     ports:

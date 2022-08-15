@@ -1,4 +1,5 @@
 from django import template
+from django.conf import settings
 from wagtail.images.models import SourceImageIOError
 from wagtail.images.templatetags.wagtailimages_tags import ImageNode
 from django.utils.safestring import mark_safe
@@ -14,6 +15,10 @@ def responsiveimage(parser, token):
     image_expr = parser.compile_filter(bits[0])
     filter_spec = bits[1]
     remaining_bits = bits[2:]
+
+    if remaining_bits[0][:6] == 'format':
+        filter_spec = "{}|{}".format(filter_spec, remaining_bits[0])
+        remaining_bits = remaining_bits[1:]
 
     if remaining_bits[-2] == 'as':
         attrs = _parse_attrs(remaining_bits[:-2])
@@ -64,6 +69,19 @@ class ResponsiveImageNode(ImageNode, template.Node):
             return ''
 
         try:
+            with image.get_willow_image() as willow:
+                original_format = willow.format_name
+                conversion = getattr(settings, "WAGTAILIMAGES_FORMAT_CONVERSIONS", None)
+                if conversion is not None:
+                    output_format = conversion.get(
+                        original_format, original_format
+                    )
+                else:
+                    output_format = original_format
+                if output_format not in ['jpeg', 'png', 'gif', 'webp']:
+                    output_format = 'webp'
+            if output_format != original_format and "format" not in self.filter_spec:
+                self.filter_spec = "{}|{}".format(self.filter_spec, "format-{}".format(output_format))
             rendition = image.get_rendition(self.filter)
         except SourceImageIOError:
             # It's fairly routine for people to pull down remote databases to their
@@ -75,6 +93,7 @@ class ResponsiveImageNode(ImageNode, template.Node):
             Rendition = image.renditions.model  # pick up any custom Image / Rendition classes that may be in use
             rendition = Rendition(image=image, width=0, height=0)
             rendition.file.name = 'not-found'
+            output_format = 'webp'
 
         # Parse srcset format into array of renditions.
         try:
@@ -125,8 +144,8 @@ class ResponsiveImageNode(ImageNode, template.Node):
                 widths.append(width_retina)
 
                 try:
-                    srcset_renditions.append(image.get_rendition(flt))
-                    srcset_renditions.append(image.get_rendition(flt_retina))
+                    srcset_renditions.append(image.get_rendition("{}|{}".format(flt, "format-{}".format(output_format))))
+                    srcset_renditions.append(image.get_rendition("{}|{}".format(flt_retina, "format-{}".format(output_format))))
                 except SourceImageIOError:
                     # pick up any custom Image / Rendition classes that may be in use
                     TmpRendition = image.renditions.model

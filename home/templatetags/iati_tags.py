@@ -282,3 +282,15 @@ def reference_menu(calling_page):
     if calling_page_root == "upgrades":
         menu_json.insert(0, latest_version_json)
     return {"menu_json": menu_json, "calling_page": calling_page}
+
+
+@register.inclusion_tag('home/includes/fast_youtube_embed.html')
+def fast_youtube_embed(youtube_url):
+    """Return an image that when clicked, opens a YouTube video."""
+    if "watch?v=" in youtube_url:
+        video_id = youtube_url.split("watch?v=")[-1]
+    else:
+        video_id = youtube_url.split("/")[-1]
+
+    thumbnail_url = "http://img.youtube.com/vi/{}/maxresdefault.jpg".format(video_id)
+    return {"youtube_url": youtube_url, "thumbnail_url": thumbnail_url}

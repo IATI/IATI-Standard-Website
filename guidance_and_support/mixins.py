@@ -39,6 +39,7 @@ class ContactFormMixin(models.Model):
         context = super().get_context(request, *args, **kwargs)
         context['form'] = ContactForm()
         context['form_success'] = False
+        context['public_key'] = settings.RECAPTCHA_PUBLIC_KEY
 
         if request.method == 'POST':
             context['form'] = form = ContactForm(request.POST)
