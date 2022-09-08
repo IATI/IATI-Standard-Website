@@ -642,5 +642,9 @@ CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
         'LOCATION': 'wagtail_cache',
+    },
+    'renditions': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'wagtail_renditions_cache',
     }
 }
