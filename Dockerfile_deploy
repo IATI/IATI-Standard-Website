@@ -32,4 +32,3 @@ COPY setup.cfg /usr/src/app/setup.cfg
 
 ENV ELASTICSEARCH_URL=http://localhost:9200
 ENV GUNICORN_WORKERS=5
-ENV COMPRESS_ENABLED='True'
