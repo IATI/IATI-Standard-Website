@@ -292,5 +292,5 @@ def fast_youtube_embed(youtube_url):
     else:
         video_id = youtube_url.split("/")[-1]
 
-    thumbnail_url = "http://img.youtube.com/vi/{}/maxresdefault.jpg".format(video_id)
+    thumbnail_url = "https://img.youtube.com/vi/{}/maxresdefault.jpg".format(video_id)
     return {"youtube_url": youtube_url, "thumbnail_url": thumbnail_url}
