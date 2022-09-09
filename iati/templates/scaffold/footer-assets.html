@@ -1,3 +1,5 @@
-{% load static %}
+{% load static compress %}
 
-<script src="{% static 'js/app.bundle.js' %}"></script>
+{% compress js %}
+    <script src="{% static 'js/app.bundle.js' %}"></script>
+{% endcompress %}
