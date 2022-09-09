@@ -20,6 +20,7 @@ services:
       - RECAPTCHA_PUBLIC_KEY
       - RECAPTCHA_PRIVATE_KEY
       - DEBUG_SERVER
+      - COMPRESS_ENABLED
     links:
       - postgres
     ports:

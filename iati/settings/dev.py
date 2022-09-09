@@ -17,6 +17,9 @@ if os.environ.get('DEBUG_SERVER'):
     hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
     INTERNAL_IPS += [ip[: ip.rfind(".")] + ".1" for ip in ips]
 
+if os.environ.get('COMPRESS_ENABLED'):
+    COMPRESS_ENABLED = True
+
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 ALLOWED_HOSTS = ['*']

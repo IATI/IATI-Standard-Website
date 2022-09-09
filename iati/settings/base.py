@@ -653,5 +653,4 @@ CACHES = {
     }
 }
 
-COMPRESS_ENABLED = True
 COMPRESS_OFFLINE = True
