@@ -644,9 +644,14 @@ CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
         'LOCATION': 'wagtail_cache',
+        'TIMEOUT': 86400,
     },
     'renditions': {
         'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
         'LOCATION': 'wagtail_renditions_cache',
+        'TIMEOUT': 86400,
     }
 }
+
+COMPRESS_ENABLED = True
+COMPRESS_OFFLINE = True

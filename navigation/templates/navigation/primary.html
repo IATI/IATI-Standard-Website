@@ -5,7 +5,7 @@
 <button role="button button--small" class="navigation-primary-toggle" id="navigation-primary-toggle"><span>{% trans "Menu" %}</span></button>
 
 <nav class="navigation-primary" role="navigation" id="navigation-primary">
-    {% cache 3600 nav_primary LANGUAGE_CODE self.pk %}
+    {% cache 86400 nav_primary LANGUAGE_CODE self.pk %}
         <ul class="navigation-primary__items">
             {% for item in global.primary_menu %}
                 {% include 'navigation/primary-item.html' %}

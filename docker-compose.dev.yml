@@ -19,6 +19,7 @@ services:
       - GITHUB_TOKEN
       - RECAPTCHA_PUBLIC_KEY
       - RECAPTCHA_PRIVATE_KEY
+      - DEBUG_SERVER
     links:
       - postgres
     ports:

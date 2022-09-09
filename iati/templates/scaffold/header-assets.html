@@ -1,7 +1,9 @@
-{% load static %}
+{% load static compress %}
 
 {# Global stylesheets #}
-<link rel="stylesheet" type="text/css" href="{% static 'css/screen.min.css' %}">
+{% compress css inline %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/screen.min.css' %}">
+{% endcompress %}
 
 <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700" rel="stylesheet">
 <script>/*! grunt-grunticon Stylesheet Loader - v2.1.6 | https://github.com/filamentgroup/grunticon | (c) 2015 Scott Jehl, Filament Group, Inc. | MIT license. */
@@ -9,5 +11,7 @@
     grunticon(["{% static 'icons/ico.data.svg.css' %}", "{% static 'icons/ico.data.png.css' %}", "{% static 'icons/ico.fallback.css' %}"]);
 </script>
 <noscript><link href="{% static 'icons/ico.fallback.css' %}" rel="stylesheet"></noscript>
-<script src="{% static 'js/libs/modernizr.js' %}"></script>
+{% compress js inline %}
+    <script src="{% static 'js/libs/modernizr.js' %}"></script>
+{% endcompress %}
 {% include 'scaffold/favicon.html' %}

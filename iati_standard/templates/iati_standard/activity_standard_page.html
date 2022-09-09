@@ -64,7 +64,7 @@
 
     <div class="row">
         <div class="l-sidebar l-sidebar--reverse l-sidebar--wide">
-            {% cache 3600 reference_menu LANGUAGE_CODE self.pk %}
+            {% cache 86400 reference_menu LANGUAGE_CODE self.pk %}
                 {% reference_menu calling_page=self %}
             {% endcache %}
             <div class="l-sidebar__body">
