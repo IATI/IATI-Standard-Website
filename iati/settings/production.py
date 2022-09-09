@@ -27,6 +27,7 @@ AZURE_ACCOUNT_NAME = os.getenv('AZURE_ACCOUNT_NAME')
 
 if AZURE_ACCOUNT_NAME:
     AZURE_CUSTOM_DOMAIN = 'cdn.iatistandard.org'
+    COMPRESS_URL = 'https://cdn.iatistandard.org/prod-iati-website/'
 
 try:
     from .local import *  # # noqa: F401, F403  # pylint: disable=unused-wildcard-import, wildcard-import

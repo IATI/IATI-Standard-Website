@@ -94,6 +94,7 @@ INSTALLED_APPS = [
 
     'modeltranslation_sync',
     'django_extensions',
+    'compressor',
 ]
 
 MIDDLEWARE = [
@@ -213,6 +214,7 @@ USE_TZ = True
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
 ]
 
 STATICFILES_DIRS = [
@@ -587,6 +589,8 @@ if AZURE_ACCOUNT_NAME:
     AZURE_CONTAINER = os.getenv('AZURE_CONTAINER')
     DEFAULT_FILE_STORAGE = 'storages.backends.azure_storage.AzureStorage'
     STATICFILES_STORAGE = 'storages.backends.azure_storage.AzureStorage'
+    COMPRESS_STORAGE = 'storages.backends.azure_storage.AzureStorage'
+    COMPRESS_URL = 'https://iatiwebsitedev.blob.core.windows.net/dev-iati-website/'
 
 # App insights
 
@@ -642,5 +646,13 @@ CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
         'LOCATION': 'wagtail_cache',
+        'TIMEOUT': 86400,
+    },
+    'renditions': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'wagtail_renditions_cache',
+        'TIMEOUT': 86400,
     }
 }
+
+COMPRESS_OFFLINE = True
