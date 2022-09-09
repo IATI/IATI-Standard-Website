@@ -165,7 +165,6 @@ jobs:
               -e RECAPTCHA_PUBLIC_KEY='${{ secrets.RECAPTCHA_PUBLIC_KEY }}' \
               -e RECAPTCHA_PRIVATE_KEY='${{ secrets.RECAPTCHA_PRIVATE_KEY }}' \
               -e GITHUB_TOKEN='${{ secrets.SSOT_GITHUB_TOKEN }}' \
-              -e COMPRESS_ENABLED='True' \
               '${{ env.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}'" && \
               az vm run-command invoke \
               --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
@@ -179,8 +178,8 @@ jobs:
               --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
               --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
               --resource-type "Microsoft.Compute/virtualMachines"
-      - name: "Wait for 6 minutes"
-        run: sleep 360
+      - name: "Wait for 5 minutes"
+        run: sleep 300
       - name: "Check new Azure Container Instance success"
         id: new_has_succeeded
         continue-on-error: true
@@ -346,8 +345,8 @@ jobs:
               --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
               --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
               --resource-type "Microsoft.Compute/virtualMachines"
-      - name: "Wait for 6 minutes"
-        run: sleep 360
+      - name: "Wait for 5 minutes"
+        run: sleep 300
       - name: "Check new Azure Container Instance success"
         id: new_has_succeeded
         continue-on-error: true

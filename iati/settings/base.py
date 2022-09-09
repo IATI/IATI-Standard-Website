@@ -589,6 +589,8 @@ if AZURE_ACCOUNT_NAME:
     AZURE_CONTAINER = os.getenv('AZURE_CONTAINER')
     DEFAULT_FILE_STORAGE = 'storages.backends.azure_storage.AzureStorage'
     STATICFILES_STORAGE = 'storages.backends.azure_storage.AzureStorage'
+    COMPRESS_STORAGE = 'storages.backends.azure_storage.AzureStorage'
+    COMPRESS_URL = 'https://iatiwebsitedev.blob.core.windows.net/dev-iati-website/'
 
 # App insights
 
