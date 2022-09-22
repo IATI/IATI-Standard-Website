@@ -6,11 +6,4 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-K6488R2');</script>
 <!-- End Google Tag Manager -->
 
-{# Google Analytics gtag.js with IP Anonymization #}
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-6109435-11"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'UA-6109435-11', { 'anonymize_ip': true });
-</script>
+<script defer data-domain="{{global.hostname}}" src="https://plausible.io/js/script.file-downloads.outbound-links.js"></script>
