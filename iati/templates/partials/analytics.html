@@ -6,4 +6,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-K6488R2');</script>
 <!-- End Google Tag Manager -->
 
-<script defer data-domain="{{global.hostname}}" src="https://plausible.io/js/script.file-downloads.outbound-links.js"></script>
+{% if global.hostname %}
+  <script defer data-domain="{{global.hostname}}" src="https://plausible.io/js/script.file-downloads.outbound-links.js"></script>
+{% endif %}

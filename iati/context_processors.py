@@ -34,8 +34,11 @@ def captchakey(request):
 def globals(request):
     """Return a global context dictionary for use by templates."""
     current_page = get_current_page(request)
-    current_site = current_page.get_site()
-    hostname = current_site.hostname
+    if current_page is not None:
+        current_site = current_page.get_site()
+        hostname = current_site.hostname
+    else:
+        hostname = None
     search_page = SearchPage.objects.all().live().first()
     support_page = SupportPage.objects.all().live().first()
     standard_page = IATIStandardPage.objects.live().first()
