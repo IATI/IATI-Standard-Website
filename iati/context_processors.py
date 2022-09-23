@@ -34,6 +34,11 @@ def captchakey(request):
 def globals(request):
     """Return a global context dictionary for use by templates."""
     current_page = get_current_page(request)
+    if current_page is not None:
+        current_site = current_page.get_site()
+        hostname = current_site.hostname
+    else:
+        hostname = None
     search_page = SearchPage.objects.all().live().first()
     support_page = SupportPage.objects.all().live().first()
     standard_page = IATIStandardPage.objects.live().first()
@@ -90,6 +95,7 @@ def globals(request):
             'news_featured_sizes': '(max-width: 779px) 90vw, (max-width: 999px) 60vw, (min-width: 950px) 41vw',
             'related_srcs': 'width-440 440w, width-720 720w, width-420 420w, width-155 155w, width-190 190w',
             'related_sizes': '(max-width: 779px) 90vw, (max-width: 949px) 44vw, (min-width: 950px) 15vw',
+            'hostname': hostname,
         },
     }
 
