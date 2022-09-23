@@ -8,4 +8,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 {% if global.hostname %}
   <script defer data-domain="{{global.hostname}}" src="https://plausible.io/js/script.file-downloads.outbound-links.js"></script>
+  <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+  <script>
+    var requestStart = window.performance.getEntriesByType('navigation')[0].requestStart;
+    plausible(
+      'TTFB', {
+        props: {
+            event_category: 'PageSpeed',
+            event_label: requestStart,
+        },
+    });
+  </script>
 {% endif %}
