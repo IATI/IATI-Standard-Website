@@ -11,6 +11,7 @@ on:
     branches:
       - master
       - develop
+  workflow_dispatch:
 
 env:
   REGISTRY_LOGIN_SERVER: ${{ secrets.ACR_LOGIN_SERVER }}
