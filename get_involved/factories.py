@@ -7,4 +7,4 @@ class GetInvolvedPageFactory(BasePageFactory):
 
     class Meta:
         model = GetInvolvedPage
-        django_get_or_create = ('title', 'path',)
+        django_get_or_create = ('slug', 'parent',)

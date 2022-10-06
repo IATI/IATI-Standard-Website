@@ -14,7 +14,7 @@ class EventIndexPageFactory(BasePageFactory):
 
     class Meta:
         model = EventIndexPage
-        django_get_or_create = ('title', 'path',)
+        django_get_or_create = ('slug', 'parent',)
 
 
 class EventPageFactory(BasePageFactory):
@@ -22,7 +22,7 @@ class EventPageFactory(BasePageFactory):
 
     class Meta:
         model = EventPage
-        django_get_or_create = ('title', 'path',)
+        django_get_or_create = ('slug', 'parent',)
 
     featured_event = FuzzyChoice(
         choices=(True, False)
