@@ -11,6 +11,6 @@ pydocstyle==6.0.0
 pylint==2.4.4
 pylint-django==2.0.13
 wagtail-factories==3.1.0
-factory-boy==2.11.0
+factory-boy==3.2.1
 sqlparse==0.4.2
 django-debug-toolbar==3.5.0
