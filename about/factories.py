@@ -7,7 +7,7 @@ class CaseStudyPageFactory(BasePageFactory):
 
     class Meta:
         model = CaseStudyPage
-        django_get_or_create = ('title', 'path',)
+        django_get_or_create = ('slug', 'parent',)
 
 
 class CaseStudyIndexPageFactory(BasePageFactory):
@@ -15,4 +15,4 @@ class CaseStudyIndexPageFactory(BasePageFactory):
 
     class Meta:
         model = CaseStudyIndexPage
-        django_get_or_create = ('title', 'path',)
+        django_get_or_create = ('slug', 'parent',)

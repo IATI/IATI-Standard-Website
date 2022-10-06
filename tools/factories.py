@@ -9,7 +9,7 @@ class ToolsListingPageFactory(BasePageFactory):
 
     class Meta:
         model = ToolsListingPage
-        django_get_or_create = ('title', 'path',)
+        django_get_or_create = ('slug', 'parent',)
 
     @factory.post_generation
     def featured_tool(self, create, tools, **kwargs):
@@ -27,7 +27,7 @@ class ToolPageFactory(BasePageFactory):
 
     class Meta:
         model = ToolPage
-        django_get_or_create = ('title', 'path',)
+        django_get_or_create = ('slug', 'parent',)
 
     external_url = factory.Faker(
         provider='uri',
