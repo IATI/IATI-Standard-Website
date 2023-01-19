@@ -9,7 +9,6 @@ from modelcluster.fields import ParentalManyToManyField
 from wagtail.admin.panels import FieldPanel, PageChooserPanel
 from wagtail.fields import StreamField
 from wagtail.snippets.models import register_snippet
-from wagtail.images.edit_handlers import ImageChooserPanel
 from home.models import AbstractIndexPage, AbstractContentPage, DefaultPageHeaderImageMixin, IATIStreamBlock
 
 
@@ -119,7 +118,7 @@ class EventPage(AbstractContentPage):
         FieldPanel('location'),
         FieldPanel('registration_link'),
         FieldPanel('event_type', widget=forms.CheckboxSelectMultiple),
-        ImageChooserPanel('feed_image'),
+        FieldPanel('feed_image'),
     ]
 
     @property

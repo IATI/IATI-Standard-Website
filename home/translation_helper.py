@@ -2,8 +2,7 @@
 
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
-from wagtail.admin.panels import TabbedInterface, ObjectList, FieldPanel, MultiFieldPanel, StreamFieldPanel
-from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.admin.panels import TabbedInterface, ObjectList, FieldPanel, MultiFieldPanel
 from wagtail.fields import Creator
 
 
@@ -28,7 +27,7 @@ def add_language_content_panels(page_model):
         FieldPanel('search_description'),
     ]
     promote_panel_non_translation_fields = [
-        ImageChooserPanel('social_media_image'),
+        FieldPanel('social_media_image'),
     ]
     for language_code, language_name in settings.LANGUAGES:
         multi_field_panel_contents = [FieldPanel("title_{}".format(language_code))]

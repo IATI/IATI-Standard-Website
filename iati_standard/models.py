@@ -9,7 +9,7 @@ from django.db import models
 from django.utils.functional import cached_property
 from django.template.defaultfilters import date
 
-from wagtail.admin.panels import FieldPanel, StreamFieldPanel, PageChooserPanel, TabbedInterface
+from wagtail.admin.panels import FieldPanel, PageChooserPanel, TabbedInterface
 from wagtail.models import Page
 from wagtail.fields import StreamField
 from wagtail.search.models import Query
@@ -119,7 +119,7 @@ class IATIStandardPage(DefaultPageHeaderImageMixin, AbstractContentPage):
         PageChooserPanel('latest_version_page', 'iati_standard.ActivityStandardPage'),
         PageChooserPanel('reference_support_page'),
         PageChooserPanel('how_to_use_page'),
-        StreamFieldPanel('reference_cards'),
+        FieldPanel('reference_cards'),
         ReferenceDataPanel()
     ]
 

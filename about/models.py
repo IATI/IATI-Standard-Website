@@ -6,7 +6,6 @@ from wagtail.admin.panels import FieldPanel
 from wagtail.blocks import CharBlock, StreamBlock, StructBlock, TextBlock, RichTextBlock
 from wagtail.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
-from wagtail.images.edit_handlers import ImageChooserPanel
 
 from home.models import AbstractContentPage, AbstractIndexPage, DefaultPageHeaderImageMixin, PullQuoteBlock
 
@@ -102,7 +101,7 @@ class CaseStudyPage(AbstractContentPage):
     )
 
     multilingual_field_panels = [
-        ImageChooserPanel('feed_image'),
+        FieldPanel('feed_image'),
     ]
 
 

@@ -12,7 +12,6 @@ from wagtail.admin.panels import FieldPanel, InlinePanel, PageChooserPanel
 from wagtail.blocks import TextBlock, StructBlock, StreamBlock, FieldBlock, CharBlock, RichTextBlock, RawHTMLBlock, PageChooserBlock, URLBlock
 from wagtail.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
-from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.search.index import FilterField, SearchField
 from home.fields import HomeFieldsMixin
@@ -153,7 +152,7 @@ class AbstractBasePage(Page):
     ]
 
     promote_panels = Page.promote_panels + [
-        ImageChooserPanel('social_media_image'),
+        FieldPanel('social_media_image'),
     ]
 
     class Meta(object):
@@ -266,7 +265,7 @@ class DefaultPageHeaderImageMixin(Page):
         help_text='This is the image that will appear in the header banner at the top of the page. If no image is added a placeholder image will be used.'
     )
     multilingual_field_panels = [
-        ImageChooserPanel('header_image')
+        FieldPanel('header_image')
     ]
 
     class Meta(object):

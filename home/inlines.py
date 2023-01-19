@@ -3,7 +3,6 @@ from django.db import models
 from django.utils.functional import cached_property
 from wagtail.admin.panels import FieldPanel, PageChooserPanel
 from wagtail.models import Orderable
-from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from common.utils import ForeignKeyField, WagtailImageField
 
@@ -90,7 +89,7 @@ class GettingStartedItems(Orderable, GettingStartedItem):
 
     panels = [
         PageChooserPanel('page'),
-        ImageChooserPanel('image'),
+        FieldPanel('image'),
         FieldPanel('title'),
         FieldPanel('description'),
         FieldPanel('link_label'),
@@ -180,7 +179,7 @@ class IATIInActionFeaturedItems(Orderable, IATIInActionFeaturedItem):
 
     panels = [
         PageChooserPanel('page'),
-        ImageChooserPanel('image'),
+        FieldPanel('image'),
         FieldPanel('title'),
         FieldPanel('description'),
         FieldPanel('quote'),

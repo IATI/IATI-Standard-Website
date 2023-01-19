@@ -2,7 +2,6 @@ from modelcluster.fields import ParentalKey
 from django.db import models
 from wagtail.admin.panels import FieldPanel
 from wagtail.models import Orderable
-from wagtail.images.edit_handlers import ImageChooserPanel
 from common.utils import WagtailImageField
 
 
@@ -38,7 +37,7 @@ class ChairItems(Orderable, ChairItem):
 
     panels = [
         FieldPanel('name'),
-        ImageChooserPanel('image'),
+        FieldPanel('image'),
         FieldPanel('bio'),
     ]
 
@@ -50,6 +49,6 @@ class ViceChairItems(Orderable, ChairItem):
 
     panels = [
         FieldPanel('name'),
-        ImageChooserPanel('image'),
+        FieldPanel('image'),
         FieldPanel('bio'),
     ]

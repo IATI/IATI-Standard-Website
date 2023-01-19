@@ -5,7 +5,6 @@ from django.db import models
 from wagtail.admin.panels import FieldPanel
 from wagtail.fields import StreamField, RichTextField
 from wagtail.models import Page
-from wagtail.images.edit_handlers import ImageChooserPanel
 
 from home.models import AbstractContentPage, AbstractIndexPage, DefaultPageHeaderImageMixin, IATIStreamBlock
 from iati_standard.models import StandardGuidanceIndexPage, ActivityStandardPage
@@ -79,7 +78,7 @@ class GuidanceGroupPage(AbstractContentPage):
     translation_fields = AbstractContentPage.translation_fields + ["section_summary", "button_link_text"]
 
     multilingual_field_panels = [
-        ImageChooserPanel('section_image'),
+        FieldPanel('section_image'),
     ]
 
 
