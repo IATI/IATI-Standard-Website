@@ -4,7 +4,7 @@ from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
 from wagtail.contrib.settings.models import BaseSetting, register_setting
 from wagtail.admin.panels import FieldRowPanel, FieldPanel, InlinePanel, PageChooserPanel, StreamFieldPanel
-from wagtail.core.models import Orderable
+from wagtail.models import Orderable
 from common.utils import ForeignKeyField
 from dashboard.edit_handlers import MultiFieldPanel, HelpPanel
 from navigation.fields import navigation

@@ -7,7 +7,7 @@ from django import forms
 from django.templatetags.static import static
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template.defaultfilters import slugify
-from wagtail.core.models import Page
+from wagtail.models import Page
 from wagtail.admin.panels import FieldPanel, InlinePanel, PageChooserPanel
 from wagtail.core.blocks import TextBlock, StructBlock, StreamBlock, FieldBlock, CharBlock, RichTextBlock, RawHTMLBlock, PageChooserBlock, URLBlock
 from wagtail.core.fields import StreamField

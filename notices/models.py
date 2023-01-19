@@ -5,7 +5,7 @@ from django.db import models
 from django.utils.html import strip_tags
 from wagtail.admin.panels import FieldPanel
 from wagtail.core.fields import RichTextField
-from wagtail.core.models import Page
+from wagtail.models import Page
 from wagtail.snippets.models import register_snippet
 from common.utils import ForeignKeyField
 from dashboard.edit_handlers import MultiFieldPanel

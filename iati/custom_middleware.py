@@ -2,7 +2,7 @@
 import urllib.parse
 from django import http
 from django.conf import settings
-from wagtail.core.models import Site
+from wagtail.models import Site
 
 
 class RedirectIATISites:

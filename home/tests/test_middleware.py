@@ -2,7 +2,7 @@
 import pytest
 from django.conf import settings
 from factories import DocumentFactory
-from wagtail.core.models import Page
+from wagtail.models import Page
 from about.models import AboutPage
 
 

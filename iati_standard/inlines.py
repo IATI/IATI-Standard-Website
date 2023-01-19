@@ -2,7 +2,7 @@ from modelcluster.fields import ParentalKey
 from django.db import models
 
 from wagtail.admin.panels import FieldPanel
-from wagtail.core.models import Orderable
+from wagtail.models import Orderable
 
 
 class StandardGuidanceTypes(Orderable):

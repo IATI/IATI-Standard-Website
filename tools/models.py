@@ -5,7 +5,7 @@ from django.utils.functional import cached_property
 from modelcluster.fields import ParentalKey
 from wagtail.admin.panels import FieldPanel, PageChooserPanel, InlinePanel, MultiFieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
-from wagtail.core.models import Orderable
+from wagtail.models import Orderable
 from wagtail.core.fields import RichTextField
 from home.models import AbstractContentPage, DefaultPageHeaderImageMixin
 
