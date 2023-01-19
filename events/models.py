@@ -7,7 +7,7 @@ from django.utils.text import slugify
 from django.template.defaultfilters import date as _date
 from modelcluster.fields import ParentalManyToManyField
 from wagtail.admin.panels import FieldPanel, PageChooserPanel
-from wagtail.core.fields import StreamField
+from wagtail.fields import StreamField
 from wagtail.snippets.models import register_snippet
 from wagtail.images.edit_handlers import ImageChooserPanel
 from home.models import AbstractIndexPage, AbstractContentPage, DefaultPageHeaderImageMixin, IATIStreamBlock

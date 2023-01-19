@@ -1,8 +1,8 @@
 from django.db import models
 from django.utils.functional import cached_property
 from common.utils import ForeignKeyField, get_selected_or_fallback
-from wagtail.core.blocks import StructBlock, StreamBlock, CharBlock, RichTextBlock, URLBlock
-from wagtail.core.fields import StreamField
+from wagtail.blocks import StructBlock, StreamBlock, CharBlock, RichTextBlock, URLBlock
+from wagtail.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
 
 

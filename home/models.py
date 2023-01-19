@@ -9,8 +9,8 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template.defaultfilters import slugify
 from wagtail.models import Page
 from wagtail.admin.panels import FieldPanel, InlinePanel, PageChooserPanel
-from wagtail.core.blocks import TextBlock, StructBlock, StreamBlock, FieldBlock, CharBlock, RichTextBlock, RawHTMLBlock, PageChooserBlock, URLBlock
-from wagtail.core.fields import StreamField
+from wagtail.blocks import TextBlock, StructBlock, StreamBlock, FieldBlock, CharBlock, RichTextBlock, RawHTMLBlock, PageChooserBlock, URLBlock
+from wagtail.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.documents.blocks import DocumentChooserBlock

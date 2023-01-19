@@ -3,7 +3,7 @@ from django.conf.urls import include
 from django.urls import re_path
 from django.utils.html import format_html_join
 from django.templatetags.static import static
-from wagtail.core import hooks
+from wagtail import hooks
 from iati_standard import urls
 
 

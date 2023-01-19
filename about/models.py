@@ -3,8 +3,8 @@
 from django.db import models
 
 from wagtail.admin.panels import FieldPanel
-from wagtail.core.blocks import CharBlock, StreamBlock, StructBlock, TextBlock, RichTextBlock
-from wagtail.core.fields import StreamField
+from wagtail.blocks import CharBlock, StreamBlock, StructBlock, TextBlock, RichTextBlock
+from wagtail.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.images.edit_handlers import ImageChooserPanel
 

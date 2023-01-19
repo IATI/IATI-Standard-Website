@@ -1,7 +1,7 @@
 """Module of navigation menu modules."""
 
 from django.utils.safestring import mark_safe
-from wagtail.core.blocks import (
+from wagtail.blocks import (
     StaticBlock,
     StreamBlock,
     StructBlock,

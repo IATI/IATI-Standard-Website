@@ -11,11 +11,11 @@ from django.template.defaultfilters import date
 
 from wagtail.admin.panels import FieldPanel, StreamFieldPanel, PageChooserPanel, TabbedInterface
 from wagtail.models import Page
-from wagtail.core.fields import StreamField
+from wagtail.fields import StreamField
 from wagtail.search.models import Query
 from wagtail.search.index import SearchField, FilterField
 from wagtail.snippets.models import register_snippet
-from wagtail.core.blocks import (
+from wagtail.blocks import (
     CharBlock,
     PageChooserBlock,
     StreamBlock,

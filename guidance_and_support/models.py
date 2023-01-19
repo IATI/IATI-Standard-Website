@@ -3,7 +3,7 @@
 from django.db import models
 
 from wagtail.admin.panels import FieldPanel
-from wagtail.core.fields import StreamField, RichTextField
+from wagtail.fields import StreamField, RichTextField
 from wagtail.models import Page
 from wagtail.images.edit_handlers import ImageChooserPanel
 

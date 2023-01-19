@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 from os import mkdir
 from os.path import join, isdir, exists
 
-from wagtail.core.blocks.stream_block import StreamValue
+from wagtail.blocks.stream_block import StreamValue
 
 from django.core.management.base import BaseCommand
 from django.conf import settings

@@ -1,7 +1,7 @@
 """Functions to support the presentation of search results."""
 import re
 from django import template
-from wagtail.core.blocks.stream_block import StreamValue
+from wagtail.blocks.stream_block import StreamValue
 from common.templatetags.string_utils import return_all_content
 
 ALLOWED_BLOCK_TYPES = [

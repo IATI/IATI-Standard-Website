@@ -7,7 +7,7 @@ import io
 from os import mkdir, makedirs
 from os.path import join, isdir, dirname, exists
 
-from wagtail.core.blocks.stream_block import StreamValue
+from wagtail.blocks.stream_block import StreamValue
 
 from django.core.management.base import BaseCommand, CommandError
 from django.core.files.base import ContentFile

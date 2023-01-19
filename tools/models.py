@@ -6,7 +6,7 @@ from modelcluster.fields import ParentalKey
 from wagtail.admin.panels import FieldPanel, PageChooserPanel, InlinePanel, MultiFieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.models import Orderable
-from wagtail.core.fields import RichTextField
+from wagtail.fields import RichTextField
 from home.models import AbstractContentPage, DefaultPageHeaderImageMixin
 
 

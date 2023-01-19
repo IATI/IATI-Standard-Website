@@ -1,6 +1,6 @@
 """Module to define highlight field classes."""
 
-from wagtail.core.blocks import (
+from wagtail.blocks import (
     CharBlock,
     ChoiceBlock,
     PageChooserBlock,

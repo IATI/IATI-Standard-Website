@@ -1,7 +1,7 @@
 """Module to define navigation fields."""
 
-from wagtail.core.fields import StreamField
-from wagtail.core.blocks import (
+from wagtail.fields import StreamField
+from wagtail.blocks import (
     StreamBlock,
 )
 from navigation.fields import (
