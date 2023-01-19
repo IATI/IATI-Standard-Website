@@ -122,7 +122,7 @@ class HistoryPage(AbstractContentPage):
 
     max_count = 1
 
-    timeline_editor = StreamField(HistoryDateBlock, null=True, blank=True)
+    timeline_editor = StreamField(HistoryDateBlock, null=True, blank=True, use_json_field=True)
 
     show_featured_events = models.BooleanField(default=False)
 
@@ -164,7 +164,7 @@ class PeoplePage(AbstractContentPage):
         'about.PeoplePage',
     ]
 
-    profile_content_editor = StreamField(PeopleProfileBlock, null=True, blank=True)
+    profile_content_editor = StreamField(PeopleProfileBlock, null=True, blank=True, use_json_field=True)
 
     show_featured_events = models.BooleanField(default=False)
 

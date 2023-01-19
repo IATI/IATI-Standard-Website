@@ -38,7 +38,7 @@ def add_language_content_panels(page_model):
             if not isinstance(field_object, Creator):
                 multi_field_panel_contents.append(FieldPanel(localized_field_name))
             else:
-                stream_field_panel_contents.append(StreamFieldPanel(localized_field_name))
+                stream_field_panel_contents.append(FieldPanel(localized_field_name))
         for field in promote_panel_translation_fields:
             promote_panel_contents.append(FieldPanel(field.field_name + "_{}".format(language_code)))
 

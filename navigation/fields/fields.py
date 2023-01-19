@@ -24,5 +24,6 @@ def navigation(blank=False):
             max_num=1,
             required=required,
         ),
-        blank=blank
+        blank=blank,
+        use_json_field=True
     )

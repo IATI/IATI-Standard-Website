@@ -112,7 +112,7 @@ class IATIStandardPage(DefaultPageHeaderImageMixin, AbstractContentPage):
 
     reference_cards = StreamField([
         ('card', CardBlock())
-    ], null=True, blank=True)
+    ], null=True, blank=True, use_json_field=True)
 
     multilingual_field_panels = DefaultPageHeaderImageMixin.multilingual_field_panels + [
         FieldPanel('static'),
@@ -144,7 +144,7 @@ class StandardGuidanceIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
         help_text='Button text to be shown on Guidance and Support page',
     )
 
-    content_editor = StreamField(IATIStreamBlock(required=False), null=True, blank=True)
+    content_editor = StreamField(IATIStreamBlock(required=False), null=True, blank=True, use_json_field=True)
 
     translation_fields = AbstractIndexPage.translation_fields + ["section_summary", "button_link_text", "content_editor"]
 

@@ -57,11 +57,11 @@ class GuidanceGroupPage(AbstractContentPage):
         help_text='This is the image that will be displayed for this page on the main guidance and support page. Ignore if this page is being used as a sub-index page.'
     )
 
-    section_summary = StreamField(IATIStreamBlock(required=False), null=True, blank=True, help_text='A small amount of content to appear on the main page (e.g. bullet points). Ignore if this page is being used as a sub-index page.')
+    section_summary = StreamField(IATIStreamBlock(required=False), null=True, blank=True, use_json_field=True, help_text='A small amount of content to appear on the main page (e.g. bullet points). Ignore if this page is being used as a sub-index page.')
 
     button_link_text = models.TextField(max_length=255, null=True, blank=True, help_text='The text to appear on the button of the main guidance and support page. Ignore if this page is being used as a sub-index page.')
 
-    content_editor = StreamField(IATIStreamBlock(required=False), null=True, blank=True, help_text='The content to appear on the page itself, as opposed to "section summary" which appears on the parent page.')
+    content_editor = StreamField(IATIStreamBlock(required=False), null=True, blank=True, use_json_field=True, help_text='The content to appear on the page itself, as opposed to "section summary" which appears on the parent page.')
 
     @property
     def guidance_groups(self):

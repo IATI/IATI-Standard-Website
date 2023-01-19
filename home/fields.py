@@ -45,7 +45,7 @@ class HomeFieldsMixin(models.Model):
         max_length=255,
         help_text='Title for the getting started section',
     )
-    flexible_features = StreamField(FlexibleFeatures(required=False), null=True, blank=True)
+    flexible_features = StreamField(FlexibleFeatures(required=False), null=True, blank=True, use_json_field=True)
     about_iati_title = models.CharField(
         max_length=255,
         help_text='Title for the about IATI section',

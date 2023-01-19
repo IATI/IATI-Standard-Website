@@ -23,5 +23,5 @@ class ContactPage(DefaultPageHeaderImageMixin, AbstractContentPage):
 
     max_count = 1
 
-    contact_type = StreamField(ContactTypeStreamBlock, blank=True, null=True)
+    contact_type = StreamField(ContactTypeStreamBlock, blank=True, null=True, use_json_field=True)
     translation_fields = AbstractContentPage.translation_fields + ['contact_type']

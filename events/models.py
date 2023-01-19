@@ -99,7 +99,7 @@ class EventPage(AbstractContentPage):
         help_text='This is the image that will be displayed for the event in the page header and on the Events and Past Events list pages.'
     )
 
-    additional_information = StreamField(IATIStreamBlock(required=False), null=True, blank=True)
+    additional_information = StreamField(IATIStreamBlock(required=False), null=True, blank=True, use_json_field=True)
     event_type = ParentalManyToManyField('events.EventType', blank=True)
 
     @property

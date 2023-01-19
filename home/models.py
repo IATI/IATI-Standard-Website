@@ -101,6 +101,7 @@ def highlight_streamfield():
             required=False,
         ),
         blank=True,
+        use_json_field=True
     )
 
 
@@ -203,7 +204,7 @@ class AbstractBasePage(Page):
 class AbstractContentPage(AbstractBasePage):
     """A base for the basic model blocks of all content type pages."""
 
-    content_editor = StreamField(IATIStreamBlock(required=False), null=True, blank=True)
+    content_editor = StreamField(IATIStreamBlock(required=False), null=True, blank=True, use_json_field=True)
 
     translation_fields = AbstractBasePage.translation_fields + ["content_editor"]
     search_fields = AbstractBasePage.search_fields + [SearchField('content_editor')]
