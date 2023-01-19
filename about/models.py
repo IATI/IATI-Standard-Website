@@ -2,7 +2,7 @@
 
 from django.db import models
 
-from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.admin.panels import FieldPanel
 from wagtail.core.blocks import CharBlock, StreamBlock, StructBlock, TextBlock, RichTextBlock
 from wagtail.core.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock

@@ -1,4 +1,4 @@
-from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel
+from wagtail.admin.panels import FieldPanel, PageChooserPanel
 from common.edit_handlers import CustomisedEditHandler
 
 

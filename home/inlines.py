@@ -1,7 +1,7 @@
 from modelcluster.fields import ParentalKey
 from django.db import models
 from django.utils.functional import cached_property
-from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel
+from wagtail.admin.panels import FieldPanel, PageChooserPanel
 from wagtail.core.models import Orderable
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.snippets.edit_handlers import SnippetChooserPanel

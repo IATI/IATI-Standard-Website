@@ -3,8 +3,8 @@
 from github import Github
 from github import GithubException
 from django.conf import settings
-from wagtail.admin.edit_handlers import FieldPanel
-from wagtail.admin.edit_handlers import MultiFieldPanel as WagtailMultiFieldPanel
+from wagtail.admin.panels import FieldPanel
+from wagtail.admin.panels import MultiFieldPanel as WagtailMultiFieldPanel
 
 
 DATA_FILENAME = 'output.zip'

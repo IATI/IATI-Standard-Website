@@ -6,7 +6,7 @@ from django.db import models
 from django.db.models import Q
 from django.shortcuts import render
 from django.utils.functional import cached_property
-from wagtail.admin.edit_handlers import InlinePanel, FieldPanel
+from wagtail.admin.panels import InlinePanel, FieldPanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index

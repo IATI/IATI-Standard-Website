@@ -2,7 +2,7 @@
 
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
-from wagtail.admin.edit_handlers import TabbedInterface, ObjectList, FieldPanel, MultiFieldPanel, StreamFieldPanel
+from wagtail.admin.panels import TabbedInterface, ObjectList, FieldPanel, MultiFieldPanel, StreamFieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.core.fields import Creator
 

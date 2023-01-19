@@ -1,8 +1,8 @@
 """Module to define a custom Multifield Panel."""
 
-from wagtail.admin.edit_handlers import MultiFieldPanel as WagtailMultiFieldPanel
-from wagtail.admin.edit_handlers import HelpPanel as WagtailHelpPanel
-from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.admin.panels import MultiFieldPanel as WagtailMultiFieldPanel
+from wagtail.admin.panels import HelpPanel as WagtailHelpPanel
+from wagtail.admin.panels import FieldPanel
 
 
 class MultiFieldPanel(WagtailMultiFieldPanel):

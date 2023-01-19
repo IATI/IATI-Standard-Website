@@ -2,8 +2,8 @@ import string
 import random
 from django.template.loader import render_to_string
 from django.utils.safestring import mark_safe
-from wagtail.admin.edit_handlers import BaseCompositeEditHandler
-from wagtail.admin.edit_handlers import widget_with_script
+from wagtail.admin.panels import BaseCompositeEditHandler
+from wagtail.admin.panels import widget_with_script
 
 
 def random_string(length: int = 6, chars: str = string.ascii_lowercase) -> str:

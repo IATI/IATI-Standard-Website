@@ -7,7 +7,7 @@ from django.utils.text import slugify
 from modelcluster.fields import ParentalManyToManyField, ParentalKey
 from wagtail.core.models import Orderable
 from wagtail.snippets.models import register_snippet
-from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel, InlinePanel
+from wagtail.admin.panels import FieldPanel, PageChooserPanel, InlinePanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 from home.models import AbstractIndexPage, AbstractContentPage, DefaultPageHeaderImageMixin
 

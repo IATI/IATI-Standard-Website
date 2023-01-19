@@ -3,7 +3,7 @@ from django.utils.functional import cached_property
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
 from wagtail.contrib.settings.models import BaseSetting, register_setting
-from wagtail.admin.edit_handlers import FieldRowPanel, FieldPanel, InlinePanel, PageChooserPanel, StreamFieldPanel
+from wagtail.admin.panels import FieldRowPanel, FieldPanel, InlinePanel, PageChooserPanel, StreamFieldPanel
 from wagtail.core.models import Orderable
 from common.utils import ForeignKeyField
 from dashboard.edit_handlers import MultiFieldPanel, HelpPanel
