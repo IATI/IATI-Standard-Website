@@ -22,17 +22,32 @@
                 <div class="timeline">
                     {% if page.timeline_editor %}
                         {% for event in page.timeline_editor %}
-                            {% if forloop.counter0.first or forloop.counter0|divisibleby:2 %}
-                                <div class="timeline-row">
-                            {% endif %}
+                            {% if page.timeline_editor|length|divisibleby:2 %}
+                                {% if forloop.counter0.first or forloop.counter0|divisibleby:2 %}
+                                    <div class="timeline-row">
+                                {% endif %}
                                     <div class="{% cycle "timeline__date timeline__date--left" "timeline__date timeline__date--right" %}">
                                         <div class="timeline__date-panel">
                                             <h2 class="timeline__date-heading heading">{{ event.value.heading }}</h2>
                                             <p class="timeline__date-copy">{{ event.value.description }}</p>
                                         </div>
                                     </div>
-                            {% if forloop.counter|divisibleby:2 %}
-                                </div>
+                                {% if forloop.counter|divisibleby:2 %}
+                                    </div>
+                                {% endif %}
+                            {% else %}
+                                {% if forloop.counter0.first or forloop.counter0|divisibleby:2 or forloop.counter0.last %}
+                                    <div class="timeline-row">
+                                {% endif %}
+                                    <div class="{% cycle "timeline__date timeline__date--left" "timeline__date timeline__date--right" %}">
+                                        <div class="timeline__date-panel">
+                                            <h2 class="timeline__date-heading heading">{{ event.value.heading }}</h2>
+                                            <p class="timeline__date-copy">{{ event.value.description }}</p>
+                                        </div>
+                                    </div>
+                                {% if forloop.counter|divisibleby:2 or forloop.last %}
+                                    </div>
+                                {% endif %}
                             {% endif %}
                         {% endfor %}
                     {% endif %}
