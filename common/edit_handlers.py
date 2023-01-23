@@ -22,15 +22,21 @@ class CustomisedEditHandler(PanelGroup):
 
         return classes
 
-    def render(self):
-        """Override the render method."""
-        random_id = random_string()
-        js = mark_safe(render_to_string(self.js_template, {
-            'self': self,
-            'id': random_id,
-        }))
-        fieldset = render_to_string(self.template, {
-            'self': self,
-            'id': random_id,
-        })
-        return widget_with_script(fieldset, js)
+    class BoundPanel(PanelGroup.BoundPanel):
+        # TODO:Find a way to have the templates passed via the class that inherits CustomiseEditHandler
+
+        template = 'notices/edit_handlers/display_type_field_panel.html'
+        js_template = 'notices/edit_handlers/display_type_field_panel.js'
+
+        def render_html(self):
+            """ Override the render_html method"""
+            random_id = random_string()
+            js = mark_safe(render_to_string(self.js_template, {
+                'self': self,
+                'id': random_id,
+            }))
+            fieldset = render_to_string(self.template, {
+                'self': self,
+                'id': random_id,
+            })
+            return widget_with_script(fieldset, js)
