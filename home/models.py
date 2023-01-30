@@ -347,7 +347,7 @@ class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage): 
             heading='IATI tools items',
             label='IATI tools item',
             min_num=2,
-            max_num=2,
+            max_num=3,
         ),
         InlinePanel(
             'latest_news_items',
