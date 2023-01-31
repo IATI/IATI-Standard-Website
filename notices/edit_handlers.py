@@ -1,7 +1,7 @@
 from wagtail.admin.panels import FieldPanel, PageChooserPanel
 from common.edit_handlers import CustomisedEditHandler
 
- 
+
 class DisplayTypeFieldPanel(CustomisedEditHandler):
     """Customised edit handler, shows and hides the page field depending on display_location selection."""
 
@@ -19,4 +19,3 @@ class DisplayTypeFieldPanel(CustomisedEditHandler):
         self.help_text = help_text
         self.model = self.instance = self.request = self.form = None
         self.base_form_class = base_form_class
-        

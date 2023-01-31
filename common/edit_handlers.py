@@ -9,8 +9,10 @@ def random_string(length: int = 6, chars: str = string.ascii_lowercase) -> str:
     """Create and return a random string."""
     return ''.join(random.SystemRandom().choice(chars) for _ in range(length))
 
+
 def widget_with_script(widget, script):
     return mark_safe('{0}<script>{1}</script>'.format(widget, script))
+
 
 class CustomisedEditHandler(PanelGroup):
     """Customised edit handler, for use by concrete subclasses."""
