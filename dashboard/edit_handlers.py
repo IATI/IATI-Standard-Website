@@ -29,7 +29,7 @@ class MultiFieldPanel(WagtailMultiFieldPanel):
 
 def HelpPanel(
     content='',
-    template='wagtailadmin/edit_handlers/help_panel.html',
+    template='wagtailadmin/panels/help_panel.html',
     heading='',
     classname='',
     wrapper_class='help-block help-info'
