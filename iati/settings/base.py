@@ -20,6 +20,7 @@ from django.test.utils import ignore_warnings
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
+COMPRESS_ENABLED = True
 
 ADMINS = (
     ('Alex Miller', 'alex.miller@devinit.org'),
@@ -536,7 +537,7 @@ REFERENCE_REDIRECT_BASE_URL = 'https://iatistandard.org'
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-BASE_URL = 'http://iatistandard.org'
+WAGTAILADMIN_BASE_URL = 'http://iatistandard.org'
 
 # Modeltranslation sync Settings
 MODELTRANSLATION_LOCALE_PATH = os.path.join(BASE_DIR, 'locale')
