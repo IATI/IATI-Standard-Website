@@ -20,7 +20,6 @@ from django.test.utils import ignore_warnings
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
-COMPRESS_ENABLED = True
 
 ADMINS = (
     ('Alex Miller', 'alex.miller@devinit.org'),
