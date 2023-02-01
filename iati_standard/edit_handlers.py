@@ -104,6 +104,7 @@ class TagFieldPanel(FieldPanel):
 
     class BoundPanel(FieldPanel.BoundPanel):
         def __init__(self, **kwargs):
+            """Override init method of BoundPanel class."""
             super().__init__(**kwargs)
             try:
                 choices = self.panel.get_releases(self.instance.repo) if self.instance.repo else []
