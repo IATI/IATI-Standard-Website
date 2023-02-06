@@ -7,12 +7,11 @@ from django import forms
 from django.templatetags.static import static
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template.defaultfilters import slugify
-from wagtail.core.models import Page
-from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, PageChooserPanel
-from wagtail.core.blocks import TextBlock, StructBlock, StreamBlock, FieldBlock, CharBlock, RichTextBlock, RawHTMLBlock, PageChooserBlock, URLBlock
-from wagtail.core.fields import StreamField
+from wagtail.models import Page
+from wagtail.admin.panels import FieldPanel, InlinePanel, PageChooserPanel
+from wagtail.blocks import TextBlock, StructBlock, StreamBlock, FieldBlock, CharBlock, RichTextBlock, RawHTMLBlock, PageChooserBlock, URLBlock
+from wagtail.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
-from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.search.index import FilterField, SearchField
 from home.fields import HomeFieldsMixin
@@ -102,6 +101,7 @@ def highlight_streamfield():
             required=False,
         ),
         blank=True,
+        use_json_field=True
     )
 
 
@@ -153,7 +153,7 @@ class AbstractBasePage(Page):
     ]
 
     promote_panels = Page.promote_panels + [
-        ImageChooserPanel('social_media_image'),
+        FieldPanel('social_media_image'),
     ]
 
     class Meta(object):
@@ -204,7 +204,7 @@ class AbstractBasePage(Page):
 class AbstractContentPage(AbstractBasePage):
     """A base for the basic model blocks of all content type pages."""
 
-    content_editor = StreamField(IATIStreamBlock(required=False), null=True, blank=True)
+    content_editor = StreamField(IATIStreamBlock(required=False), null=True, blank=True, use_json_field=True)
 
     translation_fields = AbstractBasePage.translation_fields + ["content_editor"]
     search_fields = AbstractBasePage.search_fields + [SearchField('content_editor')]
@@ -266,7 +266,7 @@ class DefaultPageHeaderImageMixin(Page):
         help_text='This is the image that will appear in the header banner at the top of the page. If no image is added a placeholder image will be used.'
     )
     multilingual_field_panels = [
-        ImageChooserPanel('header_image')
+        FieldPanel('header_image')
     ]
 
     class Meta(object):

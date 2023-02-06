@@ -2,7 +2,7 @@
 
 import itertools
 from django.conf import settings
-from wagtail.core.models import Page, Site
+from wagtail.models import Page, Site
 from navigation.models import (
     PrimaryMenu,
     UtilityMenu,

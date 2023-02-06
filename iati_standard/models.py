@@ -9,13 +9,13 @@ from django.db import models
 from django.utils.functional import cached_property
 from django.template.defaultfilters import date
 
-from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, PageChooserPanel, TabbedInterface
-from wagtail.core.models import Page
-from wagtail.core.fields import StreamField
+from wagtail.admin.panels import FieldPanel, PageChooserPanel, TabbedInterface
+from wagtail.models import Page
+from wagtail.fields import StreamField
 from wagtail.search.models import Query
 from wagtail.search.index import SearchField, FilterField
 from wagtail.snippets.models import register_snippet
-from wagtail.core.blocks import (
+from wagtail.blocks import (
     CharBlock,
     PageChooserBlock,
     StreamBlock,
@@ -112,14 +112,14 @@ class IATIStandardPage(DefaultPageHeaderImageMixin, AbstractContentPage):
 
     reference_cards = StreamField([
         ('card', CardBlock())
-    ], null=True, blank=True)
+    ], null=True, blank=True, use_json_field=True)
 
     multilingual_field_panels = DefaultPageHeaderImageMixin.multilingual_field_panels + [
         FieldPanel('static'),
         PageChooserPanel('latest_version_page', 'iati_standard.ActivityStandardPage'),
         PageChooserPanel('reference_support_page'),
         PageChooserPanel('how_to_use_page'),
-        StreamFieldPanel('reference_cards'),
+        FieldPanel('reference_cards'),
         ReferenceDataPanel()
     ]
 
@@ -144,7 +144,7 @@ class StandardGuidanceIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
         help_text='Button text to be shown on Guidance and Support page',
     )
 
-    content_editor = StreamField(IATIStreamBlock(required=False), null=True, blank=True)
+    content_editor = StreamField(IATIStreamBlock(required=False), null=True, blank=True, use_json_field=True)
 
     translation_fields = AbstractIndexPage.translation_fields + ["section_summary", "button_link_text", "content_editor"]
 

@@ -3,8 +3,8 @@
 from github import Github
 from github import GithubException
 from django.conf import settings
-from wagtail.admin.edit_handlers import FieldPanel
-from wagtail.admin.edit_handlers import MultiFieldPanel as WagtailMultiFieldPanel
+from wagtail.admin.panels import FieldPanel
+from wagtail.admin.panels import MultiFieldPanel as WagtailMultiFieldPanel
 
 
 DATA_FILENAME = 'output.zip'
@@ -20,17 +20,20 @@ class MultiFieldPanel(WagtailMultiFieldPanel):
             self.description = kwargs.pop('description')
         super().__init__(children, *args, **kwargs)
 
-    def clone(self):
-        """Overwrite clone method to populate MultiFieldPanel with additional kwargs."""
-        props = {
-            'children': self.children,
-            'heading': self.heading,
-            'classname': self.classname,
-            'help_text': self.help_text,
-        }
+    def clone_kwargs(self):
+        """Overwrite clone_kwargs method to populate MultiFieldPanel with additional kwargs."""
+        kwargs = super().clone_kwargs()
         if hasattr(self, 'description'):
-            props['description'] = self.description
-        return self.__class__(**props)
+            kwargs['description'] = self.description
+        return kwargs
+
+    class BoundPanel(WagtailMultiFieldPanel.BoundPanel):
+        template_name = "wagtailadmin/edit_handlers/multi_field_panel.html"
+
+        def __init__(self, panel, instance, request, form):
+            """Override __init__ method to include description."""
+            super().__init__(panel=panel, instance=instance, request=request, form=form)
+            self.description = panel.description
 
 
 class GithubAPI:
@@ -102,13 +105,13 @@ class TagFieldPanel(FieldPanel):
         git = GithubAPI(repo)
         return [(x.tag_name, x.tag_name) for x in git.get_releases()]
 
-    def on_form_bound(self):
-        """Overwrite on_form_bound to populate choices."""
-        try:
-            choices = self.get_releases(self.instance.repo) if self.instance.repo else []
-            self.form.fields[self.field_name].widget.choices = choices
-            self.form.fields[self.field_name].empty_label = None
-        except Exception:
-            pass
-
-        super().on_form_bound()
+    class BoundPanel(FieldPanel.BoundPanel):
+        def __init__(self, **kwargs):
+            """Override __init__ method of BoundPanel class to extra attributes to form fields."""
+            super().__init__(**kwargs)
+            try:
+                choices = self.panel.get_releases(self.instance.repo) if self.instance.repo else []
+                self.form.fields[self.field_name].widget.__setattr__('choices', choices)
+                self.form.fields[self.field_name].empty_label = None
+            except Exception:
+                pass

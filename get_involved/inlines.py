@@ -1,9 +1,8 @@
 from modelcluster.fields import ParentalKey
 from django.db import models
-from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel
-from wagtail.core.fields import RichTextField
-from wagtail.core.models import Orderable
-from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.admin.panels import FieldPanel, PageChooserPanel
+from wagtail.fields import RichTextField
+from wagtail.models import Orderable
 from common.utils import ForeignKeyField, WagtailImageField
 
 
@@ -51,7 +50,7 @@ class GetInvolvedItems(Orderable, GetInvolvedItem):
 
     panels = [
         FieldPanel('title'),
-        ImageChooserPanel('image'),
+        FieldPanel('image'),
         FieldPanel('description'),
         PageChooserPanel('page'),
         FieldPanel('link_label'),

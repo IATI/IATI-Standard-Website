@@ -23,8 +23,7 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 ADMINS = (
     ('Alex Miller', 'alex.miller@devinit.org'),
-    ('Nik Osvalds', 'nik.osvalds@devinit.org'),
-    ('Alex Lydiate', 'alexl@devinit.org'),
+    ('Chris Wakibi', 'chrisw@devinit.org'),
     ('IATI Code', 'code@iatistandard.org'),
 )
 
@@ -536,7 +535,7 @@ REFERENCE_REDIRECT_BASE_URL = 'https://iatistandard.org'
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-BASE_URL = 'http://iatistandard.org'
+WAGTAILADMIN_BASE_URL = 'http://iatistandard.org'
 
 # Modeltranslation sync Settings
 MODELTRANSLATION_LOCALE_PATH = os.path.join(BASE_DIR, 'locale')

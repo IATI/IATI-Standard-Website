@@ -1,7 +1,7 @@
 from itertools import chain
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
-from wagtail.core.models import Page
+from wagtail.models import Page
 from wagtail.search.models import Query
 from about.models import AboutPage, AboutSubPage, CaseStudyPage, HistoryPage, PeoplePage
 from contact.models import ContactPage

@@ -6,9 +6,8 @@ from django.db import models
 from django.db.models import Q
 from django.shortcuts import render
 from django.utils.functional import cached_property
-from wagtail.admin.edit_handlers import InlinePanel, FieldPanel
+from wagtail.admin.panels import InlinePanel, FieldPanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
-from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
 from common.utils import ForeignKeyField, WagtailImageField
@@ -61,7 +60,7 @@ class Member(index.Indexed, models.Model):
 
     panels = [
         FieldPanel('name'),
-        ImageChooserPanel('image'),
+        FieldPanel('image'),
         NoEmptyLabelFieldPanel(
             'constituency',
             widget=forms.RadioSelect,

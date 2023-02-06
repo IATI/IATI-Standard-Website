@@ -1,8 +1,8 @@
 from django.db import models
 from django.utils.functional import cached_property
 from common.utils import ForeignKeyField, get_selected_or_fallback
-from wagtail.core.blocks import StructBlock, StreamBlock, CharBlock, RichTextBlock, URLBlock
-from wagtail.core.fields import StreamField
+from wagtail.blocks import StructBlock, StreamBlock, CharBlock, RichTextBlock, URLBlock
+from wagtail.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
 
 
@@ -45,7 +45,7 @@ class HomeFieldsMixin(models.Model):
         max_length=255,
         help_text='Title for the getting started section',
     )
-    flexible_features = StreamField(FlexibleFeatures(required=False), null=True, blank=True)
+    flexible_features = StreamField(FlexibleFeatures(required=False), null=True, blank=True, use_json_field=True)
     about_iati_title = models.CharField(
         max_length=255,
         help_text='Title for the about IATI section',

@@ -2,11 +2,10 @@
 
 from django.db import models
 
-from wagtail.admin.edit_handlers import FieldPanel
-from wagtail.core.blocks import CharBlock, StreamBlock, StructBlock, TextBlock, RichTextBlock
-from wagtail.core.fields import StreamField
+from wagtail.admin.panels import FieldPanel
+from wagtail.blocks import CharBlock, StreamBlock, StructBlock, TextBlock, RichTextBlock
+from wagtail.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
-from wagtail.images.edit_handlers import ImageChooserPanel
 
 from home.models import AbstractContentPage, AbstractIndexPage, DefaultPageHeaderImageMixin, PullQuoteBlock
 
@@ -102,7 +101,7 @@ class CaseStudyPage(AbstractContentPage):
     )
 
     multilingual_field_panels = [
-        ImageChooserPanel('feed_image'),
+        FieldPanel('feed_image'),
     ]
 
 
@@ -123,7 +122,7 @@ class HistoryPage(AbstractContentPage):
 
     max_count = 1
 
-    timeline_editor = StreamField(HistoryDateBlock, null=True, blank=True)
+    timeline_editor = StreamField(HistoryDateBlock, null=True, blank=True, use_json_field=True)
 
     show_featured_events = models.BooleanField(default=False)
 
@@ -165,7 +164,7 @@ class PeoplePage(AbstractContentPage):
         'about.PeoplePage',
     ]
 
-    profile_content_editor = StreamField(PeopleProfileBlock, null=True, blank=True)
+    profile_content_editor = StreamField(PeopleProfileBlock, null=True, blank=True, use_json_field=True)
 
     show_featured_events = models.BooleanField(default=False)
 

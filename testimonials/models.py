@@ -1,6 +1,5 @@
 from django.db import models
-from wagtail.admin.edit_handlers import FieldPanel
-from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.admin.panels import FieldPanel
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
 from common.utils import WagtailImageField
@@ -44,7 +43,7 @@ class Testimonial(index.Indexed, models.Model):
         ),
         FieldPanel('quote'),
         FieldPanel('quotee'),
-        ImageChooserPanel('image'),
+        FieldPanel('image'),
     ]
 
     def __str__(self):

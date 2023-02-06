@@ -6,10 +6,9 @@ from django.utils import timezone
 from django.utils.text import slugify
 from django.template.defaultfilters import date as _date
 from modelcluster.fields import ParentalManyToManyField
-from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel
-from wagtail.core.fields import StreamField
+from wagtail.admin.panels import FieldPanel, PageChooserPanel
+from wagtail.fields import StreamField
 from wagtail.snippets.models import register_snippet
-from wagtail.images.edit_handlers import ImageChooserPanel
 from home.models import AbstractIndexPage, AbstractContentPage, DefaultPageHeaderImageMixin, IATIStreamBlock
 
 
@@ -100,7 +99,7 @@ class EventPage(AbstractContentPage):
         help_text='This is the image that will be displayed for the event in the page header and on the Events and Past Events list pages.'
     )
 
-    additional_information = StreamField(IATIStreamBlock(required=False), null=True, blank=True)
+    additional_information = StreamField(IATIStreamBlock(required=False), null=True, blank=True, use_json_field=True)
     event_type = ParentalManyToManyField('events.EventType', blank=True)
 
     @property
@@ -119,7 +118,7 @@ class EventPage(AbstractContentPage):
         FieldPanel('location'),
         FieldPanel('registration_link'),
         FieldPanel('event_type', widget=forms.CheckboxSelectMultiple),
-        ImageChooserPanel('feed_image'),
+        FieldPanel('feed_image'),
     ]
 
     @property

@@ -1,6 +1,6 @@
 """Module for the Focus Item class."""
 
-from wagtail.core.blocks import (
+from wagtail.blocks import (
     BooleanBlock,
     CharBlock,
     URLBlock,

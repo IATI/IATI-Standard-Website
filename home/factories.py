@@ -1,7 +1,7 @@
 import factory
 from wagtail_factories import PageFactory
 from django.utils.text import slugify
-from wagtail.core.models import Page
+from wagtail.models import Page
 
 
 class BasePageFactory(PageFactory):
