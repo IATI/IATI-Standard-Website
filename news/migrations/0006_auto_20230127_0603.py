@@ -8,27 +8,6 @@ import wagtail.documents.blocks
 import wagtail.fields
 import wagtail.images.blocks
 
-def check_and_escape(editor_type, instance):
-    try:
-        # Attempt to parse the text field as JSON
-       json.loads(getattr(instance,editor_type).raw_text)
-    except json.decoder.JSONDecodeError as e:
-        length = len(getattr(instance,editor_type).raw_text)
-        parts_to_replace = getattr(instance,editor_type).raw_text[90:length-3]
-        orig_string = getattr(instance,editor_type).raw_text
-        escaped = parts_to_replace.replace('"', r'\"')
-        final_str = orig_string[:90] + escaped + orig_string[-3:]
-        final_str = final_str.replace('\n', '')
-        getattr(instance,editor_type).raw_text = final_str
-        
-
-def escape_characters(apps, schema_editor):
-    news = apps.get_model('news', 'NewsPage')
-    for news_instance in news.objects.all():
-        if news_instance.content_editor_fr.raw_text:
-            check_and_escape('content_editor_fr', news_instance)
-        news_instance.save()
-
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -36,7 +15,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(escape_characters),
         migrations.AlterField(
             model_name='newspage',
             name='content_editor',
