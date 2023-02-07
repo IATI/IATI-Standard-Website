@@ -68,10 +68,13 @@ class SearchPage(AbstractBasePage):
             search_results = sorted(search_results, key=lambda x: x._score, reverse=True)
 
             promoted = [x.page.specific for x in Query.get(search_query).editors_picks.all() if x.page.live]
+            promoted_page_ids = [promoted_page.id for promoted_page in promoted]
+            filtered_search_results = [result for result in search_results if result.id not in promoted_page_ids]
+
             query = Query.get(search_query)
             query.add_hit()
 
-            results = list(chain(promoted, search_results))
+            results = list(chain(promoted, filtered_search_results))
 
         else:
             results = Page.objects.none()
