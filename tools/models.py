@@ -67,17 +67,17 @@ class AbstractToolPage(AbstractContentPage):
         on_delete=models.SET_NULL, related_name='+'
     )
     listing_description = models.CharField(
-        max_length=255,
+        max_length=999,
         blank=True,
         help_text='Optional: short description to appear on the listing page if this tool is featured',
     )
     external_url = models.URLField(
-        max_length=255,
+        max_length=999,
         blank=True,
         help_text='Optional: external URL of the tool',
     )
     button_label = models.CharField(
-        max_length=255,
+        max_length=999,
         blank=True,
         help_text='Optional: label for the external URL button',
     )
