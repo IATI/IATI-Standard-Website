@@ -237,7 +237,7 @@
     }
 
     @supports (-webkit-appearance:none) {
-        @include respond-to-max (1050px) {
+        @include respond-to-max (1168px) {
             /* chrome + safari */
             display: none;
 

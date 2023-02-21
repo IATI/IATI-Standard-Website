@@ -1,7 +1,7 @@
 """Module to define struct values for navigation."""
 
 from math import ceil
-from wagtail.core.blocks import StructValue
+from wagtail.blocks import StructValue
 from navigation.utils import get_localised_field_value
 
 

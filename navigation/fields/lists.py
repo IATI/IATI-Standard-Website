@@ -1,6 +1,6 @@
 """Module of lists available as part of the navigation menu."""
 
-from wagtail.core.blocks import (
+from wagtail.blocks import (
     BooleanBlock,
     CharBlock,
     ListBlock,

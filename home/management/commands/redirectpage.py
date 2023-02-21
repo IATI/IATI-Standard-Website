@@ -5,7 +5,7 @@ import json
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
-from wagtail.core.models import Page
+from wagtail.models import Page
 from wagtail.contrib.redirects.models import Redirect
 
 from wagtail_modeltranslation.contextlib import use_language

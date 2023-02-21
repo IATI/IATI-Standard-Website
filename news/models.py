@@ -5,10 +5,9 @@ from django import forms
 from django.db import models
 from django.utils.text import slugify
 from modelcluster.fields import ParentalManyToManyField, ParentalKey
-from wagtail.core.models import Orderable
+from wagtail.models import Orderable
 from wagtail.snippets.models import register_snippet
-from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel, InlinePanel
-from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.admin.panels import FieldPanel, PageChooserPanel, InlinePanel
 from home.models import AbstractIndexPage, AbstractContentPage, DefaultPageHeaderImageMixin
 
 
@@ -69,7 +68,7 @@ class NewsPage(AbstractContentPage):
     multilingual_field_panels = [
         FieldPanel('date'),
         FieldPanel('news_categories', widget=forms.CheckboxSelectMultiple),
-        ImageChooserPanel('feed_image'),
+        FieldPanel('feed_image'),
         InlinePanel('related_news', label="Related news", help_text="Looks best with two related news posts or fewer.")
 
     ]

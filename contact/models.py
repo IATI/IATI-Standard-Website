@@ -1,7 +1,7 @@
 """Model definitions for the contact app."""
 
-from wagtail.core.blocks import RichTextBlock, StreamBlock, StructBlock, TextBlock
-from wagtail.core.fields import StreamField
+from wagtail.blocks import RichTextBlock, StreamBlock, StructBlock, TextBlock
+from wagtail.fields import StreamField
 from home.models import AbstractContentPage, DefaultPageHeaderImageMixin
 
 
@@ -23,5 +23,5 @@ class ContactPage(DefaultPageHeaderImageMixin, AbstractContentPage):
 
     max_count = 1
 
-    contact_type = StreamField(ContactTypeStreamBlock, blank=True, null=True)
+    contact_type = StreamField(ContactTypeStreamBlock, blank=True, null=True, use_json_field=True)
     translation_fields = AbstractContentPage.translation_fields + ['contact_type']

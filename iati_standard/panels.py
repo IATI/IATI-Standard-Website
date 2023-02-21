@@ -1,6 +1,6 @@
 """Module for bespoke panel definitions."""
 from django.forms.widgets import Select
-from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.admin.panels import FieldPanel
 from iati_standard.edit_handlers import TagFieldPanel, MultiFieldPanel
 
 

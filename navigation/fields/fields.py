@@ -1,7 +1,7 @@
 """Module to define navigation fields."""
 
-from wagtail.core.fields import StreamField
-from wagtail.core.blocks import (
+from wagtail.fields import StreamField
+from wagtail.blocks import (
     StreamBlock,
 )
 from navigation.fields import (
@@ -24,5 +24,6 @@ def navigation(blank=False):
             max_num=1,
             required=required,
         ),
-        blank=blank
+        blank=blank,
+        use_json_field=True
     )

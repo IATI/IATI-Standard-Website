@@ -1,6 +1,6 @@
 """Module to define featured items from the navigation menu."""
 
-from wagtail.core.blocks import (
+from wagtail.blocks import (
     CharBlock,
     PageChooserBlock,
 )

@@ -29,12 +29,13 @@
         .filter {
             margin-bottom: 20px;
             display: block;
-            @include respond-to($b-vp) {
+            float: left;
+            @include respond-to-max($c-vp) {
                 width: 100%;
-                display: block;
                 + .filter {
-                    width: 100%;
                     margin-left: 0;
+                    float: left;
+                    width: 100%;
                 }
             }
             @include respond-to($c-vp) {

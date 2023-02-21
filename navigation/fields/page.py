@@ -1,6 +1,6 @@
 """Module for a translated page class."""
 
-from wagtail.core.blocks import (
+from wagtail.blocks import (
     PageChooserBlock,
     StructBlock,
 )
