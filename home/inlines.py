@@ -3,7 +3,7 @@ from django.db import models
 from django.utils.functional import cached_property
 from wagtail.admin.panels import FieldPanel, PageChooserPanel
 from wagtail.models import Orderable
-from wagtail.snippets.edit_handlers import SnippetChooserPanel
+from wagtail.admin.panels import FieldPanel
 from common.utils import ForeignKeyField, WagtailImageField
 
 
@@ -26,7 +26,7 @@ class TestimonialItems(Orderable, TestimonialItem):
     item = ParentalKey('HomePage', related_name='testimonial_items')
 
     panels = [
-        SnippetChooserPanel('testimonial'),
+        FieldPanel('testimonial'),
     ]
 
 

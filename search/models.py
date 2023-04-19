@@ -24,6 +24,8 @@ class SearchPage(AbstractBasePage):
 
     max_count = 1
 
+    preview_modes = []
+
     def get_paginated(self, collection, page: int, per_page: int = 10):
         """Handle some error conditions and tries to return working pagination."""
         results = None
