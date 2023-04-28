@@ -54,10 +54,6 @@ class Member(index.Indexed, models.Model):
         help_text='Only active members will be displayed on the site',
     )
 
-    translation_fields = [
-        'name',
-    ]
-
     panels = [
         FieldPanel('name'),
         FieldPanel('image'),
@@ -87,18 +83,8 @@ class MembersAssemblyPage(MembersAssemblyFieldsMixin, RoutablePageMixin, Abstrac
     parent_page_types = ['about.AboutSubPage']
     subpage_types = []
 
-    max_count = 1
-
-    local_translation_fields = [
-        'members_title',
-    ]
-    optional_local_translation_fields = [
-    ]
-
-    translation_fields = AbstractContentPage.translation_fields + local_translation_fields
-    required_languages = {'en': list(set(local_translation_fields) - set(optional_local_translation_fields))}
-
-    multilingual_field_panels = [
+    content_panels = AbstractContentPage.content_panels + [
+        FieldPanel('members_title'),
         InlinePanel(
             'chair_items',
             heading='Chair items',
@@ -126,7 +112,7 @@ class MembersAssemblyPage(MembersAssemblyFieldsMixin, RoutablePageMixin, Abstrac
         filters = {}
         filter_obj = Q()
 
-        for item in settings.ACTIVE_LANGUAGES:
+        for item in settings.LANGUAGES:
             filters['constituency__slug_%s' % item[0]] = constituency
 
         for item in filters:

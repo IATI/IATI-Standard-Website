@@ -15,7 +15,6 @@
     <div class="header__utility">
         {% if has_multilanguage_support %}
             <ul class="navigation-language">
-                {% translation_links calling_page=self %}
             </ul>
         {% endif %}
         {% include 'navigation/utility.html' %}

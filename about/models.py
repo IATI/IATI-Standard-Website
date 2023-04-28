@@ -2,7 +2,7 @@
 
 from django.db import models
 
-from wagtail.admin.panels import FieldPanel
+from wagtail.admin.panels import FieldPanel, StreamFieldPanel
 from wagtail.blocks import CharBlock, StreamBlock, StructBlock, TextBlock, RichTextBlock
 from wagtail.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
@@ -25,7 +25,7 @@ class AboutPage(DefaultPageHeaderImageMixin, AbstractContentPage):
 
     show_featured_events = models.BooleanField(default=False)
 
-    multilingual_field_panels = DefaultPageHeaderImageMixin.multilingual_field_panels + [
+    content_panels = AbstractContentPage.content_panels + DefaultPageHeaderImageMixin.content_panels + [
         FieldPanel('show_featured_events'),
     ]
 
@@ -49,7 +49,7 @@ class AboutSubPage(AbstractContentPage):
 
     show_featured_events = models.BooleanField(default=False)
 
-    multilingual_field_panels = [
+    content_panels = AbstractContentPage.content_panels + [
         FieldPanel('show_featured_events'),
     ]
 
@@ -83,7 +83,7 @@ class CaseStudyIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
         context['paginator_range'] = self._get_paginator_range(paginated_children)
         return context
 
-    multilingual_field_panels = DefaultPageHeaderImageMixin.multilingual_field_panels + [
+    content_panels = AbstractIndexPage.content_panels + DefaultPageHeaderImageMixin.content_panels + [
         FieldPanel('show_featured_events'),
     ]
 
@@ -100,7 +100,7 @@ class CaseStudyPage(AbstractContentPage):
         help_text='This is the image that will be displayed for the case study in the page header and on the Case Studies list page.'
     )
 
-    multilingual_field_panels = [
+    content_panels = AbstractContentPage.content_panels + [
         FieldPanel('feed_image'),
     ]
 
@@ -126,10 +126,9 @@ class HistoryPage(AbstractContentPage):
 
     show_featured_events = models.BooleanField(default=False)
 
-    translation_fields = AbstractContentPage.translation_fields + ['timeline_editor']
-
-    multilingual_field_panels = [
+    content_panels = AbstractContentPage.content_panels + [
         FieldPanel('show_featured_events'),
+        FieldPanel('timeline_editor'),
     ]
 
 
@@ -168,8 +167,7 @@ class PeoplePage(AbstractContentPage):
 
     show_featured_events = models.BooleanField(default=False)
 
-    translation_fields = AbstractContentPage.translation_fields + ['profile_content_editor']
-
-    multilingual_field_panels = [
+    content_panels = AbstractContentPage.content_panels + [
         FieldPanel('show_featured_events'),
+        FieldPanel('profile_content_editor'),
     ]

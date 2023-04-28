@@ -45,10 +45,6 @@ class AbstractNotice(models.Model):
         features=['h2', 'link', 'bold'],
     )
 
-    translation_fields = [
-        'content',
-    ]
-
     def __str__(self):
         """Get a string representation of the snippet, the content."""
         return strip_tags(self.content.replace('</', ' </'))

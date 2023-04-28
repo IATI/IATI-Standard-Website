@@ -81,12 +81,6 @@ class GettingStartedItems(Orderable, GettingStartedItem):
 
     item = ParentalKey('HomePage', related_name='getting_started_items')
 
-    translation_fields = [
-        'title',
-        'description',
-        'link_label',
-    ]
-
     panels = [
         PageChooserPanel('page'),
         FieldPanel('image'),
@@ -170,13 +164,6 @@ class IATIInActionFeaturedItems(Orderable, IATIInActionFeaturedItem):
 
     item = ParentalKey('HomePage', related_name='iati_in_action_featured_item')
 
-    translation_fields = [
-        'title',
-        'description',
-        'quote',
-        'quotee',
-    ]
-
     panels = [
         PageChooserPanel('page'),
         FieldPanel('image'),
@@ -191,11 +178,6 @@ class IATIInActionItems(Orderable, BaseRelatedOptionalItem):
     """Concrete clustrable model class for IATI in action items."""
 
     item = ParentalKey('HomePage', related_name='iati_in_action_items')
-
-    translation_fields = [
-        'title',
-        'description',
-    ]
 
     panels = [
         PageChooserPanel('page'),

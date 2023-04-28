@@ -38,8 +38,8 @@ class NewsIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
         news_category = request.GET.get('type')
         if news_category:
             filter_dict["news_categories__slug"] = news_category
-        if request.LANGUAGE_CODE:
-            filter_dict["title_{}__isnull".format(request.LANGUAGE_CODE)] = False
+        # if request.LANGUAGE_CODE:
+        #     filter_dict["title_{}__isnull".format(request.LANGUAGE_CODE)] = False
 
         filtered_children = self.filter_children(children, filter_dict)
         paginated_children = self.paginate(request, filtered_children, self.PER_PAGE)
@@ -65,7 +65,7 @@ class NewsPage(AbstractContentPage):
 
     news_categories = ParentalManyToManyField('news.NewsCategory', blank=True)
 
-    multilingual_field_panels = [
+    content_panels = AbstractContentPage.content_panels + [
         FieldPanel('date'),
         FieldPanel('news_categories', widget=forms.CheckboxSelectMultiple),
         FieldPanel('feed_image'),
@@ -102,8 +102,6 @@ class NewsCategory(models.Model):
         if base_slug:
             self.slug = base_slug
         super(NewsCategory, self).full_clean(exclude, validate_unique)
-
-    translation_fields = ['name']
 
     panels = [FieldPanel('name')]
 

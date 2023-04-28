@@ -20,11 +20,6 @@ class SimpleTaxonomy(models.Model):
         help_text='The slug must be unique for this category'
     )
 
-    translation_fields = [
-        'title',
-        'slug',
-    ]
-
     panels = [
         FieldPanel('title'),
         FieldPanel('slug'),

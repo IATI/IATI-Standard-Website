@@ -12,7 +12,6 @@ COPY home /usr/src/app/home
 COPY iati /usr/src/app/iati
 COPY iati_standard /usr/src/app/iati_standard
 COPY locale /usr/src/app/locale
-COPY modeltranslation_sync /usr/src/app/modeltranslation_sync
 COPY navigation /usr/src/app/navigation
 COPY news /usr/src/app/news
 COPY notices /usr/src/app/notices

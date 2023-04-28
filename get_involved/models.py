@@ -1,6 +1,6 @@
 """Model definitions for the get involved app."""
 from django.utils.functional import cached_property
-from wagtail.admin.panels import InlinePanel
+from wagtail.admin.panels import InlinePanel, FieldPanel
 from home.models import AbstractContentPage, DefaultPageHeaderImageMixin, highlight_streamfield
 from get_involved.inlines import *  # noqa
 
@@ -15,16 +15,13 @@ class GetInvolvedPage(DefaultPageHeaderImageMixin, AbstractContentPage):
 
     highlight = highlight_streamfield()
 
-    translation_fields = AbstractContentPage.translation_fields + [
-        'highlight',
-    ]
-
-    multilingual_field_panels = DefaultPageHeaderImageMixin.multilingual_field_panels + [
+    content_panels = AbstractContentPage.content_panels + DefaultPageHeaderImageMixin.content_panels + [
         InlinePanel(
             'get_involved_items',
             heading='Get involved items',
             label='Get involved item',
         ),
+        FieldPanel('highlight')
     ]
 
     @cached_property

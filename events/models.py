@@ -6,7 +6,7 @@ from django.utils import timezone
 from django.utils.text import slugify
 from django.template.defaultfilters import date as _date
 from modelcluster.fields import ParentalManyToManyField
-from wagtail.admin.panels import FieldPanel, PageChooserPanel
+from wagtail.admin.panels import FieldPanel, PageChooserPanel, StreamFieldPanel
 from wagtail.fields import StreamField
 from wagtail.snippets.models import register_snippet
 from home.models import AbstractIndexPage, AbstractContentPage, DefaultPageHeaderImageMixin, IATIStreamBlock
@@ -67,8 +67,8 @@ class EventIndexPage(DefaultPageHeaderImageMixin, AbstractIndexPage):
         if event_type:
             filter_dict["event_type__slug"] = event_type
 
-        if request.LANGUAGE_CODE:
-            filter_dict["title_{}__isnull".format(request.LANGUAGE_CODE)] = False
+        # if request.LANGUAGE_CODE:
+        #     filter_dict["title_{}__isnull".format(request.LANGUAGE_CODE)] = False
 
         context = super(EventIndexPage, self).get_context(request)
         context['events'] = self.get_events(request, filter_dict, order_by)
@@ -109,9 +109,7 @@ class EventPage(AbstractContentPage):
 
         return " | ".join(event_types)
 
-    translation_fields = AbstractContentPage.translation_fields + ["additional_information"]
-
-    multilingual_field_panels = [
+    content_panels = AbstractContentPage.content_panels + [
         FieldPanel('featured_event'),
         FieldPanel('date_start'),
         FieldPanel('date_end'),
@@ -119,6 +117,7 @@ class EventPage(AbstractContentPage):
         FieldPanel('registration_link'),
         FieldPanel('event_type', widget=forms.CheckboxSelectMultiple),
         FieldPanel('feed_image'),
+        FieldPanel('additional_information'),
     ]
 
     @property
@@ -156,8 +155,6 @@ class EventType(models.Model):
         """Call full_clean method for slug validation."""
         self.full_clean()
         super().save(*args, **kwargs)
-
-    translation_fields = ['name']
 
     panels = [FieldPanel('name')]
 
