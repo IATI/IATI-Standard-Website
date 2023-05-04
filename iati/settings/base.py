@@ -37,9 +37,6 @@ SECRET_KEY = 'enter-a-long-unguessable-string-here'
 # Application definition
 
 INSTALLED_APPS = [
-    'wagtail_modeltranslation',
-    'wagtail_modeltranslation.makemigrations',
-    'wagtail_modeltranslation.migrate',
     'home',
     'search',
     'about',
@@ -59,6 +56,8 @@ INSTALLED_APPS = [
     'testimonials',
     'notices',
 
+    'wagtail_localize',
+    'wagtail_localize.locales',
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
     'wagtail.embeds',
@@ -79,6 +78,7 @@ INSTALLED_APPS = [
     'snowpenguin.django.recaptcha3',
     'prettyjson',
 
+    'django_rq',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -91,7 +91,6 @@ INSTALLED_APPS = [
     'wagtail.contrib.settings',
     'wagtail.contrib.modeladmin',
 
-    'modeltranslation_sync',
     'django_extensions',
     'compressor',
 ]
@@ -180,23 +179,36 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Django Queue
+
+RQ_QUEUES = {
+    'default': {
+        'HOST': 'cache',
+        'PORT': 6379,
+        'DB': 0,
+        'DEFAULT_TIMEOUT': 500,
+    }
+}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
 LANGUAGE_CODE = 'en'
 
-LANGUAGES = [
+WAGTAIL_I18N_ENABLED = True
+
+WAGTAIL_CONTENT_LANGUAGES = LANGUAGES = [
     ('en', _('English')),
     ('fr', _('French')),
     ('es', _('Spanish')),
     ('pt', _('Portuguese')),
 ]
 
-ACTIVE_LANGUAGES = [
-    ('en', _('English')),
-    ('fr', _('French')),
-]
+WAGTAILLOCALIZE_JOBS = {
+    "BACKEND": "wagtail_localize.tasks.DjangoRQJobBackend",
+    "OPTIONS": {"QUEUE": "default"},
+}
 
 TIME_ZONE = 'UTC'
 
@@ -536,11 +548,6 @@ REFERENCE_REDIRECT_BASE_URL = 'https://iatistandard.org'
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 WAGTAILADMIN_BASE_URL = 'http://iatistandard.org'
-
-# Modeltranslation sync Settings
-MODELTRANSLATION_LOCALE_PATH = os.path.join(BASE_DIR, 'locale')
-LOCALE_PATHS = (MODELTRANSLATION_LOCALE_PATH,)
-MODELTRANSLATION_PO_FILE = "iati.po"
 
 # Community URL
 COMMUNITY_URL = 'https://discuss.iatistandard.org/'

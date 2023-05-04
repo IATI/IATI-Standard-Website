@@ -35,6 +35,7 @@ python manage.py migrate --noinput
 python manage.py compilemessages
 python manage.py update_index
 python manage.py createcachetable
-python manage.py compress
+python manage.py compress --force
+python manage.py rqworker default
 
 exec "$@"
