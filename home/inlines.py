@@ -2,7 +2,7 @@ from modelcluster.fields import ParentalKey
 from django.db import models
 from django.utils.functional import cached_property
 from wagtail.admin.panels import FieldPanel, PageChooserPanel
-from wagtail.models import Orderable
+from wagtail.models import Orderable, TranslatableMixin
 from wagtail.admin.panels import FieldPanel
 from common.utils import ForeignKeyField, WagtailImageField
 
@@ -76,7 +76,7 @@ class GettingStartedItem(BaseRelatedItem):
     )
 
 
-class GettingStartedItems(Orderable, GettingStartedItem):
+class GettingStartedItems(TranslatableMixin, Orderable, GettingStartedItem):
     """Concrete clustrable model class for getting started items."""
 
     item = ParentalKey('HomePage', related_name='getting_started_items')
@@ -159,7 +159,7 @@ class IATIInActionFeaturedItem(BaseRelatedOptionalItem):
         return image
 
 
-class IATIInActionFeaturedItems(Orderable, IATIInActionFeaturedItem):
+class IATIInActionFeaturedItems(TranslatableMixin, Orderable, IATIInActionFeaturedItem):
     """Concrete clustrable model class for IATI in action featured items."""
 
     item = ParentalKey('HomePage', related_name='iati_in_action_featured_item')
@@ -174,7 +174,7 @@ class IATIInActionFeaturedItems(Orderable, IATIInActionFeaturedItem):
     ]
 
 
-class IATIInActionItems(Orderable, BaseRelatedOptionalItem):
+class IATIInActionItems(TranslatableMixin, Orderable, BaseRelatedOptionalItem):
     """Concrete clustrable model class for IATI in action items."""
 
     item = ParentalKey('HomePage', related_name='iati_in_action_items')
@@ -186,7 +186,7 @@ class IATIInActionItems(Orderable, BaseRelatedOptionalItem):
     ]
 
 
-class IATIToolsItems(Orderable, BaseRelatedPageItem):
+class IATIToolsItems(TranslatableMixin, Orderable, BaseRelatedPageItem):
     """Concrete clustrable model class for IATI tools items."""
 
     item = ParentalKey('HomePage', related_name='iati_tools_items')
@@ -196,7 +196,7 @@ class IATIToolsItems(Orderable, BaseRelatedPageItem):
     ]
 
 
-class LatestNewsItems(Orderable, BaseRelatedPageItem):
+class LatestNewsItems(TranslatableMixin, Orderable, BaseRelatedPageItem):
     """Concrete clustrable model class for latest news items."""
 
     item = ParentalKey('HomePage', related_name='latest_news_items')
