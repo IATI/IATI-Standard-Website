@@ -27,7 +27,11 @@ class RedirectIATISites:
         self.path_parts = self.remove_language_code(valid_path_parts)
         self.is_download = "downloads" in self.path_parts
         self.stripped_path = '/'.join(self.path_parts)
+        full_url = request.build_absolute_uri()
+        domain = urllib.parse.urlparse(full_url).netloc
 
+        if domain == 'reference.iatistandard.org':
+            return http.HttpResponsePermanentRedirect(f'{settings.REFERENCE_REDIRECT_BASE_URL}/en/iati-standard/')
         if self.path_is_redirect:
             return http.HttpResponsePermanentRedirect(self.redirected_url)
         elif not request.path_info.endswith('/') and self.path_is_not_exception:
@@ -86,6 +90,8 @@ class RedirectIATISites:
         if self.stripped_path.startswith(self.wildcard_redirect_urls):
             redirect_match = next(dict_value for dict_key, dict_value in settings.REFERENCE_NAMESPACE_WILDCARD_REDIRECT_DICT.items() if self.stripped_path.startswith(dict_key))
             self.stripped_path = self.remove_index_html(self.stripped_path)
+            print('wowowowowo')
+            print('{}{}{}'.format(settings.REFERENCE_REDIRECT_BASE_URL, redirect_match, self.stripped_path))
             if self.is_download:
                 return '{}{}{}'.format(settings.REFERENCE_REDIRECT_BASE_URL, redirect_match, self.stripped_path)
             return '{}{}{}{}'.format(settings.REFERENCE_REDIRECT_BASE_URL, redirect_match, self.stripped_path, "/")
