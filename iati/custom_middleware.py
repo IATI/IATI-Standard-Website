@@ -31,8 +31,8 @@ class RedirectIATISites:
         parsed_url = urllib.parse.urlparse(full_url)
         domain = parsed_url.netloc
 
-        if domain == 'reference.iatistandard.org' and parsed_url.path == '':
-            return http.HttpResponsePermanentRedirect(f'{settings.REFERENCE_REDIRECT_BASE_URL}/en/iati-standard/')
+        if domain == 'reference.iatistandard.org' and parsed_url.path in ['/', '/en/', '/fr/']:
+            return http.HttpResponsePermanentRedirect(f'{settings.REFERENCE_REDIRECT_BASE_URL}/iati-standard/')
         if self.path_is_redirect:
             return http.HttpResponsePermanentRedirect(self.redirected_url)
         elif not request.path_info.endswith('/') and self.path_is_not_exception:
