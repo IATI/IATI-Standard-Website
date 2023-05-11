@@ -5,7 +5,7 @@
         <div class="m-highlight">
         <h2 class="m-highlight__heading">{{ value.page.specific.heading }}</h2>
             <p class="m-highlight__copy">{{ value.description }}</p>
-            <a href="{{ value.page.url }}" class="button button--small"> {% blocktrans %} Read more about {{ value.page.specific.heading }}{% endblocktrans %}</a>
+            <a href="{{ value.page.url }}" class="button button--small"> {% blocktrans %}{{ value.page.specific.heading }} Read more{% endblocktrans %}</a>
         </div>
     </div>
 {% endif %}
