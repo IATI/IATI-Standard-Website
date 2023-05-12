@@ -8,7 +8,7 @@ django-import-export==2.5.0
 django-haystack==3.0
 django-prettyjson==0.4.1
 django-recaptcha3==0.4.0
-django-rq==2.7.0
+django-rq==2.8.0
 django-storages[azure]==1.11.1
 django-widget-tweaks==1.4.8
 Django==3.2.4
@@ -19,7 +19,7 @@ opencensus-ext-django==0.7.4
 PyGithub==1.55
 psycopg2-binary==2.8.6
 requests==2.25.1
-wagtail==4.1
+wagtail==4.1.5
 wagtail-localize[google]==1.5
 Wand==0.6.6
 whitenoise==5.2.0
