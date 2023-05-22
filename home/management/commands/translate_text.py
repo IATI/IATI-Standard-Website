@@ -22,18 +22,71 @@ from django.core.exceptions import ValidationError
 
 from babel.messages.pofile import read_po
 
-from wagtail_localize.operations import translate_object
+from wagtail.models import Page
 from wagtail.models import Locale
+from wagtail.blocks.stream_block import StreamValue
+from wagtail_localize.operations import translate_object
 from wagtail_localize.models import (
     Translation
 )
 from wagtail_localize.synctree import PageIndex
-from wagtail_localize.models import Translation
+from wagtail_localize.models import Translation, TranslationSource
 from wagtail_localize.operations import translate_object
+
+
+def build_old_po_file_dict(locale_code):
+    results = dict()
+    lang_path = settings.MODELTRANSLATION_LOCALE_PATH
+    po_file = open(join(lang_path, locale_code, "LC_MESSAGES", "iati.po"), "r", encoding="utf-8")
+    catalog = read_po(po_file)
+    po_file.close()
+    for message in catalog:
+        if message.string not in [None, "None", ""] and message.auto_comments:
+            for field_id in message.auto_comments:
+                [app, class_name, primary_key, field] = field_id.split('.')
+                if app != 'wagtailcore':
+                    model = apps.get_model(app, class_name)
+                    try:
+                        obj = model.objects.get(pk=primary_key)
+                    except model.DoesNotExist:
+                        continue
+                    field_obj = getattr(obj, field)
+                    if isinstance(field_obj, StreamValue):
+                        stream_list = field_obj.raw_data
+                        for stream_item in stream_list:
+                            item_id = stream_item['id']
+                            item_values = stream_item['value']
+                            if not isinstance(item_values, dict):
+                                value_item_message_id = '{}.{}'.format(field, item_id)
+                                if primary_key not in results.keys():
+                                    results[primary_key] = dict()
+                                results[primary_key][value_item_message_id] = item_values
+                            else:
+                                for value_item_key, value_item_value in item_values.items():
+                                    if not isinstance(value_item_value, dict):
+                                        stream_value_item_message_id = '{}.{}.{}'.format(field, item_id, value_item_key)
+                                        if primary_key not in results.keys():
+                                            results[primary_key] = dict()
+                                        results[primary_key][stream_value_item_message_id] = value_item_value
+                                    else:
+                                        print("WARNING: Stream depth too deep.")
+                    else:
+                        if primary_key not in results.keys():
+                            results[primary_key] = dict()
+                            results[primary_key][field] = message.string
+                        else:
+                            if field not in results[primary_key].keys():
+                                results[primary_key][field] = message.string
+    return results
 
 
 def find_string(needle, haystack):
     return [m.start() for m in re.finditer(needle, haystack)]
+
+def get_page_id(translation_page):
+    translation_source = TranslationSource.objects.get(id=translation_page.source_id)
+    content = json.loads(translation_source.content_json)
+    return content['pk']
 
 def create_translation_pages():
     source_locale = Locale.objects.get(language_code='en')
@@ -53,58 +106,36 @@ def create_translation_pages():
 def translate_pages():
     translation_pages = Translation.objects.all()
     for translation_page in translation_pages:
+        # if get_page_id(translation_page) == 3:
         downloaded_filename = download_po_file(translation_page)
-        updated_file = add_translations_to_pofile(downloaded_filename)
+        updated_file = add_translations_to_pofile(downloaded_filename, translation_page)
         updated_file[1].save()
         upload_po_file(updated_file[0], translation_page)
-    return downloaded_filename
 
-def find_matching_field(needle, data, key = None):
-    if type(data) is list:
-        for x in data:
-            val = x['value']
-            if x['id'] == needle and type(val) is str:
-                return val
-            elif type(val) is list or type(val) is dict:
-                return find_matching_field(needle, val)
-            
-    if type(data) is dict:
-        for item in data.keys():
-            if item == key:
-                return data[item]
-            elif 'value' in data:
-                if isinstance(data['value'], list) or isinstance (data['value'], dict):
-                    return find_matching_field(needle, data['value'], key)
+results = build_old_po_file_dict('fr')
 
-def find_language_translation_in_iati_po_file(text_to_translate, field_reference):
+def find_language_translation_in_iati_po_file(text_to_translate, field_reference, translation_page):
     field_reference_parts = field_reference.split(".")
     count = len(field_reference_parts)
     locale_path = settings.MODELTRANSLATION_LOCALE_PATH
     po = polib.pofile(join(locale_path, "fr", "LC_MESSAGES", "iati.po"))
+    page_id = get_page_id(translation_page)
     for entry in po:
-        if count > 1:   
-            if '-' in field_reference_parts[count - 1]:
-                result = find_string(field_reference_parts[count - 1], entry.msgstr)
-                if len(result):
-                    data = json.loads(entry.msgstr)                    
-                    return find_matching_field(field_reference_parts[count - 1], data)
-            else:
-                result = find_string(field_reference_parts[count - 2], entry.msgstr)
-                if len(result):
-                    data = json.loads(entry.msgstr)
-                    return find_matching_field(field_reference_parts[ count - 2], data, field_reference_parts[count - 1])
+        if count > 1:
+            if page_id in results:  
+                print('translating with results array')
+                return results[page_id][field_reference]
         else:
             soup_for_text_to_translate = BeautifulSoup(text_to_translate, features="html.parser")
             soup_for_iati_text = BeautifulSoup(entry.msgid, features="html.parser")
             if soup_for_text_to_translate.get_text() == soup_for_iati_text.get_text():
                 return entry.msgstr
-        
     return ""
 
-def add_translations_to_pofile(filename):
+def add_translations_to_pofile(filename, translation_page):
     po = polib.pofile(join(settings.MODELTRANSLATION_LOCALE_PATH, filename))
     for entry in po:
-        translated_text = find_language_translation_in_iati_po_file(entry.msgid, entry.msgctxt)
+        translated_text = find_language_translation_in_iati_po_file(entry.msgid, entry.msgctxt, translation_page)
         if translated_text:
             entry.msgstr = translated_text
             print('Translated ' + entry.msgid)
@@ -165,8 +196,3 @@ class Command(LoadCommand):
 
         # Apply translations using po files
         translate_pages()
-
-        
-
-
-
