@@ -53,11 +53,51 @@ def create_translation_pages():
 def translate_pages():
     translation_pages = Translation.objects.all()
     for translation_page in translation_pages:
-        downloaded_filename = download_po_file(translation_page)
-        updated_file = add_translations_to_pofile(downloaded_filename)
-        updated_file[1].save()
-        upload_po_file(updated_file[0], translation_page)
-    return downloaded_filename
+        if "Members’ Assembly meeting, 3-5 October 2017, Rome" in translation_page.source.object_repr:
+            # print(translation_page.source.object_repr)
+            # print(translation_page.id)
+            downloaded_filename = download_po_file(translation_page)
+            updated_file = add_translations_to_pofile(downloaded_filename)
+            updated_file[1].save()
+        # downloaded_filename = download_po_file(translation_page)
+        # updated_file = add_translations_to_pofile(downloaded_filename)
+        # updated_file[1].save()
+        # upload_po_file(updated_file[0], translation_page)
+    # return downloaded_filename
+
+def find_matching_field(needle, data, key = None):
+    if needle == '2560c6b6-7e36-4bec-a780-61c859c8b23d':
+                print(data)
+                type(data)
+                print('GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG')
+                print('GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG')
+                print('GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG')
+    if type(data) is list:
+        for x in data:
+            val = x['value']
+            if x['id'] == needle:
+                # print('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++')
+                # print('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++')
+                # print('finding matching field in list')
+                return val
+            elif type(val) is list or type(val) is dict:
+                return find_matching_field(needle, val)
+            
+    if type(data) is dict:
+        # print('GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG')
+        # print('GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG')
+        # print('GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG')
+        for item in data.keys():
+            print('key '+ key)
+            print('item '+ item)
+            if item == key:
+                # print('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++')
+                # print('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++')
+                # print('finding matching field in dict')
+                return data[item]
+        # if 'value' in data:
+        #     if isinstance(data['value'], list) or isinstance (data['value'], dict):
+        #         return find_matching_field(needle, data['value'], key)
 
 def find_language_translation_in_iati_po_file(text_to_translate, field_reference):
     field_reference_parts = field_reference.split(".")
@@ -65,19 +105,30 @@ def find_language_translation_in_iati_po_file(text_to_translate, field_reference
     locale_path = settings.MODELTRANSLATION_LOCALE_PATH
     po = polib.pofile(join(locale_path, "fr", "LC_MESSAGES", "iati.po"))
     for entry in po:
-        if count > 1:            
-            result = find_string(field_reference_parts[count - 1], entry.msgstr)
-            if len(result):
-                data = json.loads(entry.msgstr)
-                for x in data:
-                    if x['id'] == field_reference_parts[count - 1]:
-                        print('x')
-                        return x['value']
+        if count > 1:   
+            if '-' in field_reference_parts[count - 1]:
+                # print('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^')
+                # print('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^')
+                # print('field is an id match')     
+                result = find_string(field_reference_parts[count - 1], entry.msgstr)
+                if len(result):
+                               
+                    return find_matching_field(field_reference_parts[count - 1], json.loads(entry.msgstr))
+            else:
+                # print('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++')
+                # print('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++')
+                # print('field is text with an id match')
+                result = find_string(field_reference_parts[count - 2], entry.msgstr)
+                if len(result):
+                    
+                    return find_matching_field(field_reference_parts[ count - 2], json.loads(entry.msgstr), field_reference_parts[count - 1])
         else:
             soup_for_text_to_translate = BeautifulSoup(text_to_translate, features="html.parser")
             soup_for_iati_text = BeautifulSoup(entry.msgid, features="html.parser")
             if soup_for_text_to_translate.get_text() == soup_for_iati_text.get_text():
-                print('y')
+                print('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
+                print('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
+                print('field is only text match')
                 return entry.msgstr
         
     return ""
@@ -86,13 +137,17 @@ def add_translations_to_pofile(filename):
     po = polib.pofile(join(settings.MODELTRANSLATION_LOCALE_PATH, filename))
     for entry in po:
         translated_text = find_language_translation_in_iati_po_file(entry.msgid, entry.msgctxt)
+        print('****************************************************************')
+        print('****************************************************************')
         print("text to translate")
         print(entry.msgid)
         print(entry.msgctxt)
         print('_______________________________________________________________')
+        print('_______________________________________________________________')
         print("translated text")
         print(translated_text)
         print('_______________________________________________________________')
+        print('****************************************************************')
         if translated_text:
             entry.msgstr = translated_text
             # print('Translated ' + entry.msgid)
@@ -101,13 +156,14 @@ def add_translations_to_pofile(filename):
     return (filename, po)
 
 def download_po_file(translation_instance):
-    response = HttpResponse(
-        str(translation_instance.export_po()), content_type="text/x-gettext-translation"
-    )
     filename = "{}-{}.po".format(
         slugify(translation_instance.source.object_repr),
         translation_instance.target_locale.language_code,
     )
+    response = HttpResponse(
+        str(translation_instance.export_po()), content_type="text/x-gettext-translation"
+    )
+    response["Content-Disposition"] = "attachment; filename={}".format(filename)
     with open(join(settings.MODELTRANSLATION_LOCALE_PATH, filename), "wb") as f:
         f.write(response.content)
     
@@ -148,7 +204,7 @@ class Command(LoadCommand):
     def handle(self, *args, **options):
 
         # Create translation pages in the wagtail editor
-        create_translation_pages()
+        # create_translation_pages()
 
         # Apply translations using po files
         translate_pages()
