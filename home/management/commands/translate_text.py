@@ -64,29 +64,32 @@ def build_old_po_file_dict():
                                         value_item_message_id = '{}.{}'.format(field, item_id)
                                         if locale.language_code not in results.keys():
                                             results[locale.language_code] = dict()
-                                        if primary_key not in results[locale.language_code].keys():
-                                            results[locale.language_code][primary_key] = dict()
-                                        results[locale.language_code][primary_key][value_item_message_id] = item_values
+                                        if class_name not in results[locale.language_code].keys():
+                                            results[locale.language_code][class_name] = dict()
+                                        if primary_key not in results[locale.language_code][class_name].keys():
+                                            results[locale.language_code][class_name][primary_key] = dict()
+                                        results[locale.language_code][class_name][primary_key][value_item_message_id] = item_values
                                     else:
                                         for value_item_key, value_item_value in item_values.items():
                                             if not isinstance(value_item_value, dict):
                                                 stream_value_item_message_id = '{}.{}.{}'.format(field, item_id, value_item_key)
                                                 if locale.language_code not in results.keys():
                                                     results[locale.language_code] = dict()
-                                                if primary_key not in results[locale.language_code].keys():
-                                                    results[locale.language_code][primary_key] = dict()
-                                                results[locale.language_code][primary_key][stream_value_item_message_id] = value_item_value
+                                                if class_name not in results[locale.language_code].keys():
+                                                    results[locale.language_code][class_name] = dict()
+                                                if primary_key not in results[locale.language_code][class_name].keys():
+                                                    results[locale.language_code][class_name][primary_key] = dict()
+                                                results[locale.language_code][class_name][primary_key][stream_value_item_message_id] = value_item_value
                                             else:
                                                 print("WARNING: Stream depth too deep.")
                             else:
-                                # if primary_key == '3':
-                                #     print(field)
-                                #     print(message.string)
                                 if locale.language_code not in results.keys():
                                     results[locale.language_code] = dict()
-                                if primary_key not in results[locale.language_code].keys():
-                                    results[locale.language_code][primary_key] = dict()
-                                results[locale.language_code][primary_key][field] = message.string
+                                if class_name not in results[locale.language_code].keys():
+                                    results[locale.language_code][class_name] = dict()
+                                if primary_key not in results[locale.language_code][class_name].keys():
+                                    results[locale.language_code][class_name][primary_key] = dict()
+                                results[locale.language_code][class_name][primary_key][field] = message.string
                                     
 
     return results
@@ -99,6 +102,12 @@ def get_page_id(translation_page):
     translation_source = TranslationSource.objects.get(id=translation_page.source_id)
     content = json.loads(translation_source.content_json)
     return content['pk']
+
+def get_classname(translation_page):
+    translation_source = TranslationSource.objects.get(id=translation_page.source_id)
+    content = json.loads(translation_source.content_json)
+    page_object = Page.objects.get(pk=content['pk'])
+    return page_object.specific._meta.model_name
 
 def create_translation_pages(locale_code):
     source_locale = Locale.objects.get(language_code='en')
@@ -133,8 +142,9 @@ def find_language_translation_in_iati_po_file(field_reference, translation_page)
     page_id = get_page_id(translation_page)
     page_id_string = str(page_id)
     locale = translation_page.target_locale.language_code
-    if locale in results and page_id_string in results[locale] and field_reference in results[locale][page_id_string]:
-        return results[locale][page_id_string][field_reference]
+    class_name = get_classname(translation_page)
+    if locale in results and class_name in results[locale] and page_id_string in results[locale][class_name] and field_reference in results[locale][class_name][page_id_string]:
+        return results[locale][class_name][page_id_string][field_reference]
     else:
         return ""
 
@@ -146,11 +156,6 @@ def add_translations_to_pofile(filename, translation_page):
         translated_text = find_language_translation_in_iati_po_file(entry.msgctxt, translation_page)
         if translated_text:
             entry.msgstr = translated_text
-            # print('Translated ' + entry.msgid)
-            # print(translated_text)
-        # else:
-        #     print('Cannot Translate ' + entry.msgid)
-        #     print('Field not found: ' + entry.msgctxt)
     return (filename, po)
 
 def download_po_file(translation_instance):
@@ -193,7 +198,7 @@ def upload_po_file(filename, translation):
         print("Cannot import PO file that was created for a different translation.")
     else:
         translation.import_po(po, tool_name="PO File")
-        print("Successfully imported translations from PO File.")
+        print("Successfully imported translations from PO File: " + filename)
 
 
 class Command(LoadCommand):
