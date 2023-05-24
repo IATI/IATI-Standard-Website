@@ -7,9 +7,7 @@ from django.contrib.humanize.templatetags.humanize import intcomma
 from django.template.defaultfilters import date as _date
 from django.urls import reverse, NoReverseMatch
 from django.utils import timezone
-from django.utils.translation import get_language_info
 from wagtail.models import Page
-from wagtail.templatetags.wagtailcore_tags import pageurl
 from home.models import HomePage, StandardPage
 from about.models import AboutPage
 from contact.models import ContactPage

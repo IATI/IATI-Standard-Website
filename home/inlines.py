@@ -3,7 +3,6 @@ from django.db import models
 from django.utils.functional import cached_property
 from wagtail.admin.panels import FieldPanel, PageChooserPanel
 from wagtail.models import Orderable, TranslatableMixin
-from wagtail.admin.panels import FieldPanel
 from common.utils import ForeignKeyField, WagtailImageField
 
 

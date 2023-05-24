@@ -9,7 +9,7 @@ from django.db import models
 from django.utils.functional import cached_property
 from django.template.defaultfilters import date
 
-from wagtail.admin.panels import FieldPanel, PageChooserPanel, TabbedInterface, StreamFieldPanel
+from wagtail.admin.panels import FieldPanel, PageChooserPanel, TabbedInterface
 from wagtail.models import Page
 from wagtail.fields import StreamField
 from wagtail.search.models import Query

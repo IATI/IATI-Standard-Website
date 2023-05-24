@@ -79,7 +79,7 @@ class AbstractToolPage(AbstractContentPage):
         help_text='Optional: label for the external URL button',
     )
 
-    content_panels =  AbstractContentPage.content_panels + [
+    content_panels = AbstractContentPage.content_panels + [
         FieldPanel('logo'),
         FieldPanel('external_url'),
         FieldPanel('listing_description'),

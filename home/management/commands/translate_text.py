@@ -7,18 +7,13 @@ import re
 import json
 import polib
 import tempfile
-import requests
-import urllib
-from bs4 import BeautifulSoup
-from os.path import join, isdir
+from os.path import join
 
 from django.conf import settings
 from django.core.management.base import BaseCommand as LoadCommand, CommandError
 from django.apps import apps
-from django.http import Http404, HttpResponse
+from django.http import HttpResponse
 from django.utils.text import slugify
-from django.forms.models import model_to_dict
-from django.core.exceptions import ValidationError
 
 from babel.messages.pofile import read_po
 
@@ -26,12 +21,8 @@ from wagtail.models import Page
 from wagtail.models import Locale
 from wagtail.blocks.stream_block import StreamValue
 from wagtail_localize.operations import translate_object
-from wagtail_localize.models import (
-    Translation
-)
 from wagtail_localize.synctree import PageIndex
 from wagtail_localize.models import Translation, TranslationSource
-from wagtail_localize.operations import translate_object
 
 
 def build_old_po_file_dict():
@@ -90,18 +81,18 @@ def build_old_po_file_dict():
                                 if primary_key not in results[locale.language_code][class_name].keys():
                                     results[locale.language_code][class_name][primary_key] = dict()
                                 results[locale.language_code][class_name][primary_key][field] = message.string
-                                    
-
     return results
 
 
 def find_string(needle, haystack):
     return [m.start() for m in re.finditer(needle, haystack)]
 
+
 def get_page_id(translation_page):
     translation_source = TranslationSource.objects.get(id=translation_page.source_id)
     content = json.loads(translation_source.content_json)
     return content['pk']
+
 
 def get_classname(translation_page):
     translation_source = TranslationSource.objects.get(id=translation_page.source_id)
@@ -109,13 +100,14 @@ def get_classname(translation_page):
     page_object = Page.objects.get(pk=content['pk'])
     return page_object.specific._meta.model_name
 
+
 def create_translation_pages(locale_code):
     source_locale = Locale.objects.get(language_code='en')
     try:
         target_locale = Locale.objects.get(language_code=locale_code)
     except Exception as e:
         raise CommandError('Target locale does not exist: ' + locale_code)
-    
+
     page_index = PageIndex.from_database().sort_by_tree_position()
     pages_in_locale = [page for page in page_index if source_locale.id in page.locales]
 
@@ -128,6 +120,7 @@ def create_translation_pages(locale_code):
         except Exception as e:
             print(source_page)
 
+
 def translate_pages():
     translation_pages = Translation.objects.all()
     for translation_page in translation_pages:
@@ -136,7 +129,9 @@ def translate_pages():
         updated_file[1].save()
         upload_po_file(updated_file[0], translation_page)
 
+
 results = build_old_po_file_dict()
+
 
 def find_language_translation_in_iati_po_file(field_reference, translation_page):
     page_id = get_page_id(translation_page)
@@ -148,6 +143,7 @@ def find_language_translation_in_iati_po_file(field_reference, translation_page)
     else:
         return ""
 
+
 def add_translations_to_pofile(filename, translation_page):
     locale = translation_page.target_locale.language_code
     lang_path = settings.MODELTRANSLATION_LOCALE_PATH
@@ -157,6 +153,7 @@ def add_translations_to_pofile(filename, translation_page):
         if translated_text:
             entry.msgstr = translated_text
     return (filename, po)
+
 
 def download_po_file(translation_instance):
     locale = translation_instance.target_locale.language_code
@@ -169,11 +166,11 @@ def download_po_file(translation_instance):
         str(translation_instance.export_po()), content_type="text/x-gettext-translation"
     )
     response["Content-Disposition"] = "attachment; filename={}".format(filename)
-    
     with open(join(lang_path, locale, "LC_MESSAGES", filename), "wb") as f:
         f.write(response.content)
-    
+
     return filename
+
 
 def upload_po_file(filename, translation):
     locale = translation.target_locale.language_code

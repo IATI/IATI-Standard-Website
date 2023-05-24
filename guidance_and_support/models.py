@@ -2,7 +2,7 @@
 
 from django.db import models
 
-from wagtail.admin.panels import FieldPanel, StreamFieldPanel
+from wagtail.admin.panels import FieldPanel
 from wagtail.fields import StreamField, RichTextField
 from wagtail.models import Page
 
