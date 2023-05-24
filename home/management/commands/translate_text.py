@@ -26,6 +26,7 @@ from wagtail_localize.models import Translation, TranslationSource
 
 
 def build_old_po_file_dict():
+    """Parse iati.po translations into a dictionary mapping."""
     results = dict()
     all_locales = Locale.objects.all()
     lang_path = settings.MODELTRANSLATION_LOCALE_PATH
@@ -84,17 +85,18 @@ def build_old_po_file_dict():
     return results
 
 
-def find_string(needle, haystack):
-    return [m.start() for m in re.finditer(needle, haystack)]
+results = build_old_po_file_dict()
 
 
 def get_page_id(translation_page):
+    """Find page id given an instance of Translation [from wagtail_localize.models import Translation]."""
     translation_source = TranslationSource.objects.get(id=translation_page.source_id)
     content = json.loads(translation_source.content_json)
     return content['pk']
 
 
 def get_classname(translation_page):
+    """Find model name given an instance of Translation."""
     translation_source = TranslationSource.objects.get(id=translation_page.source_id)
     content = json.loads(translation_source.content_json)
     page_object = Page.objects.get(pk=content['pk'])
@@ -102,6 +104,7 @@ def get_classname(translation_page):
 
 
 def create_translation_pages(locale_code):
+    """Create instances of Translation [from wagtail_localize.models import Translation] for each page in the website. It creates a page with a UI that can be used for translation using po files, machine or manually."""
     source_locale = Locale.objects.get(language_code='en')
     try:
         target_locale = Locale.objects.get(language_code=locale_code)
@@ -122,6 +125,7 @@ def create_translation_pages(locale_code):
 
 
 def translate_pages():
+    """Use po files to add translations to each page in the website."""
     translation_pages = Translation.objects.all()
     for translation_page in translation_pages:
         downloaded_filename = download_po_file(translation_page)
@@ -130,32 +134,22 @@ def translate_pages():
         upload_po_file(updated_file[0], translation_page)
 
 
-results = build_old_po_file_dict()
-
-
-def find_language_translation_in_iati_po_file(field_reference, translation_page):
-    page_id = get_page_id(translation_page)
-    page_id_string = str(page_id)
-    locale = translation_page.target_locale.language_code
-    class_name = get_classname(translation_page)
-    if locale in results and class_name in results[locale] and page_id_string in results[locale][class_name] and field_reference in results[locale][class_name][page_id_string]:
-        return results[locale][class_name][page_id_string][field_reference]
-    else:
-        return ""
-
-
 def add_translations_to_pofile(filename, translation_page):
+    """Find relevant translations from global results dictionary that was created by `build_old_po_file_dict`."""
     locale = translation_page.target_locale.language_code
     lang_path = settings.MODELTRANSLATION_LOCALE_PATH
     po = polib.pofile(join(lang_path, locale, "LC_MESSAGES", filename))
+    page_id = get_page_id(translation_page)
+    page_id_string = str(page_id)
+    class_name = get_classname(translation_page)
     for entry in po:
-        translated_text = find_language_translation_in_iati_po_file(entry.msgctxt, translation_page)
-        if translated_text:
-            entry.msgstr = translated_text
+        if locale in results and class_name in results[locale] and page_id_string in results[locale][class_name] and entry.msgctxt in results[locale][class_name][page_id_string]:
+            entry.msgstr = results[locale][class_name][page_id_string][entry.msgctxt]
     return (filename, po)
 
 
 def download_po_file(translation_instance):
+    """Download po file for Translation page instance passed as a parameter."""
     locale = translation_instance.target_locale.language_code
     lang_path = settings.MODELTRANSLATION_LOCALE_PATH
     filename = "{}-{}.po".format(
@@ -173,6 +167,7 @@ def download_po_file(translation_instance):
 
 
 def upload_po_file(filename, translation):
+    """Upload po file with name filename to a Translation page instance that are both passed as a parameters."""
     locale = translation.target_locale.language_code
     lang_path = settings.MODELTRANSLATION_LOCALE_PATH
     with tempfile.NamedTemporaryFile() as f:
@@ -200,11 +195,13 @@ def upload_po_file(filename, translation):
 
 class Command(LoadCommand):
     """Management command that translates the pages from English to any given language using .po files."""
+
     def add_arguments(self, parser):
         """Add custom command arguments."""
         parser.add_argument('target_locale', nargs='?', type=str)
 
     def handle(self, *args, **options):
+        """Translate pages into given locale passed as an argument."""
         if not options['target_locale']:
             raise CommandError('Please pass target locale as the first positional argument. eg. fr(French), es(Spanish)')
 
