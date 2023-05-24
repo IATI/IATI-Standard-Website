@@ -15,26 +15,12 @@ class BasePageFactory(PageFactory):
         'sentence',
         nb_words=4,
     )
-    title_fr = factory.Faker(
-        'sentence',
-        locale='fr_FR',
-        nb_words=4,
-    )
-    slug_fr = factory.LazyAttribute(lambda obj: slugify(obj.title_fr))
-    url_path_fr = factory.LazyAttribute(lambda n: "/%s/" % n)
+    slug = factory.LazyAttribute(lambda obj: slugify(obj.title))
+    url_path = factory.LazyAttribute(lambda n: "/%s/" % n)
 
     heading = factory.Faker(
         'sentence',
     )
-    heading_fr = factory.Faker(
-        'sentence',
-        locale='fr_FR',
-        nb_words=6,
-    )
     excerpt = factory.Faker(
         'paragraph',
-    )
-    excerpt_fr = factory.Faker(
-        'paragraph',
-        locale='fr_FR',
     )

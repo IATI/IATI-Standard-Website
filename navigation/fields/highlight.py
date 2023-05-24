@@ -22,14 +22,9 @@ class AbstractHighlight(StructBlock):
     page = PageChooserBlock(
         help_text='Page for title and link'
     )
-    description_en = TextBlock(
+    description = TextBlock(
         help_text='Description for the module',
-        label='Description [en]',
-    )
-    description_fr = TextBlock(
-        help_text='Description for the module',
-        label='Description [fr]',
-        required=False,
+        label='Description',
     )
 
 
@@ -66,12 +61,7 @@ class SecondaryHighlight(AbstractHighlight):
         icon = 'pick'
         template = 'navigation/blocks/secondary_highlight.html'
 
-    link_label_en = CharBlock(
+    link_label = CharBlock(
         help_text='Label for the page link button',
-        label='Link label [en]',
-    )
-    link_label_fr = CharBlock(
-        help_text='Label for the page link button',
-        label='Link label [fr]',
-        required=False,
+        label='Link label',
     )

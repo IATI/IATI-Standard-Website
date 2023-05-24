@@ -17,14 +17,9 @@ class AbstractLink(models.Model):
     class Meta:
         abstract = True
 
-    label_en = models.CharField(
+    label = models.CharField(
         max_length=255,
-        verbose_name='Label [en]'
-    )
-    label_fr = models.CharField(
-        max_length=255,
-        verbose_name='Label [fr]',
-        blank=True,
+        verbose_name='Label'
     )
     page = ForeignKeyField(
         model='wagtailcore.Page',
@@ -33,8 +28,7 @@ class AbstractLink(models.Model):
     panels = [
         PageChooserPanel('page'),
         FieldRowPanel(children=(
-            FieldPanel('label_en'),
-            FieldPanel('label_fr'),
+            FieldPanel('label'),
         )),
     ]
 

@@ -87,7 +87,7 @@ class SingleTermWidgetFR(ForeignKeyWidget):
         stripped_value_en = row[self.field].replace('\n', '')
         if stripped_value and stripped_value_en:
             term = get_or_create_term(self.model, stripped_value_en)
-            term.title_fr = stripped_value
+            term.title = stripped_value
             term.save()
             return super(ForeignKeyWidget, self).clean(term)
 
@@ -127,11 +127,6 @@ class MemberResource(resources.ModelResource):
         column_name='name',
         widget=TextWidget(),
     )
-    name_fr = Field(
-        attribute='name_fr',
-        column_name='name_fr',
-        widget=TextWidget(),
-    )
     url = Field(
         attribute='url',
         column_name='url',
@@ -147,14 +142,6 @@ class MemberResource(resources.ModelResource):
         column_name='constituency',
         widget=SingleTermWidget(
             Constituency
-        ),
-    )
-    constituency_fr = Field(
-        attribute='constituency_fr',
-        column_name='constituency_fr',
-        widget=SingleTermWidgetFR(
-            Constituency,
-            'constituency'
         ),
     )
     image = Field(

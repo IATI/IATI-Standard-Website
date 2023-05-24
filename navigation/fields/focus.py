@@ -26,14 +26,9 @@ class FocusItem(AbstractHighlight):
         help_text='Optional: external URL for the secondary link. Defaults to the selected page link',
         required=False,
     )
-    link_label_en = CharBlock(
+    link_label = CharBlock(
         help_text='Label for the secondary page link',
-        label='Link label [en]',
-    )
-    link_label_fr = CharBlock(
-        help_text='Label for the secondary page link',
-        label='Link label [fr]',
-        required=False,
+        label='Link label',
     )
     use_button_style = BooleanBlock(
         help_text='Optional: if checked, the secondary link will display as a button',

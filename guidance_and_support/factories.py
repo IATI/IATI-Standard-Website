@@ -23,11 +23,6 @@ class GuidanceGroupPageFactory(BasePageFactory):
         provider='sentence',
         nb_words=3
     )
-    button_link_text_fr = factory.Faker(
-        provider='sentence',
-        nb_words=3,
-        locale='fr_FR',
-    )
 
     class Meta:
         model = GuidanceGroupPage
