@@ -549,6 +549,11 @@ REFERENCE_REDIRECT_BASE_URL = 'https://iatistandard.org'
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 WAGTAILADMIN_BASE_URL = 'http://iatistandard.org'
 
+# Modeltranslation sync Settings
+MODELTRANSLATION_LOCALE_PATH = os.path.join(BASE_DIR, 'locale')
+LOCALE_PATHS = (MODELTRANSLATION_LOCALE_PATH,)
+MODELTRANSLATION_PO_FILE = "iati.po"
+
 # Community URL
 COMMUNITY_URL = 'https://discuss.iatistandard.org/'
 
