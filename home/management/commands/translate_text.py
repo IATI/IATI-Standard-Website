@@ -129,6 +129,7 @@ def create_translation_pages(locale_code):
 
 
 def machine_translate(translation):
+    """Translate given instance into relevant locale using configured machine translator."""
     translator = get_machine_translator()
     user = User.objects.get(username='alex')
     if translator is None:
