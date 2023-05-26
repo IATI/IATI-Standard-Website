@@ -139,7 +139,7 @@ jobs:
             --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
             --command-id RunShellScript \
-            --scripts "sudo snap install docker" && \
+            --scripts "sudo snap install core snapd && sudo snap install docker" && \
             az vm run-command invoke \
             --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
@@ -305,7 +305,7 @@ jobs:
             --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
             --command-id RunShellScript \
-            --scripts "sudo snap install docker" && \
+            --scripts "sudo snap install core snapd && sudo snap install docker" && \
             az vm run-command invoke \
             --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
