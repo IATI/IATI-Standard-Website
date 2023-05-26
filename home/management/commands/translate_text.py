@@ -7,12 +7,15 @@ import json
 import polib
 import tempfile
 from os.path import join
+from collections import defaultdict
 
 from django.conf import settings
 from django.core.management.base import BaseCommand as LoadCommand, CommandError
 from django.apps import apps
 from django.http import HttpResponse
 from django.utils.text import slugify
+from django.db import transaction
+from django.contrib.auth.models import User
 
 from babel.messages.pofile import read_po
 
@@ -21,7 +24,9 @@ from wagtail.models import Locale
 from wagtail.blocks.stream_block import StreamValue
 from wagtail_localize.operations import translate_object
 from wagtail_localize.synctree import PageIndex
-from wagtail_localize.models import Translation, TranslationSource
+from wagtail_localize.models import StringTranslation, Translation, TranslationSource
+from wagtail_localize.machine_translators import get_machine_translator
+from wagtail_localize.segments import StringSegmentValue
 
 
 def build_old_po_file_dict():
@@ -123,14 +128,80 @@ def create_translation_pages(locale_code):
             print(source_page)
 
 
-def translate_pages():
+def machine_translate(translation):
+    translator = get_machine_translator()
+    user = User.objects.get(username='alex')
+    if translator is None:
+        raise CommandError('Please configure machine translator')
+
+    if not translator.can_translate(
+        translation.source.locale, translation.target_locale
+    ):
+        raise CommandError('Machine translator cannot translate {} to {}'.format(translation.source.locale, translation.target_locale))
+
+    if not user:
+        raise CommandError('User {} does not exist'.format('alex'))
+
+    # Get segments
+    segments = defaultdict(list)
+    for string_segment in translation.source.stringsegment_set.all().select_related(
+        "context", "string"
+    ):
+        segment = StringSegmentValue(
+            string_segment.context.path, string_segment.string.as_value()
+        ).with_order(string_segment.order)
+        if string_segment.attrs:
+            segment.attrs = json.loads(string_segment.attrs)
+
+        # Don't translate if there already is a translation
+        if StringTranslation.objects.filter(
+            translation_of_id=string_segment.string_id,
+            locale=translation.target_locale,
+            context_id=string_segment.context_id,
+        ).exists():
+            continue
+
+        segments[segment.string].append(
+            (string_segment.string_id, string_segment.context_id)
+        )
+
+    if segments:
+        translations = translator.translate(
+            translation.source.locale, translation.target_locale, segments.keys()
+        )
+
+        with transaction.atomic():
+            for string, contexts in segments.items():
+                for string_id, context_id in contexts:
+                    StringTranslation.objects.get_or_create(
+                        translation_of_id=string_id,
+                        locale=translation.target_locale,
+                        context_id=context_id,
+                        defaults={
+                            "data": translations[string].data,
+                            "translation_type": StringTranslation.TRANSLATION_TYPE_MACHINE,
+                            "tool_name": translator.display_name,
+                            "last_translated_by": user,
+                            "has_error": False,
+                            "field_error": "",
+                        },
+                    )
+    print(("Successfully translated {} with {}.").format(get_classname(translation), translator.display_name))
+
+
+def translate_pages(select_translation_type):
     """Use po files to add translations to each page in the website."""
     translation_pages = Translation.objects.all()
     for translation_page in translation_pages:
-        downloaded_filename = download_po_file(translation_page)
-        updated_file = add_translations_to_pofile(downloaded_filename, translation_page)
-        updated_file[1].save()
-        upload_po_file(updated_file[0], translation_page)
+        if select_translation_type == 'po':
+            downloaded_filename = download_po_file(translation_page)
+            updated_file = add_translations_to_pofile(downloaded_filename, translation_page)
+            updated_file[1].save()
+            upload_po_file(updated_file[0], translation_page)
+        elif select_translation_type == 'machine':
+            machine_translate(translation_page)
+        else:
+            raise CommandError('Select either po or machine as second positional argument.')
 
 
 def add_translations_to_pofile(filename, translation_page):
@@ -198,14 +269,17 @@ class Command(LoadCommand):
     def add_arguments(self, parser):
         """Add custom command arguments."""
         parser.add_argument('target_locale', nargs='?', type=str)
+        parser.add_argument('select_translation_type', nargs='?', type=str)
 
     def handle(self, *args, **options):
         """Translate pages into given locale passed as an argument."""
         if not options['target_locale']:
-            raise CommandError('Please pass target locale as the first positional argument. eg. fr(French), es(Spanish)')
+            raise CommandError('Please pass target locale as the first positional argument. eg. fr(French) or es(Spanish)')
+        if not options['select_translation_type']:
+            raise CommandError('Please pass type of translation as the second positional argument. eg. po or machine')
 
         # Create translation pages in the wagtail editor
         create_translation_pages(options['target_locale'])
 
         # Apply translations using po files
-        translate_pages()
+        translate_pages(options['select_translation_type'])
