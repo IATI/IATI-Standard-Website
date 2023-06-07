@@ -16,7 +16,7 @@ def add_language_content_panels(page_model):
         None: This doesn't return anything, it's modifying the provided page_model.
 
     TODO:
-        Figure out whether using type(Creator) is sustainable. For some reason StreamBlocks are wagtail.core.fields.Creator and all other fiends are django.db.models.query_utils.DeferredAttribute
+        Figure out whether using type(Creator) is sustainable. For some reason StreamBlocks are wagtail.fields.Creator and all other fiends are django.db.models.query_utils.DeferredAttribute
 
     """
     edit_handler_contents = []
