@@ -16,7 +16,7 @@ from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.search.index import FilterField, SearchField
 from home.fields import HomeFieldsMixin
 from home.inlines import GettingStartedItems  # noqa
-from wagtail.contrib.settings.models import BaseSetting, register_setting
+from wagtail.contrib.settings.models import BaseSiteSetting, register_setting
 
 
 class DocumentBoxBlock(StreamBlock):
@@ -395,7 +395,7 @@ class MinMaxFloat(models.FloatField):
 
 
 @register_setting
-class SpamSettings(BaseSetting):
+class SpamSettings(BaseSiteSetting):
     """Register a new setting for holding spam threshold."""
 
     spam_threshold = MinMaxFloat(
