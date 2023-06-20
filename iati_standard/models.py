@@ -4,10 +4,12 @@ import os
 from bs4 import BeautifulSoup
 from datetime import datetime
 
+from django import forms
 from django.db.models import JSONField
 from django.db import models
 from django.utils.functional import cached_property
 from django.template.defaultfilters import date
+from django.apps import apps
 
 from wagtail.admin.panels import FieldPanel, PageChooserPanel, TabbedInterface
 from wagtail.models import Page
@@ -21,12 +23,22 @@ from wagtail.blocks import (
     StreamBlock,
     StructBlock
 )
+from wagtail.admin.forms import WagtailAdminPageForm
 
 from home.models import AbstractContentPage, AbstractIndexPage, DefaultPageHeaderImageMixin, IATIStreamBlock
 
 from iati_standard.panels import ReferenceDataPanel
 from iati_standard.inlines import StandardGuidanceTypes
 from iati_standard.widgets import JSONFieldWidget
+from iati_standard.edit_handlers import GithubAPI, MultiFieldPanel
+
+
+def get_releases():
+    """Fetch release names given a repo from Iati Standard Page."""
+    IATIStandardPageModel = apps.get_model('iati_standard', 'IATIStandardPage')
+    IATIStandardPage = IATIStandardPageModel.objects.first()
+    git = GithubAPI(IATIStandardPage.repo)
+    return [(x.tag_name, x.tag_name) for x in git.get_releases()]
 
 
 class SyncTaskResult(models.Model):
@@ -59,6 +71,10 @@ class CardBlock(StructBlock):
 
     class Meta():
         template = 'iati_standard/blocks/card_block.html'
+
+
+class CustomLiveTag(WagtailAdminPageForm):
+    live_tag = forms.ChoiceField(choices=get_releases)
 
 
 class IATIStandardPage(DefaultPageHeaderImageMixin, AbstractContentPage):
@@ -113,6 +129,8 @@ class IATIStandardPage(DefaultPageHeaderImageMixin, AbstractContentPage):
     reference_cards = StreamField([
         ('card', CardBlock())
     ], null=True, blank=True, use_json_field=True)
+
+    base_form_class = CustomLiveTag
 
     multilingual_field_panels = DefaultPageHeaderImageMixin.multilingual_field_panels + [
         FieldPanel('static'),

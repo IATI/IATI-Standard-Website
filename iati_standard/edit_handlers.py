@@ -28,11 +28,11 @@ class MultiFieldPanel(WagtailMultiFieldPanel):
         return kwargs
 
     class BoundPanel(WagtailMultiFieldPanel.BoundPanel):
-        template_name = "wagtailadmin/edit_handlers/multi_field_panel.html"
+        template_name = "wagtailadmin/panels/multi_field_panel.html"
 
-        def __init__(self, panel, instance, request, form):
+        def __init__(self, panel, instance, request, form, **kwargs):
             """Override __init__ method to include description."""
-            super().__init__(panel=panel, instance=instance, request=request, form=form)
+            super().__init__(panel=panel, instance=instance, request=request, form=form, **kwargs)
             self.description = panel.description
 
 
@@ -95,23 +95,3 @@ class GithubAPI:
         for item in assets:
             if item.content_type == 'application/zip' and item.name == name:
                 return item
-
-
-class TagFieldPanel(FieldPanel):
-    """Replacement FieldPanel that auto-populates with tagged releases."""
-
-    def get_releases(self, repo):
-        """Fetch release names given a repo."""
-        git = GithubAPI(repo)
-        return [(x.tag_name, x.tag_name) for x in git.get_releases()]
-
-    class BoundPanel(FieldPanel.BoundPanel):
-        def __init__(self, **kwargs):
-            """Override __init__ method of BoundPanel class to extra attributes to form fields."""
-            super().__init__(**kwargs)
-            try:
-                choices = self.panel.get_releases(self.instance.repo) if self.instance.repo else []
-                self.form.fields[self.field_name].widget.__setattr__('choices', choices)
-                self.form.fields[self.field_name].empty_label = None
-            except Exception:
-                pass
