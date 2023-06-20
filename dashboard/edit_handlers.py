@@ -43,5 +43,5 @@ class NoEmptyLabelFieldPanel(FieldPanel):
     """Class for a custom field panel that sets empty label to none for required fields."""
     class BoundPanel(FieldPanel.BoundPanel):
         def __init__(self, **kwargs):
-            super().__init__(**kwargs)           
+            super().__init__(**kwargs)
             self.form.fields[self.field_name].empty_label = None

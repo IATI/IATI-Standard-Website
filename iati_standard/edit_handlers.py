@@ -3,7 +3,6 @@
 from github import Github
 from github import GithubException
 from django.conf import settings
-from wagtail.admin.panels import FieldPanel
 from wagtail.admin.panels import MultiFieldPanel as WagtailMultiFieldPanel
 
 

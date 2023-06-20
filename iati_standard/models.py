@@ -30,7 +30,7 @@ from home.models import AbstractContentPage, AbstractIndexPage, DefaultPageHeade
 from iati_standard.panels import ReferenceDataPanel
 from iati_standard.inlines import StandardGuidanceTypes
 from iati_standard.widgets import JSONFieldWidget
-from iati_standard.edit_handlers import GithubAPI, MultiFieldPanel
+from iati_standard.edit_handlers import GithubAPI
 
 
 def get_releases():
