@@ -58,7 +58,7 @@ class Migration(migrations.Migration):
             ToolPage = import_module('tools.models').ToolPage
             ToolsIndexPage = import_module('using_data.models').ToolsIndexPage
             ToolsListingPage = import_module('tools.models').ToolsListingPage
-            StreamValue = import_module('wagtail.core.blocks.stream_block').StreamValue
+            StreamValue = import_module('wagtail.blocks.stream_block').StreamValue
         except Exception:
             return
 

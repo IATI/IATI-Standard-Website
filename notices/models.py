@@ -9,7 +9,6 @@ from wagtail.models import Page
 from wagtail.snippets.models import register_snippet
 from common.utils import ForeignKeyField
 from dashboard.edit_handlers import MultiFieldPanel
-from notices.edit_handlers import DisplayTypeFieldPanel
 
 NOTICE_TYPES = [
     ('notice', 'Notice (blue)'),
@@ -145,7 +144,7 @@ class PageNotice(AbstractNotice):
         ),
         MultiFieldPanel(
             [
-                DisplayTypeFieldPanel(),
+                FieldPanel('display_location'),
             ],
             heading='Display location',
             description='Select the location of this notice. If more than one notice is applicable to a page, the most specific wil be displayed.'
