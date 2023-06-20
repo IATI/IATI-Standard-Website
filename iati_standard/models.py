@@ -74,6 +74,8 @@ class CardBlock(StructBlock):
 
 
 class CustomLiveTag(WagtailAdminPageForm):
+    """Sets choices attribute for live_tag field to values from github api."""
+
     live_tag = forms.ChoiceField(choices=get_releases)
 
 
