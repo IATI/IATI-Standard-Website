@@ -171,8 +171,8 @@ msgstr "Contacter l’équipe technique"
 
 #: guidance_and_support/templates/guidance_and_support/guidance_page.html:33
 #: search/templates/search/search_page.html:49
-msgid "Our technical team are ready to help you."
-msgstr "Notre équipe technique est là pour vous aider."
+msgid "Our team is ready to help you."
+msgstr "Notre équipe est là pour vous aider."
 
 #: guidance_and_support/templates/guidance_and_support/guidance_page.html:34
 #: search/templates/search/search_page.html:50
