@@ -19,8 +19,8 @@ opencensus-ext-django==0.7.4
 PyGithub==1.55
 psycopg2-binary==2.8.6
 requests==2.25.1
-wagtail-modeltranslation==0.12.0
-wagtail==3.0.3
+wagtail-modeltranslation==0.13.0
+wagtail>=4.1,<4.2
 Wand==0.6.6
 whitenoise==5.2.0
 wrapt==1.11.*

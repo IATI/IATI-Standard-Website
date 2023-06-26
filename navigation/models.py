@@ -2,7 +2,7 @@ from django.db import models
 from django.utils.functional import cached_property
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
-from wagtail.contrib.settings.models import BaseSetting, register_setting
+from wagtail.contrib.settings.models import BaseSiteSetting, register_setting
 from wagtail.admin.panels import FieldRowPanel, FieldPanel, InlinePanel, PageChooserPanel
 from wagtail.models import Orderable
 from common.utils import ForeignKeyField
@@ -106,7 +106,7 @@ class UsefulLinksMenu(Orderable, AbstractLink):
 
 
 @register_setting
-class PrimaryMenu(ClusterableModel, BaseSetting):
+class PrimaryMenu(ClusterableModel, BaseSiteSetting):
     """Class for primary menu settings panel definition."""
 
     panels = [
@@ -120,7 +120,7 @@ class PrimaryMenu(ClusterableModel, BaseSetting):
 
 
 @register_setting
-class UtilityMenu(ClusterableModel, BaseSetting):
+class UtilityMenu(ClusterableModel, BaseSiteSetting):
     """Class for utility menu settings panel definition."""
 
     panels = [
@@ -134,7 +134,7 @@ class UtilityMenu(ClusterableModel, BaseSetting):
 
 
 @register_setting
-class UsefulLinks(ClusterableModel, BaseSetting):
+class UsefulLinks(ClusterableModel, BaseSiteSetting):
     """Class for useful links menu settings panel definition."""
 
     panels = [
