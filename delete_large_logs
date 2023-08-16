@@ -1,0 +1,2 @@
+#!/bin/sh
+find /var/log/gunicorn/ -size +10000000k -type f -delete

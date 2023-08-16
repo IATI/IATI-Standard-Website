@@ -109,5 +109,6 @@ EXPOSE 5000
 RUN mkdir -p /var/log/gunicorn
 RUN chmod 644 /var/log/gunicorn
 RUN touch /var/log/gunicorn/gunicorn.log
+COPY delete_large_logs /etc/periodic/15min/delete_large_logs
 ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
 CMD ["tail", "-n", "+0", "-f", "/var/log/gunicorn/gunicorn.log"]
