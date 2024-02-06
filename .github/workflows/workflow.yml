@@ -5,8 +5,7 @@ on:
   # but only for the master/develop branches
   push:
     branches:
-      - master
-      - develop
+      - feature/prometheus-dev-server
   pull_request:
     branches:
       - master
@@ -57,11 +56,11 @@ jobs:
   deploy_dev:
     needs: [build]
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/develop'
+    if: github.ref == 'refs/heads/feature/prometheus-dev-server'
     env:
       DOCKER_BUILDKIT: '1'
       TAG: ${{ github.sha }}
-      STAGE: dev
+      STAGE: dev-feature-prometheus
       NAME: iati-website
     steps:
       - uses: actions/checkout@v2
@@ -114,6 +113,7 @@ jobs:
         with:
           azcliversion: 2.30.0
           inlineScript: |
+            set -eux
             az vm create \
             --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
@@ -122,7 +122,7 @@ jobs:
             --ssh-key-values ${{ secrets.DEV_PUB_KEYS }} && \
             export NEW_IP=$(az vm list-ip-addresses --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --query [].virtualMachine.network[].publicIpAddresses[][].ipAddress --output tsv) && \
             echo "NEW_IP=$NEW_IP" >> $GITHUB_ENV && \
-            az postgres server firewall-rule update \
+            az postgres server firewall-rule create \
             --resource-group "${{ secrets.DEV_PSQL_RESOURCE_GROUP }}" \
             --server-name "${{ secrets.DEV_PSQL_NAME }}" \
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
@@ -239,16 +239,16 @@ jobs:
               echo "Failure"
               exit 1
             fi
-      - if: steps.new_has_succeeded.outcome == 'success'
-        name: "Update NGINX VM backend"
-        env:
-          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
-        run: |
-          ssh-agent -a $SSH_AUTH_SOCK > /dev/null && \
-          ssh-add - <<< "${{ secrets.DEV_NGINX_KEY }}" && \
-          sed -i 's/XX.XX.XX.XX/'${{ env.NEW_IP }}'/g' config/nginx/website_dev.conf && \
-          scp -o StrictHostKeyChecking=no config/nginx/website_dev.conf azureuser@${{ secrets.DEV_NGINX_IP }}:/etc/nginx/conf.d/website.conf && \
-          ssh -o StrictHostKeyChecking=no azureuser@${{ secrets.DEV_NGINX_IP }} /home/azureuser/restart_nginx.sh
+     #- if: steps.new_has_succeeded.outcome == 'success'
+     #  name: "Update NGINX VM backend"
+     #  env:
+     #    SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+     #  run: |
+     #    ssh-agent -a $SSH_AUTH_SOCK > /dev/null && \
+     #    ssh-add - <<< "${{ secrets.DEV_NGINX_KEY }}" && \
+     #    sed -i 's/XX.XX.XX.XX/'${{ env.NEW_IP }}'/g' config/nginx/website_dev.conf && \
+     #    scp -o StrictHostKeyChecking=no config/nginx/website_dev.conf azureuser@${{ secrets.DEV_NGINX_IP }}:/etc/nginx/conf.d/website.conf && \
+     #    ssh -o StrictHostKeyChecking=no azureuser@${{ secrets.DEV_NGINX_IP }} /home/azureuser/restart_nginx.sh
       - if: steps.new_has_succeeded.outcome == 'success'
         name: "Delete previous VM resource group"
         uses: "azure/CLI@1.0.4"
