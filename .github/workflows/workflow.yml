@@ -151,7 +151,7 @@ jobs:
               set -eux
               adduser prometheus-client --disabled-password --gecos ''
               cd /home/prometheus-client/
-              PROMETHEUS_VERSION=1.1.2
+              PROMETHEUS_VERSION=1.7.0
               wget https://github.com/prometheus/node_exporter/releases/download/v\$PROMETHEUS_VERSION/node_exporter-\$PROMETHEUS_VERSION.linux-amd64.tar.gz
               tar -xvzf node_exporter-\$PROMETHEUS_VERSION.linux-amd64.tar.gz
               echo \"\
@@ -167,7 +167,7 @@ jobs:
             ExecStart=/home/prometheus-client/node_exporter-\$PROMETHEUS_VERSION.linux-amd64/node_exporter \\\\
                 --collector.systemd \\\\
                 --web.listen-address=:9157 \\\\
-                --web.config /home/prometheus-client/web-config.yaml
+                --web.config.file /home/prometheus-client/web-config.yaml
 
             [Install]
             WantedBy=multi-user.target
