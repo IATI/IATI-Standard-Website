@@ -117,7 +117,7 @@ jobs:
             --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
             --size Standard_B2s \
-            --image UbuntuLTS \
+            --image `az vm image list --all -p Canonical -f UbuntuServer -s 18.04-LTS --query [].urn -o tsv | sort | tail -n 1` \
             --ssh-key-values ${{ secrets.DEV_PUB_KEYS }} && \
             export NEW_IP=$(az vm list-ip-addresses --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --query [].virtualMachine.network[].publicIpAddresses[][].ipAddress --output tsv) && \
             echo "NEW_IP=$NEW_IP" >> $GITHUB_ENV && \
@@ -135,6 +135,50 @@ jobs:
             --access Allow \
             --protocol Tcp \
             --destination-port-ranges 5000 && \
+            az network nsg rule create \
+            --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
+            --nsg-name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}NSG" \
+            --name AllowPrometheusPort9157 \
+            --priority 1011 \
+            --access Allow \
+            --protocol Tcp \
+            --destination-port-ranges 9157 && \
+            az vm run-command invoke \
+            --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
+            --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
+            --command-id RunShellScript \
+            --scripts "\
+              set -eux
+              adduser prometheus-client --disabled-password --gecos ''
+              cd /home/prometheus-client/
+              PROMETHEUS_VERSION=1.7.0
+              wget https://github.com/prometheus/node_exporter/releases/download/v\$PROMETHEUS_VERSION/node_exporter-\$PROMETHEUS_VERSION.linux-amd64.tar.gz
+              tar -xvzf node_exporter-\$PROMETHEUS_VERSION.linux-amd64.tar.gz
+              echo \"\
+            [Unit]
+            Description=Prometheus Node Exporter
+            Wants=network-online.target
+            After=network-online.target
+
+            [Service]
+            User=prometheus-client
+            Group=prometheus-client
+            Type=simple
+            ExecStart=/home/prometheus-client/node_exporter-\$PROMETHEUS_VERSION.linux-amd64/node_exporter \\\\
+                --collector.systemd \\\\
+                --web.listen-address=:9157 \\\\
+                --web.config.file /home/prometheus-client/web-config.yaml
+
+            [Install]
+            WantedBy=multi-user.target
+                \" > /etc/systemd/system/prometheus-node-exporter.service
+              echo 'basic_auth_users:
+              # Do not include the dollars in the secret, as escaping is a pain
+              # Password is generated using htpasswd -nBC 10 "" | tr -d ':'
+              prom: \"\$2y\$10\$${{ secrets.PROMETHEUS_CLIENT_PASSWORD_HASHED_PARTIAL }}\"
+                ' > /home/prometheus-client/web-config.yaml
+              systemctl enable --now prometheus-node-exporter.service
+              " && \
             az vm run-command invoke \
             --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
@@ -283,7 +327,7 @@ jobs:
             --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
             --size Standard_B2s \
-            --image UbuntuLTS \
+            --image `az vm image list --all -p Canonical -f UbuntuServer -s 18.04-LTS --query [].urn -o tsv | sort | tail -n 1` \
             --ssh-key-values ${{ secrets.DEV_PUB_KEYS }} && \
             export NEW_IP=$(az vm list-ip-addresses --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --query [].virtualMachine.network[].publicIpAddresses[][].ipAddress --output tsv) && \
             echo "NEW_IP=$NEW_IP" >> $GITHUB_ENV && \
@@ -301,6 +345,50 @@ jobs:
             --access Allow \
             --protocol Tcp \
             --destination-port-ranges 5000 && \
+            az network nsg rule create \
+            --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
+            --nsg-name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}NSG" \
+            --name AllowPrometheusPort9157 \
+            --priority 1011 \
+            --access Allow \
+            --protocol Tcp \
+            --destination-port-ranges 9157 && \
+            az vm run-command invoke \
+            --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
+            --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
+            --command-id RunShellScript \
+            --scripts "\
+              set -eux
+              adduser prometheus-client --disabled-password --gecos ''
+              cd /home/prometheus-client/
+              PROMETHEUS_VERSION=1.7.0
+              wget https://github.com/prometheus/node_exporter/releases/download/v\$PROMETHEUS_VERSION/node_exporter-\$PROMETHEUS_VERSION.linux-amd64.tar.gz
+              tar -xvzf node_exporter-\$PROMETHEUS_VERSION.linux-amd64.tar.gz
+              echo \"\
+            [Unit]
+            Description=Prometheus Node Exporter
+            Wants=network-online.target
+            After=network-online.target
+
+            [Service]
+            User=prometheus-client
+            Group=prometheus-client
+            Type=simple
+            ExecStart=/home/prometheus-client/node_exporter-\$PROMETHEUS_VERSION.linux-amd64/node_exporter \\\\
+                --collector.systemd \\\\
+                --web.listen-address=:9157 \\\\
+                --web.config.file /home/prometheus-client/web-config.yaml
+
+            [Install]
+            WantedBy=multi-user.target
+                \" > /etc/systemd/system/prometheus-node-exporter.service
+              echo 'basic_auth_users:
+              # Do not include the dollars in the secret, as escaping is a pain
+              # Password is generated using htpasswd -nBC 10 "" | tr -d ':'
+              prom: \"\$2y\$10\$${{ secrets.PROMETHEUS_CLIENT_PASSWORD_HASHED_PARTIAL }}\"
+                ' > /home/prometheus-client/web-config.yaml
+              systemctl enable --now prometheus-node-exporter.service
+              " && \
             az vm run-command invoke \
             --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
