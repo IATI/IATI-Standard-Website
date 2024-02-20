@@ -643,12 +643,12 @@ WAGTAILIMAGES_FORMAT_CONVERSIONS = {
 # Caches
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
         'LOCATION': 'wagtail_cache',
         'TIMEOUT': 86400,
     },
     'renditions': {
-        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
         'LOCATION': 'wagtail_renditions_cache',
         'TIMEOUT': 86400,
     }
