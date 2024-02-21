@@ -96,6 +96,7 @@ COPY requirements_dev.txt /usr/src/app/
 COPY entrypoint.sh /usr/src/app/
 ENV VIRTUAL_ENV=/usr/src/venv
 ENV PATH=$VIRTUAL_ENV/bin:$HOME/.cargo/bin:$PATH
+ENV PYTHONPATH=/usr/src/app/
 
 RUN apk -U upgrade
 # Use a virtual env here, because othewise we get conflicats between Alpine's

@@ -8,45 +8,54 @@ anyascii==0.3.2
     # via wagtail
 asgiref==3.7.2
     # via django
-azure-common==1.1.28
+azure-core==1.30.0
     # via
+    #   azure-identity
     #   azure-storage-blob
-    #   azure-storage-common
-azure-storage-blob==2.1.0
+    #   django-storages
+    #   opencensus-ext-azure
+azure-identity==1.15.0
+    # via opencensus-ext-azure
+azure-storage-blob==12.19.0
     # via django-storages
-azure-storage-common==2.1.0
-    # via azure-storage-blob
-babel==2.9.1
+babel==2.14.0
     # via -r requirements.in
-beautifulsoup4==4.8.2
+beautifulsoup4==4.11.2
     # via
     #   -r requirements.in
     #   wagtail
-bleach==3.3.0
+bleach==6.1.0
     # via -r requirements.in
-cachetools==5.3.1
+cachetools==5.3.2
     # via google-auth
-certifi==2023.7.22
+certifi==2024.2.2
     # via requests
-cffi==1.15.1
+cffi==1.16.0
     # via
     #   cryptography
     #   pynacl
-chardet==4.0.0
+charset-normalizer==3.3.2
     # via requests
-cryptography==41.0.3
-    # via azure-storage-common
+cryptography==42.0.3
+    # via
+    #   azure-identity
+    #   azure-storage-blob
+    #   msal
+    #   pyjwt
 defusedxml==0.7.1
-    # via odfpy
+    # via
+    #   odfpy
+    #   willow
 deprecated==1.2.14
     # via pygithub
 diff-match-patch==20230430
     # via django-import-export
-dj-database-url==0.5.0
+dj-database-url==2.1.0
     # via -r requirements.in
-django==3.2.4
+django==3.2.24
     # via
     #   -r requirements.in
+    #   dj-database-url
     #   django-appconf
     #   django-extensions
     #   django-filter
@@ -63,21 +72,21 @@ django==3.2.4
     #   opencensus-ext-django
     #   wagtail
     #   wagtail-modeltranslation
-django-appconf==1.0.5
+django-appconf==1.0.6
     # via django-compressor
-django-compressor==4.1
+django-compressor==4.4
     # via -r requirements.in
-django-extensions==3.1.3
+django-extensions==3.2.3
     # via -r requirements.in
 django-filter==22.1
     # via wagtail
-django-haystack==3.0
+django-haystack==3.2.1
     # via -r requirements.in
-django-import-export==2.5.0
+django-import-export==3.3.7
     # via -r requirements.in
-django-modelcluster==6.0
+django-modelcluster==6.2.1
     # via wagtail
-django-modeltranslation==0.17.2
+django-modeltranslation==0.18.11
     # via
     #   -r requirements.in
     #   wagtail-modeltranslation
@@ -87,13 +96,13 @@ django-prettyjson==0.4.1
     # via -r requirements.in
 django-recaptcha3==0.4.0
     # via -r requirements.in
-django-storages[azure]==1.11.1
+django-storages[azure]==1.14.2
     # via -r requirements.in
 django-taggit==3.1.0
     # via wagtail
-django-treebeard==4.7
+django-treebeard==4.7.1
     # via wagtail
-django-widget-tweaks==1.4.8
+django-widget-tweaks==1.5.0
     # via -r requirements.in
 djangorestframework==3.14.0
     # via wagtail
@@ -103,51 +112,65 @@ elasticsearch==6.8.2
     # via -r requirements.in
 et-xmlfile==1.1.0
     # via openpyxl
-google-api-core==2.11.1
+filetype==1.2.0
+    # via willow
+google-api-core==2.17.1
     # via opencensus
-google-auth==2.22.0
+google-auth==2.28.0
     # via google-api-core
-googleapis-common-protos==1.60.0
+googleapis-common-protos==1.62.0
     # via google-api-core
-gunicorn==20.1.0
+gunicorn==21.2.0
     # via -r requirements.in
 html5lib==1.1
     # via wagtail
-idna==2.10
+idna==3.6
     # via requests
+isodate==0.6.1
+    # via azure-storage-blob
 l18n==2021.3
     # via wagtail
 markuppy==1.14
     # via tablib
+msal==1.26.0
+    # via
+    #   azure-identity
+    #   msal-extensions
+msal-extensions==1.1.0
+    # via azure-identity
 odfpy==1.4.1
     # via tablib
-opencensus==0.11.2
+opencensus==0.11.4
     # via
     #   opencensus-ext-azure
     #   opencensus-ext-django
 opencensus-context==0.1.3
     # via opencensus
-opencensus-ext-azure==1.0.7
+opencensus-ext-azure==1.1.13
     # via -r requirements.in
-opencensus-ext-django==0.7.4
+opencensus-ext-django==0.8.0
     # via -r requirements.in
 openpyxl==3.1.2
     # via
     #   tablib
     #   wagtail
-packaging==23.1
-    # via bleach
-pillow==9.5.0
+packaging==23.2
+    # via
+    #   gunicorn
+    #   msal-extensions
+pillow==10.2.0
     # via wagtail
-protobuf==4.24.2
+portalocker==2.8.2
+    # via msal-extensions
+protobuf==4.25.3
     # via
     #   google-api-core
     #   googleapis-common-protos
-psutil==5.9.5
+psutil==5.9.8
     # via opencensus-ext-azure
-psycopg2-binary==2.8.6
+psycopg2-binary==2.9.9
     # via -r requirements.in
-pyasn1==0.5.0
+pyasn1==0.5.1
     # via
     #   pyasn1-modules
     #   rsa
@@ -155,15 +178,15 @@ pyasn1-modules==0.3.0
     # via google-auth
 pycparser==2.21
     # via cffi
-pygithub==1.55
+pygithub==2.2.0
     # via -r requirements.in
-pyjwt==2.8.0
-    # via pygithub
+pyjwt[crypto]==2.8.0
+    # via
+    #   msal
+    #   pygithub
 pynacl==1.5.0
     # via pygithub
-python-dateutil==2.8.2
-    # via azure-storage-common
-pytz==2023.3.post1
+pytz==2024.1
     # via
     #   babel
     #   django
@@ -172,30 +195,31 @@ pytz==2023.3.post1
     #   l18n
 pyyaml==6.0.1
     # via tablib
-rcssmin==1.1.0
+rcssmin==1.1.1
     # via django-compressor
-requests==2.25.1
+requests==2.31.0
     # via
     #   -r requirements.in
-    #   azure-storage-common
+    #   azure-core
     #   django-recaptcha3
     #   google-api-core
+    #   msal
     #   opencensus-ext-azure
     #   pygithub
     #   wagtail
-rjsmin==1.2.0
+rjsmin==1.2.1
     # via django-compressor
 rsa==4.9
     # via google-auth
 six==1.16.0
     # via
+    #   azure-core
     #   bleach
-    #   django-modeltranslation
     #   django-prettyjson
-    #   google-auth
     #   html5lib
+    #   isodate
     #   l18n
-    #   python-dateutil
+    #   opencensus
 soupsieve==2.5
     # via beautifulsoup4
 sqlparse==0.4.4
@@ -206,30 +230,36 @@ tablib[html,ods,xls,xlsx,yaml]==3.5.0
     # via django-import-export
 telepath==0.3.1
     # via wagtail
-typing-extensions==4.7.1
-    # via asgiref
-urllib3==1.26.16
+typing-extensions==4.9.0
+    # via
+    #   asgiref
+    #   azure-core
+    #   azure-storage-blob
+    #   dj-database-url
+    #   django-modeltranslation
+    #   pygithub
+urllib3==2.2.0
     # via
     #   elasticsearch
-    #   google-auth
+    #   pygithub
     #   requests
-wagtail==4.1.6
+wagtail==4.1.9
     # via
     #   -r requirements.in
     #   wagtail-modeltranslation
-wagtail-modeltranslation==0.13.0
+wagtail-modeltranslation==0.14.1
     # via -r requirements.in
-wand==0.6.6
+wand==0.6.13
     # via -r requirements.in
 webencodings==0.5.1
     # via
     #   bleach
     #   html5lib
-whitenoise==5.2.0
+whitenoise==6.6.0
     # via -r requirements.in
-willow==1.4.1
+willow==1.6.3
     # via wagtail
-wrapt==1.11.2
+wrapt==1.16.0
     # via
     #   -r requirements.in
     #   deprecated
@@ -237,6 +267,3 @@ xlrd==2.0.1
     # via tablib
 xlwt==1.3.0
     # via tablib
-
-# The following packages are considered to be unsafe in a requirements file:
-# setuptools
