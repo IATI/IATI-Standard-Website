@@ -80,9 +80,9 @@ class ResponsiveImageNode(ImageNode, template.Node):
                     output_format = original_format
                 if output_format not in ['jpeg', 'png', 'gif', 'webp']:
                     output_format = 'webp'
-            if output_format != original_format and "format" not in self.filter_spec:
-                self.filter_spec = "{}|{}".format(self.filter_spec, "format-{}".format(output_format))
-            rendition = image.get_rendition(self.filter)
+            if output_format != original_format and not any("format" in x for x in self.filter_specs):
+                self.filter_specs = ["{}|{}".format(self.filter_specs, "format-{}".format(output_format))]
+            rendition = image.get_rendition(self.get_filter())
         except SourceImageIOError:
             # It's fairly routine for people to pull down remote databases to their
             # local dev versions without retrieving the corresponding image files.
