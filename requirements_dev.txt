@@ -60,7 +60,7 @@ charset-normalizer==3.3.2
     # via
     #   -r requirements.txt
     #   requests
-cryptography==42.0.3
+cryptography==42.0.4
     # via
     #   -r requirements.txt
     #   azure-identity
@@ -138,7 +138,9 @@ django-prettyjson==0.4.1
 django-recaptcha3==0.4.0
     # via -r requirements.txt
 django-storages[azure]==1.14.2
-    # via -r requirements.txt
+    # via
+    #   -r requirements.txt
+    #   django-storages
 django-taggit==3.1.0
     # via
     #   -r requirements.txt
@@ -313,6 +315,7 @@ pyjwt[crypto]==2.8.0
     #   -r requirements.txt
     #   msal
     #   pygithub
+    #   pyjwt
 pylint==2.4.4
     # via
     #   -r requirements_dev.in
@@ -422,6 +425,7 @@ tablib[html,ods,xls,xlsx,yaml]==3.5.0
     # via
     #   -r requirements.txt
     #   django-import-export
+    #   tablib
 telepath==0.3.1
     # via
     #   -r requirements.txt

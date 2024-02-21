@@ -36,7 +36,7 @@ cffi==1.16.0
     #   pynacl
 charset-normalizer==3.3.2
     # via requests
-cryptography==42.0.3
+cryptography==42.0.4
     # via
     #   azure-identity
     #   azure-storage-blob
@@ -184,6 +184,7 @@ pyjwt[crypto]==2.8.0
     # via
     #   msal
     #   pygithub
+    #   pyjwt
 pynacl==1.5.0
     # via pygithub
 pytz==2024.1
@@ -227,7 +228,9 @@ sqlparse==0.4.4
 standardjson==0.3.1
     # via django-prettyjson
 tablib[html,ods,xls,xlsx,yaml]==3.5.0
-    # via django-import-export
+    # via
+    #   django-import-export
+    #   tablib
 telepath==0.3.1
     # via wagtail
 typing-extensions==4.9.0
