@@ -97,6 +97,10 @@ jobs:
           azcliversion: 2.30.0
           inlineScript: |
             if echo $(az group exists --name "${{ env.STAGE }}-${{ env.NAME }}-blue") | grep -q "true"; then
+              if echo $(az group exists --name "${{ env.STAGE }}-${{ env.NAME }}-green") | grep -q "true"; then
+                echo "Blue and green resource groups exist, exiting. Please manually delete one, and re-run."
+                exit 1
+              fi
               echo "NEW_COLOUR=green" >> $GITHUB_ENV
               echo "OLD_COLOUR=blue" >> $GITHUB_ENV
             else
@@ -307,6 +311,10 @@ jobs:
           azcliversion: 2.30.0
           inlineScript: |
             if echo $(az group exists --name "${{ env.STAGE }}-${{ env.NAME }}-blue") | grep -q "true"; then
+              if echo $(az group exists --name "${{ env.STAGE }}-${{ env.NAME }}-green") | grep -q "true"; then
+                echo "Blue and green resource groups exist, exiting. Please manually delete one, and re-run."
+                exit 1
+              fi
               echo "NEW_COLOUR=green" >> $GITHUB_ENV
               echo "OLD_COLOUR=blue" >> $GITHUB_ENV
             else
