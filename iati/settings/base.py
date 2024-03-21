@@ -226,7 +226,7 @@ STATIC_URL = '/assets/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-REFERENCE_DOWNLOAD_ROOT = os.path.join(BASE_DIR, 'reference_downloads')
+REFERENCE_DOWNLOAD_ROOT = os.path.join(MEDIA_ROOT, 'reference_downloads')
 REFERENCE_DOWNLOAD_URL = '/reference_downloads/'
 
 DOCUMENTS_SLUG = 'documents'
@@ -583,7 +583,7 @@ GITHUB_TOKEN = os.getenv('GITHUB_TOKEN')
 AZURE_ACCOUNT_NAME = os.getenv('AZURE_ACCOUNT_NAME')
 
 if AZURE_ACCOUNT_NAME:
-    REFERENCE_DOWNLOAD_ROOT = os.path.join('/reference_downloads')
+    REFERENCE_DOWNLOAD_ROOT = os.path.join('reference_downloads')
     AZURE_ACCOUNT_KEY = os.getenv('AZURE_ACCOUNT_KEY')
     AZURE_CONTAINER = os.getenv('AZURE_CONTAINER')
     DEFAULT_FILE_STORAGE = 'storages.backends.azure_storage.AzureStorage'
