@@ -6,7 +6,7 @@
     <meta name="twitter:site" content="@{{ social_twitter_handle }}" />
     <meta name="twitter:title" content="{{ page.title }}" />
     <meta name="twitter:description" content="{{ page.search_description|default:page.excerpt|default:'' }}">
-    <meta name="twitter:image" content="{{ request.scheme }}://{{ wagtail_site.hostname }}{{ page.social_share_image_url }}">
+    <meta name="twitter:image" content="{{ wagtail_site.hostname }}{{ page.social_share_image_url }}">
 
     <!--Facebook -->
     <meta property="og:type" content="website" />
@@ -14,5 +14,5 @@
     <meta property="og:title" content="{{ page.title }}" />
     <meta property="og:description" content="{{ page.search_description|default:page.excerpt|default:'' }}" />
     <meta property="og:site_name" content="IATI Standard" />
-    <meta property="og:image" content="{{ request.scheme }}://{{ wagtail_site.hostname }}{{ page.social_share_image_url }}">
+    <meta property="og:image" content="{{ wagtail_site.hostname }}{{ page.social_share_image_url }}">
 {% endif %}
