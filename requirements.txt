@@ -197,7 +197,7 @@ pyyaml==6.0.1
     # via tablib
 rcssmin==1.1.1
     # via django-compressor
-requests==2.31.0
+requests==2.32.0
     # via
     #   -r requirements.in
     #   azure-core
