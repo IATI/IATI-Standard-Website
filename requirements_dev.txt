@@ -266,7 +266,7 @@ packaging==23.2
     #   gunicorn
     #   msal-extensions
     #   pytest
-pillow==10.2.0
+pillow==10.3.0
     # via
     #   -r requirements.txt
     #   wagtail
