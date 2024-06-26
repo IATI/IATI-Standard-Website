@@ -408,7 +408,7 @@ splinter==0.21.0
     # via
     #   -r requirements_dev.in
     #   pytest-splinter
-sqlparse==0.4.4
+sqlparse==0.5.0
     # via
     #   -r requirements.txt
     #   -r requirements_dev.in
