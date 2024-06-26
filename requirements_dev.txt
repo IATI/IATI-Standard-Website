@@ -26,7 +26,7 @@ azure-core==1.30.0
     #   azure-storage-blob
     #   django-storages
     #   opencensus-ext-azure
-azure-identity==1.15.0
+azure-identity==1.16.1
     # via
     #   -r requirements.txt
     #   opencensus-ext-azure
