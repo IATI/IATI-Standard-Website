@@ -8,6 +8,12 @@ This repository hosts the new IATI website based on Django and Wagtail CMS. A Po
 
 ### Pre-requites
 
+- Install requirements
+```
+pip install -r requirements.txt
+pip install -r requirements_dev.txt
+```
+
 - Docker _(See Docker documentation for installation instructions per OS [https://docs.docker.com/install/](https://docs.docker.com/install/))_
 - Docker Compose
 
