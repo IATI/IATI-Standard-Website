@@ -445,7 +445,7 @@ typing-extensions==4.9.0
     #   faker
     #   pygithub
     #   selenium
-urllib3[socks]==2.2.0
+urllib3[socks]==2.2.2
     # via
     #   -r requirements.txt
     #   elasticsearch
