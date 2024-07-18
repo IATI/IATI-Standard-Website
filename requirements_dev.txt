@@ -46,7 +46,7 @@ cachetools==5.3.2
     # via
     #   -r requirements.txt
     #   google-auth
-certifi==2024.2.2
+certifi==2024.7.4
     # via
     #   -r requirements.txt
     #   requests
@@ -359,7 +359,7 @@ rcssmin==1.1.1
     # via
     #   -r requirements.txt
     #   django-compressor
-requests==2.31.0
+requests==2.32.0
     # via
     #   -r requirements.txt
     #   azure-core
@@ -445,7 +445,7 @@ typing-extensions==4.9.0
     #   faker
     #   pygithub
     #   selenium
-urllib3[socks]==2.2.0
+urllib3[socks]==2.2.2
     # via
     #   -r requirements.txt
     #   elasticsearch
