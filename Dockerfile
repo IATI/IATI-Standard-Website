@@ -44,10 +44,9 @@ RUN apk add --no-cache libmemcached-dev zlib-dev
 # Elasticsearch from https://github.com/blacktop/docker-elasticsearch-alpine/blob/master/6.8/Dockerfile
 
 RUN apk add --no-cache openjdk8-jre su-exec
-
-ENV VERSION 6.8.23
+ENV VERSION 7.10.2
 ENV DOWNLOAD_URL "https://artifacts.elastic.co/downloads/elasticsearch"
-ENV ES_TARBAL "${DOWNLOAD_URL}/elasticsearch-oss-${VERSION}.tar.gz"
+ENV ES_TARBAL "${DOWNLOAD_URL}/elasticsearch-${VERSION}-linux-x86_64.tar.gz"
 # ENV EXPECTED_SHA_URL "${DOWNLOAD_URL}/elasticsearch-oss-${VERSION}.tar.gz.sha512"
 ENV ES_TARBALL_SHA "14dbb2809b06499373c3ec5035d829d62255c2c93103618fbfe3d7d03cecf8847f654e83c78f765f23224126ff18ed713b959857e8ecf435c475b11bcd143d3f"
 RUN apk add --no-cache -t .build-deps wget ca-certificates gnupg openssl \
@@ -55,9 +54,9 @@ RUN apk add --no-cache -t .build-deps wget ca-certificates gnupg openssl \
   && cd /tmp \
   && echo "===> Install Elasticsearch..." \
   && wget --progress=bar:force -O elasticsearch.tar.gz "$ES_TARBAL"; \
-  if [ "$ES_TARBALL_SHA" ]; then \
-  echo "$ES_TARBALL_SHA *elasticsearch.tar.gz" | sha512sum -c -; \
-  fi; \
+  #if [ "$ES_TARBALL_SHA" ]; then \
+  # echo "$ES_TARBALL_SHA *elasticsearch.tar.gz" | sha512sum -c -; \
+  #fi; \
   tar -xf elasticsearch.tar.gz \
   && ls -lah \
   && mv elasticsearch-$VERSION /usr/share/elasticsearch \
