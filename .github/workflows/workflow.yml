@@ -1,17 +1,6 @@
 name: CI
 
-on:
-  # Trigger the workflow on push or pull request,
-  # but only for the master/develop branches
-  push:
-    branches:
-      - master
-      - develop
-  pull_request:
-    branches:
-      - master
-      - develop
-  workflow_dispatch:
+on: [push, pull_request, workflow_dispatch]
 
 env:
   REGISTRY_LOGIN_SERVER: ${{ secrets.ACR_LOGIN_SERVER }}
