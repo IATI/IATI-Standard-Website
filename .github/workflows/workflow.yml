@@ -1,17 +1,6 @@
 name: CI
 
-on:
-  # Trigger the workflow on push or pull request,
-  # but only for the master/develop branches
-  push:
-    branches:
-      - master
-      - develop
-  pull_request:
-    branches:
-      - master
-      - develop
-  workflow_dispatch:
+on: [push, pull_request, workflow_dispatch]
 
 env:
   REGISTRY_LOGIN_SERVER: ${{ secrets.ACR_LOGIN_SERVER }}
@@ -31,7 +20,7 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
       - name: Pull static images
-        run: docker-compose -f docker-compose.dev.yml pull
+        run: docker compose -f docker-compose.dev.yml pull
       - id: cache-docker
         uses: actions/cache@v2
         with:
@@ -41,19 +30,19 @@ jobs:
       - run: docker build . -t iati-standard-website_web:latest --cache-from=localhost:5000/iati-standard-website_web --build-arg BUILDKIT_INLINE_CACHE=1
       - run: docker tag iati-standard-website_web:latest localhost:5000/iati-standard-website_web && docker push localhost:5000/iati-standard-website_web || true
         if: steps.cache.outputs.cache-hit != 'true'
-      - name: Setup docker-compose
+      - name: Setup docker compose
         run: |
           docker container stop registry
-          docker-compose -f docker-compose.dev.yml up -d
+          docker compose -f docker-compose.dev.yml up -d
           while ! echo exit | nc localhost 5000; do sleep 10; done
       - name: flake8 lint
-        run: docker-compose -f docker-compose.dev.yml exec -T web make flake8
+        run: docker compose -f docker-compose.dev.yml exec -T web make flake8
       - name: pylint
-        run: docker-compose -f docker-compose.dev.yml exec -T web make pylint
+        run: docker compose -f docker-compose.dev.yml exec -T web make pylint
       - name: pydocstyle lint
-        run: docker-compose -f docker-compose.dev.yml exec -T web make pydocstyle
+        run: docker compose -f docker-compose.dev.yml exec -T web make pydocstyle
       - name: pytest
-        run: docker-compose -f docker-compose.dev.yml exec -T web make test
+        run: docker compose -f docker-compose.dev.yml exec -T web make test
   deploy_dev:
     needs: [build]
     runs-on: ubuntu-latest
