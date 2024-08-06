@@ -20,7 +20,7 @@ PyGithub
 psycopg2-binary
 requests
 wagtail-modeltranslation
-wagtail>=4.1,<4.2
+wagtail>=4.1,<5.3
 Wand
 whitenoise
 wrapt
