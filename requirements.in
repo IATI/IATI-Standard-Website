@@ -4,7 +4,7 @@ bleach
 dj-database-url
 django-compressor
 django-extensions
-django-import-export
+django-import-export<4
 django-haystack
 django-modeltranslation
 django-prettyjson
