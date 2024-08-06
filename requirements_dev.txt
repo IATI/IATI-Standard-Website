@@ -116,7 +116,7 @@ django-debug-toolbar==4.3.0
     # via -r requirements_dev.in
 django-extensions==3.2.3
     # via -r requirements.txt
-django-filter==22.1
+django-filter==23.5
     # via
     #   -r requirements.txt
     #   wagtail
@@ -263,7 +263,12 @@ packaging==24.1
 pillow==10.4.0
     # via
     #   -r requirements.txt
+    #   pillow-heif
     #   wagtail
+pillow-heif==0.18.0
+    # via
+    #   -r requirements.txt
+    #   willow
 pluggy==1.5.0
     # via pytest
 portalocker==2.10.1
@@ -450,7 +455,7 @@ urllib3[socks]==2.2.2
     #   responses
     #   selenium
     #   splinter
-wagtail==4.1.9
+wagtail==5.2.6
     # via
     #   -r requirements.txt
     #   wagtail-factories
@@ -470,7 +475,7 @@ websocket-client==1.8.0
     # via selenium
 whitenoise==6.7.0
     # via -r requirements.txt
-willow==1.6.3
+willow[heif]==1.6.3
     # via
     #   -r requirements.txt
     #   wagtail

@@ -78,7 +78,7 @@ django-compressor==4.4
     # via -r requirements.in
 django-extensions==3.2.3
     # via -r requirements.in
-django-filter==22.1
+django-filter==23.5
     # via wagtail
 django-haystack==3.3.0
     # via -r requirements.in
@@ -153,7 +153,11 @@ packaging==24.1
     #   django-haystack
     #   gunicorn
 pillow==10.4.0
-    # via wagtail
+    # via
+    #   pillow-heif
+    #   wagtail
+pillow-heif==0.18.0
+    # via willow
 portalocker==2.10.1
     # via msal-extensions
 proto-plus==1.24.0
@@ -238,7 +242,7 @@ urllib3==2.2.2
     #   elasticsearch
     #   pygithub
     #   requests
-wagtail==4.1.9
+wagtail==5.2.6
     # via
     #   -r requirements.in
     #   wagtail-modeltranslation
@@ -252,8 +256,10 @@ webencodings==0.5.1
     #   html5lib
 whitenoise==6.7.0
     # via -r requirements.in
-willow==1.6.3
-    # via wagtail
+willow[heif]==1.6.3
+    # via
+    #   wagtail
+    #   willow
 wrapt==1.16.0
     # via
     #   -r requirements.in
