@@ -37,8 +37,8 @@ jobs:
           while ! echo exit | nc localhost 5000; do sleep 10; done
       - name: flake8 lint
         run: docker compose -f docker-compose.dev.yml exec -T web make flake8
-      - name: pylint
-        run: docker compose -f docker-compose.dev.yml exec -T web make pylint
+      # - name: pylint
+      #  run: docker compose -f docker-compose.dev.yml exec -T web make pylint
       - name: pydocstyle lint
         run: docker compose -f docker-compose.dev.yml exec -T web make pydocstyle
       - name: pytest

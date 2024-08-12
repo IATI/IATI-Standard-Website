@@ -12,7 +12,7 @@ asgiref==3.8.1
     # via
     #   -r requirements.txt
     #   django
-astroid==2.3.0
+astroid==3.2.4
     # via pylint
 attrs==24.2.0
     # via
@@ -79,6 +79,8 @@ diff-match-patch==20230430
     # via
     #   -r requirements.txt
     #   django-import-export
+dill==0.3.8
+    # via pylint
 dj-database-url==2.2.0
     # via -r requirements.txt
 django==4.2.15
@@ -167,13 +169,13 @@ factory-boy==3.3.0
     # via
     #   -r requirements_dev.in
     #   wagtail-factories
-faker==26.3.0
+faker==27.0.0
     # via factory-boy
 filetype==1.2.0
     # via
     #   -r requirements.txt
     #   willow
-flake8==3.9.2
+flake8==7.1.1
     # via -r requirements_dev.in
 google-api-core==2.19.1
     # via
@@ -206,15 +208,13 @@ isodate==0.6.1
     # via
     #   -r requirements.txt
     #   azure-storage-blob
-isort==4.3.21
+isort==5.13.2
     # via pylint
 l18n==2021.3
     # via
     #   -r requirements.txt
     #   wagtail
-lazy-object-proxy==1.10.0
-    # via astroid
-mccabe==0.6.1
+mccabe==0.7.0
     # via
     #   flake8
     #   pylint
@@ -261,6 +261,8 @@ pillow-heif==0.18.0
     # via
     #   -r requirements.txt
     #   willow
+platformdirs==4.2.2
+    # via pylint
 pluggy==1.5.0
     # via pytest
 portalocker==2.10.1
@@ -292,7 +294,7 @@ pyasn1-modules==0.4.0
     # via
     #   -r requirements.txt
     #   google-auth
-pycodestyle==2.7.0
+pycodestyle==2.12.1
     # via flake8
 pycparser==2.22
     # via
@@ -300,7 +302,7 @@ pycparser==2.22
     #   cffi
 pydocstyle==6.3.0
     # via -r requirements_dev.in
-pyflakes==2.3.1
+pyflakes==3.2.0
     # via flake8
 pygithub==2.3.0
     # via -r requirements.txt
@@ -309,12 +311,12 @@ pyjwt[crypto]==2.9.0
     #   -r requirements.txt
     #   msal
     #   pygithub
-pylint==2.4.4
+pylint==3.2.6
     # via
     #   -r requirements_dev.in
     #   pylint-django
     #   pylint-plugin-utils
-pylint-django==2.0.15
+pylint-django==2.5.5
     # via -r requirements_dev.in
 pylint-plugin-utils==0.8.2
     # via pylint-django
@@ -375,7 +377,6 @@ selenium==4.23.1
 six==1.16.0
     # via
     #   -r requirements.txt
-    #   astroid
     #   azure-core
     #   bleach
     #   django-prettyjson
@@ -416,6 +417,8 @@ telepath==0.3.1
     # via
     #   -r requirements.txt
     #   wagtail
+tomlkit==0.13.0
+    # via pylint
 trio==0.26.2
     # via
     #   selenium
@@ -470,7 +473,6 @@ willow[heif]==1.6.3
 wrapt==1.16.0
     # via
     #   -r requirements.txt
-    #   astroid
     #   deprecated
 wsproto==1.2.0
     # via trio-websocket
