@@ -1,4 +1,4 @@
-FROM alpine:3.13.2
+FROM alpine:3.20.2
 
 ENV LANG en_US.UTF-8
 ENV PYTHONUNBUFFERED 1
@@ -27,15 +27,14 @@ RUN apk add postgresql-client && \
 
 RUN apk add python3-dev
 
-RUN apk add --no-cache python3 py3-pip && \
+RUN apk add --no-cache python3 py3-pip & \
  if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
  if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi
 
 
-RUN apk add build-base libffi-dev libressl-dev && \
+RUN apk add build-base libffi-dev && \
     ln -sf /usr/bin/python3 /usr/bin/python && \
-    ln -sf /usr/bin/pip3 usr/bin/pip && \
-    pip install --upgrade pip
+    ln -sf /usr/bin/pip3 usr/bin/pip
 
 RUN apk add --no-cache jpeg-dev zlib-dev
 RUN apk add --no-cache postgresql-dev
@@ -105,6 +104,7 @@ RUN apk -U upgrade
 RUN apk add --no-cache gcc musl-dev python3-dev libffi-dev openssl-dev cargo libwebp libwebp-tools &&\
         python3 -m venv /usr/src/venv &&\
         . /usr/src/venv/bin/activate &&\
+        pip3 install --upgrade pip &&\
         pip3 install -r requirements_dev.txt
 
 RUN apk add --no-cache gettext
