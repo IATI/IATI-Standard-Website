@@ -46,7 +46,11 @@ jobs:
   deploy_dev:
     needs: [build]
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/develop'
+    # Checking against 'refs/heads/{0}' essentially means it runs on pushes and workflow_dispatch.
+    # Not pull_requests! (pull_requests have ref `refs/pull/X/merge`)
+    # This is good, as we don't want a push to a PR on the same branch as vars.DEV_BRANCH_NAME to
+    # start 2 deploys at once - they would conflict and crash.
+    if: ${{ github.ref == format('refs/heads/{0}', vars.DEV_BRANCH_NAME) }}
     env:
       DOCKER_BUILDKIT: '1'
       TAG: ${{ github.sha }}
