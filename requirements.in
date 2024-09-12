@@ -8,10 +8,12 @@ django-import-export
 django-haystack
 django-modeltranslation
 django-prettyjson
-django-recaptcha3
+# Pull in a repo with a small fix to get Django 4.2 working
+# See https://github.com/kbytesys/django-recaptcha3/issues/22#issuecomment-1848441795
+django-recaptcha3 @ git+https://github.com/bartsanchez/django-recaptcha3.git@313509e40163ce381e7aa3decd1de1ed9f71d380
 django-storages[azure]
 django-widget-tweaks
-Django>=3.2,<3.3
+Django>=4.2,<4.3
 elasticsearch>=6.8,<7
 gunicorn
 opencensus-ext-azure
@@ -19,8 +21,9 @@ opencensus-ext-django
 PyGithub
 psycopg2-binary
 requests
+tzdata
 wagtail-modeltranslation
-wagtail>=4.1,<4.2
+wagtail>=5.2,<5.3
 Wand
 whitenoise
 wrapt

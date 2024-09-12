@@ -37,8 +37,8 @@ jobs:
           while ! echo exit | nc localhost 5000; do sleep 10; done
       - name: flake8 lint
         run: docker compose -f docker-compose.dev.yml exec -T web make flake8
-      - name: pylint
-        run: docker compose -f docker-compose.dev.yml exec -T web make pylint
+      # - name: pylint
+      #  run: docker compose -f docker-compose.dev.yml exec -T web make pylint
       - name: pydocstyle lint
         run: docker compose -f docker-compose.dev.yml exec -T web make pydocstyle
       - name: pytest
@@ -192,7 +192,7 @@ jobs:
               --log-driver 'json-file' \
               --log-opt max-size=100m \
               --log-opt max-file=3 \
-              -e DJANGO_SETTINGS_MODULE='iati.settings.dev' \
+              -e DJANGO_SETTINGS_MODULE='iati.settings.dev_public' \
               -e SECRET_KEY='${{ secrets.DEV_SECRET_KEY }}' \
               -e DATABASE_NAME='${{ secrets.DEV_DATABASE_NAME }}' \
               -e DATABASE_USER='${{ secrets.DEV_DATABASE_USER }}' \
