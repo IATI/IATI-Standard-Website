@@ -60,7 +60,7 @@ charset-normalizer==3.3.2
     # via
     #   -r requirements.txt
     #   requests
-cryptography==43.0.0
+cryptography==43.0.1
     # via
     #   -r requirements.txt
     #   azure-identity
