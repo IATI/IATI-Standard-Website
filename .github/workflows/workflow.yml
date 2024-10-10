@@ -235,7 +235,7 @@ jobs:
               echo "Failure"
               exit 1
             fi
-      - if: steps.new_has_succeeded.outcome == 'success'
+      - if: true
         name: "Update NGINX VM backend"
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
@@ -245,7 +245,7 @@ jobs:
           sed -i 's/XX.XX.XX.XX/'${{ env.NEW_IP }}'/g' config/nginx/website_dev.conf && \
           scp -o StrictHostKeyChecking=no config/nginx/website_dev.conf azureuser@${{ secrets.DEV_NGINX_IP }}:/etc/nginx/conf.d/website.conf && \
           ssh -o StrictHostKeyChecking=no azureuser@${{ secrets.DEV_NGINX_IP }} /home/azureuser/restart_nginx.sh
-      - if: steps.new_has_succeeded.outcome == 'success'
+      - if: true
         name: "Delete previous VM resource group"
         uses: "azure/CLI@1.0.4"
         with:
@@ -253,7 +253,7 @@ jobs:
           inlineScript: |
             az group delete --yes --no-wait \
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.OLD_COLOUR }}"
-      - if: steps.new_has_succeeded.outcome != 'success'
+      - if: false
         name: "Delete failed VM resource group"
         uses: "azure/CLI@1.0.4"
         with:
