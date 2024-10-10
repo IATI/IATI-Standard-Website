@@ -194,11 +194,11 @@ jobs:
               --log-opt max-file=3 \
               -e DJANGO_SETTINGS_MODULE='iati.settings.dev_public' \
               -e SECRET_KEY='${{ secrets.DEV_SECRET_KEY }}' \
-              -e DATABASE_NAME='${{ secrets.DEV_DATABASE_NAME }}' \
-              -e DATABASE_USER='${{ secrets.DEV_DATABASE_USER }}' \
-              -e DATABASE_PASS='${{ secrets.DEV_DATABASE_PASS }}' \
-              -e DATABASE_HOST='${{ secrets.DEV_DATABASE_HOST }}' \
-              -e DATABASE_PORT='${{ secrets.DEV_DATABASE_PORT }}' \
+              -e DATABASE_NAME='${{ secrets.PROD_DATABASE_NAME }}' \
+              -e DATABASE_USER='${{ secrets.PROD_DATABASE_USER }}' \
+              -e DATABASE_PASS='${{ secrets.PROD_DATABASE_PASS }}' \
+              -e DATABASE_HOST='${{ secrets.PROD_DATABASE_HOST }}' \
+              -e DATABASE_PORT='${{ secrets.PROD_DATABASE_PORT }}' \
               -e AZURE_ACCOUNT_NAME='${{ secrets.DEV_AZURE_ACCOUNT_NAME }}' \
               -e AZURE_ACCOUNT_KEY='${{ secrets.DEV_AZURE_ACCOUNT_KEY }}' \
               -e AZURE_CONTAINER='${{ secrets.DEV_AZURE_CONTAINER }}' \
