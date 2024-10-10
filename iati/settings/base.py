@@ -587,7 +587,9 @@ if AZURE_ACCOUNT_NAME:
     DEFAULT_FILE_STORAGE = 'storages.backends.azure_storage.AzureStorage'
     STATICFILES_STORAGE = 'storages.backends.azure_storage.AzureStorage'
     COMPRESS_STORAGE = 'storages.backends.azure_storage.AzureStorage'
-    COMPRESS_URL = 'https://iatiwebsitedev.blob.core.windows.net/dev-iati-website/'
+
+    AZURE_CUSTOM_DOMAIN = 'cdn.iatistandard.org'
+    COMPRESS_URL = 'https://cdn.iatistandard.org/prod-iati-website/'
 
 # App insights
 
