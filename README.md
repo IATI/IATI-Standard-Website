@@ -19,6 +19,12 @@ This repository hosts the new IATI website based on Django and Wagtail CMS. A Po
 
 - Set a SECRET_KEY
 
+A limit on your kernel must be increased. There are ways to do this permanently, but to do so temporarily:
+
+```
+sudo sysctl -w vm.max_map_count=262144 
+```
+
 Build the project. The following will build linked `web` and `postgres` containers.
 
 ```
