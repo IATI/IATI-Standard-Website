@@ -44,11 +44,11 @@ RUN apk add --no-cache libmemcached-dev zlib-dev
 
 RUN apk add --no-cache openjdk8-jre su-exec
 
-ENV VERSION 6.8.23
+ENV VERSION 8.15.2
 ENV DOWNLOAD_URL "https://artifacts.elastic.co/downloads/elasticsearch"
-ENV ES_TARBAL "${DOWNLOAD_URL}/elasticsearch-oss-${VERSION}.tar.gz"
-# ENV EXPECTED_SHA_URL "${DOWNLOAD_URL}/elasticsearch-oss-${VERSION}.tar.gz.sha512"
-ENV ES_TARBALL_SHA "14dbb2809b06499373c3ec5035d829d62255c2c93103618fbfe3d7d03cecf8847f654e83c78f765f23224126ff18ed713b959857e8ecf435c475b11bcd143d3f"
+ENV ES_TARBAL "${DOWNLOAD_URL}/elasticsearch-${VERSION}-linux-x86_64.tar.gz"
+# ENV EXPECTED_SHA_URL "${DOWNLOAD_URL}/elasticsearch-${VERSION}-linux-x86_64.tar.gz.sha512"
+ENV ES_TARBALL_SHA "2c4a1dc81dee3d364256998a6fc502a789adb20ed4dd1c3ea103675aaf71ef5a65881c1b0427fc71e96b318700b78b0618b2245e75694fd780249d6a800c4a6b"
 RUN apk add --no-cache -t .build-deps wget ca-certificates gnupg openssl \
   && set -ex \
   && cd /tmp \
