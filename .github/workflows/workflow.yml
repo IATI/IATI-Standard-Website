@@ -113,7 +113,7 @@ jobs:
             az vm create \
             --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
-            --size Standard_B2s --public-ip-sku Standard \
+            --size Standard_B2ms --public-ip-sku Standard \
             --image "Canonical:0001-com-ubuntu-server-jammy:22_04-lts-gen2:latest" \
             --ssh-key-values ${{ secrets.DEV_PUB_KEYS }} && \
             export NEW_IP=$(az vm list-ip-addresses --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --query [].virtualMachine.network[].publicIpAddresses[][].ipAddress --output tsv) && \
@@ -186,12 +186,27 @@ jobs:
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
             --command-id RunShellScript \
             --scripts "\
+              echo 'vm.max_map_count=262144' >> /etc/sysctl.conf && \
+              sysctl -p && \
+              mkdir -p /home/elasticsearch/data && \
+              chown 1000:0 /home/elasticsearch/data && \
+              docker network create iati-standard-website && \
               docker login -u '${{ env.REGISTRY_USERNAME }}' -p '${{ env.REGISTRY_PASSWORD }}' ${{ env.REGISTRY_LOGIN_SERVER }} && \
               docker pull '${{ env.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}' && \
+              docker run --restart always --name elasticsearch -d \
+              -e ES_SETTING_XPACK_SECURITY_ENABLED=false \
+              -e ES_SETTING_DISCOVERY_TYPE=single-node \
+              --network iati-standard-website \
+              --ulimit nofile=65535:65535 \
+              -e 'bootstrap.memory_lock=true' --ulimit memlock=-1:-1 \
+              -v '/home/elasticsearch/data:/usr/share/elasticsearch/data' \
+              'docker.elastic.co/elasticsearch/elasticsearch:7.17.25' && \
               docker run --restart always --name website -d -p 5000:5000 \
               --log-driver 'json-file' \
               --log-opt max-size=100m \
               --log-opt max-file=3 \
+              --network iati-standard-website \
+              --link elasticsearch:elasticsearch \
               -e DJANGO_SETTINGS_MODULE='iati.settings.dev_public' \
               -e SECRET_KEY='${{ secrets.DEV_SECRET_KEY }}' \
               -e DATABASE_NAME='${{ secrets.DEV_DATABASE_NAME }}' \
@@ -327,7 +342,7 @@ jobs:
             az vm create \
             --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
-            --size Standard_B2s --public-ip-sku Standard \
+            --size Standard_B2ms --public-ip-sku Standard \
             --image "Canonical:0001-com-ubuntu-server-jammy:22_04-lts-gen2:latest" \
             --ssh-key-values ${{ secrets.DEV_PUB_KEYS }} && \
             export NEW_IP=$(az vm list-ip-addresses --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --query [].virtualMachine.network[].publicIpAddresses[][].ipAddress --output tsv) && \
@@ -400,12 +415,27 @@ jobs:
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
             --command-id RunShellScript \
             --scripts "\
+              echo 'vm.max_map_count=262144' >> /etc/sysctl.conf && \
+              sysctl -p && \
+              mkdir -p /home/elasticsearch/data && \
+              chown 1000:0 /home/elasticsearch/data && \
+              docker network create iati-standard-website && \
               docker login -u '${{ env.REGISTRY_USERNAME }}' -p '${{ env.REGISTRY_PASSWORD }}' ${{ env.REGISTRY_LOGIN_SERVER }} && \
               docker pull '${{ env.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}' && \
+              docker run --restart always --name elasticsearch -d \
+              -e ES_SETTING_XPACK_SECURITY_ENABLED=false \
+              -e ES_SETTING_DISCOVERY_TYPE=single-node \
+              --network iati-standard-website \
+              --ulimit nofile=65535:65535 \
+              -e 'bootstrap.memory_lock=true' --ulimit memlock=-1:-1 \
+              -v '/home/elasticsearch/data:/usr/share/elasticsearch/data' \
+              'docker.elastic.co/elasticsearch/elasticsearch:7.17.25' && \
               docker run --restart always --name website -d -p 5000:5000 \
               --log-driver 'json-file' \
               --log-opt max-size=100m \
               --log-opt max-file=3 \
+              --network iati-standard-website \
+              --link elasticsearch:elasticsearch \
               -e DJANGO_SETTINGS_MODULE='iati.settings.production' \
               -e SECRET_KEY='${{ secrets.PROD_SECRET_KEY }}' \
               -e DATABASE_NAME='${{ secrets.PROD_DATABASE_NAME }}' \
