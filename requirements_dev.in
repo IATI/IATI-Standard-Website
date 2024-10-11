@@ -6,10 +6,10 @@ pytest-timeout
 splinter
 pytest-splinter
 responses
-flake8>3.9,<3.10
+flake8
 pydocstyle
-pylint>2.4,<2.5
-pylint-django>2.0,<2.1
+pylint
+pylint-django
 wagtail-factories
 factory-boy
 sqlparse

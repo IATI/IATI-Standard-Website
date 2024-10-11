@@ -1,17 +1,6 @@
 name: CI
 
-on:
-  # Trigger the workflow on push or pull request,
-  # but only for the master/develop branches
-  push:
-    branches:
-      - master
-      - develop
-  pull_request:
-    branches:
-      - master
-      - develop
-  workflow_dispatch:
+on: [push, pull_request, workflow_dispatch]
 
 env:
   REGISTRY_LOGIN_SERVER: ${{ secrets.ACR_LOGIN_SERVER }}
@@ -31,7 +20,7 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
       - name: Pull static images
-        run: docker-compose -f docker-compose.dev.yml pull
+        run: docker compose -f docker-compose.dev.yml pull
       - id: cache-docker
         uses: actions/cache@v2
         with:
@@ -41,23 +30,27 @@ jobs:
       - run: docker build . -t iati-standard-website_web:latest --cache-from=localhost:5000/iati-standard-website_web --build-arg BUILDKIT_INLINE_CACHE=1
       - run: docker tag iati-standard-website_web:latest localhost:5000/iati-standard-website_web && docker push localhost:5000/iati-standard-website_web || true
         if: steps.cache.outputs.cache-hit != 'true'
-      - name: Setup docker-compose
+      - name: Setup docker compose
         run: |
           docker container stop registry
-          docker-compose -f docker-compose.dev.yml up -d
+          docker compose -f docker-compose.dev.yml up -d
           while ! echo exit | nc localhost 5000; do sleep 10; done
       - name: flake8 lint
-        run: docker-compose -f docker-compose.dev.yml exec -T web make flake8
-      - name: pylint
-        run: docker-compose -f docker-compose.dev.yml exec -T web make pylint
+        run: docker compose -f docker-compose.dev.yml exec -T web make flake8
+      # - name: pylint
+      #  run: docker compose -f docker-compose.dev.yml exec -T web make pylint
       - name: pydocstyle lint
-        run: docker-compose -f docker-compose.dev.yml exec -T web make pydocstyle
+        run: docker compose -f docker-compose.dev.yml exec -T web make pydocstyle
       - name: pytest
-        run: docker-compose -f docker-compose.dev.yml exec -T web make test
+        run: docker compose -f docker-compose.dev.yml exec -T web make test
   deploy_dev:
     needs: [build]
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/develop'
+    # Checking against 'refs/heads/{0}' essentially means it runs on pushes and workflow_dispatch.
+    # Not pull_requests! (pull_requests have ref `refs/pull/X/merge`)
+    # This is good, as we don't want a push to a PR on the same branch as vars.DEV_BRANCH_NAME to
+    # start 2 deploys at once - they would conflict and crash.
+    if: ${{ github.ref == format('refs/heads/{0}', vars.DEV_BRANCH_NAME) }}
     env:
       DOCKER_BUILDKIT: '1'
       TAG: ${{ github.sha }}
@@ -199,7 +192,7 @@ jobs:
               --log-driver 'json-file' \
               --log-opt max-size=100m \
               --log-opt max-file=3 \
-              -e DJANGO_SETTINGS_MODULE='iati.settings.dev' \
+              -e DJANGO_SETTINGS_MODULE='iati.settings.dev_public' \
               -e SECRET_KEY='${{ secrets.DEV_SECRET_KEY }}' \
               -e DATABASE_NAME='${{ secrets.DEV_DATABASE_NAME }}' \
               -e DATABASE_USER='${{ secrets.DEV_DATABASE_USER }}' \

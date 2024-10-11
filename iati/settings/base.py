@@ -22,8 +22,6 @@ PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 ADMINS = (
-    ('Alex Miller', 'alex.miller@devinit.org'),
-    ('Chris Wakibi', 'chrisw@devinit.org'),
     ('IATI Code', 'code@iatistandard.org'),
 )
 
