@@ -13,12 +13,10 @@ else
   done
 fi
 
-if [[ -z "${ELASTICSEARCH_URL}" ]]; then
-  >&2 echo "Skipping Elasticsearch"
-else
-  >&2 echo "Starting Elasticsearch"
-  rc-service elasticsearch.service start
-fi
+until curl --output /dev/null --silent --head --fail ${ELASTICSEARCH_URL}; do
+    >&2 echo "Elasticsearch is unavailable - sleeping"
+    sleep 10
+done
 
 if [[ -z "${DEBUG_SERVER}" ]]; then
   gunicorn iati.wsgi:application --bind 0.0.0.0:5000 --workers $GUNICORN_WORKERS >> /var/log/gunicorn/gunicorn.log 2>&1 &
