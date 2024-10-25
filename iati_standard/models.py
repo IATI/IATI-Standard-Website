@@ -1,6 +1,7 @@
 """Model definitions for the iati_standard app."""
 
 import os
+import re
 from bs4 import BeautifulSoup
 from datetime import datetime
 
@@ -397,9 +398,33 @@ class AbstractGithubPage(DefaultPageHeaderImageMixin, AbstractContentPage):
 
 
 class ActivityStandardPage(AbstractGithubPage):
-    """A model for the Activity Standard Page, an IATI reference page."""
+    """A model for the Activity Standard Page, an IATI reference page.
+
+    Used for Standard reference pages like /en/iati-standard/202/
+    And guidance developer pages like /en/guidance/developer/
+    """
 
     template = 'iati_standard/activity_standard_page.html'
+
+    def get_sitemap_urls(self, request=None):
+        """If it's an older version of the standard, we want it to have a lower priority."""
+        url = self.get_url(request)
+        if re.match(r"^\/\w+\/iati-standard\/", url) and not re.match(r"^\/\w+\/iati-standard\/203\/", url):
+            return [
+                {
+                    'location': self.get_full_url(request),
+                    'lastmod': (self.last_published_at or self.latest_revision_created_at),
+                    'changefreq': 'yearly',
+                    'priority': .1,
+                }
+            ]
+        else:
+            return [
+                {
+                    'location': self.get_full_url(request),
+                    'lastmod': (self.last_published_at or self.latest_revision_created_at),
+                }
+            ]
 
 
 class StandardGuidancePage(AbstractGithubPage):
