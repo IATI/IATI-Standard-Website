@@ -1,10 +1,12 @@
 """Model definitions for the iati_standard app."""
 
 import os
+import re
 from bs4 import BeautifulSoup
 from datetime import datetime
 
 from django import forms
+from django.conf import settings
 from django.db.models import JSONField
 from django.db import models
 from django.utils.functional import cached_property
@@ -397,9 +399,34 @@ class AbstractGithubPage(DefaultPageHeaderImageMixin, AbstractContentPage):
 
 
 class ActivityStandardPage(AbstractGithubPage):
-    """A model for the Activity Standard Page, an IATI reference page."""
+    """A model for the Activity Standard Page, an IATI reference page.
+
+    Used for Standard reference pages like /en/iati-standard/202/
+    And guidance developer pages like /en/guidance/developer/
+    """
 
     template = 'iati_standard/activity_standard_page.html'
+
+    def is_older_version_of_standard(self):
+        """Is it an older version of the standard? Return Boolean."""
+        url = self.get_url()
+        if re.match(r"^\/\w+\/iati-standard\/\d", url):
+            regex = r"^\/\w+\/iati-standard\/" + settings.IATI_STANDARD_LATEST_VERSION.replace(".", "") + r"\/"
+            if not re.match(regex, url):
+                return True
+        return False
+
+    def get_sitemap_urls(self, request=None):
+        """If it's an older version of the standard, we don't want it indexed."""
+        if self.is_older_version_of_standard():
+            return []
+        else:
+            return [
+                {
+                    'location': self.get_full_url(request),
+                    'lastmod': (self.last_published_at or self.latest_revision_created_at),
+                }
+            ]
 
 
 class StandardGuidancePage(AbstractGithubPage):

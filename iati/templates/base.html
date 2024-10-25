@@ -39,6 +39,9 @@
         {% block extra_css %}
             {# Override this in templates to add extra stylesheets #}
         {% endblock %}
+
+        {% block html_header_seo %}
+        {% endblock %}
     </head>
 
     <body class="body--message {% block body_class %}{% endblock %}" id="{% block body_id %}{% endblock %}">
