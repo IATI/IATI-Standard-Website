@@ -118,10 +118,10 @@ jobs:
             --ssh-key-values ${{ secrets.DEV_PUB_KEYS }} && \
             export NEW_IP=$(az vm list-ip-addresses --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --query [].virtualMachine.network[].publicIpAddresses[][].ipAddress --output tsv) && \
             echo "NEW_IP=$NEW_IP" >> $GITHUB_ENV && \
-            az postgres server firewall-rule update \
+            az postgres flexible-server firewall-rule update \
             --resource-group "${{ secrets.DEV_PSQL_RESOURCE_GROUP }}" \
-            --server-name "${{ secrets.DEV_PSQL_NAME }}" \
-            --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
+            --name "${{ secrets.DEV_PSQL_NAME }}" \
+            --rule-name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
             --start-ip-address $NEW_IP \
             --end-ip-address $NEW_IP && \
             az network nsg rule create \
@@ -186,20 +186,12 @@ jobs:
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
             --command-id RunShellScript \
             --scripts "\
-              docker network create iati-standard-website && \
               docker login -u '${{ env.REGISTRY_USERNAME }}' -p '${{ env.REGISTRY_PASSWORD }}' ${{ env.REGISTRY_LOGIN_SERVER }} && \
               docker pull '${{ env.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}' && \
-              docker run --restart always --name elasticsearch -d \
-              -e ES_SETTING_XPACK_SECURITY_ENABLED=False \
-              -e ES_SETTING_DISCOVERY_TYPE=single-node \
-              --network iati-standard-website \
-              'docker.elastic.co/elasticsearch/elasticsearch:8.15.3' && \
               docker run --restart always --name website -d -p 5000:5000 \
               --log-driver 'json-file' \
               --log-opt max-size=100m \
               --log-opt max-file=3 \
-              --network iati-standard-website \
-              --link elasticsearch:elasticsearch \
               -e DJANGO_SETTINGS_MODULE='iati.settings.dev_public' \
               -e SECRET_KEY='${{ secrets.DEV_SECRET_KEY }}' \
               -e DATABASE_NAME='${{ secrets.DEV_DATABASE_NAME }}' \
@@ -340,10 +332,10 @@ jobs:
             --ssh-key-values ${{ secrets.DEV_PUB_KEYS }} && \
             export NEW_IP=$(az vm list-ip-addresses --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --query [].virtualMachine.network[].publicIpAddresses[][].ipAddress --output tsv) && \
             echo "NEW_IP=$NEW_IP" >> $GITHUB_ENV && \
-            az postgres server firewall-rule update \
+            az postgres flexible-server firewall-rule update \
             --resource-group "${{ secrets.PROD_PSQL_RESOURCE_GROUP }}" \
-            --server-name "${{ secrets.PROD_PSQL_NAME }}" \
-            --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
+            --name "${{ secrets.PROD_PSQL_NAME }}" \
+            --rule-name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
             --start-ip-address $NEW_IP \
             --end-ip-address $NEW_IP && \
             az network nsg rule create \
@@ -408,20 +400,12 @@ jobs:
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
             --command-id RunShellScript \
             --scripts "\
-              docker network create iati-standard-website && \
               docker login -u '${{ env.REGISTRY_USERNAME }}' -p '${{ env.REGISTRY_PASSWORD }}' ${{ env.REGISTRY_LOGIN_SERVER }} && \
               docker pull '${{ env.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}' && \
-              docker run --restart always --name elasticsearch -d \
-              -e ES_SETTING_XPACK_SECURITY_ENABLED=False \
-              -e ES_SETTING_DISCOVERY_TYPE=single-node \
-              --network iati-standard-website \
-              'docker.elastic.co/elasticsearch/elasticsearch:8.15.3' && \
               docker run --restart always --name website -d -p 5000:5000 \
               --log-driver 'json-file' \
               --log-opt max-size=100m \
               --log-opt max-file=3 \
-              --network iati-standard-website \
-              --link elasticsearch:elasticsearch \
               -e DJANGO_SETTINGS_MODULE='iati.settings.production' \
               -e SECRET_KEY='${{ secrets.PROD_SECRET_KEY }}' \
               -e DATABASE_NAME='${{ secrets.PROD_DATABASE_NAME }}' \
