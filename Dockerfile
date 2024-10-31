@@ -6,7 +6,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONIOENCODING utf_8
 
 RUN apk update
-RUN apk add --no-cache bash curl
+RUN apk add --no-cache bash
 
 # Init engine
 
@@ -39,6 +39,52 @@ RUN apk add build-base libffi-dev && \
 RUN apk add --no-cache jpeg-dev zlib-dev
 RUN apk add --no-cache postgresql-dev
 RUN apk add --no-cache libmemcached-dev zlib-dev
+
+# Elasticsearch from https://github.com/blacktop/docker-elasticsearch-alpine/blob/master/6.8/Dockerfile
+
+RUN apk add --no-cache openjdk8-jre su-exec
+
+ENV VERSION 6.8.23
+ENV DOWNLOAD_URL "https://artifacts.elastic.co/downloads/elasticsearch"
+ENV ES_TARBAL "${DOWNLOAD_URL}/elasticsearch-oss-${VERSION}.tar.gz"
+# ENV EXPECTED_SHA_URL "${DOWNLOAD_URL}/elasticsearch-oss-${VERSION}.tar.gz.sha512"
+ENV ES_TARBALL_SHA "14dbb2809b06499373c3ec5035d829d62255c2c93103618fbfe3d7d03cecf8847f654e83c78f765f23224126ff18ed713b959857e8ecf435c475b11bcd143d3f"
+RUN apk add --no-cache -t .build-deps wget ca-certificates gnupg openssl \
+  && set -ex \
+  && cd /tmp \
+  && echo "===> Install Elasticsearch..." \
+  && wget --progress=bar:force -O elasticsearch.tar.gz "$ES_TARBAL"; \
+  if [ "$ES_TARBALL_SHA" ]; then \
+  echo "$ES_TARBALL_SHA *elasticsearch.tar.gz" | sha512sum -c -; \
+  fi; \
+  tar -xf elasticsearch.tar.gz \
+  && ls -lah \
+  && mv elasticsearch-$VERSION /usr/share/elasticsearch \
+  && adduser -D -h /usr/share/elasticsearch elasticsearch \
+  && echo "===> Creating Elasticsearch Paths..." \
+  && for path in \
+  /usr/share/elasticsearch/data \
+  /usr/share/elasticsearch/logs \
+  /usr/share/elasticsearch/config \
+  /usr/share/elasticsearch/config/scripts \
+  /usr/share/elasticsearch/tmp \
+  /usr/share/elasticsearch/plugins \
+  ; do \
+  mkdir -p "$path"; \
+  chown -R elasticsearch:elasticsearch "$path"; \
+  done \
+  && rm -rf /tmp/* \
+  && apk del --purge .build-deps
+
+COPY config/elastic/elasticsearch.yml /usr/share/elasticsearch/config/elasticsearch.yml
+COPY config/elastic/log4j2.properties /usr/share/elasticsearch/config/log4j2.properties
+RUN chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/config
+
+RUN mkdir -p /var/log/messages
+RUN apk add logrotate
+COPY config/elastic/logrotate /etc/logrotate.d/elasticsearch
+RUN chmod 644 /etc/logrotate.d/elasticsearch
+COPY config/elastic/elasticsearch.service /etc/init.d/elasticsearch.service
 
 # Web app dependencies
 

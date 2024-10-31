@@ -14,7 +14,7 @@ django-recaptcha3 @ git+https://github.com/bartsanchez/django-recaptcha3.git@313
 django-storages[azure]
 django-widget-tweaks
 Django>=4.2,<4.3
-elasticsearch>=8,<9
+elasticsearch>=6.8,<7
 gunicorn
 opencensus-ext-azure
 opencensus-ext-django
