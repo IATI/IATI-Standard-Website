@@ -186,6 +186,10 @@ jobs:
             --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
             --command-id RunShellScript \
             --scripts "\
+              echo 'vm.max_map_count=262144' >> /etc/sysctl.conf \
+              sysctl -p && \
+              mkdir -p /home/elasticsearch/data && \
+              chown 1000:0 /home/elasticsearch/data && \
               docker network create iati-standard-website && \
               docker login -u '${{ env.REGISTRY_USERNAME }}' -p '${{ env.REGISTRY_PASSWORD }}' ${{ env.REGISTRY_LOGIN_SERVER }} && \
               docker pull '${{ env.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}' && \
@@ -193,6 +197,9 @@ jobs:
               -e ES_SETTING_XPACK_SECURITY_ENABLED=False \
               -e ES_SETTING_DISCOVERY_TYPE=single-node \
               --network iati-standard-website \
+              --ulimit nofile=65535:65535 \
+              -e 'bootstrap.memory_lock=true' --ulimit memlock=-1:-1 \
+              -v '/home/elasticsearch/data:/usr/share/elasticsearch/data' \
               'docker.elastic.co/elasticsearch/elasticsearch:8.15.3' && \
               docker run --restart always --name website -d -p 5000:5000 \
               --log-driver 'json-file' \
