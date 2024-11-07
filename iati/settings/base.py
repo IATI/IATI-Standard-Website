@@ -87,7 +87,7 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'wagtail.contrib.settings',
-    'wagtail.contrib.modeladmin',
+    'wagtail_modeladmin',
 
     'modeltranslation_sync',
     'django_extensions',

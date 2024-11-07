@@ -1,8 +1,8 @@
 """Module for registering admin models for the notices app."""
 
 from django.utils.html import strip_tags
-from wagtail.contrib.modeladmin.helpers import PermissionHelper
-from wagtail.contrib.modeladmin.options import (
+from wagtail_modeladmin.helpers import PermissionHelper
+from wagtail_modeladmin.options import (
     ModelAdmin,
     ModelAdminGroup,
     modeladmin_register

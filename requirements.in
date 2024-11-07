@@ -22,8 +22,9 @@ PyGithub
 psycopg2-binary
 requests
 tzdata
+wagtail-modeladmin
 wagtail-modeltranslation
-wagtail>=5.2,<5.3
+wagtail>=6.3,<6.4
 Wand
 whitenoise
 wrapt

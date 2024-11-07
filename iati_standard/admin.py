@@ -1,6 +1,6 @@
 """Module for registering admin models for the iati_standard app."""
 
-from wagtail.contrib.modeladmin.options import (
+from wagtail_modeladmin.options import (
     ModelAdmin,
     modeladmin_register
 )

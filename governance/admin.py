@@ -9,7 +9,7 @@ from import_export.widgets import (
     DateWidget
 )
 from django.contrib import admin
-from wagtail.contrib.modeladmin.options import (
+from wagtail_modeladmin.options import (
     ModelAdmin,
     ModelAdminGroup,
     modeladmin_register
