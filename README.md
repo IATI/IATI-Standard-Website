@@ -28,7 +28,7 @@ docker compose -f docker-compose.dev.yml build
 Start the containers in detached mode. This will run migrations and run the Django server. Using in detached (`-d`) mode means that the containers will continue to run in the background - ommitting the `-d` flag will mean that the containers will run only until the command is exited.
 
 ```
-docker compose -f docker-compose.dev.yml up -d
+COMPRESS_ENABLED=1 docker compose -f docker-compose.dev.yml up -d
 ```
 
 See the status of your containers by using
