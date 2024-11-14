@@ -1,4 +1,5 @@
 """A module of unit tests for guidance and support."""
+import copy
 import pytest
 from django.http import HttpRequest
 from django import forms
@@ -9,7 +10,8 @@ LEGITIMATE_USER = {}
 LEGITIMATE_USER['request'] = HttpRequest()
 LEGITIMATE_USER['request'].META['SERVER_NAME'] = "iatistandard.org"
 LEGITIMATE_USER['request'].META['SERVER_PORT'] = 80
-LEGITIMATE_USER['request'].path = "/en/a-test-path"
+LEGITIMATE_USER['request'].META['HTTP_REFERER'] = "/en/a-test-path"
+LEGITIMATE_USER['request'].path = "/en/guidance/get-support/"
 LEGITIMATE_USER['form'] = forms.Form()
 LEGITIMATE_USER['form'].cleaned_data = {
     'phone': '',
@@ -25,7 +27,10 @@ LEGITIMATE_USER['expected_output'] = {
             'email': 'test@user.com'
         },
         'comment': {
-            'body': 'A request was sent from /en/a-test-path.\nA very serious matter.'
+            'body': (
+                'A request was sent from /en/guidance/get-support/. The sender was previously on /en/a-test-path.'
+                '\nA very serious matter.'
+            )
         },
         'subject': 'Automated request from A legitimate user'
     }
@@ -51,4 +56,22 @@ SPAM_BOT['expected_output'] = False
 def test_generate_ticket(user):
     """Test a ticket from a valid user and a spam bot."""
     ticket = generate_ticket(user['request'], user['form'], score=user['score'])
+    assert ticket == user['expected_output']
+
+
+@pytest.mark.django_db
+def test_generate_ticket_with_referer_path_false():
+    """
+    Test a ticket request sent from get-support page without referer page.
+    """
+    user = copy.deepcopy(LEGITIMATE_USER)
+    user['request'].META['HTTP_REFERER'] = None
+    user['expected_output']['request']['comment']['body'] = (
+        'A request was sent from /en/guidance/get-support/.\nA very serious matter.'
+    )
+    ticket = generate_ticket(
+        user['request'],
+        user['form'],
+        score=user['score']
+    )
     assert ticket == user['expected_output']
