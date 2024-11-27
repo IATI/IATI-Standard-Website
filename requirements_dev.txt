@@ -84,7 +84,7 @@ dill==0.3.8
     # via pylint
 dj-database-url==2.2.0
     # via -r requirements.txt
-django==4.2.15
+django==4.2.16
     # via
     #   -r requirements.txt
     #   dj-database-url
