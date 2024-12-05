@@ -17,10 +17,14 @@ def generate_ticket(request, form, score=None, suspicious=False):
         spam_settings = SpamSettings.for_request(request)
         if score <= spam_settings.spam_threshold:
             return False
-    path = request.path
     email = form.cleaned_data.get('email')
     query = form.cleaned_data.get('query')
     name = form.cleaned_data.get('name', 'Anonymous requester')
+    path = request.path
+    referer_path = request.META.get('HTTP_REFERER', None)
+    if referer_path is not None:
+        path = "{}. The sender was previously on {}".format(path, referer_path)
+
     if email and query:
         request_obj = {
             "request": {
