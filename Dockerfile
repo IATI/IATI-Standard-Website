@@ -40,6 +40,12 @@ RUN apk add --no-cache jpeg-dev zlib-dev
 RUN apk add --no-cache postgresql-dev
 RUN apk add --no-cache libmemcached-dev zlib-dev
 
+# Logrotate
+
+RUN apk add logrotate
+COPY config/logrotate.conf /etc/logrotate.d/iatistandardwebsite
+RUN chmod 644 /etc/logrotate.d/iatistandardwebsite
+
 # Web app dependencies
 
 RUN mkdir -p /usr/src/app
