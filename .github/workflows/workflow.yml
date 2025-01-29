@@ -244,7 +244,7 @@ jobs:
         with:
           azcliversion: 2.30.0
           inlineScript: |
-            if echo $(az vm run-command invoke -g "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" -n "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --command-id RunShellScript --scripts "docker logs website" -o tsv --query value[0].message) | grep -q "Booting worker with pid"; then
+            if echo $(az vm run-command invoke -g "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" -n "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --command-id RunShellScript --scripts "docker ps" -o tsv --query value[0].message) | grep "website" | grep -q "(healthy)"; then
               echo "Success"
             else
               echo "Failure"
@@ -474,7 +474,7 @@ jobs:
         with:
           azcliversion: 2.30.0
           inlineScript: |
-            if echo $(az vm run-command invoke -g "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" -n "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --command-id RunShellScript --scripts "docker logs website" -o tsv --query value[0].message) | grep -q "Booting worker with pid"; then
+            if echo $(az vm run-command invoke -g "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" -n "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --command-id RunShellScript --scripts "docker ps" -o tsv --query value[0].message) | grep "website" | grep -q "(healthy)"; then
               echo "Success"
             else
               echo "Failure"
