@@ -230,6 +230,11 @@ jobs:
               --scripts "\
                 echo '#!/bin/sh\n/snap/bin/docker exec -i website sh -c '\''python3 manage.py publish_scheduled_pages && python3 manage.py updatestatistics'\''' > /etc/cron.hourly/hourly-cron && \
                 chmod +x /etc/cron.hourly/hourly-cron" && \
+              az vm run-command invoke \
+              --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
+              --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
+              --command-id RunShellScript \
+              --scripts "echo '* * * * * root docker restart  \$(docker ps | grep unhealthy | cut -c -12) 2>/dev/null' > /etc/cron.d/iatistandard" && \
               az resource tag \
               --tags env="$STAGE" avgCPU=true ACU=true ACUvalue=300 \
               --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
@@ -244,7 +249,7 @@ jobs:
         with:
           azcliversion: 2.30.0
           inlineScript: |
-            if echo $(az vm run-command invoke -g "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" -n "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --command-id RunShellScript --scripts "docker logs website" -o tsv --query value[0].message) | grep -q "Booting worker with pid"; then
+            if echo $(az vm run-command invoke -g "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" -n "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --command-id RunShellScript --scripts "docker ps" -o tsv --query value[0].message) | grep "website" | grep -q "(healthy)"; then
               echo "Success"
             else
               echo "Failure"
@@ -460,6 +465,11 @@ jobs:
               --scripts "\
                 echo '#!/bin/sh\n/snap/bin/docker exec -i website sh -c '\''python3 manage.py publish_scheduled_pages && python3 manage.py updatestatistics'\''' > /etc/cron.hourly/hourly-cron && \
                 chmod +x /etc/cron.hourly/hourly-cron" && \
+              az vm run-command invoke \
+              --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
+              --name "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
+              --command-id RunShellScript \
+              --scripts "echo '* * * * * root docker restart  \$(docker ps | grep unhealthy | cut -c -12) 2>/dev/null' > /etc/cron.d/iatistandard" && \
               az resource tag \
               --tags env="$STAGE" avgCPU=true ACU=true ACUvalue=300 \
               --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
@@ -474,7 +484,7 @@ jobs:
         with:
           azcliversion: 2.30.0
           inlineScript: |
-            if echo $(az vm run-command invoke -g "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" -n "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --command-id RunShellScript --scripts "docker logs website" -o tsv --query value[0].message) | grep -q "Booting worker with pid"; then
+            if echo $(az vm run-command invoke -g "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" -n "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" --command-id RunShellScript --scripts "docker ps" -o tsv --query value[0].message) | grep "website" | grep -q "(healthy)"; then
               echo "Success"
             else
               echo "Failure"

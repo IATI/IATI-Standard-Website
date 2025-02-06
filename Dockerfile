@@ -40,6 +40,12 @@ RUN apk add --no-cache jpeg-dev zlib-dev
 RUN apk add --no-cache postgresql-dev
 RUN apk add --no-cache libmemcached-dev zlib-dev
 
+# Logrotate
+
+RUN apk add logrotate
+COPY config/logrotate.conf /etc/logrotate.d/iatistandardwebsite
+RUN chmod 644 /etc/logrotate.d/iatistandardwebsite
+
 # Web app dependencies
 
 RUN mkdir -p /usr/src/app
@@ -73,3 +79,5 @@ RUN touch /var/log/gunicorn/gunicorn.log
 COPY delete_large_logs /etc/periodic/15min/delete_large_logs
 ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
 CMD ["tail", "-n", "+0", "-f", "/var/log/gunicorn/gunicorn.log"]
+
+HEALTHCHECK --start-period=5m CMD curl --max-time 5 -f --resolve 'iatistandard.org:5000:127.0.0.1' http://iatistandard.org:5000/en/ || exit 1
