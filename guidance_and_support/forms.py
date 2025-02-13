@@ -7,6 +7,10 @@ from django.utils.translation import gettext_lazy as _
 class ContactForm(forms.Form):
     """A form class for a simple contact form."""
 
+    referrer = forms.CharField(
+        widget=forms.HiddenInput(),
+        required=False,
+    )
     name = forms.CharField(
         label=_('Name'),
         required=False,
