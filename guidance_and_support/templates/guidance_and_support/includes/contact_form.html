@@ -18,6 +18,9 @@
             <p>{% blocktrans %}
                 Thank you - your message has been sent.
             {% endblocktrans %}</p>
+            {% if form.cleaned_data.referrer %}
+                 <p>{{ form.cleaned_data.referrer }}</p>
+            {% endif %}
             {% if form.cleaned_data.name %}
                 <p>{% trans 'Name:' %} {{ form.cleaned_data.name }}</p>
             {% endif %}
@@ -48,6 +51,7 @@
 
     {% if not form_success %}
         <div class="form-group">
+            {% include 'guidance_and_support/includes/form-item.html' with field=form.referrer %}
             {% include 'guidance_and_support/includes/form-item.html' with field=form.name %}
             {% include 'guidance_and_support/includes/form-item.html' with field=form.email spaced=True %}
             {% include 'guidance_and_support/includes/form-item.html' with field=form.query spaced=True %}
@@ -66,4 +70,14 @@
         <a href="https://policies.google.com/privacy">{% trans 'Privacy Policy' %}</a> {% trans 'and' %}
         <a href="https://policies.google.com/terms">{% trans 'Terms of Service' %}</a> {% trans 'apply' %}.
     </div>
+
+    <script type="text/javascript">
+        // Set the value of the hidden 'referrer' field
+        document.addEventListener('DOMContentLoaded', function() {
+            var referrerField = document.querySelector('input[name="referrer"]');
+            if (referrerField) {
+                referrerField.value = document.referrer || '';
+            }
+        });
+    </script>
 </form>

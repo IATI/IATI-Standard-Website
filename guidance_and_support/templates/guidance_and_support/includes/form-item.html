@@ -8,7 +8,10 @@
         form-field--error
     {% endif %}
 ">
-    {{ field|add_label_class:'form-label' }}
+    {% if not field.field.widget.input_type == 'hidden' %}
+        {{ field|add_label_class:'form-label' }}
+    {% endif %}
+
     {{ field|add_class:'form-item' }}
     {% for error in field.errors %}
         <span class="form-message">{{ error }}</span>

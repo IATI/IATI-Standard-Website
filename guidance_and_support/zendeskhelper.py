@@ -21,8 +21,8 @@ def generate_ticket(request, form, score=None, suspicious=False):
     query = form.cleaned_data.get('query')
     name = form.cleaned_data.get('name', 'Anonymous requester')
     path = request.path
-    referer_path = request.META.get('HTTP_REFERER', None)
-    if referer_path is not None:
+    referer_path = form.cleaned_data.get('referrer')
+    if referer_path not in [None, '']:
         path = "{}. The sender was previously on {}".format(path, referer_path)
 
     if email and query:
