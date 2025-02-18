@@ -72,10 +72,10 @@
     </div>
 
     <script type="text/javascript">
-        // Set the value of the hidden 'referrer' field
+        // Set the value of the hidden 'referrer' field only if it's empty
         document.addEventListener('DOMContentLoaded', function() {
             var referrerField = document.querySelector('input[name="referrer"]');
-            if (referrerField) {
+            if (referrerField && !referrerField.value) {
                 referrerField.value = document.referrer || '';
             }
         });
