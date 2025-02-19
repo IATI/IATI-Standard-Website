@@ -18,9 +18,6 @@
             <p>{% blocktrans %}
                 Thank you - your message has been sent.
             {% endblocktrans %}</p>
-            {% if form.cleaned_data.referrer %}
-                 <p>{{ form.cleaned_data.referrer }}</p>
-            {% endif %}
             {% if form.cleaned_data.name %}
                 <p>{% trans 'Name:' %} {{ form.cleaned_data.name }}</p>
             {% endif %}
