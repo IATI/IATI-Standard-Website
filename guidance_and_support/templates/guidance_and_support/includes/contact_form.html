@@ -48,6 +48,7 @@
 
     {% if not form_success %}
         <div class="form-group">
+            {% include 'guidance_and_support/includes/form-item.html' with field=form.referrer %}
             {% include 'guidance_and_support/includes/form-item.html' with field=form.name %}
             {% include 'guidance_and_support/includes/form-item.html' with field=form.email spaced=True %}
             {% include 'guidance_and_support/includes/form-item.html' with field=form.query spaced=True %}
@@ -66,4 +67,14 @@
         <a href="https://policies.google.com/privacy">{% trans 'Privacy Policy' %}</a> {% trans 'and' %}
         <a href="https://policies.google.com/terms">{% trans 'Terms of Service' %}</a> {% trans 'apply' %}.
     </div>
+
+    <script type="text/javascript">
+        // Set the value of the hidden 'referrer' field only if it's empty
+        document.addEventListener('DOMContentLoaded', function() {
+            var referrerField = document.querySelector('input[name="referrer"]');
+            if (referrerField && !referrerField.value) {
+                referrerField.value = document.referrer || '';
+            }
+        });
+    </script>
 </form>

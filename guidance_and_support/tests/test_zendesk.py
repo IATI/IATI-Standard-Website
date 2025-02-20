@@ -10,11 +10,11 @@ LEGITIMATE_USER = {}
 LEGITIMATE_USER['request'] = HttpRequest()
 LEGITIMATE_USER['request'].META['SERVER_NAME'] = "iatistandard.org"
 LEGITIMATE_USER['request'].META['SERVER_PORT'] = 80
-LEGITIMATE_USER['request'].META['HTTP_REFERER'] = "/en/a-test-path"
 LEGITIMATE_USER['request'].path = "/en/guidance/get-support/"
 LEGITIMATE_USER['form'] = forms.Form()
 LEGITIMATE_USER['form'].cleaned_data = {
     'phone': '',
+    'referrer': '/en/a-test-path',
     'email': 'test@user.com',
     'query': 'A very serious matter.',
     'name': 'A legitimate user'
@@ -43,6 +43,7 @@ SPAM_BOT['request'].path = "/en/a-test-path"
 SPAM_BOT['form'] = forms.Form()
 SPAM_BOT['form'].cleaned_data = {
     'phone': '',
+    'referrer': '/en/a-test-path',
     'email': 'test@user.com',
     'query': 'A very unserious matter.',
     'name': 'A not legitimate user'
@@ -65,7 +66,7 @@ def test_generate_ticket_with_referer_path_false():
     Test a ticket request sent from get-support page without referer page.
     """
     user = copy.deepcopy(LEGITIMATE_USER)
-    user['request'].META['HTTP_REFERER'] = None
+    user['form'].cleaned_data['referrer'] = ''
     user['expected_output']['request']['comment']['body'] = (
         'A request was sent from /en/guidance/get-support/.\nA very serious matter.'
     )
