@@ -78,7 +78,9 @@
 
     <div class="section" id="support">
         <div class="row">
-            {% include 'guidance_and_support/includes/contact_form.html' with fragment_id='#support' form_class='form--2up' %}
+            <form>
+                {% include 'guidance_and_support/includes/contact_form.html' with fragment_id='#support' form_class='form--2up' %}
+            </form>
         </div>
     </div>
 {% endblock %}
