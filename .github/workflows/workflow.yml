@@ -13,7 +13,7 @@ jobs:
     env:
       DOCKER_BUILDKIT: '1'
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Login to Docker Hub
         uses: docker/login-action@v1
         with:
@@ -22,7 +22,7 @@ jobs:
       - name: Pull static images
         run: docker compose -f docker-compose.dev.yml pull
       - id: cache-docker
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: /tmp/docker-registry
           key: docker-registry-buildkit-${{ hashFiles('Dockerfile') }}
@@ -57,14 +57,14 @@ jobs:
       STAGE: dev
       NAME: iati-website
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Login to Docker Hub
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
       - id: cache-docker
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: /tmp/docker-registry
           key: docker-registry-buildkit-${{ hashFiles('Dockerfile') }}
@@ -291,14 +291,14 @@ jobs:
       STAGE: prod
       NAME: iati-website
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Login to Docker Hub
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
       - id: cache-docker
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: /tmp/docker-registry
           key: docker-registry-buildkit-${{ hashFiles('Dockerfile') }}
