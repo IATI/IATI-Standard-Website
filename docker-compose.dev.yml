@@ -29,6 +29,7 @@ services:
       - RECAPTCHA_PRIVATE_KEY
       - DEBUG_SERVER
       - COMPRESS_ENABLED
+      - SENTRY_DSN
     # I'm not sure why these links are needed; I thought Docker defaults would just do this for us but without it
     # the Web container can't see the others.
     links:

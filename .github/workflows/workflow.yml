@@ -222,6 +222,7 @@ jobs:
               -e RECAPTCHA_PUBLIC_KEY='${{ secrets.RECAPTCHA_PUBLIC_KEY }}' \
               -e RECAPTCHA_PRIVATE_KEY='${{ secrets.RECAPTCHA_PRIVATE_KEY }}' \
               -e GITHUB_TOKEN='${{ secrets.SSOT_GITHUB_TOKEN }}' \
+              -e SENTRY_DSN='${{ secrets.DEV_SENTRY_DSN }}' \
               '${{ env.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}'" && \
               az vm run-command invoke \
               --resource-group "${{ env.STAGE }}-${{ env.NAME }}-${{ env.NEW_COLOUR }}" \
@@ -456,6 +457,7 @@ jobs:
               -e ZENDESK_SUSPICIOUS_FIELD_ID='${{ secrets.ZENDESK_SUSPICIOUS_FIELD_ID }}' \
               -e RECAPTCHA_PUBLIC_KEY='${{ secrets.RECAPTCHA_PUBLIC_KEY }}' \
               -e RECAPTCHA_PRIVATE_KEY='${{ secrets.RECAPTCHA_PRIVATE_KEY }}' \
+              -e SENTRY_DSN='${{ secrets.PROD_SENTRY_DSN }}' \
               -e GITHUB_TOKEN='${{ secrets.SSOT_GITHUB_TOKEN }}' \
               '${{ env.REGISTRY_LOGIN_SERVER }}/${{env.STAGE}}-${{env.NAME}}:${{ env.TAG }}'" && \
               az vm run-command invoke \
