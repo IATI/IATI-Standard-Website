@@ -5,6 +5,7 @@ DEBUG is False etc. because the website is publicly accessible.
 
 import os
 from .base import *  # noqa: F401, F403 # pylint: disable=unused-wildcard-import, wildcard-import
+import sentry_sdk
 
 DEBUG = False
 
@@ -32,3 +33,7 @@ try:
     from .local import *  # # noqa: F401, F403  # pylint: disable=unused-wildcard-import, wildcard-import
 except ImportError:
     pass
+
+sentry_sdk.init(
+    dsn=os.environ.get('SENTRY_DSN'),
+)
