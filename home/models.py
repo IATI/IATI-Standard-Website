@@ -328,6 +328,8 @@ class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage): 
             max_num=3,
         ),
         PageChooserPanel('about_iati_page'),
+        PageChooserPanel('case_studies_page'),
+        FieldPanel('about_iati_link_label'),
         InlinePanel(
             'iati_in_action_featured_item',
             heading='IATI in action featured item',
