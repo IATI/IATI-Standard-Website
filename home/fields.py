@@ -75,6 +75,14 @@ class HomeFieldsMixin(models.Model):
         help_text='Optional: description for the IATI in action section',
         max_length=500
     )
+    case_studies_page = ForeignKeyField(
+        model='wagtailcore.Page',
+        required=True,
+    )
+    case_studies_link_label = models.CharField(
+        max_length=255,
+        help_text='Link label for the IATI case studies section',
+    )
     iati_tools_title = models.CharField(
         max_length=255,
         help_text='Title for the IATI tools section',
