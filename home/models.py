@@ -293,6 +293,7 @@ class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage): 
         'about_iati_video',
         'flexible_features',
         'about_iati_link_label',
+        'case_studies_link_label',
         'iati_in_action_title',
         'iati_in_action_description',
         'iati_tools_title',
@@ -328,6 +329,7 @@ class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage): 
             max_num=3,
         ),
         PageChooserPanel('about_iati_page'),
+        PageChooserPanel('case_studies_page'),
         InlinePanel(
             'iati_in_action_featured_item',
             heading='IATI in action featured item',
