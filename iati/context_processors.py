@@ -96,6 +96,7 @@ def globals(request):
             'related_srcs': 'width-440 440w, width-720 720w, width-420 420w, width-155 155w, width-190 190w',
             'related_sizes': '(max-width: 779px) 90vw, (max-width: 949px) 44vw, (min-width: 950px) 15vw',
             'hostname': hostname,
+            'matomo_tag_manager_src': settings.MATOMO_TAG_MANAGER_SRC
         },
     }
 
