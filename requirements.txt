@@ -32,6 +32,7 @@ certifi==2024.12.14
     # via
     #   elasticsearch
     #   requests
+    #   sentry-sdk
 cffi==1.17.1
     # via
     #   cryptography
@@ -71,6 +72,7 @@ django==4.2.18
     #   django-treebeard
     #   djangorestframework
     #   opencensus-ext-django
+    #   sentry-sdk
     #   wagtail
     #   wagtail-modeltranslation
 django-appconf==1.0.6
@@ -206,6 +208,8 @@ rjsmin==1.2.2
     # via django-compressor
 rsa==4.9
     # via google-auth
+sentry-sdk[django]==2.27.0
+    # via -r requirements.in
 six==1.17.0
     # via
     #   azure-core
@@ -237,6 +241,7 @@ urllib3==1.26.20
     #   elasticsearch
     #   pygithub
     #   requests
+    #   sentry-sdk
 wagtail==5.2.7
     # via
     #   -r requirements.in

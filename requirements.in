@@ -27,3 +27,4 @@ wagtail>=5.2,<5.3
 Wand
 whitenoise
 wrapt
+sentry-sdk[django]

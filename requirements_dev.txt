@@ -52,6 +52,7 @@ certifi==2024.12.14
     #   elasticsearch
     #   requests
     #   selenium
+    #   sentry-sdk
 cffi==1.17.1
     # via
     #   -r requirements.txt
@@ -104,6 +105,7 @@ django==4.2.18
     #   django-treebeard
     #   djangorestframework
     #   opencensus-ext-django
+    #   sentry-sdk
     #   wagtail
     #   wagtail-modeltranslation
 django-appconf==1.0.6
@@ -374,6 +376,8 @@ rsa==4.9
     #   google-auth
 selenium==4.28.0
     # via pytest-splinter
+sentry-sdk[django]==2.27.0
+    # via -r requirements.txt
 six==1.17.0
     # via
     #   -r requirements.txt
@@ -444,6 +448,7 @@ urllib3[socks]==1.26.20
     #   requests
     #   responses
     #   selenium
+    #   sentry-sdk
     #   splinter
 wagtail==5.2.7
     # via
