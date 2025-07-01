@@ -26,6 +26,17 @@ class DocumentBoxBlock(StreamBlock):
     document = DocumentChooserBlock(icon="doc-full-inverse", required=False)
 
 
+class CautionParagraphBlock(StructBlock):
+    """A Block with paragraph content, but styled with a caution box."""
+
+    richtext_content = RichTextBlock(required=True)
+
+    class Meta:
+        template = "home/includes/caution_paragraph_block.html"
+        icon = "edit"
+        label = "Caution Paragraph"
+
+
 class PullQuoteBlock(StructBlock):
     """A block for creating a pull quote."""
 
@@ -119,6 +130,7 @@ class IATIStreamBlock(StreamBlock):
     document_box = DocumentBoxBlock(icon="doc-full-inverse")
     anchor_point = CharBlock(icon="order-down", help_text="Custom anchor points are expected to precede other content.")
     fast_youtube_embed = URLBlock(icon="code", label='Fast YouTube Embed')
+    caution_paragraph = CautionParagraphBlock()
 
     def get_searchable_content(self, value):
         """Overidden method to fix None type errors on indexing."""
