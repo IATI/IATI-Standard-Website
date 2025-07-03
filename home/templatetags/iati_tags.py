@@ -8,6 +8,8 @@ from django.template.defaultfilters import date as _date
 from django.urls import reverse, NoReverseMatch
 from django.utils import timezone
 from django.utils.translation import get_language_info
+from django.utils.text import slugify
+from django.utils.html import strip_tags
 from wagtail.models import Page
 from wagtail_modeltranslation.contextlib import use_language
 from wagtail.templatetags.wagtailcore_tags import pageurl
@@ -294,3 +296,24 @@ def fast_youtube_embed(youtube_url):
 
     thumbnail_url = "https://img.youtube.com/vi/{}/maxresdefault.jpg".format(video_id)
     return {"youtube_url": youtube_url, "thumbnail_url": thumbnail_url}
+
+add_anchor_ids_re = re.compile(r"<h((\d)[^>]*)>(.+?)<\/h\2>")
+
+@register.filter
+def add_anchor_ids(value):
+    """
+    Adds an 'id' attribute to all <h2>, <h3>, and <h4> tags in the given HTML string.
+    """
+    content = str(value)
+
+    def add_id(match):  
+        hsuffix = match.group(1)
+        level = match.group(2)
+        text = match.group(3)
+        slug = slugify(text)
+        if int(level) < 4:
+            return f'<h{hsuffix} id="{slug}">{text}</h{level}>'
+        else:
+            return f'<h{hsuffix}>{text}</h{level}>'
+
+    return add_anchor_ids_re.sub(add_id, content)
