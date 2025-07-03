@@ -21,7 +21,7 @@
                 <p>{{ child.value.quote }}</p>
             </blockquote>
         {% elif child.block_type == 'paragraph' %}
-            {{ child.value|richtext }}
+            {{ child.value|richtext|add_anchor_ids|safe }}
         {% elif child.block_type == 'image_figure' %}
         <figure class="media-figure {{child.value.alignment}}">
             {% if child.value.alignment == 'media-figure--alignleft' or child.value.alignment == 'media-figure--alignright' %}
