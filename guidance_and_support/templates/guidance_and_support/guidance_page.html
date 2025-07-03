@@ -24,17 +24,6 @@
                     {% if page.content_editor %} {% include "home/includes/streamfield.html" with content=page.content_editor %} {% endif %}
                 </div>
             </div>
-            <aside class="l-sidebar__aside">
-                <div class="aside-m">
-                    <div class="aside-m__header fill-sunset">
-                        <h3 class="aside-m__heading">{% trans "Contact support" %}</h3>
-                    </div>
-                    <div class="aside-m__body">
-                        <p class="aside-m__copy">{% trans "Our team is ready to help you." %}</p>
-                        <a class="button js-move" data-target="support" href="#support">{% trans "Get help" %}</a>
-                    </div>
-                </div>
-            </aside>
         </div>
     </div>
 
@@ -75,12 +64,6 @@
             {% endwith %}
         {% endif %}
     {% endwith %}
-
-    <div class="section" id="support">
-        <div class="row">
-            {% include 'guidance_and_support/includes/contact_form.html' with fragment_id='#support' form_class='form--2up' %}
-        </div>
-    </div>
 {% endblock %}
 
 {% block html_footer %}
