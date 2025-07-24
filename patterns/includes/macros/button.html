@@ -1,3 +1,0 @@
-{% macro button(id, variation, short_label, full_label) %}
-<a href="#" {% if id == "" %}{% else %}id="{{ id }}"{% endif %} class="button button--a11y {{ variation }}" title="{{ short_label }}"><span>{{ full_label }}</span></a>
-{% endmacro %}
