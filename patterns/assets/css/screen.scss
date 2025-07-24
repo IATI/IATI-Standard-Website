@@ -31,14 +31,52 @@ body {
 @import "core/typography";
 
 // Import all modules
-@import "modules/*";
+@import "modules/alerts";
+@import "modules/asides";
+@import "modules/badge";
+@import "modules/branding";
+@import "modules/breadcrumb";
+@import "modules/buttons";
+@import "modules/cards";
+@import "modules/case-study";
+@import "modules/dom";
+@import "modules/download";
+@import "modules/filter";
+@import "modules/footer";
+@import "modules/forms";
+@import "modules/header";
+@import "modules/help";
+@import "modules/heroes";
+@import "modules/icons";
+@import "modules/keyframes";
+@import "modules/layout";
+@import "modules/legacy";
+@import "modules/listing";
+@import "modules/media";
+@import "modules/message";
+@import "modules/modules";
+@import "modules/navigation";
+@import "modules/pagination";
+@import "modules/responsive";
+@import "modules/rows";
+@import "modules/rulers";
+@import "modules/sections";
+@import "modules/show-hide";
+@import "modules/social";
+@import "modules/stats";
+@import "modules/tables";
+@import "modules/timeline";
+@import "modules/triggers";
+@import "modules/typography-additions";
 
 // Import all items required further up the stack
-@import "modules/priority-extends/*";
+@import "modules/priority-extends/backgrounds";
+@import "modules/priority-extends/color";
+@import "modules/priority-extends/spacing";
 
 // Libs for 3rd parties
-@import "libs/_wagtail.scss";
-@import "libs/_highlight-js.scss";
+@import "libs/wagtail";
+@import "libs/highlight-js";
 
 
 /* ::Print */
