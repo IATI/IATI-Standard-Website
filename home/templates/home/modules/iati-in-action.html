@@ -6,6 +6,9 @@
         {% if page.iati_in_action_description %}
             <div class="max-meter is-typeset is-typeset--article">
                 <p class="section__copy">{{ page.iati_in_action_description|linebreaksbr }}</p>
+                {% if page.case_studies_page and page.case_studies_link_label %}
+                    <a class="button button--spaced" href="{{ page.case_studies_page.url }}">{{ page.case_studies_link_label }}</a>
+                {% endif %}
             </div>
         {% endif %}
         <div class="l-offset l-offset--reverse">
