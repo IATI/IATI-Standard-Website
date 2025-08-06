@@ -27,6 +27,7 @@ Native CSS variables are now considered safe to use; feel free to make new ones 
 if it helps you.
 https://caniuse.com/css-variables
 
+When the CSS is changed, the compress command must be run. Restarting the web container will also trigger this automatically.
 
 ## Lint
 
