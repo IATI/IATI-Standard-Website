@@ -151,6 +151,9 @@ input[type="submit"] {
   cursor: pointer;
   *overflow: visible;
 }
+.button--spaced {
+  margin-bottom: 2rem;
+}
 textarea {
   resize: vertical;
 }
