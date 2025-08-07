@@ -735,6 +735,22 @@ select {
 .form .alert {
   margin-bottom: 1em;
 }
+.callout {
+  background-color: #e6f9fe;
+  border-inline-start: 4px solid #06dbe4;
+  box-shadow: 0 4px 5px #dadada;
+  color: #155366;
+  margin-bottom: 1.6rem;
+  padding: 1rem;
+}
+.callout p:first-of-type {
+  margin-top: 1.6rem;
+}
+.callout .caution {
+  background-color: #fff0f0;
+  border-color: #ff7264;
+  color: #6e0900;
+}
 .alert .ico {
   width: 18px;
   height: 18px;
