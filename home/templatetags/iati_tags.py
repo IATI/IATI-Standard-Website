@@ -8,6 +8,7 @@ from django.template.defaultfilters import date as _date
 from django.urls import reverse, NoReverseMatch
 from django.utils import timezone
 from django.utils.translation import get_language_info
+from django.utils.text import slugify
 from wagtail.models import Page
 from wagtail_modeltranslation.contextlib import use_language
 from wagtail.templatetags.wagtailcore_tags import pageurl
@@ -294,3 +295,33 @@ def fast_youtube_embed(youtube_url):
 
     thumbnail_url = "https://img.youtube.com/vi/{}/maxresdefault.jpg".format(video_id)
     return {"youtube_url": youtube_url, "thumbnail_url": thumbnail_url}
+
+# Some add_anchor_ids functionality from
+# https://github.com/MozillaFoundation/foundation.mozilla.org/blob/main/foundation_cms/legacy_apps/wagtailcustomization/templatetags/wagtailcustom_tags.py
+# Which is licensed under the Mozilla Public License (MPL) version 2.0
+# https://github.com/MozillaFoundation/foundation.mozilla.org/blob/main/LICENSE
+
+
+_add_anchor_ids_re = re.compile(r"<h((\d)[^>]*)>(.+?)<\/h\2>")
+
+
+def _add_anchor_ids_sub(match):
+    """Use with regular expression by add_anchor_ids."""
+    hsuffix = match.group(1)
+    level = match.group(2)
+    text = match.group(3)
+    if int(level) < 4:
+        slug = slugify(text)
+        return f'<h{hsuffix} id="heading-{slug}">{text}</h{level}>'
+    else:
+        return f'<h{hsuffix}>{text}</h{level}>'
+
+
+@register.filter()
+def add_anchor_ids(value):
+    """Add an 'id' attribute to all <h2>, <h3>, and <h4> tags in the given HTML string.
+
+    This filter should take text that is safe, but it outputs something Django considers non-safe.
+    When using this filter you will have to add |safe after it (but make sure what you are passing in is really safe first!)
+    """
+    return _add_anchor_ids_re.sub(_add_anchor_ids_sub, str(value))
