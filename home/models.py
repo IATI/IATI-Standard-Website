@@ -329,7 +329,7 @@ class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage): 
             'testimonial_items',
             heading='Testimonial items',
             label='Testimonial item',
-            min_num=1,
+            min_num=0,
         ),
         FieldPanel('activities'),
         FieldPanel('organisations'),
