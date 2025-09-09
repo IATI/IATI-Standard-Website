@@ -37,6 +37,23 @@ class CautionParagraphBlock(StructBlock):
         label = "Caution Paragraph"
 
 
+class QuestionAndAnswerBlock(StructBlock):
+    """A block for Question and Answer, for FAQ pages."""
+
+    question = CharBlock(required=True)
+    # For content we are using a StreamBlock instead of just a RichTextBlock
+    # a) so the user can add multiple paragraphs and reorder them
+    # b) so we have the structure we need later to add other types of block here
+    answer = StreamBlock([
+        ('paragraph', RichTextBlock(icon="pilcrow")),
+    ])
+
+    class Meta:
+        template = "home/includes/question_and_answer_block.html"
+        icon = "edit"
+        label = "Question and Answer"
+
+
 class PullQuoteBlock(StructBlock):
     """A block for creating a pull quote."""
 
@@ -161,6 +178,7 @@ class IATIStreamBlock(StreamBlock):
     fast_youtube_embed = URLBlock(icon="code", label='Fast YouTube Embed')
     caution_paragraph = CautionParagraphBlock()
     card_gallery = CardGalleryBlock()
+    question_and_answer = QuestionAndAnswerBlock()
 
     def get_searchable_content(self, value):
         """Overidden method to fix None type errors on indexing."""
