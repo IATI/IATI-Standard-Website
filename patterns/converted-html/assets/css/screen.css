@@ -5732,10 +5732,11 @@ details summary::-webkit-details-marker {
   border-radius: 4px;
   box-shadow: 0 4px 5px #dadada;
   color: #000;
+  margin: 0 0 2rem 0;
 }
 .question_and_answer .question_and_answer_question {
   color: #155366;
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   font-weight: 600;
   line-height: 2;
   padding: 1rem;
