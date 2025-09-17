@@ -1,0 +1,11 @@
+<div class="iati-design-system--enabled">
+    <div class="iati-card-gallery">
+        {% for card in self.content %}
+            <div class="iati-card">
+                <p class="iati-card__title">{{ card.title }}</p>
+                <p class="iati-card__subtitle">{{ card.sub_title }}</p>
+                <p>{{ card.content }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
