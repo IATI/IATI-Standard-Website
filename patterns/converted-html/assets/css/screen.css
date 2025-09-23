@@ -5698,7 +5698,7 @@ code.html {
 .hljs-strong {
   font-weight: 700;
 }
-details summary { 
+details summary {
   cursor: pointer;
   list-style: none;
   position: relative;
@@ -5726,13 +5726,16 @@ details[open] summary::after {
 details summary::-webkit-details-marker {
   display: none;
 }
+.card-gallery {
+  margin: 2rem 0 2rem 0;
+}
 .question_and_answer {
   background-color: #cae6ef;
   border: 1px solid #155366;
   border-radius: 4px;
   box-shadow: 0 4px 5px #dadada;
   color: #000;
-  margin: 0 0 2rem 0;
+  margin: 2rem 0 2rem 0;
 }
 .question_and_answer .question_and_answer_question {
   color: #155366;
