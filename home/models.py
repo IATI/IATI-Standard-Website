@@ -9,7 +9,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template.defaultfilters import slugify
 from wagtail.models import Page
 from wagtail.admin.panels import FieldPanel, InlinePanel, PageChooserPanel
-from wagtail.blocks import TextBlock, StructBlock, StreamBlock, FieldBlock, CharBlock, RichTextBlock, RawHTMLBlock, PageChooserBlock, URLBlock
+from wagtail.blocks import TextBlock, StructBlock, StreamBlock, FieldBlock, CharBlock, RichTextBlock, RawHTMLBlock, PageChooserBlock, URLBlock, ListBlock
 from wagtail.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.documents.blocks import DocumentChooserBlock
@@ -35,6 +35,23 @@ class CautionParagraphBlock(StructBlock):
         template = "home/includes/caution_paragraph_block.html"
         icon = "edit"
         label = "Caution Paragraph"
+
+
+class QuestionAndAnswerBlock(StructBlock):
+    """A block for Question and Answer, for FAQ pages."""
+
+    question = CharBlock(required=True)
+    # For content we are using a StreamBlock instead of just a RichTextBlock
+    # a) so the user can add multiple paragraphs and reorder them
+    # b) so we have the structure we need later to add other types of block here
+    answer = StreamBlock([
+        ('paragraph', RichTextBlock(icon="pilcrow")),
+    ])
+
+    class Meta:
+        template = "home/includes/question_and_answer_block.html"
+        icon = "edit"
+        label = "Question and Answer"
 
 
 class PullQuoteBlock(StructBlock):
@@ -116,6 +133,35 @@ def highlight_streamfield():
     )
 
 
+class CardBlock(StructBlock):
+    """A block for Card, used in Card Gallery."""
+
+    title = CharBlock(icon="title", required=False)
+    sub_title = CharBlock(icon="title", required=False)
+
+    # For content we are using a StreamBlock instead of just a RichTextBlock
+    # a) so the user can add multiple paragraphs and reorder them
+    # b) so we have the structure we need later to add other types of block here
+    content = StreamBlock([
+        ('paragraph', RichTextBlock(icon="pilcrow")),
+    ])
+
+    class Meta:
+        icon = "edit"
+        label = "Card Gallery Card"
+
+
+class CardGalleryBlock(StructBlock):
+    """A block for Card Gallery."""
+
+    content = ListBlock(CardBlock(), min_num=1)
+
+    class Meta:
+        template = "home/includes/card_gallery.html"
+        icon = "edit"
+        label = "Card Gallery"
+
+
 class IATIStreamBlock(StreamBlock):
     """The main stream block used as the content editor sitewide."""
 
@@ -131,6 +177,8 @@ class IATIStreamBlock(StreamBlock):
     anchor_point = CharBlock(icon="order-down", help_text="Custom anchor points are expected to precede other content.")
     fast_youtube_embed = URLBlock(icon="code", label='Fast YouTube Embed')
     caution_paragraph = CautionParagraphBlock()
+    card_gallery = CardGalleryBlock()
+    question_and_answer = QuestionAndAnswerBlock()
 
     def get_searchable_content(self, value):
         """Overidden method to fix None type errors on indexing."""
