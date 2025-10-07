@@ -343,6 +343,10 @@ class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage): 
     activities = models.PositiveIntegerField(default=1000000)
     organisations = models.PositiveIntegerField(default=700)
 
+    # This is defined here instead of in HomeFieldsMixin like the other fields 
+    # because it needs to reference IATIStreamBlock, which is in this file.
+    header_content = StreamField(IATIStreamBlock(required=False), null=True, blank=True, use_json_field=True)
+
     local_translation_fields = [
         'header_video',
         'activities_description',
@@ -361,6 +365,7 @@ class HomePage(DefaultPageHeaderImageMixin, HomeFieldsMixin, AbstractBasePage): 
         'latest_news_title',
         'latest_news_link_label',
         'latest_news_tweets_title',
+        'header_content'
     ]
     optional_local_translation_fields = [
         'header_video',

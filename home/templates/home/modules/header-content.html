@@ -1,0 +1,7 @@
+{% if page.header_content %}
+    <div class="section-alt">
+        <div class="row">
+            {% include "home/includes/streamfield.html" with content=page.header_content %}
+        </div>
+    </div>
+{% endif %}
