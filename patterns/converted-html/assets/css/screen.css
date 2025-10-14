@@ -1959,6 +1959,21 @@ textarea.form-item {
     color: #155366;
   }
 }
+.header-search__hint {
+  color: #fff;
+  text-align: center;
+  margin-top: 1em;
+  margin-bottom: 0;
+  font-size: 1.4rem;
+}
+.header-search__hint a {
+  color: #06dbe4;
+  text-decoration: underline;
+}
+.header-search__hint a:hover,
+.header-search__hint a:focus {
+  color: #fff;
+}
 .help {
   position: relative;
   margin-bottom: 3em;
