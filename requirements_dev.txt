@@ -309,7 +309,7 @@ pyflakes==3.2.0
     # via flake8
 pygithub==2.5.0
     # via -r requirements.txt
-pyjwt[crypto]==2.10.1
+pyjwt[crypto]==2.13.0
     # via
     #   -r requirements.txt
     #   msal
